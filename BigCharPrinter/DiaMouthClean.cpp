@@ -14,7 +14,7 @@ IMPLEMENT_DYNAMIC(CDiaMouthClean, CDialogEx)
 CDiaMouthClean::CDiaMouthClean(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDiaMouthClean::IDD, pParent)
 {
-
+	int a = 5;
 }
 
 CDiaMouthClean::~CDiaMouthClean()
