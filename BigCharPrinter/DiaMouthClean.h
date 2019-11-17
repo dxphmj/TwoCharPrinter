@@ -13,6 +13,8 @@ public:
 
 // 对话框数据
 	enum { IDD = IDD_DIA_MOUTH_CLEAN };
+public:
+	void CleanOneMouth(int nWhick);
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
