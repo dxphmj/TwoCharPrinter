@@ -19,6 +19,7 @@ CDiaMouthClean::CDiaMouthClean(CWnd* pParent /*=NULL*/)
 
 CDiaMouthClean::~CDiaMouthClean()
 {
+	int b = 6;
 }
 
 void CDiaMouthClean::DoDataExchange(CDataExchange* pDX)
