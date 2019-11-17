@@ -22,10 +22,12 @@ CDiaMouthClean::~CDiaMouthClean()
 {
 	int b = 6;
 	int d = 9;
+	int e = 10;
 
 }
 
 
+ 
 void CDiaMouthClean::CleanOneMouth(int nWhick)
 {
 	int b = 6;
@@ -34,6 +36,7 @@ void CDiaMouthClean::CleanOneMouth(int nWhick)
 }
 
 
+ 
 void CDiaMouthClean::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
