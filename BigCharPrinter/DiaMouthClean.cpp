@@ -25,6 +25,15 @@ CDiaMouthClean::~CDiaMouthClean()
 
 }
 
+
+void CDiaMouthClean::CleanOneMouth(int nWhick)
+{
+	int b = 6;
+	int d = 9;
+
+}
+
+
 void CDiaMouthClean::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
