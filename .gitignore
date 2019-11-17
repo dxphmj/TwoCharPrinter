@@ -17,3 +17,4 @@ BigCharPrinter/Debug/BigCharPrinter_manifest.rc
 *.pdb
 Debug/BigCharPrinter.exe
 *.ilk
+*.opensdf
