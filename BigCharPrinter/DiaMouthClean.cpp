@@ -15,6 +15,7 @@ CDiaMouthClean::CDiaMouthClean(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDiaMouthClean::IDD, pParent)
 {
 	int a = 5;
+	int c = 3;
 }
 
 CDiaMouthClean::~CDiaMouthClean()
