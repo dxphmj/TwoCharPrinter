@@ -21,7 +21,7 @@ CDiaMouthClean::CDiaMouthClean(CWnd* pParent /*=NULL*/)
 CDiaMouthClean::~CDiaMouthClean()
 {
 	int b = 6;
-	int d = 8;
+	int d = 9;
 
 }
 
