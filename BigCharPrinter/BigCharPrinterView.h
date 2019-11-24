@@ -13,6 +13,8 @@
 #include "DiaCustomIcon.h"
 #include "DiaSystemSetting.h"
 #include "DiaCounter.h"
+#include "DiaClassSetting.h"
+
 
 class CBigCharPrinterView : public CFormView
 {
@@ -55,6 +57,7 @@ public:
 	CDiaCustomIcon *m_dlgCustomIcon;
 	CDiaSystemSetting *m_dlgSystemSetting;
 	CDiaCounter *m_dlgCounter;
+	CDiaClassSetting *m_dlgClassSetting;
 
 public:
 	void ShowDialogByID(int ID);
@@ -76,6 +79,7 @@ public:
 	afx_msg void OnBnClickedButClean();
 	afx_msg void OnBnClickedButPrintControl();
 	afx_msg void OnBnClickedButCounter();
+	afx_msg void OnBnClickedButClassSetting();
 };
 
 #ifndef _DEBUG  // BigCharPrinterView.cpp 中的调试版本
