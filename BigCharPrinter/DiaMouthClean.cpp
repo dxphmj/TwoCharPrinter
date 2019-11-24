@@ -14,29 +14,13 @@ IMPLEMENT_DYNAMIC(CDiaMouthClean, CDialogEx)
 CDiaMouthClean::CDiaMouthClean(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDiaMouthClean::IDD, pParent)
 {
-	int a = 5;
-	int c = 3;
+
 }
 
 CDiaMouthClean::~CDiaMouthClean()
 {
-	int b = 6;
-	int d = 9;
-	int e = 10;
-
 }
 
-
- 
-void CDiaMouthClean::CleanOneMouth(int nWhick)
-{
-	int b = 6;
-	int d = 9;
-
-}
-
-
- 
 void CDiaMouthClean::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);

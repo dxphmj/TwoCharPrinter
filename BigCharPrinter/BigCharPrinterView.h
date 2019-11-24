@@ -54,6 +54,9 @@ public:
 	CDiaCustomIcon *m_dlgCustomIcon;
 	CDiaSystemSetting *m_dlgSystemSetting;
 
+public:
+	void ShowDialogByID(int ID);
+
 
 protected:
 
@@ -63,6 +66,13 @@ protected:
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnBnClickedButPrintEdit();
+	afx_msg void OnBnClickedButPrintParam();
+	afx_msg void OnBnClickedButIcon();
+	afx_msg void OnBnClickedButSystem();
+	afx_msg void OnBnClickedButClean();
+	afx_msg void OnBnClickedButPrintControl();
 };
 
 #ifndef _DEBUG  // BigCharPrinterView.cpp 中的调试版本

@@ -24,6 +24,12 @@ IMPLEMENT_DYNCREATE(CBigCharPrinterView, CFormView)
 BEGIN_MESSAGE_MAP(CBigCharPrinterView, CFormView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+	ON_BN_CLICKED(IDC_BUT_PRINT_EDIT, &CBigCharPrinterView::OnBnClickedButPrintEdit)
+	ON_BN_CLICKED(IDC_BUT_PRINT_PARAM, &CBigCharPrinterView::OnBnClickedButPrintParam)
+	ON_BN_CLICKED(IDC_BUT_ICON, &CBigCharPrinterView::OnBnClickedButIcon)
+	ON_BN_CLICKED(IDC_BUT_SYSTEM, &CBigCharPrinterView::OnBnClickedButSystem)
+	ON_BN_CLICKED(IDC_BUT_CLEAN, &CBigCharPrinterView::OnBnClickedButClean)
+	ON_BN_CLICKED(IDC_BUT_PRINT_CONTROL, &CBigCharPrinterView::OnBnClickedButPrintControl)
 END_MESSAGE_MAP()
 
 // CBigCharPrinterView 构造/析构
@@ -60,11 +66,11 @@ void CBigCharPrinterView::OnInitialUpdate()
 
 	CRect rc;
 	GetClientRect(rc);
-	if (!m_tab.Create(CMFCTabCtrl::STYLE_3D_ONENOTE, rc, this, 3000, CMFCTabCtrl::LOCATION_TOP,0))
+	/*if (!m_tab.Create(CMFCTabCtrl::STYLE_3D_ONENOTE, rc, this, 3000, CMFCTabCtrl::LOCATION_TOP,0))
 	{
 		return ;     
 	}
-
+*/
 	m_dlgPrintEdit = new CDiaPrintEdit;
 	m_dlgPrintControl = new CDiaPrintControl;
 	m_dlgMouthClean = new CDiaMouthClean;
@@ -72,34 +78,53 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgCustomIcon = new CDiaCustomIcon;
 	m_dlgSystemSetting = new CDiaSystemSetting;
 
-	m_dlgPrintEdit->Create(IDD_DIA_PRINT_EDIT,&m_tab);
+
+	/*pDlg1 = new CDiatest1(this);
+
+	pDlg1->Create(IDD_DIALOG1,this);
+	pDlg2 = new CDiaTest2(this);
+
+	pDlg2->Create(IDD_DIALOG2,this);*/
+
+	int nX = 100;
+	int nY = 100;
+	int nWidth = 500;
+	int nHeight = 400;
+
+	m_dlgPrintEdit->Create(IDD_DIA_PRINT_EDIT,this);
 	m_dlgPrintEdit->SetFont(&afxGlobalData.fontRegular);	 
+	m_dlgPrintEdit->MoveWindow(nX,nY,nWidth,nHeight);
 
-	m_dlgPrintControl->Create(IDD_DIA_PRINT_CONTROL,&m_tab);
+	m_dlgPrintControl->Create(IDD_DIA_PRINT_CONTROL,this);
 	m_dlgPrintControl->SetFont(&afxGlobalData.fontBold);
+	m_dlgPrintControl->MoveWindow(nX,nY,nWidth,nHeight);
  
-	m_dlgMouthClean->Create(IDD_DIA_MOUTH_CLEAN,&m_tab);
+	m_dlgMouthClean->Create(IDD_DIA_MOUTH_CLEAN,this);
 	m_dlgMouthClean->SetFont(&afxGlobalData.fontDefaultGUIBold);
+	m_dlgMouthClean->MoveWindow(nX,nY,nWidth,nHeight);
 
-	m_dlgPrintParam->Create(IDD_DIA_PRINT_PARAM,&m_tab);
+	m_dlgPrintParam->Create(IDD_DIA_PRINT_PARAM,this);
 	m_dlgPrintParam->SetFont(&afxGlobalData.fontRegular);
+	m_dlgPrintParam->MoveWindow(nX,nY,nWidth,nHeight);
 
-	m_dlgCustomIcon->Create(IDD_DIA_CUSTOM_ICON,&m_tab);
+	m_dlgCustomIcon->Create(IDD_DIA_CUSTOM_ICON,this);
 	m_dlgCustomIcon->SetFont(&afxGlobalData.fontBold);
+	m_dlgCustomIcon->MoveWindow(nX,nY,nWidth,nHeight);
 
-	m_dlgSystemSetting->Create(IDD_DIA_SYSTEM_SETTING,&m_tab);
+	m_dlgSystemSetting->Create(IDD_DIA_SYSTEM_SETTING,this);
 	m_dlgSystemSetting->SetFont(&afxGlobalData.fontDefaultGUIBold);
+	m_dlgSystemSetting->MoveWindow(nX,nY,nWidth,nHeight);
 
-	m_tab.AddTab(m_dlgPrintEdit,L"打印编辑");
-	m_tab.AddTab(m_dlgPrintControl,L"打印设置");
-	m_tab.AddTab(m_dlgMouthClean,L"喷头清洗");
-	m_tab.AddTab(m_dlgPrintParam,L"打印变量");
-	m_tab.AddTab(m_dlgCustomIcon,L"图案编辑");
-	m_tab.AddTab(m_dlgSystemSetting,L"系统设置");
+	//m_tab.AddTab(m_dlgPrintEdit,L"打印编辑");
+	//m_tab.AddTab(m_dlgPrintControl,L"打印设置");
+	//m_tab.AddTab(m_dlgMouthClean,L"喷头清洗");
+	//m_tab.AddTab(m_dlgPrintParam,L"打印变量");
+	//m_tab.AddTab(m_dlgCustomIcon,L"图案编辑");
+	//m_tab.AddTab(m_dlgSystemSetting,L"系统设置");
 
 
-	m_tab.EnableActiveTabCloseButton();//是否添加关闭选项卡按钮
-	m_tab.SetActiveTab(0); //激活选项卡,以当前选项卡为第一页。
+	//m_tab.EnableActiveTabCloseButton();//是否添加关闭选项卡按钮
+//	m_tab.SetActiveTab(0); //激活选项卡,以当前选项卡为第一页。
 }
 
 void CBigCharPrinterView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -138,3 +163,81 @@ CBigCharPrinterDoc* CBigCharPrinterView::GetDocument() const // 非调试版本是内联
 
 
 // CBigCharPrinterView 消息处理程序
+
+void CBigCharPrinterView::ShowDialogByID(int ID)
+{
+	m_dlgPrintEdit->ShowWindow(SW_HIDE);
+	m_dlgPrintControl->ShowWindow(SW_HIDE);
+	m_dlgMouthClean->ShowWindow(SW_HIDE);
+	m_dlgPrintParam->ShowWindow(SW_HIDE);	
+	m_dlgCustomIcon->ShowWindow(SW_HIDE);
+	m_dlgSystemSetting->ShowWindow(SW_HIDE);
+
+	if(ID == IDD_DIA_PRINT_EDIT)
+	{
+		m_dlgPrintEdit->ShowWindow(SW_SHOW);
+	}
+	else if(ID == IDD_DIA_PRINT_CONTROL)			
+	{
+		m_dlgPrintControl->ShowWindow(SW_SHOW);
+	}
+	else if(ID == IDD_DIA_MOUTH_CLEAN)			
+	{
+		m_dlgMouthClean->ShowWindow(SW_SHOW);
+	}
+	else if(ID == IDD_DIA_PRINT_PARAM)			
+	{
+		m_dlgPrintParam->ShowWindow(SW_SHOW);
+	}
+	else if(ID == IDD_DIA_CUSTOM_ICON)			
+	{
+		m_dlgCustomIcon->ShowWindow(SW_SHOW);
+	}
+	else if(ID == IDD_DIA_SYSTEM_SETTING)			
+	{
+		m_dlgSystemSetting->ShowWindow(SW_SHOW);
+	}
+}
+
+
+void CBigCharPrinterView::OnBnClickedButPrintEdit()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	ShowDialogByID(IDD_DIA_PRINT_EDIT);
+
+}
+
+void CBigCharPrinterView::OnBnClickedButPrintParam()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_PRINT_PARAM);
+}
+
+
+void CBigCharPrinterView::OnBnClickedButIcon()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_CUSTOM_ICON);
+}
+
+
+void CBigCharPrinterView::OnBnClickedButSystem()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_SYSTEM_SETTING);
+}
+
+
+void CBigCharPrinterView::OnBnClickedButClean()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_MOUTH_CLEAN);
+}
+
+
+void CBigCharPrinterView::OnBnClickedButPrintControl()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_PRINT_CONTROL);
+}

@@ -18,3 +18,4 @@ BigCharPrinter/Debug/BigCharPrinter_manifest.rc
 Debug/BigCharPrinter.exe
 *.ilk
 *.opensdf
+*.ipch

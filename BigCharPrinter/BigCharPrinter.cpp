@@ -9,7 +9,7 @@
 #include "MainFrm.h"
 
 #include "BigCharPrinterDoc.h"
-#include "LeftView.h"
+#include "BigCharPrinterView.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -85,7 +85,7 @@ BOOL CBigCharPrinterApp::InitInstance()
 		IDR_MAINFRAME,
 		RUNTIME_CLASS(CBigCharPrinterDoc),
 		RUNTIME_CLASS(CMainFrame),       // 主 SDI 框架窗口
-		RUNTIME_CLASS(CLeftView));
+		RUNTIME_CLASS(CBigCharPrinterView));
 	if (!pDocTemplate)
 		return FALSE;
 	AddDocTemplate(pDocTemplate);
@@ -101,6 +101,9 @@ BOOL CBigCharPrinterApp::InitInstance()
 	// 用 /RegServer、/Register、/Unregserver 或 /Unregister 启动应用程序，则返回 FALSE。
 	if (!ProcessShellCommand(cmdInfo))
 		return FALSE;
+
+	HWND hwnd = AfxGetApp()->GetMainWnd()->GetSafeHwnd();   //获取主窗口句柄
+	SetWindowPos(hwnd, HWND_NOTOPMOST, 50,50,1024,700,SWP_NOMOVE);
 
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	m_pMainWnd->ShowWindow(SW_SHOW);
