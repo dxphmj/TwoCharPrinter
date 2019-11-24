@@ -30,6 +30,7 @@ BEGIN_MESSAGE_MAP(CBigCharPrinterView, CFormView)
 	ON_BN_CLICKED(IDC_BUT_SYSTEM, &CBigCharPrinterView::OnBnClickedButSystem)
 	ON_BN_CLICKED(IDC_BUT_CLEAN, &CBigCharPrinterView::OnBnClickedButClean)
 	ON_BN_CLICKED(IDC_BUT_PRINT_CONTROL, &CBigCharPrinterView::OnBnClickedButPrintControl)
+	ON_BN_CLICKED(IDC_BUT_COUNTER, &CBigCharPrinterView::OnBnClickedButCounter)
 END_MESSAGE_MAP()
 
 // CBigCharPrinterView 构造/析构
@@ -77,6 +78,7 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgPrintParam = new CDiaPrintParam;
 	m_dlgCustomIcon = new CDiaCustomIcon;
 	m_dlgSystemSetting = new CDiaSystemSetting;
+	m_dlgCounter = new CDiaCounter;
 
 
 	/*pDlg1 = new CDiatest1(this);
@@ -114,6 +116,12 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgSystemSetting->Create(IDD_DIA_SYSTEM_SETTING,this);
 	m_dlgSystemSetting->SetFont(&afxGlobalData.fontDefaultGUIBold);
 	m_dlgSystemSetting->MoveWindow(nX,nY,nWidth,nHeight);
+
+	m_dlgCounter->Create(IDD_DIA_COUNTER,this);
+	m_dlgCounter->SetFont(&afxGlobalData.fontDefaultGUIBold);
+	m_dlgCounter->MoveWindow(nX,nY,nWidth,nHeight);
+
+
 
 	//m_tab.AddTab(m_dlgPrintEdit,L"打印编辑");
 	//m_tab.AddTab(m_dlgPrintControl,L"打印设置");
@@ -172,6 +180,7 @@ void CBigCharPrinterView::ShowDialogByID(int ID)
 	m_dlgPrintParam->ShowWindow(SW_HIDE);	
 	m_dlgCustomIcon->ShowWindow(SW_HIDE);
 	m_dlgSystemSetting->ShowWindow(SW_HIDE);
+	m_dlgCounter->ShowWindow(SW_HIDE);
 
 	if(ID == IDD_DIA_PRINT_EDIT)
 	{
@@ -197,6 +206,11 @@ void CBigCharPrinterView::ShowDialogByID(int ID)
 	{
 		m_dlgSystemSetting->ShowWindow(SW_SHOW);
 	}
+	else if(ID == IDD_DIA_COUNTER)			
+	{
+		m_dlgCounter->ShowWindow(SW_SHOW);
+	}
+	
 }
 
 
@@ -240,4 +254,13 @@ void CBigCharPrinterView::OnBnClickedButPrintControl()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_PRINT_CONTROL);
+}
+
+
+void CBigCharPrinterView::OnBnClickedButCounter()
+{
+	// TODO: 在此添加控件通知处理程序代码
+
+	 ShowDialogByID(IDD_DIA_COUNTER);
+
 }

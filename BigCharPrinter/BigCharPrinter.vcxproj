@@ -111,6 +111,7 @@
     <ClInclude Include="BigCharPrinterDoc.h" />
     <ClInclude Include="BigCharPrinterView.h" />
     <ClInclude Include="BtnST.h" />
+    <ClInclude Include="DiaCounter.h" />
     <ClInclude Include="DiaCustomIcon.h" />
     <ClInclude Include="DiaMouthClean.h" />
     <ClInclude Include="DiaPrintControl.h" />
@@ -130,6 +131,7 @@
     <ClCompile Include="BigCharPrinterDoc.cpp" />
     <ClCompile Include="BigCharPrinterView.cpp" />
     <ClCompile Include="BtnST.cpp" />
+    <ClCompile Include="DiaCounter.cpp" />
     <ClCompile Include="DiaCustomIcon.cpp" />
     <ClCompile Include="DiaMouthClean.cpp" />
     <ClCompile Include="DiaPrintControl.cpp" />
