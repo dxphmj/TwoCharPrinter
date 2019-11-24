@@ -19,3 +19,9 @@ Debug/BigCharPrinter.exe
 *.ilk
 *.opensdf
 *.ipch
+Debug/GetCharData.dll
+Debug/GetCharData.exp
+Debug/GetCharData.lib
+GetCharData/Debug/GetCharData.dll.embed.manifest.res
+GetCharData/Debug/GetCharData.res
+GetCharData/Debug/GetCharData_manifest.rc

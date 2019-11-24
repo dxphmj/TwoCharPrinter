@@ -1355,6 +1355,7 @@ BOOL BCMenu::ModifyODMenuA(const char *lpstrText,const char *OptionText,
 BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,
                            int nIconNormal)
 {
+	/*
 	BCMenuData *mdata;
 	
 	// Find the old BCMenuData structure:
@@ -1380,6 +1381,7 @@ BOOL BCMenu::ModifyODMenuW(wchar_t *lpstrText,wchar_t *OptionText,
 		}
 		return(TRUE);
 	}
+	*/
 	return(FALSE);
 }
 

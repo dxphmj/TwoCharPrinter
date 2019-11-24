@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -111,6 +111,7 @@
     <ClInclude Include="BigCharPrinterDoc.h" />
     <ClInclude Include="BigCharPrinterView.h" />
     <ClInclude Include="BtnST.h" />
+    <ClInclude Include="CSTPSerialPort.h" />
     <ClInclude Include="DiaClassSetting.h" />
     <ClInclude Include="DiaCounter.h" />
     <ClInclude Include="DiaCustomIcon.h" />
@@ -119,8 +120,10 @@
     <ClInclude Include="DiaPrintEdit.h" />
     <ClInclude Include="DiaPrintParam.h" />
     <ClInclude Include="DiaSystemSetting.h" />
+    <ClInclude Include="IOVsd.h" />
     <ClInclude Include="LeftView.h" />
     <ClInclude Include="MainFrm.h" />
+    <ClInclude Include="MyLogCpp.h" />
     <ClInclude Include="OutputWnd.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
@@ -132,6 +135,7 @@
     <ClCompile Include="BigCharPrinterDoc.cpp" />
     <ClCompile Include="BigCharPrinterView.cpp" />
     <ClCompile Include="BtnST.cpp" />
+    <ClCompile Include="CSTPSerialPort.cpp" />
     <ClCompile Include="DiaClassSetting.cpp" />
     <ClCompile Include="DiaCounter.cpp" />
     <ClCompile Include="DiaCustomIcon.cpp" />
@@ -140,8 +144,10 @@
     <ClCompile Include="DiaPrintEdit.cpp" />
     <ClCompile Include="DiaPrintParam.cpp" />
     <ClCompile Include="DiaSystemSetting.cpp" />
+    <ClCompile Include="IOVsd.cpp" />
     <ClCompile Include="LeftView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
+    <ClCompile Include="MyLogCpp.cpp" />
     <ClCompile Include="OutputWnd.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

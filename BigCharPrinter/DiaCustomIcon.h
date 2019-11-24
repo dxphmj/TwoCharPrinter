@@ -1,4 +1,5 @@
 #pragma once
+#include "afxwin.h"
 
 
 // CDiaCustomIcon 对话框
@@ -18,4 +19,8 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
 
 	DECLARE_MESSAGE_MAP()
+public:
+	CStatic m_IconEdit;
+	virtual BOOL OnInitDialog();
+	afx_msg void OnPaint();
 };
