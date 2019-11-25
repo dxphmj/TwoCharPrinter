@@ -118,6 +118,7 @@
     <ClInclude Include="DiaMouthClean.h" />
     <ClInclude Include="DiaPrintControl.h" />
     <ClInclude Include="DiaPrintEdit.h" />
+    <ClInclude Include="DiaPrinterManage.h" />
     <ClInclude Include="DiaPrintParam.h" />
     <ClInclude Include="DiaSystemSetting.h" />
     <ClInclude Include="IOVsd.h" />
@@ -142,6 +143,7 @@
     <ClCompile Include="DiaMouthClean.cpp" />
     <ClCompile Include="DiaPrintControl.cpp" />
     <ClCompile Include="DiaPrintEdit.cpp" />
+    <ClCompile Include="DiaPrinterManage.cpp" />
     <ClCompile Include="DiaPrintParam.cpp" />
     <ClCompile Include="DiaSystemSetting.cpp" />
     <ClCompile Include="IOVsd.cpp" />

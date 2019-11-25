@@ -118,6 +118,13 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	// 启用快速(按住 Alt 拖动)工具栏自定义
 	CMFCToolBar::EnableQuickCustomization();
 
+	HICON m_hIcon;
+	m_hIcon = AfxGetApp()->LoadIcon(IDR_BigCharPrinterTYPE);
+	SetIcon(m_hIcon, TRUE); // Set big icon
+	SetIcon(m_hIcon, FALSE); // Set small icon
+
+	SetMenu(NULL);  //不显示菜单
+
 	return 0;
 }
 //
@@ -219,3 +226,4 @@ void CMainFrame::OnSettingChange(UINT uFlags, LPCTSTR lpszSection)
 	CFrameWndEx::OnSettingChange(uFlags, lpszSection);
 	m_wndOutput.UpdateFonts();
 }
+
