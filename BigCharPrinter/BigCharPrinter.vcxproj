@@ -94,11 +94,16 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="..\..\..\之前文档\OsgDCenterActive\OsgDCMainFrameActiveX\res\open_tree.bmp" />
     <None Include="ReadMe.txt" />
     <None Include="res\BigCharPrinter.ico" />
     <None Include="res\BigCharPrinter.rc2" />
     <None Include="res\BigCharPrinterDoc.ico" />
     <None Include="res\bitmap1.bmp" />
+    <None Include="res\bitmap2.bmp" />
+    <None Include="res\bitmap3.bmp" />
+    <None Include="res\bitmap6.bmp" />
+    <None Include="res\icon1.ico" />
     <None Include="res\output_wnd.ico" />
     <None Include="res\output_wnd_hc.ico" />
     <None Include="res\Toolbar.bmp" />
