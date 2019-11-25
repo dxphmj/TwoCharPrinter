@@ -17,3 +17,16 @@ BigCharPrinter/Debug/BigCharPrinter_manifest.rc
 *.pdb
 Debug/BigCharPrinter.exe
 *.ilk
+*.suo
+Debug/GetCharData.dll
+*.exp
+Debug/GetCharData.lib
+GetCharData/Debug/GetCharData.dll.embed.manifest.res
+GetCharData/Debug/GetCharData.res
+GetCharData/Debug/GetCharData_manifest.rc
+*.ipch
+BigCharPrinter.suo
+*.suo
+BigCharPrinter.suo
+*.suo
+*.suo
