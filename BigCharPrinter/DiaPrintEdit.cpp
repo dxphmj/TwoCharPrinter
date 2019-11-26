@@ -182,12 +182,39 @@ void CDiaPrintEdit::OnBnClickedButDesignClean()
 void CDiaPrintEdit::OnBnClickedButDesignSave()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	BOOL isOpen = TRUE;		//是否打开(否则为保存)
+	CString defaultDir = "";	//默认打开的文件路径
+	CString fileName = "";			//默认打开的文件名
+	CString filter = "文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
+	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY|OFN_READONLY, filter, NULL);
+	openFileDlg.GetOFN().lpstrInitialDir = ".//test.xml";
+	INT_PTR result = openFileDlg.DoModal();
+	CString filePath = defaultDir + "\\test.xml";
+	if(result == IDOK) {
+		filePath = openFileDlg.GetPathName();
+	}  
+	m_PrintObjectsDeal.SaveObjectsToXml(filePath.GetBuffer(0));
 }
 
 
 void CDiaPrintEdit::OnBnClickedButOpenDesign()
 {
 	// TODO: 在此添加控件通知处理程序代码
+
+	BOOL isOpen = TRUE;		//是否打开(否则为保存)
+	CString defaultDir = "";	//默认打开的文件路径
+	CString fileName = "";			//默认打开的文件名
+	CString filter = "文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
+	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY|OFN_READONLY, filter, NULL);
+	openFileDlg.GetOFN().lpstrInitialDir = ".//test.xml";
+	INT_PTR result = openFileDlg.DoModal();
+	CString filePath = defaultDir + "\\test.xml";
+	if(result == IDOK) {
+		filePath = openFileDlg.GetPathName();
+	}  
+
+	m_PrintObjectsDeal.ReadObjectsFromXml(filePath.GetBuffer(0));
+
 }
 
 

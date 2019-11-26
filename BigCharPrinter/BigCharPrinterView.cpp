@@ -199,7 +199,8 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_ButPrinterManage.SetTooltipText("设备管理");
 	m_ButPrinterManage.SetAlign(CButtonST::ST_ALIGN_VERT);
 
-	m_dlgPrinterManage->ShowWindow(SW_SHOW);
+	//m_dlgPrinterManage->ShowWindow(SW_SHOW);
+	m_dlgPrintEdit->ShowWindow(SW_SHOW);
 
 }
 

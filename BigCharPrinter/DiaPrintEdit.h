@@ -1,5 +1,6 @@
 #pragma once
 #include "afxwin.h"
+#include "ObjectFileDeal.h"
 
 
 #define m_nRowSum 16
@@ -22,6 +23,7 @@ public:
 	int  m_nStepPixels;
 
 	bool m_arrPrintData[m_nRowSum][m_nColSum];
+	CObjectFileDeal m_PrintObjectsDeal;
 
 public:
 	void DrawOnePoint(CDC* pDC ,int row,int col);
