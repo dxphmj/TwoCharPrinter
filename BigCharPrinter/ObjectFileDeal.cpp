@@ -95,6 +95,17 @@ void CObjectFileDeal::ReadObjectsFromXml(char* strFileName)
 					sprintf_s(obj.m_texts,"%s",strText); 
 				}
 			}
+			obj.m_xPos = 100;
+			obj.m_yPos = 20;
+			m_arrObjects.push_back(obj);
 		}
-	}
+	}	
+}
+
+void CObjectFileDeal::DrawObjects(CDC* pDC,int nStepPixels)
+{
+	for(int i = 0; i < m_arrObjects.size(); i++)
+	{
+		m_arrObjects[i].DrawObject(pDC,nStepPixels);		 
+	}	 
 }

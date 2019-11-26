@@ -19,6 +19,7 @@ public:
 public:
 	void ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
+	void DrawObjects(CDC* pDC,int nStepPixels);
 
 };
 

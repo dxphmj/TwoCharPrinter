@@ -3,9 +3,6 @@
         <Matrix>1L7M</Matrix>
     </PRO>
     <OBJ>
-        <setTEXT>afds</setTEXT>
-    </OBJ>
-    <OBJ>
-        <setTEXT>afds</setTEXT>
-    </OBJ>
+        <setTEXT>ABCD123456</setTEXT>
+    </OBJ>   
 </MES>

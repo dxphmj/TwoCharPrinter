@@ -24,7 +24,7 @@ public:
 
 	bool m_arrPrintData[m_nRowSum][m_nColSum];
 	CObjectFileDeal m_PrintObjectsDeal;
-
+	int m_nSelectObjIndex;
 public:
 	void DrawOnePoint(CDC* pDC ,int row,int col);
 
@@ -35,9 +35,12 @@ protected:
 	DECLARE_MESSAGE_MAP()
 public:
 	CComboBox m_ComParam;
-	virtual BOOL OnInitDialog();
 	CComboBox m_ComData;
 	CStatic m_designArea;
+	CComboBox m_comFonts;
+	CString m_strInputText;
+
+	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
 	afx_msg void OnBnClickedButDesignView();
 	afx_msg void OnBnClickedButPrintView();
@@ -46,4 +49,11 @@ public:
 	afx_msg void OnBnClickedButOpenDesign();
 	afx_msg void OnBnClickedButInsertParam();
 	afx_msg void OnBnClickedButInsertDada();
+	afx_msg void OnBnClickedButAddText();
+	afx_msg void OnBnClickedButMoveUp();
+	afx_msg void OnBnClickedButMoveDown();
+	afx_msg void OnBnClickedButMoveLeft();
+	afx_msg void OnBnClickedButMoveRight();
+	afx_msg void OnBnClickedButDelText();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
