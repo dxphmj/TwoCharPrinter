@@ -103,14 +103,10 @@ BOOL CBigCharPrinterApp::InitInstance()
 		return FALSE;
 
 	HWND hwnd = AfxGetApp()->GetMainWnd()->GetSafeHwnd();   //获取主窗口句柄
-	SetWindowPos(hwnd, HWND_NOTOPMOST, 10,10,1100,700,SWP_NOOWNERZORDER);
-	AfxGetApp()->GetMainWnd()->SetWindowText("                                                                                     大字符喷墨机-广州市印科标识科技有限公司"); 
-
-
+	SetWindowPos(hwnd, HWND_NOTOPMOST, 50,50,1024,700,SWP_NOMOVE);
 
 	// 唯一的一个窗口已初始化，因此显示它并对其进行更新
 	m_pMainWnd->ShowWindow(SW_SHOW);
-	m_pMainWnd->CenterWindow();
 	m_pMainWnd->UpdateWindow();
 	// 仅当具有后缀时才调用 DragAcceptFiles
 	//  在 SDI 应用程序中，这应在 ProcessShellCommand 之后发生

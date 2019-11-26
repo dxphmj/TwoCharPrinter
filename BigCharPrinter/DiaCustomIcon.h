@@ -20,7 +20,15 @@ protected:
 
 	DECLARE_MESSAGE_MAP()
 public:
-	CStatic m_IconEdit;
+	
 	virtual BOOL OnInitDialog();
+	 
 	afx_msg void OnPaint();
+	CStatic m_drawPic;
+public:
+	bool m_arrData[16][16];
+
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+
+	
 };

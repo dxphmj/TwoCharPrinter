@@ -17,7 +17,6 @@ protected: // 仅从序列化创建
 protected:
 	CSplitterWnd m_wndSplitter;
 public:
-	void GetCaptionRect(CRect & rect);
 
 // 操作
 public:
@@ -52,8 +51,6 @@ protected:
 
 	BOOL CreateDockingWindows();
 	void SetDockingWindowIcons(BOOL bHiColorIcons);
-public:
-
 };
 
 
