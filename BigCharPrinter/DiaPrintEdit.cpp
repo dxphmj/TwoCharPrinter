@@ -192,8 +192,8 @@ void CDiaPrintEdit::OnBnClickedButDesignSave()
 	CString filePath = defaultDir + "\\test.xml";
 	if(result == IDOK) {
 		filePath = openFileDlg.GetPathName();
+		m_PrintObjectsDeal.SaveObjectsToXml(filePath.GetBuffer(0));
 	}  
-	m_PrintObjectsDeal.SaveObjectsToXml(filePath.GetBuffer(0));
 }
 
 
@@ -211,10 +211,8 @@ void CDiaPrintEdit::OnBnClickedButOpenDesign()
 	CString filePath = defaultDir + "\\test.xml";
 	if(result == IDOK) {
 		filePath = openFileDlg.GetPathName();
+		m_PrintObjectsDeal.ReadObjectsFromXml(filePath.GetBuffer(0));
 	}  
-
-	m_PrintObjectsDeal.ReadObjectsFromXml(filePath.GetBuffer(0));
-
 }
 
 
