@@ -127,8 +127,7 @@ void CDiaPrintEdit::OnPaint()
 		m_PrintObjectsDeal.DrawObjects(pDC,m_nStepPixels);
 	}
 	else
-	{
-		 
+	{		 
 		CPen cPen; 
 		cPen.CreatePen(PS_SOLID,1,RGB(252,157,154)); 
 		CPen* pOldPen; 
@@ -320,7 +319,6 @@ void CDiaPrintEdit::OnBnClickedButDelText()
 		//*itr->DrawObject()
 	}
 
-
 	m_nSelectObjIndex = -1;
 	OnPaint();
 }
@@ -329,8 +327,39 @@ void CDiaPrintEdit::OnBnClickedButDelText()
 void CDiaPrintEdit::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	CRect lRect;
+	m_designArea.GetWindowRect(&lRect);  //获取控件相对于屏幕的位置
+	ScreenToClient(&lRect);
+	m_nSelectObjIndex = -1;
+	if((point.x >= lRect.left && point.x <= lRect.right) && (point.y >= lRect.top && point.y <= lRect.bottom))
+	{
+		point.x -= lRect.left;
+		point.y -= lRect.top;
+		int nRow;
+		int nCol;	 
+		nRow = point.y / m_nStepPixels;
+		nCol = point.x / m_nStepPixels;
+		int n = 0;
 
+		vector<CCharObject>::iterator itr = m_PrintObjectsDeal.m_arrObjects.begin();
+		while (itr != m_PrintObjectsDeal.m_arrObjects.end())
+		{
+			
+			itr->m_bSelected = false;
+			if(nRow >itr->m_yPos && nRow < itr->m_yPos + itr->m_High &&
+               nCol >itr->m_xPos && nCol < itr->m_xPos + itr->m_Width )
+			{
+				itr->m_bSelected = true;
+				m_nSelectObjIndex = n;
+				break;
+			}			 
+			++itr;
+			n++;
+			//*itr->DrawObject()
+		}
 
+	}
+	OnPaint();
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
