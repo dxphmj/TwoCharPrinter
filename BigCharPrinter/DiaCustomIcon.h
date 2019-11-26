@@ -19,16 +19,17 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
-public:
-	
-	virtual BOOL OnInitDialog();
-	 
-	afx_msg void OnPaint();
-	CStatic m_drawPic;
-public:
-	bool m_arrData[16][16];
 
+public:	
+	 
+	CStatic m_drawPic;
+	bool m_arrData[16][16];
+	int m_nStep;
+
+public:
+	virtual BOOL OnInitDialog();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnPaint();
 
 	
 };
