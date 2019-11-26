@@ -19,3 +19,6 @@ Debug/BigCharPrinter.exe
 *.ilk
 *.opensdf
 *.ipch
+*.exe
+*.exe
+BigCharPrinter/Debug/BigCharPrinter.exe
