@@ -19,6 +19,7 @@ CDiaCustomIcon::CDiaCustomIcon(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDiaCustomIcon::IDD, pParent)
 {
 	m_nStep = 10;
+
 }
 
 CDiaCustomIcon::~CDiaCustomIcon()
@@ -29,6 +30,8 @@ void CDiaCustomIcon::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_PIC, m_drawPic);
+	DDX_Control(pDX, IDC_OpenPic, m_OpenPic);
+	DDX_Control(pDX, IDC_SavePic, m_SavePic);
 }
 
 
@@ -37,6 +40,8 @@ BEGIN_MESSAGE_MAP(CDiaCustomIcon, CDialogEx)
 	ON_WM_PAINT()
 	ON_WM_LBUTTONDOWN()
 	
+	ON_BN_CLICKED(IDC_OpenPic, &CDiaCustomIcon::OnBnClickedOpenpic)
+	ON_BN_CLICKED(IDC_SavePic, &CDiaCustomIcon::OnBnClickedSavepic)
 END_MESSAGE_MAP()
 
 
@@ -51,9 +56,9 @@ BOOL CDiaCustomIcon::OnInitDialog()
 	CDialogEx::OnInitDialog();
 
 	// TODO:  在此添加额外的初始化
-	for(int i = 0; i < 16; i++)
-		for(int j = 0; j < 16; j++)
-			m_arrData[i][j] = 0;
+	for(int nRow = 0; nRow < 16; nRow++)
+		for(int nCol = 0; nCol < 16; nCol++)
+			m_arrData[nRow][nCol] = 0;
 
 	return TRUE;  // return TRUE unless you set the focus to a control
 	// 异常: OCX 属性页应返回 FALSE
@@ -138,4 +143,116 @@ void CDiaCustomIcon::OnLButtonDown(UINT nFlags, CPoint point)
 		m_arrData[nRow][nCol] = !m_arrData[nRow][nCol]; //给数组赋值,取反
 	}
 	OnPaint();	
+}
+
+CString CDiaCustomIcon::FileName()
+{
+	//读写的文件名称
+	m_binFileName = "1.dat";
+	return m_binFileName;
+
+
+}
+
+
+void CDiaCustomIcon::Serialize(CArchive &ar)
+{
+	if (ar.IsStoring())
+	{
+		//写变量的数据到文件
+		int nRow,nCol;
+		for(int nRow = 0; nRow < 16; nRow++)
+			for(int nCol = 0; nCol < 16; nCol++)
+				ar<<m_arrData[nRow][nCol] ;
+	}
+	else
+	{
+		//读文件内容并保存到变量：
+		int nRow,nCol;	
+		for(int nRow = 0; nRow < 16; nRow++)
+			for(int nCol = 0; nCol < 16; nCol++)
+				ar>>m_arrData[nRow][nCol] ;
+	}
+}
+
+BOOL CDiaCustomIcon::Save2File()
+{
+	
+	BOOL bOpenFileDialog = FALSE;
+	BOOL bVistaStyle = FALSE; 
+	TCHAR BASED_CODE szFilter[] = 
+		_T("二进制文件(*.dat)|*.dat|")
+		_T("All Files (*.*)|*.*||");
+	CString path_and_fileName;
+
+	CFileDialog fdlg(bOpenFileDialog, _T("dat"), _T("*.dat"),
+		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, NULL, 0, bVistaStyle);
+	if (IDOK == fdlg.DoModal()) 
+	{
+		CFile fileSave;
+		CFileException ex;
+
+		path_and_fileName = fdlg.GetPathName();
+		if (!fileSave.Open(path_and_fileName, CFile::modeCreate | 
+			CFile::modeWrite | CFile::typeBinary, &ex))
+		{   
+			TCHAR szError[1024];
+			ex.GetErrorMessage(szError, 1024);		
+			return FALSE;
+		}
+
+		CArchive ar(&fileSave, CArchive::store);     	
+		Serialize(ar);
+		ar.Close();
+		fileSave.Close();
+	}
+
+	return TRUE;
+}
+
+BOOL CDiaCustomIcon::Read2File()
+{	
+	BOOL bOpenFileDialog = true;
+	BOOL bVistaStyle = FALSE; // no VistaStyle
+	TCHAR BASED_CODE szFilter[] = 
+		_T("二进制文件(*.dat)|*.dat|")
+		_T("All Files (*.*)|*.*||");
+	CString path_and_fileName;
+
+	CFileDialog fdlg(bOpenFileDialog, _T("dat"), _T("*.dat"),
+		OFN_HIDEREADONLY | OFN_OVERWRITEPROMPT, szFilter, NULL, 0, bVistaStyle);
+	if (IDOK == fdlg.DoModal()) 
+	{
+		CFile fileRead;
+		CFileException ex;
+
+		path_and_fileName = fdlg.GetPathName();
+		if (!fileRead.Open(path_and_fileName, CFile::modeRead | CFile::typeBinary, &ex))
+		{   
+			TCHAR szError[1024];
+			ex.GetErrorMessage(szError, 1024);			
+			return FALSE;
+		}
+
+		CArchive ar(&fileRead, CArchive::load); 
+		Serialize(ar);
+		ar.Close();
+		fileRead.Close();
+	}
+
+	return TRUE;
+}
+
+void CDiaCustomIcon::OnBnClickedOpenpic()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	Read2File();	
+	OnPaint();
+}
+
+
+void CDiaCustomIcon::OnBnClickedSavepic()
+{
+	// TODO: 在此添加控件通知处理程序代码	
+	Save2File();
 }

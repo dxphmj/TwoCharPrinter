@@ -92,8 +92,8 @@ void CBigCharPrinterView::OnInitialUpdate()
 
 	int nX = 100;
 	int nY = 100;
-	int nWidth = 500;
-	int nHeight = 400;
+	int nWidth = 800;
+	int nHeight = 500;
 
 	m_dlgPrintEdit->Create(IDD_DIA_PRINT_EDIT,this);
 	m_dlgPrintEdit->SetFont(&afxGlobalData.fontRegular);	 
