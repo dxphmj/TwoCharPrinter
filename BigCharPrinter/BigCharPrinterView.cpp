@@ -85,12 +85,24 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgSystemSetting = new CDiaSystemSetting;
 	m_dlgCounter = new CDiaCounter;
 	m_dlgClassSetting = new CDiaClassSetting;
+
 	m_dlgPrinterManage = new CDiaPrinterManage;
 	
 	int nX = 50;
 	int nY = 140;
 	int nWidth = 1000;
 	int nHeight = 450;
+
+
+
+	/*pDlg1 = new CDiatest1(this);
+
+	pDlg1->Create(IDD_DIALOG1,this);
+	pDlg2 = new CDiaTest2(this);
+
+	pDlg2->Create(IDD_DIALOG2,this);*/
+
+
 
 	m_dlgPrintEdit->Create(IDD_DIA_PRINT_EDIT,this);
 	m_dlgPrintEdit->SetFont(&afxGlobalData.fontRegular);	 

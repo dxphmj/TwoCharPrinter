@@ -59,12 +59,11 @@ BEGIN_MESSAGE_MAP(CDiaPrintEdit, CDialogEx)
 	ON_BN_CLICKED(IDC_BUT_MOVE_RIGHT, &CDiaPrintEdit::OnBnClickedButMoveRight)
 	ON_BN_CLICKED(IDC_BUT_DEL_TEXT, &CDiaPrintEdit::OnBnClickedButDelText)
 	ON_WM_LBUTTONDOWN()
- 
+
 END_MESSAGE_MAP()
 
 
 // CDiaPrintEdit 消息处理程序
- 
 
 
 BOOL CDiaPrintEdit::OnInitDialog()
@@ -372,4 +371,3 @@ void CDiaPrintEdit::OnLButtonDown(UINT nFlags, CPoint point)
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
- 

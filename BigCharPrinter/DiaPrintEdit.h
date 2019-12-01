@@ -59,5 +59,5 @@ public:
 	afx_msg void OnBnClickedButMoveRight();
 	afx_msg void OnBnClickedButDelText();
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
- 
+
 };
