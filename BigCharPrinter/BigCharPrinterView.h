@@ -17,6 +17,8 @@
 #include "DiaPrinterManage.h"
 #include "afxwin.h"
 #include "BtnST.h"
+#include "IOVsd.h"
+
 
 class CBigCharPrinterView : public CFormView
 {
@@ -30,9 +32,19 @@ public:
 // 特性
 public:
 	CBigCharPrinterDoc* GetDocument() const;
+	void InitCommMsg();
+	void GetDataStr(CString strTree,CString strFileName,CString strParam,CString &strContent);
 
 // 操作
 public:
+	CIOVsd m_vsd[1];//使用三个串口
+	CWinThread* m_pThreadSend;//数据处理和发送线程
+	CWinThread*  m_pThreadRecv;//数据处理和发送线
+	int    m_nCycleLen;//周期长度	单位是ms
+	HANDLE m_hTime;
+	HANDLE m_hEvent;
+	HANDLE m_hRevTime;//接收数据时间事件句柄
+
 
 // 重写
 public:
@@ -48,6 +60,14 @@ public:
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;
 #endif
+
+protected:
+	HANDLE			m_hCompPort;					//完成端口句柄
+	SOCKET			m_sListen;						//监听套接字 
+	HANDLE			m_hThread[20];	                //子线程=监听线程+服务线程
+	int				m_nThreadNum;					//实际线程数量
+	HANDLE			m_hEvent2;						//监听事件句柄
+
 
 
 public:

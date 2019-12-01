@@ -193,8 +193,8 @@ BOOL CIOVsd::Send(LPTSTR lpszSendString, INT nszSendStringLen)
 // 	csMsg.Format("COM:%d--TX:PacketType:%d--Len:%d ",m_nComIndx,bySendBuffer[1],nszSendStringLen);
 //	g_log.logFormat("COM:%d--加速度计D0:0x%x--D1:0x%x--D2:0x%x\n",m_nComIndx,bySendBuffer[2],
 //		             bySendBuffer[3],bySendBuffer[4]);
-
-	if(iSendLen == nszSendStringLen || iSendLen == strlen(lpszSendString))
+	USES_CONVERSION; 
+	if(iSendLen == nszSendStringLen || iSendLen == strlen(W2A(lpszSendString)))
 	{
 		bRet = TRUE;
 	}	

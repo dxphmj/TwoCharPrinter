@@ -127,6 +127,7 @@
     <ClInclude Include="DiaPrinterManage.h" />
     <ClInclude Include="DiaPrintParam.h" />
     <ClInclude Include="DiaSystemSetting.h" />
+    <ClInclude Include="IOVsd.h" />
     <ClInclude Include="LeftView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MyLogCpp.h" />
@@ -155,6 +156,7 @@
     <ClCompile Include="DiaPrinterManage.cpp" />
     <ClCompile Include="DiaPrintParam.cpp" />
     <ClCompile Include="DiaSystemSetting.cpp" />
+    <ClCompile Include="IOVsd.cpp" />
     <ClCompile Include="LeftView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MyLogCpp.cpp" />

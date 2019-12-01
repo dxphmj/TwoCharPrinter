@@ -16,6 +16,7 @@
 #define new DEBUG_NEW
 #endif
 
+ 
 
 // CBigCharPrinterView
 
@@ -41,7 +42,6 @@ CBigCharPrinterView::CBigCharPrinterView()
 	: CFormView(CBigCharPrinterView::IDD)
 {
 	// TODO: 在此处添加构造代码
-
 }
 
 CBigCharPrinterView::~CBigCharPrinterView()
@@ -67,6 +67,8 @@ void CBigCharPrinterView::OnInitialUpdate()
 	CFormView::OnInitialUpdate();
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
+
+
 
 	CRect rc;
 	GetClientRect(rc);
@@ -202,6 +204,122 @@ void CBigCharPrinterView::OnInitialUpdate()
 	//m_dlgPrinterManage->ShowWindow(SW_SHOW);
 	m_dlgPrintEdit->ShowWindow(SW_SHOW);
 
+
+	InitCommMsg();//初始化串口
+}
+
+void CBigCharPrinterView::GetDataStr(CString strTree,CString strFileName,CString strParam,CString &strContent)
+{
+	//先获取文件大小,在确定需要多少空间来存放数据库连接信息
+	CFileStatus status;
+	long lFileSize = 0;
+	if (CFile::GetStatus(strFileName,status))
+	{
+		lFileSize = status.m_size;
+	}
+	USES_CONVERSION; 
+
+	if (lFileSize > 0)
+	{
+		WCHAR* pDataSource = new WCHAR[lFileSize+1];
+		memset(pDataSource,0,lFileSize+1);
+		DWORD dwReadSize = GetPrivateProfileString(strTree,strParam, L"",pDataSource, lFileSize, strFileName);
+		if (dwReadSize != 0)
+		{
+			strContent.Format(_T("%s"),pDataSource);
+		}
+
+		delete[] pDataSource;
+	}
+}
+
+void CBigCharPrinterView::InitCommMsg()
+{
+	CString strContent = _T("");
+	CString strTree = _T("");//树干
+	CString	strLeaf = _T("");//树叶名称
+	MyDcb   tempDcb;
+	int     nComNum = 0;
+	int     i=0;
+	char *p = NULL;
+	char szLocalInfoConfigFileName[512] = {0};
+	CString strConfigFile;
+	/* 获得文件路径 */
+	USES_CONVERSION; 
+
+	//if(0 == GetModuleFileName(NULL, A2W(szLocalInfoConfigFileName), 512))
+	//{
+	//	return;//获取路径失败
+	//}
+//	p = strrchr(szLocalInfoConfigFileName, '\\');
+//	*p = 0;
+	strConfigFile.Format(_T("%s"),_T("..\\bin\\SerialPortSet.ini"));
+
+	strTree = _T("本地串口数配置");
+	strLeaf = _T("本地串口数");
+	GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+	nComNum = atoi(W2A(strContent.GetBuffer(0)));//串口个数(修改成1)
+	for (i=0; i<nComNum; i++)
+	{
+		memset(&tempDcb,0,sizeof(MyDcb));
+		//目前树干为：  主机配置信息
+		strTree.Format(_T("串口配置%d"),i+1);
+		//树叶为:端口 
+		strLeaf = "端口";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.nComPort = atoi(W2A(strContent));
+
+		strLeaf = "波特率";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.BaudRate = atol(W2A(strContent));
+
+		strLeaf = "校验位";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.Parity = (BYTE)atoi(W2A(strContent));
+
+		strLeaf = "数据位";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.ByteSize = (BYTE)atoi(W2A(strContent));
+
+		strLeaf = "停止位";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.StopBits = (BYTE)atoi(W2A(strContent));
+
+		strLeaf = "是否存储";
+		GetDataStr(strTree,strConfigFile,strLeaf,strContent);
+		tempDcb.bIsSave = (BOOL)atoi(W2A(strContent));
+
+		// 		m_vsd.SetParentPoint(this);
+		m_vsd[i].SetComIndx(tempDcb.nComPort);
+		if (!m_vsd[i].OpenComm(tempDcb))
+		{
+			CString csMsg = _T("");
+			csMsg.Format(_T("串口%d打开失败!"),tempDcb.nComPort);
+			AfxMessageBox(csMsg);
+		}
+	}
+
+	//m_pThreadSend = AfxBeginThread(
+	//	ThreadProc_SendAndDataProc,
+	//	(LPVOID)this,
+	//	THREAD_PRIORITY_NORMAL,
+	//	0,
+	//	CREATE_SUSPENDED
+	//	);
+	//ASSERT(m_pThreadSend);
+	//m_pThreadSend->m_bAutoDelete = FALSE;
+	//m_pThreadSend->ResumeThread();
+
+	/*m_pThreadRecv = AfxBeginThread(
+	ThreadProc_RecvData,
+	(LPVOID)this,
+	THREAD_PRIORITY_NORMAL,
+	0,
+	CREATE_SUSPENDED
+	);
+	ASSERT(m_pThreadRecv);
+	m_pThreadRecv->m_bAutoDelete = FALSE;
+	m_pThreadRecv->ResumeThread();*/
 }
 
 void CBigCharPrinterView::OnRButtonUp(UINT /* nFlags */, CPoint point)

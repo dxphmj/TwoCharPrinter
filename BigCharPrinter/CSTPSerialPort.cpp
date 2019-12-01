@@ -80,7 +80,7 @@ CSTPSerialPort::~CSTPSerialPort()
 //==============================================================================================
 int CSTPSerialPort::Open(UINT32 nPortNo, UINT32 nBaudRate, BYTE byDataBit, BYTE byStopBit, BYTE byParity)
 {
-	CHAR szPort[16];
+	WCHAR szPort[16];
 	DCB dcb;	//设备控制块
 
 	//------------------------------------------------------------
@@ -102,11 +102,11 @@ int CSTPSerialPort::Open(UINT32 nPortNo, UINT32 nBaudRate, BYTE byDataBit, BYTE 
 	//对串口名称进行格式化
 	memset(szPort, 0x00, sizeof(szPort));
 	USES_CONVERSION;   
-	wsprintf(A2W(szPort), L"\\\\.\\COM%d", nPortNo);
+	wsprintf(szPort, L"\\\\.\\COM%d", nPortNo);
 	
 	//------------------------------------------------------------
 	//打开指定串口
-	m_hCOM = CreateFile(A2W(szPort),								/*串口名称*/
+	m_hCOM = CreateFile(szPort,								/*串口名称*/
 							GENERIC_READ | GENERIC_WRITE,	/*对该串口拥有读写权限*/
 							0,								/*串口打开成功后，二次打开会失败*/
 							NULL,							/*安全属性*/
