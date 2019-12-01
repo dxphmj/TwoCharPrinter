@@ -1,2 +1,6 @@
+<<<<<<< Updated upstream
 2019/11/26
+=======
+2019/12/1
+>>>>>>> Stashed changes
 0
