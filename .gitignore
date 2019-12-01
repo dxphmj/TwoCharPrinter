@@ -25,5 +25,5 @@ Debug/GetCharData.lib
 GetCharData/Debug/GetCharData.dll.embed.manifest.res
 GetCharData/Debug/GetCharData.res
 GetCharData/Debug/GetCharData_manifest.rc
-*.suo
-*.lab
+*.suo 
+BigCharPrinter.suo

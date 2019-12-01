@@ -15,12 +15,14 @@ CDiaPrintEdit::CDiaPrintEdit(CWnd* pParent /*=NULL*/)
 	: CDialogEx(CDiaPrintEdit::IDD, pParent)
 	, m_strInputText(_T(""))
 {
+ 
 	m_bDesign = true; 
 	m_nStepPixels = 5;
 	m_nSelectObjIndex = -1;
 	for(int i = 0; i < m_nRowSum; i++)
 		for(int j = 0; j < m_nColSum; j++)
 			m_arrPrintData[i][j] = false;
+ 
 }
 
 CDiaPrintEdit::~CDiaPrintEdit()
@@ -30,15 +32,18 @@ CDiaPrintEdit::~CDiaPrintEdit()
 void CDiaPrintEdit::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+ 
 	DDX_Control(pDX, IDC_COM_PARAM, m_ComParam);
 	DDX_Control(pDX, IDC_COM_DATA, m_ComData);
 	DDX_Control(pDX, IDC_STATIC_DESIGN_AREA, m_designArea);
 	DDX_Control(pDX, IDC_COM_FONT, m_comFonts);
 	DDX_Text(pDX, IDC_EDIT_INPUT_TEXT, m_strInputText);
+ 
 }
 
 
 BEGIN_MESSAGE_MAP(CDiaPrintEdit, CDialogEx)
+ 
 	ON_WM_PAINT()
 	ON_BN_CLICKED(IDC_BUT_DESIGN_VIEW, &CDiaPrintEdit::OnBnClickedButDesignView)
 	ON_BN_CLICKED(IDC_BUT_PRINT_VIEW, &CDiaPrintEdit::OnBnClickedButPrintView)
@@ -54,10 +59,12 @@ BEGIN_MESSAGE_MAP(CDiaPrintEdit, CDialogEx)
 	ON_BN_CLICKED(IDC_BUT_MOVE_RIGHT, &CDiaPrintEdit::OnBnClickedButMoveRight)
 	ON_BN_CLICKED(IDC_BUT_DEL_TEXT, &CDiaPrintEdit::OnBnClickedButDelText)
 	ON_WM_LBUTTONDOWN()
+ 
 END_MESSAGE_MAP()
 
 
 // CDiaPrintEdit 消息处理程序
+ 
 
 
 BOOL CDiaPrintEdit::OnInitDialog()
@@ -363,3 +370,4 @@ void CDiaPrintEdit::OnLButtonDown(UINT nFlags, CPoint point)
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
+ 

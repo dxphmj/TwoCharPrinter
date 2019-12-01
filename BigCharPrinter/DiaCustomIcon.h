@@ -19,8 +19,28 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
+
+public:	
+	 
+	CStatic m_drawPic;
+	bool m_arrData[16][16];
+	int m_nStep;
+	void Serialize(CArchive &ar);
+	virtual BOOL Save2File();
+	virtual BOOL Read2File();
+
+protected:
+	CString  m_binFileName;
+	CString FileName();
+
 public:
-	CStatic m_IconEdit;
 	virtual BOOL OnInitDialog();
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnPaint();
+
+	
+	CButton m_OpenPic;
+	CButton m_SavePic;
+	afx_msg void OnBnClickedOpenpic();
+	afx_msg void OnBnClickedSavepic();
 };

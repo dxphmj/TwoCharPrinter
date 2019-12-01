@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -19,7 +19,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <UseOfMfc>Static</UseOfMfc>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -94,12 +94,11 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="..\..\..\之前文档\OsgDCenterActive\OsgDCMainFrameActiveX\res\open_tree.bmp" />
     <None Include="ReadMe.txt" />
     <None Include="res\BigCharPrinter.ico" />
     <None Include="res\BigCharPrinter.rc2" />
     <None Include="res\BigCharPrinterDoc.ico" />
-    <None Include="res\bitmap1.bmp" />
+    <None Include="res\bitmap1.bmp" /> 
     <None Include="res\bitmap2.bmp" />
     <None Include="res\bitmap3.bmp" />
     <None Include="res\bitmap6.bmp" />
@@ -125,10 +124,8 @@
     <ClInclude Include="DiaMouthClean.h" />
     <ClInclude Include="DiaPrintControl.h" />
     <ClInclude Include="DiaPrintEdit.h" />
-    <ClInclude Include="DiaPrinterManage.h" />
     <ClInclude Include="DiaPrintParam.h" />
     <ClInclude Include="DiaSystemSetting.h" />
-    <ClInclude Include="IOVsd.h" />
     <ClInclude Include="LeftView.h" />
     <ClInclude Include="MainFrm.h" />
     <ClInclude Include="MyLogCpp.h" />
@@ -154,10 +151,8 @@
     <ClCompile Include="DiaMouthClean.cpp" />
     <ClCompile Include="DiaPrintControl.cpp" />
     <ClCompile Include="DiaPrintEdit.cpp" />
-    <ClCompile Include="DiaPrinterManage.cpp" />
     <ClCompile Include="DiaPrintParam.cpp" />
     <ClCompile Include="DiaSystemSetting.cpp" />
-    <ClCompile Include="IOVsd.cpp" />
     <ClCompile Include="LeftView.cpp" />
     <ClCompile Include="MainFrm.cpp" />
     <ClCompile Include="MyLogCpp.cpp" />

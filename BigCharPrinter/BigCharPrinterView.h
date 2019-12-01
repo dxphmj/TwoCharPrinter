@@ -14,9 +14,7 @@
 #include "DiaSystemSetting.h"
 #include "DiaCounter.h"
 #include "DiaClassSetting.h"
-#include "DiaPrinterManage.h"
-#include "afxwin.h"
-#include "BtnST.h"
+
 
 class CBigCharPrinterView : public CFormView
 {
@@ -60,7 +58,6 @@ public:
 	CDiaSystemSetting *m_dlgSystemSetting;
 	CDiaCounter *m_dlgCounter;
 	CDiaClassSetting *m_dlgClassSetting;
-	CDiaPrinterManage *m_dlgPrinterManage;
 
 public:
 	void ShowDialogByID(int ID);
@@ -83,16 +80,6 @@ public:
 	afx_msg void OnBnClickedButPrintControl();
 	afx_msg void OnBnClickedButCounter();
 	afx_msg void OnBnClickedButClassSetting();
-	afx_msg void OnBnClickedButPrinterManage();
-	CButtonST m_ButPrintEdit;
-	CButtonST m_ButPrintParam;
-	CButtonST m_ButPrintClean;
-	CButtonST m_ButPrintControl;
-	CButtonST m_ButPrintCounter;
-	CButtonST m_ButPrintIcon;
-	CButtonST m_ButPrintClass;
-	CButtonST m_ButPrintSystem;
-	CButtonST m_ButPrinterManage;
 };
 
 #ifndef _DEBUG  // BigCharPrinterView.cpp 中的调试版本
