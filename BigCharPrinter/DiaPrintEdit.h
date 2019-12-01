@@ -18,9 +18,6 @@ protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV Ö§³Ö
 
 	DECLARE_MESSAGE_MAP()
-<<<<<<< Updated upstream
-=======
 public:
 	afx_msg void OnLbnSelchangeList10();
->>>>>>> Stashed changes
 };
