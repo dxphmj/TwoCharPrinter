@@ -14,7 +14,9 @@
 #include "DiaSystemSetting.h"
 #include "DiaCounter.h"
 #include "DiaClassSetting.h"
-
+#include "DiaPrinterManage.h"
+#include "afxwin.h"
+#include "BtnST.h"
 
 class CBigCharPrinterView : public CFormView
 {
@@ -58,7 +60,17 @@ public:
 	CDiaSystemSetting *m_dlgSystemSetting;
 	CDiaCounter *m_dlgCounter;
 	CDiaClassSetting *m_dlgClassSetting;
+	CDiaPrinterManage *m_dlgPrinterManage;
 
+	CButtonST m_ButPrintEdit;
+	CButtonST m_ButPrintParam;
+	CButtonST m_ButPrintClean;
+	CButtonST m_ButPrintControl;
+	CButtonST m_ButPrintCounter;
+	CButtonST m_ButPrintIcon;
+	CButtonST m_ButPrintClass;
+	CButtonST m_ButPrintSystem;
+	CButtonST m_ButPrinterManage;
 public:
 	void ShowDialogByID(int ID);
 
@@ -67,6 +79,7 @@ protected:
 
 // 生成的消息映射函数
 protected:
+	afx_msg void OnBnClickedButPrinterManage();
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);

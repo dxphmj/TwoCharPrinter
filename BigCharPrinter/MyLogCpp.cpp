@@ -69,7 +69,8 @@ BOOL CMyLogCpp::InitLog(CString csDir, CString csName)
 	//sprintf(szFileName, "%d.txt", ltime);
 
 	/* 创建日志文件 */
-	s_hFileLog = CreateFile(szFileName,           // open MYFILE.TXT 
+	USES_CONVERSION;  
+	s_hFileLog = CreateFile(A2W(szFileName),           // open MYFILE.TXT 
 		GENERIC_READ|GENERIC_WRITE,              // open for reading 
 		FILE_SHARE_READ,           // share for reading 
 		NULL,                      // no security 

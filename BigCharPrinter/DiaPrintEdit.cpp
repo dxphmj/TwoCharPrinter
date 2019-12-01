@@ -82,24 +82,24 @@ BOOL CDiaPrintEdit::OnInitDialog()
 	for (int i = 1; i <= 10; i++)
 	{
 		CString str;
-		str.Format("%d",i);
+		str.Format(L"%d",i);
 		m_ComParam.InsertString(i-1,str);
 	}
 	m_ComParam.SetCurSel(0);
 
-	m_ComData.InsertString(0,"系统日期");
-	m_ComData.InsertString(1,"有效日期");
-	m_ComData.InsertString(2,"系统时间");
-	m_ComData.InsertString(3,"计数1");
-	m_ComData.InsertString(4,"计数2");
-	m_ComData.InsertString(5,"计数3");
-	m_ComData.InsertString(6,"字母计数");
-	m_ComData.InsertString(7,"班次码");
+	m_ComData.InsertString(0,L"系统日期");
+	m_ComData.InsertString(1,L"有效日期");
+	m_ComData.InsertString(2,L"系统时间");
+	m_ComData.InsertString(3,L"计数1");
+	m_ComData.InsertString(4,L"计数2");
+	m_ComData.InsertString(5,L"计数3");
+	m_ComData.InsertString(6,L"字母计数");
+	m_ComData.InsertString(7,L"班次码");
 
-	m_comFonts.InsertString(0,"5X5");
-	m_comFonts.InsertString(1,"7X5");
-	m_comFonts.InsertString(2,"12X12");
-	m_comFonts.InsertString(2,"16X12");
+	m_comFonts.InsertString(0,L"5X5");
+	m_comFonts.InsertString(1,L"7X5");
+	m_comFonts.InsertString(2,L"12X12");
+	m_comFonts.InsertString(2,L"16X12");
 
 	m_ComData.SetCurSel(0);	 
 	m_comFonts.SetCurSel(1);	 
@@ -206,16 +206,17 @@ void CDiaPrintEdit::OnBnClickedButDesignSave()
 {
 	// TODO: 在此添加控件通知处理程序代码
 	BOOL isOpen = TRUE;		//是否打开(否则为保存)
-	CString defaultDir = "";	//默认打开的文件路径
-	CString fileName = "";			//默认打开的文件名
-	CString filter = "文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
+	CString defaultDir = L"";	//默认打开的文件路径
+	CString fileName = L"";			//默认打开的文件名
+	CString filter = L"文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
 	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY|OFN_READONLY, filter, NULL);
-	openFileDlg.GetOFN().lpstrInitialDir = ".//test.xml";
+	openFileDlg.GetOFN().lpstrInitialDir = L".//test.xml";
 	INT_PTR result = openFileDlg.DoModal();
-	CString filePath = defaultDir + "\\test.xml";
+	CString filePath = defaultDir + L"\\test.xml";
 	if(result == IDOK) {
 		filePath = openFileDlg.GetPathName();
-		m_PrintObjectsDeal.SaveObjectsToXml(filePath.GetBuffer(0));
+		USES_CONVERSION;  
+		m_PrintObjectsDeal.SaveObjectsToXml(W2A(filePath.GetBuffer(0)));
 	}  
 }
 
@@ -225,16 +226,17 @@ void CDiaPrintEdit::OnBnClickedButOpenDesign()
 	// TODO: 在此添加控件通知处理程序代码
 
 	BOOL isOpen = TRUE;		//是否打开(否则为保存)
-	CString defaultDir = "";	//默认打开的文件路径
-	CString fileName = "";			//默认打开的文件名
-	CString filter = "文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
+	CString defaultDir = L"";	//默认打开的文件路径
+	CString fileName = L"";			//默认打开的文件名
+	CString filter = L"文件 (*.xml; *.lab)|*.xml;*.lab||";	//文件过虑的类型
 	CFileDialog openFileDlg(isOpen, defaultDir, fileName, OFN_HIDEREADONLY|OFN_READONLY, filter, NULL);
-	openFileDlg.GetOFN().lpstrInitialDir = ".//test.xml";
+	openFileDlg.GetOFN().lpstrInitialDir = L".//test.xml";
 	INT_PTR result = openFileDlg.DoModal();
-	CString filePath = defaultDir + "\\test.xml";
+	CString filePath = defaultDir + L"\\test.xml";
 	if(result == IDOK) {
 		filePath = openFileDlg.GetPathName();
-		m_PrintObjectsDeal.ReadObjectsFromXml(filePath.GetBuffer(0));
+		USES_CONVERSION;  
+		m_PrintObjectsDeal.ReadObjectsFromXml(W2A(filePath.GetBuffer(0)));
 		OnPaint();
 	}  
 }
@@ -257,11 +259,11 @@ void CDiaPrintEdit::OnBnClickedButAddText()
 	// TODO: 在此添加控件通知处理程序代码
 	UpdateData();
 	CCharObject obj;
-	sprintf_s(obj.m_texts,"%s",m_strInputText);
+	USES_CONVERSION;
+	sprintf(obj.m_texts,"%s",W2A(m_strInputText.GetBuffer(0)));
 	m_PrintObjectsDeal.m_arrObjects.push_back(obj);
 
 	OnPaint();
-
 }
 
 

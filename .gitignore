@@ -27,3 +27,8 @@ GetCharData/Debug/GetCharData.res
 GetCharData/Debug/GetCharData_manifest.rc
 *.suo 
 BigCharPrinter.suo
+*.dll
+*.exp
+Debug/GetCharData.lib
+Debug/GetCharData.exp
+Debug/GetCharData.dll

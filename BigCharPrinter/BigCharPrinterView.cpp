@@ -1,10 +1,10 @@
-
-// BigCharPrinterView.cpp : CBigCharPrinterView ���ʵ��
+﻿
+// BigCharPrinterView.cpp : CBigCharPrinterView 类的实现
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS ������ʵ��Ԥ��������ͼ������ɸѡ�������
-// ATL ��Ŀ�н��ж��壬�����������Ŀ�����ĵ����롣
+// SHARED_HANDLERS 可以在实现预览、缩略图和搜索筛选器句柄的
+// ATL 项目中进行定义，并允许与该项目共享文档代码。
 #ifndef SHARED_HANDLERS
 #include "BigCharPrinter.h"
 #endif
@@ -32,14 +32,15 @@ BEGIN_MESSAGE_MAP(CBigCharPrinterView, CFormView)
 	ON_BN_CLICKED(IDC_BUT_PRINT_CONTROL, &CBigCharPrinterView::OnBnClickedButPrintControl)
 	ON_BN_CLICKED(IDC_BUT_COUNTER, &CBigCharPrinterView::OnBnClickedButCounter)
 	ON_BN_CLICKED(IDC_BUT_CLASS_SETTING, &CBigCharPrinterView::OnBnClickedButClassSetting)
+	ON_BN_CLICKED(IDC_BUT_PRINTER_MANAGE, &CBigCharPrinterView::OnBnClickedButPrinterManage)
 END_MESSAGE_MAP()
 
-// CBigCharPrinterView ����/����
+// CBigCharPrinterView 构造/析构
 
 CBigCharPrinterView::CBigCharPrinterView()
 	: CFormView(CBigCharPrinterView::IDD)
 {
-	// TODO: �ڴ˴����ӹ������
+	// TODO: 在此处添加构造代码
 
 }
 
@@ -54,8 +55,9 @@ void CBigCharPrinterView::DoDataExchange(CDataExchange* pDX)
 
 BOOL CBigCharPrinterView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: �ڴ˴�ͨ���޸�
-	//  CREATESTRUCT cs ���޸Ĵ��������ʽ
+	// TODO: 在此处通过修改
+	//  CREATESTRUCT cs 来修改窗口类或样式
+
 
 	return CFormView::PreCreateWindow(cs);
 }
@@ -81,24 +83,17 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgSystemSetting = new CDiaSystemSetting;
 	m_dlgCounter = new CDiaCounter;
 	m_dlgClassSetting = new CDiaClassSetting;
-
-
-	/*pDlg1 = new CDiatest1(this);
-
-	pDlg1->Create(IDD_DIALOG1,this);
-	pDlg2 = new CDiaTest2(this);
-
-	pDlg2->Create(IDD_DIALOG2,this);*/
-
-	int nX = 100;
-	int nY = 100;
-	int nWidth = 800;
-	int nHeight = 500;
+	m_dlgPrinterManage = new CDiaPrinterManage;
+	
+	int nX = 50;
+	int nY = 140;
+	int nWidth = 1000;
+	int nHeight = 450;
 
 	m_dlgPrintEdit->Create(IDD_DIA_PRINT_EDIT,this);
 	m_dlgPrintEdit->SetFont(&afxGlobalData.fontRegular);	 
 	m_dlgPrintEdit->MoveWindow(nX,nY,nWidth,nHeight);
-
+	
 	m_dlgPrintControl->Create(IDD_DIA_PRINT_CONTROL,this);
 	m_dlgPrintControl->SetFont(&afxGlobalData.fontBold);
 	m_dlgPrintControl->MoveWindow(nX,nY,nWidth,nHeight);
@@ -127,17 +122,16 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_dlgClassSetting->SetFont(&afxGlobalData.fontDefaultGUIBold);
 	m_dlgClassSetting->MoveWindow(nX,nY,nWidth,nHeight);
 
- 
 	m_dlgPrinterManage->Create(IDD_DIA_PRINTER_MANAGE,this);
 	m_dlgPrinterManage->SetFont(&afxGlobalData.fontDefaultGUIBold);
 	m_dlgPrinterManage->MoveWindow(nX,nY,nWidth,nHeight);
 
-	//��ɫͼ������
+	//彩色图标设置
 	m_ButPrintEdit.SubclassDlgItem(IDC_BUT_PRINT_EDIT,this);
  	m_ButPrintEdit.SetBitmaps(IDB_BITMAP4,RGB(255,255,255));
 	m_ButPrintEdit.DrawTransparent(true);
 	m_ButPrintEdit.SetFlat(0);
-	m_ButPrintEdit.SetTooltipText("��ӡ�༭");
+	m_ButPrintEdit.SetTooltipText(L"打印编辑");
 	m_ButPrintEdit.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintParam.SubclassDlgItem(IDC_BUT_PRINT_PARAM,this);
@@ -146,7 +140,7 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_ButPrintParam.SetFlat(0);
 	m_ButPrintParam.SetAlign(CButtonST::ST_ALIGN_VERT);
 	*/
-	m_ButPrintParam.SetTooltipText("��ӡ����");
+	m_ButPrintParam.SetTooltipText(L"打印参数");
 	m_ButPrintParam.SetBitmaps(IDB_BITMAP5,RGB(255,255,255));
 	m_ButPrintParam.DrawBorder(FALSE);
 	m_ButPrintParam.SetFlat(1);
@@ -160,65 +154,54 @@ void CBigCharPrinterView::OnInitialUpdate()
 	m_ButPrintClean.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintClean.DrawTransparent(true);
 	m_ButPrintClean.SetFlat(0);
-	m_ButPrintClean.SetTooltipText("��ͷ��ϴ");
+	m_ButPrintClean.SetTooltipText(L"喷头清洗");
 	m_ButPrintClean.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintControl.SubclassDlgItem(IDC_BUT_PRINT_CONTROL,this);
 	m_ButPrintControl.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintControl.DrawTransparent(true);
 	m_ButPrintControl.SetFlat(0);
-	m_ButPrintControl.SetTooltipText("��ӡ����");
+	m_ButPrintControl.SetTooltipText(L"打印控制");
 	m_ButPrintControl.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintCounter.SubclassDlgItem(IDC_BUT_COUNTER,this);
 	m_ButPrintCounter.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintCounter.DrawTransparent(true);
 	m_ButPrintCounter.SetFlat(0);
-	m_ButPrintCounter.SetTooltipText("��ӡ����");
+	m_ButPrintCounter.SetTooltipText(L"打印计数");
 	m_ButPrintCounter.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintIcon.SubclassDlgItem(IDC_BUT_ICON,this);
 	m_ButPrintIcon.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintIcon.DrawTransparent(true);
 	m_ButPrintIcon.SetFlat(0);
-	m_ButPrintIcon.SetTooltipText("��ӡͼ��");
+	m_ButPrintIcon.SetTooltipText(L"打印图标");
 	m_ButPrintIcon.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintClass.SubclassDlgItem(IDC_BUT_CLASS_SETTING,this);
 	m_ButPrintClass.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintClass.DrawTransparent(true);
 	m_ButPrintClass.SetFlat(0);
-	m_ButPrintClass.SetTooltipText("����趨");
+	m_ButPrintClass.SetTooltipText(L"班次设定");
 	m_ButPrintClass.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrintSystem.SubclassDlgItem(IDC_BUT_SYSTEM,this);
 	m_ButPrintSystem.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrintSystem.DrawTransparent(true);
 	m_ButPrintSystem.SetFlat(0);
-	m_ButPrintSystem.SetTooltipText("ϵͳ����");
+	m_ButPrintSystem.SetTooltipText(L"系统设置");
 	m_ButPrintSystem.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	m_ButPrinterManage.SubclassDlgItem(IDC_BUT_PRINTER_MANAGE,this);
 	m_ButPrinterManage.SetBitmaps(IDB_BITMAP1,RGB(255,255,255));
 	m_ButPrinterManage.DrawTransparent(true);
 	m_ButPrinterManage.SetFlat(0);
-	m_ButPrinterManage.SetTooltipText("�豸����");
+	m_ButPrinterManage.SetTooltipText(L"设备管理");
 	m_ButPrinterManage.SetAlign(CButtonST::ST_ALIGN_VERT);
 
 	//m_dlgPrinterManage->ShowWindow(SW_SHOW);
 	m_dlgPrintEdit->ShowWindow(SW_SHOW);
- 
 
-	//m_tab.AddTab(m_dlgPrintEdit,L"��ӡ�༭");
-	//m_tab.AddTab(m_dlgPrintControl,L"��ӡ����");
-	//m_tab.AddTab(m_dlgMouthClean,L"��ͷ��ϴ");
-	//m_tab.AddTab(m_dlgPrintParam,L"��ӡ����");
-	//m_tab.AddTab(m_dlgCustomIcon,L"ͼ���༭");
-	//m_tab.AddTab(m_dlgSystemSetting,L"ϵͳ����");
-
-
-	//m_tab.EnableActiveTabCloseButton();//�Ƿ����ӹر�ѡ���ť
-//	m_tab.SetActiveTab(0); //����ѡ�,�Ե�ǰѡ�Ϊ��һҳ��
 }
 
 void CBigCharPrinterView::OnRButtonUp(UINT /* nFlags */, CPoint point)
@@ -235,7 +218,7 @@ void CBigCharPrinterView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
 }
 
 
-// CBigCharPrinterView ���
+// CBigCharPrinterView 诊断
 
 #ifdef _DEBUG
 void CBigCharPrinterView::AssertValid() const
@@ -248,7 +231,7 @@ void CBigCharPrinterView::Dump(CDumpContext& dc) const
 	CFormView::Dump(dc);
 }
 
-CBigCharPrinterDoc* CBigCharPrinterView::GetDocument() const // �ǵ��԰汾��������
+CBigCharPrinterDoc* CBigCharPrinterView::GetDocument() const // 非调试版本是内联的
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CBigCharPrinterDoc)));
 	return (CBigCharPrinterDoc*)m_pDocument;
@@ -256,7 +239,7 @@ CBigCharPrinterDoc* CBigCharPrinterView::GetDocument() const // �ǵ��԰汾������
 #endif //_DEBUG
 
 
-// CBigCharPrinterView ��Ϣ��������
+// CBigCharPrinterView 消息处理程序
 
 void CBigCharPrinterView::ShowDialogByID(int ID)
 {
@@ -268,98 +251,106 @@ void CBigCharPrinterView::ShowDialogByID(int ID)
 	m_dlgSystemSetting->ShowWindow(SW_HIDE);
 	m_dlgCounter->ShowWindow(SW_HIDE);
 	m_dlgClassSetting->ShowWindow(SW_HIDE);
+	m_dlgPrinterManage->ShowWindow(SW_HIDE);
 
 	if(ID == IDD_DIA_PRINT_EDIT)
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"打印编辑");
 		m_dlgPrintEdit->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_PRINT_CONTROL)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"打印控制");
 		m_dlgPrintControl->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_MOUTH_CLEAN)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"喷头清洗");
 		m_dlgMouthClean->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_PRINT_PARAM)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"打印参数");
 		m_dlgPrintParam->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_CUSTOM_ICON)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"打印图标");
 		m_dlgCustomIcon->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_SYSTEM_SETTING)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"系统设置");
 		m_dlgSystemSetting->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_COUNTER)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"打印计数");
 		m_dlgCounter->ShowWindow(SW_SHOW);
 	}
 	else if(ID == IDD_DIA_CLASS_SETTING)			
 	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"班次设定");
 		m_dlgClassSetting->ShowWindow(SW_SHOW);
 	}
-	
+	else if(ID == IDD_DIA_PRINTER_MANAGE)			
+	{
+		GetDlgItem(IDC_STATIC_DIA_NAME)->SetWindowText(L"设备管理");
+		m_dlgPrinterManage->ShowWindow(SW_SHOW);
+	}	
 }
-
 
 void CBigCharPrinterView::OnBnClickedButPrintEdit()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 
 	ShowDialogByID(IDD_DIA_PRINT_EDIT);
-
 }
 
 void CBigCharPrinterView::OnBnClickedButPrintParam()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_PRINT_PARAM);
 }
 
-
 void CBigCharPrinterView::OnBnClickedButIcon()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_CUSTOM_ICON);
 }
 
-
 void CBigCharPrinterView::OnBnClickedButSystem()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_SYSTEM_SETTING);
 }
 
-
 void CBigCharPrinterView::OnBnClickedButClean()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_MOUTH_CLEAN);
 }
 
-
 void CBigCharPrinterView::OnBnClickedButPrintControl()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_PRINT_CONTROL);
 }
 
-
 void CBigCharPrinterView::OnBnClickedButCounter()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
-
+	// TODO: 在此添加控件通知处理程序代码
 	 ShowDialogByID(IDD_DIA_COUNTER);
-
 }
-
 
 void CBigCharPrinterView::OnBnClickedButClassSetting()
 {
-	// TODO: �ڴ����ӿؼ�֪ͨ�����������
+	// TODO: 在此添加控件通知处理程序代码
 	ShowDialogByID(IDD_DIA_CLASS_SETTING);
+}
 
+void CBigCharPrinterView::OnBnClickedButPrinterManage()
+{
+	// TODO: 在此添加控件通知处理程序代码
+	ShowDialogByID(IDD_DIA_PRINTER_MANAGE);
 }

@@ -3,7 +3,8 @@
 #include "afxwin.h"
 #include "ObjectFileDeal.h"
  
-
+#define m_nRowSum 16
+#define m_nColSum 195
 
 // CDiaPrintEdit ¶Ô»°¿ò
 
