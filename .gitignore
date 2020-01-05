@@ -7,9 +7,6 @@ HighResolutionPrinter/debug/moc_filemanageform.cpp
 HighResolutionPrinter/debug/moc_mainwindow.cpp
 HighResolutionPrinter/debug/moc_paramsettingform.cpp
 HighResolutionPrinter/GeneratedFiles/qrc_Res.cpp
-HighResolutionPrinter/GeneratedFiles/ui_filemanageform.h
-HighResolutionPrinter/GeneratedFiles/ui_mainwindow.h
-HighResolutionPrinter/GeneratedFiles/ui_paramsettingform.h
 HighResolutionPrinter/HighResolutionPrinter.sdf
 HighResolutionPrinter/Win32/Debug/cl.command.1.tlog
 HighResolutionPrinter/Win32/Debug/CL.read.1.tlog
