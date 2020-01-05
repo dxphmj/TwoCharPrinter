@@ -1,0 +1,31 @@
+﻿生成启动时间为 2020/1/5 16:01:15。
+     1>项目“E:\Github\TwoCharPrinter\HighResolutionPrinter\HighResolutionPrinter.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在对“Win32\Debug\HighResolutionPrinter.unsuccessfulbuild”执行 Touch 任务。
+       CustomBuild:
+         所有输出均为最新。
+       ClCompile:
+         d:\VS安装位置\VC\bin\CL.exe /c /I. /ID:\qt5.3\anzhuang\5.5\msvc2010\include /ID:\qt5.3\anzhuang\5.5\msvc2010\include\QtWidgets /ID:\qt5.3\anzhuang\5.5\msvc2010\include\QtGui /ID:\qt5.3\anzhuang\5.5\msvc2010\include\QtANGLE /ID:\qt5.3\anzhuang\5.5\msvc2010\include\QtCore /Idebug /I. /I"D:\qt5.3\anzhuang\5.5\msvc2010\mkspecs\win32-msvc2010" /I.\GeneratedFiles /Zi /nologo /W3 /WX- /Od /Oy- /D _WINDOWS /D UNICODE /D WIN32 /D QT_WIDGETS_LIB /D QT_GUI_LIB /D QT_CORE_LIB /Gm- /EHsc /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /GR /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt mainwindow.cpp -w34100 -w34189 -w44996 
+         mainwindow.cpp
+         所有输出均为最新。
+       Link:
+         d:\VS安装位置\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"debug\\HighResolutionPrinter.exe" /NOLOGO /LIBPATH:D:\qt5.3\anzhuang\5.5\msvc2010\lib /LIBPATH:D:/qt5.3/anzhuang/5.5/msvc2010/lib /LIBPATH:D:\qt5.3\anzhuang\5.5\msvc2010\lib D:\qt5.3\anzhuang\5.5\msvc2010\lib\qtmaind.lib shell32.lib D:/qt5.3/anzhuang/5.5/msvc2010/lib\Qt5Cored.lib D:\qt5.3\anzhuang\5.5\msvc2010\lib\Qt5Widgetsd.lib D:\qt5.3\anzhuang\5.5\msvc2010\lib\Qt5Guid.lib D:\qt5.3\anzhuang\5.5\msvc2010\lib\Qt5Cored.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\Debug\HighResolutionPrinter.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"E:\Github\TwoCharPrinter\HighResolutionPrinter\debug\HighResolutionPrinter.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /MACHINE:X86 Win32\Debug\moc_filemanageform.obj
+         Win32\Debug\moc_mainwindow.obj
+         Win32\Debug\moc_paramsettingform.obj
+         Win32\Debug\filemanageform.obj
+         Win32\Debug\qrc_Res.obj
+         Win32\Debug\main.obj
+         Win32\Debug\mainwindow.obj
+         Win32\Debug\paramsettingform.obj "/MANIFESTDEPENDENCY:type='win32' name='Microsoft.Windows.Common-Controls' version='6.0.0.0' publicKeyToken='6595b64144ccf1df' language='*' processorArchitecture='*'" 
+         LINK : 没有找到 debug\\HighResolutionPrinter.exe 或上一个增量链接没有生成它；正在执行完全链接
+         HighResolutionPrinter.vcxproj -> E:\Github\TwoCharPrinter\HighResolutionPrinter\debug\HighResolutionPrinter.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"debug\\HighResolutionPrinter.exe;#1" /manifest Win32\Debug\HighResolutionPrinter.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Win32\Debug\HighResolutionPrinter.unsuccessfulbuild”。
+         正在对“Win32\Debug\HighResolutionPrinter.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“E:\Github\TwoCharPrinter\HighResolutionPrinter\HighResolutionPrinter.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:01.68

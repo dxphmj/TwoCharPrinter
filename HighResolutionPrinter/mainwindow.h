@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "filemanageform.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+	FileManageForm m_fileMana;
+private slots:
+	void showFileMana();
 };
 
 #endif // MAINWINDOW_H
