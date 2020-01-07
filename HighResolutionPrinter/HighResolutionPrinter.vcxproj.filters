@@ -46,12 +46,12 @@
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{e8aff6e9-5fa2-4e3a-8db9-6d3149ab2ab6}</UniqueIdentifier>
+      <UniqueIdentifier>{2f5146ab-f69d-41e8-8f75-cb1540ea844a}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{972bfcbd-344e-401d-ab83-873278ee947f}</UniqueIdentifier>
+      <UniqueIdentifier>{8ef42023-d804-43a1-b183-4ff627b92e72}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
@@ -90,6 +90,24 @@
     <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="filemanagechild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_filemanagechild.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_filemanagechild.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="fileeditchild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_fileeditchild.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_fileeditchild.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="filemanageform.h">
@@ -100,6 +118,18 @@
     </CustomBuild>
     <CustomBuild Include="paramsettingform.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="filemanagechild.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="fileeditchild.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="filemanagechild.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="fileeditchild.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +147,9 @@
     <CustomBuild Include="Res.qrc">
       <Filter>Resource Files</Filter>
     </CustomBuild>
+    <None Include="Images\blue.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneratedFiles\ui_filemanageform.h">
@@ -126,6 +159,12 @@
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_paramsettingform.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_filemanagechild.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_fileeditchild.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>

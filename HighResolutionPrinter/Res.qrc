@@ -1,5 +1,15 @@
 <RCC>
   <qresource prefix="/">
     <file>Images/blue.bmp</file>
+    <file>Images/blue.bmp</file>
+    <file>Images/closeSys.bmp</file>
+    <file>Images/editFile.bmp</file>
+    <file>Images/exit.bmp</file>
+    <file>Images/fileManage.bmp</file>
+    <file>Images/green.bmp</file>
+    <file>Images/manageFile.bmp</file>
+    <file>Images/paraManage.bmp</file>
+    <file>Images/startPrint.bmp</file>
+    <file>Images/yellow.bmp</file>
   </qresource>
 </RCC>
