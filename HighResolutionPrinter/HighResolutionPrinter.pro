@@ -15,15 +15,21 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     filemanageform.cpp \
-    paramsettingform.cpp
+    paramsettingform.cpp \
+    fileeditchild.cpp \
+    filemanagechild.cpp
 
 HEADERS  += mainwindow.h \
     filemanageform.h \
-    paramsettingform.h
+    paramsettingform.h \
+    fileeditchild.h \
+    filemanagechild.h
 
 FORMS    += mainwindow.ui \
     filemanageform.ui \
-    paramsettingform.ui
+    paramsettingform.ui \
+    filemanagechild.ui \
+    fileeditchild.ui
 
 RESOURCES += \
     Res.qrc
