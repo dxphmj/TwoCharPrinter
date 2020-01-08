@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(0, 0, 255);</string>
+   <string notr="true">background-color: rgb(72,61, 139);</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QPushButton" name="fileManageBut">
@@ -187,10 +187,10 @@
    <widget class="QProgressBar" name="print1Prog">
     <property name="geometry">
      <rect>
-      <x>830</x>
-      <y>300</y>
-      <width>111</width>
-      <height>321</height>
+      <x>860</x>
+      <y>340</y>
+      <width>81</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="value">
@@ -204,9 +204,9 @@
     <property name="geometry">
      <rect>
       <x>977</x>
-      <y>300</y>
-      <width>111</width>
-      <height>321</height>
+      <y>340</y>
+      <width>81</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="value">
@@ -219,8 +219,8 @@
    <widget class="QLabel" name="No1Lab">
     <property name="geometry">
      <rect>
-      <x>850</x>
-      <y>630</y>
+      <x>860</x>
+      <y>620</y>
       <width>72</width>
       <height>15</height>
      </rect>
@@ -235,8 +235,8 @@
    <widget class="QLabel" name="No2Lab">
     <property name="geometry">
      <rect>
-      <x>1000</x>
-      <y>630</y>
+      <x>985</x>
+      <y>620</y>
       <width>72</width>
       <height>15</height>
      </rect>

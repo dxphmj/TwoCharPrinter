@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
+	connect(ui->paraManageBut,SIGNAL(clicked()),this,SLOT(paraManageBut_clicked()));
 }
 
 MainWindow::~MainWindow()
@@ -20,4 +21,9 @@ MainWindow::~MainWindow()
 void MainWindow::fileManageBut_clicked()
 {
 	m_fileManage.show();
+}
+
+void MainWindow::paraManageBut_clicked()
+{
+	m_paramsetting.show();
 }

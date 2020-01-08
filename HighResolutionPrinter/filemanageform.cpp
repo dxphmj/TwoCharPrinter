@@ -20,7 +20,6 @@ FilemanageForm::FilemanageForm(QWidget *parent) :
  	ui->stackedWidget->addWidget(FormFileManageChild);
 	ui->stackedWidget->addWidget(FormFileEditChild);
  	ui->stackedWidget->setCurrentWidget(FormFileEditChild);
- /*	ui->stackedWidget->addWidget(FormFileManageChild);*/
 }
 
 FilemanageForm::~FilemanageForm()

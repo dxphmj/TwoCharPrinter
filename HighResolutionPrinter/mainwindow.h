@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "filemanageform.h"
+#include "paramsettingform.h"
 
 namespace Ui {
 class MainWindow;
@@ -19,11 +20,12 @@ public:
 private:
     Ui::MainWindow *ui;
 	FilemanageForm m_fileManage;
+	ParamSettingForm m_paramsetting;
 
 private slots:
 	void fileManageBut_clicked();
 
-	//void paraManageBut_clicked();
+	void paraManageBut_clicked();
 
 };
 

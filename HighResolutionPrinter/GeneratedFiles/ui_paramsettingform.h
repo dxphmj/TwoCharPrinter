@@ -13,7 +13,11 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
+#include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +25,79 @@ QT_BEGIN_NAMESPACE
 class Ui_ParamSettingForm
 {
 public:
+    QPushButton *printSettingBut;
+    QPushButton *sysSettingBut;
+    QPushButton *countSettingBut;
+    QPushButton *aboutMacBut;
+    QStackedWidget *paraManageStacWid;
+    QWidget *page;
+    QWidget *page_2;
+    QWidget *widget;
+    QHBoxLayout *horizontalLayout;
+    QPushButton *savePrintSetBut;
+    QSpacerItem *horizontalSpacer;
+    QPushButton *quitBut;
 
     void setupUi(QWidget *ParamSettingForm)
     {
         if (ParamSettingForm->objectName().isEmpty())
             ParamSettingForm->setObjectName(QStringLiteral("ParamSettingForm"));
-        ParamSettingForm->resize(400, 300);
+        ParamSettingForm->resize(1280, 800);
+        ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
+        printSettingBut = new QPushButton(ParamSettingForm);
+        printSettingBut->setObjectName(QStringLiteral("printSettingBut"));
+        printSettingBut->setGeometry(QRect(30, 110, 141, 141));
+        QFont font;
+        font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font.setPointSize(16);
+        printSettingBut->setFont(font);
+        printSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/printSetting.bmp);"));
+        sysSettingBut = new QPushButton(ParamSettingForm);
+        sysSettingBut->setObjectName(QStringLiteral("sysSettingBut"));
+        sysSettingBut->setGeometry(QRect(30, 260, 141, 141));
+        sysSettingBut->setFont(font);
+        sysSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/sysSetting.bmp);"));
+        countSettingBut = new QPushButton(ParamSettingForm);
+        countSettingBut->setObjectName(QStringLiteral("countSettingBut"));
+        countSettingBut->setGeometry(QRect(30, 410, 141, 141));
+        countSettingBut->setFont(font);
+        countSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/countSetting.bmp);"));
+        aboutMacBut = new QPushButton(ParamSettingForm);
+        aboutMacBut->setObjectName(QStringLiteral("aboutMacBut"));
+        aboutMacBut->setGeometry(QRect(30, 560, 141, 141));
+        aboutMacBut->setFont(font);
+        aboutMacBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/aboutMac.bmp);"));
+        paraManageStacWid = new QStackedWidget(ParamSettingForm);
+        paraManageStacWid->setObjectName(QStringLiteral("paraManageStacWid"));
+        paraManageStacWid->setGeometry(QRect(200, 20, 1061, 691));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        paraManageStacWid->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        paraManageStacWid->addWidget(page_2);
+        widget = new QWidget(ParamSettingForm);
+        widget->setObjectName(QStringLiteral("widget"));
+        widget->setGeometry(QRect(390, 730, 671, 38));
+        horizontalLayout = new QHBoxLayout(widget);
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        horizontalLayout->setContentsMargins(0, 0, 0, 0);
+        savePrintSetBut = new QPushButton(widget);
+        savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
+        savePrintSetBut->setFont(font);
+
+        horizontalLayout->addWidget(savePrintSetBut);
+
+        horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer);
+
+        quitBut = new QPushButton(widget);
+        quitBut->setObjectName(QStringLiteral("quitBut"));
+        quitBut->setFont(font);
+
+        horizontalLayout->addWidget(quitBut);
+
 
         retranslateUi(ParamSettingForm);
 
@@ -36,6 +107,12 @@ public:
     void retranslateUi(QWidget *ParamSettingForm)
     {
         ParamSettingForm->setWindowTitle(QApplication::translate("ParamSettingForm", "Form", 0));
+        printSettingBut->setText(QApplication::translate("ParamSettingForm", "\346\211\223\345\215\260\350\256\276\347\275\256", 0));
+        sysSettingBut->setText(QApplication::translate("ParamSettingForm", "\347\263\273\347\273\237\350\256\276\347\275\256", 0));
+        countSettingBut->setText(QApplication::translate("ParamSettingForm", "\350\256\241\346\225\260\350\256\276\347\275\256", 0));
+        aboutMacBut->setText(QApplication::translate("ParamSettingForm", "\345\205\263\344\272\216\346\234\254\346\234\272", 0));
+        savePrintSetBut->setText(QApplication::translate("ParamSettingForm", "\344\277\235\345\255\230", 0));
+        quitBut->setText(QApplication::translate("ParamSettingForm", "\345\217\226\346\266\210", 0));
     } // retranslateUi
 
 };

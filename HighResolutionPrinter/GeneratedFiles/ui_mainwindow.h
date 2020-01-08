@@ -50,7 +50,7 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
         MainWindow->resize(1280, 800);
-        MainWindow->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
+        MainWindow->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         fileManageBut = new QPushButton(centralWidget);
@@ -101,21 +101,21 @@ public:
         roolLab->setGeometry(QRect(0, 680, 1271, 51));
         print1Prog = new QProgressBar(centralWidget);
         print1Prog->setObjectName(QStringLiteral("print1Prog"));
-        print1Prog->setGeometry(QRect(830, 300, 111, 321));
+        print1Prog->setGeometry(QRect(860, 340, 81, 271));
         print1Prog->setValue(24);
         print1Prog->setOrientation(Qt::Vertical);
         print2Prog = new QProgressBar(centralWidget);
         print2Prog->setObjectName(QStringLiteral("print2Prog"));
-        print2Prog->setGeometry(QRect(977, 300, 111, 321));
+        print2Prog->setGeometry(QRect(977, 340, 81, 271));
         print2Prog->setValue(24);
         print2Prog->setOrientation(Qt::Vertical);
         No1Lab = new QLabel(centralWidget);
         No1Lab->setObjectName(QStringLiteral("No1Lab"));
-        No1Lab->setGeometry(QRect(850, 630, 72, 15));
+        No1Lab->setGeometry(QRect(860, 620, 72, 15));
         No1Lab->setAlignment(Qt::AlignCenter);
         No2Lab = new QLabel(centralWidget);
         No2Lab->setObjectName(QStringLiteral("No2Lab"));
-        No2Lab->setGeometry(QRect(1000, 630, 72, 15));
+        No2Lab->setGeometry(QRect(985, 620, 72, 15));
         No2Lab->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
