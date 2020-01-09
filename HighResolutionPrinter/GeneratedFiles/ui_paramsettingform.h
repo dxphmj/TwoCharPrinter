@@ -32,7 +32,7 @@ public:
     QStackedWidget *paraManageStacWid;
     QWidget *page;
     QWidget *page_2;
-    QWidget *widget;
+    QWidget *layoutWidget;
     QHBoxLayout *horizontalLayout;
     QPushButton *savePrintSetBut;
     QSpacerItem *horizontalSpacer;
@@ -46,7 +46,7 @@ public:
         ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
         printSettingBut = new QPushButton(ParamSettingForm);
         printSettingBut->setObjectName(QStringLiteral("printSettingBut"));
-        printSettingBut->setGeometry(QRect(30, 110, 141, 141));
+        printSettingBut->setGeometry(QRect(30, 110, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -54,17 +54,17 @@ public:
         printSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/printSetting.bmp);"));
         sysSettingBut = new QPushButton(ParamSettingForm);
         sysSettingBut->setObjectName(QStringLiteral("sysSettingBut"));
-        sysSettingBut->setGeometry(QRect(30, 260, 141, 141));
+        sysSettingBut->setGeometry(QRect(30, 260, 144, 144));
         sysSettingBut->setFont(font);
         sysSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/sysSetting.bmp);"));
         countSettingBut = new QPushButton(ParamSettingForm);
         countSettingBut->setObjectName(QStringLiteral("countSettingBut"));
-        countSettingBut->setGeometry(QRect(30, 410, 141, 141));
+        countSettingBut->setGeometry(QRect(30, 410, 144, 144));
         countSettingBut->setFont(font);
         countSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/countSetting.bmp);"));
         aboutMacBut = new QPushButton(ParamSettingForm);
         aboutMacBut->setObjectName(QStringLiteral("aboutMacBut"));
-        aboutMacBut->setGeometry(QRect(30, 560, 141, 141));
+        aboutMacBut->setGeometry(QRect(30, 560, 144, 144));
         aboutMacBut->setFont(font);
         aboutMacBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/aboutMac.bmp);"));
         paraManageStacWid = new QStackedWidget(ParamSettingForm);
@@ -76,15 +76,16 @@ public:
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         paraManageStacWid->addWidget(page_2);
-        widget = new QWidget(ParamSettingForm);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(390, 730, 671, 38));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget = new QWidget(ParamSettingForm);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(390, 730, 671, 38));
+        horizontalLayout = new QHBoxLayout(layoutWidget);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        savePrintSetBut = new QPushButton(widget);
+        savePrintSetBut = new QPushButton(layoutWidget);
         savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
         savePrintSetBut->setFont(font);
+        savePrintSetBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         horizontalLayout->addWidget(savePrintSetBut);
 
@@ -92,9 +93,10 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        quitBut = new QPushButton(widget);
+        quitBut = new QPushButton(layoutWidget);
         quitBut->setObjectName(QStringLiteral("quitBut"));
         quitBut->setFont(font);
+        quitBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         horizontalLayout->addWidget(quitBut);
 
@@ -112,7 +114,7 @@ public:
         countSettingBut->setText(QApplication::translate("ParamSettingForm", "\350\256\241\346\225\260\350\256\276\347\275\256", 0));
         aboutMacBut->setText(QApplication::translate("ParamSettingForm", "\345\205\263\344\272\216\346\234\254\346\234\272", 0));
         savePrintSetBut->setText(QApplication::translate("ParamSettingForm", "\344\277\235\345\255\230", 0));
-        quitBut->setText(QApplication::translate("ParamSettingForm", "\345\217\226\346\266\210", 0));
+        quitBut->setText(QApplication::translate("ParamSettingForm", "\351\200\200\345\207\272", 0));
     } // retranslateUi
 
 };

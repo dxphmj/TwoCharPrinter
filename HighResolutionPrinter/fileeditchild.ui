@@ -28,6 +28,9 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>保存</string>
    </property>
@@ -46,6 +49,9 @@
      <family>楷体</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>编辑</string>
@@ -76,6 +82,9 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>另存为</string>
    </property>
@@ -95,6 +104,9 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>删除</string>
    </property>
@@ -107,6 +119,9 @@
      <width>1041</width>
      <height>26</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -171,6 +186,9 @@ QTabBar::tab{height:50}</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
      <property name="text">
       <string>－</string>
      </property>
@@ -197,7 +215,7 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>字体</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字体&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -225,7 +243,7 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -253,7 +271,7 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>旋转</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;旋转&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -282,63 +300,11 @@ QTabBar::tab{height:50}</string>
        <bold>true</bold>
       </font>
      </property>
-     <property name="text">
-      <string>＋</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="stepAdd1But_2">
-     <property name="geometry">
-      <rect>
-       <x>710</x>
-       <y>240</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>41</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>黑体</family>
-       <pointsize>14</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>＋</string>
-     </property>
-    </widget>
-    <widget class="QLabel" name="stepValShow1Lab_2">
-     <property name="geometry">
-      <rect>
-       <x>580</x>
-       <y>240</y>
-       <width>131</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>0</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>楷体</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="text">
-      <string>0</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="fontSizeLab">
@@ -363,7 +329,7 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>字号</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字号&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -391,7 +357,7 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>间距</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;间距&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -420,6 +386,9 @@ QTabBar::tab{height:50}</string>
        <bold>true</bold>
       </font>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
      <property name="text">
       <string>＋</string>
      </property>
@@ -447,32 +416,8 @@ QTabBar::tab{height:50}</string>
        <bold>true</bold>
       </font>
      </property>
-     <property name="text">
-      <string>－</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="stepRed1But_2">
-     <property name="geometry">
-      <rect>
-       <x>540</x>
-       <y>240</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>41</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>黑体</family>
-       <pointsize>14</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>－</string>
@@ -500,20 +445,58 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="text">
-      <string>0</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="comboBox">
+    <widget class="QComboBox" name="fontTypeComBox">
      <property name="geometry">
       <rect>
        <x>540</x>
        <y>145</y>
-       <width>151</width>
+       <width>181</width>
        <height>31</height>
       </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontSizeComBox">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>245</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="variableBut">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>330</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>可变</string>
      </property>
     </widget>
    </widget>
@@ -583,6 +566,9 @@ QTabBar::tab{height:50}</string>
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>上移</string>
    </property>
@@ -601,6 +587,9 @@ QTabBar::tab{height:50}</string>
      <family>楷体</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>右移</string>
@@ -621,6 +610,9 @@ QTabBar::tab{height:50}</string>
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>下移</string>
    </property>
@@ -639,6 +631,9 @@ QTabBar::tab{height:50}</string>
      <family>楷体</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>左移</string>

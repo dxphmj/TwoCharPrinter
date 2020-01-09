@@ -13,6 +13,12 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
 	connect(ui->countSettingBut,SIGNAL(clicked()),this,SLOT(countSettingBut_clicked()));
 	connect(ui->aboutMacBut,SIGNAL(clicked()),this,SLOT(aboutMacBut_clicked()));
 
+	ui->printSettingBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/printSetting.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
+	ui->sysSettingBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/sysSetting.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
+	ui->countSettingBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/countSetting.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
+	ui->aboutMacBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/aboutMac.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
+
+
 	m_printSetting = new printSetting(this);//实例化窗口页面
 	m_sysSetting = new sysSetting(this);
 	m_countSetting = new countSetting(this);

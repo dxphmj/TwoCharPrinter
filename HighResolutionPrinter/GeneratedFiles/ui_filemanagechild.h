@@ -51,10 +51,12 @@ public:
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(15);
         localFileBut->setFont(font);
+        localFileBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         UdiskFileBut = new QPushButton(FileManageChild);
         UdiskFileBut->setObjectName(QStringLiteral("UdiskFileBut"));
         UdiskFileBut->setGeometry(QRect(250, 680, 131, 51));
         UdiskFileBut->setFont(font);
+        UdiskFileBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         filePrivewtextBro = new QTextBrowser(FileManageChild);
         filePrivewtextBro->setObjectName(QStringLiteral("filePrivewtextBro"));
         filePrivewtextBro->setGeometry(QRect(460, 10, 551, 301));
@@ -73,18 +75,22 @@ public:
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(16);
         loadSeleFileBut->setFont(font1);
+        loadSeleFileBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         editSeleFileBut = new QPushButton(FileManageChild);
         editSeleFileBut->setObjectName(QStringLiteral("editSeleFileBut"));
         editSeleFileBut->setGeometry(QRect(550, 480, 371, 61));
         editSeleFileBut->setFont(font1);
+        editSeleFileBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         delSeleFileBut = new QPushButton(FileManageChild);
         delSeleFileBut->setObjectName(QStringLiteral("delSeleFileBut"));
         delSeleFileBut->setGeometry(QRect(550, 570, 371, 61));
         delSeleFileBut->setFont(font1);
+        delSeleFileBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         copyFile2localBut = new QPushButton(FileManageChild);
         copyFile2localBut->setObjectName(QStringLiteral("copyFile2localBut"));
         copyFile2localBut->setGeometry(QRect(550, 660, 371, 61));
         copyFile2localBut->setFont(font1);
+        copyFile2localBut->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
 
         retranslateUi(FileManageChild);
 

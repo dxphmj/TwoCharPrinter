@@ -38,6 +38,9 @@
      <pointsize>15</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>本地文件</string>
    </property>
@@ -56,6 +59,9 @@
      <family>楷体</family>
      <pointsize>15</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>U盘文件</string>
@@ -112,6 +118,9 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>加载选中文件</string>
    </property>
@@ -130,6 +139,9 @@
      <family>楷体</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>编辑选中文件</string>
@@ -150,6 +162,9 @@
      <pointsize>16</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>删除选中文件</string>
    </property>
@@ -168,6 +183,9 @@
      <family>楷体</family>
      <pointsize>16</pointsize>
     </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>复制到本地</string>

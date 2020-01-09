@@ -55,7 +55,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         fileManageBut = new QPushButton(centralWidget);
         fileManageBut->setObjectName(QStringLiteral("fileManageBut"));
-        fileManageBut->setGeometry(QRect(1120, 50, 141, 141));
+        fileManageBut->setGeometry(QRect(1120, 50, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -66,6 +66,7 @@ public:
         timeDispLab = new QLabel(centralWidget);
         timeDispLab->setObjectName(QStringLiteral("timeDispLab"));
         timeDispLab->setGeometry(QRect(0, 0, 1281, 51));
+        timeDispLab->setFont(font);
         timeDispLab->setTextFormat(Qt::AutoText);
         timeDispLab->setMargin(1);
         previewLab = new QLabel(centralWidget);
@@ -78,12 +79,12 @@ public:
         printParaLab->setMargin(0);
         paraManageBut = new QPushButton(centralWidget);
         paraManageBut->setObjectName(QStringLiteral("paraManageBut"));
-        paraManageBut->setGeometry(QRect(1120, 210, 141, 141));
+        paraManageBut->setGeometry(QRect(1120, 210, 144, 144));
         paraManageBut->setFont(font);
         paraManageBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/paraManage.bmp);"));
         startPrintBut = new QPushButton(centralWidget);
         startPrintBut->setObjectName(QStringLiteral("startPrintBut"));
-        startPrintBut->setGeometry(QRect(1120, 370, 141, 141));
+        startPrintBut->setGeometry(QRect(1120, 370, 144, 144));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -93,12 +94,13 @@ public:
         startPrintBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/startPrint.bmp);"));
         closeBut = new QPushButton(centralWidget);
         closeBut->setObjectName(QStringLiteral("closeBut"));
-        closeBut->setGeometry(QRect(1120, 530, 141, 141));
+        closeBut->setGeometry(QRect(1120, 530, 144, 144));
         closeBut->setFont(font);
         closeBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/closeSys.bmp);"));
         roolLab = new QLabel(centralWidget);
         roolLab->setObjectName(QStringLiteral("roolLab"));
         roolLab->setGeometry(QRect(0, 680, 1271, 51));
+        roolLab->setFont(font);
         print1Prog = new QProgressBar(centralWidget);
         print1Prog->setObjectName(QStringLiteral("print1Prog"));
         print1Prog->setGeometry(QRect(860, 340, 81, 271));
@@ -111,11 +113,16 @@ public:
         print2Prog->setOrientation(Qt::Vertical);
         No1Lab = new QLabel(centralWidget);
         No1Lab->setObjectName(QStringLiteral("No1Lab"));
-        No1Lab->setGeometry(QRect(860, 620, 72, 15));
+        No1Lab->setGeometry(QRect(861, 620, 81, 31));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font1.setPointSize(12);
+        No1Lab->setFont(font1);
         No1Lab->setAlignment(Qt::AlignCenter);
         No2Lab = new QLabel(centralWidget);
         No2Lab->setObjectName(QStringLiteral("No2Lab"));
-        No2Lab->setGeometry(QRect(985, 620, 72, 15));
+        No2Lab->setGeometry(QRect(975, 620, 81, 31));
+        No2Lab->setFont(font1);
         No2Lab->setAlignment(Qt::AlignCenter);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
@@ -138,15 +145,15 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         fileManageBut->setText(QApplication::translate("MainWindow", "\346\226\207\344\273\266\347\256\241\347\220\206", 0));
-        timeDispLab->setText(QApplication::translate("MainWindow", "\345\244\232\345\212\237\350\203\275\346\231\272\350\203\275\345\226\267\347\240\201\346\234\272", 0));
-        previewLab->setText(QApplication::translate("MainWindow", "TextLabel", 0));
-        printParaLab->setText(QApplication::translate("MainWindow", "TextLabel", 0));
+        timeDispLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\244\232\345\212\237\350\203\275\346\231\272\350\203\275\345\226\267\347\240\201\346\234\272</span></p></body></html>", 0));
+        previewLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">TextLabel</span></p></body></html>", 0));
+        printParaLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">TextLabel</span></p></body></html>", 0));
         paraManageBut->setText(QApplication::translate("MainWindow", "\345\217\202\346\225\260\347\256\241\347\220\206", 0));
         startPrintBut->setText(QApplication::translate("MainWindow", "\345\274\200\345\247\213\346\211\223\345\215\260", 0));
         closeBut->setText(QApplication::translate("MainWindow", "\345\205\263\351\227\255\347\263\273\347\273\237", 0));
-        roolLab->setText(QApplication::translate("MainWindow", "TextLabel", 0));
-        No1Lab->setText(QApplication::translate("MainWindow", "No.1", 0));
-        No2Lab->setText(QApplication::translate("MainWindow", "No.2", 0));
+        roolLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\270\251\351\246\250\346\217\220\347\244\272</span></p></body></html>", 0));
+        No1Lab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">\345\242\250\347\233\2221</span></p></body></html>", 0));
+        No2Lab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\242\250\347\233\2222</span></p></body></html>", 0));
     } // retranslateUi
 
 };

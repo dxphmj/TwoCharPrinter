@@ -38,7 +38,7 @@ public:
         FilemanageForm->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
         editFileBut = new QPushButton(FilemanageForm);
         editFileBut->setObjectName(QStringLiteral("editFileBut"));
-        editFileBut->setGeometry(QRect(10, 180, 141, 141));
+        editFileBut->setGeometry(QRect(10, 180, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -46,12 +46,12 @@ public:
         editFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/editFile.bmp);"));
         manageFileBut = new QPushButton(FilemanageForm);
         manageFileBut->setObjectName(QStringLiteral("manageFileBut"));
-        manageFileBut->setGeometry(QRect(10, 360, 141, 141));
+        manageFileBut->setGeometry(QRect(10, 360, 144, 144));
         manageFileBut->setFont(font);
         manageFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/manageFile.bmp);"));
         exitBut = new QPushButton(FilemanageForm);
         exitBut->setObjectName(QStringLiteral("exitBut"));
-        exitBut->setGeometry(QRect(10, 540, 141, 141));
+        exitBut->setGeometry(QRect(10, 540, 144, 144));
         exitBut->setFont(font);
         exitBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/exit.bmp);"));
         stackedWidget = new QStackedWidget(FilemanageForm);

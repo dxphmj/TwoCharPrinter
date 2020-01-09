@@ -5,6 +5,7 @@
 #include <QStackedWidget>
 #include "fileeditchild.h"
 #include "filemanagechild.h"
+#include "variblewidget.h"
 
 namespace Ui {
 class FilemanageForm;
@@ -15,7 +16,7 @@ class FilemanageForm : public QWidget
     Q_OBJECT
 
 public:
-    explicit FilemanageForm(QWidget *parent = 0);
+    FilemanageForm(QWidget *parent = 0);
     ~FilemanageForm();
 
 private:
@@ -25,11 +26,16 @@ private:
 
 	FileManageChild *FormFileManageChild;//创建窗口页面指针
 	FileEditChild  *FormFileEditChild;
+	varibleWidget  *fontVarWidget;
+	int m_nTmp;
 
 private slots:
 	void exitBut_clicked();
 	void editFileBut_clicked();
 	void manageFileBut_clicked();
+
+public slots:
+	void variableWidgetCall();
 };
 
 #endif // FILEMANAGEFORM_H

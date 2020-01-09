@@ -21,8 +21,8 @@
     <rect>
      <x>10</x>
      <y>180</y>
-     <width>141</width>
-     <height>141</height>
+     <width>144</width>
+     <height>144</height>
     </rect>
    </property>
    <property name="font">
@@ -43,8 +43,8 @@
     <rect>
      <x>10</x>
      <y>360</y>
-     <width>141</width>
-     <height>141</height>
+     <width>144</width>
+     <height>144</height>
     </rect>
    </property>
    <property name="font">
@@ -65,8 +65,8 @@
     <rect>
      <x>10</x>
      <y>540</y>
-     <width>141</width>
-     <height>141</height>
+     <width>144</width>
+     <height>144</height>
     </rect>
    </property>
    <property name="font">

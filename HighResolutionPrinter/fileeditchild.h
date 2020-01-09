@@ -14,6 +14,10 @@ public:
 
 private:
 	Ui::FileEditChild ui;
+
+private slots:
+	void variableBut_clicked();
+
 };
 
 #endif // FILEEDITCHILD_H

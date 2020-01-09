@@ -113,6 +113,7 @@ public:
         font.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
         font.setPointSize(12);
         label_5->setFont(font);
+        label_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_5->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(label_5);
@@ -151,6 +152,7 @@ public:
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setMinimumSize(QSize(93, 51));
         label_6->setFont(font);
+        label_6->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_6->setAlignment(Qt::AlignCenter);
 
         verticalLayout_6->addWidget(label_6);
@@ -189,6 +191,7 @@ public:
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setMinimumSize(QSize(93, 51));
         label_7->setFont(font);
+        label_7->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_7->setAlignment(Qt::AlignCenter);
 
         verticalLayout_7->addWidget(label_7);
@@ -269,6 +272,7 @@ public:
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMinimumSize(QSize(93, 51));
         label_2->setFont(font);
+        label_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_2->setAlignment(Qt::AlignCenter);
 
         verticalLayout_2->addWidget(label_2);
@@ -307,6 +311,7 @@ public:
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setMinimumSize(QSize(93, 51));
         label_3->setFont(font);
+        label_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         label_3->setAlignment(Qt::AlignCenter);
 
         verticalLayout_3->addWidget(label_3);
@@ -332,10 +337,12 @@ public:
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(14);
         backLightLab->setFont(font1);
+        backLightLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         backLightLab->setAlignment(Qt::AlignCenter);
         lightHorSlider = new QSlider(sysSetting);
         lightHorSlider->setObjectName(QStringLiteral("lightHorSlider"));
         lightHorSlider->setGeometry(QRect(250, 600, 391, 41));
+        lightHorSlider->setStyleSheet(QStringLiteral(""));
         lightHorSlider->setOrientation(Qt::Horizontal);
         layoutWidget1 = new QWidget(sysSetting);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
@@ -349,6 +356,7 @@ public:
         sysLanguageLab->setObjectName(QStringLiteral("sysLanguageLab"));
         sysLanguageLab->setMinimumSize(QSize(141, 41));
         sysLanguageLab->setFont(font1);
+        sysLanguageLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         sysLanguageLab->setAlignment(Qt::AlignCenter);
 
         verticalLayout_4->addWidget(sysLanguageLab);
@@ -390,7 +398,7 @@ public:
         label_7->setText(QApplication::translate("sysSetting", "30", 0));
         reduceSecondBut->setText(QString());
         addYearBut->setText(QString());
-        label->setText(QApplication::translate("sysSetting", "2020", 0));
+        label->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">2020</span></p></body></html>", 0));
         reduceYearBut->setText(QString());
         addMonthBut->setText(QString());
         label_2->setText(QApplication::translate("sysSetting", "01", 0));
@@ -400,7 +408,7 @@ public:
         reduceDayBut->setText(QString());
         backLightLab->setText(QApplication::translate("sysSetting", "\350\203\214\345\205\211\344\272\256\345\272\246", 0));
         sysLanguageLab->setText(QApplication::translate("sysSetting", "\347\263\273\347\273\237\350\257\255\350\250\200", 0));
-        sysTimeSetLab->setText(QApplication::translate("sysSetting", "\347\263\273\347\273\237\346\227\266\351\227\264", 0));
+        sysTimeSetLab->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\263\273\347\273\237\346\227\266\351\227\264</span></p></body></html>", 0));
     } // retranslateUi
 
 };

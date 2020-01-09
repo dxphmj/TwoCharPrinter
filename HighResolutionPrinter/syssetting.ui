@@ -65,6 +65,9 @@
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>13</string>
         </property>
@@ -155,6 +158,9 @@
           <family>宋体</family>
           <pointsize>12</pointsize>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>27</string>
@@ -247,6 +253,9 @@
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>30</string>
         </property>
@@ -338,7 +347,7 @@
          </font>
         </property>
         <property name="text">
-         <string>2020</string>
+         <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;2020&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
         <property name="alignment">
          <set>Qt::AlignCenter</set>
@@ -427,6 +436,9 @@
           <family>宋体</family>
           <pointsize>12</pointsize>
          </font>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
         </property>
         <property name="text">
          <string>01</string>
@@ -519,6 +531,9 @@
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">color: rgb(255, 255, 255);</string>
+        </property>
         <property name="text">
          <string>08</string>
         </property>
@@ -578,6 +593,9 @@
      <pointsize>14</pointsize>
     </font>
    </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);</string>
+   </property>
    <property name="text">
     <string>背光亮度</string>
    </property>
@@ -593,6 +611,9 @@
      <width>391</width>
      <height>41</height>
     </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -621,6 +642,9 @@
         <family>楷体</family>
         <pointsize>14</pointsize>
        </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(255, 255, 255);</string>
       </property>
       <property name="text">
        <string>系统语言</string>
@@ -664,7 +688,7 @@
     </font>
    </property>
    <property name="text">
-    <string>系统时间</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;系统时间&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>

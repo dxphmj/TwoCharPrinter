@@ -12,7 +12,7 @@ public:
 	varibleWidget(QWidget *parent = 0);
 	~varibleWidget();
 
-private:
+public:
 	Ui::varibleWidget ui;
 };
 
