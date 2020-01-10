@@ -1,0 +1,27 @@
+﻿<MES>
+  <PRO>
+    <Matrix>1L9M</Matrix>
+    <Pixel>9</Pixel>
+    <Reverse>GLOBAL</Reverse>
+    <Inverse>GLOBAL</Inverse>
+  </PRO>
+  <OBJ>
+    <TYPE1>text</TYPE1>
+    <TYPE2>time</TYPE2>
+    <LineStart>12</LineStart>
+    <RowStart>0</RowStart>
+    <LineSize>7</LineSize>
+    <RowSize>84</RowSize>
+    <SW>1</SW>
+    <SS>0</SS>
+    <NEG>False</NEG>
+    <BWDx>False</BWDx>
+    <BWDy>False</BWDy>
+    <setFONT>7x5</setFONT>
+    <setTEXT>20190826190415</setTEXT>
+    <setTIME>%Y%M%d%H%m%s</setTIME>
+    <ETimeOffSet>OFF</ETimeOffSet>
+    <TimeOffSet>0</TimeOffSet>
+    <TimeOffSetUint>Minute</TimeOffSetUint>
+  </OBJ>
+</MES>

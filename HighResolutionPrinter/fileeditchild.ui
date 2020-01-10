@@ -68,6 +68,9 @@ background-color: rgb(0, 0, 230);</string>
      <height>241</height>
     </rect>
    </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
@@ -92,7 +95,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>Âè¶Â≠ò‰∏∫</string>
+    <string>Âè¶Â≠ò‰∏?/string>
    </property>
   </widget>
   <widget class="QPushButton" name="delBut">
@@ -198,7 +201,7 @@ QTabBar::tab{height:50}</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeTextLab">
@@ -316,7 +319,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="fontSizeTextLab">
@@ -403,7 +406,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="internalTextRedBut">
@@ -434,7 +437,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="internalShowTextLab">
@@ -552,7 +555,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="degreeTimeShowLab">
@@ -656,7 +659,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="internalTimeRedBut">
@@ -687,7 +690,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="rotateTimeLab">
@@ -746,7 +749,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="customTimeBut">
@@ -769,7 +772,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ëá™ÂÆö‰πâ</string>
+      <string>Ëá™ÂÆö‰π?/string>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeTimeLab">
@@ -1164,7 +1167,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="internalSerialAddBut">
@@ -1195,7 +1198,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="degreeSerialAddBut">
@@ -1226,7 +1229,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QComboBox" name="fontTypeTimeComBox_2">
@@ -1271,7 +1274,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QComboBox" name="fontSizeSerialComBox">
@@ -1392,7 +1395,7 @@ background-color: rgb(0, 0, 230);</string>
 </string>
      </property>
      <property name="text">
-      <string>Ëá™ÁÑ∂Êï∞</string>
+      <string>Ëá™ÁÑ∂Êï?/string>
      </property>
      <property name="checked">
       <bool>false</bool>
@@ -1465,7 +1468,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="internalBmpRedBut">
@@ -1496,7 +1499,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="degreeSerialAddBut_2">
@@ -1527,7 +1530,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="degreeBmpRedBut">
@@ -1558,7 +1561,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="internalBmpLab">
@@ -1735,7 +1738,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="internalBmpRedBut_2">
@@ -1766,7 +1769,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="selBmpBut">
@@ -1824,7 +1827,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="tab_6">
     <attribute name="title">
-     <string>Êù°ÂΩ¢Á†Å</string>
+     <string>Êù°ÂΩ¢Á†?/string>
     </attribute>
     <widget class="QLineEdit" name="barCodeLineEdit">
      <property name="geometry">
@@ -1895,7 +1898,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="variableBarCodeBut">
@@ -1949,7 +1952,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="zoomBarCodeAddBut">
@@ -1980,7 +1983,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="degreeBarCodeAddBut">
@@ -2011,7 +2014,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="typeBarCodeLab">
@@ -2171,7 +2174,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBarCodeLab">
@@ -2230,7 +2233,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBarCodeShowQRLab">
@@ -2296,7 +2299,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="tab_7">
     <attribute name="title">
-     <string>QRÁ†Å</string>
+     <string>QRÁ†?/string>
     </attribute>
     <widget class="QLineEdit" name="QRCodeLineEdit">
      <property name="geometry">
@@ -2463,7 +2466,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="zoomQRLab">
@@ -2536,7 +2539,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="rotateQRLab">
@@ -2595,7 +2598,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºã</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QLabel" name="sideLenQRLab">
@@ -2654,7 +2657,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>Ôºç</string>
+      <string>Ôº?/string>
      </property>
     </widget>
     <widget class="QCheckBox" name="reverseCheckBox">
@@ -2688,7 +2691,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>DMÁ†Å</string>
+     <string>DMÁ†?/string>
     </attribute>
    </widget>
   </widget>
