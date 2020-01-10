@@ -178,6 +178,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="paramsettingform.cpp" />
+    <ClCompile Include="qrcode\bitstream.c" />
+    <ClCompile Include="qrcode\mask.c" />
+    <ClCompile Include="qrcode\mmask.c" />
+    <ClCompile Include="qrcode\mqrspec.c" />
+    <ClCompile Include="qrcode\qrencode.c" />
+    <ClCompile Include="qrcode\qrinput.c" />
+    <ClCompile Include="qrcode\qrspec.c" />
+    <ClCompile Include="qrcode\rscode.c" />
+    <ClCompile Include="qrcode\split.c" />
     <ClCompile Include="Release\moc_aboutmac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -406,6 +415,17 @@ endlocal
   <ItemGroup>
     <ClInclude Include="ClassMessage.h" />
     <ClInclude Include="GeneratedFiles\ui_variblewidget.h" />
+    <ClInclude Include="qrcode\bitstream.h" />
+    <ClInclude Include="qrcode\config.h" />
+    <ClInclude Include="qrcode\mask.h" />
+    <ClInclude Include="qrcode\mmask.h" />
+    <ClInclude Include="qrcode\mqrspec.h" />
+    <ClInclude Include="qrcode\qrencode.h" />
+    <ClInclude Include="qrcode\qrencode_inner.h" />
+    <ClInclude Include="qrcode\qrinput.h" />
+    <ClInclude Include="qrcode\qrspec.h" />
+    <ClInclude Include="qrcode\rscode.h" />
+    <ClInclude Include="qrcode\split.h" />
     <ClInclude Include="xml\tinystr.h" />
     <ClInclude Include="xml\tinyxml.h" />
     <CustomBuild Include="variblewidget.h">

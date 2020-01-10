@@ -12,6 +12,12 @@ typedef unsigned char BYTE;
 
 #define CDC QPainter
 #define CPen QPen
+#define CRect QRect
+#define CBrush QBrush
+#define Ellipse drawRect
+#define CString QString
+#define BITMAP QBitmap
+
 
 #define MESSAGEEDIT_EXPORTS
 
@@ -80,11 +86,15 @@ namespace MyNameSpace
 		void DrawFrame(CDC* pDC);
         void DrawDot(CDC* pDC);
         void ReadBmp(char* strFileName);
+
 	private:
 		//ClassMessage objClassMessage;
 		map<string,int> fntMap;
 
-
+	/*
+	protected:
+		void paintEvent(QPaintEvent *event);
+	*/
 	};
 
 	class MESSAGEEDIT_API ClassMessage : private OBJ_Control

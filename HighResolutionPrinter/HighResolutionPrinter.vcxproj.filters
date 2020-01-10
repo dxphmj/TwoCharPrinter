@@ -58,6 +58,9 @@
     <Filter Include="xml">
       <UniqueIdentifier>{bf7cf6bf-c104-4d47-a2b5-12e78524a77e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="qrcode">
+      <UniqueIdentifier>{9f8d71cc-deb4-4741-b728-3db7993f8eb4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="filemanageform.cpp">
@@ -171,6 +174,33 @@
     <ClCompile Include="ClassMessage.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="qrcode\bitstream.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mask.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mmask.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mqrspec.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrencode.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrinput.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrspec.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\rscode.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\split.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="filemanageform.h">
@@ -283,6 +313,39 @@
     </ClInclude>
     <ClInclude Include="ClassMessage.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\bitstream.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\config.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mask.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mmask.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mqrspec.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrencode.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrencode_inner.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrinput.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrspec.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\rscode.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\split.h">
+      <Filter>qrcode</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

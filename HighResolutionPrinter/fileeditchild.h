@@ -15,6 +15,7 @@ public:
 	FileEditChild(QWidget *parent = 0);
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
+	int QrecodeMatrix[25][25];
 
 private:
 	Ui::FileEditChild ui;
@@ -23,8 +24,7 @@ private slots:
 	void variableBut_clicked();
 
 protected:
-	//void paintEvent(QPaintEvent *event);
-
+	void paintEvent(QPaintEvent *event);
 	void paintDot();
 	bool eventFilter(QObject *watched, QEvent *event);
 };
