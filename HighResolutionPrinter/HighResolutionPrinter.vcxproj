@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Release|Win32">
@@ -181,6 +181,15 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="paramsettingform.cpp" />
+    <ClCompile Include="qrcode\bitstream.c" />
+    <ClCompile Include="qrcode\mask.c" />
+    <ClCompile Include="qrcode\mmask.c" />
+    <ClCompile Include="qrcode\mqrspec.c" />
+    <ClCompile Include="qrcode\qrencode.c" />
+    <ClCompile Include="qrcode\qrinput.c" />
+    <ClCompile Include="qrcode\qrspec.c" />
+    <ClCompile Include="qrcode\rscode.c" />
+    <ClCompile Include="qrcode\split.c" />
     <ClCompile Include="Release\moc_aboutmac.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
@@ -423,6 +432,17 @@ endlocal
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DQT_DLL "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
+    <ClInclude Include="qrcode\bitstream.h" />
+    <ClInclude Include="qrcode\config.h" />
+    <ClInclude Include="qrcode\mask.h" />
+    <ClInclude Include="qrcode\mmask.h" />
+    <ClInclude Include="qrcode\mqrspec.h" />
+    <ClInclude Include="qrcode\qrencode.h" />
+    <ClInclude Include="qrcode\qrencode_inner.h" />
+    <ClInclude Include="qrcode\qrinput.h" />
+    <ClInclude Include="qrcode\qrspec.h" />
+    <ClInclude Include="qrcode\rscode.h" />
+    <ClInclude Include="qrcode\split.h" />
     <ClInclude Include="xml\tinystr.h" />
     <ClInclude Include="xml\tinyxml.h" />
     <CustomBuild Include="variblewidget.h">

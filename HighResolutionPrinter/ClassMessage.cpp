@@ -3,6 +3,8 @@
 #include <fstream>
 #include <stdio.h>
 #include "xml\tinyxml.h"
+#include <QPainter>
+//#include <qwidget.h>
 
 //#using<mscorlib.dll>
 //#include <msclr\marshal_cppstd.h>
@@ -101,7 +103,7 @@ namespace MyNameSpace
 		ifstream file;
 		string path="\\Storage Card\\User\\Font\\";    //E:\\
 
-		path+=FontName;
+		path = FontName;
 		file.open(path.c_str(),ios::binary);
 		file.seekg(offset,ios::beg);
 		file.read(arr,DataLen);
@@ -110,8 +112,6 @@ namespace MyNameSpace
 
 	void ClassMessage::DrawDot(CDC* pDC)
 	{
-		pDC->drawLine(0,0,100,100);
-
 		for (int i = 0; i < OBJ_Vec.size(); i++)
 		{
 			OBJ_Vec[i].DrawDot(pDC);
@@ -448,7 +448,7 @@ namespace MyNameSpace
 						wchar_t strTempText=tempsetTEXT[i];
 						bytTextUni=(int)strTempText;
 						lonTextUniSetOff=bytTextUni*7+64;
-						bool objRead=objClassMessage.readBin("5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
+						bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
 						if (!objRead)
 						{
 							for (int r=0;r<7;r++)
@@ -562,7 +562,7 @@ namespace MyNameSpace
 						bytTextUni=(int)strTempText;
 						lonTextUniSetOff=bytTextUni*8+64;
 
-						bool objRead=objClassMessage.readBin("7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
+						bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
 						if (!objRead)
 						{
 							for (int r=0;r<8;r++)
@@ -912,6 +912,8 @@ namespace MyNameSpace
 		this->strDuan="OBJ";
 		this->intSW=1;
 		this->intSS=0;
+		this->intX=0;
+		this->intY=0;
 		this->booNEG=false;
 		this->booBWDx=false;
 		this->booBWDy=false;
@@ -938,55 +940,48 @@ namespace MyNameSpace
 
 	OBJ_Control::~OBJ_Control(void){}
 
-	void OBJ_Control::DrawFrame(CDC* pDC)
+	void OBJ_Control::DrawFrame(CDC * pDC)
 	{
-		CPen cPen; 
-		/*if (this->booFocus)
+		QPen cPen;//QPainter painter();
+		if (this->booFocus)
 		{
-			cPen.CreatePen(PS_SOLID,1,RGB(0,255,0)); 
-		} 
+			cPen.setStyle(Qt::SolidLine);
+			cPen.setWidth(2);
+			cPen.setColor(Qt::green);
+			cPen.setCapStyle(Qt::SquareCap);
+			cPen.setJoinStyle(Qt::BevelJoin);
+		}
 		else
 		{
-			cPen.CreatePen(PS_SOLID,1,RGB(0,0,255)); 
+			cPen.setStyle(Qt::SolidLine);
+			cPen.setWidth(1);
+			cPen.setColor(Qt::blue);
+			cPen.setCapStyle(Qt::SquareCap);
+			cPen.setJoinStyle(Qt::BevelJoin);
 		}
-		//cPen.CreatePen(PS_SOLID,1,RGB(220,220,220)); 
-		CPen* pOldPen; 
-		pOldPen = pDC->SelectObject(&cPen); //ÔØÈë±ÊË¢
-		*/
-		/*
-        //ÏÂ
-		pDC->MoveTo(intRowStart*5,161-intLineStart*5-1);
-		pDC->LineTo((intRowStart+intRowSize)*5,161-intLineStart*5-1);
-        //ÉÏ
-		pDC->MoveTo(intRowStart*5,161-(intLineSize+intLineStart)*5-1);
-		pDC->LineTo((intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
-        //z×ó
-		pDC->MoveTo(intRowStart*5,161-intLineStart*5-1);
-		pDC->LineTo(intRowStart*5,161-(intLineSize+intLineStart)*5-1);
-        //ÓÒ
-		pDC->MoveTo((intRowStart+intRowSize)*5,161-intLineStart*5-1);
-		pDC->LineTo((intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
-		 
-		pDC->SelectObject(pOldPen);
-		cPen.DeleteObject();
-		pOldPen->DeleteObject();
-		*/
+		pDC->setPen(cPen);
+		
+		//ÏÂ
+		pDC->drawLine(intRowStart*5,161-intLineStart*5-1,(intRowStart+intRowSize)*5,161-intLineStart*5-1);
+		//ÉÏ
+		pDC->drawLine(intRowStart*5,161-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
+		//×ó
+		pDC->drawLine(intRowStart*5,161-intLineStart*5-1,intRowStart*5,161-(intLineSize+intLineStart)*5-1);
+		//ÓÒ
+		pDC->drawLine((intRowStart+intRowSize)*5,161-intLineStart*5-1,(intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
 	}
 
 	void OBJ_Control::DrawDot(CDC* pDC)
 	{
-		/*
-		CBrush cbrushB;//ºÚ±Ê
-		CBrush cbrushW;//°×±Ê
-		CBrush* pBrush; //¾É±ÊË¢					
-		cbrushB.CreateSolidBrush(RGB(0,0,0)); 
-		cbrushW.CreateSolidBrush(RGB(255,255,255));
+ 		CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+		cbrushB.setStyle(Qt::SolidPattern);
+		CBrush cbrushW(QColor(255,255,255));//°×±Ê
+		cbrushW.setStyle(Qt::SolidPattern);
+		 
 		if (strType2=="logo"||strType2=="qrcode"||strType2=="datamatrix")
 		{
 			int bmpWidth,bmpHeight;
 			bmpWidth=intRowSize;
-			//vector<vector<bool>>::iterator iterTemp=logobmp.begin();
-			//bmpHeight=iterTemp->size();
 			bmpHeight=intLineSize;
 			if (booBWDy)
 			{
@@ -1000,20 +995,21 @@ namespace MyNameSpace
 							{	
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5); //widthºÍheightÏÈÐ´ËÀ
+									  //CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							} 
@@ -1021,20 +1017,20 @@ namespace MyNameSpace
 							{
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							}
@@ -1043,23 +1039,23 @@ namespace MyNameSpace
 						{
 							if (booNEG)
 							{
-
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+									  //CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							} 
@@ -1067,20 +1063,20 @@ namespace MyNameSpace
 							{
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							}
@@ -1101,20 +1097,21 @@ namespace MyNameSpace
 
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+									  //CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							} 
@@ -1122,20 +1119,20 @@ namespace MyNameSpace
 							{
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							}
@@ -1144,23 +1141,23 @@ namespace MyNameSpace
 						{
 							if (booNEG)
 							{
-
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushW);
+									pDC->setBrush(cbrushW);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(j+1)*5-1,5,5);
+								      //CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect(i*5,161-(j+1)*5-1,5,5);
+										pDC->Ellipse(rect);
 									}
 								}
 							} 
@@ -1168,21 +1165,23 @@ namespace MyNameSpace
 							{
 								if (boDotBmp[i][j])
 								{
-									pBrush=pDC->SelectObject(&cbrushB);
+									pDC->setBrush(cbrushB);
 									for(int sw=0;sw<intSW;sw++)
 									{
-										CRect rect((intRowStart+i)*5,161-(intLineStart+j+1)*5-1,(intRowStart+i+1)*5,161-(intLineStart+j)*5-1);
-										pDC->Ellipse(&rect);
+										CRect rect((intRowStart+i)*5,161-(intLineStart+j+1)*5-1,5,5);
+									  //CRect rect((intRowStart+i)*5,161-(intLineStart+j+1)*5-1,(intRowStart+i+1)*5,161-(intLineStart+j)*5-1);
+										pDC->Ellipse(rect);
 									}
 								} 
 								else
 								{
-									//pBrush=pDC->SelectObject(&cbrushW);
-									//for(int sw=0;sw<intSW;sw++)
-									//{
-									//	CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
-									//	pDC->Ellipse(&rect);
-									//}
+									pDC->setBrush(cbrushW);
+									for(int sw=0;sw<intSW;sw++)
+									{
+										CRect rect(i*5,161-(j+1)*5-1,5,5);
+									  //CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
+										pDC->Ellipse(rect);
+									}
 								}
 							}
 						}
@@ -1220,7 +1219,7 @@ namespace MyNameSpace
 						wchar_t strTempText=strText[i];
 						bytTextUni=(int)strTempText;
 						lonTextUniSetOff=bytTextUni*7+64;
-						bool objRead=objClassMessage.readBin("5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
+						bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
 						if (!objRead)
 						{
 							for (int r=0;r<7;r++)
@@ -1266,10 +1265,9 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
-
-													CRect rect(x1,y1,x2,y2);
-													pDC->Ellipse(&rect);
+												pDC->setBrush(cbrushB);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 												
 											}
 										}
@@ -1279,10 +1277,10 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
+												pDC->setBrush(cbrushB);
 
-												CRect rect(x1,y1,x2,y2);
-												pDC->Ellipse(&rect);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 
 											}
 										}
@@ -1292,10 +1290,10 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
+												pDC->setBrush(cbrushB);
 
-												CRect rect(x1,y1,x2,y2);
-												pDC->Ellipse(&rect);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 
 											}
 										}
@@ -1321,9 +1319,9 @@ namespace MyNameSpace
 											y1=161-5*(intLineStart+p+1)-1;
 											y2=161-5*(intLineStart+p)-1;
 										}
-										pBrush=pDC->SelectObject(&cbrushB);
-										CRect rect(x1,y1,x2,y2);
-										pDC->Ellipse(&rect);
+										pDC->setBrush(cbrushB);
+										CRect rect(x1,y1,x2-x1,y2-y1);
+										pDC->Ellipse(rect);
 									}
 								}
 							}
@@ -1354,7 +1352,7 @@ namespace MyNameSpace
 						bytTextUni=(int)strTempText;
 						lonTextUniSetOff=bytTextUni*8+64;
 
-						bool objRead=objClassMessage.readBin("7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
+						bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
 						if (!objRead)
 						{
 							for (int r=0;r<8;r++)
@@ -1402,10 +1400,10 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
+												pDC->setBrush(cbrushB);
 
-												CRect rect(x1,y1,x2,y2);
-												pDC->Ellipse(&rect);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 
 											}
 										}
@@ -1415,10 +1413,10 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
+												pDC->setBrush(cbrushB);
 
-												CRect rect(x1,y1,x2,y2);
-												pDC->Ellipse(&rect);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 
 											}
 										}
@@ -1428,10 +1426,10 @@ namespace MyNameSpace
 										{
 											for (int s=0;s<intSW;s++)
 											{
-												pBrush=pDC->SelectObject(&cbrushB);
+												pDC->setBrush(cbrushB);
 
-												CRect rect(x1,y1,x2,y2);
-												pDC->Ellipse(&rect);
+												CRect rect(x1,y1,x2-x1,y2-y1);
+												pDC->Ellipse(rect);
 
 											}
 										}
@@ -1457,9 +1455,9 @@ namespace MyNameSpace
 											y1=161-5*(intLineStart+p+1)-1;
 											y2=161-5*(intLineStart+p)-1;
 										}
-										pBrush=pDC->SelectObject(&cbrushB);
-										CRect rect(x1,y1,x2,y2);
-										pDC->Ellipse(&rect);
+										pDC->setBrush(cbrushB);
+										CRect rect(x1,y1,x2-x1,y2-y1);
+										pDC->Ellipse(rect);
 									}
 								}
 							}
@@ -1483,19 +1481,20 @@ namespace MyNameSpace
 
 
 
-		pBrush = pDC->SelectObject(&cbrushB); //ÔØÈë±ÊË¢
+		pDC->setBrush(cbrushB); //ÔØÈë±ÊË¢
 		//CRect rect(col*nStepPixels,row*nStepPixels,(col+1)*nStepPixels,(row+1)*nStepPixels);
 		//pDC->Ellipse(&rect); 
 
-		pDC->SelectObject(pBrush); //»Ö¸´±ÊË¢
-		cbrushB.DeleteObject();
-		pBrush->DeleteObject();
+		//pDC->SelectObject(pBrush); //»Ö¸´±ÊË¢
+	//	cbrushB.DeleteObject();
+	//	pBrush->DeleteObject();*/
 		DrawFrame(pDC);
-		*/
+		
 	}
 	
 	void OBJ_Control::ReadBmp(char* strFileName)
-	{/*
+	{
+		/*
 		CString csInfo(_T(""));//Storage Card\\User\\Logo\\1.bmp
 		//csInfo.Format(_T("%s", strFileName));
 		csInfo=CString(strFileName);
