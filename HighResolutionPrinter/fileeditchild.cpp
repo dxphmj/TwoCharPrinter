@@ -1,7 +1,7 @@
 #include "fileeditchild.h"
 #include "filemanageform.h"
 #include <QTableWidget>
-
+#include "ClassMessage.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent)
@@ -32,7 +32,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
-
+	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 }
 
 FileEditChild::~FileEditChild()
@@ -51,13 +51,8 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 
 void FileEditChild::paintDot()
 {
-	QPainter painter(ui.editPreviewText);//有个QWidget叫tab_2，在那里添加
+	QPainter painter(ui.editPreviewText);
 	m_PrinterMes.DrawDot(&painter);
-	/*
-	painter.setRenderHint(QPainter::Antialiasing,true);
-	painter.setPen(QPen(Qt::white,12,Qt::DashDotDotLine,Qt::RoundCap));
-	painter.setBrush(QBrush(Qt::green,Qt::SolidPattern));
-	painter.drawEllipse(80,80,400,240); */
 }
 
 void FileEditChild::variableTextBut_clicked()
