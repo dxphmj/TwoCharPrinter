@@ -43,7 +43,7 @@ public:
         if (ParamSettingForm->objectName().isEmpty())
             ParamSettingForm->setObjectName(QStringLiteral("ParamSettingForm"));
         ParamSettingForm->resize(1280, 800);
-        ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
+        ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSettingBut = new QPushButton(ParamSettingForm);
         printSettingBut->setObjectName(QStringLiteral("printSettingBut"));
         printSettingBut->setGeometry(QRect(30, 110, 144, 144));

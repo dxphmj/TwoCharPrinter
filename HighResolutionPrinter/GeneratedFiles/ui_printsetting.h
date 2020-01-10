@@ -33,7 +33,7 @@ public:
         if (printSetting->objectName().isEmpty())
             printSetting->setObjectName(QStringLiteral("printSetting"));
         printSetting->resize(1061, 691);
-        printSetting->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
+        printSetting->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSetTabWid = new QTabWidget(printSetting);
         printSetTabWid->setObjectName(QStringLiteral("printSetTabWid"));
         printSetTabWid->setGeometry(QRect(20, 20, 1021, 651));

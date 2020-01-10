@@ -7,12 +7,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 {
 	ui.setupUi(this);
 
+	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
 	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(FileEditChild_clicked()));
 	ui.editPreviewText->installEventFilter(this);
+
 
 	connect(ui.variableBut,SIGNAL(clicked()),this,SLOT(variableBut_clicked()));
 
 	m_PrinterMes.ReadObjectsFromXml("User\\Label\\logo.lab");
+
 }
 
 FileEditChild::~FileEditChild()
@@ -42,7 +45,7 @@ void FileEditChild::paintEvent(QPaintEvent *)
 
 }
 
-void FileEditChild::variableBut_clicked()
+void FileEditChild::variableTextBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
