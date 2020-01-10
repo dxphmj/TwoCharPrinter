@@ -35,7 +35,7 @@ public:
         if (FilemanageForm->objectName().isEmpty())
             FilemanageForm->setObjectName(QStringLiteral("FilemanageForm"));
         FilemanageForm->resize(1280, 800);
-        FilemanageForm->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 255);"));
+        FilemanageForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         editFileBut = new QPushButton(FilemanageForm);
         editFileBut->setObjectName(QStringLiteral("editFileBut"));
         editFileBut->setGeometry(QRect(10, 180, 144, 144));

@@ -16,7 +16,7 @@ private:
 	Ui::FileEditChild ui;
 
 private slots:
-	void variableBut_clicked();
+	void variableTextBut_clicked();
 
 };
 

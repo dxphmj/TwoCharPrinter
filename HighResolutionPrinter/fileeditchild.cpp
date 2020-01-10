@@ -6,12 +6,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-
-
-//	setWindowFlags(Qt::CustomizeWindowHint|Qt::FramelessWindowHint);hide();
-//	this->setParent(parent);
-
-	connect(ui.variableBut,SIGNAL(clicked()),this,SLOT(variableBut_clicked()));
+	
+	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
 }
 
 FileEditChild::~FileEditChild()
@@ -19,7 +15,7 @@ FileEditChild::~FileEditChild()
 
 }
 
-void FileEditChild::variableBut_clicked()
+void FileEditChild::variableTextBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
