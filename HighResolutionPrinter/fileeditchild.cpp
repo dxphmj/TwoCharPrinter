@@ -1,5 +1,6 @@
 #include "fileeditchild.h"
 #include "filemanageform.h"
+#include <QTableWidget>
 
 
 FileEditChild::FileEditChild(QWidget *parent)
@@ -8,8 +9,29 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.setupUi(this);
 
 	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
-	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(FileEditChild_clicked()));
+	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(editBut_clicked()));
+	connect(ui.selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
+
 	ui.editPreviewText->installEventFilter(this);
+
+	ui.typeTab->setStyleSheet("QTabWidget:pane{ \
+							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
+							  QTabBar::tab{font:'¿¬Ìå' 16pt;color: white;height:50px; width:114px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
+							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
+							  ");
+	ui.showNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+									  QCheckBox{color:rgb(255, 255, 255);}\
+									  ");
+	ui.reverseCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+									  QCheckBox{color:rgb(255, 255, 255);}\
+									  ");
+	ui.natureNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+										QCheckBox{color:rgb(255, 255, 255);}\
+									   ");
+	ui.reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+		                                  QCheckBox{color:rgb(255, 255, 255);}\
+										 ");
 
 }
 
@@ -44,4 +66,14 @@ void FileEditChild::variableTextBut_clicked()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	pFilemanageForm->variableWidgetCall();
 	
+}
+
+void FileEditChild::selBmpBut_clicked()
+{
+
+}
+
+void FileEditChild::editBut_clicked()
+{
+
 }

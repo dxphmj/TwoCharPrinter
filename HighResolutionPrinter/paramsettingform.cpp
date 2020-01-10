@@ -6,7 +6,7 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
     ui(new Ui::ParamSettingForm)
 {
     ui->setupUi(this);
-	connect(ui->quitBut,SIGNAL(clicked()),this,SLOT(quitBut_clicked()));
+	connect(ui->paraExitBut,SIGNAL(clicked()),this,SLOT(paraExitBut_clicked()));
 
 	connect(ui->printSettingBut,SIGNAL(clicked()),this,SLOT(printSettingBut_clicked()));
 	connect(ui->sysSettingBut,SIGNAL(clicked()),this,SLOT(sysSettingBut_clicked()));
@@ -17,6 +17,7 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
 	ui->sysSettingBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/sysSetting.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
 	ui->countSettingBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/countSetting.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
 	ui->aboutMacBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/aboutMac.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
+	ui->paraExitBut->setStyleSheet("text-align:bottom;background-image: url(:/Images/exit.bmp);font: bold; font-size:30px;color:rgb(255,255,255)"); 
 
 
 	m_printSetting = new printSetting(this);//实例化窗口页面
@@ -36,7 +37,7 @@ ParamSettingForm::~ParamSettingForm()
     delete ui;
 }
 
-void ParamSettingForm::quitBut_clicked()
+void ParamSettingForm::paraExitBut_clicked()
 {
 	this->hide();
 }

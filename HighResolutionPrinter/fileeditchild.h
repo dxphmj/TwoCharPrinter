@@ -21,6 +21,9 @@ private:
 
 private slots:
 	void variableTextBut_clicked();
+	void selBmpBut_clicked();
+	void editBut_clicked();
+
 
 protected:
 	//void paintEvent(QPaintEvent *event);

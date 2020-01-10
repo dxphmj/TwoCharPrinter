@@ -29,7 +29,7 @@ private:
 	aboutMac  *m_aboutMac;
 
 private slots:
-	void quitBut_clicked();
+	void paraExitBut_clicked();
 	void printSettingBut_clicked();
 	void sysSettingBut_clicked();
 	void countSettingBut_clicked();

@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
@@ -29,6 +30,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *page;
     QWidget *page_2;
+    QLabel *fileControlLab;
 
     void setupUi(QWidget *FilemanageForm)
     {
@@ -38,7 +40,7 @@ public:
         FilemanageForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         editFileBut = new QPushButton(FilemanageForm);
         editFileBut->setObjectName(QStringLiteral("editFileBut"));
-        editFileBut->setGeometry(QRect(10, 180, 144, 144));
+        editFileBut->setGeometry(QRect(10, 120, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -46,12 +48,12 @@ public:
         editFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/editFile.bmp);"));
         manageFileBut = new QPushButton(FilemanageForm);
         manageFileBut->setObjectName(QStringLiteral("manageFileBut"));
-        manageFileBut->setGeometry(QRect(10, 360, 144, 144));
+        manageFileBut->setGeometry(QRect(10, 340, 144, 144));
         manageFileBut->setFont(font);
         manageFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/manageFile.bmp);"));
         exitBut = new QPushButton(FilemanageForm);
         exitBut->setObjectName(QStringLiteral("exitBut"));
-        exitBut->setGeometry(QRect(10, 540, 144, 144));
+        exitBut->setGeometry(QRect(10, 560, 144, 144));
         exitBut->setFont(font);
         exitBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/exit.bmp);"));
         stackedWidget = new QStackedWidget(FilemanageForm);
@@ -63,6 +65,15 @@ public:
         page_2 = new QWidget();
         page_2->setObjectName(QStringLiteral("page_2"));
         stackedWidget->addWidget(page_2);
+        fileControlLab = new QLabel(FilemanageForm);
+        fileControlLab->setObjectName(QStringLiteral("fileControlLab"));
+        fileControlLab->setGeometry(QRect(10, 19, 181, 761));
+        fileControlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        fileControlLab->raise();
+        editFileBut->raise();
+        manageFileBut->raise();
+        exitBut->raise();
+        stackedWidget->raise();
 
         retranslateUi(FilemanageForm);
 
@@ -75,6 +86,7 @@ public:
         editFileBut->setText(QApplication::translate("FilemanageForm", "\347\274\226\350\276\221\346\226\207\344\273\266", 0));
         manageFileBut->setText(QApplication::translate("FilemanageForm", "\347\256\241\347\220\206\346\226\207\344\273\266", 0));
         exitBut->setText(QApplication::translate("FilemanageForm", "\351\200\200\345\207\272", 0));
+        fileControlLab->setText(QString());
     } // retranslateUi
 
 };

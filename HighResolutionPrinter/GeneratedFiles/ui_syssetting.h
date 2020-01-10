@@ -99,6 +99,7 @@ public:
         addHourBut = new QPushButton(layoutWidget_3);
         addHourBut->setObjectName(QStringLiteral("addHourBut"));
         addHourBut->setMinimumSize(QSize(93, 51));
+        addHourBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_5->addWidget(addHourBut);
 
@@ -113,7 +114,8 @@ public:
         font.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
         font.setPointSize(12);
         label_5->setFont(font);
-        label_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_5->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         label_5->setAlignment(Qt::AlignCenter);
 
         verticalLayout_5->addWidget(label_5);
@@ -125,6 +127,7 @@ public:
         reduceHourBut = new QPushButton(layoutWidget_3);
         reduceHourBut->setObjectName(QStringLiteral("reduceHourBut"));
         reduceHourBut->setMinimumSize(QSize(93, 51));
+        reduceHourBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_5->addWidget(reduceHourBut);
 
@@ -141,6 +144,7 @@ public:
         addMinBut = new QPushButton(layoutWidget_3);
         addMinBut->setObjectName(QStringLiteral("addMinBut"));
         addMinBut->setMinimumSize(QSize(93, 51));
+        addMinBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_6->addWidget(addMinBut);
 
@@ -152,7 +156,8 @@ public:
         label_6->setObjectName(QStringLiteral("label_6"));
         label_6->setMinimumSize(QSize(93, 51));
         label_6->setFont(font);
-        label_6->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_6->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         label_6->setAlignment(Qt::AlignCenter);
 
         verticalLayout_6->addWidget(label_6);
@@ -164,6 +169,7 @@ public:
         reduceMinBut = new QPushButton(layoutWidget_3);
         reduceMinBut->setObjectName(QStringLiteral("reduceMinBut"));
         reduceMinBut->setMinimumSize(QSize(93, 51));
+        reduceMinBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_6->addWidget(reduceMinBut);
 
@@ -180,6 +186,7 @@ public:
         addSecondBut = new QPushButton(layoutWidget_3);
         addSecondBut->setObjectName(QStringLiteral("addSecondBut"));
         addSecondBut->setMinimumSize(QSize(93, 51));
+        addSecondBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_7->addWidget(addSecondBut);
 
@@ -191,7 +198,8 @@ public:
         label_7->setObjectName(QStringLiteral("label_7"));
         label_7->setMinimumSize(QSize(93, 51));
         label_7->setFont(font);
-        label_7->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_7->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         label_7->setAlignment(Qt::AlignCenter);
 
         verticalLayout_7->addWidget(label_7);
@@ -203,6 +211,7 @@ public:
         reduceSecondBut = new QPushButton(layoutWidget_3);
         reduceSecondBut->setObjectName(QStringLiteral("reduceSecondBut"));
         reduceSecondBut->setMinimumSize(QSize(93, 51));
+        reduceSecondBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_7->addWidget(reduceSecondBut);
 
@@ -223,6 +232,7 @@ public:
         addYearBut = new QPushButton(layoutWidget);
         addYearBut->setObjectName(QStringLiteral("addYearBut"));
         addYearBut->setMinimumSize(QSize(93, 51));
+        addYearBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout->addWidget(addYearBut);
 
@@ -245,6 +255,7 @@ public:
         reduceYearBut = new QPushButton(layoutWidget);
         reduceYearBut->setObjectName(QStringLiteral("reduceYearBut"));
         reduceYearBut->setMinimumSize(QSize(93, 51));
+        reduceYearBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout->addWidget(reduceYearBut);
 
@@ -261,6 +272,7 @@ public:
         addMonthBut = new QPushButton(layoutWidget);
         addMonthBut->setObjectName(QStringLiteral("addMonthBut"));
         addMonthBut->setMinimumSize(QSize(93, 51));
+        addMonthBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_2->addWidget(addMonthBut);
 
@@ -272,7 +284,8 @@ public:
         label_2->setObjectName(QStringLiteral("label_2"));
         label_2->setMinimumSize(QSize(93, 51));
         label_2->setFont(font);
-        label_2->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         label_2->setAlignment(Qt::AlignCenter);
 
         verticalLayout_2->addWidget(label_2);
@@ -284,6 +297,7 @@ public:
         reduceMonthBut = new QPushButton(layoutWidget);
         reduceMonthBut->setObjectName(QStringLiteral("reduceMonthBut"));
         reduceMonthBut->setMinimumSize(QSize(93, 51));
+        reduceMonthBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_2->addWidget(reduceMonthBut);
 
@@ -300,6 +314,7 @@ public:
         addDayBut = new QPushButton(layoutWidget);
         addDayBut->setObjectName(QStringLiteral("addDayBut"));
         addDayBut->setMinimumSize(QSize(93, 51));
+        addDayBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_3->addWidget(addDayBut);
 
@@ -311,7 +326,8 @@ public:
         label_3->setObjectName(QStringLiteral("label_3"));
         label_3->setMinimumSize(QSize(93, 51));
         label_3->setFont(font);
-        label_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        label_3->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         label_3->setAlignment(Qt::AlignCenter);
 
         verticalLayout_3->addWidget(label_3);
@@ -323,6 +339,7 @@ public:
         reduceDayBut = new QPushButton(layoutWidget);
         reduceDayBut->setObjectName(QStringLiteral("reduceDayBut"));
         reduceDayBut->setMinimumSize(QSize(93, 51));
+        reduceDayBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_3->addWidget(reduceDayBut);
 
@@ -364,6 +381,7 @@ public:
         comboBox = new QComboBox(layoutWidget1);
         comboBox->setObjectName(QStringLiteral("comboBox"));
         comboBox->setMinimumSize(QSize(141, 31));
+        comboBox->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
 
         verticalLayout_4->addWidget(comboBox);
 
@@ -398,6 +416,8 @@ public:
         label_7->setText(QApplication::translate("sysSetting", "30", 0));
         reduceSecondBut->setText(QString());
         addYearBut->setText(QString());
+        label->setStyleSheet(QApplication::translate("sysSetting", "color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);", 0));
         label->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">2020</span></p></body></html>", 0));
         reduceYearBut->setText(QString());
         addMonthBut->setText(QString());

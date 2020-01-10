@@ -21,7 +21,7 @@
     <property name="geometry">
      <rect>
       <x>1120</x>
-      <y>50</y>
+      <y>70</y>
       <width>144</width>
       <height>144</height>
      </rect>
@@ -53,8 +53,8 @@
      <rect>
       <x>0</x>
       <y>0</y>
-      <width>631</width>
-      <height>51</height>
+      <width>641</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -63,8 +63,11 @@
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);</string>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;多功能智能喷码机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;  多功能智能喷码机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="textFormat">
      <enum>Qt::AutoText</enum>
@@ -77,13 +80,16 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>70</y>
       <width>1121</width>
-      <height>221</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="layoutDirection">
      <enum>Qt::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(77,61, 139);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;TextLabel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -92,10 +98,10 @@
    <widget class="QLabel" name="fileNmaeLab">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>280</y>
-      <width>273</width>
-      <height>381</height>
+      <x>10</x>
+      <y>370</y>
+      <width>281</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="font">
@@ -103,6 +109,9 @@
       <family>楷体</family>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;文件名：default.spr&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数值：100&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -115,7 +124,7 @@
     <property name="geometry">
      <rect>
       <x>1120</x>
-      <y>210</y>
+      <y>220</y>
       <width>144</width>
       <height>144</height>
      </rect>
@@ -165,7 +174,7 @@
     <property name="geometry">
      <rect>
       <x>1120</x>
-      <y>530</y>
+      <y>520</y>
       <width>144</width>
       <height>144</height>
      </rect>
@@ -183,32 +192,36 @@
      <string>关闭系统</string>
     </property>
    </widget>
-   <widget class="QLabel" name="roolLab">
+   <widget class="roll" name="roolLab">
     <property name="geometry">
      <rect>
-      <x>0</x>
-      <y>680</y>
-      <width>1271</width>
-      <height>51</height>
+      <x>10</x>
+      <y>670</y>
+      <width>1261</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <family>楷体</family>
-      <pointsize>16</pointsize>
+      <pointsize>28</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;温馨提示：请不要在打印过程中拔掉墨盒，防止喷嘴堵塞。&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QProgressBar" name="print1Prog">
     <property name="geometry">
      <rect>
-      <x>875</x>
-      <y>340</y>
-      <width>81</width>
-      <height>271</height>
+      <x>905</x>
+      <y>400</y>
+      <width>51</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="value">
@@ -221,10 +234,10 @@
    <widget class="QProgressBar" name="print2Prog">
     <property name="geometry">
      <rect>
-      <x>992</x>
-      <y>340</y>
-      <width>81</width>
-      <height>271</height>
+      <x>1022</x>
+      <y>400</y>
+      <width>51</width>
+      <height>211</height>
      </rect>
     </property>
     <property name="value">
@@ -237,7 +250,7 @@
    <widget class="QLabel" name="No1Lab">
     <property name="geometry">
      <rect>
-      <x>876</x>
+      <x>890</x>
       <y>620</y>
       <width>81</width>
       <height>31</height>
@@ -259,7 +272,7 @@
    <widget class="QLabel" name="No2Lab">
     <property name="geometry">
      <rect>
-      <x>990</x>
+      <x>1010</x>
       <y>620</y>
       <width>81</width>
       <height>31</height>
@@ -281,10 +294,10 @@
    <widget class="QLabel" name="timeShowLab">
     <property name="geometry">
      <rect>
-      <x>650</x>
+      <x>640</x>
       <y>0</y>
-      <width>631</width>
-      <height>51</height>
+      <width>641</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="font">
@@ -293,17 +306,20 @@
       <pointsize>16</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(72,61, 130);</string>
+    </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;2020/1/9 16:38:25&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;2020/1/10 10:09&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="signalParaLab">
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>280</y>
-      <width>273</width>
-      <height>381</height>
+      <y>370</y>
+      <width>281</width>
+      <height>291</height>
      </rect>
     </property>
     <property name="font">
@@ -311,6 +327,9 @@
       <family>楷体</family>
       <pointsize>14</pointsize>
      </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;电压：8.8V&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;脉宽：1.8&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;灰度：5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -322,10 +341,10 @@
    <widget class="QLabel" name="printParaLab">
     <property name="geometry">
      <rect>
-      <x>580</x>
-      <y>290</y>
+      <x>570</x>
+      <y>370</y>
       <width>273</width>
-      <height>381</height>
+      <height>291</height>
      </rect>
     </property>
     <property name="font">
@@ -334,6 +353,9 @@
       <pointsize>14</pointsize>
      </font>
     </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);</string>
+    </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;速度：40&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;延时：152&lt;/span&gt;&lt;br/&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;方向：逆向&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
@@ -341,6 +363,38 @@
      <number>0</number>
     </property>
    </widget>
+   <widget class="QLabel" name="progCtrlLab">
+    <property name="geometry">
+     <rect>
+      <x>850</x>
+      <y>370</y>
+      <width>271</width>
+      <height>291</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <zorder>progCtrlLab</zorder>
+   <zorder>fileManageBut</zorder>
+   <zorder>nameDispLab</zorder>
+   <zorder>previewLab</zorder>
+   <zorder>fileNmaeLab</zorder>
+   <zorder>paraManageBut</zorder>
+   <zorder>startPrintBut</zorder>
+   <zorder>closeBut</zorder>
+   <zorder>roolLab</zorder>
+   <zorder>print1Prog</zorder>
+   <zorder>print2Prog</zorder>
+   <zorder>No1Lab</zorder>
+   <zorder>No2Lab</zorder>
+   <zorder>timeShowLab</zorder>
+   <zorder>signalParaLab</zorder>
+   <zorder>printParaLab</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -363,6 +417,13 @@
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>roll</class>
+   <extends>QLabel</extends>
+   <header location="global">roll.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="Res.qrc"/>
  </resources>

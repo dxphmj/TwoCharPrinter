@@ -15,6 +15,12 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     filemanageform.cpp \
+    ClassMessage.cpp \
+    roll.cpp \
+    tinystr.cpp \
+    tinyxml.cpp \
+    tinyxmlerror.cpp \
+    tinyxmlparser.cpp \
     paramsettingform.cpp \
     fileeditchild.cpp \
     filemanagechild.cpp \
@@ -25,6 +31,10 @@ SOURCES += main.cpp\
     variblewidget.cpp
 
 HEADERS  += mainwindow.h \
+    ClassMessage.h \
+    roll.h \
+    tinystr.h \
+    tinyxml.h \
     filemanageform.h \
     paramsettingform.h \
     fileeditchild.h \

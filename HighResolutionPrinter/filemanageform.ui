@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>180</y>
+     <y>120</y>
      <width>144</width>
      <height>144</height>
     </rect>
@@ -42,7 +42,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>360</y>
+     <y>340</y>
      <width>144</width>
      <height>144</height>
     </rect>
@@ -64,7 +64,7 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>540</y>
+     <y>560</y>
      <width>144</width>
      <height>144</height>
     </rect>
@@ -94,6 +94,27 @@
    <widget class="QWidget" name="page"/>
    <widget class="QWidget" name="page_2"/>
   </widget>
+  <widget class="QLabel" name="fileControlLab">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>19</y>
+     <width>181</width>
+     <height>761</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>fileControlLab</zorder>
+  <zorder>editFileBut</zorder>
+  <zorder>manageFileBut</zorder>
+  <zorder>exitBut</zorder>
+  <zorder>stackedWidget</zorder>
  </widget>
  <resources>
   <include location="Res.qrc"/>
