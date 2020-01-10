@@ -6,13 +6,36 @@ FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
-	
+
 	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
+	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(FileEditChild_clicked()));
+	ui.editPreviewText->installEventFilter(this);
+
 }
 
 FileEditChild::~FileEditChild()
 {
 
+}
+
+bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
+{
+	if(watched == ui.editPreviewText && event->type() == QEvent::Paint)
+	{
+	paintDot();
+	}
+	return QWidget::eventFilter(watched,event);
+}
+
+void FileEditChild::paintDot()
+{
+	QPainter painter(ui.editPreviewText);//有个QWidget叫tab_2，在那里添加
+	m_PrinterMes.DrawDot(&painter);
+	/*
+	painter.setRenderHint(QPainter::Antialiasing,true);
+	painter.setPen(QPen(Qt::white,12,Qt::DashDotDotLine,Qt::RoundCap));
+	painter.setBrush(QBrush(Qt::green,Qt::SolidPattern));
+	painter.drawEllipse(80,80,400,240); */
 }
 
 void FileEditChild::variableTextBut_clicked()
