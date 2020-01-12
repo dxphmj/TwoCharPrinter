@@ -4,6 +4,7 @@
 #include <QWidget>
 #include "ui_fileeditchild.h"
 #include "ClassMessage.h"
+#include "keyboard.h"
 
 using namespace MyNameSpace;
 
@@ -19,9 +20,11 @@ public:
 
 private:
 	Ui::FileEditChild ui;
+	keyboard  *keyboardWidget;
 
 private slots:
 	void variableTextBut_clicked();
+	void customTimeBut_clicked();
 	void selBmpBut_clicked();
 	void editBut_clicked();
 

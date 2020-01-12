@@ -9,11 +9,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.setupUi(this);
 
 	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
+	connect(ui.customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
 	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(editBut_clicked()));
 	connect(ui.selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
 
+	keyboardWidget = new keyboard(this);
+	ui.keyboardStackWid->addWidget(keyboardWidget);
+		
 	ui.editPreviewText->installEventFilter(this);
-
 	ui.typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
 							  QTabBar::tab{font:'¿¬Ìå' 16pt;color: white;height:50px; width:114px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
@@ -63,6 +66,13 @@ void FileEditChild::variableTextBut_clicked()
 	
 }
 
+void FileEditChild::customTimeBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->timeCustomCall();
+}
+
 void FileEditChild::selBmpBut_clicked()
 {
 
@@ -70,5 +80,6 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::editBut_clicked()
 {
-
+	//keyboardStackWid->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->setCurrentWidget(keyboardWidget);
 }

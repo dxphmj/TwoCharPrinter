@@ -6,6 +6,7 @@
 #include "fileeditchild.h"
 #include "filemanagechild.h"
 #include "variblewidget.h"
+#include "timecustom.h"
 
 namespace Ui {
 class FilemanageForm;
@@ -27,7 +28,7 @@ private:
 	FileManageChild *FormFileManageChild;//创建窗口页面指针
 	FileEditChild  *FormFileEditChild;
 	varibleWidget  *fontVarWidget;
-	int m_nTmp;
+	timeCustom  *timeCustomWidget;
 
 private slots:
 	void exitBut_clicked();
@@ -36,6 +37,7 @@ private slots:
 
 public slots:
 	void variableWidgetCall();
+	void timeCustomCall();
 };
 
 #endif // FILEMANAGEFORM_H

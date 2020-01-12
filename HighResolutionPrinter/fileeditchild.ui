@@ -154,7 +154,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>6</number>
    </property>
    <widget class="QWidget" name="tab">
     <attribute name="title">
@@ -519,6 +519,33 @@ background-color: rgb(0, 0, 230);</string>
       <string>可变</string>
      </property>
     </widget>
+    <widget class="QStackedWidget" name="keyboardStackWid">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>80</y>
+       <width>791</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <widget class="QWidget" name="page"/>
+     <widget class="QWidget" name="page_2"/>
+    </widget>
+    <zorder>keyboardStackWid</zorder>
+    <zorder>wordLineEdit</zorder>
+    <zorder>degreeTextRedBut</zorder>
+    <zorder>fontTypeTextLab</zorder>
+    <zorder>degreeTextShowLab</zorder>
+    <zorder>rotateTextLab</zorder>
+    <zorder>degreeTextAddBut</zorder>
+    <zorder>fontSizeTextLab</zorder>
+    <zorder>internalTextLab</zorder>
+    <zorder>internalTextAddBut</zorder>
+    <zorder>internalTextRedBut</zorder>
+    <zorder>internalShowTextLab</zorder>
+    <zorder>fontTypeTextComBox</zorder>
+    <zorder>fontSizeTextComBox</zorder>
+    <zorder>variableTextBut</zorder>
    </widget>
    <widget class="QWidget" name="tab_3">
     <attribute name="title">
@@ -951,7 +978,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="fontSizeSerialLab_2">
+    <widget class="QLabel" name="fontSizeSerialLab">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -979,7 +1006,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="typeSerialLab_2">
+    <widget class="QLabel" name="typeSerialLab">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -1007,7 +1034,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="fontTypeTimeLab_2">
+    <widget class="QLabel" name="fontTypeSerialLab">
      <property name="geometry">
       <rect>
        <x>450</x>
@@ -1063,7 +1090,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="typeSerialComBox_2">
+    <widget class="QComboBox" name="typeSerialComBox">
      <property name="geometry">
       <rect>
        <x>550</x>
@@ -1229,7 +1256,7 @@ background-color: rgb(0, 0, 230);</string>
       <string>＋</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontTypeTimeComBox_2">
+    <widget class="QComboBox" name="fontTypeSerialComBox">
      <property name="geometry">
       <rect>
        <x>550</x>
@@ -1288,7 +1315,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
-    <widget class="QLabel" name="typeSerialLab">
+    <widget class="QLabel" name="scaleSerialLab">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -1310,13 +1337,13 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;进位制&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="fontSizeSerialLab">
+    <widget class="QLabel" name="cateSerialLab">
      <property name="geometry">
       <rect>
        <x>70</x>
@@ -1338,13 +1365,13 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字号&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;类别&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QComboBox" name="typeSerialComBox">
+    <widget class="QComboBox" name="scaleSerialComBox">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -1358,7 +1385,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="fontSizeTimeComBox_3">
+    <widget class="QComboBox" name="cateSerialComBox">
      <property name="geometry">
       <rect>
        <x>170</x>
@@ -1406,7 +1433,7 @@ background-color: rgb(0, 0, 230);</string>
     <attribute name="title">
      <string>图片</string>
     </attribute>
-    <widget class="QLabel" name="currentValShowBmpLab">
+    <widget class="QLabel" name="heightBmpShowBmpLab">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -1437,7 +1464,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="internalBmpAddBut">
+    <widget class="QPushButton" name="heightBmpAddBut">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1468,7 +1495,7 @@ background-color: rgb(0, 0, 230);</string>
       <string>＋</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="internalBmpRedBut">
+    <widget class="QPushButton" name="heightBmpRedBut">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -1499,7 +1526,7 @@ background-color: rgb(0, 0, 230);</string>
       <string>－</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="degreeSerialAddBut_2">
+    <widget class="QPushButton" name="degreeBmpAddBut">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1561,7 +1588,7 @@ background-color: rgb(0, 0, 230);</string>
       <string>－</string>
      </property>
     </widget>
-    <widget class="QLabel" name="internalBmpLab">
+    <widget class="QLabel" name="heightBmpLab">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1648,7 +1675,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="internalBmpLab_2">
+    <widget class="QLabel" name="widthBmpLab">
      <property name="geometry">
       <rect>
        <x>60</x>
@@ -1676,7 +1703,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="currentValShowBmpLab_2">
+    <widget class="QLabel" name="widthShowBmpLab">
      <property name="geometry">
       <rect>
        <x>200</x>
@@ -1707,7 +1734,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="internalBmpAddBut_2">
+    <widget class="QPushButton" name="widthBmpAddBut">
      <property name="geometry">
       <rect>
        <x>330</x>
@@ -1738,7 +1765,7 @@ background-color: rgb(0, 0, 230);</string>
       <string>＋</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="internalBmpRedBut_2">
+    <widget class="QPushButton" name="widthBmpRedBut">
      <property name="geometry">
       <rect>
        <x>160</x>
@@ -2690,6 +2717,313 @@ background-color: rgb(0, 0, 230);</string>
     <attribute name="title">
      <string>DM码</string>
     </attribute>
+    <widget class="QPushButton" name="variableDMBut">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>230</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>可变</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="degreeDMAddBut">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>130</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>＋</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="zoomDMRedBut">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>230</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>－</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="degreeDMRedBut">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>130</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>－</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="zoomDMLab">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>230</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;缩放&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rotateDMLab">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>130</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;旋转&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="sideLenDMLab">
+     <property name="geometry">
+      <rect>
+       <x>440</x>
+       <y>130</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="sideLenDMComBox">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>135</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="degreeDMShowLab">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>130</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="zoomDMAddBut">
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>230</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>＋</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="zoomShowDMLab">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>230</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QPushButton" name="moveUpBut">

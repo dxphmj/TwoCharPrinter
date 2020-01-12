@@ -12,7 +12,7 @@ roll::roll(QWidget *parent)
 
 	QTimer *timer = new QTimer(this);
 	connect(timer, &QTimer::timeout, this, &roll::updateIndex);
-	//connect(timer,SIGNAL(timeout()),this,SLOT(updateIndex()));
+	//connect(timer, SIGNAL(timeout()), this, SLOT(updateIndex()));
 	timer->start(100);
 }
 

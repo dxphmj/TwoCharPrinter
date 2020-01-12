@@ -20,6 +20,7 @@
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
+#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTabWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
@@ -51,6 +52,9 @@ public:
     QComboBox *fontTypeTextComBox;
     QComboBox *fontSizeTextComBox;
     QPushButton *variableTextBut;
+    QStackedWidget *keyboardStackWid;
+    QWidget *page;
+    QWidget *page_2;
     QWidget *tab_3;
     QPushButton *internalTimeAddBut;
     QLabel *degreeTimeShowLab;
@@ -69,37 +73,37 @@ public:
     QLabel *typeTimeLab;
     QWidget *tab_4;
     QLabel *degreeSerialShowLab;
-    QLabel *fontSizeSerialLab_2;
-    QLabel *typeSerialLab_2;
-    QLabel *fontTypeTimeLab_2;
+    QLabel *fontSizeSerialLab;
+    QLabel *typeSerialLab;
+    QLabel *fontTypeSerialLab;
     QLabel *rotateSerialLab;
-    QComboBox *typeSerialComBox_2;
+    QComboBox *typeSerialComBox;
     QLabel *currentValShowSerialLab;
     QLabel *internalSerialLab;
     QPushButton *degreeSerialRedBut;
     QPushButton *internalSerialAddBut;
     QPushButton *degreeSerialAddBut;
-    QComboBox *fontTypeTimeComBox_2;
+    QComboBox *fontTypeSerialComBox;
     QPushButton *internalSerialRedBut;
     QComboBox *fontSizeSerialComBox;
-    QLabel *typeSerialLab;
-    QLabel *fontSizeSerialLab;
-    QComboBox *typeSerialComBox;
-    QComboBox *fontSizeTimeComBox_3;
+    QLabel *scaleSerialLab;
+    QLabel *cateSerialLab;
+    QComboBox *scaleSerialComBox;
+    QComboBox *cateSerialComBox;
     QCheckBox *natureNumCheckBox;
     QWidget *tab_5;
-    QLabel *currentValShowBmpLab;
-    QPushButton *internalBmpAddBut;
-    QPushButton *internalBmpRedBut;
-    QPushButton *degreeSerialAddBut_2;
+    QLabel *heightBmpShowBmpLab;
+    QPushButton *heightBmpAddBut;
+    QPushButton *heightBmpRedBut;
+    QPushButton *degreeBmpAddBut;
     QPushButton *degreeBmpRedBut;
-    QLabel *internalBmpLab;
+    QLabel *heightBmpLab;
     QLabel *degreeBmpShowLab;
     QLabel *rotateBmpLab;
-    QLabel *internalBmpLab_2;
-    QLabel *currentValShowBmpLab_2;
-    QPushButton *internalBmpAddBut_2;
-    QPushButton *internalBmpRedBut_2;
+    QLabel *widthBmpLab;
+    QLabel *widthShowBmpLab;
+    QPushButton *widthBmpAddBut;
+    QPushButton *widthBmpRedBut;
     QPushButton *selBmpBut;
     QCheckBox *reverseBmpCheckBox;
     QWidget *tab_6;
@@ -137,6 +141,17 @@ public:
     QPushButton *zoomQRRedBut;
     QCheckBox *reverseCheckBox;
     QWidget *tab_2;
+    QPushButton *variableDMBut;
+    QPushButton *degreeDMAddBut;
+    QPushButton *zoomDMRedBut;
+    QPushButton *degreeDMRedBut;
+    QLabel *zoomDMLab;
+    QLabel *rotateDMLab;
+    QLabel *sideLenDMLab;
+    QComboBox *sideLenDMComBox;
+    QLabel *degreeDMShowLab;
+    QPushButton *zoomDMAddBut;
+    QLabel *zoomShowDMLab;
     QPushButton *moveUpBut;
     QPushButton *moveRightBut;
     QPushButton *moveDownBut;
@@ -285,7 +300,31 @@ public:
         variableTextBut->setFont(font);
         variableTextBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
+        keyboardStackWid = new QStackedWidget(tab);
+        keyboardStackWid->setObjectName(QStringLiteral("keyboardStackWid"));
+        keyboardStackWid->setGeometry(QRect(10, 80, 791, 321));
+        page = new QWidget();
+        page->setObjectName(QStringLiteral("page"));
+        keyboardStackWid->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName(QStringLiteral("page_2"));
+        keyboardStackWid->addWidget(page_2);
         typeTab->addTab(tab, QString());
+        keyboardStackWid->raise();
+        wordLineEdit->raise();
+        degreeTextRedBut->raise();
+        fontTypeTextLab->raise();
+        degreeTextShowLab->raise();
+        rotateTextLab->raise();
+        degreeTextAddBut->raise();
+        fontSizeTextLab->raise();
+        internalTextLab->raise();
+        internalTextAddBut->raise();
+        internalTextRedBut->raise();
+        internalShowTextLab->raise();
+        fontTypeTextComBox->raise();
+        fontSizeTextComBox->raise();
+        variableTextBut->raise();
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         internalTimeAddBut = new QPushButton(tab_3);
@@ -391,34 +430,34 @@ public:
         degreeSerialShowLab->setFont(font2);
         degreeSerialShowLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         degreeSerialShowLab->setAlignment(Qt::AlignCenter);
-        fontSizeSerialLab_2 = new QLabel(tab_4);
-        fontSizeSerialLab_2->setObjectName(QStringLiteral("fontSizeSerialLab_2"));
-        fontSizeSerialLab_2->setGeometry(QRect(450, 140, 101, 41));
-        fontSizeSerialLab_2->setMinimumSize(QSize(101, 41));
-        fontSizeSerialLab_2->setFont(font2);
-        fontSizeSerialLab_2->setAlignment(Qt::AlignCenter);
-        typeSerialLab_2 = new QLabel(tab_4);
-        typeSerialLab_2->setObjectName(QStringLiteral("typeSerialLab_2"));
-        typeSerialLab_2->setGeometry(QRect(450, 235, 101, 41));
-        typeSerialLab_2->setMinimumSize(QSize(101, 41));
-        typeSerialLab_2->setFont(font2);
-        typeSerialLab_2->setAlignment(Qt::AlignCenter);
-        fontTypeTimeLab_2 = new QLabel(tab_4);
-        fontTypeTimeLab_2->setObjectName(QStringLiteral("fontTypeTimeLab_2"));
-        fontTypeTimeLab_2->setGeometry(QRect(450, 50, 101, 41));
-        fontTypeTimeLab_2->setMinimumSize(QSize(101, 41));
-        fontTypeTimeLab_2->setFont(font2);
-        fontTypeTimeLab_2->setAlignment(Qt::AlignCenter);
+        fontSizeSerialLab = new QLabel(tab_4);
+        fontSizeSerialLab->setObjectName(QStringLiteral("fontSizeSerialLab"));
+        fontSizeSerialLab->setGeometry(QRect(450, 140, 101, 41));
+        fontSizeSerialLab->setMinimumSize(QSize(101, 41));
+        fontSizeSerialLab->setFont(font2);
+        fontSizeSerialLab->setAlignment(Qt::AlignCenter);
+        typeSerialLab = new QLabel(tab_4);
+        typeSerialLab->setObjectName(QStringLiteral("typeSerialLab"));
+        typeSerialLab->setGeometry(QRect(450, 235, 101, 41));
+        typeSerialLab->setMinimumSize(QSize(101, 41));
+        typeSerialLab->setFont(font2);
+        typeSerialLab->setAlignment(Qt::AlignCenter);
+        fontTypeSerialLab = new QLabel(tab_4);
+        fontTypeSerialLab->setObjectName(QStringLiteral("fontTypeSerialLab"));
+        fontTypeSerialLab->setGeometry(QRect(450, 50, 101, 41));
+        fontTypeSerialLab->setMinimumSize(QSize(101, 41));
+        fontTypeSerialLab->setFont(font2);
+        fontTypeSerialLab->setAlignment(Qt::AlignCenter);
         rotateSerialLab = new QLabel(tab_4);
         rotateSerialLab->setObjectName(QStringLiteral("rotateSerialLab"));
         rotateSerialLab->setGeometry(QRect(70, 240, 101, 41));
         rotateSerialLab->setMinimumSize(QSize(101, 41));
         rotateSerialLab->setFont(font2);
         rotateSerialLab->setAlignment(Qt::AlignCenter);
-        typeSerialComBox_2 = new QComboBox(tab_4);
-        typeSerialComBox_2->setObjectName(QStringLiteral("typeSerialComBox_2"));
-        typeSerialComBox_2->setGeometry(QRect(550, 240, 181, 31));
-        typeSerialComBox_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        typeSerialComBox = new QComboBox(tab_4);
+        typeSerialComBox->setObjectName(QStringLiteral("typeSerialComBox"));
+        typeSerialComBox->setGeometry(QRect(550, 240, 181, 31));
+        typeSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         currentValShowSerialLab = new QLabel(tab_4);
         currentValShowSerialLab->setObjectName(QStringLiteral("currentValShowSerialLab"));
@@ -454,10 +493,10 @@ public:
         degreeSerialAddBut->setFont(font1);
         degreeSerialAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        fontTypeTimeComBox_2 = new QComboBox(tab_4);
-        fontTypeTimeComBox_2->setObjectName(QStringLiteral("fontTypeTimeComBox_2"));
-        fontTypeTimeComBox_2->setGeometry(QRect(550, 55, 181, 31));
-        fontTypeTimeComBox_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        fontTypeSerialComBox = new QComboBox(tab_4);
+        fontTypeSerialComBox->setObjectName(QStringLiteral("fontTypeSerialComBox"));
+        fontTypeSerialComBox->setGeometry(QRect(550, 55, 181, 31));
+        fontTypeSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         internalSerialRedBut = new QPushButton(tab_4);
         internalSerialRedBut->setObjectName(QStringLiteral("internalSerialRedBut"));
@@ -471,27 +510,27 @@ public:
         fontSizeSerialComBox->setGeometry(QRect(550, 145, 181, 31));
         fontSizeSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        typeSerialLab = new QLabel(tab_4);
-        typeSerialLab->setObjectName(QStringLiteral("typeSerialLab"));
-        typeSerialLab->setGeometry(QRect(70, 140, 101, 41));
-        typeSerialLab->setMinimumSize(QSize(101, 41));
-        typeSerialLab->setFont(font2);
-        typeSerialLab->setAlignment(Qt::AlignCenter);
-        fontSizeSerialLab = new QLabel(tab_4);
-        fontSizeSerialLab->setObjectName(QStringLiteral("fontSizeSerialLab"));
-        fontSizeSerialLab->setGeometry(QRect(70, 50, 101, 41));
-        fontSizeSerialLab->setMinimumSize(QSize(101, 41));
-        fontSizeSerialLab->setFont(font2);
-        fontSizeSerialLab->setAlignment(Qt::AlignCenter);
-        typeSerialComBox = new QComboBox(tab_4);
-        typeSerialComBox->setObjectName(QStringLiteral("typeSerialComBox"));
-        typeSerialComBox->setGeometry(QRect(170, 145, 211, 31));
-        typeSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        scaleSerialLab = new QLabel(tab_4);
+        scaleSerialLab->setObjectName(QStringLiteral("scaleSerialLab"));
+        scaleSerialLab->setGeometry(QRect(70, 140, 101, 41));
+        scaleSerialLab->setMinimumSize(QSize(101, 41));
+        scaleSerialLab->setFont(font2);
+        scaleSerialLab->setAlignment(Qt::AlignCenter);
+        cateSerialLab = new QLabel(tab_4);
+        cateSerialLab->setObjectName(QStringLiteral("cateSerialLab"));
+        cateSerialLab->setGeometry(QRect(70, 50, 101, 41));
+        cateSerialLab->setMinimumSize(QSize(101, 41));
+        cateSerialLab->setFont(font2);
+        cateSerialLab->setAlignment(Qt::AlignCenter);
+        scaleSerialComBox = new QComboBox(tab_4);
+        scaleSerialComBox->setObjectName(QStringLiteral("scaleSerialComBox"));
+        scaleSerialComBox->setGeometry(QRect(170, 145, 211, 31));
+        scaleSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        fontSizeTimeComBox_3 = new QComboBox(tab_4);
-        fontSizeTimeComBox_3->setObjectName(QStringLiteral("fontSizeTimeComBox_3"));
-        fontSizeTimeComBox_3->setGeometry(QRect(170, 55, 211, 31));
-        fontSizeTimeComBox_3->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        cateSerialComBox = new QComboBox(tab_4);
+        cateSerialComBox->setObjectName(QStringLiteral("cateSerialComBox"));
+        cateSerialComBox->setGeometry(QRect(170, 55, 211, 31));
+        cateSerialComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         natureNumCheckBox = new QCheckBox(tab_4);
         natureNumCheckBox->setObjectName(QStringLiteral("natureNumCheckBox"));
@@ -504,33 +543,33 @@ public:
         typeTab->addTab(tab_4, QString());
         tab_5 = new QWidget();
         tab_5->setObjectName(QStringLiteral("tab_5"));
-        currentValShowBmpLab = new QLabel(tab_5);
-        currentValShowBmpLab->setObjectName(QStringLiteral("currentValShowBmpLab"));
-        currentValShowBmpLab->setGeometry(QRect(200, 170, 131, 41));
-        currentValShowBmpLab->setMinimumSize(QSize(0, 41));
-        currentValShowBmpLab->setFont(font2);
-        currentValShowBmpLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
-        currentValShowBmpLab->setAlignment(Qt::AlignCenter);
-        internalBmpAddBut = new QPushButton(tab_5);
-        internalBmpAddBut->setObjectName(QStringLiteral("internalBmpAddBut"));
-        internalBmpAddBut->setGeometry(QRect(330, 170, 41, 41));
-        internalBmpAddBut->setMinimumSize(QSize(41, 41));
-        internalBmpAddBut->setFont(font1);
-        internalBmpAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        heightBmpShowBmpLab = new QLabel(tab_5);
+        heightBmpShowBmpLab->setObjectName(QStringLiteral("heightBmpShowBmpLab"));
+        heightBmpShowBmpLab->setGeometry(QRect(200, 170, 131, 41));
+        heightBmpShowBmpLab->setMinimumSize(QSize(0, 41));
+        heightBmpShowBmpLab->setFont(font2);
+        heightBmpShowBmpLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        heightBmpShowBmpLab->setAlignment(Qt::AlignCenter);
+        heightBmpAddBut = new QPushButton(tab_5);
+        heightBmpAddBut->setObjectName(QStringLiteral("heightBmpAddBut"));
+        heightBmpAddBut->setGeometry(QRect(330, 170, 41, 41));
+        heightBmpAddBut->setMinimumSize(QSize(41, 41));
+        heightBmpAddBut->setFont(font1);
+        heightBmpAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        internalBmpRedBut = new QPushButton(tab_5);
-        internalBmpRedBut->setObjectName(QStringLiteral("internalBmpRedBut"));
-        internalBmpRedBut->setGeometry(QRect(160, 170, 41, 41));
-        internalBmpRedBut->setMinimumSize(QSize(41, 41));
-        internalBmpRedBut->setFont(font1);
-        internalBmpRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        heightBmpRedBut = new QPushButton(tab_5);
+        heightBmpRedBut->setObjectName(QStringLiteral("heightBmpRedBut"));
+        heightBmpRedBut->setGeometry(QRect(160, 170, 41, 41));
+        heightBmpRedBut->setMinimumSize(QSize(41, 41));
+        heightBmpRedBut->setFont(font1);
+        heightBmpRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        degreeSerialAddBut_2 = new QPushButton(tab_5);
-        degreeSerialAddBut_2->setObjectName(QStringLiteral("degreeSerialAddBut_2"));
-        degreeSerialAddBut_2->setGeometry(QRect(330, 80, 41, 41));
-        degreeSerialAddBut_2->setMinimumSize(QSize(41, 41));
-        degreeSerialAddBut_2->setFont(font1);
-        degreeSerialAddBut_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        degreeBmpAddBut = new QPushButton(tab_5);
+        degreeBmpAddBut->setObjectName(QStringLiteral("degreeBmpAddBut"));
+        degreeBmpAddBut->setGeometry(QRect(330, 80, 41, 41));
+        degreeBmpAddBut->setMinimumSize(QSize(41, 41));
+        degreeBmpAddBut->setFont(font1);
+        degreeBmpAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         degreeBmpRedBut = new QPushButton(tab_5);
         degreeBmpRedBut->setObjectName(QStringLiteral("degreeBmpRedBut"));
@@ -539,12 +578,12 @@ public:
         degreeBmpRedBut->setFont(font1);
         degreeBmpRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        internalBmpLab = new QLabel(tab_5);
-        internalBmpLab->setObjectName(QStringLiteral("internalBmpLab"));
-        internalBmpLab->setGeometry(QRect(60, 170, 101, 41));
-        internalBmpLab->setMinimumSize(QSize(101, 41));
-        internalBmpLab->setFont(font2);
-        internalBmpLab->setAlignment(Qt::AlignCenter);
+        heightBmpLab = new QLabel(tab_5);
+        heightBmpLab->setObjectName(QStringLiteral("heightBmpLab"));
+        heightBmpLab->setGeometry(QRect(60, 170, 101, 41));
+        heightBmpLab->setMinimumSize(QSize(101, 41));
+        heightBmpLab->setFont(font2);
+        heightBmpLab->setAlignment(Qt::AlignCenter);
         degreeBmpShowLab = new QLabel(tab_5);
         degreeBmpShowLab->setObjectName(QStringLiteral("degreeBmpShowLab"));
         degreeBmpShowLab->setGeometry(QRect(200, 80, 131, 41));
@@ -558,32 +597,32 @@ public:
         rotateBmpLab->setMinimumSize(QSize(101, 41));
         rotateBmpLab->setFont(font2);
         rotateBmpLab->setAlignment(Qt::AlignCenter);
-        internalBmpLab_2 = new QLabel(tab_5);
-        internalBmpLab_2->setObjectName(QStringLiteral("internalBmpLab_2"));
-        internalBmpLab_2->setGeometry(QRect(60, 260, 101, 41));
-        internalBmpLab_2->setMinimumSize(QSize(101, 41));
-        internalBmpLab_2->setFont(font2);
-        internalBmpLab_2->setAlignment(Qt::AlignCenter);
-        currentValShowBmpLab_2 = new QLabel(tab_5);
-        currentValShowBmpLab_2->setObjectName(QStringLiteral("currentValShowBmpLab_2"));
-        currentValShowBmpLab_2->setGeometry(QRect(200, 260, 131, 41));
-        currentValShowBmpLab_2->setMinimumSize(QSize(0, 41));
-        currentValShowBmpLab_2->setFont(font2);
-        currentValShowBmpLab_2->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
-        currentValShowBmpLab_2->setAlignment(Qt::AlignCenter);
-        internalBmpAddBut_2 = new QPushButton(tab_5);
-        internalBmpAddBut_2->setObjectName(QStringLiteral("internalBmpAddBut_2"));
-        internalBmpAddBut_2->setGeometry(QRect(330, 260, 41, 41));
-        internalBmpAddBut_2->setMinimumSize(QSize(41, 41));
-        internalBmpAddBut_2->setFont(font1);
-        internalBmpAddBut_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        widthBmpLab = new QLabel(tab_5);
+        widthBmpLab->setObjectName(QStringLiteral("widthBmpLab"));
+        widthBmpLab->setGeometry(QRect(60, 260, 101, 41));
+        widthBmpLab->setMinimumSize(QSize(101, 41));
+        widthBmpLab->setFont(font2);
+        widthBmpLab->setAlignment(Qt::AlignCenter);
+        widthShowBmpLab = new QLabel(tab_5);
+        widthShowBmpLab->setObjectName(QStringLiteral("widthShowBmpLab"));
+        widthShowBmpLab->setGeometry(QRect(200, 260, 131, 41));
+        widthShowBmpLab->setMinimumSize(QSize(0, 41));
+        widthShowBmpLab->setFont(font2);
+        widthShowBmpLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        widthShowBmpLab->setAlignment(Qt::AlignCenter);
+        widthBmpAddBut = new QPushButton(tab_5);
+        widthBmpAddBut->setObjectName(QStringLiteral("widthBmpAddBut"));
+        widthBmpAddBut->setGeometry(QRect(330, 260, 41, 41));
+        widthBmpAddBut->setMinimumSize(QSize(41, 41));
+        widthBmpAddBut->setFont(font1);
+        widthBmpAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        internalBmpRedBut_2 = new QPushButton(tab_5);
-        internalBmpRedBut_2->setObjectName(QStringLiteral("internalBmpRedBut_2"));
-        internalBmpRedBut_2->setGeometry(QRect(160, 260, 41, 41));
-        internalBmpRedBut_2->setMinimumSize(QSize(41, 41));
-        internalBmpRedBut_2->setFont(font1);
-        internalBmpRedBut_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        widthBmpRedBut = new QPushButton(tab_5);
+        widthBmpRedBut->setObjectName(QStringLiteral("widthBmpRedBut"));
+        widthBmpRedBut->setGeometry(QRect(160, 260, 41, 41));
+        widthBmpRedBut->setMinimumSize(QSize(41, 41));
+        widthBmpRedBut->setFont(font1);
+        widthBmpRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         selBmpBut = new QPushButton(tab_5);
         selBmpBut->setObjectName(QStringLiteral("selBmpBut"));
@@ -809,6 +848,77 @@ public:
         typeTab->addTab(tab_7, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QStringLiteral("tab_2"));
+        variableDMBut = new QPushButton(tab_2);
+        variableDMBut->setObjectName(QStringLiteral("variableDMBut"));
+        variableDMBut->setGeometry(QRect(540, 230, 181, 41));
+        variableDMBut->setFont(font);
+        variableDMBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        degreeDMAddBut = new QPushButton(tab_2);
+        degreeDMAddBut->setObjectName(QStringLiteral("degreeDMAddBut"));
+        degreeDMAddBut->setGeometry(QRect(320, 130, 41, 41));
+        degreeDMAddBut->setMinimumSize(QSize(41, 41));
+        degreeDMAddBut->setFont(font1);
+        degreeDMAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        zoomDMRedBut = new QPushButton(tab_2);
+        zoomDMRedBut->setObjectName(QStringLiteral("zoomDMRedBut"));
+        zoomDMRedBut->setGeometry(QRect(150, 230, 41, 41));
+        zoomDMRedBut->setMinimumSize(QSize(41, 41));
+        zoomDMRedBut->setFont(font1);
+        zoomDMRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        degreeDMRedBut = new QPushButton(tab_2);
+        degreeDMRedBut->setObjectName(QStringLiteral("degreeDMRedBut"));
+        degreeDMRedBut->setGeometry(QRect(150, 130, 41, 41));
+        degreeDMRedBut->setMinimumSize(QSize(41, 41));
+        degreeDMRedBut->setFont(font1);
+        degreeDMRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        zoomDMLab = new QLabel(tab_2);
+        zoomDMLab->setObjectName(QStringLiteral("zoomDMLab"));
+        zoomDMLab->setGeometry(QRect(50, 230, 101, 41));
+        zoomDMLab->setMinimumSize(QSize(101, 41));
+        zoomDMLab->setFont(font2);
+        zoomDMLab->setAlignment(Qt::AlignCenter);
+        rotateDMLab = new QLabel(tab_2);
+        rotateDMLab->setObjectName(QStringLiteral("rotateDMLab"));
+        rotateDMLab->setGeometry(QRect(50, 130, 101, 41));
+        rotateDMLab->setMinimumSize(QSize(101, 41));
+        rotateDMLab->setFont(font2);
+        rotateDMLab->setAlignment(Qt::AlignCenter);
+        sideLenDMLab = new QLabel(tab_2);
+        sideLenDMLab->setObjectName(QStringLiteral("sideLenDMLab"));
+        sideLenDMLab->setGeometry(QRect(440, 130, 101, 41));
+        sideLenDMLab->setMinimumSize(QSize(101, 41));
+        sideLenDMLab->setFont(font2);
+        sideLenDMLab->setAlignment(Qt::AlignCenter);
+        sideLenDMComBox = new QComboBox(tab_2);
+        sideLenDMComBox->setObjectName(QStringLiteral("sideLenDMComBox"));
+        sideLenDMComBox->setGeometry(QRect(540, 135, 181, 31));
+        sideLenDMComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        degreeDMShowLab = new QLabel(tab_2);
+        degreeDMShowLab->setObjectName(QStringLiteral("degreeDMShowLab"));
+        degreeDMShowLab->setGeometry(QRect(190, 130, 131, 41));
+        degreeDMShowLab->setMinimumSize(QSize(0, 41));
+        degreeDMShowLab->setFont(font2);
+        degreeDMShowLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        degreeDMShowLab->setAlignment(Qt::AlignCenter);
+        zoomDMAddBut = new QPushButton(tab_2);
+        zoomDMAddBut->setObjectName(QStringLiteral("zoomDMAddBut"));
+        zoomDMAddBut->setGeometry(QRect(320, 230, 41, 41));
+        zoomDMAddBut->setMinimumSize(QSize(41, 41));
+        zoomDMAddBut->setFont(font1);
+        zoomDMAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        zoomShowDMLab = new QLabel(tab_2);
+        zoomShowDMLab->setObjectName(QStringLiteral("zoomShowDMLab"));
+        zoomShowDMLab->setGeometry(QRect(190, 230, 131, 41));
+        zoomShowDMLab->setMinimumSize(QSize(0, 41));
+        zoomShowDMLab->setFont(font2);
+        zoomShowDMLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        zoomShowDMLab->setAlignment(Qt::AlignCenter);
         typeTab->addTab(tab_2, QString());
         moveUpBut = new QPushButton(FileEditChild);
         moveUpBut->setObjectName(QStringLiteral("moveUpBut"));
@@ -853,7 +963,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(5);
+        typeTab->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -892,9 +1002,9 @@ public:
         typeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
         typeTab->setTabText(typeTab->indexOf(tab_3), QApplication::translate("FileEditChild", "\346\227\266\351\227\264", 0));
         degreeSerialShowLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
-        fontSizeSerialLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
-        typeSerialLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
-        fontTypeTimeLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
+        fontSizeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
+        typeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
+        fontTypeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
         rotateSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\213\350\275\254</span></p></body></html>", 0));
         currentValShowSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
         internalSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\227\264\350\267\235</span></p></body></html>", 0));
@@ -902,22 +1012,22 @@ public:
         internalSerialAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         degreeSerialAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         internalSerialRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
-        typeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
-        fontSizeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
+        scaleSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\350\277\233\344\275\215\345\210\266</span></p></body></html>", 0));
+        cateSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\210\253</span></p></body></html>", 0));
         natureNumCheckBox->setText(QApplication::translate("FileEditChild", "\350\207\252\347\204\266\346\225\260", 0));
         typeTab->setTabText(typeTab->indexOf(tab_4), QApplication::translate("FileEditChild", "\345\272\217\345\217\267", 0));
-        currentValShowBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
-        internalBmpAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
-        internalBmpRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
-        degreeSerialAddBut_2->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
+        heightBmpShowBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
+        heightBmpAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
+        heightBmpRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
+        degreeBmpAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         degreeBmpRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
-        internalBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\253\230\345\272\246</span></p></body></html>", 0));
+        heightBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\253\230\345\272\246</span></p></body></html>", 0));
         degreeBmpShowLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
         rotateBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\213\350\275\254</span></p></body></html>", 0));
-        internalBmpLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\256\275\345\272\246</span></p></body></html>", 0));
-        currentValShowBmpLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
-        internalBmpAddBut_2->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
-        internalBmpRedBut_2->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
+        widthBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\256\275\345\272\246</span></p></body></html>", 0));
+        widthShowBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
+        widthBmpAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
+        widthBmpRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
         selBmpBut->setText(QApplication::translate("FileEditChild", "\351\200\211\346\213\251\345\233\276\345\275\242", 0));
         reverseBmpCheckBox->setText(QApplication::translate("FileEditChild", "\345\217\215\350\211\262", 0));
         typeTab->setTabText(typeTab->indexOf(tab_5), QApplication::translate("FileEditChild", "\345\233\276\347\211\207", 0));
@@ -950,6 +1060,16 @@ public:
         zoomQRRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
         reverseCheckBox->setText(QApplication::translate("FileEditChild", "\345\217\215\350\211\262", 0));
         typeTab->setTabText(typeTab->indexOf(tab_7), QApplication::translate("FileEditChild", "QR\347\240\201", 0));
+        variableDMBut->setText(QApplication::translate("FileEditChild", "\345\217\257\345\217\230", 0));
+        degreeDMAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
+        zoomDMRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
+        degreeDMRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
+        zoomDMLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\274\251\346\224\276</span></p></body></html>", 0));
+        rotateDMLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\213\350\275\254</span></p></body></html>", 0));
+        sideLenDMLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
+        degreeDMShowLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
+        zoomDMAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
+        zoomShowDMLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
         typeTab->setTabText(typeTab->indexOf(tab_2), QApplication::translate("FileEditChild", "DM\347\240\201", 0));
         moveUpBut->setText(QApplication::translate("FileEditChild", "\344\270\212\347\247\273", 0));
         moveRightBut->setText(QApplication::translate("FileEditChild", "\345\217\263\347\247\273", 0));

@@ -14,20 +14,20 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
 	connect(ui->paraManageBut,SIGNAL(clicked()),this,SLOT(paraManageBut_clicked()));
  
-	ui->fileManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/fileManage.bmp);font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->fileManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/fileManage.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/fileManage.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 ");
 		
-	ui->paraManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/paraManage.bmp);font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->paraManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/paraManage.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/paraManage.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 "); 
-	ui->startPrintBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/startPrint.bmp);font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->startPrintBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/startPrint.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/startPrint.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 "); 
-	ui->closeBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/closeSys.bmp);font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->closeBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/closeSys.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/closeSys.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								");  
