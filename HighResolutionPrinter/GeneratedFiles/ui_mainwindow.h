@@ -16,10 +16,8 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenuBar>
 #include <QtWidgets/QProgressBar>
 #include <QtWidgets/QPushButton>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
 #include <roll.h>
@@ -46,9 +44,7 @@ public:
     QLabel *signalParaLab;
     QLabel *printParaLab;
     QLabel *progCtrlLab;
-    QMenuBar *menuBar;
     QToolBar *mainToolBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
@@ -60,7 +56,7 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         fileManageBut = new QPushButton(centralWidget);
         fileManageBut->setObjectName(QStringLiteral("fileManageBut"));
-        fileManageBut->setGeometry(QRect(1120, 70, 144, 144));
+        fileManageBut->setGeometry(QRect(1120, 80, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -70,19 +66,19 @@ public:
         fileManageBut->setAutoDefault(false);
         nameDispLab = new QLabel(centralWidget);
         nameDispLab->setObjectName(QStringLiteral("nameDispLab"));
-        nameDispLab->setGeometry(QRect(0, 0, 641, 61));
+        nameDispLab->setGeometry(QRect(0, 0, 641, 71));
         nameDispLab->setFont(font);
         nameDispLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         nameDispLab->setTextFormat(Qt::AutoText);
         nameDispLab->setMargin(1);
         previewLab = new QLabel(centralWidget);
         previewLab->setObjectName(QStringLiteral("previewLab"));
-        previewLab->setGeometry(QRect(0, 70, 1121, 291));
+        previewLab->setGeometry(QRect(0, 80, 1121, 311));
         previewLab->setLayoutDirection(Qt::LeftToRight);
         previewLab->setStyleSheet(QStringLiteral("background-color: rgb(77,61, 139);"));
         fileNmaeLab = new QLabel(centralWidget);
         fileNmaeLab->setObjectName(QStringLiteral("fileNmaeLab"));
-        fileNmaeLab->setGeometry(QRect(10, 370, 281, 291));
+        fileNmaeLab->setGeometry(QRect(10, 400, 281, 311));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(14);
@@ -91,12 +87,12 @@ public:
         fileNmaeLab->setMargin(0);
         paraManageBut = new QPushButton(centralWidget);
         paraManageBut->setObjectName(QStringLiteral("paraManageBut"));
-        paraManageBut->setGeometry(QRect(1120, 220, 144, 144));
+        paraManageBut->setGeometry(QRect(1120, 240, 144, 144));
         paraManageBut->setFont(font);
         paraManageBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/paraManage.bmp);"));
         startPrintBut = new QPushButton(centralWidget);
         startPrintBut->setObjectName(QStringLiteral("startPrintBut"));
-        startPrintBut->setGeometry(QRect(1120, 370, 144, 144));
+        startPrintBut->setGeometry(QRect(1120, 400, 144, 144));
         QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -106,12 +102,12 @@ public:
         startPrintBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/startPrint.bmp);"));
         closeBut = new QPushButton(centralWidget);
         closeBut->setObjectName(QStringLiteral("closeBut"));
-        closeBut->setGeometry(QRect(1120, 520, 144, 144));
+        closeBut->setGeometry(QRect(1120, 560, 144, 144));
         closeBut->setFont(font);
         closeBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/closeSys.bmp);"));
         roolLab = new roll(centralWidget);
         roolLab->setObjectName(QStringLiteral("roolLab"));
-        roolLab->setGeometry(QRect(10, 670, 1261, 61));
+        roolLab->setGeometry(QRect(10, 720, 1261, 61));
         QFont font2;
         font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font2.setPointSize(28);
@@ -120,17 +116,17 @@ public:
 "color: rgb(255, 255, 255);"));
         print1Prog = new QProgressBar(centralWidget);
         print1Prog->setObjectName(QStringLiteral("print1Prog"));
-        print1Prog->setGeometry(QRect(905, 400, 51, 211));
+        print1Prog->setGeometry(QRect(905, 430, 51, 211));
         print1Prog->setValue(24);
         print1Prog->setOrientation(Qt::Vertical);
         print2Prog = new QProgressBar(centralWidget);
         print2Prog->setObjectName(QStringLiteral("print2Prog"));
-        print2Prog->setGeometry(QRect(1022, 400, 51, 211));
+        print2Prog->setGeometry(QRect(1022, 430, 51, 211));
         print2Prog->setValue(24);
         print2Prog->setOrientation(Qt::Vertical);
         No1Lab = new QLabel(centralWidget);
         No1Lab->setObjectName(QStringLiteral("No1Lab"));
-        No1Lab->setGeometry(QRect(890, 620, 81, 31));
+        No1Lab->setGeometry(QRect(890, 650, 81, 31));
         QFont font3;
         font3.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font3.setPointSize(12);
@@ -138,29 +134,29 @@ public:
         No1Lab->setAlignment(Qt::AlignCenter);
         No2Lab = new QLabel(centralWidget);
         No2Lab->setObjectName(QStringLiteral("No2Lab"));
-        No2Lab->setGeometry(QRect(1010, 620, 81, 31));
+        No2Lab->setGeometry(QRect(1010, 650, 81, 31));
         No2Lab->setFont(font3);
         No2Lab->setAlignment(Qt::AlignCenter);
         timeShowLab = new QLabel(centralWidget);
         timeShowLab->setObjectName(QStringLiteral("timeShowLab"));
-        timeShowLab->setGeometry(QRect(640, 0, 641, 61));
+        timeShowLab->setGeometry(QRect(640, 0, 641, 71));
         timeShowLab->setFont(font);
         timeShowLab->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 130);"));
         signalParaLab = new QLabel(centralWidget);
         signalParaLab->setObjectName(QStringLiteral("signalParaLab"));
-        signalParaLab->setGeometry(QRect(290, 370, 281, 291));
+        signalParaLab->setGeometry(QRect(290, 400, 281, 311));
         signalParaLab->setFont(font1);
         signalParaLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         signalParaLab->setMargin(0);
         printParaLab = new QLabel(centralWidget);
         printParaLab->setObjectName(QStringLiteral("printParaLab"));
-        printParaLab->setGeometry(QRect(570, 370, 273, 291));
+        printParaLab->setGeometry(QRect(570, 400, 273, 311));
         printParaLab->setFont(font1);
         printParaLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         printParaLab->setMargin(0);
         progCtrlLab = new QLabel(centralWidget);
         progCtrlLab->setObjectName(QStringLiteral("progCtrlLab"));
-        progCtrlLab->setGeometry(QRect(850, 370, 271, 291));
+        progCtrlLab->setGeometry(QRect(850, 400, 271, 311));
         progCtrlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         MainWindow->setCentralWidget(centralWidget);
         progCtrlLab->raise();
@@ -179,16 +175,9 @@ public:
         timeShowLab->raise();
         signalParaLab->raise();
         printParaLab->raise();
-        menuBar = new QMenuBar(MainWindow);
-        menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1280, 26));
-        MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
         MainWindow->addToolBar(Qt::TopToolBarArea, mainToolBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
