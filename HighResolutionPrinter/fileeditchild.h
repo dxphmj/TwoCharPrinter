@@ -27,6 +27,8 @@ private slots:
 	void customTimeBut_clicked();
 	void selBmpBut_clicked();
 	void editBut_clicked();
+	void delBut_clicked();
+	void wordLineEdit_clicked();
 
 
 protected:

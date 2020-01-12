@@ -52,9 +52,6 @@ public:
     QComboBox *fontTypeTextComBox;
     QComboBox *fontSizeTextComBox;
     QPushButton *variableTextBut;
-    QStackedWidget *keyboardStackWid;
-    QWidget *page;
-    QWidget *page_2;
     QWidget *tab_3;
     QPushButton *internalTimeAddBut;
     QLabel *degreeTimeShowLab;
@@ -152,11 +149,15 @@ public:
     QLabel *degreeDMShowLab;
     QPushButton *zoomDMAddBut;
     QLabel *zoomShowDMLab;
+    QLineEdit *DMCodeLineEdit;
     QPushButton *moveUpBut;
     QPushButton *moveRightBut;
     QPushButton *moveDownBut;
     QPushButton *moveLeftBut;
     QLabel *controlLab;
+    QStackedWidget *keyboardStackWid;
+    QWidget *page_3;
+    QWidget *page_4;
 
     void setupUi(QWidget *FileEditChild)
     {
@@ -210,6 +211,8 @@ public:
         wordLineEdit = new QLineEdit(tab);
         wordLineEdit->setObjectName(QStringLiteral("wordLineEdit"));
         wordLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        wordLineEdit->setFont(font);
+        wordLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         degreeTextRedBut = new QPushButton(tab);
         degreeTextRedBut->setObjectName(QStringLiteral("degreeTextRedBut"));
         degreeTextRedBut->setGeometry(QRect(160, 140, 41, 41));
@@ -300,31 +303,7 @@ public:
         variableTextBut->setFont(font);
         variableTextBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        keyboardStackWid = new QStackedWidget(tab);
-        keyboardStackWid->setObjectName(QStringLiteral("keyboardStackWid"));
-        keyboardStackWid->setGeometry(QRect(10, 80, 791, 321));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        keyboardStackWid->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        keyboardStackWid->addWidget(page_2);
         typeTab->addTab(tab, QString());
-        keyboardStackWid->raise();
-        wordLineEdit->raise();
-        degreeTextRedBut->raise();
-        fontTypeTextLab->raise();
-        degreeTextShowLab->raise();
-        rotateTextLab->raise();
-        degreeTextAddBut->raise();
-        fontSizeTextLab->raise();
-        internalTextLab->raise();
-        internalTextAddBut->raise();
-        internalTextRedBut->raise();
-        internalShowTextLab->raise();
-        fontTypeTextComBox->raise();
-        fontSizeTextComBox->raise();
-        variableTextBut->raise();
         tab_3 = new QWidget();
         tab_3->setObjectName(QStringLiteral("tab_3"));
         internalTimeAddBut = new QPushButton(tab_3);
@@ -644,6 +623,8 @@ public:
         barCodeLineEdit = new QLineEdit(tab_6);
         barCodeLineEdit->setObjectName(QStringLiteral("barCodeLineEdit"));
         barCodeLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        barCodeLineEdit->setFont(font);
+        barCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         zoomShowBarCodeLab = new QLabel(tab_6);
         zoomShowBarCodeLab->setObjectName(QStringLiteral("zoomShowBarCodeLab"));
         zoomShowBarCodeLab->setGeometry(QRect(210, 220, 131, 41));
@@ -756,6 +737,7 @@ public:
         QRCodeLineEdit = new QLineEdit(tab_7);
         QRCodeLineEdit->setObjectName(QStringLiteral("QRCodeLineEdit"));
         QRCodeLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        QRCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         preciseQRLab = new QLabel(tab_7);
         preciseQRLab->setObjectName(QStringLiteral("preciseQRLab"));
         preciseQRLab->setGeometry(QRect(450, 120, 101, 41));
@@ -850,75 +832,79 @@ public:
         tab_2->setObjectName(QStringLiteral("tab_2"));
         variableDMBut = new QPushButton(tab_2);
         variableDMBut->setObjectName(QStringLiteral("variableDMBut"));
-        variableDMBut->setGeometry(QRect(540, 230, 181, 41));
+        variableDMBut->setGeometry(QRect(540, 260, 181, 41));
         variableDMBut->setFont(font);
         variableDMBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         degreeDMAddBut = new QPushButton(tab_2);
         degreeDMAddBut->setObjectName(QStringLiteral("degreeDMAddBut"));
-        degreeDMAddBut->setGeometry(QRect(320, 130, 41, 41));
+        degreeDMAddBut->setGeometry(QRect(320, 160, 41, 41));
         degreeDMAddBut->setMinimumSize(QSize(41, 41));
         degreeDMAddBut->setFont(font1);
         degreeDMAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         zoomDMRedBut = new QPushButton(tab_2);
         zoomDMRedBut->setObjectName(QStringLiteral("zoomDMRedBut"));
-        zoomDMRedBut->setGeometry(QRect(150, 230, 41, 41));
+        zoomDMRedBut->setGeometry(QRect(150, 260, 41, 41));
         zoomDMRedBut->setMinimumSize(QSize(41, 41));
         zoomDMRedBut->setFont(font1);
         zoomDMRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         degreeDMRedBut = new QPushButton(tab_2);
         degreeDMRedBut->setObjectName(QStringLiteral("degreeDMRedBut"));
-        degreeDMRedBut->setGeometry(QRect(150, 130, 41, 41));
+        degreeDMRedBut->setGeometry(QRect(150, 160, 41, 41));
         degreeDMRedBut->setMinimumSize(QSize(41, 41));
         degreeDMRedBut->setFont(font1);
         degreeDMRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         zoomDMLab = new QLabel(tab_2);
         zoomDMLab->setObjectName(QStringLiteral("zoomDMLab"));
-        zoomDMLab->setGeometry(QRect(50, 230, 101, 41));
+        zoomDMLab->setGeometry(QRect(50, 260, 101, 41));
         zoomDMLab->setMinimumSize(QSize(101, 41));
         zoomDMLab->setFont(font2);
         zoomDMLab->setAlignment(Qt::AlignCenter);
         rotateDMLab = new QLabel(tab_2);
         rotateDMLab->setObjectName(QStringLiteral("rotateDMLab"));
-        rotateDMLab->setGeometry(QRect(50, 130, 101, 41));
+        rotateDMLab->setGeometry(QRect(50, 160, 101, 41));
         rotateDMLab->setMinimumSize(QSize(101, 41));
         rotateDMLab->setFont(font2);
         rotateDMLab->setAlignment(Qt::AlignCenter);
         sideLenDMLab = new QLabel(tab_2);
         sideLenDMLab->setObjectName(QStringLiteral("sideLenDMLab"));
-        sideLenDMLab->setGeometry(QRect(440, 130, 101, 41));
+        sideLenDMLab->setGeometry(QRect(440, 160, 101, 41));
         sideLenDMLab->setMinimumSize(QSize(101, 41));
         sideLenDMLab->setFont(font2);
         sideLenDMLab->setAlignment(Qt::AlignCenter);
         sideLenDMComBox = new QComboBox(tab_2);
         sideLenDMComBox->setObjectName(QStringLiteral("sideLenDMComBox"));
-        sideLenDMComBox->setGeometry(QRect(540, 135, 181, 31));
+        sideLenDMComBox->setGeometry(QRect(540, 165, 181, 31));
         sideLenDMComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         degreeDMShowLab = new QLabel(tab_2);
         degreeDMShowLab->setObjectName(QStringLiteral("degreeDMShowLab"));
-        degreeDMShowLab->setGeometry(QRect(190, 130, 131, 41));
+        degreeDMShowLab->setGeometry(QRect(190, 160, 131, 41));
         degreeDMShowLab->setMinimumSize(QSize(0, 41));
         degreeDMShowLab->setFont(font2);
         degreeDMShowLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         degreeDMShowLab->setAlignment(Qt::AlignCenter);
         zoomDMAddBut = new QPushButton(tab_2);
         zoomDMAddBut->setObjectName(QStringLiteral("zoomDMAddBut"));
-        zoomDMAddBut->setGeometry(QRect(320, 230, 41, 41));
+        zoomDMAddBut->setGeometry(QRect(320, 260, 41, 41));
         zoomDMAddBut->setMinimumSize(QSize(41, 41));
         zoomDMAddBut->setFont(font1);
         zoomDMAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         zoomShowDMLab = new QLabel(tab_2);
         zoomShowDMLab->setObjectName(QStringLiteral("zoomShowDMLab"));
-        zoomShowDMLab->setGeometry(QRect(190, 230, 131, 41));
+        zoomShowDMLab->setGeometry(QRect(190, 260, 131, 41));
         zoomShowDMLab->setMinimumSize(QSize(0, 41));
         zoomShowDMLab->setFont(font2);
         zoomShowDMLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         zoomShowDMLab->setAlignment(Qt::AlignCenter);
+        DMCodeLineEdit = new QLineEdit(tab_2);
+        DMCodeLineEdit->setObjectName(QStringLiteral("DMCodeLineEdit"));
+        DMCodeLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        DMCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         typeTab->addTab(tab_2, QString());
         moveUpBut = new QPushButton(FileEditChild);
         moveUpBut->setObjectName(QStringLiteral("moveUpBut"));
@@ -948,6 +934,16 @@ public:
         controlLab->setObjectName(QStringLiteral("controlLab"));
         controlLab->setGeometry(QRect(830, 290, 221, 461));
         controlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        keyboardStackWid = new QStackedWidget(FileEditChild);
+        keyboardStackWid->setObjectName(QStringLiteral("keyboardStackWid"));
+        keyboardStackWid->setGeometry(QRect(20, 420, 791, 321));
+        page_3 = new QWidget();
+        page_3->setObjectName(QStringLiteral("page_3"));
+        keyboardStackWid->addWidget(page_3);
+        page_4 = new QWidget();
+        page_4->setObjectName(QStringLiteral("page_4"));
+        keyboardStackWid->addWidget(page_4);
+        keyboardStackWid->raise();
         controlLab->raise();
         saveBut->raise();
         editBut->raise();
@@ -963,7 +959,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(6);
+        typeTab->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);

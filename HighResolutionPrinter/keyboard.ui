@@ -13,6 +13,19 @@
   <property name="windowTitle">
    <string>keyboard</string>
   </property>
+  <widget class="QPushButton" name="A_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>10</y>
+     <width>61</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>A</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

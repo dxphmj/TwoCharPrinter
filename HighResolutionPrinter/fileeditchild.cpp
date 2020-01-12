@@ -12,6 +12,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui.customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
 	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(editBut_clicked()));
 	connect(ui.selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
+	connect(ui.delBut,SIGNAL(clicked()),this,SLOT(delBut_clicked()));
+	connect(ui.wordLineEdit,SIGNAL(clicked()),this,SLOT(wordLineEdit_clicked()));
 
 	keyboardWidget = new keyboard(this);
 	ui.keyboardStackWid->addWidget(keyboardWidget);
@@ -80,6 +82,22 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::editBut_clicked()
 {
-	//keyboardStackWid->setWindowFlags(Qt::Widget | Qt::FramelessWindowHint | Qt::WindowSystemMenuHint | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
 	ui.keyboardStackWid->setCurrentWidget(keyboardWidget);
+}
+
+void FileEditChild::delBut_clicked()
+{
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->hide();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
+}
+
+void FileEditChild::wordLineEdit_clicked()
+{
+
 }

@@ -324,23 +324,23 @@
     <ClCompile Include="backend\vector.c">
       <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="keyboard.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Release\moc_keyboard.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_keyboard.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="timecustom.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="Release\moc_timecustom.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_timecustom.cpp">
       <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="keyboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="timecustom.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -544,17 +544,17 @@
     <CustomBuild Include="variblewidget.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="keyboard.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="keyboard.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="timecustom.h">
-      <Filter>Generated Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="timecustom.ui">
       <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="timecustom.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="keyboard.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

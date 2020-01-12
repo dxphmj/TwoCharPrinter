@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -21,12 +22,16 @@ QT_BEGIN_NAMESPACE
 class Ui_keyboard
 {
 public:
+    QPushButton *A_KBBut;
 
     void setupUi(QWidget *keyboard)
     {
         if (keyboard->objectName().isEmpty())
             keyboard->setObjectName(QStringLiteral("keyboard"));
         keyboard->resize(791, 321);
+        A_KBBut = new QPushButton(keyboard);
+        A_KBBut->setObjectName(QStringLiteral("A_KBBut"));
+        A_KBBut->setGeometry(QRect(0, 10, 61, 51));
 
         retranslateUi(keyboard);
 
@@ -36,6 +41,7 @@ public:
     void retranslateUi(QWidget *keyboard)
     {
         keyboard->setWindowTitle(QApplication::translate("keyboard", "keyboard", 0));
+        A_KBBut->setText(QApplication::translate("keyboard", "A", 0));
     } // retranslateUi
 
 };

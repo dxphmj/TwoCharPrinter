@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include "ui_keyboard.h"
+#include <QLineEdit>
+
 
 class keyboard : public QWidget
 {
@@ -14,6 +16,9 @@ public:
 
 private:
 	Ui::keyboard ui;
+
+private slots:
+	void A_KBBut_clicked();
 };
 
 #endif // KEYBOARD_H
