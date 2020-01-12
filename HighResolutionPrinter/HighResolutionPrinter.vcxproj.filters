@@ -46,23 +46,38 @@
       <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Generated Files\Release">
-      <UniqueIdentifier>{2f5146ab-f69d-41e8-8f75-cb1540ea844a}</UniqueIdentifier>
+      <UniqueIdentifier>{b89663ba-3032-45a6-beab-cfddfcacb781}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="Generated Files\Debug">
-      <UniqueIdentifier>{8ef42023-d804-43a1-b183-4ff627b92e72}</UniqueIdentifier>
+      <UniqueIdentifier>{efbc55b5-c20e-474e-954d-03abb9efa81d}</UniqueIdentifier>
       <Extensions>cpp;moc</Extensions>
       <SourceControlFiles>False</SourceControlFiles>
     </Filter>
     <Filter Include="xml">
-      <UniqueIdentifier>{bf7cf6bf-c104-4d47-a2b5-12e78524a77e}</UniqueIdentifier>
+      <UniqueIdentifier>{65239d70-f11e-4109-8755-4161e94d78e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="qrcode">
-      <UniqueIdentifier>{6548310e-f71b-4ef1-95b6-a64c11b1691c}</UniqueIdentifier>
+    <Filter Include="backend">
+      <UniqueIdentifier>{af3c8192-ce5e-4b9b-8c53-2ebe88d8bcb1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ClassMessage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aboutmac.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="countsetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="fileeditchild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="filemanagechild.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="filemanageform.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,6 +89,42 @@
     </ClCompile>
     <ClCompile Include="paramsettingform.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="printsetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="roll.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="syssetting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="variblewidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_aboutmac.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_aboutmac.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_countsetting.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_countsetting.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_fileeditchild.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_fileeditchild.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_filemanagechild.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_filemanagechild.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_filemanageform.cpp">
       <Filter>Generated Files\Release</Filter>
@@ -93,38 +144,17 @@
     <ClCompile Include="Debug\moc_paramsettingform.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="filemanagechild.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_filemanagechild.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_filemanagechild.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="fileeditchild.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_fileeditchild.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_fileeditchild.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="printsetting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Release\moc_printsetting.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_printsetting.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="syssetting.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Release\moc_roll.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_roll.cpp">
+      <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_syssetting.cpp">
       <Filter>Generated Files\Release</Filter>
@@ -132,32 +162,14 @@
     <ClCompile Include="Debug\moc_syssetting.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="countsetting.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_countsetting.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_countsetting.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="aboutmac.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_aboutmac.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_aboutmac.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
-    <ClCompile Include="variblewidget.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Release\moc_variblewidget.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
     <ClCompile Include="Debug\moc_variblewidget.cpp">
       <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="xml\tinystr.cpp">
       <Filter>xml</Filter>
@@ -171,56 +183,149 @@
     <ClCompile Include="xml\tinyxmlparser.cpp">
       <Filter>xml</Filter>
     </ClCompile>
-    <ClCompile Include="ClassMessage.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="backend\2of5.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_roll.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="backend\auspost.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_roll.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="backend\aztec.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="roll.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="backend\bmp.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\bitstream.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\codablock.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\mask.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\code.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\mmask.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\code1.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\mqrspec.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\code16k.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\qrencode.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\code49.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\qrinput.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\code128.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\qrspec.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\common.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\rscode.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\composite.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="qrcode\split.c">
-      <Filter>qrcode</Filter>
+    <ClCompile Include="backend\dllversion.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="timecustom.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="backend\dmatrix.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="Release\moc_timecustom.cpp">
-      <Filter>Generated Files\Release</Filter>
+    <ClCompile Include="backend\dotcode.c">
+      <Filter>backend</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\moc_timecustom.cpp">
-      <Filter>Generated Files\Debug</Filter>
+    <ClCompile Include="backend\eci.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\emf.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\gb2312.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\gb18030.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\general_field.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\gif.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\gridmtx.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\gs1.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\hanxin.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\imail.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\large.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\library.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\mailmark.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\maxicode.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\medical.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\pcx.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\pdf417.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\plessey.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\png.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\postal.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\ps.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\qr.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\raster.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\reedsol.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\rss.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\sjis.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\svg.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\telepen.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\tif.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\ultra.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\upcean.c">
+      <Filter>backend</Filter>
+    </ClCompile>
+    <ClCompile Include="backend\vector.c">
+      <Filter>backend</Filter>
     </ClCompile>
     <ClCompile Include="keyboard.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="Release\moc_keyboard.cpp">
       <Filter>Generated Files\Release</Filter>
@@ -228,8 +333,32 @@
     <ClCompile Include="Debug\moc_keyboard.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="timecustom.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_timecustom.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_timecustom.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ClassMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="aboutmac.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="countsetting.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="fileeditchild.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="filemanagechild.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
     <CustomBuild Include="filemanageform.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
@@ -239,84 +368,36 @@
     <CustomBuild Include="paramsettingform.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="filemanagechild.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="fileeditchild.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="filemanagechild.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="fileeditchild.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
     <CustomBuild Include="printsetting.h">
       <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="printsetting.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="syssetting.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="syssetting.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="countsetting.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="countsetting.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="aboutmac.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="aboutmac.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="variblewidget.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="variblewidget.ui">
-      <Filter>Form Files</Filter>
     </CustomBuild>
     <CustomBuild Include="roll.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="timecustom.h">
+    <CustomBuild Include="syssetting.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="timecustom.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="keyboard.h">
+    <ClInclude Include="tinystr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <CustomBuild Include="variblewidget.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="keyboard.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="filemanageform.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="mainwindow.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="paramsettingform.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="Res.qrc">
-      <Filter>Resource Files</Filter>
-    </CustomBuild>
-    <None Include="Images\blue.bmp">
-      <Filter>Resource Files</Filter>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
+    <ClInclude Include="GeneratedFiles\ui_aboutmac.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_countsetting.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_fileeditchild.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_filemanagechild.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_filemanageform.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
@@ -326,26 +407,98 @@
     <ClInclude Include="GeneratedFiles\ui_paramsettingform.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_filemanagechild.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_fileeditchild.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_printsetting.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_syssetting.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_countsetting.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_aboutmac.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_variblewidget.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\aztec.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\bmp.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\code1.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\code49.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\common.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\composite.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\dmatrix.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\eci.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\emf.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\font.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\gb2312.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\gb18030.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\general_field.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\gridmtx.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\gs1.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\hanxin.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\large.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\maxicode.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\ms_stdint.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\pcx.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\pdf417.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\qr.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\reedsol.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\rss.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\sjis.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\stdint_msvc.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\tif.h">
+      <Filter>backend</Filter>
+    </ClInclude>
+    <ClInclude Include="backend\zint.h">
+      <Filter>backend</Filter>
     </ClInclude>
     <ClInclude Include="xml\tinystr.h">
       <Filter>xml</Filter>
@@ -353,47 +506,102 @@
     <ClInclude Include="xml\tinyxml.h">
       <Filter>xml</Filter>
     </ClInclude>
-    <ClInclude Include="ClassMessage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\bitstream.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\config.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\mask.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\mmask.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\mqrspec.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\qrencode.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\qrencode_inner.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\qrinput.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\qrspec.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\rscode.h">
-      <Filter>qrcode</Filter>
-    </ClInclude>
-    <ClInclude Include="qrcode\split.h">
-      <Filter>qrcode</Filter>
+    <ClInclude Include="GeneratedFiles\ui_keyboard.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_timecustom.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_keyboard.h">
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="aboutmac.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="countsetting.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="fileeditchild.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="filemanagechild.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="filemanageform.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="mainwindow.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="paramsettingform.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="printsetting.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="syssetting.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="variblewidget.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="keyboard.h">
       <Filter>Generated Files</Filter>
-    </ClInclude>
+    </CustomBuild>
+    <CustomBuild Include="keyboard.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="timecustom.h">
+      <Filter>Generated Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="timecustom.ui">
+      <Filter>Form Files</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="Res.qrc">
+      <Filter>Resource Files</Filter>
+    </CustomBuild>
+    <None Include="Images\aboutMac.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\blue.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\closeSys.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\countSetting.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\editFile.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\exit.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\fileManage.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\green.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\manageFile.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\paraManage.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\printSetting.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\startPrint.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\sysSetting.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Images\yellow.bmp">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
