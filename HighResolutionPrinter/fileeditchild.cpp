@@ -59,7 +59,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 								"); 
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
-	Create2Dcode(58,"hmj");
+	Create2Dcode(8,"1");
 
 }
 
@@ -122,8 +122,8 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 //	int version = bmpObj.intQRVersion;//设置版本号，这里设为2，对应尺寸：25 * 25
 //	int casesensitive = bmpObj.boQRBig;//是否区分大小写，true/false
 
-	bmpObj.intLineSize=my_symbol->width;
-	bmpObj.intRowSize=my_symbol->width;
+	bmpObj.intLineSize=my_symbol->bitmap_height;
+	bmpObj.intRowSize=my_symbol->bitmap_width;
 
 	//以下先写死
 	bmpObj.intSW=1;
@@ -144,11 +144,11 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				bmpObj.boDotBmp[row][col] = true;
+				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true; //由于坐标系的原因，上下必须颠倒
 			}
 			else
 			{
-				bmpObj.boDotBmp[row][col] = false;
+				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
 			}
 		}
 	}
