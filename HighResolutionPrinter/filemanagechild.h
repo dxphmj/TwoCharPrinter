@@ -12,6 +12,9 @@ public:
 	FileManageChild(QWidget *parent = 0);
 	~FileManageChild();
 
+public: slots
+	void FileManageChild::localFileBut_clicked();
+
 private:
 	Ui::FileManageChild ui;
 };

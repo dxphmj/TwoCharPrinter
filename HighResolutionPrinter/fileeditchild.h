@@ -18,6 +18,9 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	int QrecodeMatrix[25][25];
+	void ReadBmp(char* strFileName);
+	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
+		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 
 private:
 	Ui::FileEditChild ui;
