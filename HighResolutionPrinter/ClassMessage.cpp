@@ -223,6 +223,45 @@ namespace MyNameSpace
 
 	}
 
+	void ClassMessage::ReadBmp(char* strFileName)
+	{
+		QPixmap pLoad;
+		pLoad.load(strFileName);
+		int nW = pLoad.width();
+		QImage pImage;
+		pImage = pLoad.toImage();
+
+		OBJ_Control bmpObj;
+		bmpObj.intX=100;
+		bmpObj.intY=0;
+		bmpObj.intLineStart=0;
+		bmpObj.intRowStart=0;
+		bmpObj.strType1="text";
+		bmpObj.strType2="logo";
+		bmpObj.intLineSize=pImage.height();
+		bmpObj.intRowSize=pImage.width();
+		bmpObj.intSW=1;
+		bmpObj.intSS=0;
+		bmpObj.booNEG=false;
+		bmpObj.booBWDx=false;
+		bmpObj.booBWDy=false;
+
+		for(int y = 0; y< pImage.height(); y++)
+		{  
+			QRgb* line = (QRgb *)pImage.scanLine(y);  
+			for(int x = 0; x< pImage.width(); x++)
+			{  
+				int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+				if(average < 100)
+					bmpObj.boDotBmp[x][pImage.height()-y-1] = true;//由于坐标系的原因，上下必须颠倒
+				else
+					bmpObj.boDotBmp[x][pImage.height()-y-1] = false;
+			}  
+		}  
+		bmpObj.booFocus = true;
+		OBJ_Vec.push_back(bmpObj); 
+	}
+
 	void ClassMessage::ReadObjectsFromXml(char* strFileName)
 	{
 		OBJ_Vec.clear();
@@ -1542,3 +1581,5 @@ namespace MyNameSpace
 		 
 	}
 }
+
+

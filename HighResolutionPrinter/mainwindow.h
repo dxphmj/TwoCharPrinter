@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include "filemanageform.h"
 #include "paramsettingform.h"
+#include "ClassMessage.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+public:
+	ClassMessage m_PrinterMes; //¥Ú”°º‡øÿ”√
+
 private:
     Ui::MainWindow *ui;
 	FilemanageForm m_fileManage;
@@ -26,6 +30,7 @@ private slots:
 	void fileManageBut_clicked();
 
 	void paraManageBut_clicked();
+	bool eventFilter(QObject *watched, QEvent *event);
 
 };
 

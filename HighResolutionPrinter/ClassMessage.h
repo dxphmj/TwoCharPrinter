@@ -76,7 +76,7 @@ namespace MyNameSpace
         //vector<vector<bool>> LogoDot;//logo点阵
 
 
-		bool boDotBmp[320][255];//加载bmp用
+		bool boDotBmp[255][32];//加载bmp用，255是位图的宽度，32是位图的高度
 		int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 	public://方法
 		char objbytTex5x5Line[7];
@@ -111,7 +111,7 @@ namespace MyNameSpace
 		string Inverse;
 		bool boReverse;//翻转，颠倒，由喷印设置中更改
 		bool boInverse;
-        bool boDotMes[320][255];
+        bool boDotMes[32][255];
 		int bytRowByteMul;//一列由几个byte表示
 		bool boDynamic;//是否动态打印
 		bool boPrintNow;//是否即时打印
@@ -132,6 +132,9 @@ namespace MyNameSpace
 		 void DrawDot(CDC* pDC);//
 		 void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 		 vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
+
+		 void ReadBmp(char* strFileName);
+
 	public://XML
 		void ReadObjectsFromXml(char* strFileName);
 		void SaveObjectsToXml(char* strFileName);

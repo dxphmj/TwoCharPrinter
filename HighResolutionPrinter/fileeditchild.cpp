@@ -2,6 +2,7 @@
 #include "filemanageform.h"
 #include <QTableWidget>
 #include "ClassMessage.h"
+#include "backend\zint.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent)
@@ -37,60 +38,104 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
-//	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
-	ReadBmp("D:\\1.bmp");
+ //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
+	//m_PrinterMes.ReadBmp("D:\\1.bmp");
+	Create2Dcode(58,"hmj");
+
 }
 
-void FileEditChild::ReadBmp(char* strFileName)
+FileEditChild::~FileEditChild()
 {
-	QPixmap pLoad;
-	pLoad.load(strFileName);
-	int nW = pLoad.width();
-	QImage pImage;
-	pImage = pLoad.toImage();
+}
+
+void FileEditChild::Create2Dcode(int nType,QString strContent)
+{
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	int generated;
+	int batch_mode;
+	int mirror_mode;
+	char filetype[4];
+	int i;
+
+	error_number = 0;
+	rotate_angle = 0;
+	generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = UNICODE_MODE;
+	my_symbol->symbology = nType;
+	if(nType == 20 || nType == 8)
+		my_symbol->height = 12;	 
+
+	my_symbol->scale = 0.5;
+	batch_mode = 0;
+	mirror_mode = 0;
+
+	/* 
+	char * QRTEXT = W2A(str.GetBuffer(0));	
+	std::string strTmp = ASCToUTF8(QRTEXT);*/
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+	generated = 1;
+  
+	int xPos=0;
+	int yPos=0;
+	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
+	{
+		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+		{
+			m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+			yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
+			xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+		}
+	}
 
 	OBJ_Control bmpObj;
-	bmpObj.intLineStart=0;
-	bmpObj.intRowStart=0;
+	bmpObj.intLineStart=yPos;
+	bmpObj.intRowStart=xPos;
 	bmpObj.strType1="text";
-	bmpObj.strType2="logo";
-	bmpObj.intLineSize=pImage.width();
-	bmpObj.intRowSize=pImage.height();
+	bmpObj.strType2="qrcode";
+
+//	bmpObj.intQRVersion=VersionBox.GetCurSel()+1;
+//	bmpObj.intQRErrLevel=ErrLevelBox.GetCurSel();
+//	bmpObj.intQREncodingMode=EncodingModeBox.GetCurSel();
+//	bmpObj.boQRBig = true;	 
+//	int version = bmpObj.intQRVersion;//设置版本号，这里设为2，对应尺寸：25 * 25
+//	int casesensitive = bmpObj.boQRBig;//是否区分大小写，true/false
+
+	bmpObj.intLineSize=my_symbol->width;
+	bmpObj.intRowSize=my_symbol->width;
+
+	//以下先写死
 	bmpObj.intSW=1;
 	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
+	i = 0;
+	int r, g, b;
 
-	for(int y = 0; y<pImage.height(); y++)
-	{  
-		QRgb* line = (QRgb *)pImage.scanLine(y);  
-		for(int x = 0; x<pImage.width(); x++)
-		{  
-			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 100)
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
+	for (int row = 0; row < my_symbol->bitmap_height; row++)
+	{
+		for (int col = 0;col < my_symbol->bitmap_width; col++)
+		{
+			r = my_symbol->bitmap[i];
+			g = my_symbol->bitmap[i + 1];
+			b = my_symbol->bitmap[i + 2];
+			i += 3;
+			if (r == 0 && g == 0 && b == 0)
+			{
+				bmpObj.boDotBmp[row][col] = true;
+			}
 			else
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
-		}  
-
-	}  
+			{
+				bmpObj.boDotBmp[row][col] = false;
+			}
+		}
+	}
+	bmpObj.strText = strContent.toStdString();
 	bmpObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
-}
-
-FileEditChild::~FileEditChild()
-{
-
-}
-
-bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
-{
-	if(watched == ui.editPreviewText && event->type() == QEvent::Paint)
-	{
-	paintDot();
-	}
-	return QWidget::eventFilter(watched,event);
 }
 
 void FileEditChild::paintDot()
@@ -98,6 +143,16 @@ void FileEditChild::paintDot()
 	QPainter painter(ui.editPreviewText);
 	m_PrinterMes.DrawDot(&painter);
 }
+
+bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
+{
+	if(watched == ui.editPreviewText && event->type() == QEvent::Paint)
+	{
+		paintDot();
+	}
+	return QWidget::eventFilter(watched,event);
+}
+ 
 
 void FileEditChild::variableTextBut_clicked()
 {

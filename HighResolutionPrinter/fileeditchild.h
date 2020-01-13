@@ -17,7 +17,7 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	int QrecodeMatrix[25][25];
-	void ReadBmp(char* strFileName);
+	void Create2Dcode(int nType,QString strContent);
 
 private:
 	Ui::FileEditChild ui;

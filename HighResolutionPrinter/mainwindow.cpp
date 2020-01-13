@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+	ui->previewLab->installEventFilter(this);
 
 
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
@@ -33,11 +34,24 @@ MainWindow::MainWindow(QWidget *parent) :
 								");  
 	ui->roolLab->setStyleSheet("background-color: rgb(67,51, 139);border-radius:10px;color: rgb(255, 255, 255);");  
  
+	ui->previewLab->setStyleSheet("background-color: rgb(255,255,255);"); 
+
+	m_PrinterMes.ReadBmp("D:\\1.bmp");
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+bool MainWindow::eventFilter(QObject *watched, QEvent *event)
+{
+	if(watched == ui->previewLab && event->type() == QEvent::Paint)
+	{
+		QPainter painter(ui->previewLab);
+		m_PrinterMes.DrawDot(&painter);
+	}
+	return QWidget::eventFilter(watched,event);
 }
 
 void MainWindow::fileManageBut_clicked()
