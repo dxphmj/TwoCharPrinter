@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include "filemanageform.h"
+#include <QTime>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -37,6 +38,11 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->previewLab->setStyleSheet("background-color: rgb(255,255,255);"); 
 
 	m_PrinterMes.ReadBmp("D:\\1.bmp");
+	myTimer=new QTimer(this);
+	myTimer->start(0);
+	connect(myTimer,SIGNAL(timeout()),this,SLOT(GetDateTime()));
+	ui->timeShowLab->setStyleSheet("qproperty-alignment: 'AlignVCenter | AlignRight';color:rgb(255,255,255);font-size:40px;");
+
 }
 
 MainWindow::~MainWindow()
@@ -62,4 +68,10 @@ void MainWindow::fileManageBut_clicked()
 void MainWindow::paraManageBut_clicked()
 {
 	m_paramsetting.show();
+}
+
+void MainWindow::GetDateTime()
+{
+	QTime timeNow=QTime::currentTime();
+	ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString()));
 }

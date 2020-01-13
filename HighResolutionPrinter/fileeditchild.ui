@@ -154,13 +154,13 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>5</number>
+    <number>0</number>
    </property>
-   <widget class="QWidget" name="tab">
+   <widget class="QWidget" name="textTab">
     <attribute name="title">
      <string>文字</string>
     </attribute>
-    <widget class="QLineEdit" name="wordLineEdit">
+    <widget class="lineedit_click" name="wordLineEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -529,7 +529,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_3">
+   <widget class="QWidget" name="timeTab">
     <attribute name="title">
      <string>时间</string>
     </attribute>
@@ -925,7 +925,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_4">
+   <widget class="QWidget" name="serialTab">
     <attribute name="title">
      <string>序号</string>
     </attribute>
@@ -1411,7 +1411,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_5">
+   <widget class="QWidget" name="bmpTab">
     <attribute name="title">
      <string>图片</string>
     </attribute>
@@ -1831,11 +1831,11 @@ background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_6">
+   <widget class="QWidget" name="barCodeTab">
     <attribute name="title">
      <string>条形码</string>
     </attribute>
-    <widget class="QLineEdit" name="barCodeLineEdit">
+    <widget class="lineedit_click" name="barCodeLineEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -2312,11 +2312,11 @@ background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
-   <widget class="QWidget" name="tab_7">
+   <widget class="QWidget" name="QRCodeTab">
     <attribute name="title">
      <string>QR码</string>
     </attribute>
-    <widget class="QLineEdit" name="QRCodeLineEdit">
+    <widget class="lineedit_click" name="QRCodeLineEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -3018,7 +3018,7 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLineEdit" name="DMCodeLineEdit">
+    <widget class="lineedit_click" name="DMCodeLineEdit">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -3036,10 +3036,10 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="moveUpBut">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>910</x>
      <y>530</y>
-     <width>101</width>
-     <height>51</height>
+     <width>63</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
@@ -3050,19 +3050,20 @@ background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
+background-image: url(:/Images/moveup.bmp);
+border-radius:10px;</string>
    </property>
    <property name="text">
-    <string>上移</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="moveRightBut">
    <property name="geometry">
     <rect>
-     <x>950</x>
+     <x>980</x>
      <y>600</y>
-     <width>101</width>
-     <height>51</height>
+     <width>63</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
@@ -3073,19 +3074,20 @@ background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
+background-image: url(:/Images/moveright.bmp);
+border-radius:10px;</string>
    </property>
    <property name="text">
-    <string>右移</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="moveDownBut">
    <property name="geometry">
     <rect>
-     <x>890</x>
+     <x>910</x>
      <y>670</y>
-     <width>101</width>
-     <height>51</height>
+     <width>63</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
@@ -3096,19 +3098,20 @@ background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
+background-image: url(:/Images/movedown.bmp);
+border-radius:10px;</string>
    </property>
    <property name="text">
-    <string>下移</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="moveLeftBut">
    <property name="geometry">
     <rect>
-     <x>830</x>
+     <x>840</x>
      <y>600</y>
-     <width>101</width>
-     <height>51</height>
+     <width>63</width>
+     <height>63</height>
     </rect>
    </property>
    <property name="font">
@@ -3119,10 +3122,11 @@ background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="styleSheet">
     <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
+background-image: url(:/Images/moveleft.bmp);
+border-radius:10px;</string>
    </property>
    <property name="text">
-    <string>左移</string>
+    <string/>
    </property>
   </widget>
   <widget class="QLabel" name="controlLab">
@@ -3168,6 +3172,13 @@ background-color: rgb(0, 0, 230);</string>
   <zorder>typeTab</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>lineedit_click</class>
+   <extends>QLineEdit</extends>
+   <header location="global">lineedit_click.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="Res.qrc"/>
  </resources>

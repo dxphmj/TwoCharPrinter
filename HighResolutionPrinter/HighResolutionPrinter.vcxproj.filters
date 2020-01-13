@@ -61,6 +61,9 @@
     <Filter Include="backend">
       <UniqueIdentifier>{af3c8192-ce5e-4b9b-8c53-2ebe88d8bcb1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="qrcode">
+      <UniqueIdentifier>{2283f21e-7e82-4d9a-8293-f017817cd00d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClassMessage.cpp">
@@ -342,6 +345,42 @@
     <ClCompile Include="timecustom.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="lineedit_click.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_lineedit_click.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_lineedit_click.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\bitstream.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mask.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mmask.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\mqrspec.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrencode.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrinput.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\qrspec.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\rscode.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
+    <ClCompile Include="qrcode\split.c">
+      <Filter>qrcode</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -512,6 +551,39 @@
     <ClInclude Include="GeneratedFiles\ui_timecustom.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
+    <ClInclude Include="qrcode\bitstream.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\config.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mask.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mmask.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\mqrspec.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrencode.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrencode_inner.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrinput.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\qrspec.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\rscode.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
+    <ClInclude Include="qrcode\split.h">
+      <Filter>qrcode</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="aboutmac.ui">
@@ -554,6 +626,9 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="keyboard.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="lineedit_click.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>

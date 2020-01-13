@@ -35,9 +35,9 @@ private slots:
 	void editFileBut_clicked();
 	void manageFileBut_clicked();
 
-public slots:
-	void variableWidgetCall();
+public:
 	void timeCustomCall();
+	void variableWidgetCall();
 };
 
 #endif // FILEMANAGEFORM_H

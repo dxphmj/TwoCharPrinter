@@ -81,7 +81,7 @@
      <rect>
       <x>0</x>
       <y>80</y>
-      <width>1121</width>
+      <width>1111</width>
       <height>331</height>
      </rect>
     </property>
@@ -310,7 +310,7 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">background-color: rgb(72,61, 130);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;2020/1/10 10:09&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;right&quot;&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;2020-1-10 10:09   &lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="signalParaLab">

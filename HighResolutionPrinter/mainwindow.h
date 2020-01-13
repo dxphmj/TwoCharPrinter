@@ -5,6 +5,7 @@
 #include "filemanageform.h"
 #include "paramsettingform.h"
 #include "ClassMessage.h"
+#include <QTimer>
 
 namespace Ui {
 class MainWindow;
@@ -28,10 +29,12 @@ private:
 
 private slots:
 	void fileManageBut_clicked();
-
 	void paraManageBut_clicked();
 	bool eventFilter(QObject *watched, QEvent *event);
 
+	void GetDateTime();
+public:
+	QTimer  *myTimer;
 };
 
 #endif // MAINWINDOW_H
