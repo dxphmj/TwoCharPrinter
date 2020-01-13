@@ -1494,10 +1494,14 @@ namespace MyNameSpace
 	
 	void OBJ_Control::ReadBmp(char* strFileName)
 	{
+		QPixmap pLoad;
+		pLoad.load(strFileName);
+		int nW = pLoad.width();
+		 
 		/*
-		CString csInfo(_T(""));//Storage Card\\User\\Logo\\1.bmp
+		QString csInfo("");//Storage Card\\User\\Logo\\1.bmp
 		//csInfo.Format(_T("%s", strFileName));
-		csInfo=CString(strFileName);
+		csInfo = QString(strFileName);
 		HBITMAP hBitmap = (HBITMAP)::SHLoadDIBitmap(csInfo);
 
 		BITMAP bmpObj = {0};
@@ -1534,7 +1538,7 @@ namespace MyNameSpace
 					boDotBmp[x][intLineSize-y-1]=true;
 				}
 			}
-		}
-		*/
+		}*/
+		 
 	}
 }

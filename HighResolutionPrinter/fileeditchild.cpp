@@ -37,7 +37,46 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
-	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
+//	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
+	ReadBmp("D:\\1.bmp");
+}
+
+void FileEditChild::ReadBmp(char* strFileName)
+{
+	QPixmap pLoad;
+	pLoad.load(strFileName);
+	int nW = pLoad.width();
+	QImage pImage;
+	pImage = pLoad.toImage();
+
+	OBJ_Control bmpObj;
+	bmpObj.intLineStart=0;
+	bmpObj.intRowStart=0;
+	bmpObj.strType1="text";
+	bmpObj.strType2="logo";
+	bmpObj.intLineSize=pImage.width();
+	bmpObj.intRowSize=pImage.height();
+	bmpObj.intSW=1;
+	bmpObj.intSS=0;
+	bmpObj.booNEG=false;
+	bmpObj.booBWDx=false;
+	bmpObj.booBWDy=false;
+
+	for(int y = 0; y<pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x<pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+			if(average < 100)
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
+			else
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
+		}  
+
+	}  
+	bmpObj.booFocus = true;
+	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 }
 
 FileEditChild::~FileEditChild()
