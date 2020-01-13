@@ -71,7 +71,7 @@ public:
         nameDispLab->setMargin(1);
         previewLab = new QLabel(centralWidget);
         previewLab->setObjectName(QStringLiteral("previewLab"));
-        previewLab->setGeometry(QRect(0, 80, 1121, 331));
+        previewLab->setGeometry(QRect(0, 80, 1111, 331));
         previewLab->setLayoutDirection(Qt::LeftToRight);
         previewLab->setStyleSheet(QStringLiteral("background-color: rgb(77,61, 139);"));
         fileNmaeLab = new QLabel(centralWidget);
@@ -192,7 +192,7 @@ public:
         roolLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><br/></p></body></html>", 0));
         No1Lab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" font-size:12pt; color:#ffffff;\">\345\242\250\347\233\2221</span></p></body></html>", 0));
         No2Lab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\242\250\347\233\2222</span></p></body></html>", 0));
-        timeShowLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"right\"><span style=\" font-size:26pt; color:#ffffff;\">2020/1/10 10:09</span></p></body></html>", 0));
+        timeShowLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p align=\"right\"><span style=\" font-size:26pt; color:#ffffff;\">2020-1-10 10:09   </span></p></body></html>", 0));
         signalParaLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\224\265\345\216\213\357\274\2328.8V</span><br/></p><p><span style=\" color:#ffffff;\">\350\204\211\345\256\275\357\274\2321.8</span><br/></p><p><span style=\" color:#ffffff;\">\347\201\260\345\272\246\357\274\2325</span></p></body></html>", 0));
         printParaLab->setText(QApplication::translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\200\237\345\272\246\357\274\23240</span><br/></p><p><span style=\" color:#ffffff;\">\345\273\266\346\227\266\357\274\232152</span><br/></p><p><span style=\" color:#ffffff;\">\346\226\271\345\220\221\357\274\232\351\200\206\345\220\221</span></p></body></html>", 0));
         progCtrlLab->setText(QString());

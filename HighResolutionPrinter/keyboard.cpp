@@ -1,5 +1,5 @@
 #include "keyboard.h"
-#include <QString>
+#include "fileeditchild.h"
 
 keyboard::keyboard(QWidget *parent)
 	: QWidget(parent)
@@ -15,8 +15,15 @@ keyboard::~keyboard()
 
 }
 
-void keyboard::A_KBBut_clicked()
-{
-	//QString value = ui.A_KBBut->text();
-	//ui.currentLineEdit->insert(value);
-}
+//QString keyboard::returnText()
+//{
+//	return this->value;
+//}
+
+//void keyboard::A_KBBut_clicked()
+//{
+//	/*	QStackedWidget *pkeyboardQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+//	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pFileEditChild->parentWidget()); */ 
+//	value = ui.A_KBBut->text();
+	//pFileEditChild->
+//}

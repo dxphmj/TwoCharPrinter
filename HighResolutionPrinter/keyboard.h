@@ -4,7 +4,7 @@
 #include <QWidget>
 #include "ui_keyboard.h"
 #include <QLineEdit>
-
+#include <QString>
 
 class keyboard : public QWidget
 {
@@ -13,12 +13,14 @@ class keyboard : public QWidget
 public:
 	keyboard(QWidget *parent = 0);
 	~keyboard();
+	//QString returnText();
 
 private:
 	Ui::keyboard ui;
+	//QString value;
 
 private slots:
-	void A_KBBut_clicked();
+	//void A_KBBut_clicked();
 };
 
 #endif // KEYBOARD_H

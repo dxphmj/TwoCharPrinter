@@ -14,13 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QComboBox>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
-#include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -28,332 +25,43 @@ QT_BEGIN_NAMESPACE
 class Ui_sysSetting
 {
 public:
-    QWidget *layoutWidget_3;
-    QHBoxLayout *horizontalLayout_2;
-    QVBoxLayout *verticalLayout_5;
-    QPushButton *addHourBut;
-    QSpacerItem *verticalSpacer_9;
-    QLabel *label_5;
-    QSpacerItem *verticalSpacer_10;
-    QPushButton *reduceHourBut;
-    QSpacerItem *horizontalSpacer_3;
-    QVBoxLayout *verticalLayout_6;
-    QPushButton *addMinBut;
-    QSpacerItem *verticalSpacer_11;
-    QLabel *label_6;
-    QSpacerItem *verticalSpacer_12;
-    QPushButton *reduceMinBut;
-    QSpacerItem *horizontalSpacer_4;
-    QVBoxLayout *verticalLayout_7;
-    QPushButton *addSecondBut;
-    QSpacerItem *verticalSpacer_13;
-    QLabel *label_7;
-    QSpacerItem *verticalSpacer_14;
-    QPushButton *reduceSecondBut;
-    QWidget *layoutWidget;
-    QHBoxLayout *horizontalLayout;
-    QVBoxLayout *verticalLayout;
-    QPushButton *addYearBut;
-    QSpacerItem *verticalSpacer;
-    QLabel *label;
-    QSpacerItem *verticalSpacer_2;
-    QPushButton *reduceYearBut;
-    QSpacerItem *horizontalSpacer;
-    QVBoxLayout *verticalLayout_2;
-    QPushButton *addMonthBut;
-    QSpacerItem *verticalSpacer_3;
-    QLabel *label_2;
-    QSpacerItem *verticalSpacer_4;
-    QPushButton *reduceMonthBut;
-    QSpacerItem *horizontalSpacer_2;
-    QVBoxLayout *verticalLayout_3;
-    QPushButton *addDayBut;
-    QSpacerItem *verticalSpacer_5;
-    QLabel *label_3;
-    QSpacerItem *verticalSpacer_6;
-    QPushButton *reduceDayBut;
     QLabel *backLightLab;
     QSlider *lightHorSlider;
-    QWidget *layoutWidget1;
-    QVBoxLayout *verticalLayout_4;
+    QLabel *sysTimeSetLab;
+    QPushButton *addHourBut;
+    QLabel *hourShowBut;
+    QPushButton *reduceHourBut;
+    QPushButton *addMinBut;
+    QLabel *minShowBut;
+    QPushButton *reduceMinBut;
+    QPushButton *addSecondBut;
+    QLabel *secondShowBut;
+    QPushButton *reduceSecondBut;
+    QPushButton *addYearBut;
+    QLabel *yearShowBut;
+    QPushButton *reduceYearBut;
+    QPushButton *addMonthBut;
+    QLabel *monthShowBut;
+    QPushButton *reduceMonthBut;
+    QPushButton *addDayBut;
+    QLabel *dayShowBut;
+    QPushButton *reduceDayBut;
     QLabel *sysLanguageLab;
     QComboBox *comboBox;
-    QLabel *sysTimeSetLab;
 
     void setupUi(QWidget *sysSetting)
     {
         if (sysSetting->objectName().isEmpty())
             sysSetting->setObjectName(QStringLiteral("sysSetting"));
         sysSetting->resize(1061, 691);
-        layoutWidget_3 = new QWidget(sysSetting);
-        layoutWidget_3->setObjectName(QStringLiteral("layoutWidget_3"));
-        layoutWidget_3->setGeometry(QRect(130, 330, 511, 221));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget_3);
-        horizontalLayout_2->setSpacing(6);
-        horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        verticalLayout_5 = new QVBoxLayout();
-        verticalLayout_5->setSpacing(6);
-        verticalLayout_5->setObjectName(QStringLiteral("verticalLayout_5"));
-        addHourBut = new QPushButton(layoutWidget_3);
-        addHourBut->setObjectName(QStringLiteral("addHourBut"));
-        addHourBut->setMinimumSize(QSize(93, 51));
-        addHourBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_5->addWidget(addHourBut);
-
-        verticalSpacer_9 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_5->addItem(verticalSpacer_9);
-
-        label_5 = new QLabel(layoutWidget_3);
-        label_5->setObjectName(QStringLiteral("label_5"));
-        label_5->setMinimumSize(QSize(93, 51));
-        QFont font;
-        font.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
-        font.setPointSize(12);
-        label_5->setFont(font);
-        label_5->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        label_5->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_5->addWidget(label_5);
-
-        verticalSpacer_10 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_5->addItem(verticalSpacer_10);
-
-        reduceHourBut = new QPushButton(layoutWidget_3);
-        reduceHourBut->setObjectName(QStringLiteral("reduceHourBut"));
-        reduceHourBut->setMinimumSize(QSize(93, 51));
-        reduceHourBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_5->addWidget(reduceHourBut);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_5);
-
-        horizontalSpacer_3 = new QSpacerItem(98, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_3);
-
-        verticalLayout_6 = new QVBoxLayout();
-        verticalLayout_6->setSpacing(6);
-        verticalLayout_6->setObjectName(QStringLiteral("verticalLayout_6"));
-        addMinBut = new QPushButton(layoutWidget_3);
-        addMinBut->setObjectName(QStringLiteral("addMinBut"));
-        addMinBut->setMinimumSize(QSize(93, 51));
-        addMinBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_6->addWidget(addMinBut);
-
-        verticalSpacer_11 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_6->addItem(verticalSpacer_11);
-
-        label_6 = new QLabel(layoutWidget_3);
-        label_6->setObjectName(QStringLiteral("label_6"));
-        label_6->setMinimumSize(QSize(93, 51));
-        label_6->setFont(font);
-        label_6->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        label_6->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_6->addWidget(label_6);
-
-        verticalSpacer_12 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_6->addItem(verticalSpacer_12);
-
-        reduceMinBut = new QPushButton(layoutWidget_3);
-        reduceMinBut->setObjectName(QStringLiteral("reduceMinBut"));
-        reduceMinBut->setMinimumSize(QSize(93, 51));
-        reduceMinBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_6->addWidget(reduceMinBut);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_6);
-
-        horizontalSpacer_4 = new QSpacerItem(98, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_2->addItem(horizontalSpacer_4);
-
-        verticalLayout_7 = new QVBoxLayout();
-        verticalLayout_7->setSpacing(6);
-        verticalLayout_7->setObjectName(QStringLiteral("verticalLayout_7"));
-        addSecondBut = new QPushButton(layoutWidget_3);
-        addSecondBut->setObjectName(QStringLiteral("addSecondBut"));
-        addSecondBut->setMinimumSize(QSize(93, 51));
-        addSecondBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_7->addWidget(addSecondBut);
-
-        verticalSpacer_13 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_7->addItem(verticalSpacer_13);
-
-        label_7 = new QLabel(layoutWidget_3);
-        label_7->setObjectName(QStringLiteral("label_7"));
-        label_7->setMinimumSize(QSize(93, 51));
-        label_7->setFont(font);
-        label_7->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        label_7->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_7->addWidget(label_7);
-
-        verticalSpacer_14 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_7->addItem(verticalSpacer_14);
-
-        reduceSecondBut = new QPushButton(layoutWidget_3);
-        reduceSecondBut->setObjectName(QStringLiteral("reduceSecondBut"));
-        reduceSecondBut->setMinimumSize(QSize(93, 51));
-        reduceSecondBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_7->addWidget(reduceSecondBut);
-
-
-        horizontalLayout_2->addLayout(verticalLayout_7);
-
-        layoutWidget = new QWidget(sysSetting);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(130, 88, 511, 221));
-        horizontalLayout = new QHBoxLayout(layoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        verticalLayout = new QVBoxLayout();
-        verticalLayout->setSpacing(6);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        addYearBut = new QPushButton(layoutWidget);
-        addYearBut->setObjectName(QStringLiteral("addYearBut"));
-        addYearBut->setMinimumSize(QSize(93, 51));
-        addYearBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout->addWidget(addYearBut);
-
-        verticalSpacer = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer);
-
-        label = new QLabel(layoutWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setMinimumSize(QSize(93, 51));
-        label->setFont(font);
-        label->setAlignment(Qt::AlignCenter);
-
-        verticalLayout->addWidget(label);
-
-        verticalSpacer_2 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout->addItem(verticalSpacer_2);
-
-        reduceYearBut = new QPushButton(layoutWidget);
-        reduceYearBut->setObjectName(QStringLiteral("reduceYearBut"));
-        reduceYearBut->setMinimumSize(QSize(93, 51));
-        reduceYearBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout->addWidget(reduceYearBut);
-
-
-        horizontalLayout->addLayout(verticalLayout);
-
-        horizontalSpacer = new QSpacerItem(98, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer);
-
-        verticalLayout_2 = new QVBoxLayout();
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        addMonthBut = new QPushButton(layoutWidget);
-        addMonthBut->setObjectName(QStringLiteral("addMonthBut"));
-        addMonthBut->setMinimumSize(QSize(93, 51));
-        addMonthBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_2->addWidget(addMonthBut);
-
-        verticalSpacer_3 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer_3);
-
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setMinimumSize(QSize(93, 51));
-        label_2->setFont(font);
-        label_2->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        label_2->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_2->addWidget(label_2);
-
-        verticalSpacer_4 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_2->addItem(verticalSpacer_4);
-
-        reduceMonthBut = new QPushButton(layoutWidget);
-        reduceMonthBut->setObjectName(QStringLiteral("reduceMonthBut"));
-        reduceMonthBut->setMinimumSize(QSize(93, 51));
-        reduceMonthBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_2->addWidget(reduceMonthBut);
-
-
-        horizontalLayout->addLayout(verticalLayout_2);
-
-        horizontalSpacer_2 = new QSpacerItem(98, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout->addItem(horizontalSpacer_2);
-
-        verticalLayout_3 = new QVBoxLayout();
-        verticalLayout_3->setSpacing(6);
-        verticalLayout_3->setObjectName(QStringLiteral("verticalLayout_3"));
-        addDayBut = new QPushButton(layoutWidget);
-        addDayBut->setObjectName(QStringLiteral("addDayBut"));
-        addDayBut->setMinimumSize(QSize(93, 51));
-        addDayBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_3->addWidget(addDayBut);
-
-        verticalSpacer_5 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_3->addItem(verticalSpacer_5);
-
-        label_3 = new QLabel(layoutWidget);
-        label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setMinimumSize(QSize(93, 51));
-        label_3->setFont(font);
-        label_3->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        label_3->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_3->addWidget(label_3);
-
-        verticalSpacer_6 = new QSpacerItem(20, 18, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_3->addItem(verticalSpacer_6);
-
-        reduceDayBut = new QPushButton(layoutWidget);
-        reduceDayBut->setObjectName(QStringLiteral("reduceDayBut"));
-        reduceDayBut->setMinimumSize(QSize(93, 51));
-        reduceDayBut->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_3->addWidget(reduceDayBut);
-
-
-        horizontalLayout->addLayout(verticalLayout_3);
-
         backLightLab = new QLabel(sysSetting);
         backLightLab->setObjectName(QStringLiteral("backLightLab"));
         backLightLab->setGeometry(QRect(110, 600, 141, 41));
         backLightLab->setMinimumSize(QSize(141, 41));
-        QFont font1;
-        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font1.setPointSize(14);
-        backLightLab->setFont(font1);
+        QFont font;
+        font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font.setPointSize(14);
+        backLightLab->setFont(font);
         backLightLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         backLightLab->setAlignment(Qt::AlignCenter);
         lightHorSlider = new QSlider(sysSetting);
@@ -361,39 +69,165 @@ public:
         lightHorSlider->setGeometry(QRect(250, 600, 391, 41));
         lightHorSlider->setStyleSheet(QStringLiteral(""));
         lightHorSlider->setOrientation(Qt::Horizontal);
-        layoutWidget1 = new QWidget(sysSetting);
-        layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(781, 240, 143, 81));
-        verticalLayout_4 = new QVBoxLayout(layoutWidget1);
-        verticalLayout_4->setSpacing(6);
-        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_4->setObjectName(QStringLiteral("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        sysLanguageLab = new QLabel(layoutWidget1);
-        sysLanguageLab->setObjectName(QStringLiteral("sysLanguageLab"));
-        sysLanguageLab->setMinimumSize(QSize(141, 41));
-        sysLanguageLab->setFont(font1);
-        sysLanguageLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
-        sysLanguageLab->setAlignment(Qt::AlignCenter);
-
-        verticalLayout_4->addWidget(sysLanguageLab);
-
-        comboBox = new QComboBox(layoutWidget1);
-        comboBox->setObjectName(QStringLiteral("comboBox"));
-        comboBox->setMinimumSize(QSize(141, 31));
-        comboBox->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
-
-        verticalLayout_4->addWidget(comboBox);
-
         sysTimeSetLab = new QLabel(sysSetting);
         sysTimeSetLab->setObjectName(QStringLiteral("sysTimeSetLab"));
         sysTimeSetLab->setGeometry(QRect(320, 40, 141, 41));
         sysTimeSetLab->setMinimumSize(QSize(141, 41));
-        sysTimeSetLab->setFont(font1);
+        sysTimeSetLab->setFont(font);
         sysTimeSetLab->setAlignment(Qt::AlignCenter);
-        layoutWidget->raise();
-        layoutWidget->raise();
-        layoutWidget_3->raise();
+        addHourBut = new QPushButton(sysSetting);
+        addHourBut->setObjectName(QStringLiteral("addHourBut"));
+        addHourBut->setGeometry(QRect(132, 345, 63, 63));
+        addHourBut->setMinimumSize(QSize(63, 51));
+        addHourBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:10px;"));
+        hourShowBut = new QLabel(sysSetting);
+        hourShowBut->setObjectName(QStringLiteral("hourShowBut"));
+        hourShowBut->setGeometry(QRect(132, 415, 63, 51));
+        hourShowBut->setMinimumSize(QSize(63, 51));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
+        font1.setPointSize(12);
+        hourShowBut->setFont(font1);
+        hourShowBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        hourShowBut->setAlignment(Qt::AlignCenter);
+        reduceHourBut = new QPushButton(sysSetting);
+        reduceHourBut->setObjectName(QStringLiteral("reduceHourBut"));
+        reduceHourBut->setGeometry(QRect(132, 472, 63, 63));
+        reduceHourBut->setMinimumSize(QSize(63, 51));
+        reduceHourBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        addMinBut = new QPushButton(sysSetting);
+        addMinBut->setObjectName(QStringLiteral("addMinBut"));
+        addMinBut->setGeometry(QRect(339, 345, 63, 63));
+        addMinBut->setMinimumSize(QSize(63, 51));
+        addMinBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:10px;"));
+        minShowBut = new QLabel(sysSetting);
+        minShowBut->setObjectName(QStringLiteral("minShowBut"));
+        minShowBut->setGeometry(QRect(339, 415, 63, 51));
+        minShowBut->setMinimumSize(QSize(63, 51));
+        minShowBut->setFont(font1);
+        minShowBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        minShowBut->setAlignment(Qt::AlignCenter);
+        reduceMinBut = new QPushButton(sysSetting);
+        reduceMinBut->setObjectName(QStringLiteral("reduceMinBut"));
+        reduceMinBut->setGeometry(QRect(339, 472, 63, 63));
+        reduceMinBut->setMinimumSize(QSize(63, 51));
+        reduceMinBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        addSecondBut = new QPushButton(sysSetting);
+        addSecondBut->setObjectName(QStringLiteral("addSecondBut"));
+        addSecondBut->setGeometry(QRect(546, 345, 63, 63));
+        addSecondBut->setMinimumSize(QSize(63, 51));
+        addSecondBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:10px;"));
+        secondShowBut = new QLabel(sysSetting);
+        secondShowBut->setObjectName(QStringLiteral("secondShowBut"));
+        secondShowBut->setGeometry(QRect(546, 415, 63, 51));
+        secondShowBut->setMinimumSize(QSize(63, 51));
+        secondShowBut->setFont(font1);
+        secondShowBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        secondShowBut->setAlignment(Qt::AlignCenter);
+        reduceSecondBut = new QPushButton(sysSetting);
+        reduceSecondBut->setObjectName(QStringLiteral("reduceSecondBut"));
+        reduceSecondBut->setGeometry(QRect(546, 472, 63, 63));
+        reduceSecondBut->setMinimumSize(QSize(63, 51));
+        reduceSecondBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        addYearBut = new QPushButton(sysSetting);
+        addYearBut->setObjectName(QStringLiteral("addYearBut"));
+        addYearBut->setGeometry(QRect(132, 103, 63, 63));
+        addYearBut->setMinimumSize(QSize(63, 51));
+        addYearBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:5px;"));
+        yearShowBut = new QLabel(sysSetting);
+        yearShowBut->setObjectName(QStringLiteral("yearShowBut"));
+        yearShowBut->setGeometry(QRect(132, 173, 63, 51));
+        yearShowBut->setMinimumSize(QSize(63, 51));
+        yearShowBut->setFont(font1);
+        yearShowBut->setAlignment(Qt::AlignCenter);
+        reduceYearBut = new QPushButton(sysSetting);
+        reduceYearBut->setObjectName(QStringLiteral("reduceYearBut"));
+        reduceYearBut->setGeometry(QRect(132, 230, 63, 63));
+        reduceYearBut->setMinimumSize(QSize(63, 51));
+        reduceYearBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        addMonthBut = new QPushButton(sysSetting);
+        addMonthBut->setObjectName(QStringLiteral("addMonthBut"));
+        addMonthBut->setGeometry(QRect(339, 103, 63, 63));
+        addMonthBut->setMinimumSize(QSize(63, 51));
+        addMonthBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:10px;"));
+        monthShowBut = new QLabel(sysSetting);
+        monthShowBut->setObjectName(QStringLiteral("monthShowBut"));
+        monthShowBut->setGeometry(QRect(339, 173, 63, 51));
+        monthShowBut->setMinimumSize(QSize(63, 51));
+        monthShowBut->setFont(font1);
+        monthShowBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        monthShowBut->setAlignment(Qt::AlignCenter);
+        reduceMonthBut = new QPushButton(sysSetting);
+        reduceMonthBut->setObjectName(QStringLiteral("reduceMonthBut"));
+        reduceMonthBut->setGeometry(QRect(339, 230, 63, 63));
+        reduceMonthBut->setMinimumSize(QSize(63, 51));
+        reduceMonthBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        addDayBut = new QPushButton(sysSetting);
+        addDayBut->setObjectName(QStringLiteral("addDayBut"));
+        addDayBut->setGeometry(QRect(546, 103, 63, 63));
+        addDayBut->setMinimumSize(QSize(63, 51));
+        addDayBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
+"border-radius:10px;"));
+        dayShowBut = new QLabel(sysSetting);
+        dayShowBut->setObjectName(QStringLiteral("dayShowBut"));
+        dayShowBut->setGeometry(QRect(546, 173, 63, 51));
+        dayShowBut->setMinimumSize(QSize(63, 51));
+        dayShowBut->setFont(font1);
+        dayShowBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        dayShowBut->setAlignment(Qt::AlignCenter);
+        reduceDayBut = new QPushButton(sysSetting);
+        reduceDayBut->setObjectName(QStringLiteral("reduceDayBut"));
+        reduceDayBut->setGeometry(QRect(546, 230, 63, 63));
+        reduceDayBut->setMinimumSize(QSize(63, 51));
+        reduceDayBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
+"border-radius:10px;"));
+        sysLanguageLab = new QLabel(sysSetting);
+        sysLanguageLab->setObjectName(QStringLiteral("sysLanguageLab"));
+        sysLanguageLab->setGeometry(QRect(782, 241, 141, 41));
+        sysLanguageLab->setMinimumSize(QSize(141, 41));
+        sysLanguageLab->setFont(font);
+        sysLanguageLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        sysLanguageLab->setAlignment(Qt::AlignCenter);
+        comboBox = new QComboBox(sysSetting);
+        comboBox->setObjectName(QStringLiteral("comboBox"));
+        comboBox->setGeometry(QRect(782, 289, 141, 31));
+        comboBox->setMinimumSize(QSize(141, 31));
+        comboBox->setStyleSheet(QStringLiteral("background-color: rgb(0, 0, 230);"));
+        addHourBut->raise();
+        hourShowBut->raise();
+        reduceHourBut->raise();
+        addMinBut->raise();
+        minShowBut->raise();
+        reduceMinBut->raise();
+        addSecondBut->raise();
+        secondShowBut->raise();
+        reduceSecondBut->raise();
+        addYearBut->raise();
+        yearShowBut->raise();
+        reduceYearBut->raise();
+        addMonthBut->raise();
+        monthShowBut->raise();
+        reduceMonthBut->raise();
+        addDayBut->raise();
+        dayShowBut->raise();
+        reduceDayBut->raise();
+        sysLanguageLab->raise();
+        comboBox->raise();
         backLightLab->raise();
         lightHorSlider->raise();
         sysTimeSetLab->raise();
@@ -406,29 +240,29 @@ public:
     void retranslateUi(QWidget *sysSetting)
     {
         sysSetting->setWindowTitle(QApplication::translate("sysSetting", "sysSetting", 0));
+        backLightLab->setText(QApplication::translate("sysSetting", "\350\203\214\345\205\211\344\272\256\345\272\246", 0));
+        sysTimeSetLab->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\263\273\347\273\237\346\227\266\351\227\264</span></p></body></html>", 0));
         addHourBut->setText(QString());
-        label_5->setText(QApplication::translate("sysSetting", "13", 0));
+        hourShowBut->setText(QApplication::translate("sysSetting", "13", 0));
         reduceHourBut->setText(QString());
         addMinBut->setText(QString());
-        label_6->setText(QApplication::translate("sysSetting", "27", 0));
+        minShowBut->setText(QApplication::translate("sysSetting", "27", 0));
         reduceMinBut->setText(QString());
         addSecondBut->setText(QString());
-        label_7->setText(QApplication::translate("sysSetting", "30", 0));
+        secondShowBut->setText(QApplication::translate("sysSetting", "30", 0));
         reduceSecondBut->setText(QString());
         addYearBut->setText(QString());
-        label->setStyleSheet(QApplication::translate("sysSetting", "color: rgb(255, 255, 255);\n"
+        yearShowBut->setStyleSheet(QApplication::translate("sysSetting", "color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);", 0));
-        label->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">2020</span></p></body></html>", 0));
+        yearShowBut->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">2020</span></p></body></html>", 0));
         reduceYearBut->setText(QString());
         addMonthBut->setText(QString());
-        label_2->setText(QApplication::translate("sysSetting", "01", 0));
+        monthShowBut->setText(QApplication::translate("sysSetting", "01", 0));
         reduceMonthBut->setText(QString());
         addDayBut->setText(QString());
-        label_3->setText(QApplication::translate("sysSetting", "08", 0));
+        dayShowBut->setText(QApplication::translate("sysSetting", "08", 0));
         reduceDayBut->setText(QString());
-        backLightLab->setText(QApplication::translate("sysSetting", "\350\203\214\345\205\211\344\272\256\345\272\246", 0));
         sysLanguageLab->setText(QApplication::translate("sysSetting", "\347\263\273\347\273\237\350\257\255\350\250\200", 0));
-        sysTimeSetLab->setText(QApplication::translate("sysSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\263\273\347\273\237\346\227\266\351\227\264</span></p></body></html>", 0));
     } // retranslateUi
 
 };
