@@ -130,7 +130,8 @@ namespace MyNameSpace
 		 long long BIN_to_DEC(string Bin);
 		 bool readBin(string FontName,int offset,char *arr, int DataLen );//此处先用char来代替BYTE
 		 void DrawDot(CDC* pDC);//
-		 void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
+		 void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
+					int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 		 vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	public://XML
 		void ReadObjectsFromXml(char* strFileName);

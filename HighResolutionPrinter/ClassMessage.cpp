@@ -414,7 +414,6 @@ namespace MyNameSpace
 		}	
 	}
 
-
 	void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT ,
 		int tempRowSize, int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW )
 	{
