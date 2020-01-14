@@ -22,14 +22,18 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui.newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
 	connect(ui.newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
 
-
 	connect(ui.moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
+	connect(ui.moveDownBut,SIGNAL(clicked()),this,SLOT(moveDownBut_clicked()));
+	connect(ui.moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
+	connect(ui.moveRightBut,SIGNAL(clicked()),this,SLOT(moveRightBut_clicked()));
 
     ui.wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(this);
+	languageWidget = new language();
 	ui.keyboardStackWid->addWidget(keyboardWidget);
-		
+	ui.keyboardStackWid->addWidget(languageWidget);
+	
 	ui.editPreviewText->installEventFilter(this);
 	ui.typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
@@ -65,6 +69,23 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
+	ui.degreeTextShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.internalShowTextLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.heightBmpShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.widthShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+    ui.degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui.zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
 	Create2Dcode(8,"1");
@@ -253,14 +274,28 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::delBut_clicked()
 {
-	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui.keyboardStackWid->hide();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui.keyboardStackWid->raise();
 
 }
 
 void FileEditChild::wordLineEdit_clicked()
+{
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
+	ui.keyboardStackWid->setCurrentWidget(keyboardWidget);
+}
+
+void FileEditChild::languageWidgetCall()
+{
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
+	ui.keyboardStackWid->setCurrentWidget(languageWidget);
+}
+
+void FileEditChild::returnKB()
 {
 	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
 	ui.keyboardStackWid->show();
@@ -324,27 +359,27 @@ void FileEditChild::moveUpBut_clicked()
 	
 }
 
+void FileEditChild::moveDownBut_clicked()
+{
+
+}
+
+void FileEditChild::moveLeftBut_clicked()
+{
+
+}
+
+void FileEditChild::moveRightBut_clicked()
+{
+
+}
+
 void FileEditChild::hideKB()
 {
 	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui.keyboardStackWid->hide();
+	ui.keyboardStackWid->close();
 	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
 	ui.keyboardStackWid->raise();
-
-}
-
-void FileEditChild::getValA(QString str)
-{
-	str1 += key.A_KBBut_sendData();
-	ui.wordLineEdit->setText(str1);
-	ui.wordLineEdit->setFocus();
-
-}
-
-void FileEditChild::getValB(QString str)
-{
-	str1 +=  key.B_KBBut_sendData();
-	ui.wordLineEdit->setText(str1);
 
 }
 
@@ -352,4 +387,277 @@ void FileEditChild::deleteChar()
 {
 	ui.wordLineEdit->backspace();
 	str1 = ui.wordLineEdit->text();
+}
+
+void FileEditChild::getValA(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.A_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValB(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.B_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValC(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.C_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValD(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.D_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValE(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.E_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValF(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.F_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValG(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.G_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValH(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.H_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValI(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.I_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValJ(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.J_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValK(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.K_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValL(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.L_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValM(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.M_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValN(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.N_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValO(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.O_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValP(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.P_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValQ(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.Q_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValR(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.R_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValS(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.S_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValT(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.T_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValU(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.U_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValV(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.V_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValW(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.W_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValX(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.X_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValY(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.Y_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValZ(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.Z_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum1(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num1_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum2(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num2_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum3(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num3_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum4(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num4_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum5(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num5_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum6(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num6_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum7(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num7_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum8(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num8_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum9(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num9_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValnum0(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.num0_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValspace(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.space_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValcomma(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.comma_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
+}
+
+void FileEditChild::getValperiod(QString str)
+{
+	ui.wordLineEdit->cursorPosition();
+	str1 = key.period_KBBut_sendData();
+	ui.wordLineEdit->insert(str1);
 }

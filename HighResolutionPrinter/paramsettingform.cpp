@@ -53,7 +53,7 @@ ParamSettingForm::~ParamSettingForm()
 
 void ParamSettingForm::paraExitBut_clicked()
 {
-	this->hide();
+	this->close();
 }
 
 void ParamSettingForm::printSettingBut_clicked()

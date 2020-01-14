@@ -50,7 +50,7 @@ FilemanageForm::~FilemanageForm()
 
 void FilemanageForm::exitBut_clicked()
 {
-	this->hide();
+	this->close();
 }
 
 void FilemanageForm::editFileBut_clicked()

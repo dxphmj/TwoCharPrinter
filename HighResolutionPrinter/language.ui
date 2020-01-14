@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>language</class>
+ <widget class="QWidget" name="language">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>791</width>
+    <height>321</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>language</string>
+  </property>
+  <widget class="QPushButton" name="LanEnglish">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>3</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>English</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanChinese">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>3</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>简体中文</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanArabic">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>3</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string> عربي ،</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanCzech">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>3</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Česko</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanDutch">
+   <property name="geometry">
+    <rect>
+     <x>631</x>
+     <y>3</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Nederlands</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanHindi">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>82</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>हिन्दी</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanFarsi">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>82</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>فارسی‎</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanGerman">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>82</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Deutsch</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanFinnish">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>82</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Suomi</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanHungarian">
+   <property name="geometry">
+    <rect>
+     <x>631</x>
+     <y>82</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>MagyarName</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanRussian">
+   <property name="geometry">
+    <rect>
+     <x>631</x>
+     <y>161</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Adobe Arabic</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>русскийязык</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanJapanese">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>161</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>日本語</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanKorean">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>161</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>한국어</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanItalian">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>161</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Italiano</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanPortuguese">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>161</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Português</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Lan1">
+   <property name="geometry">
+    <rect>
+     <x>474</x>
+     <y>240</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="OKLanBut">
+   <property name="geometry">
+    <rect>
+     <x>631</x>
+     <y>240</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanThai">
+   <property name="geometry">
+    <rect>
+     <x>317</x>
+     <y>240</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>ภาษาไทย</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanSpanish">
+   <property name="geometry">
+    <rect>
+     <x>2</x>
+     <y>240</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Español</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="LanSwedish">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>240</y>
+     <width>157</width>
+     <height>77</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Svenskt språk</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>

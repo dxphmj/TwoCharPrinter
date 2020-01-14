@@ -43,7 +43,7 @@ public:
     QPushButton *T_KBBut;
     QPushButton *R_KBBut;
     QPushButton *P_KBBut;
-    QPushButton *T_KBBut_2;
+    QPushButton *Y_KBBut;
     QPushButton *E_KBBut;
     QPushButton *U_KBBut;
     QPushButton *S_KBBut;
@@ -198,11 +198,11 @@ public:
         P_KBBut->setGeometry(QRect(650, 105, 52, 52));
         P_KBBut->setFont(font1);
         P_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
-        T_KBBut_2 = new QPushButton(keyboard);
-        T_KBBut_2->setObjectName(QStringLiteral("T_KBBut_2"));
-        T_KBBut_2->setGeometry(QRect(370, 105, 52, 52));
-        T_KBBut_2->setFont(font1);
-        T_KBBut_2->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        Y_KBBut = new QPushButton(keyboard);
+        Y_KBBut->setObjectName(QStringLiteral("Y_KBBut"));
+        Y_KBBut->setGeometry(QRect(370, 105, 52, 52));
+        Y_KBBut->setFont(font1);
+        Y_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         E_KBBut = new QPushButton(keyboard);
         E_KBBut->setObjectName(QStringLiteral("E_KBBut"));
         E_KBBut->setGeometry(QRect(160, 105, 52, 52));
@@ -311,7 +311,7 @@ public:
         period_KBBut->setGeometry(QRect(650, 211, 52, 52));
         QFont font6;
         font6.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font6.setPointSize(10);
+        font6.setPointSize(18);
         font6.setBold(true);
         font6.setWeight(75);
         period_KBBut->setFont(font6);
@@ -361,7 +361,7 @@ public:
         T_KBBut->setText(QApplication::translate("keyboard", "T", 0));
         R_KBBut->setText(QApplication::translate("keyboard", "R", 0));
         P_KBBut->setText(QApplication::translate("keyboard", "P", 0));
-        T_KBBut_2->setText(QApplication::translate("keyboard", "Y", 0));
+        Y_KBBut->setText(QApplication::translate("keyboard", "Y", 0));
         E_KBBut->setText(QApplication::translate("keyboard", "E", 0));
         U_KBBut->setText(QApplication::translate("keyboard", "U", 0));
         S_KBBut->setText(QApplication::translate("keyboard", "S", 0));
@@ -381,10 +381,8 @@ public:
         V_KBBut->setText(QApplication::translate("keyboard", "V", 0));
         M_KBBut->setText(QApplication::translate("keyboard", "M", 0));
         Z_KBBut->setText(QApplication::translate("keyboard", "Z", 0));
-        period_KBBut->setText(QApplication::translate("keyboard", "?\n"
-".", 0));
-        comma_KBBut->setText(QApplication::translate("keyboard", "!\n"
-",", 0));
+        period_KBBut->setText(QApplication::translate("keyboard", ".", 0));
+        comma_KBBut->setText(QApplication::translate("keyboard", ",", 0));
         language_KBBut->setText(QApplication::translate("keyboard", "\360\237\214\220", 0));
         hide_KBBut->setText(QString());
     } // retranslateUi

@@ -526,7 +526,7 @@
     <string>P</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="T_KBBut_2">
+  <widget class="QPushButton" name="Y_KBBut">
    <property name="geometry">
     <rect>
      <x>370</x>
@@ -1016,7 +1016,7 @@
    <property name="font">
     <font>
      <family>黑体</family>
-     <pointsize>10</pointsize>
+     <pointsize>18</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -1025,8 +1025,7 @@
     <string notr="true">background-color: rgb(182,181,186);</string>
    </property>
    <property name="text">
-    <string>?
-.</string>
+    <string>.</string>
    </property>
   </widget>
   <widget class="QPushButton" name="comma_KBBut">
@@ -1041,7 +1040,7 @@
    <property name="font">
     <font>
      <family>黑体</family>
-     <pointsize>10</pointsize>
+     <pointsize>18</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -1050,8 +1049,7 @@
     <string notr="true">background-color: rgb(182,181,186);</string>
    </property>
    <property name="text">
-    <string>!
-,</string>
+    <string>,</string>
    </property>
   </widget>
   <widget class="QPushButton" name="language_KBBut">

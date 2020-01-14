@@ -14,10 +14,10 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QListView>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
-#include <QtWidgets/QTextBrowser>
+#include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -25,10 +25,10 @@ QT_BEGIN_NAMESPACE
 class Ui_FileManageChild
 {
 public:
-    QListView *filelistView;
+    QListWidget *filelistWidget;
     QPushButton *localFileBut;
     QPushButton *UdiskFileBut;
-    QTextBrowser *filePrivewtextBro;
+    QTextEdit *filePrivewtextEdit;
     QScrollBar *filePreHorScrollBar;
     QScrollBar *filePreVerScrollBar;
     QPushButton *loadSeleFileBut;
@@ -41,10 +41,10 @@ public:
         if (FileManageChild->objectName().isEmpty())
             FileManageChild->setObjectName(QStringLiteral("FileManageChild"));
         FileManageChild->resize(1061, 761);
-        filelistView = new QListView(FileManageChild);
-        filelistView->setObjectName(QStringLiteral("filelistView"));
-        filelistView->setGeometry(QRect(10, 10, 431, 641));
-        filelistView->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        filelistWidget = new QListWidget(FileManageChild);
+        filelistWidget->setObjectName(QStringLiteral("filelistWidget"));
+        filelistWidget->setGeometry(QRect(10, 10, 431, 641));
+        filelistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         localFileBut = new QPushButton(FileManageChild);
         localFileBut->setObjectName(QStringLiteral("localFileBut"));
         localFileBut->setGeometry(QRect(60, 680, 131, 51));
@@ -60,10 +60,10 @@ public:
         UdiskFileBut->setFont(font);
         UdiskFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        filePrivewtextBro = new QTextBrowser(FileManageChild);
-        filePrivewtextBro->setObjectName(QStringLiteral("filePrivewtextBro"));
-        filePrivewtextBro->setGeometry(QRect(460, 10, 551, 301));
-        filePrivewtextBro->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        filePrivewtextEdit = new QTextEdit(FileManageChild);
+        filePrivewtextEdit->setObjectName(QStringLiteral("filePrivewtextEdit"));
+        filePrivewtextEdit->setGeometry(QRect(460, 10, 551, 301));
+        filePrivewtextEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePreHorScrollBar = new QScrollBar(FileManageChild);
         filePreHorScrollBar->setObjectName(QStringLiteral("filePreHorScrollBar"));
         filePreHorScrollBar->setGeometry(QRect(460, 310, 551, 25));
