@@ -983,7 +983,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(6);
+        typeTab->setCurrentIndex(4);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -1064,7 +1064,7 @@ public:
         heightBarCodeAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         heightBarCodeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\253\230\345\272\246</span></p></body></html>", 0));
         heightBarCodeRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
-        heightBarCodeShowQRLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
+        heightBarCodeShowQRLab->setText(QApplication::translate("FileEditChild", "21", 0));
         showNumCheckBox->setText(QApplication::translate("FileEditChild", "\346\230\276\347\244\272\346\225\260\345\255\227", 0));
         newBarCodeBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
         typeTab->setTabText(typeTab->indexOf(barCodeTab), QApplication::translate("FileEditChild", "\346\235\241\345\275\242\347\240\201", 0));

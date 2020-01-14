@@ -131,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>6</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -2276,7 +2276,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>21</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

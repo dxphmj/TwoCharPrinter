@@ -24,7 +24,13 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 
 	connect(ui.moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
-
+	connect(ui.showNumCheckBox,SIGNAL(stateChanged()),this,SLOT(showNumCheckBox_clicked()));
+	connect(ui.degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
+	connect(ui.degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
+	connect(ui.zoomBarCodeAddBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeAddBut_clicked()));
+	connect(ui.heightBarCodeAddBut,SIGNAL(clicked()),this,SLOT(heightBarCodeAddBut_clicked()));
+	connect(ui.heightBarCodeRedBut,SIGNAL(clicked()),this,SLOT(heightBarCodeRedButt_clicked()));
+	
 	keyboardWidget = new keyboard(this);
 	ui.keyboardStackWid->addWidget(keyboardWidget);
 		
@@ -63,9 +69,21 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
+
+	ui.typeBarCodeComBox->addItem(QStringLiteral("EANX"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("CODE39"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("CODE93"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("CODE128"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("UPCA"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("UPCE"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("ITF14"));
+	ui.typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
+	ui.typeBarCodeComBox->setCurrentIndex(3);
+
+	degreenum=0;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
-	Create2Dcode(8,"1");
+	//Create2Dcode(8,"1");
 
 }
 
@@ -83,24 +101,42 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	int mirror_mode;
 	char filetype[4];
 	int i;
-
+	int longth;
+	int derta;
+	derta=1;
+	longth=0;
 	error_number = 0;
 	rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType;
-	if(nType == 20 || nType == 8)
-		my_symbol->height = 12;	 
+//	if(nType == 20 || nType == 8)
+//		my_symbol->height = 12;	 
 
-	my_symbol->scale = 0.5;
+	my_symbol->scale =0.5;
 	batch_mode = 0;
 	mirror_mode = 0;
+
+	//int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
+	if (ui.showNumCheckBox->isChecked())
+	{
+		my_symbol->show_hrt=1;
+	} 
+
+	else  my_symbol->show_hrt=0;
+
 
 	/* 
 	char * QRTEXT = W2A(str.GetBuffer(0));	
 	std::string strTmp = ASCToUTF8(QRTEXT);*/
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+	longth = my_symbol->bitmap_height;
+	//longth = my_symbol->width;
+	derta = longth-100;     //将21改为zoomShowBarCodeLab中的值
+	//my_symbol->scale =proportion ;
+	//error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+
 	generated = 1;
   
 	int xPos=0;
@@ -128,19 +164,19 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 //	int version = bmpObj.intQRVersion;//设置版本号，这里设为2，对应尺寸：25 * 25
 //	int casesensitive = bmpObj.boQRBig;//是否区分大小写，true/false
 
-	bmpObj.intLineSize=my_symbol->bitmap_height;
+	bmpObj.intLineSize=my_symbol->bitmap_height-derta;
 	bmpObj.intRowSize=my_symbol->bitmap_width;
 
 	//以下先写死
 	bmpObj.intSW=1;
-	bmpObj.intSS=0;
+	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
-	i = 0;
+	i = derta*my_symbol->bitmap_width*3;
 	int r, g, b;
 
-	for (int row = 0; row < my_symbol->bitmap_height; row++)
+	for (int row = derta; row < my_symbol->bitmap_height; row++)
 	{
 		for (int col = 0;col < my_symbol->bitmap_width; col++)
 		{
@@ -150,11 +186,13 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true; //由于坐标系的原因，上下必须颠倒
+		//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
+				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
 			{
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+		//		bmpObj.boDotBmp[col][row-proportion] = false;
+		  		bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
 			}
 		}
 	}
@@ -305,7 +343,44 @@ void FileEditChild::newTextBut_clicked()
 
 void FileEditChild::newBarCodeBut_clicked()
 {
+	int t;
+	QString str;
+	str = ui.barCodeLineEdit->text();
+	if (ui.typeBarCodeComBox->currentIndex()==0)
+	{
+		t=13;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==1)
+	{
+		t=8;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==2)
+	{
+		t=25;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==3)
+	{
+		t=20;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==4)
+	{
+		t=34;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==5)
+	{
+		t=37;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==6)
+	{
+		t=89;
+	}
+	if (ui.typeBarCodeComBox->currentIndex()==7)
+	{
+		t=55;
+	}
 
+
+	Create2Dcode(t,str);
 }
 
 void FileEditChild::newQRBut_clicked()
@@ -328,4 +403,52 @@ void FileEditChild::test_clicked()
 {
 	QString str = key.returnText();
 	ui.wordLineEdit->setText(str);
+}
+
+void FileEditChild::showNumCheckBox_clicked()
+{
+	
+}
+
+void FileEditChild::degreeBarCodeAddBut_clicked()
+{
+	
+	if (degreenum<270)
+	{
+		degreenum=degreenum+90;
+	} 
+	else
+	{
+		degreenum=0;
+	}
+	ui.degreeBarCodeShowLab->setText(QString::number(degreenum));
+}
+
+void FileEditChild::degreeBarCodeRedButt_clicked()
+{
+
+	if (degreenum>0)
+	{
+		degreenum=degreenum-90;
+	} 
+	else
+	{
+		degreenum=270;
+	}
+	ui.degreeBarCodeShowLab->setText(QString::number(degreenum));
+}
+
+void FileEditChild::zoomBarCodeAddBut_clicked()
+{
+
+}
+
+void FileEditChild::heightBarCodeAddBut_clicked()
+{
+	ui.heightBarCodeShowQRLab->setText(QString::number(25));
+}
+
+void FileEditChild::heightBarCodeRedButt_clicked()
+{
+	ui.heightBarCodeShowQRLab->setText(QString::number(21));
 }
