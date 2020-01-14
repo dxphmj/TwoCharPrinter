@@ -381,7 +381,7 @@ public:
         comma_KBBut->setText(QApplication::translate("keyboard", "!\n"
 ",", 0));
         language_KBBut->setText(QApplication::translate("keyboard", "\360\237\214\220", 0));
-        hide_KBBut->setText(QApplication::translate("keyboard", "\342\226\274", 0));
+        hide_KBBut->setText(QString());
     } // retranslateUi
 
 };

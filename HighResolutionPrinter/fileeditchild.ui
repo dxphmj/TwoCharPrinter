@@ -36,29 +36,6 @@ background-color: rgb(0, 0, 230);</string>
     <string>保存</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="editBut">
-   <property name="geometry">
-    <rect>
-     <x>840</x>
-     <y>360</y>
-     <width>101</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>楷体</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
-   </property>
-   <property name="text">
-    <string>编辑</string>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="editPreviewText">
    <property name="geometry">
     <rect>
@@ -98,7 +75,7 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="delBut">
    <property name="geometry">
     <rect>
-     <x>950</x>
+     <x>895</x>
      <y>360</y>
      <width>101</width>
      <height>51</height>
@@ -154,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>6</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -508,7 +485,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="variableTextBut">
      <property name="geometry">
       <rect>
-       <x>540</x>
+       <x>160</x>
        <y>330</y>
        <width>181</width>
        <height>41</height>
@@ -526,6 +503,29 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
       <string>可变</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="newTextBut">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>330</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>新建</string>
      </property>
     </widget>
    </widget>
@@ -1858,7 +1858,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>220</y>
+       <y>190</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1889,7 +1889,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>220</y>
+       <y>190</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1920,7 +1920,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>220</y>
+       <y>190</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -1943,7 +1943,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>120</y>
+       <y>105</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1974,7 +1974,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>220</y>
+       <y>190</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2005,7 +2005,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>120</y>
+       <y>105</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2036,7 +2036,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>450</x>
-       <y>120</y>
+       <y>105</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2064,7 +2064,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>120</y>
+       <y>105</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2095,7 +2095,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>220</y>
+       <y>190</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2123,7 +2123,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>125</y>
+       <y>110</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2137,7 +2137,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>120</y>
+       <y>105</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2165,7 +2165,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>320</y>
+       <y>280</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2196,7 +2196,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>320</y>
+       <y>280</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2224,7 +2224,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>320</y>
+       <y>280</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2255,7 +2255,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>320</y>
+       <y>280</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2286,7 +2286,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>320</y>
+       <y>360</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2311,6 +2311,29 @@ background-color: rgb(0, 0, 230);</string>
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QPushButton" name="newBarCodeBut">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>280</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>新建</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="QRCodeTab">
     <attribute name="title">
@@ -2333,7 +2356,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>450</x>
-       <y>120</y>
+       <y>105</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2361,7 +2384,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>220</y>
+       <y>195</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2392,7 +2415,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>310</y>
+       <y>290</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -2415,7 +2438,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>125</y>
+       <y>110</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2429,7 +2452,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>210</x>
-       <y>120</y>
+       <y>105</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2460,7 +2483,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>120</y>
+       <y>105</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2491,7 +2514,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>220</y>
+       <y>195</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2519,7 +2542,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>215</y>
+       <y>190</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2533,7 +2556,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>120</y>
+       <y>105</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2564,7 +2587,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>120</y>
+       <y>105</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2592,7 +2615,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>340</x>
-       <y>220</y>
+       <y>195</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2623,7 +2646,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>450</x>
-       <y>210</y>
+       <y>185</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2651,7 +2674,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>220</y>
+       <y>195</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2682,7 +2705,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>550</x>
-       <y>315</y>
+       <y>290</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2704,6 +2727,29 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="autoRepeat">
       <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="newQRBut">
+     <property name="geometry">
+      <rect>
+       <x>550</x>
+       <y>350</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>新建</string>
      </property>
     </widget>
    </widget>
@@ -3031,6 +3077,29 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
+    <widget class="QPushButton" name="newDMBut">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>350</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>新建</string>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QPushButton" name="moveUpBut">
@@ -3160,7 +3229,6 @@ border-radius:10px;</string>
   <zorder>keyboardStackWid</zorder>
   <zorder>controlLab</zorder>
   <zorder>saveBut</zorder>
-  <zorder>editBut</zorder>
   <zorder>editPreviewText</zorder>
   <zorder>saveasBut</zorder>
   <zorder>delBut</zorder>

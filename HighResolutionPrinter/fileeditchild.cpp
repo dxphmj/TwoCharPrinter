@@ -11,13 +11,19 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	connect(ui.variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
 	connect(ui.customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
-	connect(ui.editBut,SIGNAL(clicked()),this,SLOT(editBut_clicked()));
 	connect(ui.selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
 	connect(ui.delBut,SIGNAL(clicked()),this,SLOT(delBut_clicked()));
 	connect(ui.wordLineEdit,SIGNAL(clicked()),this,SLOT(wordLineEdit_clicked()));
 	connect(ui.barCodeLineEdit,SIGNAL(clicked()),this,SLOT(barCodeLineEdit_clicked()));
 	connect(ui.QRCodeLineEdit,SIGNAL(clicked()),this,SLOT(QRCodeLineEdit_clicked()));
 	connect(ui.DMCodeLineEdit,SIGNAL(clicked()),this,SLOT(DMCodeLineEdit_clicked()));
+	connect(ui.newTextBut,SIGNAL(clicked()),this,SLOT(newTextBut_clicked()));
+	connect(ui.newBarCodeBut,SIGNAL(clicked()),this,SLOT(newBarCodeBut_clicked()));
+	connect(ui.newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
+	connect(ui.newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
+
+
+	connect(ui.moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
 
 	keyboardWidget = new keyboard(this);
 	ui.keyboardStackWid->addWidget(keyboardWidget);
@@ -244,18 +250,6 @@ void FileEditChild::selBmpBut_clicked()
 
 }
 
-void FileEditChild::editBut_clicked()
-{
-	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui.keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui.keyboardStackWid->raise();
-	ui.keyboardStackWid->setCurrentWidget(keyboardWidget);
-	QString txtQString = ui.QRCodeLineEdit->text();
-	string txtString = txtQString.toStdString();
-	ShowText("7x5",false,false,false,txtString,20,20,0,0,0,1);
-}
-
 void FileEditChild::delBut_clicked()
 {
 	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
@@ -304,8 +298,34 @@ void FileEditChild::DMCodeLineEdit_clicked()
 
 }
 
-//void FileEditChild::test_clicked()
-//{
-//	QString str = key.returnText();
-//	ui.wordLineEdit->setText(str);
-//}
+void FileEditChild::newTextBut_clicked()
+{
+
+}
+
+void FileEditChild::newBarCodeBut_clicked()
+{
+
+}
+
+void FileEditChild::newQRBut_clicked()
+{
+
+}
+
+void FileEditChild::newDMBut_clicked()
+{
+
+}
+
+void FileEditChild::moveUpBut_clicked()
+{
+	QString str = key.A_KBBut_clicked();
+	ui.wordLineEdit->setText(str);
+}
+
+void FileEditChild::test_clicked()
+{
+	QString str = key.returnText();
+	ui.wordLineEdit->setText(str);
+}

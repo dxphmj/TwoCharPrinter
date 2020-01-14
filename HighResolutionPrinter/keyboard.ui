@@ -1099,7 +1099,7 @@
     <string notr="true">background-color: rgb(182,181,186);</string>
    </property>
    <property name="text">
-    <string>▼</string>
+    <string/>
    </property>
   </widget>
  </widget>
