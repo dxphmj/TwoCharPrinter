@@ -15,7 +15,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
 	connect(ui->paraManageBut,SIGNAL(clicked()),this,SLOT(paraManageBut_clicked()));
- 
+	connect(ui->closeBut,SIGNAL(clicked()),this,SLOT(closeBut_clicked()));
+
 	ui->fileManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/fileManage.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/fileManage.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
@@ -70,8 +71,13 @@ void MainWindow::paraManageBut_clicked()
 	m_paramsetting.show();
 }
 
+void MainWindow::closeBut_clicked()
+{
+
+}
+
 void MainWindow::GetDateTime()
 {
 	QTime timeNow=QTime::currentTime();
-	ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString()));
+	ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString())+tr("  "));
 }

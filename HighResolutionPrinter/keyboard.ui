@@ -84,7 +84,7 @@
    <property name="font">
     <font>
      <family>黑体</family>
-     <pointsize>16</pointsize>
+     <pointsize>20</pointsize>
      <weight>75</weight>
      <bold>true</bold>
     </font>
@@ -1099,7 +1099,7 @@
     <string notr="true">background-color: rgb(182,181,186);</string>
    </property>
    <property name="text">
-    <string>▼</string>
+    <string/>
    </property>
   </widget>
  </widget>

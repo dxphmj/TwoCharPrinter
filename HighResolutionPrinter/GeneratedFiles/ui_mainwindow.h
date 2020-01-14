@@ -71,7 +71,7 @@ public:
         nameDispLab->setMargin(1);
         previewLab = new QLabel(centralWidget);
         previewLab->setObjectName(QStringLiteral("previewLab"));
-        previewLab->setGeometry(QRect(0, 80, 1111, 331));
+        previewLab->setGeometry(QRect(10, 80, 1101, 331));
         previewLab->setLayoutDirection(Qt::LeftToRight);
         previewLab->setStyleSheet(QStringLiteral("background-color: rgb(77,61, 139);"));
         fileNmaeLab = new QLabel(centralWidget);

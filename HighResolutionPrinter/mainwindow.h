@@ -30,6 +30,8 @@ private:
 private slots:
 	void fileManageBut_clicked();
 	void paraManageBut_clicked();
+	void closeBut_clicked();
+
 	bool eventFilter(QObject *watched, QEvent *event);
 
 	void GetDateTime();

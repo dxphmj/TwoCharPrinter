@@ -100,7 +100,7 @@ public:
         shift_KBBut->setGeometry(QRect(20, 211, 52, 52));
         QFont font2;
         font2.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font2.setPointSize(16);
+        font2.setPointSize(20);
         font2.setBold(true);
         font2.setWeight(75);
         shift_KBBut->setFont(font2);
@@ -256,7 +256,12 @@ public:
         enter_KBBut = new QPushButton(keyboard);
         enter_KBBut->setObjectName(QStringLiteral("enter_KBBut"));
         enter_KBBut->setGeometry(QRect(685, 158, 87, 52));
-        enter_KBBut->setFont(font2);
+        QFont font4;
+        font4.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
+        font4.setPointSize(16);
+        font4.setBold(true);
+        font4.setWeight(75);
+        enter_KBBut->setFont(font4);
         enter_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         N_KBBut = new QPushButton(keyboard);
         N_KBBut->setObjectName(QStringLiteral("N_KBBut"));
@@ -276,10 +281,10 @@ public:
         symbol_KBBut = new QPushButton(keyboard);
         symbol_KBBut->setObjectName(QStringLiteral("symbol_KBBut"));
         symbol_KBBut->setGeometry(QRect(720, 211, 52, 52));
-        QFont font4;
-        font4.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font4.setPointSize(12);
-        symbol_KBBut->setFont(font4);
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
+        font5.setPointSize(12);
+        symbol_KBBut->setFont(font5);
         symbol_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         X_KBBut = new QPushButton(keyboard);
         X_KBBut->setObjectName(QStringLiteral("X_KBBut"));
@@ -304,17 +309,17 @@ public:
         period_KBBut = new QPushButton(keyboard);
         period_KBBut->setObjectName(QStringLiteral("period_KBBut"));
         period_KBBut->setGeometry(QRect(650, 211, 52, 52));
-        QFont font5;
-        font5.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
-        font5.setPointSize(10);
-        font5.setBold(true);
-        font5.setWeight(75);
-        period_KBBut->setFont(font5);
+        QFont font6;
+        font6.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
+        font6.setPointSize(10);
+        font6.setBold(true);
+        font6.setWeight(75);
+        period_KBBut->setFont(font6);
         period_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         comma_KBBut = new QPushButton(keyboard);
         comma_KBBut->setObjectName(QStringLiteral("comma_KBBut"));
         comma_KBBut->setGeometry(QRect(580, 211, 52, 52));
-        comma_KBBut->setFont(font5);
+        comma_KBBut->setFont(font6);
         comma_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         language_KBBut = new QPushButton(keyboard);
         language_KBBut->setObjectName(QStringLiteral("language_KBBut"));
@@ -381,7 +386,7 @@ public:
         comma_KBBut->setText(QApplication::translate("keyboard", "!\n"
 ",", 0));
         language_KBBut->setText(QApplication::translate("keyboard", "\360\237\214\220", 0));
-        hide_KBBut->setText(QApplication::translate("keyboard", "\342\226\274", 0));
+        hide_KBBut->setText(QString());
     } // retranslateUi
 
 };

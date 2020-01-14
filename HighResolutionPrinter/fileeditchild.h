@@ -6,6 +6,7 @@
 #include "ClassMessage.h"
 #include "keyboard.h"
 #include "lineedit_click.h"
+#include <QLineEdit>
 
 using namespace MyNameSpace;
 
@@ -26,18 +27,23 @@ public:
 private:
 	Ui::FileEditChild ui;
 	keyboard  *keyboardWidget;
-	//keyboard key;
+	keyboard key;
+	QString str1;
 
 private slots:
 	void variableTextBut_clicked();
 	void customTimeBut_clicked();
 	void selBmpBut_clicked();
-	void editBut_clicked();
 	void delBut_clicked();
 	void wordLineEdit_clicked();
 	void barCodeLineEdit_clicked();
 	void QRCodeLineEdit_clicked();
 	void DMCodeLineEdit_clicked();
+	void newTextBut_clicked();
+	void newBarCodeBut_clicked();
+	void newQRBut_clicked();
+	void newDMBut_clicked();
+	void moveUpBut_clicked();
 
 
 protected:
@@ -46,7 +52,10 @@ protected:
 	bool eventFilter(QObject *watched, QEvent *event);
 
 public:
-	//void test_clicked();
+	void hideKB();
+	void getValA(QString str);
+	void getValB(QString str);
+	void deleteChar();
 
 };
 
