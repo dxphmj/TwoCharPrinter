@@ -31,6 +31,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui.heightBarCodeAddBut,SIGNAL(clicked()),this,SLOT(heightBarCodeAddBut_clicked()));
 	connect(ui.heightBarCodeRedBut,SIGNAL(clicked()),this,SLOT(heightBarCodeRedButt_clicked()));
 	
+
+    ui.wordLineEdit->setFocus();
+
 	keyboardWidget = new keyboard(this);
 	ui.keyboardStackWid->addWidget(keyboardWidget);
 		
@@ -82,6 +85,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	degreenum=0;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
+    //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
 	//Create2Dcode(8,"1");
 
@@ -246,12 +250,15 @@ void FileEditChild::ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool tx
 	textObj.booBWDy = txtBWDy;
 	
 	//ClassMessage textClassMessage;
-	m_PrinterMes.getdot(txtFont, txtBWDy, txtBWDx, txtNEG, txtContent, 
-		txtRowSize, txtLineSize, txtLineStart, txtRowStart, txtSS, txtSW);
+	//m_PrinterMes.getdot(txtFont, txtBWDy, txtBWDx, txtNEG, txtContent, txtRowSize, txtLineSize, txtLineStart, txtRowStart, txtSS, txtSW);
 	
 	textObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
+
+//QString txtQString = ui.QRCodeLineEdit->text();
+//string txtString = txtQString.toStdString();
+//ShowText("7x5",false,false,false,txtString,20,20,0,0,0,1);
 
  void FileEditChild::paintDot()
 {
@@ -268,7 +275,6 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched,event);
 }
  
-
 void FileEditChild::variableTextBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -395,11 +401,34 @@ void FileEditChild::newDMBut_clicked()
 
 void FileEditChild::moveUpBut_clicked()
 {
-	QString str = key.A_KBBut_clicked();
-	ui.wordLineEdit->setText(str);
+	
 }
 
-void FileEditChild::test_clicked()
+void FileEditChild::hideKB()
+{
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->hide();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
+
+}
+
+void FileEditChild::getValA(QString str)
+{
+	str1 += key.A_KBBut_sendData();
+	ui.wordLineEdit->setText(str1);
+	ui.wordLineEdit->setFocus();
+
+}
+
+void FileEditChild::getValB(QString str)
+{
+	str1 +=  key.B_KBBut_sendData();
+	ui.wordLineEdit->setText(str1);
+
+}
+
+void FileEditChild::deleteChar()
 {
 	QString str = key.returnText();
 	ui.wordLineEdit->setText(str);
@@ -451,4 +480,6 @@ void FileEditChild::heightBarCodeAddBut_clicked()
 void FileEditChild::heightBarCodeRedButt_clicked()
 {
 	ui.heightBarCodeShowQRLab->setText(QString::number(21));
+	ui.wordLineEdit->backspace();
+	str1 = ui.wordLineEdit->text();
 }
