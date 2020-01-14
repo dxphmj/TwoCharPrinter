@@ -381,6 +381,15 @@
     <ClCompile Include="qrcode\split.c">
       <Filter>qrcode</Filter>
     </ClCompile>
+    <ClCompile Include="symbolwidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_symbolwidget.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_symbolwidget.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -584,6 +593,9 @@
     <ClInclude Include="qrcode\split.h">
       <Filter>qrcode</Filter>
     </ClInclude>
+    <ClInclude Include="GeneratedFiles\ui_symbolwidget.h">
+      <Filter>Generated Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="aboutmac.ui">
@@ -630,6 +642,12 @@
     </CustomBuild>
     <CustomBuild Include="lineedit_click.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="symbolwidget.h">
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="symbolwidget.ui">
+      <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	connect(ui.moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
 
+    ui.wordLineEdit->setFocus();
+
 	keyboardWidget = new keyboard(this);
 	ui.keyboardStackWid->addWidget(keyboardWidget);
 		
@@ -230,7 +232,6 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched,event);
 }
  
-
 void FileEditChild::variableTextBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -320,12 +321,35 @@ void FileEditChild::newDMBut_clicked()
 
 void FileEditChild::moveUpBut_clicked()
 {
-	QString str = key.A_KBBut_clicked();
-	ui.wordLineEdit->setText(str);
+	
 }
 
-void FileEditChild::test_clicked()
+void FileEditChild::hideKB()
 {
-	QString str = key.returnText();
-	ui.wordLineEdit->setText(str);
+	ui.keyboardStackWid->setWindowFlags(ui.keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	ui.keyboardStackWid->hide();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui.keyboardStackWid->raise();
+
+}
+
+void FileEditChild::getValA(QString str)
+{
+	str1 += key.A_KBBut_sendData();
+	ui.wordLineEdit->setText(str1);
+	ui.wordLineEdit->setFocus();
+
+}
+
+void FileEditChild::getValB(QString str)
+{
+	str1 +=  key.B_KBBut_sendData();
+	ui.wordLineEdit->setText(str1);
+
+}
+
+void FileEditChild::deleteChar()
+{
+	ui.wordLineEdit->backspace();
+	str1 = ui.wordLineEdit->text();
 }

@@ -13,14 +13,24 @@ class keyboard : public QWidget
 public:
 	keyboard(QWidget *parent = 0);
 	~keyboard();
-	QString returnText();
 
 private:
 	Ui::keyboard ui;
 	QString value;
+	QString str;
+	QString val;
+	//FileEditChild  *showText;
 
 public:
-	QString A_KBBut_clicked();
+	QString A_KBBut_sendData();
+    QString B_KBBut_sendData();
+
+private slots:
+	void enter_KBBut_clicked();
+	void A_KBBut_clicked();
+	void B_KBBut_clicked();
+	void backspace_KBBut_clicked();
+
 };
 
 #endif // KEYBOARD_H
