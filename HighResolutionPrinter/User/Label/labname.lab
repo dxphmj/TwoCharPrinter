@@ -9,15 +9,15 @@
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
         <LineStart>0</LineStart>
-        <RowStart>84</RowStart>
-        <LineSize>16</LineSize>
+        <RowStart>0</RowStart>
+        <LineSize>0</LineSize>
         <RowSize>84</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>16x12</setFONT>
+        <setFONT>7x5</setFONT>
         <setTEXT>NewText</setTEXT>
     </OBJ>
     <OBJ>
@@ -32,7 +32,7 @@
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>16x12</setFONT>
+        <setFONT>7x5</setFONT>
         <setTEXT>NewText</setTEXT>
     </OBJ>
 </MES>

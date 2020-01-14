@@ -24,7 +24,7 @@ public:
 	void ReadBmp(char* strFileName);
 	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
-
+	int degreenum;
 private:
 	Ui::FileEditChild ui;
 	keyboard  *keyboardWidget;
@@ -49,6 +49,13 @@ private slots:
 	void moveDownBut_clicked();
 	void moveLeftBut_clicked();
 	void moveRightBut_clicked();
+	void showNumCheckBox_clicked();
+	void degreeBarCodeAddBut_clicked();
+	void degreeBarCodeRedButt_clicked();
+	void zoomBarCodeAddBut_clicked();
+	void heightBarCodeAddBut_clicked();
+	void heightBarCodeRedButt_clicked();
+	
 
 
 protected:
