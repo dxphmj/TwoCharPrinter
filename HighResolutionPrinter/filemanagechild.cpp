@@ -13,16 +13,16 @@ FileManageChild::FileManageChild(QWidget *parent)
 	ui.setupUi(this);
 
 	//fileListWidget = this->ui.listWidget;  
-	ui.filePrivewtextBro->installEventFilter(this);
+	ui.filePrivewtextEdit->installEventFilter(this);
 
 	connect(ui.localFileBut,SIGNAL(clicked()),this,SLOT(ShowLocalFilePath()));  
 	//connect(ui.loadSeleFileBut, SIGNAL(clicked()),this,SLOT(PreviewLocalFile())); 
-	connect(ui.ListWidget1,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
+	connect(ui.filelistWidget,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
 }
 
 void FileManageChild::PreviewLocalFile()
 {
-	QString QfileName = this->ui.ListWidget1->currentItem()->text();
+	QString QfileName = this->ui.filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
 	string CfileName = QfileName.toStdString();
 	char* chr = const_cast<char*>(CfileName.c_str());
@@ -32,7 +32,7 @@ void FileManageChild::PreviewLocalFile()
 
 bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 {
-	if(watched == ui.filePrivewtextBro && event->type() == QEvent::Paint)
+	if(watched == ui.filePrivewtextEdit && event->type() == QEvent::Paint)
 	{
 		paintDot();
 	}
@@ -41,7 +41,7 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 
 void FileManageChild::paintDot()
 {
-	QPainter painter(ui.filePrivewtextBro);
+	QPainter painter(ui.filePrivewtextEdit);
 	m_PrinterMes2.DrawDot(&painter);
 }
 
@@ -55,7 +55,7 @@ void FileManageChild::slotShow(QDir dir)
 
 void FileManageChild::showFileInfoList(QFileInfoList list) 
 {  
-	ui.ListWidget1->clear(); 
+	ui.filelistWidget->clear(); 
 
 	for (unsigned int i = 0; i < list.count(); i++)  
 	{  
@@ -65,14 +65,14 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 			QIcon icon("dir.png");  
 			QString fileName = tmpFileInfo.fileName();  
 			QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
-			ui.ListWidget1->addItem(tmpListWidgetItem);  
+			ui.filelistWidget->addItem(tmpListWidgetItem);  
 		}  
 		else  
 		{  
 			QIcon icon("file.png");  
 			QString fileName = tmpFileInfo.fileName();  
 			QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
-			ui.ListWidget1->addItem(tmpListWidgetItem);  
+			ui.filelistWidget->addItem(tmpListWidgetItem);  
 		}  
 	}  
 }  

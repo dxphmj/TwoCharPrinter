@@ -14,7 +14,6 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
@@ -36,8 +35,6 @@ public:
     QPushButton *editSeleFileBut;
     QPushButton *delSeleFileBut;
     QPushButton *copyFile2localBut;
-    QListWidget *ListWidget1;
-    QTextEdit *filePrivewtextBro;
 
     void setupUi(QWidget *FileManageChild)
     {
@@ -102,16 +99,8 @@ public:
         copyFile2localBut->setFont(font1);
         copyFile2localBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        ListWidget1 = new QListWidget(FileManageChild);
-        ListWidget1->setObjectName(QStringLiteral("ListWidget1"));
-        ListWidget1->setGeometry(QRect(50, 30, 351, 611));
-        ListWidget1->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        filePrivewtextBro = new QTextEdit(FileManageChild);
-        filePrivewtextBro->setObjectName(QStringLiteral("filePrivewtextBro"));
-        filePrivewtextBro->setGeometry(QRect(430, 30, 571, 261));
 
         retranslateUi(FileManageChild);
-        QObject::connect(ListWidget1, SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)), FileManageChild, SLOT(slot1()));
 
         QMetaObject::connectSlotsByName(FileManageChild);
     } // setupUi
