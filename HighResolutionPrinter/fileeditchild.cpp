@@ -57,7 +57,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
- //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
+    //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
 	Create2Dcode(8,"1");
 
@@ -202,12 +202,15 @@ void FileEditChild::ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool tx
 	textObj.booBWDy = txtBWDy;
 	
 	//ClassMessage textClassMessage;
-	m_PrinterMes.getdot(txtFont, txtBWDy, txtBWDx, txtNEG, txtContent, 
-		txtRowSize, txtLineSize, txtLineStart, txtRowStart, txtSS, txtSW);
+	//m_PrinterMes.getdot(txtFont, txtBWDy, txtBWDx, txtNEG, txtContent, txtRowSize, txtLineSize, txtLineStart, txtRowStart, txtSS, txtSW);
 	
 	textObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
+
+//QString txtQString = ui.QRCodeLineEdit->text();
+//string txtString = txtQString.toStdString();
+//ShowText("7x5",false,false,false,txtString,20,20,0,0,0,1);
 
  void FileEditChild::paintDot()
 {
@@ -251,9 +254,6 @@ void FileEditChild::editBut_clicked()
 	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
 	ui.keyboardStackWid->raise();
 	ui.keyboardStackWid->setCurrentWidget(keyboardWidget);
-	QString txtQString = ui.QRCodeLineEdit->text();
-	string txtString = txtQString.toStdString();
-	ShowText("7x5",false,false,false,txtString,20,20,0,0,0,1);
 }
 
 void FileEditChild::delBut_clicked()
