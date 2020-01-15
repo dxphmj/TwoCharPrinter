@@ -27,6 +27,11 @@ public:
 	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	int degreenum;
+	int degreenumQr;
+	int degreenumDM;
+	float Zoomfactor; 
+	float ZoomfactorQr;
+	float ZoomfactorDM;
 private:
 	Ui::FileEditChild ui;
 	keyboard  *keyboardWidget;
@@ -54,13 +59,19 @@ private slots:
 	void showNumCheckBox_clicked();
 	void degreeBarCodeAddBut_clicked();
 	void degreeBarCodeRedButt_clicked();
-	void zoomBarCodeAddBut_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
 	void degreeQRAddBut_clicked();
 	void degreeQRRedButt_clicked();
 	void degreeDMAddBut_clicked();
 	void degreeDMRedButt_clicked();
+	void zoomBarCodeAddBut_clicked();
+	void zoomBarCodeRedBut_clicked();
+	void zoomQRAddBut_clicked();
+	void zoomQRRedBut_clicked();
+	void zoomDMAddBut_clicked();
+	void zoomDMRedBut_clicked();
+	
 	
 
 

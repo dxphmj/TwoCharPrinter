@@ -37,6 +37,11 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui.degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
 	connect(ui.degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	connect(ui.degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	connect(ui.zoomBarCodeRedBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeRedBut_clicked()));
+	connect(ui.zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
+	connect(ui.zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
+	connect(ui.zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
+	connect(ui.zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
 
     ui.wordLineEdit->setFocus();
 
@@ -108,7 +113,25 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui.typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
 	ui.typeBarCodeComBox->setCurrentIndex(3);
 
+	ui.preciseQRComBox->addItem(QStringLiteral("低"));
+	ui.preciseQRComBox->addItem(QStringLiteral("中"));
+	ui.preciseQRComBox->addItem(QStringLiteral("高"));
+	ui.preciseQRComBox->addItem(QStringLiteral("精准"));
+	ui.typeBarCodeComBox->setCurrentIndex(1);
+
+	ui.sideLenQRComBox->addItem(QStringLiteral("21 px"));
+	ui.sideLenQRComBox->addItem(QStringLiteral("25 px"));
+	ui.sideLenQRComBox->addItem(QStringLiteral("29 px"));
+	ui.sideLenQRComBox->addItem(QStringLiteral("33 px"));
+	ui.sideLenQRComBox->addItem(QStringLiteral("37 px"));
+	ui.typeBarCodeComBox->setCurrentIndex(1);
+
 	degreenum=0;
+	degreenumQr=0;
+	degreenumDM=0;
+	Zoomfactor=1;
+	ZoomfactorQr=1;
+	ZoomfactorDM=1;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
@@ -164,7 +187,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 	longth = my_symbol->bitmap_height;
 	//longth = my_symbol->width;
-	derta = longth-100;     //将21改为zoomShowBarCodeLab中的值
+	QString zoomvalue=ui.zoomShowBarCodeLab->text();
+	int zoomvalue1=zoomvalue.toInt();
+	derta = longth-zoomvalue1;     //将21改为zoomShowBarCodeLab中的值
 	//my_symbol->scale =proportion ;
 	//error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 
@@ -965,11 +990,6 @@ void FileEditChild::degreeBarCodeRedButt_clicked()
 	ui.degreeBarCodeShowLab->setText(QString::number(degreenum));
 }
 
-void FileEditChild::zoomBarCodeAddBut_clicked()
-{
-
-}
-
 void FileEditChild::heightBarCodeAddBut_clicked()
 {
 	ui.heightBarCodeShowQRLab->setText(QString::number(25));
@@ -985,55 +1005,143 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 void FileEditChild::degreeQRAddBut_clicked()
 {
 
-	if (degreenum<270)
+	if (degreenumQr<270)
 	{
-		degreenum=degreenum+90;
+		degreenumQr=degreenumQr+90;
 	} 
 	else
 	{
-		degreenum=0;
+		degreenumQr=0;
 	}
-	ui.degreeQRShowLab->setText(QString::number(degreenum));
+	ui.degreeQRShowLab->setText(QString::number(degreenumQr));
 }
 
 void FileEditChild::degreeQRRedButt_clicked()
 {
 
-	if (degreenum>0)
+	if (degreenumQr>0)
 	{
-		degreenum=degreenum-90;
+		degreenumQr=degreenumQr-90;
 	} 
 	else
 	{
-		degreenum=270;
+		degreenumQr=270;
 	}
-	ui.degreeQRShowLab->setText(QString::number(degreenum));
+	ui.degreeQRShowLab->setText(QString::number(degreenumQr));
 }
 
 void FileEditChild::degreeDMAddBut_clicked()
 {
 
-	if (degreenum<270)
+	if (degreenumDM<270)
 	{
-		degreenum=degreenum+90;
+		degreenumDM=degreenumDM+90;
 	} 
 	else
 	{
-		degreenum=0;
+		degreenumDM=0;
 	}
-	ui.degreeDMShowLab->setText(QString::number(degreenum));
+	ui.degreeDMShowLab->setText(QString::number(degreenumDM));
 }
 
 void FileEditChild::degreeDMRedButt_clicked()
 {
 
-	if (degreenum>0)
+	if (degreenumDM>0)
 	{
-		degreenum=degreenum-90;
+		degreenumDM=degreenumDM-90;
 	} 
 	else
 	{
-		degreenum=270;
+		degreenumDM=270;
 	}
-	ui.degreeDMShowLab->setText(QString::number(degreenum));
+	ui.degreeDMShowLab->setText(QString::number(degreenumDM));
 }
+
+void FileEditChild::zoomBarCodeAddBut_clicked()
+{
+
+	if (Zoomfactor>=0.5)
+	{
+		Zoomfactor=Zoomfactor+0.5;
+	} 
+	else
+	{
+		Zoomfactor=0.5;
+	}
+	ui.zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
+	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomBarCodeRedBut_clicked()
+{
+
+	if (Zoomfactor>=1)
+	{
+		Zoomfactor=Zoomfactor-0.5;
+	} 
+	else
+	{
+		Zoomfactor=0.5;
+	}
+	ui.zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
+}
+
+void FileEditChild::zoomQRAddBut_clicked()
+{
+
+	if (ZoomfactorQr>=0.5)
+	{
+		ZoomfactorQr=ZoomfactorQr+0.5;
+	} 
+	else
+	{
+		ZoomfactorQr=0.5;
+	}
+	ui.zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomQRRedBut_clicked()
+{
+
+	if (ZoomfactorQr>=1)
+	{
+		ZoomfactorQr=ZoomfactorQr-0.5;
+	} 
+	else
+	{
+		ZoomfactorQr=0.5;
+	}
+	ui.zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+}
+
+void FileEditChild::zoomDMAddBut_clicked()
+{
+
+	if (ZoomfactorDM>=0.5)
+	{
+		ZoomfactorDM=ZoomfactorDM+0.5;
+	} 
+	else
+	{
+		ZoomfactorDM=0.5;
+	}
+	ui.zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomDMRedBut_clicked()
+{
+
+	if (ZoomfactorDM>=1)
+	{
+		ZoomfactorDM=ZoomfactorDM-0.5;
+	} 
+	else
+	{
+		ZoomfactorDM=0.5;
+	}
+	ui.zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+}
+
