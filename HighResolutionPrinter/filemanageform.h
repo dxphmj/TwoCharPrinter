@@ -3,10 +3,11 @@
 
 #include <QWidget>
 #include <QStackedWidget>
-#include "fileeditchild.h"
-#include "filemanagechild.h"
-#include "variblewidget.h"
-#include "timecustom.h"
+
+class FileManageChild;
+class FileEditChild;
+class varibleWidget;
+class timeCustom;
 
 namespace Ui {
 class FilemanageForm;

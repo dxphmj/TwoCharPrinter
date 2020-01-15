@@ -1,6 +1,7 @@
 #include "keyboard.h"
 #include "fileeditchild.h"
 #include <QAction>
+#include <QtWidgets/QStackedWidget>
 
 keyboard::keyboard(QWidget *parent)
 	: QWidget(parent)

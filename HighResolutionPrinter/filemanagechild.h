@@ -2,7 +2,6 @@
 #define FILEMANAGECHILD_H
 
 #include <QWidget>
-#include "ui_filemanagechild.h"
 #include <QDir>  
 #include <QListWidgetItem>  
 #include <QFileInfoList>  
@@ -13,7 +12,9 @@
 #include <QStringList>
 #include "ClassMessage.h"
 
-using namespace MyNameSpace;
+namespace Ui {
+	class FileManageChild;
+}
 
 class FileManageChild : public QWidget
 {
@@ -33,10 +34,8 @@ public slots:
 	void slotShow(QDir dir);  
 
 private:
-	Ui::FileManageChild ui;
-	QLineEdit *fileLineEdit;  
-	QListWidget *fileListWidget;  
-	QFileInfoList list;
+	Ui::FileManageChild* ui;  
+ 	QFileInfoList list;
 
 protected:
 	bool eventFilter(QObject *watched, QEvent *event);

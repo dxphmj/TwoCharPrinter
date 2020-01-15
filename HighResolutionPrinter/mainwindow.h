@@ -2,13 +2,14 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "filemanageform.h"
-#include "paramsettingform.h"
-#include "ClassMessage.h"
 #include <QTimer>
 
+class FilemanageForm;
+class ParamSettingForm;
+class ClassMessage;
+
 namespace Ui {
-class MainWindow;
+	class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -20,12 +21,12 @@ public:
     ~MainWindow();
 
 public:
-	ClassMessage m_PrinterMes; //打印监控用
+ 	ClassMessage* m_PrinterMes; //打印监控用
 
 private:
     Ui::MainWindow *ui;
-	FilemanageForm m_fileManage;
-	ParamSettingForm m_paramsetting;
+	FilemanageForm *m_fileManage;
+	ParamSettingForm *m_paramsetting;
 
 private slots:
 	void fileManageBut_clicked();

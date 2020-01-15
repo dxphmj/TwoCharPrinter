@@ -2,14 +2,16 @@
 #define FILEEDITCHILD_H
 
 #include <QWidget>
-#include "ui_fileeditchild.h"
 #include "ClassMessage.h"
-#include "keyboard.h"
 #include "lineedit_click.h"
 #include <QLineEdit>
-#include "language.h"
 
-using namespace MyNameSpace;
+class keyboard;
+class language;
+
+namespace Ui {
+	class FileEditChild;
+}
 
 class FileEditChild : public QWidget
 {
@@ -33,10 +35,10 @@ public:
 	float ZoomfactorQr;
 	float ZoomfactorDM;
 private:
-	Ui::FileEditChild ui;
+	Ui::FileEditChild* ui;
 	keyboard  *keyboardWidget;
 	language  *languageWidget;
-	keyboard key;
+	keyboard* key;
 	QString str1;
 
 private slots:

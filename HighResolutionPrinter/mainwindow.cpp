@@ -1,8 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPushButton>
-#include "filemanageform.h"
 #include <QTime>
+#include "filemanageform.h"
+#include "paramsettingform.h"
+#include "ClassMessage.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,8 +14,14 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
 	ui->previewLab->installEventFilter(this);
+ 
+	m_fileManage = new FilemanageForm(this);
+	m_paramsetting = new ParamSettingForm(this);
+	m_paramsetting->hide();
+	m_fileManage->hide();
 
-
+	m_PrinterMes = new ClassMessage();
+	
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
 	connect(ui->paraManageBut,SIGNAL(clicked()),this,SLOT(paraManageBut_clicked()));
 	connect(ui->closeBut,SIGNAL(clicked()),this,SLOT(closeBut_clicked()));
@@ -38,12 +47,12 @@ MainWindow::MainWindow(QWidget *parent) :
  
 	ui->previewLab->setStyleSheet("background-color: rgb(255,255,255);"); 
 
-	m_PrinterMes.ReadBmp("D:\\1.bmp");
-	myTimer=new QTimer(this);
+	m_PrinterMes->ReadBmp("D:\\1.bmp");
+	myTimer = new QTimer(this);
 	myTimer->start(0);
 	connect(myTimer,SIGNAL(timeout()),this,SLOT(GetDateTime()));
 	ui->timeShowLab->setStyleSheet("qproperty-alignment: 'AlignVCenter | AlignRight';color:rgb(255,255,255);font-size:40px;");
-
+	 
 }
 
 MainWindow::~MainWindow()
@@ -55,20 +64,22 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->previewLab && event->type() == QEvent::Paint)
 	{
-		QPainter painter(ui->previewLab);
-		m_PrinterMes.DrawDot(&painter);
+	  	QPainter painter(ui->previewLab);
+	 	m_PrinterMes->DrawDot(&painter);
 	}
 	return QWidget::eventFilter(watched,event);
 }
 
 void MainWindow::fileManageBut_clicked()
 {
-	m_fileManage.show();
+	m_paramsetting->hide();
+	m_fileManage->show();
 }
 
 void MainWindow::paraManageBut_clicked()
 {
-	m_paramsetting.show();
+	m_fileManage->hide();
+	m_paramsetting->show();
 }
 
 void MainWindow::closeBut_clicked()
@@ -78,6 +89,6 @@ void MainWindow::closeBut_clicked()
 
 void MainWindow::GetDateTime()
 {
-	QTime timeNow=QTime::currentTime();
-	ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString())+tr("  "));
+	 QTime timeNow=QTime::currentTime();
+	 ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString())+tr("  "));
 }
