@@ -2,7 +2,10 @@
 #include "ui_filemanageform.h"
 #include <QPushButton>
 #include <QStackedWidget>
-//#include "mainwindow.h"
+#include "fileeditchild.h"
+#include "variblewidget.h"
+#include "timecustom.h"
+#include "filemanagechild.h"
 
 FilemanageForm::FilemanageForm(QWidget *parent) :
     QWidget(parent),

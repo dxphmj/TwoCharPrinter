@@ -2,14 +2,16 @@
 #define FILEEDITCHILD_H
 
 #include <QWidget>
-#include "ui_fileeditchild.h"
 #include "ClassMessage.h"
-#include "keyboard.h"
 #include "lineedit_click.h"
 #include <QLineEdit>
-#include "language.h"
 
-using namespace MyNameSpace;
+class keyboard;
+class language;
+
+namespace Ui {
+	class FileEditChild;
+}
 
 class FileEditChild : public QWidget
 {
@@ -28,11 +30,16 @@ public:
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	QString aaaa;	
 	int degreenum;
+	int degreenumQr;
+	int degreenumDM;
+	float Zoomfactor; 
+	float ZoomfactorQr;
+	float ZoomfactorDM;
 private:
-	Ui::FileEditChild ui;
+	Ui::FileEditChild* ui;
 	keyboard  *keyboardWidget;
 	language  *languageWidget;
-	keyboard key;
+	keyboard* key;
 	QString str1;
 
 private slots:
@@ -55,14 +62,24 @@ private slots:
 	void showNumCheckBox_clicked();
 	void degreeBarCodeAddBut_clicked();
 	void degreeBarCodeRedButt_clicked();
-	void zoomBarCodeAddBut_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
 	void degreeQRAddBut_clicked();
 	void degreeQRRedButt_clicked();
 	void degreeDMAddBut_clicked();
 	void degreeDMRedButt_clicked();
+
 	void newBmpBut_clicked();
+
+	void zoomBarCodeAddBut_clicked();
+	void zoomBarCodeRedBut_clicked();
+	void zoomQRAddBut_clicked();
+	void zoomQRRedBut_clicked();
+	void zoomDMAddBut_clicked();
+	void zoomDMRedBut_clicked();
+	
+	
+
 
 
 protected:
