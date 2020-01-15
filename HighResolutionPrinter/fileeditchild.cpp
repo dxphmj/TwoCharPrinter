@@ -5,6 +5,7 @@
 #include "filemanageform.h"
 #include <QTableWidget>
 #include "backend\zint.h"
+#include <QFileDialog>
 #include "keyboard.h"
 #include "language.h"
 
@@ -42,12 +43,21 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
 	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	connect(ui->zoomBarCodeRedBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeRedBut_clicked()));
+	connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
+	connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
+	connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
+	connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
+	connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
+	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
+	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
+	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 
     ui->wordLineEdit->setFocus();
 
+
 	keyboardWidget = new keyboard(this);
 	languageWidget = new language();
-	key = new keyboard();
 	ui->keyboardStackWid->addWidget(keyboardWidget);
 	ui->keyboardStackWid->addWidget(languageWidget);
 	
@@ -114,7 +124,25 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
 	ui->typeBarCodeComBox->setCurrentIndex(3);
 
+	ui->preciseQRComBox->addItem(QStringLiteral("低"));
+	ui->preciseQRComBox->addItem(QStringLiteral("中"));
+	ui->preciseQRComBox->addItem(QStringLiteral("高"));
+	ui->preciseQRComBox->addItem(QStringLiteral("精准"));
+	ui->typeBarCodeComBox->setCurrentIndex(1);
+
+	ui->sideLenQRComBox->addItem(QStringLiteral("21 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("25 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("29 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("33 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("37 px"));
+	ui->typeBarCodeComBox->setCurrentIndex(1);
+
 	degreenum=0;
+	degreenumQr=0;
+	degreenumDM=0;
+	Zoomfactor=1;
+	ZoomfactorQr=1;
+	ZoomfactorDM=1;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
@@ -170,7 +198,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 	longth = my_symbol->bitmap_height;
 	//longth = my_symbol->width;
-	derta = longth-100;     //将21改为zoomShowBarCodeLab中的值
+	QString zoomvalue=ui->zoomShowBarCodeLab->text();
+	int zoomvalue1=zoomvalue.toInt();
+	derta = longth-zoomvalue1;     //将21改为zoomShowBarCodeLab中的值
 	//my_symbol->scale =proportion ;
 	//error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 
@@ -513,9 +543,52 @@ void FileEditChild::customTimeBut_clicked()
 	pFilemanageForm->timeCustomCall();
 }
 
+void FileEditChild::ReadBmp(char* strFileName)
+{
+	QPixmap pLoad;
+	pLoad.load(strFileName);
+	int nW = pLoad.width();
+	QImage pImage;
+	pImage = pLoad.toImage();
+
+	OBJ_Control bmpObj;
+	bmpObj.intLineStart=0;
+	bmpObj.intRowStart=0;
+	bmpObj.strType1="text";
+	bmpObj.strType2="logo";
+	bmpObj.intLineSize=pImage.width();
+	bmpObj.intRowSize=pImage.height();
+	bmpObj.intSW=1;
+	bmpObj.intSS=0;
+	bmpObj.booNEG=false;
+	bmpObj.booBWDx=false;
+	bmpObj.booBWDy=false;
+
+	for(int y = 0; y<pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x<pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+			if(average < 100)
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
+			else
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
+		}  
+
+	}  
+	bmpObj.booFocus = true;
+	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
+}
+
 void FileEditChild::selBmpBut_clicked()
 {
-
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
+	aaaa=fileName;
+	QImage image,result;
+	image.load(fileName); 
+	result = image.scaled(ui->bmpPreviewLab->width(), ui->bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
 }
 
 void FileEditChild::delBut_clicked()
@@ -525,7 +598,44 @@ void FileEditChild::delBut_clicked()
 
 void FileEditChild::wordLineEdit_clicked()
 {
+	//ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	//ui->keyboardStackWid->show();
+	////仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	//ui->keyboardStackWid->raise();
+	//ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+
 	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	keyboardWidget->m_pInputEdit = ui->wordLineEdit;
+	ui->keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui->keyboardStackWid->raise();
+	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+}
+
+void FileEditChild::barCodeLineEdit_clicked()
+{
+	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	keyboardWidget->m_pInputEdit = ui->barCodeLineEdit;
+	ui->keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui->keyboardStackWid->raise();
+	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+}
+
+void FileEditChild::QRCodeLineEdit_clicked()
+{
+	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	keyboardWidget->m_pInputEdit = ui->QRCodeLineEdit;
+	ui->keyboardStackWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui->keyboardStackWid->raise();
+	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+}
+
+void FileEditChild::DMCodeLineEdit_clicked()
+{
+	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	keyboardWidget->m_pInputEdit = ui->DMCodeLineEdit;
 	ui->keyboardStackWid->show();
 	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
 	ui->keyboardStackWid->raise();
@@ -548,36 +658,6 @@ void FileEditChild::returnKB()
 	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
 	ui->keyboardStackWid->raise();
 	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-}
-
-void FileEditChild::barCodeLineEdit_clicked()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-
-}
-
-void FileEditChild::QRCodeLineEdit_clicked()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-
-}
-
-void FileEditChild::DMCodeLineEdit_clicked()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-
 }
 
 void FileEditChild::newTextBut_clicked()
@@ -641,6 +721,16 @@ void FileEditChild::newDMBut_clicked()
 	CreateDMcode(71,str);
 }
 
+void FileEditChild::newBmpBut_clicked()
+{
+	 
+	char *pic;
+	QByteArray ba=aaaa.toLatin1();
+	pic=ba.data();
+	ReadBmp(pic);
+
+}
+
 void FileEditChild::moveUpBut_clicked()
 {
 	
@@ -676,279 +766,13 @@ void FileEditChild::deleteChar()
 	str1 = ui->wordLineEdit->text();
 }
 
-void FileEditChild::getValA(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->A_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValB(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->B_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValC(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->C_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValD(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->D_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValE(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->E_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValF(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->F_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValG(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->G_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValH(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->H_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValI(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->I_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValJ(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->J_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValK(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->K_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValL(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->L_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValM(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->M_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValN(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->N_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValO(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->O_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValP(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->P_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValQ(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->Q_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValR(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->R_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValS(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->S_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValT(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->T_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValU(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->U_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValV(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->V_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValW(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->W_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValX(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->X_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValY(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->Y_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValZ(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->Z_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum1(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num1_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum2(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num2_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum3(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num3_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum4(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num4_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum5(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num5_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum6(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num6_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum7(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num7_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum8(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num8_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum9(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num9_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValnum0(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->num0_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValspace(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->space_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValcomma(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->comma_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
-void FileEditChild::getValperiod(QString str)
-{
-	ui->wordLineEdit->cursorPosition();
-	str1 = key->period_KBBut_sendData();
-	ui->wordLineEdit->insert(str1);
-}
-
+//void FileEditChild::getValA(QString str)
+//{
+//	//ui->wordLineEdit->cursorPosition();
+//	//str1 = key->A_KBBut_sendData();
+//	//ui->wordLineEdit->insert(str1);
+//}
+//
 void FileEditChild::showNumCheckBox_clicked()
 {
 	
@@ -982,11 +806,6 @@ void FileEditChild::degreeBarCodeRedButt_clicked()
 	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
 }
 
-void FileEditChild::zoomBarCodeAddBut_clicked()
-{
-
-}
-
 void FileEditChild::heightBarCodeAddBut_clicked()
 {
 	ui->heightBarCodeShowQRLab->setText(QString::number(25));
@@ -1002,55 +821,143 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 void FileEditChild::degreeQRAddBut_clicked()
 {
 
-	if (degreenum<270)
+	if (degreenumQr<270)
 	{
-		degreenum=degreenum+90;
+		degreenumQr=degreenumQr+90;
 	} 
 	else
 	{
-		degreenum=0;
+		degreenumQr=0;
 	}
-	ui->degreeQRShowLab->setText(QString::number(degreenum));
+	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
 }
 
 void FileEditChild::degreeQRRedButt_clicked()
 {
 
-	if (degreenum>0)
+	if (degreenumQr>0)
 	{
-		degreenum=degreenum-90;
+		degreenumQr=degreenumQr-90;
 	} 
 	else
 	{
-		degreenum=270;
+		degreenumQr=270;
 	}
-	ui->degreeQRShowLab->setText(QString::number(degreenum));
+	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
 }
 
 void FileEditChild::degreeDMAddBut_clicked()
 {
 
-	if (degreenum<270)
+	if (degreenumDM<270)
 	{
-		degreenum=degreenum+90;
+		degreenumDM=degreenumDM+90;
 	} 
 	else
 	{
-		degreenum=0;
+		degreenumDM=0;
 	}
-	ui->degreeDMShowLab->setText(QString::number(degreenum));
+	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
 }
 
 void FileEditChild::degreeDMRedButt_clicked()
 {
 
-	if (degreenum>0)
+	if (degreenumDM>0)
 	{
-		degreenum=degreenum-90;
+		degreenumDM=degreenumDM-90;
 	} 
 	else
 	{
-		degreenum=270;
+		degreenumDM=270;
 	}
-	ui->degreeDMShowLab->setText(QString::number(degreenum));
+	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
 }
+
+void FileEditChild::zoomBarCodeAddBut_clicked()
+{
+
+	if (Zoomfactor>=0.5)
+	{
+		Zoomfactor=Zoomfactor+0.5;
+	} 
+	else
+	{
+		Zoomfactor=0.5;
+	}
+	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomBarCodeRedBut_clicked()
+{
+
+	if (Zoomfactor>=1)
+	{
+		Zoomfactor=Zoomfactor-0.5;
+	} 
+	else
+	{
+		Zoomfactor=0.5;
+	}
+	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
+}
+
+void FileEditChild::zoomQRAddBut_clicked()
+{
+
+	if (ZoomfactorQr>=0.5)
+	{
+		ZoomfactorQr=ZoomfactorQr+0.5;
+	} 
+	else
+	{
+		ZoomfactorQr=0.5;
+	}
+	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomQRRedBut_clicked()
+{
+
+	if (ZoomfactorQr>=1)
+	{
+		ZoomfactorQr=ZoomfactorQr-0.5;
+	} 
+	else
+	{
+		ZoomfactorQr=0.5;
+	}
+	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+}
+
+void FileEditChild::zoomDMAddBut_clicked()
+{
+
+	if (ZoomfactorDM>=0.5)
+	{
+		ZoomfactorDM=ZoomfactorDM+0.5;
+	} 
+	else
+	{
+		ZoomfactorDM=0.5;
+	}
+	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+}
+
+void FileEditChild::zoomDMRedBut_clicked()
+{
+
+	if (ZoomfactorDM>=1)
+	{
+		ZoomfactorDM=ZoomfactorDM-0.5;
+	} 
+	else
+	{
+		ZoomfactorDM=0.5;
+	}
+	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+}
+

@@ -6,6 +6,8 @@
 #include <QLineEdit>
 #include <QString>
 
+class lineedit_click;
+
 class keyboard : public QWidget
 {
 	Q_OBJECT
@@ -13,6 +15,10 @@ class keyboard : public QWidget
 public:
 	keyboard(QWidget *parent = 0);
 	~keyboard();
+
+public:
+	bool isCap;
+	lineedit_click* m_pInputEdit;
 
 private:
 	Ui::keyboard ui;
@@ -22,50 +28,13 @@ private:
 	//FileEditChild  *showText;
 
 public:
-	QString A_KBBut_sendData();
-    QString B_KBBut_sendData();
-	QString C_KBBut_sendData();
-	QString D_KBBut_sendData();
-	QString E_KBBut_sendData();
-	QString F_KBBut_sendData();
-	QString G_KBBut_sendData();
-	QString H_KBBut_sendData();
-	QString I_KBBut_sendData();
-	QString J_KBBut_sendData();
-	QString K_KBBut_sendData();
-	QString L_KBBut_sendData();
-	QString M_KBBut_sendData();
-	QString N_KBBut_sendData();
-	QString O_KBBut_sendData();
-	QString P_KBBut_sendData();
-	QString Q_KBBut_sendData();
-	QString R_KBBut_sendData();
-	QString S_KBBut_sendData();
-	QString T_KBBut_sendData();
-	QString U_KBBut_sendData();
-	QString V_KBBut_sendData();
-	QString W_KBBut_sendData();
-	QString X_KBBut_sendData();
-	QString Y_KBBut_sendData();
-	QString Z_KBBut_sendData();
-	QString num1_KBBut_sendData();
-	QString num2_KBBut_sendData();
-	QString num3_KBBut_sendData();
-	QString num4_KBBut_sendData();
-	QString num5_KBBut_sendData();
-	QString num6_KBBut_sendData();
-	QString num7_KBBut_sendData();
-	QString num8_KBBut_sendData();
-	QString num9_KBBut_sendData();
-	QString num0_KBBut_sendData();
-	QString space_KBBut_sendData();
-	QString comma_KBBut_sendData();
-	QString period_KBBut_sendData();
+	//QString A_KBBut_sendData();
 
 private slots:
 	void enter_KBBut_clicked();
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
+	void on_caps_Bt_clicked();
 
 	void A_KBBut_clicked();
 	void B_KBBut_clicked();

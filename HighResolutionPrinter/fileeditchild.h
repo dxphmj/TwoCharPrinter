@@ -30,14 +30,21 @@ public:
 	void LoadLocalFile();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+
 	void ShowText();
+	QString aaaa;	
 	int degreenum;
+	int degreenumQr;
+	int degreenumDM;
+	float Zoomfactor; 
+	float ZoomfactorQr;
+	float ZoomfactorDM;
 
 private:
 	Ui::FileEditChild* ui;
 	keyboard  *keyboardWidget;
 	language  *languageWidget;
-	keyboard* key;
+	//keyboard* key;
 	QString str1;
 
 private slots:
@@ -60,14 +67,24 @@ private slots:
 	void showNumCheckBox_clicked();
 	void degreeBarCodeAddBut_clicked();
 	void degreeBarCodeRedButt_clicked();
-	void zoomBarCodeAddBut_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
 	void degreeQRAddBut_clicked();
 	void degreeQRRedButt_clicked();
 	void degreeDMAddBut_clicked();
 	void degreeDMRedButt_clicked();
+
+	void newBmpBut_clicked();
+
+	void zoomBarCodeAddBut_clicked();
+	void zoomBarCodeRedBut_clicked();
+	void zoomQRAddBut_clicked();
+	void zoomQRRedBut_clicked();
+	void zoomDMAddBut_clicked();
+	void zoomDMRedBut_clicked();
 	
+	
+
 
 
 protected:
@@ -81,47 +98,7 @@ public:
 	void returnKB();
 	void deleteChar();
 
-	void getValA(QString str);
-	void getValB(QString str);
-	void getValC(QString str);
-	void getValD(QString str);
-	void getValE(QString str);
-	void getValF(QString str);
-	void getValG(QString str);
-	void getValH(QString str);
-	void getValI(QString str);
-	void getValJ(QString str);
-	void getValK(QString str);
-	void getValL(QString str);
-	void getValM(QString str);
-	void getValN(QString str);
-	void getValO(QString str);
-	void getValP(QString str);
-	void getValQ(QString str);
-	void getValR(QString str);
-	void getValS(QString str);
-	void getValT(QString str);
-	void getValU(QString str);
-	void getValV(QString str);
-	void getValW(QString str);
-	void getValX(QString str);
-	void getValY(QString str);
-	void getValZ(QString str);
-	void getValnum1(QString str);
-	void getValnum2(QString str);
-	void getValnum3(QString str);
-	void getValnum4(QString str);
-	void getValnum5(QString str);
-	void getValnum6(QString str);
-	void getValnum7(QString str);
-	void getValnum8(QString str);
-	void getValnum9(QString str);
-	void getValnum0(QString str);
-	void getValspace(QString str);
-	void getValcomma(QString str);
-	void getValperiod(QString str);
-
-
+	//void getValA(QString str);
 };
 
 #endif // FILEEDITCHILD_H
