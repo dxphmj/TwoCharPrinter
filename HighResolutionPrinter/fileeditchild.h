@@ -27,6 +27,7 @@ public:
 	void ReadBmp(char* strFileName);
 	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	QString aaaa;	
 	int degreenum;
 	int degreenumQr;
 	int degreenumDM;
@@ -66,6 +67,9 @@ private slots:
 	void degreeQRRedButt_clicked();
 	void degreeDMAddBut_clicked();
 	void degreeDMRedButt_clicked();
+
+	void newBmpBut_clicked();
+
 	void zoomBarCodeAddBut_clicked();
 	void zoomBarCodeRedBut_clicked();
 	void zoomQRAddBut_clicked();
@@ -74,6 +78,7 @@ private slots:
 	void zoomDMRedBut_clicked();
 	
 	
+
 
 
 protected:
