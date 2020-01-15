@@ -58,7 +58,7 @@ keyboard::keyboard(QWidget *parent)
 
 keyboard::~keyboard()
 {
-
+	
 }
 
 void keyboard::enter_KBBut_clicked()
@@ -66,7 +66,7 @@ void keyboard::enter_KBBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
 	pFileEditChild->hideKB();
-
+	pFileEditChild->ShowText();
 }
 
 void keyboard::backspace_KBBut_clicked()

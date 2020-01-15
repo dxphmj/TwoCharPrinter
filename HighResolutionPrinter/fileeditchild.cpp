@@ -1,5 +1,7 @@
 #include "ui_fileeditchild.h"
+#include "lineedit_click.h"
 #include "fileeditchild.h"
+#include "filemanagechild.h"
 #include "filemanageform.h"
 #include <QTableWidget>
 #include "backend\zint.h"
@@ -416,7 +418,8 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 
 }
-void FileEditChild::ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
+
+void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 	int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
 {
 	OBJ_Control textObj;
@@ -467,11 +470,21 @@ void FileEditChild::ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool tx
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
 
-//QString txtQString = ui->QRCodeLineEdit->text();
-//string txtString = txtQString.toStdString();
-//ShowText("7x5",false,false,false,txtString,20,20,0,0,0,1);
+void FileEditChild::ShowText()
+{
+	QString txtQString = ui->wordLineEdit->text();
+	string txtString = txtQString.toStdString();
+	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
+}
 
- void FileEditChild::paintDot()
+void FileEditChild::LoadLocalFile()
+{
+	//m_FileMangeChild = 
+	char *str = m_FileMangeChild->localFilePathChar;
+	m_PrinterMes.ReadObjectsFromXml(str);
+}
+
+void FileEditChild::paintDot()
 {
 	QPainter painter(ui->editPreviewText);
 	m_PrinterMes.DrawDot(&painter);

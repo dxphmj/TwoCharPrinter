@@ -12,6 +12,8 @@
 #include <QStringList>
 #include "ClassMessage.h"
 
+class FileEditChild;
+
 namespace Ui {
 	class FileManageChild;
 }
@@ -24,14 +26,18 @@ public:
 	FileManageChild(QWidget *parent = 0);
 	~FileManageChild();
 	ClassMessage  m_PrinterMes2;
+	FileEditChild *m_FileEditChild;
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
 	QString rootStr;
+	char* localFilePathChar;
 
 public slots:  
 	void ShowLocalFilePath();
 	void PreviewLocalFile();
-	void slotShow(QDir dir);  
+	void slotShow(QDir dir); 
+	void loadSeleFileBut_clicked();
+	void editSeleFileBut_clicked();
 
 private:
 	Ui::FileManageChild* ui;  

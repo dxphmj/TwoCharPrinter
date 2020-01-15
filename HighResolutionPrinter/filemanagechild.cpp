@@ -6,6 +6,7 @@
 #include "QFile"
 #include <QTextCodec>
 #include "filemanageform.h"
+#include "fileeditchild.h"
 
 FileManageChild::FileManageChild(QWidget *parent)
 	: QWidget(parent),
@@ -16,8 +17,22 @@ FileManageChild::FileManageChild(QWidget *parent)
 	ui->filePrivewtextEdit->installEventFilter(this);
 
 	connect(ui->localFileBut,SIGNAL(clicked()),this,SLOT(ShowLocalFilePath()));  
-	//connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(PreviewLocalFile())); 
+	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
+	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
 	connect(ui->filelistWidget,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
+}
+void FileManageChild::loadSeleFileBut_clicked()
+{
+
+}
+
+void FileManageChild::editSeleFileBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->FileEditWidgetCall();
+
+	m_FileEditChild->LoadLocalFile();
 }
 
 void FileManageChild::PreviewLocalFile()
@@ -25,8 +40,8 @@ void FileManageChild::PreviewLocalFile()
 	QString QfileName = this->ui->filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
 	string CfileName = QfileName.toStdString();
-	char* chr = const_cast<char*>(CfileName.c_str());
-	m_PrinterMes2.ReadObjectsFromXml(chr);
+	localFilePathChar = const_cast<char*>(CfileName.c_str());
+	m_PrinterMes2.ReadObjectsFromXml(localFilePathChar);
 	
 }
 

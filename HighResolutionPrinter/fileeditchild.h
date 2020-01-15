@@ -3,11 +3,11 @@
 
 #include <QWidget>
 #include "ClassMessage.h"
-#include "lineedit_click.h"
 #include <QLineEdit>
 
 class keyboard;
 class language;
+class FileManageChild;
 
 namespace Ui {
 	class FileEditChild;
@@ -21,14 +21,18 @@ public:
 	FileEditChild(QWidget *parent = 0);
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
+	FileManageChild *m_FileMangeChild;
 	int QrecodeMatrix[25][25];
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
-	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
+	void LoadLocalFile();
+	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	void ShowText();
 	int degreenum;
+
 private:
 	Ui::FileEditChild* ui;
 	keyboard  *keyboardWidget;

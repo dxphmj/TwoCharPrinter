@@ -69,11 +69,14 @@ void FilemanageForm::manageFileBut_clicked()
 void FilemanageForm::variableWidgetCall()
 {
 	ui->stackedWidget->setCurrentWidget(fontVarWidget);
-
 }
 
 void FilemanageForm::timeCustomCall()
 {
 	ui->stackedWidget->setCurrentWidget(timeCustomWidget);
+}
 
+void FilemanageForm::FileEditWidgetCall()
+{
+	ui->stackedWidget->setCurrentWidget(FormFileEditChild);
 }
