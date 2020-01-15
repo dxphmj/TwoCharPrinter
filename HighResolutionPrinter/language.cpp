@@ -1,6 +1,7 @@
 #include "language.h"
 #include "ui_language.h"
 #include "fileeditchild.h"
+#include <QtWidgets/QStackedWidget>
 
 language::language(QWidget *parent)
 	: QWidget(parent)
