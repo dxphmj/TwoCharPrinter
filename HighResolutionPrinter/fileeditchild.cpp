@@ -3,6 +3,7 @@
 #include <QTableWidget>
 #include "ClassMessage.h"
 #include "backend\zint.h"
+#include <QFileDialog>
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent)
@@ -37,6 +38,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui.degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
 	connect(ui.degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	connect(ui.degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	connect(ui.newBmpBut,SIGNAL(clicked()),this,SLOT(newBmpBut_clicked()));
 
     ui.wordLineEdit->setFocus();
 
@@ -496,9 +498,52 @@ void FileEditChild::customTimeBut_clicked()
 	pFilemanageForm->timeCustomCall();
 }
 
+void FileEditChild::ReadBmp(char* strFileName)
+{
+	QPixmap pLoad;
+	pLoad.load(strFileName);
+	int nW = pLoad.width();
+	QImage pImage;
+	pImage = pLoad.toImage();
+
+	OBJ_Control bmpObj;
+	bmpObj.intLineStart=0;
+	bmpObj.intRowStart=0;
+	bmpObj.strType1="text";
+	bmpObj.strType2="logo";
+	bmpObj.intLineSize=pImage.width();
+	bmpObj.intRowSize=pImage.height();
+	bmpObj.intSW=1;
+	bmpObj.intSS=0;
+	bmpObj.booNEG=false;
+	bmpObj.booBWDx=false;
+	bmpObj.booBWDy=false;
+
+	for(int y = 0; y<pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x<pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+			if(average < 100)
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
+			else
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
+		}  
+
+	}  
+	bmpObj.booFocus = true;
+	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
+}
+
 void FileEditChild::selBmpBut_clicked()
 {
-
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
+	aaaa=fileName;
+	QImage image,result;
+	image.load(fileName); 
+	result = image.scaled(ui.bmpPreviewLab->width(), ui.bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
+	ui.bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
 }
 
 void FileEditChild::delBut_clicked()
@@ -622,6 +667,16 @@ void FileEditChild::newDMBut_clicked()
 	QString str;
 	str = ui.DMCodeLineEdit->text();
 	CreateDMcode(71,str);
+}
+
+void FileEditChild::newBmpBut_clicked()
+{
+	 
+	char *pic;
+	QByteArray ba=aaaa.toLatin1();
+	pic=ba.data();
+	ReadBmp(pic);
+
 }
 
 void FileEditChild::moveUpBut_clicked()

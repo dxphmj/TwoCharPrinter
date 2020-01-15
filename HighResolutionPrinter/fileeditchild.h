@@ -26,6 +26,7 @@ public:
 	void ReadBmp(char* strFileName);
 	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	QString aaaa;	
 	int degreenum;
 private:
 	Ui::FileEditChild ui;
@@ -61,7 +62,7 @@ private slots:
 	void degreeQRRedButt_clicked();
 	void degreeDMAddBut_clicked();
 	void degreeDMRedButt_clicked();
-	
+	void newBmpBut_clicked();
 
 
 protected:
