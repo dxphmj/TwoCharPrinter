@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "ClassMessage.h"
-#include "lineedit_click.h"
 #include <QLineEdit>
 
 class keyboard;
