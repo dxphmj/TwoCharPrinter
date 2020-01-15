@@ -2,6 +2,7 @@
 #include "fileeditchild.h"
 #include <QAction>
 #include <QtWidgets/QStackedWidget>
+#include "lineedit_click.h"
 
 keyboard::keyboard(QWidget *parent)
 	: QWidget(parent)
@@ -53,6 +54,7 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui.enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
 	connect(ui.backspace_KBBut,SIGNAL(clicked()),this,SLOT(backspace_KBBut_clicked()));
 	connect(ui.language_KBBut,SIGNAL(clicked()),this,SLOT(language_KBBut_clicked()));
+	connect(ui.shift_KBBut,SIGNAL(clicked()),this,SLOT(on_caps_Bt_clicked()));
 
 }
 
@@ -72,8 +74,9 @@ void keyboard::enter_KBBut_clicked()
 void keyboard::backspace_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->deleteChar();
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->backspace();
+	QString str1 = m_pInputEdit->text();
 }
 
 void keyboard::language_KBBut_clicked()
@@ -86,468 +89,338 @@ void keyboard::language_KBBut_clicked()
 
 void keyboard::A_KBBut_clicked()
 {
+	//QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	//FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	//pFileEditChild->getValA(val);
+
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValA(val);
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.A_KBBut->text());
 }
-QString keyboard::A_KBBut_sendData()
-{
-	value = ui.A_KBBut->text();
-	return this->value;
-}
+//QString keyboard::A_KBBut_sendData()
+//{
+//	value = ui.A_KBBut->text();
+//	return this->value;
+//}
 
 void keyboard::B_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValB(val);
-}
-QString keyboard::B_KBBut_sendData()
-{
-	value = ui.B_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.B_KBBut->text());
 }
 
 void keyboard::C_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValC(val);
-}
-QString keyboard::C_KBBut_sendData()
-{
-	value = ui.C_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.C_KBBut->text());
 }
 
 void keyboard::D_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValD(val);
-}
-QString keyboard::D_KBBut_sendData()
-{
-	value = ui.D_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.D_KBBut->text());
 }
 
 void keyboard::E_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValE(val);
-}
-QString keyboard::E_KBBut_sendData()
-{
-	value = ui.E_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.E_KBBut->text());
 }
 
 void keyboard::F_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValF(val);
-}
-QString keyboard::F_KBBut_sendData()
-{
-	value = ui.F_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.F_KBBut->text());
 }
 
 void keyboard::G_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValG(val);
-}
-QString keyboard::G_KBBut_sendData()
-{
-	value = ui.G_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.G_KBBut->text());
 }
 
 void keyboard::H_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValH(val);
-}
-QString keyboard::H_KBBut_sendData()
-{
-	value = ui.H_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.H_KBBut->text());
 }
 
 void keyboard::I_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValI(val);
-}
-QString keyboard::I_KBBut_sendData()
-{
-	value = ui.I_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.I_KBBut->text());
 }
 
 void keyboard::J_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValJ(val);
-}
-QString keyboard::J_KBBut_sendData()
-{
-	value = ui.J_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.J_KBBut->text());
 }
 
 void keyboard::K_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValK(val);
-}
-QString keyboard::K_KBBut_sendData()
-{
-	value = ui.K_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.K_KBBut->text());
 }
 
 void keyboard::L_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValL(val);
-}
-QString keyboard::L_KBBut_sendData()
-{
-	value = ui.L_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.L_KBBut->text());
 }
 
 void keyboard::M_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValM(val);
-}
-QString keyboard::M_KBBut_sendData()
-{
-	value = ui.M_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.M_KBBut->text());
 }
 
 void keyboard::N_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValN(val);
-}
-QString keyboard::N_KBBut_sendData()
-{
-	value = ui.N_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.N_KBBut->text());
 }
 
 void keyboard::O_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValO(val);
-}
-QString keyboard::O_KBBut_sendData()
-{
-	value = ui.O_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.O_KBBut->text());
 }
 
 void keyboard::P_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValP(val);
-}
-QString keyboard::P_KBBut_sendData()
-{
-	value = ui.P_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.P_KBBut->text());
 }
 
 void keyboard::Q_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValQ(val);
-}
-QString keyboard::Q_KBBut_sendData()
-{
-	value = ui.Q_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.Q_KBBut->text());
 }
 
 void keyboard::R_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValR(val);
-}
-QString keyboard::R_KBBut_sendData()
-{
-	value = ui.R_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.R_KBBut->text());
 }
 
 void keyboard::S_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValS(val);
-}
-QString keyboard::S_KBBut_sendData()
-{
-	value = ui.S_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.S_KBBut->text());
 }
 
 void keyboard::T_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValT(val);
-}
-QString keyboard::T_KBBut_sendData()
-{
-	value = ui.T_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.T_KBBut->text());
 }
 
 void keyboard::U_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValU(val);
-}
-QString keyboard::U_KBBut_sendData()
-{
-	value = ui.U_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.U_KBBut->text());
 }
 
 void keyboard::V_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValV(val);
-}
-QString keyboard::V_KBBut_sendData()
-{
-	value = ui.V_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.V_KBBut->text());
 }
 
 void keyboard::W_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValW(val);
-}
-QString keyboard::W_KBBut_sendData()
-{
-	value = ui.W_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.W_KBBut->text());
 }
 
 void keyboard::X_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValX(val);
-}
-QString keyboard::X_KBBut_sendData()
-{
-	value = ui.X_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.X_KBBut->text());
 }
 
 void keyboard::Y_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValY(val);
-}
-QString keyboard::Y_KBBut_sendData()
-{
-	value = ui.Y_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.Y_KBBut->text());
 }
 
 void keyboard::Z_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValZ(val);
-}
-QString keyboard::Z_KBBut_sendData()
-{
-	value = ui.Z_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.Z_KBBut->text());
 }
 
 void keyboard::num1_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum1(val);
-}
-QString keyboard::num1_KBBut_sendData()
-{
-	value = ui.one_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.one_KBBut->text());
 }
 
 void keyboard::num2_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum2(val);
-}
-QString keyboard::num2_KBBut_sendData()
-{
-	value = ui.two_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.two_KBBut->text());
 }
 
 void keyboard::num3_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum3(val);
-}
-QString keyboard::num3_KBBut_sendData()
-{
-	value = ui.three_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.three_KBBut->text());
 }
 
 void keyboard::num4_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum4(val);
-}
-QString keyboard::num4_KBBut_sendData()
-{
-	value = ui.four_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.four_KBBut->text());
 }
 
 void keyboard::num5_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum5(val);
-}
-QString keyboard::num5_KBBut_sendData()
-{
-	value = ui.five_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.five_KBBut->text());
 }
 
 void keyboard::num6_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum6(val);
-}
-QString keyboard::num6_KBBut_sendData()
-{
-	value = ui.six_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.six_KBBut->text());
 }
 
 void keyboard::num7_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum7(val);
-}
-QString keyboard::num7_KBBut_sendData()
-{
-	value = ui.seven_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.seven_KBBut->text());
 }
 
 void keyboard::num8_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum8(val);
-}
-QString keyboard::num8_KBBut_sendData()
-{
-	value = ui.eight_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.eight_KBBut->text());
 }
 
 void keyboard::num9_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum9(val);
-}
-QString keyboard::num9_KBBut_sendData()
-{
-	value = ui.nine_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.nine_KBBut->text());
 }
 
 void keyboard::num0_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValnum0(val);
-}
-QString keyboard::num0_KBBut_sendData()
-{
-	value = ui.zero_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.zero_KBBut->text());
 }
 
 void keyboard::space_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValspace(val);
-}
-QString keyboard::space_KBBut_sendData()
-{
-	value = tr(" ");
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(" ");
 }
 
 void keyboard::comma_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValcomma(val);
-}
-QString keyboard::comma_KBBut_sendData()
-{
-	value = ui.comma_KBBut->text();
-	return this->value;
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.comma_KBBut->text());
 }
 
 void keyboard::period_KBBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	pFileEditChild->getValperiod(val);
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui.period_KBBut->text());
 }
-QString keyboard::period_KBBut_sendData()
+
+//ÇÐ»»´óÐ¡Ð´
+void keyboard::on_caps_Bt_clicked()
 {
-	value = ui.period_KBBut->text();
-	return this->value;
+	if (isCap == false) // Ð¡Ð´×´Ì¬
+	{
+		QString upper = ui.A_KBBut->text().toUpper();
+		ui.A_KBBut->setText(upper);
+		isCap = true;
+	}
+	else // ´óÐ´×´Ì¬
+	{
+		QString lower = ui.A_KBBut->text().toLower();
+		ui.A_KBBut->setText(lower);
+		isCap = false;
+	}
 }

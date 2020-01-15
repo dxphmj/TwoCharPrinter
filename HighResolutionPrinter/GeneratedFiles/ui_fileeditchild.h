@@ -772,6 +772,12 @@ public:
         QRCodeLineEdit = new lineedit_click(QRCodeTab);
         QRCodeLineEdit->setObjectName(QStringLiteral("QRCodeLineEdit"));
         QRCodeLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font3.setPointSize(16);
+        font3.setBold(true);
+        font3.setWeight(75);
+        QRCodeLineEdit->setFont(font3);
         QRCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         preciseQRLab = new QLabel(QRCodeTab);
         preciseQRLab->setObjectName(QStringLiteral("preciseQRLab"));
@@ -945,6 +951,7 @@ public:
         DMCodeLineEdit = new lineedit_click(tab_2);
         DMCodeLineEdit->setObjectName(QStringLiteral("DMCodeLineEdit"));
         DMCodeLineEdit->setGeometry(QRect(10, 20, 791, 51));
+        DMCodeLineEdit->setFont(font);
         DMCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         newDMBut = new QPushButton(tab_2);
         newDMBut->setObjectName(QStringLiteral("newDMBut"));
@@ -1009,7 +1016,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(4);
+        typeTab->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);

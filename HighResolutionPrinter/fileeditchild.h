@@ -3,7 +3,6 @@
 
 #include <QWidget>
 #include "ClassMessage.h"
-#include "lineedit_click.h"
 #include <QLineEdit>
 
 class keyboard;
@@ -33,7 +32,7 @@ private:
 	Ui::FileEditChild* ui;
 	keyboard  *keyboardWidget;
 	language  *languageWidget;
-	keyboard* key;
+	//keyboard* key;
 	QString str1;
 
 private slots:
@@ -77,47 +76,7 @@ public:
 	void returnKB();
 	void deleteChar();
 
-	void getValA(QString str);
-	void getValB(QString str);
-	void getValC(QString str);
-	void getValD(QString str);
-	void getValE(QString str);
-	void getValF(QString str);
-	void getValG(QString str);
-	void getValH(QString str);
-	void getValI(QString str);
-	void getValJ(QString str);
-	void getValK(QString str);
-	void getValL(QString str);
-	void getValM(QString str);
-	void getValN(QString str);
-	void getValO(QString str);
-	void getValP(QString str);
-	void getValQ(QString str);
-	void getValR(QString str);
-	void getValS(QString str);
-	void getValT(QString str);
-	void getValU(QString str);
-	void getValV(QString str);
-	void getValW(QString str);
-	void getValX(QString str);
-	void getValY(QString str);
-	void getValZ(QString str);
-	void getValnum1(QString str);
-	void getValnum2(QString str);
-	void getValnum3(QString str);
-	void getValnum4(QString str);
-	void getValnum5(QString str);
-	void getValnum6(QString str);
-	void getValnum7(QString str);
-	void getValnum8(QString str);
-	void getValnum9(QString str);
-	void getValnum0(QString str);
-	void getValspace(QString str);
-	void getValcomma(QString str);
-	void getValperiod(QString str);
-
-
+	//void getValA(QString str);
 };
 
 #endif // FILEEDITCHILD_H
