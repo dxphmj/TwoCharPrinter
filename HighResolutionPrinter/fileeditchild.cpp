@@ -575,8 +575,8 @@ void FileEditChild::selBmpBut_clicked()
 	aaaa=fileName;
 	QImage image,result;
 	image.load(fileName); 
-	result = image.scaled(ui.bmpPreviewLab->width(), ui.bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
-	ui.bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
+	result = image.scaled(ui->bmpPreviewLab->width(), ui->bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
 }
 
 void FileEditChild::delBut_clicked()
@@ -1133,7 +1133,7 @@ void FileEditChild::zoomBarCodeAddBut_clicked()
 		Zoomfactor=0.5;
 	}
 	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
-	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
 }
 
 void FileEditChild::zoomBarCodeRedBut_clicked()
@@ -1162,7 +1162,7 @@ void FileEditChild::zoomQRAddBut_clicked()
 		ZoomfactorQr=0.5;
 	}
 	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
 }
 
 void FileEditChild::zoomQRRedBut_clicked()
@@ -1191,7 +1191,7 @@ void FileEditChild::zoomDMAddBut_clicked()
 		ZoomfactorDM=0.5;
 	}
 	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-	//ui.zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
 }
 
 void FileEditChild::zoomDMRedBut_clicked()
