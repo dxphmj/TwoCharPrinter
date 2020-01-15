@@ -21,6 +21,8 @@ public:
 	ClassMessage m_PrinterMes;
 	int QrecodeMatrix[25][25];
 	void Create2Dcode(int nType,QString strContent);
+	void CreateQrcode(int nType,QString strContent);
+	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
 	void ShowText(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
@@ -55,6 +57,10 @@ private slots:
 	void zoomBarCodeAddBut_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
+	void degreeQRAddBut_clicked();
+	void degreeQRRedButt_clicked();
+	void degreeDMAddBut_clicked();
+	void degreeDMRedButt_clicked();
 	
 
 
