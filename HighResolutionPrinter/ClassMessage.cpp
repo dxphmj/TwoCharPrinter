@@ -110,11 +110,26 @@ void ClassMessage::DrawDot(CDC* pDC)
 	}
 }
 
-int ClassMessage::GetSelObj(int xPos, int yPos)
+//判断是否有OBJ被选中
+void ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
 {
-	return 0;
+	/*
+	1.接收鼠标相对于FileManageChild窗口控件的坐标位置
+	2.判断鼠标位置是否在控件范围内，如果是则进行3
+	3.遍历OBJ.Vec[]里的所有对象，判断鼠标位置是否在obj的范围内（找到一个对象后break）
+	4.booFocus->true(用于改变边框颜色）
+	5.调用SetSelObjParameter(int SelObjNum)
+	*/
 }
 
+//设置选中的OBJ对象的参数（将OBJ与窗口按键连接）
+void SetSelObjParameter(int SelObjNum)
+{
+	/*
+	将选中的OBJ_Vec[SelObjNum]赋值给m_SelObj指针
+	m_SelObj指针应该是什么类？？？
+	*/
+}
 
 void ClassMessage::SaveObjectsToXml(char* strFileName)
 {
