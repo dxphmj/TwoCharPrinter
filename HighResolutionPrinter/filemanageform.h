@@ -24,7 +24,7 @@ public:
 private:
     Ui::FilemanageForm *ui;
 	 
-private:
+public:
 
 	FileManageChild *FormFileManageChild;//创建窗口页面指针
 	FileEditChild  *FormFileEditChild;

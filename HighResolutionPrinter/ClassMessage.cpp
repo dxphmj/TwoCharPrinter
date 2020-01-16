@@ -110,6 +110,12 @@ void ClassMessage::DrawDot(CDC* pDC)
 	}
 }
 
+int ClassMessage::GetSelObj(int xPos, int yPos)
+{
+	return 0;
+}
+
+
 void ClassMessage::SaveObjectsToXml(char* strFileName)
 {
 	TiXmlDocument doc(strFileName);

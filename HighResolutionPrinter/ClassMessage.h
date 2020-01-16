@@ -118,6 +118,7 @@ public:
 		vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 
 		void ReadBmp(char* strFileName);
+		int GetSelObj(int xPos, int yPos);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);

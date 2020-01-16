@@ -31,8 +31,7 @@ void FileManageChild::editSeleFileBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	pFilemanageForm->FileEditWidgetCall();
-
-	m_FileEditChild->LoadLocalFile();
+	pFilemanageForm->FormFileEditChild->LoadLocalFile();
 }
 
 void FileManageChild::PreviewLocalFile()
@@ -40,9 +39,17 @@ void FileManageChild::PreviewLocalFile()
 	QString QfileName = this->ui->filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
 	string CfileName = QfileName.toStdString();
-	localFilePathChar = const_cast<char*>(CfileName.c_str());
-	m_PrinterMes2.ReadObjectsFromXml(localFilePathChar);
-	
+	m_PrinterMes2.ReadObjectsFromXml(GetCurXmlFile());	
+}
+
+char* FileManageChild::GetCurXmlFile()
+{
+	QString QfileName = this->ui->filelistWidget->currentItem()->text();
+	QfileName = rootStr + "/" + QfileName;
+	string fileName = QfileName.toStdString();
+	char strTemp[256];
+	sprintf(strTemp,"%s",fileName.c_str());
+	return 	strTemp;
 }
 
 bool FileManageChild::eventFilter(QObject *watched, QEvent *event)

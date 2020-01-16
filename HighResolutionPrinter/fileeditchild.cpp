@@ -509,9 +509,9 @@ void FileEditChild::ShowText()
 
 void FileEditChild::LoadLocalFile()
 {
-	//m_FileMangeChild = 
-	char *str = m_FileMangeChild->localFilePathChar;
-	m_PrinterMes.ReadObjectsFromXml(str);
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(parentWidget()); 
+ 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	m_PrinterMes.ReadObjectsFromXml(pFilemanageForm->FormFileManageChild->GetCurXmlFile());
 }
 
 void FileEditChild::paintDot()
