@@ -25,7 +25,6 @@ private:
     Ui::FilemanageForm *ui;
 	 
 public:
-
 	FileManageChild *FormFileManageChild;//创建窗口页面指针
 	FileEditChild  *FormFileEditChild;
 	varibleWidget  *fontVarWidget;

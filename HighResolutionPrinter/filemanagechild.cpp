@@ -5,6 +5,7 @@
 #include "QTextStream"
 #include "QFile"
 #include <QTextCodec>
+#include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
 
@@ -23,7 +24,12 @@ FileManageChild::FileManageChild(QWidget *parent)
 }
 void FileManageChild::loadSeleFileBut_clicked()
 {
-
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
+	pFilemanageForm->hide();
+	pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
+	pMainWindow->RefreshWindow();
 }
 
 void FileManageChild::editSeleFileBut_clicked()

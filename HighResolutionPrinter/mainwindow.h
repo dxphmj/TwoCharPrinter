@@ -22,6 +22,7 @@ public:
 
 public:
  	ClassMessage* m_PrinterMes; //¥Ú”°º‡øÿ”√
+	void RefreshWindow();
 
 private:
     Ui::MainWindow *ui;
@@ -36,6 +37,7 @@ private slots:
 	bool eventFilter(QObject *watched, QEvent *event);
 
 	void GetDateTime();
+
 public:
 	QTimer  *myTimer;
 };
