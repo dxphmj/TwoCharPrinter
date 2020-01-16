@@ -2,11 +2,14 @@
 #define KEYBOARD_H
 
 #include <QWidget>
-#include "ui_keyboard.h"
 #include <QLineEdit>
 #include <QString>
 
 class lineedit_click;
+
+namespace Ui {
+	class keyboard;
+}
 
 class keyboard : public QWidget
 {
@@ -21,7 +24,7 @@ public:
 	lineedit_click* m_pInputEdit;
 
 private:
-	Ui::keyboard ui;
+	Ui::keyboard* ui;
 	QString value;
 	QString str;
 	QString val;
