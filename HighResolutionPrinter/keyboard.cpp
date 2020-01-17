@@ -55,9 +55,10 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
 	connect(ui->backspace_KBBut,SIGNAL(clicked()),this,SLOT(backspace_KBBut_clicked()));
 	connect(ui->language_KBBut,SIGNAL(clicked()),this,SLOT(language_KBBut_clicked()));
-	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(on_caps_Bt_clicked()));
+	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps_KBBut_clicked()));
 
-	m_LanType = Korean;//English;
+
+	m_LanType = English;
 	m_Upper = false;
 }
 
@@ -412,7 +413,7 @@ void keyboard::period_KBBut_clicked()
 }
 
 //切换大小写
-void keyboard::on_caps_Bt_clicked()
+void keyboard::caps_KBBut_clicked()
 {
 	if ( m_Upper == false )
 	{
@@ -431,14 +432,59 @@ void keyboard::on_caps_Bt_clicked()
 			ui->D_KBBut->setText("D");
 			ui->E_KBBut->setText("E");
 			ui->F_KBBut->setText("F");
+			ui->G_KBBut->setText("G");
 			ui->H_KBBut->setText("H");
-
+			ui->I_KBBut->setText("I");
+			ui->J_KBBut->setText("J");
+			ui->K_KBBut->setText("K");
+			ui->L_KBBut->setText("L");
+			ui->M_KBBut->setText("M");
+			ui->N_KBBut->setText("N");
+			ui->O_KBBut->setText("O");
+			ui->P_KBBut->setText("P");
+			ui->Q_KBBut->setText("Q");
+			ui->R_KBBut->setText("R");
+			ui->S_KBBut->setText("S");
+			ui->T_KBBut->setText("T");
+			ui->U_KBBut->setText("U");
+			ui->V_KBBut->setText("V");
+			ui->W_KBBut->setText("W");
+			ui->X_KBBut->setText("X");
+			ui->Y_KBBut->setText("Y");
+			ui->Z_KBBut->setText("Z");
 			break;
-			/*
-		case 2:  //Korean
-		case 22: //Korean_others
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
+		}
+		//case 2:  //Korean
+		//case 22: //Korean_others
+		//	{
+		//		ui->A_KBBut->setText("ㅁ");
+		//		ui->B_KBBut->setText("파");
+		//		ui->C_KBBut->setText("카");
+		//		ui->D_KBBut->setText("나");
+		//		ui->E_KBBut->setText("ㄸ");
+		//		ui->F_KBBut->setText("다");
+		//		ui->G_KBBut->setText("라");
+		//		ui->H_KBBut->setText("마");
+		//		ui->I_KBBut->setText("");
+		//		ui->J_KBBut->setText("바");
+		//		ui->K_KBBut->setText("사");
+		//		ui->L_KBBut->setText("아");
+		//		ui->M_KBBut->setText("");
+		//		ui->N_KBBut->setText("하");
+		//		ui->O_KBBut->setText("ㅒ");
+		//		ui->P_KBBut->setText("ㅖ");
+		//		ui->Q_KBBut->setText("ㅃ");
+		//		ui->R_KBBut->setText("ㄲ");
+		//		ui->S_KBBut->setText("가");
+		//		ui->T_KBBut->setText("ㅆ");
+		//		ui->U_KBBut->setText("");
+		//		ui->V_KBBut->setText("타");
+		//		ui->W_KBBut->setText("ㅉ");
+		//		ui->X_KBBut->setText("차");
+		//		ui->Y_KBBut->setText("");
+		//		ui->Z_KBBut->setText("자");
+		//		break;
+				/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
 				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(">"));
 				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("<"));
 				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T(""));
@@ -485,633 +531,631 @@ void keyboard::on_caps_Bt_clicked()
 				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("!"));
 				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("~"));
 				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("/"));
-				break;
-			}
-		case 5:  //Arabic
-			{
-				break;
-			}
-		case 6:  //Farsi
-			{
-				break;
-			}
-		case 8:  //Czech
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ů"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ˇ"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("É"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Í"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Á"));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ý"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Ž"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Ř"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Č"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Š"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ě"));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("°"));
-				break;
-			}
-		case 9:  //Dutch
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("±"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T(">"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("|"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("~"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
-				break;
-			}
-		case 10: //German
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("-"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("§"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("^"));
-				break;
-			}
-		case 11:  //Finnish
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("´"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
-				break;
-			}
-		case 12:  //Hindi
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य़"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("।"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ष"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("श"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ळ"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ऴ"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ऩ"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ण"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ँ"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ऎ"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ठ"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("छ"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("थ"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ख"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ऱ"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("फ"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("उ"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("इ"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("अ"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ए"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ओ"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ऑ"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ञ"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ढ"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("झ"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ध"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("घ"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ङ"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("भ"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ऊ"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ई"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("आ"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ऐ"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("औ"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ऋ"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ः"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("श्र"));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("क्ष"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("त्र"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ज्ञ"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("र्"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("्र"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ॅ"));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ऍ"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ऒ"));
-				break;
-			}
-		case 13:  //Hungarian
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Á"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("É"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ű"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ú"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ő"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ó"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("Ü"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ö"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("+"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
-				break;
-			}
-		case 14:  //Italian
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("°"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ç"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("§"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("é"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("£"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("|"));
-				break;
-			}
-		case 15:  //Portuguese
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(">"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("<"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ç"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("}"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("{"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("`"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("——"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("（"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("@"));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("\""));
-				break;
-			}
-		case 16:  //Russian
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("."));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("Ю"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("Б"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("Ь"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Т"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("И"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("М"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("С"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ч"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Я"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Э"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ж"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("Д"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("Л"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("О"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("Р"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("П"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("А"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("В"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("Ы"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("Ф"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ъ"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Х"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("З"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("Щ"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("Ш"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("Г"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Н"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("Е"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("К"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("У"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("Ц"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Й"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("№"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Ё"));
-				break;
-			}
-		case 17:  //Spanish
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¨"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ñ"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ç"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("¿"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("·"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ª"));
-				break;
-			}
-		case 18:  //Swedish
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("*"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
-				break;
-			}
-		case 19:  //Thai
-			{
+				break;*/
 
-			}
-		case 20:  //Turkish
-			{
-				GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T(","));
-				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-				GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("B"));
-				GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("S"));
-				GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Z"));
-				GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("Ç"));
-				GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("C"));
-				GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("V"));
-				GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ö"));
-				GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("J"));
-				GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ş"));
-				GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Y"));
-				GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-				GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("M"));
-				GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("K"));
-				GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("T"));
-				GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("Ü"));
-				GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("A"));
-				GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("E"));
-				GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("İ"));
-				GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("U"));
-				GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("X"));
-				GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("W"));
-				GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Q"));
-				GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-				GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("H"));
-				GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("N"));
-				GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("R"));
-				GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("D"));
-				GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("O"));
-				GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("I"));
-				GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("Ğ"));
-				GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("G"));
-				GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("F"));
-				GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("_"));
-				GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-				GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-				GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-				GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-				GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("'"));
-				GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-				GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-				GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-				GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("^"));
-				GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-				GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-				GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("*"));
-			}*/
+		//case 5:  //Arabic
+		//	{
+		//		break;
+		//	}
+		//case 6:  //Farsi
+		//	{
+		//		break;
+		//	}
+		//case 8:  //Czech
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ů"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ˇ"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("É"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Í"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Á"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ý"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Ž"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Ř"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Č"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Š"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ě"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("°"));
+		//		break;
+		//	}
+		//case 9:  //Dutch
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("±"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T(">"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("|"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("~"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
+		//		break;
+		//	}
+		//case 10: //German
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("-"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("§"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("^"));
+		//		break;
+		//	}
+		//case 11:  //Finnish
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("´"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+		//		break;
+		//	}
+		//case 12:  //Hindi
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य़"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("।"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ष"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("श"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ळ"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ऴ"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ऩ"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ण"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ँ"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ऎ"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ठ"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("छ"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("थ"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ख"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ऱ"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("फ"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("उ"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("इ"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("अ"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ए"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ओ"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ऑ"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ञ"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ढ"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("झ"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ध"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("घ"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ङ"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("भ"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ऊ"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ई"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("आ"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ऐ"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("औ"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ऋ"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ः"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("श्र"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("क्ष"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("त्र"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ज्ञ"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("र्"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("्र"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ॅ"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ऍ"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ऒ"));
+		//		break;
+		//	}
+		//case 13:  //Hungarian
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Á"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("É"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ű"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ú"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ő"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ó"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("Ü"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ö"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("+"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
+		//		break;
+		//	}
+		//case 14:  //Italian
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("°"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ç"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("§"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("é"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("£"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("|"));
+		//		break;
+		//	}
+		//case 15:  //Portuguese
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(">"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("<"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ç"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("}"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("{"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("`"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("——"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("（"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("@"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("\""));
+		//		break;
+		//	}
+		//case 16:  //Russian
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("."));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("Ю"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("Б"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("Ь"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Т"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("И"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("М"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("С"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ч"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Я"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Э"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ж"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("Д"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("Л"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("О"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("Р"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("П"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("А"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("В"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("Ы"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("Ф"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ъ"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Х"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("З"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("Щ"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("Ш"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("Г"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Н"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("Е"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("К"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("У"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("Ц"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Й"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("№"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Ё"));
+		//		break;
+		//	}
+		//case 17:  //Spanish
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¨"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ñ"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ç"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("¿"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("·"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ª"));
+		//		break;
+		//	}
+		//case 18:  //Swedish
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+		//		break;
+		//	}
+		//case 19:  //Thai
+		//	{
 
-		}
+		//	}
+		//case 20:  //Turkish
+		//	{
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T(","));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("B"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("S"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Z"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("Ç"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("C"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("V"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ö"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("J"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ş"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Y"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("M"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("K"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("T"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("Ü"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("A"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("E"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("İ"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("U"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("X"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("W"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Q"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("H"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("N"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("R"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("D"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("O"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("I"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("Ğ"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("G"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("F"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("'"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("*"));
+		//	}*/
 		m_Upper = true;
 	}
 	else
@@ -1121,6 +1165,54 @@ void keyboard::on_caps_Bt_clicked()
 	}
 	
 }
+
+
+//void keyboard::symbol_KBBut_clicked()
+//{
+//
+//	if ( m_LantypeReverse == false )
+//	{
+//		switch (m_LantypeReverse)
+//		{
+//
+//		case 24://SymbolR_others
+//
+//			ui->A_KBBut->setText("]");
+//			/*ui->B_KBBut->setText("~");
+//			ui->C_KBBut->setText("\");
+//			ui->D_KBBut->setText("");
+//			ui->E_KBBut->setText("#");
+//			ui->F_KBBut->setText("");
+//			ui->G_KBBut->setText(""");
+//			ui->H_KBBut->setText(""");
+//			ui->I_KBBut->setText("+");
+//			ui->J_KBBut->setText("<");
+//			ui->K_KBBut->setText(">");
+//			ui->L_KBBut->setText("");
+//			ui->M_KBBut->setText("M");
+//			ui->N_KBBut->setText("N");
+//			ui->O_KBBut->setText("O");
+//			ui->P_KBBut->setText("P");
+//			ui->Q_KBBut->setText("Q");
+//			ui->R_KBBut->setText("R");
+//			ui->S_KBBut->setText("S");
+//			ui->T_KBBut->setText("T");
+//			ui->U_KBBut->setText("U");
+//			ui->V_KBBut->setText("V");
+//			ui->W_KBBut->setText("W");
+//			ui->X_KBBut->setText("X");
+//			ui->Y_KBBut->setText("Y");
+//			ui->Z_KBBut->setText("Z");*/
+//			break;
+//		}m_LantypeReverse = true;
+//}
+//	else
+//	{
+//		btnTextSel(m_LantypeReverse);
+//		m_LantypeReverse = false;
+//	}
+//
+//}
 
 void keyboard::btnTextSel(int inputLanguage)
 {
@@ -1269,7 +1361,26 @@ void keyboard::LanEnglish()
 	ui->D_KBBut->setText("d");
 	ui->E_KBBut->setText("e");
 	ui->F_KBBut->setText("f");
+	ui->G_KBBut->setText("g");
 	ui->H_KBBut->setText("h");
+	ui->I_KBBut->setText("i");
+	ui->J_KBBut->setText("j");
+	ui->K_KBBut->setText("k");
+	ui->L_KBBut->setText("l");
+	ui->M_KBBut->setText("m");
+	ui->N_KBBut->setText("n");
+	ui->O_KBBut->setText("o");
+	ui->P_KBBut->setText("p");
+	ui->Q_KBBut->setText("q");
+	ui->R_KBBut->setText("r");
+	ui->S_KBBut->setText("s");
+	ui->T_KBBut->setText("t");
+	ui->U_KBBut->setText("u");
+	ui->V_KBBut->setText("v");
+	ui->W_KBBut->setText("w");
+	ui->X_KBBut->setText("x");
+	ui->Y_KBBut->setText("y");
+	ui->Z_KBBut->setText("z");
 	/*
 	GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
@@ -1323,60 +1434,81 @@ void keyboard::LanEnglish()
 
 void keyboard::LanKorean()
 {
-	ui->A_KBBut->setText("ㅁ");
-	ui->B_KBBut->setText("ㅠ");
-	ui->C_KBBut->setText("ㅊ");
-	ui->D_KBBut->setText("ㅇ");
-//	ui->E_KBBut->setText("e");
-//	ui->F_KBBut->setText("f");
-//	ui->H_KBBut->setText("h");
-
-
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ㅡ"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ㅜ"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ㅠ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ㅍ"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ㅊ"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ㅌ"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ㅋ"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("'"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(";"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ㅣ"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ㅏ"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ㅓ"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ㅗ"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ㅎ"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ㄹ"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ㅇ"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ㄴ"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ㅁ"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("]"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("["));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ㅔ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ㅐ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ㅑ"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ㅕ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ㅛ"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ㅅ"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ㄱ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ㄷ"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ㅈ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ㅂ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("="));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("`"));*/
+//	ui->A_KBBut->setText("ㅁ");
+//	ui->B_KBBut->setText("ㅠ");
+//	ui->C_KBBut->setText("ㅊ");
+//	ui->D_KBBut->setText("ㅇ");
+//	ui->E_KBBut->setText("ㄷ");
+//	ui->F_KBBut->setText("ㄹ");
+//	ui->G_KBBut->setText("ㅎ");
+//	ui->H_KBBut->setText("ㅗ");
+//	ui->I_KBBut->setText("ㅑ");
+//	ui->J_KBBut->setText("ㅓ");
+//	ui->K_KBBut->setText("ㅏ");
+//	ui->L_KBBut->setText("ㅣ");
+//	ui->M_KBBut->setText("ㅡ");
+//	ui->N_KBBut->setText("ㅜ");
+//	ui->O_KBBut->setText("ㅐ");
+//	ui->P_KBBut->setText("ㅔ");
+//	ui->Q_KBBut->setText("ㅂ");
+//	ui->R_KBBut->setText("ㄱ");
+//	ui->S_KBBut->setText("ㄴ");
+//	ui->T_KBBut->setText("ㅅ");
+//	ui->U_KBBut->setText("ㅕ");
+//	ui->V_KBBut->setText("ㅍ");
+//	ui->W_KBBut->setText("ㅈ");
+//	ui->X_KBBut->setText("ㅌ");
+//	ui->Y_KBBut->setText("ㅛ");
+//	ui->Z_KBBut->setText("ㅋ");
+//
+//
+//
+//	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
+//	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
+//	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
+//	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ㅡ"));
+//	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ㅜ"));
+//	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ㅠ"));
+//	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ㅍ"));
+//	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ㅊ"));
+//	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ㅌ"));
+//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ㅋ"));
+//	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("'"));
+//	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(";"));
+//	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ㅣ"));
+//	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ㅏ"));
+//	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ㅓ"));
+//	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ㅗ"));
+//	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ㅎ"));
+//	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ㄹ"));
+//	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ㅇ"));
+//	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ㄴ"));
+//	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ㅁ"));
+//	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
+//	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("]"));
+//	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("["));
+//	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ㅔ"));
+//	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ㅐ"));
+//	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ㅑ"));
+//	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ㅕ"));
+//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ㅛ"));
+//	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ㅅ"));
+//	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ㄱ"));
+//	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ㄷ"));
+//	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ㅈ"));
+//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ㅂ"));
+//	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("="));
+//	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
+//	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
+//	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
+//	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
+//	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
+//	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
+//	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
+//	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
+//	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
+//	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
+//	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
+//	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("`"));*/
+//}
 }

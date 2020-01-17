@@ -18,6 +18,8 @@ private:
 private slots:
 	void OKLanBut_clicked();
 
+	void lanEnglish_KBBut_clicked();
+	void LanChinese_KBBut_clicked();
 };
 
 #endif // LANGUAGE_H

@@ -29,6 +29,7 @@ public:
 
 	void LanEnglish();
 	void LanKorean();
+	
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -42,6 +43,7 @@ public:
 	//void LanSwedish();
 	//void LanThai();
 	//void LanTurkish();
+	void SymbolR();
 public:
 	bool m_Upper;
 	lineedit_click* m_pInputEdit;
@@ -51,9 +53,10 @@ public:
 		Hindi=12,Hungarian=13,Italian=14,Portuguese=15,
 		Russian=16,Spanish=17,Swedish=18,
 		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Symbol = 23};
-	int m_LantypeReverse;//语言与符号转换
+	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
+	int m_LantypeReverse;//语言与符号转换
 
 private:
 	Ui::keyboard* ui;
@@ -69,7 +72,8 @@ private slots:
 	void enter_KBBut_clicked();
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
-	void on_caps_Bt_clicked();
+	void caps_KBBut_clicked();
+
 
 	void A_KBBut_clicked();
 	void B_KBBut_clicked();
