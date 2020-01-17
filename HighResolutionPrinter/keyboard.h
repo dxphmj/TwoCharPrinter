@@ -20,8 +20,40 @@ public:
 	~keyboard();
 
 public:
-	bool isCap;
+	void btnTextSel(int inputLanguage);
+
+	//void LanArabic1();
+	//void LanArabic2();
+	//void LanArabic3();
+	//void LanArabic4();
+
+	void LanEnglish();
+	void LanKorean();
+	//void LanGerman();
+	//void LanCzech();
+	//void LanDutch();
+	//void LanFinnish();
+	//void LanHindi();
+	//void LanHungarian();
+	//void LanItalian();
+	//void LanPortuguese();
+	//void LanRussian();
+	//void LanSpanish();
+	//void LanSwedish();
+	//void LanThai();
+	//void LanTurkish();
+public:
+	bool m_Upper;
 	lineedit_click* m_pInputEdit;
+	enum LanTypeEnum{ Chinese = 0,Japanese=1,Korean=2,Chinese_others=3,
+		Others=4,Arabic=5,Farsi=6,English=7,
+		Czech=8,Dutch=9,German=10,Finnish=11,
+		Hindi=12,Hungarian=13,Italian=14,Portuguese=15,
+		Russian=16,Spanish=17,Swedish=18,
+		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Symbol = 23};
+	int m_LantypeReverse;//语言与符号转换
+	int m_LanType;//当前语言种类
+	int m_LanTurn;//英语与其他语言转换
 
 private:
 	Ui::keyboard* ui;
