@@ -28,6 +28,7 @@ public:
 	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
 	void LoadLocalFile();
+	void EditSelectedOBJ();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 

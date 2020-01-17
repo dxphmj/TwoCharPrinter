@@ -70,6 +70,13 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched,event);
 }
 
+void MainWindow::RefreshWindow()
+{
+	//m_PrinterMes->ReadBmp(this->FilemanageForm->FormFileManageChild->GetCurXmlFile());
+	QWidget *pQWidget(this);
+	pQWidget->update();
+}
+
 void MainWindow::fileManageBut_clicked()
 {
 	m_paramsetting->hide();

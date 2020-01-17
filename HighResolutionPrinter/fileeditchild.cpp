@@ -53,6 +53,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 
+	connect(ui->editPreviewText,SIGNAL(clicked()),this,SLOT(EditSelectedOBJ()));
+
     ui->wordLineEdit->setFocus();
 
 
@@ -528,6 +530,14 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	}
 	return QWidget::eventFilter(watched,event);
 }
+
+void FileEditChild::EditSelectedOBJ()
+{
+	/*
+	调用int ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
+	
+	*/
+}
  
 void FileEditChild::variableTextBut_clicked()
 {
@@ -733,22 +743,34 @@ void FileEditChild::newBmpBut_clicked()
 
 void FileEditChild::moveUpBut_clicked()
 {
-	
+	/*
+	1.m_pSelObj->intLineStart += 1
+	2.update()刷新页面
+	*/
 }
 
 void FileEditChild::moveDownBut_clicked()
 {
-
+	/*
+	1.m_pSelObj->intLineStart -= 1
+	2.update()刷新页面
+	*/
 }
 
 void FileEditChild::moveLeftBut_clicked()
 {
-
+	/*
+	1.m_pSelObj->intRowStart -= 1
+	2.update()刷新页面
+	*/
 }
 
 void FileEditChild::moveRightBut_clicked()
 {
-
+	/*
+	1.m_pSelObj->intRowStart += 1
+	2.update()刷新页面
+	*/
 }
 
 void FileEditChild::hideKB()

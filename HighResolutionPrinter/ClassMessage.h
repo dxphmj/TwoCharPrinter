@@ -116,9 +116,10 @@ public:
 		void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 		vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
-
 		void ReadBmp(char* strFileName);
-		int GetSelObj(int xPos, int yPos);
+
+		void SetSelObjParameter(int SelObjNum);
+		void JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);

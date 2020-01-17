@@ -5,6 +5,7 @@
 #include "QTextStream"
 #include "QFile"
 #include <QTextCodec>
+#include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
 
@@ -23,7 +24,12 @@ FileManageChild::FileManageChild(QWidget *parent)
 }
 void FileManageChild::loadSeleFileBut_clicked()
 {
-
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
+	pFilemanageForm->hide();
+	pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
+	pMainWindow->RefreshWindow();
 }
 
 void FileManageChild::editSeleFileBut_clicked()
@@ -36,9 +42,9 @@ void FileManageChild::editSeleFileBut_clicked()
 
 void FileManageChild::PreviewLocalFile()
 {
-	QString QfileName = this->ui->filelistWidget->currentItem()->text();
+	/*QString QfileName = this->ui->filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
-	string CfileName = QfileName.toStdString();
+	string CfileName = QfileName.toStdString();*/
 	m_PrinterMes2.ReadObjectsFromXml(GetCurXmlFile());	
 }
 
@@ -65,14 +71,16 @@ void FileManageChild::paintDot()
 {
 	QPainter painter(ui->filePrivewtextEdit);
 	m_PrinterMes2.DrawDot(&painter);
+	QWidget *m_QWidget(this);
+	m_QWidget->update();
 }
 
 void FileManageChild::slotShow(QDir dir)  
 {  
-	QStringList stringList;  
-	stringList << "*";
-	QFileInfoList InfoList = dir.entryInfoList(stringList, QDir :: AllEntries, QDir :: DirsFirst);  
-	showFileInfoList(InfoList);  
+	//QStringList stringList;  
+	//stringList << "*";
+	//QFileInfoList InfoList = dir.entryInfoList(QDir :: AllEntries, QDir :: DirsFirst);  
+	//showFileInfoList(InfoList);  
 }  
 
 void FileManageChild::showFileInfoList(QFileInfoList list) 
@@ -103,11 +111,11 @@ void FileManageChild::ShowLocalFilePath()
 {
 	rootStr = "User/Label";  
 	QDir rootDir(rootStr);  
-	QStringList stringlist;  
-	stringlist << "*";  
-	list = rootDir.entryInfoList(stringlist);  
+	//QStringList stringlist;  
+	//stringlist << "*";  
+	list = rootDir.entryInfoList();
 	showFileInfoList(list);  
-	setWindowTitle("File View");  
+	//setWindowTitle("File View");  
 }
 
 FileManageChild::~FileManageChild(){}
