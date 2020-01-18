@@ -55,11 +55,14 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
 	connect(ui->backspace_KBBut,SIGNAL(clicked()),this,SLOT(backspace_KBBut_clicked()));
 	connect(ui->language_KBBut,SIGNAL(clicked()),this,SLOT(language_KBBut_clicked()));
-	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps_KBBut_clicked()));
-
+	//connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps_KBBut_clicked()));
+	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps1_kBBut_clicked()));
+	connect(ui->symbol_KBBut,SIGNAL(clicked()),this,SLOT(symbol_KBBut_clicked()));
 
 	m_LanType = English;
 	m_Upper = false;
+	m_LantypeReverse = EnglishSymbol;
+	m_symbol = true;
 }
 
 keyboard::~keyboard()
@@ -91,398 +94,32 @@ void keyboard::language_KBBut_clicked()
 
 }
 
-void keyboard::A_KBBut_clicked()
+void keyboard::caps1_kBBut_clicked()
 {
-	//QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	//FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
-	//pFileEditChild->getValA(val);
-
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->A_KBBut->text());
-}
-//QString keyboard::A_KBBut_sendData()
-//{
-//	value = ui->A_KBBut->text();
-//	return this->value;
-//}
-
-void keyboard::B_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->B_KBBut->text());
-}
-
-void keyboard::C_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->C_KBBut->text());
-}
-
-void keyboard::D_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->D_KBBut->text());
-}
-
-void keyboard::E_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->E_KBBut->text());
-}
-
-void keyboard::F_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->F_KBBut->text());
-}
-
-void keyboard::G_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->G_KBBut->text());
-}
-
-void keyboard::H_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->H_KBBut->text());
-}
-
-void keyboard::I_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->I_KBBut->text());
-}
-
-void keyboard::J_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->J_KBBut->text());
-}
-
-void keyboard::K_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->K_KBBut->text());
-}
-
-void keyboard::L_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->L_KBBut->text());
-}
-
-void keyboard::M_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->M_KBBut->text());
-}
-
-void keyboard::N_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->N_KBBut->text());
-}
-
-void keyboard::O_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->O_KBBut->text());
-}
-
-void keyboard::P_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->P_KBBut->text());
-}
-
-void keyboard::Q_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->Q_KBBut->text());
-}
-
-void keyboard::R_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->R_KBBut->text());
-}
-
-void keyboard::S_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->S_KBBut->text());
-}
-
-void keyboard::T_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->T_KBBut->text());
-}
-
-void keyboard::U_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->U_KBBut->text());
-}
-
-void keyboard::V_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->V_KBBut->text());
-}
-
-void keyboard::W_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->W_KBBut->text());
-}
-
-void keyboard::X_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->X_KBBut->text());
-}
-
-void keyboard::Y_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->Y_KBBut->text());
-}
-
-void keyboard::Z_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->Z_KBBut->text());
-}
-
-void keyboard::num1_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->one_KBBut->text());
-}
-
-void keyboard::num2_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->two_KBBut->text());
-}
-
-void keyboard::num3_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->three_KBBut->text());
-}
-
-void keyboard::num4_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->four_KBBut->text());
-}
-
-void keyboard::num5_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->five_KBBut->text());
-}
-
-void keyboard::num6_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->six_KBBut->text());
-}
-
-void keyboard::num7_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->seven_KBBut->text());
-}
-
-void keyboard::num8_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->eight_KBBut->text());
-}
-
-void keyboard::num9_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->nine_KBBut->text());
-}
-
-void keyboard::num0_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->zero_KBBut->text());
-}
-
-void keyboard::space_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(" ");
-}
-
-void keyboard::comma_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->comma_KBBut->text());
-}
-
-void keyboard::period_KBBut_clicked()
-{
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->period_KBBut->text());
-}
-
-//切换大小写
-void keyboard::caps_KBBut_clicked()
-{
-	if ( m_Upper == false )
+	if ( m_Upper == true )//如果当前为小写
 	{
 		switch (m_LanType)
 		{
 
 		case 0:  //chinese
-		case 7:  //English
 		case 1:  //Japanese
 		case 3: //Chinese_others
+		case 7:  //English
 		case 21://Japanese_others
-
-			ui->A_KBBut->setText("A");
-			ui->B_KBBut->setText("B");
-			ui->C_KBBut->setText("C");
-			ui->D_KBBut->setText("D");
-			ui->E_KBBut->setText("E");
-			ui->F_KBBut->setText("F");
-			ui->G_KBBut->setText("G");
-			ui->H_KBBut->setText("H");
-			ui->I_KBBut->setText("I");
-			ui->J_KBBut->setText("J");
-			ui->K_KBBut->setText("K");
-			ui->L_KBBut->setText("L");
-			ui->M_KBBut->setText("M");
-			ui->N_KBBut->setText("N");
-			ui->O_KBBut->setText("O");
-			ui->P_KBBut->setText("P");
-			ui->Q_KBBut->setText("Q");
-			ui->R_KBBut->setText("R");
-			ui->S_KBBut->setText("S");
-			ui->T_KBBut->setText("T");
-			ui->U_KBBut->setText("U");
-			ui->V_KBBut->setText("V");
-			ui->W_KBBut->setText("W");
-			ui->X_KBBut->setText("X");
-			ui->Y_KBBut->setText("Y");
-			ui->Z_KBBut->setText("Z");
-			break;
+			{
+				LanEnglishBig();
+				break;
+			}
+		case 22: //Korean_others
+			{
+				LanKoreanBig();
+				break;
+			}
 		}
 		//case 2:  //Korean
-		//case 22: //Korean_others
+		
 		//	{
-		//		ui->A_KBBut->setText("ㅁ");
-		//		ui->B_KBBut->setText("파");
-		//		ui->C_KBBut->setText("카");
-		//		ui->D_KBBut->setText("나");
-		//		ui->E_KBBut->setText("ㄸ");
-		//		ui->F_KBBut->setText("다");
-		//		ui->G_KBBut->setText("라");
-		//		ui->H_KBBut->setText("마");
-		//		ui->I_KBBut->setText("");
-		//		ui->J_KBBut->setText("바");
-		//		ui->K_KBBut->setText("사");
-		//		ui->L_KBBut->setText("아");
-		//		ui->M_KBBut->setText("");
-		//		ui->N_KBBut->setText("하");
-		//		ui->O_KBBut->setText("ㅒ");
-		//		ui->P_KBBut->setText("ㅖ");
-		//		ui->Q_KBBut->setText("ㅃ");
-		//		ui->R_KBBut->setText("ㄲ");
-		//		ui->S_KBBut->setText("가");
-		//		ui->T_KBBut->setText("ㅆ");
-		//		ui->U_KBBut->setText("");
-		//		ui->V_KBBut->setText("타");
-		//		ui->W_KBBut->setText("ㅉ");
-		//		ui->X_KBBut->setText("차");
-		//		ui->Y_KBBut->setText("");
-		//		ui->Z_KBBut->setText("자");
+		//		
 		//		break;
 				/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
 				GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(">"));
@@ -1154,17 +791,17 @@ void keyboard::caps_KBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("^"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("*"));
-		//	}*/
-		m_Upper = true;
-	}
-	else
-	{
-		btnTextSel(m_LanType);
-		m_Upper = false;
-	}
-	
-}
+//		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("*"));
+//		//	}*/
+//		m_Upper = true;
+//	}
+//	else
+//	{
+//		btnTextSel(m_LanType);
+//		m_Upper = false;
+//	}
+//	
+//}
 
 
 //void keyboard::symbol_KBBut_clicked()
@@ -1204,19 +841,385 @@ void keyboard::caps_KBBut_clicked()
 //			ui->Y_KBBut->setText("Y");
 //			ui->Z_KBBut->setText("Z");*/
 //			break;
-//		}m_LantypeReverse = true;
-//}
-//	else
-//	{
-//		btnTextSel(m_LantypeReverse);
-//		m_LantypeReverse = false;
-//	}
-//
+		m_Upper = false;
+	}
+	else //当前为大写
+	{
+		btnLanguageSel(m_LanType);
+		m_Upper = true;
+	}
+
+}
+
+void keyboard::symbol_KBBut_clicked()
+{
+	if ( m_symbol == true )//如果当前为字母
+	{
+		switch (m_LantypeReverse)
+		{
+		case 0://English
+
+			ui->A_KBBut->setText("#");
+			ui->B_KBBut->setText("@");
+			ui->C_KBBut->setText("$");
+			ui->D_KBBut->setText("%");
+			/*ui->E_KBBut->setText("E");
+			ui->F_KBBut->setText("F");
+			ui->G_KBBut->setText("G");
+			ui->H_KBBut->setText("H");
+			ui->I_KBBut->setText("I");
+			ui->J_KBBut->setText("J");
+			ui->K_KBBut->setText("K");
+			ui->L_KBBut->setText("L");
+			ui->M_KBBut->setText("M");
+			ui->N_KBBut->setText("N");
+			ui->O_KBBut->setText("O");
+			ui->P_KBBut->setText("P");
+			ui->Q_KBBut->setText("Q");
+			ui->R_KBBut->setText("R");
+			ui->S_KBBut->setText("S");
+			ui->T_KBBut->setText("T");
+			ui->U_KBBut->setText("U");
+			ui->V_KBBut->setText("V");
+			ui->W_KBBut->setText("W");
+			ui->X_KBBut->setText("X");
+			ui->Y_KBBut->setText("Y");
+			ui->Z_KBBut->setText("Z");*/
+			break;
+		}
+		m_symbol = false;
+	}
+	else //当前为符号
+	{
+		btnSymbolSel(m_LantypeReverse);
+		m_symbol = true;
+	}
+}
+
+void keyboard::A_KBBut_clicked()
+{
+	//QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	//FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	//pFileEditChild->getValA(val);
+
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->A_KBBut->text());
+}
+//QString keyboard::A_KBBut_sendData()
+//{
+//	value = ui->A_KBBut->text();
+//	return this->value;
 //}
 
-void keyboard::btnTextSel(int inputLanguage)
+void keyboard::B_KBBut_clicked()
 {
-	switch (inputLanguage)
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->B_KBBut->text());
+}
+
+void keyboard::C_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->C_KBBut->text());
+}
+
+void keyboard::D_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->D_KBBut->text());
+}
+
+void keyboard::E_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->E_KBBut->text());
+}
+
+void keyboard::F_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->F_KBBut->text());
+}
+
+void keyboard::G_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->G_KBBut->text());
+}
+
+void keyboard::H_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->H_KBBut->text());
+}
+
+void keyboard::I_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->I_KBBut->text());
+}
+
+void keyboard::J_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->J_KBBut->text());
+}
+
+void keyboard::K_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->K_KBBut->text());
+}
+
+void keyboard::L_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->L_KBBut->text());
+}
+
+void keyboard::M_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->M_KBBut->text());
+}
+
+void keyboard::N_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->N_KBBut->text());
+}
+
+void keyboard::O_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->O_KBBut->text());
+}
+
+void keyboard::P_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->P_KBBut->text());
+}
+
+void keyboard::Q_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->Q_KBBut->text());
+}
+
+void keyboard::R_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->R_KBBut->text());
+}
+
+void keyboard::S_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->S_KBBut->text());
+}
+
+void keyboard::T_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->T_KBBut->text());
+}
+
+void keyboard::U_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->U_KBBut->text());
+}
+
+void keyboard::V_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->V_KBBut->text());
+}
+
+void keyboard::W_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->W_KBBut->text());
+}
+
+void keyboard::X_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->X_KBBut->text());
+}
+
+void keyboard::Y_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->Y_KBBut->text());
+}
+
+void keyboard::Z_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->Z_KBBut->text());
+}
+
+void keyboard::num1_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->one_KBBut->text());
+}
+
+void keyboard::num2_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->two_KBBut->text());
+}
+
+void keyboard::num3_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->three_KBBut->text());
+}
+
+void keyboard::num4_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->four_KBBut->text());
+}
+
+void keyboard::num5_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->five_KBBut->text());
+}
+
+void keyboard::num6_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->six_KBBut->text());
+}
+
+void keyboard::num7_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->seven_KBBut->text());
+}
+
+void keyboard::num8_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->eight_KBBut->text());
+}
+
+void keyboard::num9_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->nine_KBBut->text());
+}
+
+void keyboard::num0_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->zero_KBBut->text());
+}
+
+void keyboard::space_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(" ");
+}
+
+void keyboard::comma_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->comma_KBBut->text());
+}
+
+void keyboard::period_KBBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget()); 
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->period_KBBut->text());
+}
+
+void keyboard::btnLanguageSel(int m_LanType)
+{
+	switch (m_LanType)
 	{
 
 	case 0:  //chinese
@@ -1224,7 +1227,7 @@ void keyboard::btnTextSel(int inputLanguage)
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
 		{
-			LanEnglish();
+			//LanEnglish();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1232,7 +1235,7 @@ void keyboard::btnTextSel(int inputLanguage)
 	case 2:  //Korean
 	case 22: //Korean_others
 		{
-			LanKorean();
+			LanKoreanSmall();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1253,7 +1256,7 @@ void keyboard::btnTextSel(int inputLanguage)
 		}
 	case 7:  //English
 		{
-			LanEnglish();
+			LanEnglishSmall();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1349,11 +1352,26 @@ void keyboard::btnTextSel(int inputLanguage)
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
 		}
-
+	
 	}
 }
 
-void keyboard::LanEnglish()
+void keyboard::btnSymbolSel(int m_LantypeReverse)
+{
+	switch (m_LantypeReverse)
+	{
+		case 0: //当前为EnglishSymbol
+		{
+			SymbolToEnglish();
+			//	pWnd->btnShow();
+			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
+			break;
+		}
+	}
+
+}
+
+void keyboard::LanEnglishSmall()
 {
 	ui->A_KBBut->setText("a");
 	ui->B_KBBut->setText("b");
@@ -1432,7 +1450,37 @@ void keyboard::LanEnglish()
 	*/
 }
 
-void keyboard::LanKorean()
+void keyboard::LanEnglishBig()
+{
+	ui->A_KBBut->setText("A");
+	ui->B_KBBut->setText("B");
+	ui->C_KBBut->setText("C");
+	ui->D_KBBut->setText("D");
+	ui->E_KBBut->setText("E");
+	ui->F_KBBut->setText("F");
+	ui->G_KBBut->setText("G");
+	ui->H_KBBut->setText("H");
+	ui->I_KBBut->setText("I");
+	ui->J_KBBut->setText("J");
+	ui->K_KBBut->setText("K");
+	ui->L_KBBut->setText("L");
+	ui->M_KBBut->setText("M");
+	ui->N_KBBut->setText("N");
+	ui->O_KBBut->setText("O");
+	ui->P_KBBut->setText("P");
+	ui->Q_KBBut->setText("Q");
+	ui->R_KBBut->setText("R");
+	ui->S_KBBut->setText("S");
+	ui->T_KBBut->setText("T");
+	ui->U_KBBut->setText("U");
+	ui->V_KBBut->setText("V");
+	ui->W_KBBut->setText("W");
+	ui->X_KBBut->setText("X");
+	ui->Y_KBBut->setText("Y");
+	ui->Z_KBBut->setText("Z");
+}
+
+void keyboard::LanKoreanSmall()//韩语小写
 {
 //	ui->A_KBBut->setText("ㅁ");
 //	ui->B_KBBut->setText("ㅠ");
@@ -1511,4 +1559,40 @@ void keyboard::LanKorean()
 //	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
 //	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("`"));*/
 //}
+}
+
+void keyboard::LanKoreanBig()
+{
+	ui->A_KBBut->setText("ㅁ");
+	ui->B_KBBut->setText("파");
+	ui->C_KBBut->setText("카");
+	ui->D_KBBut->setText("나");
+	ui->E_KBBut->setText("ㄸ");
+	ui->F_KBBut->setText("다");
+	ui->G_KBBut->setText("라");
+	ui->H_KBBut->setText("마");
+	ui->I_KBBut->setText("");
+	ui->J_KBBut->setText("바");
+	ui->K_KBBut->setText("사");
+	ui->L_KBBut->setText("아");
+	ui->M_KBBut->setText("");
+	ui->N_KBBut->setText("하");
+	ui->O_KBBut->setText("ㅒ");
+	ui->P_KBBut->setText("ㅖ");
+	ui->Q_KBBut->setText("ㅃ");
+	ui->R_KBBut->setText("ㄲ");
+	ui->S_KBBut->setText("가");
+	ui->T_KBBut->setText("ㅆ");
+	ui->U_KBBut->setText("");
+	ui->V_KBBut->setText("타");
+	ui->W_KBBut->setText("ㅉ");
+	ui->X_KBBut->setText("차");
+	ui->Y_KBBut->setText("");
+	ui->Z_KBBut->setText("자");
+}
+
+void keyboard::SymbolToEnglish()
+{
+	LanEnglishBig();
+	m_Upper = false;
 }

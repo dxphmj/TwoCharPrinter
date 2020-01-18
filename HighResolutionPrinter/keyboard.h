@@ -20,16 +20,19 @@ public:
 	~keyboard();
 
 public:
-	void btnTextSel(int inputLanguage);
+	void btnLanguageSel(int m_LanType);
+	void btnSymbolSel(int m_LantypeReverse);
 
 	//void LanArabic1();
 	//void LanArabic2();
 	//void LanArabic3();
 	//void LanArabic4();
 
-	void LanEnglish();
-	void LanKorean();
-	
+	void LanEnglishSmall();
+	void LanEnglishBig();
+	void LanKoreanSmall();
+	void LanKoreanBig();
+    void SymbolToEnglish();
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -43,20 +46,23 @@ public:
 	//void LanSwedish();
 	//void LanThai();
 	//void LanTurkish();
-	void SymbolR();
+
 public:
 	bool m_Upper;
+	bool m_symbol;
 	lineedit_click* m_pInputEdit;
 	enum LanTypeEnum{ Chinese = 0,Japanese=1,Korean=2,Chinese_others=3,
 		Others=4,Arabic=5,Farsi=6,English=7,
 		Czech=8,Dutch=9,German=10,Finnish=11,
 		Hindi=12,Hungarian=13,Italian=14,Portuguese=15,
 		Russian=16,Spanish=17,Swedish=18,
-		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Symbol = 23};
+		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22};
+
+	enum LantypeReverseEnum{ EnglishSymbol = 0 };
 	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
-	int m_LantypeReverse;//语言与符号转换
+	int m_LantypeReverse;//符号种类
 
 private:
 	Ui::keyboard* ui;
@@ -68,11 +74,15 @@ private:
 public:
 	//QString A_KBBut_sendData();
 
+public slots:
+	void caps1_kBBut_clicked();
+
 private slots:
 	void enter_KBBut_clicked();
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
-	void caps_KBBut_clicked();
+	
+	void symbol_KBBut_clicked();
 
 
 	void A_KBBut_clicked();
