@@ -2,7 +2,10 @@
 #define LANGUAGE_H
 
 #include <QWidget>
-#include "ui_language.h"
+
+namespace Ui {
+	class language;
+}
 
 class language : public QWidget
 {
@@ -13,11 +16,13 @@ public:
 	~language();
 
 private:
-	Ui::language ui;
+	Ui::language *ui;
 
 private slots:
 	void OKLanBut_clicked();
-
+	void lanEnglish_KBBut_clicked();
+	void LanChinese_KBBut_clicked();
+	void LanKorean_KBBut_clicked();
 };
 
 #endif // LANGUAGE_H

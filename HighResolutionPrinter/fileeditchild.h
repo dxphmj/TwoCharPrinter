@@ -43,9 +43,11 @@ public:
 	float ZoomfactorQr;
 	float ZoomfactorDM;
 
+	keyboard  *keyboardWidget;
+
 private:
 	Ui::FileEditChild* ui;
-	keyboard  *keyboardWidget;
+	
 	language  *languageWidget;
 	//keyboard* key;
 	QString str1;
