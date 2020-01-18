@@ -76,7 +76,12 @@ void FilemanageForm::timeCustomCall()
 	ui->stackedWidget->setCurrentWidget(timeCustomWidget);
 }
 
-void FilemanageForm::FileEditWidgetCall()
+void FilemanageForm::FileEditChildWidgetCall()
 {
 	ui->stackedWidget->setCurrentWidget(FormFileEditChild);
+}
+
+void FilemanageForm::FileManageChildWidgetCall()
+{
+	ui->stackedWidget->setCurrentWidget(FormFileManageChild);
 }

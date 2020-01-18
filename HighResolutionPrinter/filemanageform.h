@@ -38,7 +38,8 @@ private slots:
 public:
 	void timeCustomCall();
 	void variableWidgetCall();
-	void FileEditWidgetCall();
+	void FileEditChildWidgetCall();
+	void FileManageChildWidgetCall();
 };
 
 #endif // FILEMANAGEFORM_H

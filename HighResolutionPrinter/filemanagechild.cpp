@@ -21,7 +21,23 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
 	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
 	connect(ui->filelistWidget,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
+
+	//用于实现更改文件名的信号-槽，用户点击EditLine控件旁边的"√"时触发
+	//connect(ui->okBtn,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
+
+	ShowLocalFilePath(); 
 }
+
+/*
+void FileManageChild::ChangeFileName()
+{
+	1.调用bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)，判断xml名称是否重复
+	  strFileName = 用户在EditLine中输入的字符串
+	2.获取当前选中的文件路径，将其名称赋值为strFileName，即改名
+	3.刷新页面 QWidget * pQWidget(this);pQWidget->update();
+}
+*/
+
 void FileManageChild::loadSeleFileBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
@@ -36,7 +52,7 @@ void FileManageChild::editSeleFileBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
-	pFilemanageForm->FileEditWidgetCall();
+	pFilemanageForm->FileEditChildWidgetCall();
 	pFilemanageForm->FormFileEditChild->LoadLocalFile();
 }
 
@@ -77,10 +93,10 @@ void FileManageChild::paintDot()
 
 void FileManageChild::slotShow(QDir dir)  
 {  
-	//QStringList stringList;  
-	//stringList << "*";
-	//QFileInfoList InfoList = dir.entryInfoList(QDir :: AllEntries, QDir :: DirsFirst);  
-	//showFileInfoList(InfoList);  
+	QStringList stringList;  
+	stringList << "*";
+	QFileInfoList InfoList = dir.entryInfoList(QDir :: AllEntries, QDir :: DirsFirst);  
+	showFileInfoList(InfoList);  
 }  
 
 void FileManageChild::showFileInfoList(QFileInfoList list) 
@@ -90,32 +106,20 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 	for (unsigned int i = 0; i < list.count(); i++)  
 	{  
 		QFileInfo tmpFileInfo = list.at(i);  
-		if (tmpFileInfo.isDir())  
-		{  
-			QIcon icon("dir.png");  
-			QString fileName = tmpFileInfo.fileName();  
-			QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
-			ui->filelistWidget->addItem(tmpListWidgetItem);  
-		}  
-		else  
-		{  
-			QIcon icon("file.png");  
-			QString fileName = tmpFileInfo.fileName();  
-			QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
-			ui->filelistWidget->addItem(tmpListWidgetItem);  
-		}  
+		QIcon icon("file.png");  
+		QString fileName = tmpFileInfo.fileName();  
+		QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
+		ui->filelistWidget->addItem(tmpListWidgetItem);  
 	}  
 }  
 
 void FileManageChild::ShowLocalFilePath()
 {
-	rootStr = "User/Label";  
-	QDir rootDir(rootStr);  
-	//QStringList stringlist;  
-	//stringlist << "*";  
-	list = rootDir.entryInfoList();
-	showFileInfoList(list);  
-	//setWindowTitle("File View");  
+	rootStr = "User/Label"; 
+	QDir rootDir(rootStr); 
+	slotShow(rootDir.canonicalPath()); 
+	QWidget *pQWidget(this);
+	pQWidget->update();
 }
 
 FileManageChild::~FileManageChild(){}

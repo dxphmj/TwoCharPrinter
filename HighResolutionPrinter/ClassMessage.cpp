@@ -118,17 +118,27 @@ void ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
 	2.判断鼠标位置是否在控件范围内，如果是则进行3
 	3.遍历OBJ.Vec[]里的所有对象，判断鼠标位置是否在obj的范围内（找到一个对象后break）
 	4.booFocus->true(用于改变边框颜色）
-	5.调用SetSelObjParameter(int SelObjNum)
+	5.SelObjNum = i;
 	*/
 }
 
-//设置选中的OBJ对象的参数（将OBJ与窗口按键连接）
-void SetSelObjParameter(int SelObjNum)
+//判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
+bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)
 {
 	/*
-	将选中的OBJ_Vec[SelObjNum]赋值给m_SelObj指针
-	m_SelObj指针应该是什么类？？？
+	1.遍历文件夹里的xml文件名，逐个和strFileName进行字符串对比
+	  可以调用函数，直接判断一个文件夹中是否有名叫strFileName的文件，查！
+	2.如果重复，则返回1，不重复，则返回0
+	if()
+	{
+		return ture;
+	}
+	else
+	{
+		return false;
+	}
 	*/
+	return true;
 }
 
 void ClassMessage::SaveObjectsToXml(char* strFileName)

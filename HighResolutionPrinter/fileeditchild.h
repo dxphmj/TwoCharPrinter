@@ -22,17 +22,19 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	FileManageChild *m_FileMangeChild;
-	int QrecodeMatrix[25][25];
+	//int QrecodeMatrix[25][25];
+
+	void mousePressEvent(QMouseEvent *event);
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
 	void LoadLocalFile();
-	void EditSelectedOBJ();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
-
+	void GetSelObjNum();
 	void ShowText();
+	
 	QString aaaa;	
 	int degreenum;
 	int degreenumQr;
@@ -61,6 +63,8 @@ private slots:
 	void newBarCodeBut_clicked();
 	void newQRBut_clicked();
 	void newDMBut_clicked();
+	void saveasBut_clicked();
+	void saveBut_clicked();
 	void moveUpBut_clicked();
 	void moveDownBut_clicked();
 	void moveLeftBut_clicked();
@@ -84,10 +88,6 @@ private slots:
 	void zoomDMAddBut_clicked();
 	void zoomDMRedBut_clicked();
 	
-	
-
-
-
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();

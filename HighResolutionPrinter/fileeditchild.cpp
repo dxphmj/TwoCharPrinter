@@ -4,6 +4,7 @@
 #include "filemanagechild.h"
 #include "filemanageform.h"
 #include <QTableWidget>
+#include <QMouseEvent>
 #include "backend\zint.h"
 #include <QFileDialog>
 #include "keyboard.h"
@@ -53,7 +54,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 
-	connect(ui->editPreviewText,SIGNAL(clicked()),this,SLOT(EditSelectedOBJ()));
+	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
+	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
 
     ui->wordLineEdit->setFocus();
 
@@ -145,6 +147,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
+
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
@@ -531,14 +534,43 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	return QWidget::eventFilter(watched,event);
 }
 
-void FileEditChild::EditSelectedOBJ()
+void FileEditChild::mousePressEvent(QMouseEvent *event)
+{
+	
+}
+
+//鼠标点击一次选中，再点击一次取消选中，可以多选
+//获取选中的OBJ对象在OBJ_Vec[]中的位置
+void FileEditChild::GetSelObjNum()
+{
+	//调用int ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
+	//m_PrinterMes.JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
+}
+
+//当用户点击“另存为”按钮时
+void FileEditChild::saveasBut_clicked()
 {
 	/*
-	调用int ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
-	
+	1.调用bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)
+	  判断新建xml文件的默认名称:"NewLabel_1"是否重复，若重复，则strFileName = "NewLabel_2".......
+	  如果是读取老文件，则默认为老文件名加_1，写一个专门用来配置文件名称的函数，用while循环来实现
+	2.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中
+	3.调用FilemanageForm::FileManageChildWidgetCall()，打开"管理文件"窗口
 	*/
 }
- 
+
+//当用户点击“保存”按钮时
+void FileEditChild::saveBut_clicked()
+{
+	/*
+	  如何判断？？？
+	1.判断当前编辑的文件是否是本地已有文件：如果否，则2；如果是，则3
+	2.调用FileEditChild::saveasBut_clicked()，与“另存为”的功能相同
+	3.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中(默认为覆盖）
+	4.弹出<保存成功>提示框，持续1秒
+	*/
+}
+
 void FileEditChild::variableTextBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -603,7 +635,11 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::delBut_clicked()
 {
-
+	/*
+	1.删除指定的OBJ对象
+	  m_PrinterMes->OBJ_Vec[SelObjNum].erase();
+	2.update()刷新页面
+	*/
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -744,7 +780,7 @@ void FileEditChild::newBmpBut_clicked()
 void FileEditChild::moveUpBut_clicked()
 {
 	/*
-	1.m_pSelObj->intLineStart += 1
+	1.m_PrinterMes->OBJ_Vec[SelObjNum].intLineStart += 1
 	2.update()刷新页面
 	*/
 }
@@ -752,7 +788,7 @@ void FileEditChild::moveUpBut_clicked()
 void FileEditChild::moveDownBut_clicked()
 {
 	/*
-	1.m_pSelObj->intLineStart -= 1
+	1.m_PrinterMes->OBJ_Vec[SelObjNum].intLineStart -= 1
 	2.update()刷新页面
 	*/
 }
@@ -760,7 +796,7 @@ void FileEditChild::moveDownBut_clicked()
 void FileEditChild::moveLeftBut_clicked()
 {
 	/*
-	1.m_pSelObj->intRowStart -= 1
+	1.m_PrinterMes->OBJ_Vec[SelObjNum].intRowStart -= 1
 	2.update()刷新页面
 	*/
 }
@@ -768,7 +804,7 @@ void FileEditChild::moveLeftBut_clicked()
 void FileEditChild::moveRightBut_clicked()
 {
 	/*
-	1.m_pSelObj->intRowStart += 1
+	1.m_PrinterMes->OBJ_Vec[SelObjNum].intRowStart += 1
 	2.update()刷新页面
 	*/
 }
@@ -794,7 +830,7 @@ void FileEditChild::deleteChar()
 //	//str1 = key->A_KBBut_sendData();
 //	//ui->wordLineEdit->insert(str1);
 //}
-//
+
 void FileEditChild::showNumCheckBox_clicked()
 {
 	

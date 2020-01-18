@@ -55,6 +55,8 @@ public://参数
 	string strqrcodeECCLevel;//二维码的容错率等级
 	int intqrcodeQuietZone;//二维码空白框层数
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
+	int SelObjNum;//被选中的obj在OBJ_Vec[]中的位置
+
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
     //vector<vector<bool>> logobmp;//不明
@@ -65,6 +67,7 @@ public://参数，待定
 
 	bool boDotBmp[255][32];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
+
 public://方法
 	char objbytTex5x5Line[7];
 	char objbytTex7x5Line[8];
@@ -107,23 +110,23 @@ public:
 	////////////////////////////////////
 
 public:
-		BYTE getByteFromDot(bool boDot,int moveNum); 
-		string DEC_to_BIN(long long Dec);
-		string to_String(int n);
-		long long BIN_to_DEC(string Bin);
-		bool readBin(string FontName,int offset,char *arr, int DataLen );//此处先用char来代替BYTE
-		void DrawDot(CDC* pDC);//
-		void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
+	BYTE getByteFromDot(bool boDot,int moveNum); 
+	string DEC_to_BIN(long long Dec);
+	string to_String(int n);
+	long long BIN_to_DEC(string Bin);
+	bool readBin(string FontName,int offset,char *arr, int DataLen );//此处先用char来代替BYTE
+	void DrawDot(CDC* pDC);//
+	void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
-		vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
-		void ReadBmp(char* strFileName);
+	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
+	void ReadBmp(char* strFileName);
 
-		void SetSelObjParameter(int SelObjNum);
-		void JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
+	void JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
+	bool JudgeXmlNameRepeat(char* strFileName);
 		
 };
 

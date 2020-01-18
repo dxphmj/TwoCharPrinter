@@ -35,6 +35,9 @@ public slots:
 	void slotShow(QDir dir); 
 	void loadSeleFileBut_clicked();
 	void editSeleFileBut_clicked();
+	
+	//用于实现更改文件名的槽函数
+	//void ChangeFileName();
 
 private:
 	Ui::FileManageChild* ui;  
