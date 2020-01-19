@@ -111,15 +111,42 @@ void ClassMessage::DrawDot(CDC* pDC)
 }
 
 //判断是否有OBJ被选中
-void ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
+void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 {
-	/*
-	1.接收鼠标相对于FileManageChild窗口控件的坐标位置
-	2.判断鼠标位置是否在控件范围内，如果是则进行3
-	3.遍历OBJ.Vec[]里的所有对象，判断鼠标位置是否在obj的范围内（找到一个对象后break）
-	4.booFocus->true(用于改变边框颜色）
-	5.SelObjNum = i;
-	*/
+	//计算鼠标相对于FileManageChild窗口的坐标位置
+	int x_pos = p_Relative.x();
+	int y_pos = p_Relative.y();
+	//判断该位置是否在控件editPreviewText范围内
+	if ((x_pos>=10 && x_pos<=1051) && (y_pos>=10 && y_pos<=251))
+	{
+		int nLin;
+		int nRow;	 
+		nLin = ( 251 - y_pos ) / 5;
+		nRow = x_pos / 5;
+		vector<OBJ_Control>::iterator itr = this->OBJ_Vec.begin();
+		while (itr != this->OBJ_Vec.end())
+		{		
+			int x = itr->intLineStart;
+			int x0 = itr->intLineSize;
+			int y = itr->intRowStart;
+			int y0 = itr->intRowSize;
+			if (nLin>=itr->intLineStart && nLin<=(itr->intLineStart+itr->intLineSize)
+				&& nRow>=itr->intRowStart && nRow<=(itr->intRowStart+itr->intRowSize))
+			{
+				if (itr->booFocus == true)
+				{
+					itr->booFocus = false;
+					break;
+				}
+				else if (itr->booFocus == false)
+				{
+					itr->booFocus = true;
+					break;
+				}
+			}
+			++itr;
+		}
+	}
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
@@ -287,7 +314,6 @@ void ClassMessage::ReadBmp(char* strFileName)
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
-	OBJ_Vec.clear();
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
 
@@ -1023,13 +1049,13 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	pDC->setPen(cPen);
 		
 	//下
-	pDC->drawLine(intRowStart*5,161-intLineStart*5-1,(intRowStart+intRowSize)*5,161-intLineStart*5-1);
+	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-intLineStart*5-1);
 	//上
-	pDC->drawLine(intRowStart*5,161-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine(intRowStart*5,241-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
 	//左
-	pDC->drawLine(intRowStart*5,161-intLineStart*5-1,intRowStart*5,161-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,intRowStart*5,241-(intLineSize+intLineStart)*5-1);
 	//右
-	pDC->drawLine((intRowStart+intRowSize)*5,161-intLineStart*5-1,(intRowStart+intRowSize)*5,161-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine((intRowStart+intRowSize)*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
 }
 
 void OBJ_Control::DrawDot(CDC* pDC)
@@ -1059,8 +1085,8 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5); //width和height先写死
-									//CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,161-(bmpHeight-j-1)*5-1);
+									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5); //width和height先写死
+									//CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,(bmpWidth-i)*5,241-(bmpHeight-j-1)*5-1);
 									pDC->Ellipse(rect);
 								}
 							} 
@@ -1069,7 +1095,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1081,7 +1107,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							} 
@@ -1090,7 +1116,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1105,8 +1131,8 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
-									//CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,161-j*5-1);
+									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
+									//CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,(bmpWidth-i)*5,241-j*5-1);
 									pDC->Ellipse(rect);
 								}
 							} 
@@ -1115,7 +1141,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1127,7 +1153,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							} 
@@ -1136,7 +1162,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((bmpWidth-i-1)*5,161-(j+1)*5-1,5,5);
+									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1161,7 +1187,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
 									//CRect rect(i*5,161-(bmpHeight-j)*5-1,(i+1)*5,161-(bmpHeight-j-1)*5-1);
 									pDC->Ellipse(rect);
 								}
@@ -1171,7 +1197,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1183,7 +1209,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							} 
@@ -1192,7 +1218,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(bmpHeight-j)*5-1,5,5);
+									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1207,7 +1233,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(j+1)*5-1,5,5);
+									CRect rect(i*5,241-(j+1)*5-1,5,5);
 								    //CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
 									pDC->Ellipse(rect);
 								}
@@ -1217,7 +1243,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(j+1)*5-1,5,5);
+									CRect rect(i*5,241-(j+1)*5-1,5,5);
 									pDC->Ellipse(rect);
 								}
 							}
@@ -1229,7 +1255,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushB);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect((intRowStart+i)*5,161-(intLineStart+j+1)*5-1,5,5);
+									CRect rect((intRowStart+i)*5,241-(intLineStart+j+1)*5-1,5,5);
 									//CRect rect((intRowStart+i)*5,161-(intLineStart+j+1)*5-1,(intRowStart+i+1)*5,161-(intLineStart+j)*5-1);
 									pDC->Ellipse(rect);
 								}
@@ -1239,7 +1265,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								pDC->setBrush(cbrushW);
 								for(int sw=0;sw<intSW;sw++)
 								{
-									CRect rect(i*5,161-(j+1)*5-1,5,5);
+									CRect rect(i*5,241-(j+1)*5-1,5,5);
 									//CRect rect(i*5,161-(j+1)*5-1,(i+1)*5,161-j*5-1);
 									pDC->Ellipse(rect);
 								}
@@ -1310,13 +1336,13 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								x2=5*(theDog+intRowStart+1)+5*k*intSW;
 								if (booBWDx)
 								{
-									y1=161-5*(intLineStart+p+1)-1;
-									y2=161-5*(intLineStart+p)-1;
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
 								} 
 								else
 								{
-									y1=161-5*(5-p+intLineStart)-1;
-									y2=161-5*(5-p+intLineStart-1)-1;
+									y1=241-5*(5-p+intLineStart)-1;
+									y2=241-5*(5-p+intLineStart-1)-1;
 
 								}
 								switch(Dot)
@@ -1372,13 +1398,13 @@ void OBJ_Control::DrawDot(CDC* pDC)
 									x2=5*(theDog+intRowStart+1)+5*6*intSW+5*m;
 									if (booBWDx)
 									{
-										y1=161-5*(5-p+intLineStart)-1;
-										y2=161-5*(5-p+intLineStart-1)-1;
+										y1=241-5*(5-p+intLineStart)-1;
+										y2=241-5*(5-p+intLineStart-1)-1;
 									} 
 									else
 									{
-										y1=161-5*(intLineStart+p+1)-1;
-										y2=161-5*(intLineStart+p)-1;
+										y1=241-5*(intLineStart+p+1)-1;
+										y2=241-5*(intLineStart+p)-1;
 									}
 									pDC->setBrush(cbrushB);
 									CRect rect(x1,y1,x2-x1,y2-y1);
@@ -1445,13 +1471,13 @@ void OBJ_Control::DrawDot(CDC* pDC)
 								x2=5*(theDog+intRowStart+1)+5*k*intSW;
 								if (booBWDx)
 								{
-									y1=161-5*(intLineStart+p+1)-1;
-									y2=161-5*(intLineStart+p)-1;
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
 								} 
 								else
 								{
-									y1=161-5*(7-p+intLineStart)-1;
-									y2=161-5*(7-p+intLineStart-1)-1;
+									y1=241-5*(7-p+intLineStart)-1;
+									y2=241-5*(7-p+intLineStart-1)-1;
 
 								}
 								switch(Dot)
@@ -1508,13 +1534,13 @@ void OBJ_Control::DrawDot(CDC* pDC)
 									x2=5*(theDog+intRowStart+1)+5*6*intSW+5*m;
 									if (booBWDx)
 									{
-										y1=161-5*(5-p+intLineStart)-1;
-										y2=161-5*(5-p+intLineStart-1)-1;
+										y1=241-5*(5-p+intLineStart)-1;
+										y2=241-5*(5-p+intLineStart-1)-1;
 									} 
 									else
 									{
-										y1=161-5*(intLineStart+p+1)-1;
-										y2=161-5*(intLineStart+p)-1;
+										y1=241-5*(intLineStart+p+1)-1;
+										y2=241-5*(intLineStart+p)-1;
 									}
 									pDC->setBrush(cbrushB);
 									CRect rect(x1,y1,x2-x1,y2-y1);

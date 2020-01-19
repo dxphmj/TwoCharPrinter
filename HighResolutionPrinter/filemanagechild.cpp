@@ -61,6 +61,7 @@ void FileManageChild::PreviewLocalFile()
 	/*QString QfileName = this->ui->filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
 	string CfileName = QfileName.toStdString();*/
+	m_PrinterMes2.OBJ_Vec.clear();
 	m_PrinterMes2.ReadObjectsFromXml(GetCurXmlFile());	
 }
 

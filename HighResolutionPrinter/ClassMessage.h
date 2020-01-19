@@ -121,7 +121,7 @@ public:
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
 
-	void JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
+	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);

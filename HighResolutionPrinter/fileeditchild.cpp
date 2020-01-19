@@ -66,6 +66,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->keyboardStackWid->addWidget(languageWidget);
 	
 	ui->editPreviewText->installEventFilter(this);
+	ui->editPreviewText->viewport()->installEventFilter(this);
+
 	ui->typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
 							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:114px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
@@ -530,13 +532,29 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintDot();
+		QWidget *pQWidget(this);
+		pQWidget->update();
 	}
-	return QWidget::eventFilter(watched,event);
+	else if (watched == ui->editPreviewText->viewport())
+	{
+		if (event->type() == QEvent::MouseButtonPress)
+		{
+			//qDebug() << __FILE__<<__LINE__<< QString::number(event->type());
+			QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+			mousePressEvent(mouseEvent);
+			QWidget *pQWidget(this);
+			pQWidget->update();
+		}
+	}
+	return QWidget::eventFilter(watched, event);
 }
 
 void FileEditChild::mousePressEvent(QMouseEvent *event)
 {
-	
+	//QPoint p_Global = event->globalPos();
+	QPoint p_Relative = event->pos();
+	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
+	paintDot();
 }
 
 //鼠标点击一次选中，再点击一次取消选中，可以多选
@@ -635,11 +653,16 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::delBut_clicked()
 {
-	/*
-	1.删除指定的OBJ对象
-	  m_PrinterMes->OBJ_Vec[SelObjNum].erase();
-	2.update()刷新页面
-	*/
+	vector<OBJ_Control>::iterator itr = m_PrinterMes.OBJ_Vec.begin();
+	while (itr != m_PrinterMes.OBJ_Vec.end())
+	{
+		if (itr->booFocus)
+			{
+				itr = m_PrinterMes.OBJ_Vec.erase(itr);
+				paintDot();
+				continue;
+			}
+	}
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -779,34 +802,64 @@ void FileEditChild::newBmpBut_clicked()
 
 void FileEditChild::moveUpBut_clicked()
 {
-	/*
-	1.m_PrinterMes->OBJ_Vec[SelObjNum].intLineStart += 1
-	2.update()刷新页面
-	*/
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			int EndPos = m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize ;
+			if( EndPos < 241 )
+			{
+				m_PrinterMes.OBJ_Vec[i].intLineStart += 1;
+				paintDot();
+			}
+		}
+	}
 }
 
 void FileEditChild::moveDownBut_clicked()
 {
-	/*
-	1.m_PrinterMes->OBJ_Vec[SelObjNum].intLineStart -= 1
-	2.update()刷新页面
-	*/
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			if( m_PrinterMes.OBJ_Vec[i].intLineStart > 0 )
+			{
+				m_PrinterMes.OBJ_Vec[i].intLineStart -= 1;
+				paintDot();
+			}
+		}
+	}
 }
 
 void FileEditChild::moveLeftBut_clicked()
 {
-	/*
-	1.m_PrinterMes->OBJ_Vec[SelObjNum].intRowStart -= 1
-	2.update()刷新页面
-	*/
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			if( m_PrinterMes.OBJ_Vec[i].intRowStart > 0 )
+			{
+				m_PrinterMes.OBJ_Vec[i].intRowStart -= 1;
+				paintDot();
+			}
+		}
+	}
 }
 
 void FileEditChild::moveRightBut_clicked()
 {
-	/*
-	1.m_PrinterMes->OBJ_Vec[SelObjNum].intRowStart += 1
-	2.update()刷新页面
-	*/
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			int EndPos = m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize ;
+			if( EndPos < 1041 )
+			{
+				m_PrinterMes.OBJ_Vec[i].intRowStart += 1;
+				paintDot();
+			}
+		}
+	}
 }
 
 void FileEditChild::hideKB()
