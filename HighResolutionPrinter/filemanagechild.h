@@ -23,11 +23,13 @@ class FileManageChild : public QWidget
 public:
 	FileManageChild(QWidget *parent = 0);
 	~FileManageChild();
+	Ui::FileManageChild *ui;  
 	ClassMessage  m_PrinterMes2;
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
 	QString rootStr;
 	char* GetCurXmlFile();
+	QFileInfoList list;
 
 public slots:  
 	void ShowLocalFilePath();
@@ -38,10 +40,6 @@ public slots:
 	
 	//用于实现更改文件名的槽函数
 	//void ChangeFileName();
-
-private:
-	Ui::FileManageChild* ui;  
- 	QFileInfoList list;
 
 protected:
 	bool eventFilter(QObject *watched, QEvent *event);

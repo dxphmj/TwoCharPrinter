@@ -120,13 +120,12 @@ public:
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
-
+	char* GenerateFileName(string tmpFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
-	bool JudgeXmlNameRepeat(char* strFileName);
 		
 };
 

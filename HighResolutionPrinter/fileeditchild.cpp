@@ -1,12 +1,13 @@
 #include "ui_fileeditchild.h"
 #include "lineedit_click.h"
 #include "fileeditchild.h"
-#include "filemanagechild.h"
-#include "filemanageform.h"
 #include <QTableWidget>
 #include <QMouseEvent>
 #include "backend\zint.h"
 #include <QFileDialog>
+#include "filemanageform.h"
+#include "filemanagechild.h"
+#include "ui_filemanagechild.h"
 #include "keyboard.h"
 #include "language.h"
 
@@ -500,9 +501,6 @@ void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, 
 	textObj.booBWDx = txtBWDx;
 	textObj.booBWDy = txtBWDy;
 	
-	//ClassMessage textClassMessage;
-	//m_PrinterMes.getdot(txtFont, txtBWDy, txtBWDx, txtNEG, txtContent, txtRowSize, txtLineSize, txtLineStart, txtRowStart, txtSS, txtSW);
-	
 	textObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
@@ -557,24 +555,25 @@ void FileEditChild::mousePressEvent(QMouseEvent *event)
 	paintDot();
 }
 
-//鼠标点击一次选中，再点击一次取消选中，可以多选
-//获取选中的OBJ对象在OBJ_Vec[]中的位置
-void FileEditChild::GetSelObjNum()
-{
-	//调用int ClassMessage::JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos)
-	//m_PrinterMes.JudgeIfOBJ_Selected(int MouseXPos, int MouseYPos);
-}
-
 //当用户点击“另存为”按钮时
 void FileEditChild::saveasBut_clicked()
 {
-	/*
-	1.调用bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)
-	  判断新建xml文件的默认名称:"NewLabel_1"是否重复，若重复，则strFileName = "NewLabel_2".......
-	  如果是读取老文件，则默认为老文件名加_1，写一个专门用来配置文件名称的函数，用while循环来实现
-	2.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中
-	3.调用FilemanageForm::FileManageChildWidgetCall()，打开"管理文件"窗口
-	*/
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
+	if (qfileName != "")
+	{
+		QFileInfo fi(qfileName);
+		qfileName = fi.baseName();
+		string tmpFileName = qfileName.toStdString();
+		m_PrinterMes.SaveObjectsToXml(m_PrinterMes.GenerateFileName(tmpFileName));
+	}
+	else
+	{
+		string tmpFileName = "NewLabel_";
+		m_PrinterMes.SaveObjectsToXml(m_PrinterMes.GenerateFileName(tmpFileName));
+	}
+	pFilemanageForm->FileManageChildWidgetCall();
 }
 
 //当用户点击“保存”按钮时
@@ -876,13 +875,6 @@ void FileEditChild::deleteChar()
 	ui->wordLineEdit->backspace();
 	str1 = ui->wordLineEdit->text();
 }
-
-//void FileEditChild::getValA(QString str)
-//{
-//	//ui->wordLineEdit->cursorPosition();
-//	//str1 = key->A_KBBut_sendData();
-//	//ui->wordLineEdit->insert(str1);
-//}
 
 void FileEditChild::showNumCheckBox_clicked()
 {

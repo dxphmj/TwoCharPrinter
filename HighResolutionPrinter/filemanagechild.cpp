@@ -4,6 +4,7 @@
 #include "QFileDialog"
 #include "QTextStream"
 #include "QFile"
+#include "QFileInfo"
 #include <QTextCodec>
 #include "mainwindow.h"
 #include "filemanageform.h"
@@ -67,9 +68,9 @@ void FileManageChild::PreviewLocalFile()
 
 char* FileManageChild::GetCurXmlFile()
 {
-	QString QfileName = this->ui->filelistWidget->currentItem()->text();
-	QfileName = rootStr + "/" + QfileName;
-	string fileName = QfileName.toStdString();
+	QString qfileName = this->ui->filelistWidget->currentItem()->text();
+	qfileName = rootStr + "/" + qfileName;
+	string fileName = qfileName.toStdString();
 	char strTemp[256];
 	sprintf(strTemp,"%s",fileName.c_str());
 	return 	strTemp;
@@ -117,8 +118,9 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 void FileManageChild::ShowLocalFilePath()
 {
 	rootStr = "User/Label"; 
+	//rootStr = QFileInfo(rootStr).canonicalPath();
 	QDir rootDir(rootStr); 
-	slotShow(rootDir.canonicalPath()); 
+	slotShow(rootDir); 
 	QWidget *pQWidget(this);
 	pQWidget->update();
 }

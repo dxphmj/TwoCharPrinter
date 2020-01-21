@@ -32,7 +32,6 @@ public:
 	void LoadLocalFile();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
-	void GetSelObjNum();
 	void ShowText();
 	
 	QString aaaa;	

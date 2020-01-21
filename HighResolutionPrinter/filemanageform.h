@@ -20,8 +20,6 @@ class FilemanageForm : public QWidget
 public:
     FilemanageForm(QWidget *parent = 0);
     ~FilemanageForm();
-
-private:
     Ui::FilemanageForm *ui;
 	 
 public:

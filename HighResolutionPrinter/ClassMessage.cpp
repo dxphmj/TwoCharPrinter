@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include "xml\tinyxml.h"
 #include <QPainter>
+#include <io.h>
+#include "QFileInfo"
+
 //#include <qwidget.h>
 
 
@@ -150,22 +153,26 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
-bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)
+char* ClassMessage::GenerateFileName(string tmpFileName)
 {
-	/*
-	1.遍历文件夹里的xml文件名，逐个和strFileName进行字符串对比
-	  可以调用函数，直接判断一个文件夹中是否有名叫strFileName的文件，查！
-	2.如果重复，则返回1，不重复，则返回0
-	if()
+	int tmpFileNum = 1;
+	bool fileRepeat = true;
+	char CurFilePath[256];
+	sprintf(CurFilePath,"User/Label/%s%d.lab",tmpFileName.c_str(),tmpFileNum);
+	QFileInfo fi(CurFilePath);
+	while (fileRepeat == true)
 	{
-		return ture;
+		if (fi.exists())
+		{
+			tmpFileNum++;
+			sprintf(CurFilePath,"User/Label/%s%d.lab",tmpFileName.c_str(),tmpFileNum);
+		}
+		else
+		{
+			break;
+		}
 	}
-	else
-	{
-		return false;
-	}
-	*/
-	return true;
+	return CurFilePath;
 }
 
 void ClassMessage::SaveObjectsToXml(char* strFileName)
