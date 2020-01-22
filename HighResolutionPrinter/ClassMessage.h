@@ -1,3 +1,7 @@
+
+#ifndef CLASSMESSAGE_H
+#define CLASSMESSAGE_H
+
 #pragma once
 #include <string>
 #include <vector>
@@ -124,8 +128,9 @@ public:
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
-	void ReadObjectsFromXml(char* strFileName);
+	bool ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
 		
 };
 
+#endif

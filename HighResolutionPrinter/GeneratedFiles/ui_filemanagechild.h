@@ -17,7 +17,6 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
-#include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
 #include <lineedit_click.h>
@@ -39,9 +38,6 @@ public:
     QPushButton *copyFile2localBut;
     lineedit_click *fileNmaeLineEdit;
     QPushButton *OKFileNameBut;
-    QStackedWidget *changeNameKBStacWid;
-    QWidget *page;
-    QWidget *page_2;
 
     void setupUi(QWidget *FileManageChild)
     {
@@ -116,28 +112,6 @@ public:
         OKFileNameBut->setFont(font);
         OKFileNameBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        changeNameKBStacWid = new QStackedWidget(FileManageChild);
-        changeNameKBStacWid->setObjectName(QStringLiteral("changeNameKBStacWid"));
-        changeNameKBStacWid->setGeometry(QRect(255, 390, 791, 331));
-        page = new QWidget();
-        page->setObjectName(QStringLiteral("page"));
-        changeNameKBStacWid->addWidget(page);
-        page_2 = new QWidget();
-        page_2->setObjectName(QStringLiteral("page_2"));
-        changeNameKBStacWid->addWidget(page_2);
-        changeNameKBStacWid->raise();
-        filelistWidget->raise();
-        localFileBut->raise();
-        UdiskFileBut->raise();
-        filePrivewtextEdit->raise();
-        filePreHorScrollBar->raise();
-        filePreVerScrollBar->raise();
-        loadSeleFileBut->raise();
-        editSeleFileBut->raise();
-        delSeleFileBut->raise();
-        copyFile2localBut->raise();
-        fileNmaeLineEdit->raise();
-        OKFileNameBut->raise();
 
         retranslateUi(FileManageChild);
 

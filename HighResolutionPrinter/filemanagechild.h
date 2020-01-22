@@ -10,9 +10,9 @@
 #include <QVBoxLayout>  
 #include <QIcon>  
 #include <QStringList>
-#include "ClassMessage.h"
 
 class keyboard;
+class ClassMessage;
 
 namespace Ui {
 	class FileManageChild;
@@ -26,7 +26,7 @@ public:
 	FileManageChild(QWidget *parent = 0);
 	~FileManageChild();
 	Ui::FileManageChild *ui;  
-	ClassMessage  m_PrinterMes2;
+	ClassMessage*  m_pPrinterMes;
 	keyboard  *keyboardWidget;
 
 	void showFileInfoList(QFileInfoList list);

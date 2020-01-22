@@ -2,11 +2,10 @@
 #define FILEEDITCHILD_H
 
 #include <QWidget>
-#include "ClassMessage.h"
 #include <QLineEdit>
+#include "ClassMessage.h"
 
 class keyboard;
-class language;
 class FileManageChild;
 
 namespace Ui {
@@ -22,7 +21,6 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	FileManageChild *m_FileMangeChild;
-	//int QrecodeMatrix[25][25];
 
 	void mousePressEvent(QMouseEvent *event);
 	void Create2Dcode(int nType,QString strContent);
@@ -32,7 +30,6 @@ public:
 	void LoadLocalFile();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
-	void ShowText();
 	
 	QString aaaa;	
 	int degreenum;
@@ -42,13 +39,11 @@ public:
 	float ZoomfactorQr;
 	float ZoomfactorDM;
 
-	keyboard  *keyboardWidget;
+ 	keyboard  *keyboardWidget;
 
 private:
 	Ui::FileEditChild* ui;
 	
-	language  *languageWidget;
-	//keyboard* key;
 	QString str1;
 
 private slots:
@@ -88,19 +83,14 @@ private slots:
 	//void zoomQRRedBut_clicked();
 	//void zoomDMAddBut_clicked();
 	//void zoomDMRedBut_clicked();
-	
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
 	bool eventFilter(QObject *watched, QEvent *event);
 
 public:
-	void hideKB();
-	void languageWidgetCall();
-	void returnKB();
 	void deleteChar();
-
-	//void getValA(QString str);
 };
 
 #endif // FILEEDITCHILD_H

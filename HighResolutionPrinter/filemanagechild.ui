@@ -239,31 +239,6 @@ background-color: rgb(0, 0, 230);</string>
     <string>确定</string>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="changeNameKBStacWid">
-   <property name="geometry">
-    <rect>
-     <x>255</x>
-     <y>390</y>
-     <width>791</width>
-     <height>331</height>
-    </rect>
-   </property>
-   <widget class="QWidget" name="page"/>
-   <widget class="QWidget" name="page_2"/>
-  </widget>
-  <zorder>changeNameKBStacWid</zorder>
-  <zorder>filelistWidget</zorder>
-  <zorder>localFileBut</zorder>
-  <zorder>UdiskFileBut</zorder>
-  <zorder>filePrivewtextEdit</zorder>
-  <zorder>filePreHorScrollBar</zorder>
-  <zorder>filePreVerScrollBar</zorder>
-  <zorder>loadSeleFileBut</zorder>
-  <zorder>editSeleFileBut</zorder>
-  <zorder>delSeleFileBut</zorder>
-  <zorder>copyFile2localBut</zorder>
-  <zorder>fileNmaeLineEdit</zorder>
-  <zorder>OKFileNameBut</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

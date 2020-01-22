@@ -9,7 +9,6 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
-#include "language.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
@@ -60,11 +59,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 
     ui->wordLineEdit->setFocus();
 
-
-	keyboardWidget = new keyboard(this);
-	languageWidget = new language();
-	ui->keyboardStackWid->addWidget(keyboardWidget);
-	ui->keyboardStackWid->addWidget(languageWidget);
+	keyboardWidget = new keyboard(ui->typeTab);
+	keyboardWidget->setVisible(false);
 	
 	ui->editPreviewText->installEventFilter(this);
 	ui->editPreviewText->viewport()->installEventFilter(this);
@@ -498,13 +494,6 @@ void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, 
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
 
-void FileEditChild::ShowText()
-{
-	QString txtQString = ui->wordLineEdit->text();
-	string txtString = txtQString.toStdString();
-	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
-}
-
 void FileEditChild::LoadLocalFile()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(parentWidget()); 
@@ -662,71 +651,29 @@ void FileEditChild::delBut_clicked()
 
 void FileEditChild::wordLineEdit_clicked()
 {
-	//ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	//ui->keyboardStackWid->show();
-	////仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	//ui->keyboardStackWid->raise();
-	//ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->wordLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+	keyboardWidget->SetLineEdit(ui->wordLineEdit);
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->barCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+ 	keyboardWidget->SetLineEdit(ui->barCodeLineEdit);
 }
 
 void FileEditChild::QRCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->QRCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+ 	keyboardWidget->SetLineEdit(ui->QRCodeLineEdit);
 }
 
 void FileEditChild::DMCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->DMCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+  	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
 }
-
-void FileEditChild::languageWidgetCall()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(languageWidget);
-}
-
-void FileEditChild::returnKB()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-}
-
+ 
 void FileEditChild::newTextBut_clicked()
 {
-
+	QString txtQString = ui->wordLineEdit->text();
+	string txtString = txtQString.toStdString();
+	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
 }
 
 void FileEditChild::newBarCodeBut_clicked()
@@ -857,15 +804,6 @@ void FileEditChild::moveRightBut_clicked()
 	}
 }
 
-void FileEditChild::hideKB()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->close();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-
-}
-
 void FileEditChild::deleteChar()
 {
 	ui->wordLineEdit->backspace();
@@ -973,6 +911,7 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 //	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
 //}
 
+ 
 void FileEditChild::zoomBarCodeAddBut_clicked()
 {
 
