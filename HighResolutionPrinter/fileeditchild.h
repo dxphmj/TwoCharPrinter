@@ -71,23 +71,23 @@ private slots:
 	void moveLeftBut_clicked();
 	void moveRightBut_clicked();
 	void showNumCheckBox_clicked();
-	void degreeBarCodeAddBut_clicked();
-	void degreeBarCodeRedButt_clicked();
+	//void degreeBarCodeAddBut_clicked();
+	//void degreeBarCodeRedButt_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
-	void degreeQRAddBut_clicked();
-	void degreeQRRedButt_clicked();
-	void degreeDMAddBut_clicked();
-	void degreeDMRedButt_clicked();
+	//void degreeQRAddBut_clicked();
+	//void degreeQRRedButt_clicked();
+	//void degreeDMAddBut_clicked();
+	//void degreeDMRedButt_clicked();
 
 	void newBmpBut_clicked();
 
 	void zoomBarCodeAddBut_clicked();
 	void zoomBarCodeRedBut_clicked();
-	void zoomQRAddBut_clicked();
-	void zoomQRRedBut_clicked();
-	void zoomDMAddBut_clicked();
-	void zoomDMRedBut_clicked();
+	//void zoomQRAddBut_clicked();
+	//void zoomQRRedBut_clicked();
+	//void zoomDMAddBut_clicked();
+	//void zoomDMRedBut_clicked();
 	
 protected:
 	//void paintEvent(QPaintEvent *event);

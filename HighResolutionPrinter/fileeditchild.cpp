@@ -35,25 +35,25 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
 	connect(ui->moveRightBut,SIGNAL(clicked()),this,SLOT(moveRightBut_clicked()));
 	connect(ui->showNumCheckBox,SIGNAL(stateChanged()),this,SLOT(showNumCheckBox_clicked()));
-	connect(ui->degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
-	connect(ui->degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
+	//connect(ui->degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
+	//connect(ui->degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
 	connect(ui->zoomBarCodeAddBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeAddBut,SIGNAL(clicked()),this,SLOT(heightBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeRedBut,SIGNAL(clicked()),this,SLOT(heightBarCodeRedButt_clicked()));
 	
-	connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
+	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
+	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
+	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 	connect(ui->zoomBarCodeRedBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeRedBut_clicked()));
-	connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
-	connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
-	connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
-	connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
-	connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	//connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
+	//connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
+	//connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
+	//connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
+	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
+	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
+	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
+	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
 	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
@@ -81,9 +81,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->reverseCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 									  QCheckBox{color:rgb(255, 255, 255);}\
 									  ");
-	ui->natureNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-										QCheckBox{color:rgb(255, 255, 255);}\
-									   ");
 	ui->reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
@@ -105,20 +102,20 @@ FileEditChild::FileEditChild(QWidget *parent)
 								"); 
 	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->internalShowTextLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-    ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+    //ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 
 
 	ui->typeBarCodeComBox->addItem(QStringLiteral("EANX"));
@@ -131,10 +128,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
 	ui->typeBarCodeComBox->setCurrentIndex(3);
 
-	ui->preciseQRComBox->addItem(QStringLiteral("低"));
-	ui->preciseQRComBox->addItem(QStringLiteral("中"));
-	ui->preciseQRComBox->addItem(QStringLiteral("高"));
-	ui->preciseQRComBox->addItem(QStringLiteral("精准"));
 	ui->typeBarCodeComBox->setCurrentIndex(1);
 
 	ui->sideLenQRComBox->addItem(QStringLiteral("21 px"));
@@ -177,9 +170,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	derta=1;
 	longth=0;
 	error_number = 0;
-	QString angle1=ui->degreeBarCodeShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeBarCodeShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
@@ -288,9 +281,9 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int i;
 
 	error_number = 0;
-	QString angle1=ui->degreeQRShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 	//rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
@@ -378,9 +371,9 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	int i;
 
 	error_number = 0;
-	QString angle1=ui->degreeDMShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeDMShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 
 	//rotate_angle = 0;
 	generated = 0;
@@ -586,6 +579,9 @@ void FileEditChild::saveBut_clicked()
 	3.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中(默认为覆盖）
 	4.弹出<保存成功>提示框，持续1秒
 	*/
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->FileManageChildWidgetCall();
 }
 
 void FileEditChild::variableTextBut_clicked()
@@ -881,33 +877,33 @@ void FileEditChild::showNumCheckBox_clicked()
 	
 }
 
-void FileEditChild::degreeBarCodeAddBut_clicked()
-{
-	
-	if (degreenum<270)
-	{
-		degreenum=degreenum+90;
-	} 
-	else
-	{
-		degreenum=0;
-	}
-	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-}
+//void FileEditChild::degreeBarCodeAddBut_clicked()//暂时注掉
+//{
+//	
+//	if (degreenum<270)
+//	{
+//		degreenum=degreenum+90;
+//	} 
+//	else
+//	{
+//		degreenum=0;
+//	}
+//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
+//}
 
-void FileEditChild::degreeBarCodeRedButt_clicked()
-{
-
-	if (degreenum>0)
-	{
-		degreenum=degreenum-90;
-	} 
-	else
-	{
-		degreenum=270;
-	}
-	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-}
+//void FileEditChild::degreeBarCodeRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenum>0)
+//	{
+//		degreenum=degreenum-90;
+//	} 
+//	else
+//	{
+//		degreenum=270;
+//	}
+//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
+//}
 
 void FileEditChild::heightBarCodeAddBut_clicked()
 {
@@ -921,61 +917,61 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 	str1 = ui->wordLineEdit->text();
 }
 
-void FileEditChild::degreeQRAddBut_clicked()
-{
+//void FileEditChild::degreeQRAddBut_clicked()//暂时注掉
+//{
+//
+//	if (degreenumQr<270)
+//	{
+//		degreenumQr=degreenumQr+90;
+//	} 
+//	else
+//	{
+//		degreenumQr=0;
+//	}
+//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
+//}
 
-	if (degreenumQr<270)
-	{
-		degreenumQr=degreenumQr+90;
-	} 
-	else
-	{
-		degreenumQr=0;
-	}
-	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-}
+//void FileEditChild::degreeQRRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenumQr>0)
+//	{
+//		degreenumQr=degreenumQr-90;
+//	} 
+//	else
+//	{
+//		degreenumQr=270;
+//	}
+//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
+//}
 
-void FileEditChild::degreeQRRedButt_clicked()
-{
+//void FileEditChild::degreeDMAddBut_clicked()//暂时注掉
+//{
+//
+//	if (degreenumDM<270)
+//	{
+//		degreenumDM=degreenumDM+90;
+//	} 
+//	else
+//	{
+//		degreenumDM=0;
+//	}
+//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
+//}
 
-	if (degreenumQr>0)
-	{
-		degreenumQr=degreenumQr-90;
-	} 
-	else
-	{
-		degreenumQr=270;
-	}
-	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-}
-
-void FileEditChild::degreeDMAddBut_clicked()
-{
-
-	if (degreenumDM<270)
-	{
-		degreenumDM=degreenumDM+90;
-	} 
-	else
-	{
-		degreenumDM=0;
-	}
-	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-}
-
-void FileEditChild::degreeDMRedButt_clicked()
-{
-
-	if (degreenumDM>0)
-	{
-		degreenumDM=degreenumDM-90;
-	} 
-	else
-	{
-		degreenumDM=270;
-	}
-	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-}
+//void FileEditChild::degreeDMRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenumDM>0)
+//	{
+//		degreenumDM=degreenumDM-90;
+//	} 
+//	else
+//	{
+//		degreenumDM=270;
+//	}
+//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
+//}
 
 void FileEditChild::zoomBarCodeAddBut_clicked()
 {
@@ -1006,61 +1002,61 @@ void FileEditChild::zoomBarCodeRedBut_clicked()
 	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
 }
 
-void FileEditChild::zoomQRAddBut_clicked()
-{
+//void FileEditChild::zoomQRAddBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorQr>=0.5)
+//	{
+//		ZoomfactorQr=ZoomfactorQr+0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorQr=0.5;
+//	}
+//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+//}
 
-	if (ZoomfactorQr>=0.5)
-	{
-		ZoomfactorQr=ZoomfactorQr+0.5;
-	} 
-	else
-	{
-		ZoomfactorQr=0.5;
-	}
-	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
-}
+//void FileEditChild::zoomQRRedBut_clicked()
+//{
+//
+//	if (ZoomfactorQr>=1)
+//	{
+//		ZoomfactorQr=ZoomfactorQr-0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorQr=0.5;
+//	}
+//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+//}
 
-void FileEditChild::zoomQRRedBut_clicked()
-{
+//void FileEditChild::zoomDMAddBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorDM>=0.5)
+//	{
+//		ZoomfactorDM=ZoomfactorDM+0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorDM=0.5;
+//	}
+//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+//}
 
-	if (ZoomfactorQr>=1)
-	{
-		ZoomfactorQr=ZoomfactorQr-0.5;
-	} 
-	else
-	{
-		ZoomfactorQr=0.5;
-	}
-	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-}
-
-void FileEditChild::zoomDMAddBut_clicked()
-{
-
-	if (ZoomfactorDM>=0.5)
-	{
-		ZoomfactorDM=ZoomfactorDM+0.5;
-	} 
-	else
-	{
-		ZoomfactorDM=0.5;
-	}
-	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
-}
-
-void FileEditChild::zoomDMRedBut_clicked()
-{
-
-	if (ZoomfactorDM>=1)
-	{
-		ZoomfactorDM=ZoomfactorDM-0.5;
-	} 
-	else
-	{
-		ZoomfactorDM=0.5;
-	}
-	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-}
+//void FileEditChild::zoomDMRedBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorDM>=1)
+//	{
+//		ZoomfactorDM=ZoomfactorDM-0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorDM=0.5;
+//	}
+//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+//}
 

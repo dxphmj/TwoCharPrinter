@@ -12,6 +12,8 @@
 #include <QStringList>
 #include "ClassMessage.h"
 
+class keyboard;
+
 namespace Ui {
 	class FileManageChild;
 }
@@ -25,6 +27,8 @@ public:
 	~FileManageChild();
 	Ui::FileManageChild *ui;  
 	ClassMessage  m_PrinterMes2;
+	keyboard  *keyboardWidget;
+
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
 	QString rootStr;
@@ -37,7 +41,8 @@ public slots:
 	void slotShow(QDir dir); 
 	void loadSeleFileBut_clicked();
 	void editSeleFileBut_clicked();
-	
+	void fileNmaeLineEdit_click();
+
 	//用于实现更改文件名的槽函数
 	//void ChangeFileName();
 

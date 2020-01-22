@@ -9,6 +9,7 @@
 #include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
+#include "keyboard.h"
 
 FileManageChild::FileManageChild(QWidget *parent)
 	: QWidget(parent),
@@ -22,9 +23,10 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
 	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
 	connect(ui->filelistWidget,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
+	connect(ui->fileNmaeLineEdit,SIGNAL(clicked()),this,SLOT(fileNmaeLineEdit_click()));  
 
 	//用于实现更改文件名的信号-槽，用户点击EditLine控件旁边的"√"时触发
-	//connect(ui->okBtn,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
+	//connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
 
 	ShowLocalFilePath(); 
 }
@@ -123,6 +125,17 @@ void FileManageChild::ShowLocalFilePath()
 	slotShow(rootDir); 
 	QWidget *pQWidget(this);
 	pQWidget->update();
+}
+
+void FileManageChild::fileNmaeLineEdit_click()
+{
+	ui->changeNameKBStacWid->setWindowFlags(ui->changeNameKBStacWid->windowFlags() | Qt::WindowStaysOnTopHint);
+	keyboardWidget->m_pInputEdit = ui->fileNmaeLineEdit;
+	ui->changeNameKBStacWid->show();
+	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
+	ui->changeNameKBStacWid->raise();
+	ui->changeNameKBStacWid->setCurrentWidget(keyboardWidget);
+
 }
 
 FileManageChild::~FileManageChild(){}
