@@ -19,7 +19,7 @@ typedef unsigned char BYTE;
 #define CBrush QBrush
 #define Ellipse drawRect
 #define CString QString
-#define BITMAP QBitmap
+#define BITMAP QBitmap2
 
 class OBJ_Control
 {

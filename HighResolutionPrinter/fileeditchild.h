@@ -7,7 +7,7 @@
 
 class keyboard;
 class FileManageChild;
-
+#include "ModuleMain.h"
 namespace Ui {
 	class FileEditChild;
 }
@@ -21,6 +21,7 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	FileManageChild *m_FileMangeChild;
+	ModuleMain m_TimeShow;
 
 	void mousePressEvent(QMouseEvent *event);
 	void Create2Dcode(int nType,QString strContent);
@@ -30,7 +31,10 @@ public:
 	void LoadLocalFile();
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
-	
+	void ShowText();
+	void ChangeTime();
+	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
+
 	QString aaaa;	
 	int degreenum;
 	int degreenumQr;
@@ -83,6 +87,9 @@ private slots:
 	//void zoomQRRedBut_clicked();
 	//void zoomDMAddBut_clicked();
 	//void zoomDMRedBut_clicked();
+	void addTimeBut_clicked();
+	void SkewComBox_clicked();
+	void refreshTimeBut_clicked();
 
 protected:
 	//void paintEvent(QPaintEvent *event);

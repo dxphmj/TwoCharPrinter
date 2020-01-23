@@ -9,7 +9,7 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
-
+#include "time.h"
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::FileEditChild)
@@ -17,7 +17,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->setupUi(this);
 
 	connect(ui->variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
-	connect(ui->customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
+	//connect(ui->customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
 	connect(ui->selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
 	connect(ui->delBut,SIGNAL(clicked()),this,SLOT(delBut_clicked()));
 	connect(ui->wordLineEdit,SIGNAL(clicked()),this,SLOT(wordLineEdit_clicked()));
@@ -56,7 +56,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
 	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
-
+	connect(ui->addTimeBut,SIGNAL(clicked()),this,SLOT(addTimeBut_clicked()));
+	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
+	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
@@ -144,6 +146,42 @@ FileEditChild::FileEditChild(QWidget *parent)
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
 	//Create2Dcode(8,"1");
+	ui->SkewSkewValueEdit->setText("0");
+	ui->SkewUUnitlistWidget->addItem("Year");
+	ui->SkewUUnitlistWidget->addItem("Month");
+	ui->SkewUUnitlistWidget->addItem("Day");
+	ui->SkewUUnitlistWidget->addItem("Hour");
+	ui->SkewUUnitlistWidget->addItem("Minute");
+	ui->fontTypeTimeComBox->addItem("5x5");
+	ui->fontTypeTimeComBox->addItem("7x5");
+	ui->fontTypeTimeComBox->addItem("12x12");
+	ui->fontTypeTimeComBox->addItem("16x12");
+	ui->fontTypeTimeComBox->setCurrentIndex(0);
+	ui->SkewComBox->addItem("OFF");
+	ui->SkewComBox->addItem("ON");
+	ui->SkewComBox->setCurrentIndex(0);
+	ui->FormatlistWidget->addItem("%Y - Year (0000 - 9999)");
+	ui->FormatlistWidget->addItem("%y - Year (00 - 99)");
+	ui->FormatlistWidget->addItem("%m - Month (01 - 12)");
+	ui->FormatlistWidget->addItem("%d - Day  (01 - 31)");
+	ui->FormatlistWidget->addItem("%H - Hour (00 - 23)");
+	ui->FormatlistWidget->addItem("%h - Hour (01 - 12)");
+	//ui->FormatlistWidget->addItem("%p - A.M. / P.M. "));
+	ui->FormatlistWidget->addItem("%M - Minute (00 - 59)");
+	ui->FormatlistWidget->addItem("%S - Second (00 - 59)");
+	ui->FormatlistWidget->addItem("%U - Week, Sunday first (00 - 53)");
+	ui->FormatlistWidget->addItem("%W - Week, Monday first (00 - 53)");
+	//ui->FormatlistWidget->addItem("%V - Weekday (1 - 7; Sunday is 1)");
+	//ui->FormatlistWidget->addItem("%v - Weekday (1 - 7; Monday is 1)"));
+	ui->FormatlistWidget->addItem("%w - Weekday (0 - 6; Sunday is 0)");
+	//ui->FormatlistWidget->addItem("%w - Weekday (0 - 6; Monday is 0)"));
+	//ui->FormatlistWidget->addItem("%Q - Quarter number of year (1 - 4)"));
+	ui->FormatlistWidget->addItem("%j - Day number of year (001 - 366)");
+	ui->FormatlistWidget->addItem("%a - Abbreviated weekday name");
+	ui->FormatlistWidget->addItem("%A - Full weekday name");
+	ui->FormatlistWidget->addItem("%b - Abbreviated month name");
+	ui->FormatlistWidget->addItem("%B - Full month name");
+	ui->FormatlistWidget->addItem("%p - am / pm");
 
 }
 
@@ -999,3 +1037,95 @@ void FileEditChild::zoomBarCodeRedBut_clicked()
 //	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
 //}
 
+void FileEditChild::addTimeBut_clicked()
+{
+	int nSelect=ui->FormatlistWidget->currentRow();
+	QString timeFormatStr;
+	timeFormatStr=ui->DateTimeEdit->text();
+	switch(nSelect)
+	{
+	case 0:
+		timeFormatStr+=("%Y");
+		break;
+	case 1:
+		timeFormatStr+=("%y");
+		break;
+	case 2:
+		timeFormatStr+=("%m");
+		break;
+	case 3:
+		timeFormatStr+=("%d");
+		break;
+	case 4:
+		timeFormatStr+=("%H");
+		break;
+	case 5:
+		timeFormatStr+=("%I");
+		break;
+	case 6:
+		timeFormatStr+=("%M");
+		break;
+	case 7:
+		timeFormatStr+=("%S");
+		break;
+	case 8:
+		timeFormatStr+= ("%U");
+		break;
+	case 9:
+		timeFormatStr+= ("%W");
+		break;
+	case 10:
+		timeFormatStr+= ("%w");
+		break;
+	case 11:
+		timeFormatStr+= ("%j");
+		break;
+	case 12:
+		timeFormatStr+= ("%a");
+		break;
+	case 13:
+		timeFormatStr+= ("%A");
+		break;
+	case 14:
+		timeFormatStr+= ("%b");
+		break;
+	case 15:
+		timeFormatStr+= ("%B");
+		break;
+	case 16:
+		timeFormatStr+= ("%p");
+		break;
+	default:
+		break;
+	}
+	ui->DateTimeEdit->setText(timeFormatStr);
+	QString skewvalue1;
+	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	int skewvalue2=skewvalue1.toInt();
+	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	ui->PreviewEdit->setText(nowTimeStr);
+
+}
+
+void FileEditChild::SkewComBox_clicked()
+{	if (ui->SkewComBox->currentIndex()==1)
+{ChangeTime();}
+}
+
+void FileEditChild::refreshTimeBut_clicked()
+{
+	ChangeTime();
+}
+
+void FileEditChild::ChangeTime()
+{
+	CString timeFormatStr;
+	timeFormatStr=ui->DateTimeEdit->text();
+	QString skewvalue1;
+	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	int skewvalue2=skewvalue1.toInt();
+	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	ui->PreviewEdit->setText(nowTimeStr);
+}

@@ -18,6 +18,7 @@
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
+#include <QtWidgets/QListWidget>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QScrollBar>
 #include <QtWidgets/QStackedWidget>
@@ -46,14 +47,22 @@ public:
     QPushButton *variableTextBut;
     QPushButton *newTextBut;
     QWidget *timeTab;
-    QComboBox *fontSizeTimeComBox;
-    QPushButton *customTimeBut;
-    QLabel *fontTypeTimeLab;
-    QComboBox *fontTypeTimeComBox;
-    QLabel *fontSizeTimeLab;
-    QComboBox *typeTimeComBox;
-    QLabel *typeTimeLab;
+    QListWidget *SkewUUnitlistWidget;
+    QLabel *fontTypeTimeLab_7;
+    QLineEdit *DateTimeEdit;
+    QPushButton *refreshTimeBut;
+    QComboBox *SkewComBox;
+    QLabel *fontTypeTimeLab_6;
+    QPushButton *addTimeBut;
+    QLineEdit *PreviewEdit;
+    QTextEdit *SkewSkewValueEdit;
     QPushButton *newTimeBut;
+    QComboBox *fontTypeTimeComBox;
+    QListWidget *FormatlistWidget;
+    QLabel *fontTypeTimeLab_5;
+    QLabel *fontTypeTimeLab_3;
+    QLabel *fontTypeTimeLab;
+    QLabel *fontTypeTimeLab_4;
     QWidget *serialTab;
     QLabel *formatSerialLab;
     QLabel *fontTypeSerialLab;
@@ -221,51 +230,94 @@ public:
         typeTab->addTab(textTab, QString());
         timeTab = new QWidget();
         timeTab->setObjectName(QStringLiteral("timeTab"));
-        fontSizeTimeComBox = new QComboBox(timeTab);
-        fontSizeTimeComBox->setObjectName(QStringLiteral("fontSizeTimeComBox"));
-        fontSizeTimeComBox->setGeometry(QRect(550, 90, 181, 31));
-        fontSizeTimeComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        SkewUUnitlistWidget = new QListWidget(timeTab);
+        SkewUUnitlistWidget->setObjectName(QStringLiteral("SkewUUnitlistWidget"));
+        SkewUUnitlistWidget->setGeometry(QRect(600, 270, 181, 121));
+        SkewUUnitlistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        fontTypeTimeLab_7 = new QLabel(timeTab);
+        fontTypeTimeLab_7->setObjectName(QStringLiteral("fontTypeTimeLab_7"));
+        fontTypeTimeLab_7->setGeometry(QRect(0, 60, 111, 41));
+        fontTypeTimeLab_7->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab_7->setFont(font1);
+        fontTypeTimeLab_7->setAlignment(Qt::AlignCenter);
+        DateTimeEdit = new QLineEdit(timeTab);
+        DateTimeEdit->setObjectName(QStringLiteral("DateTimeEdit"));
+        DateTimeEdit->setGeometry(QRect(110, 60, 671, 41));
+        DateTimeEdit->setFont(font);
+        DateTimeEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        refreshTimeBut = new QPushButton(timeTab);
+        refreshTimeBut->setObjectName(QStringLiteral("refreshTimeBut"));
+        refreshTimeBut->setGeometry(QRect(50, 360, 181, 41));
+        refreshTimeBut->setFont(font);
+        refreshTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        customTimeBut = new QPushButton(timeTab);
-        customTimeBut->setObjectName(QStringLiteral("customTimeBut"));
-        customTimeBut->setGeometry(QRect(550, 200, 181, 41));
-        customTimeBut->setFont(font);
-        customTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        SkewComBox = new QComboBox(timeTab);
+        SkewComBox->setObjectName(QStringLiteral("SkewComBox"));
+        SkewComBox->setGeometry(QRect(600, 165, 181, 31));
+        SkewComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        fontTypeTimeLab = new QLabel(timeTab);
-        fontTypeTimeLab->setObjectName(QStringLiteral("fontTypeTimeLab"));
-        fontTypeTimeLab->setGeometry(QRect(70, 85, 101, 41));
-        fontTypeTimeLab->setMinimumSize(QSize(101, 41));
-        fontTypeTimeLab->setFont(font1);
-        fontTypeTimeLab->setAlignment(Qt::AlignCenter);
-        fontTypeTimeComBox = new QComboBox(timeTab);
-        fontTypeTimeComBox->setObjectName(QStringLiteral("fontTypeTimeComBox"));
-        fontTypeTimeComBox->setGeometry(QRect(170, 90, 181, 31));
-        fontTypeTimeComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        fontTypeTimeLab_6 = new QLabel(timeTab);
+        fontTypeTimeLab_6->setObjectName(QStringLiteral("fontTypeTimeLab_6"));
+        fontTypeTimeLab_6->setGeometry(QRect(10, 10, 101, 41));
+        fontTypeTimeLab_6->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab_6->setFont(font1);
+        fontTypeTimeLab_6->setAlignment(Qt::AlignCenter);
+        addTimeBut = new QPushButton(timeTab);
+        addTimeBut->setObjectName(QStringLiteral("addTimeBut"));
+        addTimeBut->setGeometry(QRect(420, 190, 81, 61));
+        addTimeBut->setFont(font);
+        addTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        fontSizeTimeLab = new QLabel(timeTab);
-        fontSizeTimeLab->setObjectName(QStringLiteral("fontSizeTimeLab"));
-        fontSizeTimeLab->setGeometry(QRect(450, 85, 101, 41));
-        fontSizeTimeLab->setMinimumSize(QSize(101, 41));
-        fontSizeTimeLab->setFont(font1);
-        fontSizeTimeLab->setAlignment(Qt::AlignCenter);
-        typeTimeComBox = new QComboBox(timeTab);
-        typeTimeComBox->setObjectName(QStringLiteral("typeTimeComBox"));
-        typeTimeComBox->setGeometry(QRect(170, 195, 181, 31));
-        typeTimeComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 230);"));
-        typeTimeLab = new QLabel(timeTab);
-        typeTimeLab->setObjectName(QStringLiteral("typeTimeLab"));
-        typeTimeLab->setGeometry(QRect(70, 190, 101, 41));
-        typeTimeLab->setMinimumSize(QSize(101, 41));
-        typeTimeLab->setFont(font1);
-        typeTimeLab->setAlignment(Qt::AlignCenter);
+        PreviewEdit = new QLineEdit(timeTab);
+        PreviewEdit->setObjectName(QStringLiteral("PreviewEdit"));
+        PreviewEdit->setGeometry(QRect(110, 10, 671, 41));
+        PreviewEdit->setFont(font);
+        PreviewEdit->setAutoFillBackground(false);
+        PreviewEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        SkewSkewValueEdit = new QTextEdit(timeTab);
+        SkewSkewValueEdit->setObjectName(QStringLiteral("SkewSkewValueEdit"));
+        SkewSkewValueEdit->setGeometry(QRect(600, 210, 181, 51));
+        SkewSkewValueEdit->setFont(font);
+        SkewSkewValueEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         newTimeBut = new QPushButton(timeTab);
         newTimeBut->setObjectName(QStringLiteral("newTimeBut"));
-        newTimeBut->setGeometry(QRect(550, 330, 181, 41));
+        newTimeBut->setGeometry(QRect(300, 360, 181, 41));
         newTimeBut->setFont(font);
         newTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
+        fontTypeTimeComBox = new QComboBox(timeTab);
+        fontTypeTimeComBox->setObjectName(QStringLiteral("fontTypeTimeComBox"));
+        fontTypeTimeComBox->setGeometry(QRect(600, 115, 181, 31));
+        fontTypeTimeComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        FormatlistWidget = new QListWidget(timeTab);
+        FormatlistWidget->setObjectName(QStringLiteral("FormatlistWidget"));
+        FormatlistWidget->setGeometry(QRect(115, 110, 301, 241));
+        FormatlistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        fontTypeTimeLab_5 = new QLabel(timeTab);
+        fontTypeTimeLab_5->setObjectName(QStringLiteral("fontTypeTimeLab_5"));
+        fontTypeTimeLab_5->setGeometry(QRect(500, 280, 101, 41));
+        fontTypeTimeLab_5->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab_5->setFont(font1);
+        fontTypeTimeLab_5->setAlignment(Qt::AlignCenter);
+        fontTypeTimeLab_3 = new QLabel(timeTab);
+        fontTypeTimeLab_3->setObjectName(QStringLiteral("fontTypeTimeLab_3"));
+        fontTypeTimeLab_3->setGeometry(QRect(500, 160, 101, 41));
+        fontTypeTimeLab_3->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab_3->setFont(font1);
+        fontTypeTimeLab_3->setAlignment(Qt::AlignCenter);
+        fontTypeTimeLab = new QLabel(timeTab);
+        fontTypeTimeLab->setObjectName(QStringLiteral("fontTypeTimeLab"));
+        fontTypeTimeLab->setGeometry(QRect(500, 110, 101, 41));
+        fontTypeTimeLab->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab->setFont(font1);
+        fontTypeTimeLab->setAlignment(Qt::AlignCenter);
+        fontTypeTimeLab_4 = new QLabel(timeTab);
+        fontTypeTimeLab_4->setObjectName(QStringLiteral("fontTypeTimeLab_4"));
+        fontTypeTimeLab_4->setGeometry(QRect(500, 220, 101, 41));
+        fontTypeTimeLab_4->setMinimumSize(QSize(101, 41));
+        fontTypeTimeLab_4->setFont(font1);
+        fontTypeTimeLab_4->setAlignment(Qt::AlignCenter);
         typeTab->addTab(timeTab, QString());
         serialTab = new QWidget();
         serialTab->setObjectName(QStringLiteral("serialTab"));
@@ -671,6 +723,7 @@ public:
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
         keyboardStackWid->addWidget(page_3);
+        typeTab->raise();
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
         keyboardStackWid->addWidget(page_4);
@@ -751,7 +804,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(0);
+        typeTab->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -768,11 +821,15 @@ public:
         variableTextBut->setText(QApplication::translate("FileEditChild", "\345\217\257\345\217\230", 0));
         newTextBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
         typeTab->setTabText(typeTab->indexOf(textTab), QApplication::translate("FileEditChild", "\346\226\207\345\255\227", 0));
-        customTimeBut->setText(QApplication::translate("FileEditChild", "\350\207\252\345\256\232\344\271\211", 0));
-        fontTypeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
-        fontSizeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
-        typeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\261\273\345\236\213</span></p></body></html>", 0));
+        fontTypeTimeLab_7->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\245\346\234\237/\346\227\266\351\227\264</span></p></body></html>", 0));
+        refreshTimeBut->setText(QApplication::translate("FileEditChild", "\345\210\267\346\226\260", 0));
+        fontTypeTimeLab_6->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\242\204\350\247\210</span></p></body></html>", 0));
+        addTimeBut->setText(QApplication::translate("FileEditChild", "\346\267\273\345\212\240", 0));
         newTimeBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
+        fontTypeTimeLab_5->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273\345\215\225\344\275\215</span></p></body></html>", 0));
+        fontTypeTimeLab_3->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273</span></p></body></html>", 0));
+        fontTypeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
+        fontTypeTimeLab_4->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273\345\200\274</span></p></body></html>", 0));
         typeTab->setTabText(typeTab->indexOf(timeTab), QApplication::translate("FileEditChild", "\346\227\266\351\227\264", 0));
         formatSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\274\345\274\217</span></p></body></html>", 0));
         fontTypeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
