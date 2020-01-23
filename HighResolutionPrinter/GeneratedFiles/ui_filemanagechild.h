@@ -19,7 +19,6 @@
 #include <QtWidgets/QScrollBar>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QWidget>
-#include <lineedit_click.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -36,8 +35,6 @@ public:
     QPushButton *editSeleFileBut;
     QPushButton *delSeleFileBut;
     QPushButton *copyFile2localBut;
-    lineedit_click *fileNmaeLineEdit;
-    QPushButton *OKFileNameBut;
 
     void setupUi(QWidget *FileManageChild)
     {
@@ -46,11 +43,11 @@ public:
         FileManageChild->resize(1061, 761);
         filelistWidget = new QListWidget(FileManageChild);
         filelistWidget->setObjectName(QStringLiteral("filelistWidget"));
-        filelistWidget->setGeometry(QRect(10, 280, 221, 471));
+        filelistWidget->setGeometry(QRect(10, 10, 431, 641));
         filelistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         localFileBut = new QPushButton(FileManageChild);
         localFileBut->setObjectName(QStringLiteral("localFileBut"));
-        localFileBut->setGeometry(QRect(320, 480, 131, 51));
+        localFileBut->setGeometry(QRect(60, 680, 131, 51));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(15);
@@ -59,21 +56,21 @@ public:
 "background-color: rgb(0, 0, 230);"));
         UdiskFileBut = new QPushButton(FileManageChild);
         UdiskFileBut->setObjectName(QStringLiteral("UdiskFileBut"));
-        UdiskFileBut->setGeometry(QRect(320, 580, 131, 51));
+        UdiskFileBut->setGeometry(QRect(250, 680, 131, 51));
         UdiskFileBut->setFont(font);
         UdiskFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         filePrivewtextEdit = new QTextEdit(FileManageChild);
         filePrivewtextEdit->setObjectName(QStringLiteral("filePrivewtextEdit"));
-        filePrivewtextEdit->setGeometry(QRect(10, 10, 1021, 241));
+        filePrivewtextEdit->setGeometry(QRect(460, 10, 551, 301));
         filePrivewtextEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePreHorScrollBar = new QScrollBar(FileManageChild);
         filePreHorScrollBar->setObjectName(QStringLiteral("filePreHorScrollBar"));
-        filePreHorScrollBar->setGeometry(QRect(10, 251, 1021, 25));
+        filePreHorScrollBar->setGeometry(QRect(460, 310, 551, 25));
         filePreHorScrollBar->setOrientation(Qt::Horizontal);
         filePreVerScrollBar = new QScrollBar(FileManageChild);
         filePreVerScrollBar->setObjectName(QStringLiteral("filePreVerScrollBar"));
-        filePreVerScrollBar->setGeometry(QRect(1031, 10, 25, 241));
+        filePreVerScrollBar->setGeometry(QRect(1010, 10, 25, 301));
         filePreVerScrollBar->setOrientation(Qt::Vertical);
         loadSeleFileBut = new QPushButton(FileManageChild);
         loadSeleFileBut->setObjectName(QStringLiteral("loadSeleFileBut"));
@@ -102,16 +99,6 @@ public:
         copyFile2localBut->setFont(font1);
         copyFile2localBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        fileNmaeLineEdit = new lineedit_click(FileManageChild);
-        fileNmaeLineEdit->setObjectName(QStringLiteral("fileNmaeLineEdit"));
-        fileNmaeLineEdit->setGeometry(QRect(250, 280, 691, 51));
-        fileNmaeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        OKFileNameBut = new QPushButton(FileManageChild);
-        OKFileNameBut->setObjectName(QStringLiteral("OKFileNameBut"));
-        OKFileNameBut->setGeometry(QRect(950, 280, 101, 51));
-        OKFileNameBut->setFont(font);
-        OKFileNameBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 230);"));
 
         retranslateUi(FileManageChild);
 
@@ -127,7 +114,6 @@ public:
         editSeleFileBut->setText(QApplication::translate("FileManageChild", "\347\274\226\350\276\221\351\200\211\344\270\255\346\226\207\344\273\266", 0));
         delSeleFileBut->setText(QApplication::translate("FileManageChild", "\345\210\240\351\231\244\351\200\211\344\270\255\346\226\207\344\273\266", 0));
         copyFile2localBut->setText(QApplication::translate("FileManageChild", "\345\244\215\345\210\266\345\210\260\346\234\254\345\234\260", 0));
-        OKFileNameBut->setText(QApplication::translate("FileManageChild", "\347\241\256\345\256\232", 0));
     } // retranslateUi
 
 };

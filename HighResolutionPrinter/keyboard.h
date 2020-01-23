@@ -6,7 +6,6 @@
 #include <QString>
 
 class lineedit_click;
-class language;
 
 namespace Ui {
 	class keyboard;
@@ -23,8 +22,6 @@ public:
 public:
 	void btnLanguageSel(int m_LanType);
 	void btnSymbolSel(int m_LantypeReverse);
-	void SetPosition();
-	void SetLineEdit(lineedit_click* pInputEdit);
 
 	//void LanArabic1();
 	//void LanArabic2();
@@ -54,8 +51,6 @@ public:
 	bool m_Upper;
 	bool m_symbol;
 	lineedit_click* m_pInputEdit;
-	language  *languageWidget;
-
 	enum LanTypeEnum{ Chinese = 0,Japanese=1,Korean=2,Chinese_others=3,
 		Others=4,Arabic=5,Farsi=6,English=7,
 		Czech=8,Dutch=9,German=10,Finnish=11,

@@ -2,11 +2,7 @@
 #define TIMECUSTOM_H
 
 #include <QWidget>
-#include <QLineEdit>
-
-namespace Ui {
-	class timeCustom;
-}
+#include "ui_timecustom.h"
 
 class timeCustom : public QWidget
 {
@@ -17,11 +13,7 @@ public:
 	~timeCustom();
 
 private:
-	Ui::timeCustom *ui;
-
-private slots:
-	void OKDateBut_clicked();
-	void cancelDateBut_clicked();
+	Ui::timeCustom ui;
 };
 
 #endif // TIMECUSTOM_H

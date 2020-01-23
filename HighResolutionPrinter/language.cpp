@@ -1,6 +1,7 @@
 #include "language.h"
 #include "ui_language.h"
 #include <QtWidgets/QStackedWidget>
+#include "fileeditchild.h"
 #include "keyboard.h"
 
 language::language(QWidget *parent)
@@ -23,33 +24,38 @@ language::~language()
 void language::OKLanBut_clicked()
 {
 	//暂时用wordLineEdit_clicked调出KB
-	setVisible(false);   
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	pFileEditChild->returnKB();    
 }
 
 void language::lanEnglish_KBBut_clicked()
 {
 	//用于English切换回原键盘
-	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
-	pKeyboard->m_Upper = true;
-	pKeyboard->m_LanType = 7;
-	pKeyboard->caps1_kBBut_clicked();
-	setVisible(false); 
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	pFileEditChild->keyboardWidget->m_Upper = true;
+	pFileEditChild->keyboardWidget->m_LanType = 7;
+	pFileEditChild->keyboardWidget->caps1_kBBut_clicked();
+	pFileEditChild->returnKB(); 
 }
 
 void language::LanChinese_KBBut_clicked()
 {
-	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
-	pKeyboard->m_Upper = true;
-	pKeyboard->m_LanType = 0;
-	pKeyboard->caps1_kBBut_clicked();
-	setVisible(false);   
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	pFileEditChild->keyboardWidget->m_Upper = true;
+	pFileEditChild->keyboardWidget->m_LanType = 0;
+	pFileEditChild->keyboardWidget->caps1_kBBut_clicked();
+	pFileEditChild->returnKB(); 
 }
 
 void language::LanKorean_KBBut_clicked()
 {
-	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
-	pKeyboard->m_Upper = true;
-	pKeyboard->m_LanType = 22;
-	pKeyboard->caps1_kBBut_clicked();
-	setVisible(false);   
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FileEditChild *pFileEditChild = qobject_cast<FileEditChild*>(pQStackedWidget->parentWidget());  
+	pFileEditChild->keyboardWidget->m_Upper = true;
+	pFileEditChild->keyboardWidget->m_LanType = 22;
+	pFileEditChild->keyboardWidget->caps1_kBBut_clicked();
+	pFileEditChild->returnKB(); 
 }

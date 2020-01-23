@@ -2,12 +2,13 @@
 #define FILEEDITCHILD_H
 
 #include <QWidget>
-#include <QLineEdit>
 #include "ClassMessage.h"
+#include <QLineEdit>
 
 class keyboard;
+class language;
 class FileManageChild;
-#include "ModuleMain.h"
+
 namespace Ui {
 	class FileEditChild;
 }
@@ -21,7 +22,7 @@ public:
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
 	FileManageChild *m_FileMangeChild;
-	ModuleMain m_TimeShow;
+	//int QrecodeMatrix[25][25];
 
 	void mousePressEvent(QMouseEvent *event);
 	void Create2Dcode(int nType,QString strContent);
@@ -32,9 +33,7 @@ public:
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
 		int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	void ShowText();
-	void ChangeTime();
-	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
-
+	
 	QString aaaa;	
 	int degreenum;
 	int degreenumQr;
@@ -43,11 +42,13 @@ public:
 	float ZoomfactorQr;
 	float ZoomfactorDM;
 
- 	keyboard  *keyboardWidget;
+	keyboard  *keyboardWidget;
 
 private:
 	Ui::FileEditChild* ui;
 	
+	language  *languageWidget;
+	//keyboard* key;
 	QString str1;
 
 private slots:
@@ -70,34 +71,36 @@ private slots:
 	void moveLeftBut_clicked();
 	void moveRightBut_clicked();
 	void showNumCheckBox_clicked();
-	//void degreeBarCodeAddBut_clicked();
-	//void degreeBarCodeRedButt_clicked();
+	void degreeBarCodeAddBut_clicked();
+	void degreeBarCodeRedButt_clicked();
 	void heightBarCodeAddBut_clicked();
 	void heightBarCodeRedButt_clicked();
-	//void degreeQRAddBut_clicked();
-	//void degreeQRRedButt_clicked();
-	//void degreeDMAddBut_clicked();
-	//void degreeDMRedButt_clicked();
+	void degreeQRAddBut_clicked();
+	void degreeQRRedButt_clicked();
+	void degreeDMAddBut_clicked();
+	void degreeDMRedButt_clicked();
 
 	void newBmpBut_clicked();
 
 	void zoomBarCodeAddBut_clicked();
 	void zoomBarCodeRedBut_clicked();
-	//void zoomQRAddBut_clicked();
-	//void zoomQRRedBut_clicked();
-	//void zoomDMAddBut_clicked();
-	//void zoomDMRedBut_clicked();
-	void addTimeBut_clicked();
-	void SkewComBox_clicked();
-	void refreshTimeBut_clicked();
-
+	void zoomQRAddBut_clicked();
+	void zoomQRRedBut_clicked();
+	void zoomDMAddBut_clicked();
+	void zoomDMRedBut_clicked();
+	
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
 	bool eventFilter(QObject *watched, QEvent *event);
 
 public:
+	void hideKB();
+	void languageWidgetCall();
+	void returnKB();
 	void deleteChar();
+
+	//void getValA(QString str);
 };
 
 #endif // FILEEDITCHILD_H
