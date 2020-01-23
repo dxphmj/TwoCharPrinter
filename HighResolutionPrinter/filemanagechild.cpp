@@ -9,8 +9,6 @@
 #include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
-#include "keyboard.h"
-#include "ClassMessage.h"
 
 FileManageChild::FileManageChild(QWidget *parent)
 	: QWidget(parent),
@@ -24,14 +22,11 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
 	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
 	connect(ui->filelistWidget,SIGNAL(currentItemChanged(QListWidgetItem*,QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
-	connect(ui->fileNmaeLineEdit,SIGNAL(clicked()),this,SLOT(fileNmaeLineEdit_click()));  
 
 	//用于实现更改文件名的信号-槽，用户点击EditLine控件旁边的"√"时触发
-	//connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
-	m_pPrinterMes = new ClassMessage;
+	//connect(ui->okBtn,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
+
 	ShowLocalFilePath(); 
-	keyboardWidget = new keyboard(this);
-	keyboardWidget->setVisible(false);
 }
 
 /*
@@ -67,8 +62,8 @@ void FileManageChild::PreviewLocalFile()
 	/*QString QfileName = this->ui->filelistWidget->currentItem()->text();
 	QfileName = rootStr + "/" + QfileName;
 	string CfileName = QfileName.toStdString();*/
-	m_pPrinterMes->OBJ_Vec.clear();
-	m_pPrinterMes->ReadObjectsFromXml(GetCurXmlFile());	
+	m_PrinterMes2.OBJ_Vec.clear();
+	m_PrinterMes2.ReadObjectsFromXml(GetCurXmlFile());	
 }
 
 char* FileManageChild::GetCurXmlFile()
@@ -93,7 +88,7 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 void FileManageChild::paintDot()
 {
 	QPainter painter(ui->filePrivewtextEdit);
-	m_pPrinterMes->DrawDot(&painter);
+	m_PrinterMes2.DrawDot(&painter);
 	QWidget *m_QWidget(this);
 	m_QWidget->update();
 }
@@ -130,12 +125,4 @@ void FileManageChild::ShowLocalFilePath()
 	pQWidget->update();
 }
 
-void FileManageChild::fileNmaeLineEdit_click()
-{
-	keyboardWidget->SetLineEdit(ui->fileNmaeLineEdit);
-}
-
-FileManageChild::~FileManageChild()
-{
-	delete m_pPrinterMes;
-}
+FileManageChild::~FileManageChild(){}
