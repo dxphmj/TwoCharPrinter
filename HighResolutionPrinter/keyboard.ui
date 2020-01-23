@@ -123,7 +123,7 @@
   <widget class="QPushButton" name="one_KBBut">
    <property name="geometry">
     <rect>
-     <x>55</x>
+     <x>90</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -147,7 +147,7 @@
   <widget class="QPushButton" name="two_KBBut">
    <property name="geometry">
     <rect>
-     <x>125</x>
+     <x>160</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -171,7 +171,7 @@
   <widget class="QPushButton" name="three_KBBut">
    <property name="geometry">
     <rect>
-     <x>195</x>
+     <x>230</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -195,7 +195,7 @@
   <widget class="QPushButton" name="four_KBBut">
    <property name="geometry">
     <rect>
-     <x>265</x>
+     <x>300</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -219,7 +219,7 @@
   <widget class="QPushButton" name="five_KBBut">
    <property name="geometry">
     <rect>
-     <x>335</x>
+     <x>370</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -243,7 +243,7 @@
   <widget class="QPushButton" name="six_KBBut">
    <property name="geometry">
     <rect>
-     <x>405</x>
+     <x>440</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -267,7 +267,7 @@
   <widget class="QPushButton" name="seven_KBBut">
    <property name="geometry">
     <rect>
-     <x>475</x>
+     <x>510</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -291,7 +291,7 @@
   <widget class="QPushButton" name="eight_KBBut">
    <property name="geometry">
     <rect>
-     <x>545</x>
+     <x>580</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -315,7 +315,7 @@
   <widget class="QPushButton" name="nine_KBBut">
    <property name="geometry">
     <rect>
-     <x>615</x>
+     <x>650</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -339,7 +339,7 @@
   <widget class="QPushButton" name="zero_KBBut">
    <property name="geometry">
     <rect>
-     <x>685</x>
+     <x>720</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -1098,6 +1098,30 @@
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Esc_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>50</y>
+     <width>52</width>
+     <height>52</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>Esc</string>
    </property>
   </widget>
  </widget>
