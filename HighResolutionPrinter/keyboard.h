@@ -7,8 +7,7 @@
 
 class lineedit_click;
 
-namespace Ui 
-{
+namespace Ui {
 	class keyboard;
 }
 
@@ -33,11 +32,7 @@ public:
 	void LanEnglishBig();
 	void LanKoreanSmall();
 	void LanKoreanBig();
-	void LanChineseSmall();
-	void LanCzechBig();
-	void LanCzechSmall();
     void SymbolToEnglish();
-
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -86,6 +81,7 @@ private slots:
 	void enter_KBBut_clicked();
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
+	
 	void symbol_KBBut_clicked();
 
 

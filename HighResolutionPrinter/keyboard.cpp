@@ -115,11 +115,6 @@ void keyboard::caps1_kBBut_clicked()
 				LanKoreanBig();
 				break;
 			}
-		case 8:  //Czech
-			{
-				LanCzechBig();
-				break;
-			}
 		}
 		//case 2:  //Korean
 		
@@ -864,35 +859,32 @@ void keyboard::symbol_KBBut_clicked()
 		{
 		case 0://English
 
-			ui->A_KBBut->setText("(");
-			ui->B_KBBut->setText("~");
-			ui->C_KBBut->setText("\\");
-			ui->D_KBBut->setText(":");
-			ui->E_KBBut->setText("#");
-			ui->F_KBBut->setText(";");
-			ui->G_KBBut->setText("");
-			ui->H_KBBut->setText("");
-			ui->I_KBBut->setText("+");
-			ui->J_KBBut->setText("");
-			ui->K_KBBut->setText("");
-			ui->L_KBBut->setText("");
-			ui->M_KBBut->setText("<");
-			ui->N_KBBut->setText("");
-			ui->O_KBBut->setText("-");
-			ui->P_KBBut->setText("=");
-			ui->Q_KBBut->setText("!");
-			ui->R_KBBut->setText("$");
-			ui->S_KBBut->setText(")");
-			ui->T_KBBut->setText("%");
-			ui->U_KBBut->setText("*");
-			ui->V_KBBut->setText("|");
-			ui->W_KBBut->setText("@");
-			ui->X_KBBut->setText("/");
-			ui->Y_KBBut->setText("&&");
-			ui->Z_KBBut->setText("_");
-			ui->comma_KBBut->setText(">");
-			ui->period_KBBut->setText("?");
-
+			ui->A_KBBut->setText("#");
+			ui->B_KBBut->setText("@");
+			ui->C_KBBut->setText("$");
+			ui->D_KBBut->setText("%");
+			/*ui->E_KBBut->setText("E");
+			ui->F_KBBut->setText("F");
+			ui->G_KBBut->setText("G");
+			ui->H_KBBut->setText("H");
+			ui->I_KBBut->setText("I");
+			ui->J_KBBut->setText("J");
+			ui->K_KBBut->setText("K");
+			ui->L_KBBut->setText("L");
+			ui->M_KBBut->setText("M");
+			ui->N_KBBut->setText("N");
+			ui->O_KBBut->setText("O");
+			ui->P_KBBut->setText("P");
+			ui->Q_KBBut->setText("Q");
+			ui->R_KBBut->setText("R");
+			ui->S_KBBut->setText("S");
+			ui->T_KBBut->setText("T");
+			ui->U_KBBut->setText("U");
+			ui->V_KBBut->setText("V");
+			ui->W_KBBut->setText("W");
+			ui->X_KBBut->setText("X");
+			ui->Y_KBBut->setText("Y");
+			ui->Z_KBBut->setText("Z");*/
 			break;
 		}
 		m_symbol = false;
@@ -1231,12 +1223,6 @@ void keyboard::btnLanguageSel(int m_LanType)
 	{
 
 	case 0:  //chinese
-		{
-			LanChineseSmall();
-			//	pWnd->btnShow();
-			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
-			break;
-		}
 	case 1:  //Japanese
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
@@ -1277,7 +1263,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 		}
 	case 8:  //Czech
 		{
-			LanCzechSmall();
+		//	LanCzech();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1413,18 +1399,6 @@ void keyboard::LanEnglishSmall()
 	ui->X_KBBut->setText("x");
 	ui->Y_KBBut->setText("y");
 	ui->Z_KBBut->setText("z");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("2");
-	ui->three_KBBut->setText("3");
-	ui->four_KBBut->setText("4");
-	ui->five_KBBut->setText("5");
-	ui->six_KBBut->setText("6");
-	ui->seven_KBBut->setText("7");
-	ui->eight_KBBut->setText("8");
-	ui->nine_KBBut->setText("9");
-	ui->zero_KBBut->setText("0");
 	/*
 	GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
@@ -1504,62 +1478,36 @@ void keyboard::LanEnglishBig()
 	ui->X_KBBut->setText("X");
 	ui->Y_KBBut->setText("Y");
 	ui->Z_KBBut->setText("Z");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("2");
-	ui->three_KBBut->setText("3");
-	ui->four_KBBut->setText("4");
-	ui->five_KBBut->setText("5");
-	ui->six_KBBut->setText("6");
-	ui->seven_KBBut->setText("7");
-	ui->eight_KBBut->setText("8");
-	ui->nine_KBBut->setText("9");
-	ui->zero_KBBut->setText("0");
 }
 
 void keyboard::LanKoreanSmall()//韩语小写
 {
-	ui->A_KBBut->setText("ㅁ");
-	ui->B_KBBut->setText("ㅠ");
-	ui->C_KBBut->setText("ㅊ");
-	ui->D_KBBut->setText("ㅇ");
-	ui->E_KBBut->setText("ㄷ");
-	ui->F_KBBut->setText("ㄹ");
-	ui->G_KBBut->setText("ㅎ");
-	ui->H_KBBut->setText("ㅗ");
-	ui->I_KBBut->setText("ㅑ");
-	ui->J_KBBut->setText("ㅓ");
-	ui->K_KBBut->setText("ㅏ");
-	ui->L_KBBut->setText("ㅣ");
-	ui->M_KBBut->setText("ㅡ");
-	ui->N_KBBut->setText("ㅜ");
-	ui->O_KBBut->setText("ㅐ");
-	ui->P_KBBut->setText("ㅔ");
-	ui->Q_KBBut->setText("ㅂ");
-	ui->R_KBBut->setText("ㄱ");
-	ui->S_KBBut->setText("ㄴ");
-	ui->T_KBBut->setText("ㅅ");
-	ui->U_KBBut->setText("ㅕ");
-	ui->V_KBBut->setText("ㅍ");
-	ui->W_KBBut->setText("ㅈ");
-	ui->X_KBBut->setText("ㅌ");
-	ui->Y_KBBut->setText("ㅛ");
-	ui->Z_KBBut->setText("ㅋ");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("2");
-	ui->three_KBBut->setText("3");
-	ui->four_KBBut->setText("4");
-	ui->five_KBBut->setText("5");
-	ui->six_KBBut->setText("6");
-	ui->seven_KBBut->setText("7");
-	ui->eight_KBBut->setText("8");
-	ui->nine_KBBut->setText("9");
-	ui->zero_KBBut->setText("0");
+//	ui->A_KBBut->setText("ㅁ");
+//	ui->B_KBBut->setText("ㅠ");
+//	ui->C_KBBut->setText("ㅊ");
+//	ui->D_KBBut->setText("ㅇ");
+//	ui->E_KBBut->setText("ㄷ");
+//	ui->F_KBBut->setText("ㄹ");
+//	ui->G_KBBut->setText("ㅎ");
+//	ui->H_KBBut->setText("ㅗ");
+//	ui->I_KBBut->setText("ㅑ");
+//	ui->J_KBBut->setText("ㅓ");
+//	ui->K_KBBut->setText("ㅏ");
+//	ui->L_KBBut->setText("ㅣ");
+//	ui->M_KBBut->setText("ㅡ");
+//	ui->N_KBBut->setText("ㅜ");
+//	ui->O_KBBut->setText("ㅐ");
+//	ui->P_KBBut->setText("ㅔ");
+//	ui->Q_KBBut->setText("ㅂ");
+//	ui->R_KBBut->setText("ㄱ");
+//	ui->S_KBBut->setText("ㄴ");
+//	ui->T_KBBut->setText("ㅅ");
+//	ui->U_KBBut->setText("ㅕ");
+//	ui->V_KBBut->setText("ㅍ");
+//	ui->W_KBBut->setText("ㅈ");
+//	ui->X_KBBut->setText("ㅌ");
+//	ui->Y_KBBut->setText("ㅛ");
+//	ui->Z_KBBut->setText("ㅋ");
 //
 //
 //
@@ -1641,157 +1589,6 @@ void keyboard::LanKoreanBig()
 	ui->X_KBBut->setText("차");
 	ui->Y_KBBut->setText("");
 	ui->Z_KBBut->setText("자");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("2");
-	ui->three_KBBut->setText("3");
-	ui->four_KBBut->setText("4");
-	ui->five_KBBut->setText("5");
-	ui->six_KBBut->setText("6");
-	ui->seven_KBBut->setText("7");
-	ui->eight_KBBut->setText("8");
-	ui->nine_KBBut->setText("9");
-	ui->zero_KBBut->setText("0");
-}
-
-void keyboard::LanChineseSmall()
-{
-	ui->A_KBBut->setText("a");
-	ui->B_KBBut->setText("b");
-	ui->C_KBBut->setText("c");
-	ui->D_KBBut->setText("d");
-	ui->E_KBBut->setText("e");
-	ui->F_KBBut->setText("f");
-	ui->G_KBBut->setText("g");
-	ui->H_KBBut->setText("h");
-	ui->I_KBBut->setText("i");
-	ui->J_KBBut->setText("j");
-	ui->K_KBBut->setText("k");
-	ui->L_KBBut->setText("l");
-	ui->M_KBBut->setText("m");
-	ui->N_KBBut->setText("n");
-	ui->O_KBBut->setText("o");
-	ui->P_KBBut->setText("p");
-	ui->Q_KBBut->setText("q");
-	ui->R_KBBut->setText("r");
-	ui->S_KBBut->setText("s");
-	ui->T_KBBut->setText("t");
-	ui->U_KBBut->setText("u");
-	ui->V_KBBut->setText("v");
-	ui->W_KBBut->setText("w");
-	ui->X_KBBut->setText("x");
-	ui->Y_KBBut->setText("y");
-	ui->Z_KBBut->setText("z");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("2");
-	ui->three_KBBut->setText("3");
-	ui->four_KBBut->setText("4");
-	ui->five_KBBut->setText("5");
-	ui->six_KBBut->setText("6");
-	ui->seven_KBBut->setText("7");
-	ui->eight_KBBut->setText("8");
-	ui->nine_KBBut->setText("9");
-	ui->zero_KBBut->setText("0");
-}
-
-void keyboard::LanCzechBig()
-{
-	ui->A_KBBut->setText("A");
-	ui->B_KBBut->setText("B");
-	ui->C_KBBut->setText("C");
-	ui->D_KBBut->setText("D");
-	ui->E_KBBut->setText("E");
-	ui->F_KBBut->setText("F");
-	ui->G_KBBut->setText("G");
-	ui->H_KBBut->setText("H");
-	ui->I_KBBut->setText("I");
-	ui->J_KBBut->setText("J");
-	ui->K_KBBut->setText("K");
-	ui->L_KBBut->setText("L");
-	ui->M_KBBut->setText("M");
-	ui->N_KBBut->setText("N");
-	ui->O_KBBut->setText("O");
-	ui->P_KBBut->setText("P");
-	ui->Q_KBBut->setText("Q");
-	ui->R_KBBut->setText("R");
-	ui->S_KBBut->setText("S");
-	ui->T_KBBut->setText("T");
-	ui->U_KBBut->setText("U");
-	ui->V_KBBut->setText("V");
-	ui->W_KBBut->setText("W");
-	ui->X_KBBut->setText("X");
-	ui->Y_KBBut->setText("Y");
-	ui->Z_KBBut->setText("Z");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("Ě");
-	ui->three_KBBut->setText("Š");
-	ui->four_KBBut->setText("Č");
-	ui->five_KBBut->setText("Ř");
-	ui->six_KBBut->setText("Ž");
-	ui->seven_KBBut->setText("Ý");
-	ui->eight_KBBut->setText("Á");
-	ui->nine_KBBut->setText("Í");
-	ui->zero_KBBut->setText("É");
-
-
-	//      GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("É"));
-	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Í"));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Á"));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ý"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Ž"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Ř"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Č"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Š"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ě"));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-
-}
-
-void keyboard::LanCzechSmall()
-{
-	ui->A_KBBut->setText("a");
-	ui->B_KBBut->setText("b");
-	ui->C_KBBut->setText("c");
-	ui->D_KBBut->setText("d");
-	ui->E_KBBut->setText("e");
-	ui->F_KBBut->setText("f");
-	ui->G_KBBut->setText("g");
-	ui->H_KBBut->setText("h");
-	ui->I_KBBut->setText("i");
-	ui->J_KBBut->setText("j");
-	ui->K_KBBut->setText("k");
-	ui->L_KBBut->setText("l");
-	ui->M_KBBut->setText("m");
-	ui->N_KBBut->setText("n");
-	ui->O_KBBut->setText("o");
-	ui->P_KBBut->setText("p");
-	ui->Q_KBBut->setText("q");
-	ui->R_KBBut->setText("r");
-	ui->S_KBBut->setText("s");
-	ui->T_KBBut->setText("t");
-	ui->U_KBBut->setText("u");
-	ui->V_KBBut->setText("v");
-	ui->W_KBBut->setText("w");
-	ui->X_KBBut->setText("x");
-	ui->Y_KBBut->setText("y");
-	ui->Z_KBBut->setText("z");
-	ui->comma_KBBut->setText(",");
-	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText("1");
-	ui->two_KBBut->setText("Ě");
-	ui->three_KBBut->setText("Š");
-	ui->four_KBBut->setText("Č");
-	ui->five_KBBut->setText("Ř");
-	ui->six_KBBut->setText("Ž");
-	ui->seven_KBBut->setText("Ý");
-	ui->eight_KBBut->setText("Á");
-	ui->nine_KBBut->setText("Í");
-	ui->zero_KBBut->setText("É");
 }
 
 void keyboard::SymbolToEnglish()
