@@ -23,6 +23,7 @@ private slots:
 	void lanEnglish_KBBut_clicked();
 	void LanChinese_KBBut_clicked();
 	void LanKorean_KBBut_clicked();
+	void LanCzech_KBBut_clicked();
 };
 
 #endif // LANGUAGE_H
