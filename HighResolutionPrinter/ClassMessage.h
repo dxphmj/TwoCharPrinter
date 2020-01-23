@@ -1,3 +1,7 @@
+
+#ifndef CLASSMESSAGE_H
+#define CLASSMESSAGE_H
+
 #pragma once
 #include <string>
 #include <vector>
@@ -15,7 +19,7 @@ typedef unsigned char BYTE;
 #define CBrush QBrush
 #define Ellipse drawRect
 #define CString QString
-#define BITMAP QBitmap
+#define BITMAP QBitmap2
 
 class OBJ_Control
 {
@@ -124,8 +128,9 @@ public:
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
-	void ReadObjectsFromXml(char* strFileName);
+	bool ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
 		
 };
 
+#endif

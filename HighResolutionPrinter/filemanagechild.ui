@@ -17,9 +17,9 @@
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>10</y>
-     <width>431</width>
-     <height>641</height>
+     <y>280</y>
+     <width>221</width>
+     <height>471</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -29,8 +29,8 @@
   <widget class="QPushButton" name="localFileBut">
    <property name="geometry">
     <rect>
-     <x>60</x>
-     <y>680</y>
+     <x>320</x>
+     <y>480</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -52,8 +52,8 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="UdiskFileBut">
    <property name="geometry">
     <rect>
-     <x>250</x>
-     <y>680</y>
+     <x>320</x>
+     <y>580</y>
      <width>131</width>
      <height>51</height>
     </rect>
@@ -75,10 +75,10 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QTextEdit" name="filePrivewtextEdit">
    <property name="geometry">
     <rect>
-     <x>460</x>
+     <x>10</x>
      <y>10</y>
-     <width>551</width>
-     <height>301</height>
+     <width>1021</width>
+     <height>241</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -88,9 +88,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QScrollBar" name="filePreHorScrollBar">
    <property name="geometry">
     <rect>
-     <x>460</x>
-     <y>310</y>
-     <width>551</width>
+     <x>10</x>
+     <y>251</y>
+     <width>1021</width>
      <height>25</height>
     </rect>
    </property>
@@ -101,10 +101,10 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QScrollBar" name="filePreVerScrollBar">
    <property name="geometry">
     <rect>
-     <x>1010</x>
+     <x>1031</x>
      <y>10</y>
      <width>25</width>
-     <height>301</height>
+     <height>241</height>
     </rect>
    </property>
    <property name="orientation">
@@ -203,8 +203,51 @@ background-color: rgb(0, 0, 230);</string>
     <string>复制到本地</string>
    </property>
   </widget>
+  <widget class="lineedit_click" name="fileNmaeLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>280</y>
+     <width>691</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(255, 255, 255);</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="OKFileNameBut">
+   <property name="geometry">
+    <rect>
+     <x>950</x>
+     <y>280</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>15</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+   </property>
+   <property name="text">
+    <string>确定</string>
+   </property>
+  </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>lineedit_click</class>
+   <extends>QLineEdit</extends>
+   <header location="global">lineedit_click.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

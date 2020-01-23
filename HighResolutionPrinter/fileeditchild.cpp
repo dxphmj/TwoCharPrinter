@@ -9,8 +9,7 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
-#include "language.h"
-
+#include "time.h"
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::FileEditChild)
@@ -18,7 +17,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->setupUi(this);
 
 	connect(ui->variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
-	connect(ui->customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
+	//connect(ui->customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
 	connect(ui->selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
 	connect(ui->delBut,SIGNAL(clicked()),this,SLOT(delBut_clicked()));
 	connect(ui->wordLineEdit,SIGNAL(clicked()),this,SLOT(wordLineEdit_clicked()));
@@ -35,36 +34,35 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
 	connect(ui->moveRightBut,SIGNAL(clicked()),this,SLOT(moveRightBut_clicked()));
 	connect(ui->showNumCheckBox,SIGNAL(stateChanged()),this,SLOT(showNumCheckBox_clicked()));
-	connect(ui->degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
-	connect(ui->degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
+	//connect(ui->degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
+	//connect(ui->degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
 	connect(ui->zoomBarCodeAddBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeAddBut,SIGNAL(clicked()),this,SLOT(heightBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeRedBut,SIGNAL(clicked()),this,SLOT(heightBarCodeRedButt_clicked()));
 	
-	connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
+	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
+	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
+	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 	connect(ui->zoomBarCodeRedBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeRedBut_clicked()));
-	connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
-	connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
-	connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
-	connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
-	connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	//connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
+	//connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
+	//connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
+	//connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
+	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
+	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
+	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
+	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
 	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
-
+	connect(ui->addTimeBut,SIGNAL(clicked()),this,SLOT(addTimeBut_clicked()));
+	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
+	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
     ui->wordLineEdit->setFocus();
 
-
-	keyboardWidget = new keyboard(this);
-	languageWidget = new language();
-	ui->keyboardStackWid->addWidget(keyboardWidget);
-	ui->keyboardStackWid->addWidget(languageWidget);
+	keyboardWidget = new keyboard(ui->typeTab);
+	keyboardWidget->setVisible(false);
 	
 	ui->editPreviewText->installEventFilter(this);
 	ui->editPreviewText->viewport()->installEventFilter(this);
@@ -81,9 +79,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->reverseCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 									  QCheckBox{color:rgb(255, 255, 255);}\
 									  ");
-	ui->natureNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-										QCheckBox{color:rgb(255, 255, 255);}\
-									   ");
 	ui->reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
@@ -105,20 +100,20 @@ FileEditChild::FileEditChild(QWidget *parent)
 								"); 
 	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->internalShowTextLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-    ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+    //ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 
 
 	ui->typeBarCodeComBox->addItem(QStringLiteral("EANX"));
@@ -131,10 +126,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
 	ui->typeBarCodeComBox->setCurrentIndex(3);
 
-	ui->preciseQRComBox->addItem(QStringLiteral("低"));
-	ui->preciseQRComBox->addItem(QStringLiteral("中"));
-	ui->preciseQRComBox->addItem(QStringLiteral("高"));
-	ui->preciseQRComBox->addItem(QStringLiteral("精准"));
 	ui->typeBarCodeComBox->setCurrentIndex(1);
 
 	ui->sideLenQRComBox->addItem(QStringLiteral("21 px"));
@@ -155,6 +146,42 @@ FileEditChild::FileEditChild(QWidget *parent)
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
 	//Create2Dcode(8,"1");
+	ui->SkewSkewValueEdit->setText("0");
+	ui->SkewUUnitlistWidget->addItem("Year");
+	ui->SkewUUnitlistWidget->addItem("Month");
+	ui->SkewUUnitlistWidget->addItem("Day");
+	ui->SkewUUnitlistWidget->addItem("Hour");
+	ui->SkewUUnitlistWidget->addItem("Minute");
+	ui->fontTypeTimeComBox->addItem("5x5");
+	ui->fontTypeTimeComBox->addItem("7x5");
+	ui->fontTypeTimeComBox->addItem("12x12");
+	ui->fontTypeTimeComBox->addItem("16x12");
+	ui->fontTypeTimeComBox->setCurrentIndex(0);
+	ui->SkewComBox->addItem("OFF");
+	ui->SkewComBox->addItem("ON");
+	ui->SkewComBox->setCurrentIndex(0);
+	ui->FormatlistWidget->addItem("%Y - Year (0000 - 9999)");
+	ui->FormatlistWidget->addItem("%y - Year (00 - 99)");
+	ui->FormatlistWidget->addItem("%m - Month (01 - 12)");
+	ui->FormatlistWidget->addItem("%d - Day  (01 - 31)");
+	ui->FormatlistWidget->addItem("%H - Hour (00 - 23)");
+	ui->FormatlistWidget->addItem("%h - Hour (01 - 12)");
+	//ui->FormatlistWidget->addItem("%p - A.M. / P.M. "));
+	ui->FormatlistWidget->addItem("%M - Minute (00 - 59)");
+	ui->FormatlistWidget->addItem("%S - Second (00 - 59)");
+	ui->FormatlistWidget->addItem("%U - Week, Sunday first (00 - 53)");
+	ui->FormatlistWidget->addItem("%W - Week, Monday first (00 - 53)");
+	//ui->FormatlistWidget->addItem("%V - Weekday (1 - 7; Sunday is 1)");
+	//ui->FormatlistWidget->addItem("%v - Weekday (1 - 7; Monday is 1)"));
+	ui->FormatlistWidget->addItem("%w - Weekday (0 - 6; Sunday is 0)");
+	//ui->FormatlistWidget->addItem("%w - Weekday (0 - 6; Monday is 0)"));
+	//ui->FormatlistWidget->addItem("%Q - Quarter number of year (1 - 4)"));
+	ui->FormatlistWidget->addItem("%j - Day number of year (001 - 366)");
+	ui->FormatlistWidget->addItem("%a - Abbreviated weekday name");
+	ui->FormatlistWidget->addItem("%A - Full weekday name");
+	ui->FormatlistWidget->addItem("%b - Abbreviated month name");
+	ui->FormatlistWidget->addItem("%B - Full month name");
+	ui->FormatlistWidget->addItem("%p - am / pm");
 
 }
 
@@ -177,9 +204,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	derta=1;
 	longth=0;
 	error_number = 0;
-	QString angle1=ui->degreeBarCodeShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeBarCodeShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
@@ -288,9 +315,9 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int i;
 
 	error_number = 0;
-	QString angle1=ui->degreeQRShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 	//rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
@@ -378,9 +405,9 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	int i;
 
 	error_number = 0;
-	QString angle1=ui->degreeDMShowLab->text();
-	int angle2=angle1.toInt();
-	rotate_angle = angle2;
+	//QString angle1=ui->degreeDMShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
 
 	//rotate_angle = 0;
 	generated = 0;
@@ -505,13 +532,6 @@ void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, 
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
 
-void FileEditChild::ShowText()
-{
-	QString txtQString = ui->wordLineEdit->text();
-	string txtString = txtQString.toStdString();
-	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
-}
-
 void FileEditChild::LoadLocalFile()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(parentWidget()); 
@@ -586,6 +606,9 @@ void FileEditChild::saveBut_clicked()
 	3.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中(默认为覆盖）
 	4.弹出<保存成功>提示框，持续1秒
 	*/
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->FileManageChildWidgetCall();
 }
 
 void FileEditChild::variableTextBut_clicked()
@@ -666,71 +689,29 @@ void FileEditChild::delBut_clicked()
 
 void FileEditChild::wordLineEdit_clicked()
 {
-	//ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	//ui->keyboardStackWid->show();
-	////仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	//ui->keyboardStackWid->raise();
-	//ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->wordLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+	keyboardWidget->SetLineEdit(ui->wordLineEdit);
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->barCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+ 	keyboardWidget->SetLineEdit(ui->barCodeLineEdit);
 }
 
 void FileEditChild::QRCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->QRCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+ 	keyboardWidget->SetLineEdit(ui->QRCodeLineEdit);
 }
 
 void FileEditChild::DMCodeLineEdit_clicked()
 {
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	keyboardWidget->m_pInputEdit = ui->DMCodeLineEdit;
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
+  	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
 }
-
-void FileEditChild::languageWidgetCall()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(languageWidget);
-}
-
-void FileEditChild::returnKB()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->show();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-	ui->keyboardStackWid->setCurrentWidget(keyboardWidget);
-}
-
+ 
 void FileEditChild::newTextBut_clicked()
 {
-
+	QString txtQString = ui->wordLineEdit->text();
+	string txtString = txtQString.toStdString();
+	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
 }
 
 void FileEditChild::newBarCodeBut_clicked()
@@ -861,15 +842,6 @@ void FileEditChild::moveRightBut_clicked()
 	}
 }
 
-void FileEditChild::hideKB()
-{
-	ui->keyboardStackWid->setWindowFlags(ui->keyboardStackWid->windowFlags() | Qt::WindowStaysOnTopHint);
-	ui->keyboardStackWid->close();
-	//仅仅显示在最前1次(点击主窗体时主窗体回到最前)
-	ui->keyboardStackWid->raise();
-
-}
-
 void FileEditChild::deleteChar()
 {
 	ui->wordLineEdit->backspace();
@@ -881,33 +853,33 @@ void FileEditChild::showNumCheckBox_clicked()
 	
 }
 
-void FileEditChild::degreeBarCodeAddBut_clicked()
-{
-	
-	if (degreenum<270)
-	{
-		degreenum=degreenum+90;
-	} 
-	else
-	{
-		degreenum=0;
-	}
-	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-}
+//void FileEditChild::degreeBarCodeAddBut_clicked()//暂时注掉
+//{
+//	
+//	if (degreenum<270)
+//	{
+//		degreenum=degreenum+90;
+//	} 
+//	else
+//	{
+//		degreenum=0;
+//	}
+//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
+//}
 
-void FileEditChild::degreeBarCodeRedButt_clicked()
-{
-
-	if (degreenum>0)
-	{
-		degreenum=degreenum-90;
-	} 
-	else
-	{
-		degreenum=270;
-	}
-	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-}
+//void FileEditChild::degreeBarCodeRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenum>0)
+//	{
+//		degreenum=degreenum-90;
+//	} 
+//	else
+//	{
+//		degreenum=270;
+//	}
+//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
+//}
 
 void FileEditChild::heightBarCodeAddBut_clicked()
 {
@@ -921,62 +893,63 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 	str1 = ui->wordLineEdit->text();
 }
 
-void FileEditChild::degreeQRAddBut_clicked()
-{
+//void FileEditChild::degreeQRAddBut_clicked()//暂时注掉
+//{
+//
+//	if (degreenumQr<270)
+//	{
+//		degreenumQr=degreenumQr+90;
+//	} 
+//	else
+//	{
+//		degreenumQr=0;
+//	}
+//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
+//}
 
-	if (degreenumQr<270)
-	{
-		degreenumQr=degreenumQr+90;
-	} 
-	else
-	{
-		degreenumQr=0;
-	}
-	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-}
+//void FileEditChild::degreeQRRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenumQr>0)
+//	{
+//		degreenumQr=degreenumQr-90;
+//	} 
+//	else
+//	{
+//		degreenumQr=270;
+//	}
+//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
+//}
 
-void FileEditChild::degreeQRRedButt_clicked()
-{
+//void FileEditChild::degreeDMAddBut_clicked()//暂时注掉
+//{
+//
+//	if (degreenumDM<270)
+//	{
+//		degreenumDM=degreenumDM+90;
+//	} 
+//	else
+//	{
+//		degreenumDM=0;
+//	}
+//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
+//}
 
-	if (degreenumQr>0)
-	{
-		degreenumQr=degreenumQr-90;
-	} 
-	else
-	{
-		degreenumQr=270;
-	}
-	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-}
+//void FileEditChild::degreeDMRedButt_clicked()//暂时注掉
+//{
+//
+//	if (degreenumDM>0)
+//	{
+//		degreenumDM=degreenumDM-90;
+//	} 
+//	else
+//	{
+//		degreenumDM=270;
+//	}
+//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
+//}
 
-void FileEditChild::degreeDMAddBut_clicked()
-{
-
-	if (degreenumDM<270)
-	{
-		degreenumDM=degreenumDM+90;
-	} 
-	else
-	{
-		degreenumDM=0;
-	}
-	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-}
-
-void FileEditChild::degreeDMRedButt_clicked()
-{
-
-	if (degreenumDM>0)
-	{
-		degreenumDM=degreenumDM-90;
-	} 
-	else
-	{
-		degreenumDM=270;
-	}
-	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-}
-
+ 
 void FileEditChild::zoomBarCodeAddBut_clicked()
 {
 
@@ -1006,61 +979,153 @@ void FileEditChild::zoomBarCodeRedBut_clicked()
 	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
 }
 
-void FileEditChild::zoomQRAddBut_clicked()
-{
+//void FileEditChild::zoomQRAddBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorQr>=0.5)
+//	{
+//		ZoomfactorQr=ZoomfactorQr+0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorQr=0.5;
+//	}
+//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+//}
 
-	if (ZoomfactorQr>=0.5)
+//void FileEditChild::zoomQRRedBut_clicked()
+//{
+//
+//	if (ZoomfactorQr>=1)
+//	{
+//		ZoomfactorQr=ZoomfactorQr-0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorQr=0.5;
+//	}
+//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+//}
+
+//void FileEditChild::zoomDMAddBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorDM>=0.5)
+//	{
+//		ZoomfactorDM=ZoomfactorDM+0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorDM=0.5;
+//	}
+//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+//}
+
+//void FileEditChild::zoomDMRedBut_clicked()//暂时注掉
+//{
+//
+//	if (ZoomfactorDM>=1)
+//	{
+//		ZoomfactorDM=ZoomfactorDM-0.5;
+//	} 
+//	else
+//	{
+//		ZoomfactorDM=0.5;
+//	}
+//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+//}
+
+void FileEditChild::addTimeBut_clicked()
+{
+	int nSelect=ui->FormatlistWidget->currentRow();
+	QString timeFormatStr;
+	timeFormatStr=ui->DateTimeEdit->text();
+	switch(nSelect)
 	{
-		ZoomfactorQr=ZoomfactorQr+0.5;
-	} 
-	else
-	{
-		ZoomfactorQr=0.5;
+	case 0:
+		timeFormatStr+=("%Y");
+		break;
+	case 1:
+		timeFormatStr+=("%y");
+		break;
+	case 2:
+		timeFormatStr+=("%m");
+		break;
+	case 3:
+		timeFormatStr+=("%d");
+		break;
+	case 4:
+		timeFormatStr+=("%H");
+		break;
+	case 5:
+		timeFormatStr+=("%I");
+		break;
+	case 6:
+		timeFormatStr+=("%M");
+		break;
+	case 7:
+		timeFormatStr+=("%S");
+		break;
+	case 8:
+		timeFormatStr+= ("%U");
+		break;
+	case 9:
+		timeFormatStr+= ("%W");
+		break;
+	case 10:
+		timeFormatStr+= ("%w");
+		break;
+	case 11:
+		timeFormatStr+= ("%j");
+		break;
+	case 12:
+		timeFormatStr+= ("%a");
+		break;
+	case 13:
+		timeFormatStr+= ("%A");
+		break;
+	case 14:
+		timeFormatStr+= ("%b");
+		break;
+	case 15:
+		timeFormatStr+= ("%B");
+		break;
+	case 16:
+		timeFormatStr+= ("%p");
+		break;
+	default:
+		break;
 	}
-	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	ui->DateTimeEdit->setText(timeFormatStr);
+	QString skewvalue1;
+	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	int skewvalue2=skewvalue1.toInt();
+	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	ui->PreviewEdit->setText(nowTimeStr);
+
 }
 
-void FileEditChild::zoomQRRedBut_clicked()
-{
-
-	if (ZoomfactorQr>=1)
-	{
-		ZoomfactorQr=ZoomfactorQr-0.5;
-	} 
-	else
-	{
-		ZoomfactorQr=0.5;
-	}
-	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
+void FileEditChild::SkewComBox_clicked()
+{	if (ui->SkewComBox->currentIndex()==1)
+{ChangeTime();}
 }
 
-void FileEditChild::zoomDMAddBut_clicked()
+void FileEditChild::refreshTimeBut_clicked()
 {
-
-	if (ZoomfactorDM>=0.5)
-	{
-		ZoomfactorDM=ZoomfactorDM+0.5;
-	} 
-	else
-	{
-		ZoomfactorDM=0.5;
-	}
-	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	ChangeTime();
 }
 
-void FileEditChild::zoomDMRedBut_clicked()
+void FileEditChild::ChangeTime()
 {
-
-	if (ZoomfactorDM>=1)
-	{
-		ZoomfactorDM=ZoomfactorDM-0.5;
-	} 
-	else
-	{
-		ZoomfactorDM=0.5;
-	}
-	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
+	CString timeFormatStr;
+	timeFormatStr=ui->DateTimeEdit->text();
+	QString skewvalue1;
+	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	int skewvalue2=skewvalue1.toInt();
+	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	ui->PreviewEdit->setText(nowTimeStr);
 }
-

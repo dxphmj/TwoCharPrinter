@@ -67,6 +67,7 @@ public:
     QPushButton *comma_KBBut;
     QPushButton *language_KBBut;
     QPushButton *hide_KBBut;
+    QPushButton *Esc_KBBut;
 
     void setupUi(QWidget *keyboard)
     {
@@ -112,52 +113,52 @@ public:
         space_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         one_KBBut = new QPushButton(keyboard);
         one_KBBut->setObjectName(QStringLiteral("one_KBBut"));
-        one_KBBut->setGeometry(QRect(55, 50, 52, 52));
+        one_KBBut->setGeometry(QRect(90, 50, 52, 52));
         one_KBBut->setFont(font1);
         one_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         two_KBBut = new QPushButton(keyboard);
         two_KBBut->setObjectName(QStringLiteral("two_KBBut"));
-        two_KBBut->setGeometry(QRect(125, 50, 52, 52));
+        two_KBBut->setGeometry(QRect(160, 50, 52, 52));
         two_KBBut->setFont(font1);
         two_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         three_KBBut = new QPushButton(keyboard);
         three_KBBut->setObjectName(QStringLiteral("three_KBBut"));
-        three_KBBut->setGeometry(QRect(195, 50, 52, 52));
+        three_KBBut->setGeometry(QRect(230, 50, 52, 52));
         three_KBBut->setFont(font1);
         three_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         four_KBBut = new QPushButton(keyboard);
         four_KBBut->setObjectName(QStringLiteral("four_KBBut"));
-        four_KBBut->setGeometry(QRect(265, 50, 52, 52));
+        four_KBBut->setGeometry(QRect(300, 50, 52, 52));
         four_KBBut->setFont(font1);
         four_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         five_KBBut = new QPushButton(keyboard);
         five_KBBut->setObjectName(QStringLiteral("five_KBBut"));
-        five_KBBut->setGeometry(QRect(335, 50, 52, 52));
+        five_KBBut->setGeometry(QRect(370, 50, 52, 52));
         five_KBBut->setFont(font1);
         five_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         six_KBBut = new QPushButton(keyboard);
         six_KBBut->setObjectName(QStringLiteral("six_KBBut"));
-        six_KBBut->setGeometry(QRect(405, 50, 52, 52));
+        six_KBBut->setGeometry(QRect(440, 50, 52, 52));
         six_KBBut->setFont(font1);
         six_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         seven_KBBut = new QPushButton(keyboard);
         seven_KBBut->setObjectName(QStringLiteral("seven_KBBut"));
-        seven_KBBut->setGeometry(QRect(475, 50, 52, 52));
+        seven_KBBut->setGeometry(QRect(510, 50, 52, 52));
         seven_KBBut->setFont(font1);
         seven_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         eight_KBBut = new QPushButton(keyboard);
         eight_KBBut->setObjectName(QStringLiteral("eight_KBBut"));
-        eight_KBBut->setGeometry(QRect(545, 50, 52, 52));
+        eight_KBBut->setGeometry(QRect(580, 50, 52, 52));
         eight_KBBut->setFont(font1);
         eight_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         nine_KBBut = new QPushButton(keyboard);
         nine_KBBut->setObjectName(QStringLiteral("nine_KBBut"));
-        nine_KBBut->setGeometry(QRect(615, 50, 52, 52));
+        nine_KBBut->setGeometry(QRect(650, 50, 52, 52));
         nine_KBBut->setFont(font1);
         nine_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         zero_KBBut = new QPushButton(keyboard);
         zero_KBBut->setObjectName(QStringLiteral("zero_KBBut"));
-        zero_KBBut->setGeometry(QRect(685, 50, 52, 52));
+        zero_KBBut->setGeometry(QRect(720, 50, 52, 52));
         zero_KBBut->setFont(font1);
         zero_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         backspace_KBBut = new QPushButton(keyboard);
@@ -331,6 +332,11 @@ public:
         hide_KBBut->setGeometry(QRect(580, 264, 81, 52));
         hide_KBBut->setFont(font1);
         hide_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        Esc_KBBut = new QPushButton(keyboard);
+        Esc_KBBut->setObjectName(QStringLiteral("Esc_KBBut"));
+        Esc_KBBut->setGeometry(QRect(20, 50, 52, 52));
+        Esc_KBBut->setFont(font1);
+        Esc_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
 
         retranslateUi(keyboard);
 
@@ -385,6 +391,7 @@ public:
         comma_KBBut->setText(QApplication::translate("keyboard", ",", 0));
         language_KBBut->setText(QApplication::translate("keyboard", "\360\237\214\220", 0));
         hide_KBBut->setText(QString());
+        Esc_KBBut->setText(QApplication::translate("keyboard", "Esc", 0));
     } // retranslateUi
 
 };
