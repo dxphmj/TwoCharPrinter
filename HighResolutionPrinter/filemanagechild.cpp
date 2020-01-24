@@ -19,18 +19,16 @@ FileManageChild::FileManageChild(QWidget *parent)
 	ui->setupUi(this);
 
 	ui->filePrivewtextEdit->installEventFilter(this);
-	ui->editSeleFileBut->setEnabled(false);
-	ui->loadSeleFileBut->setEnabled(false);
-	this->booFileSelected = false;
 
 	connect(ui->localFileBut,SIGNAL(clicked()),this,SLOT(ShowLocalFilePath()));  
 	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
 	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
+	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(SetButtonEnableOn()));
 	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
-	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(SetButtonEnabled()));
 	connect(ui->fileNmaeLineEdit,SIGNAL(clicked()),this,SLOT(fileNmaeLineEdit_click())); 
-	//用于实现更改文件名的信号-槽，用户点击EditLine控件旁边的"√"时触发
-	//connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(ChangeFileName()));
+	connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(OKFileNameBut_clicked()));	
+
+	SetButtonEnableOff();
 	m_pPrinterMes = new ClassMessage;
 	ShowLocalFilePath(); 
 	keyboardWidget = new keyboard(this);
@@ -47,49 +45,78 @@ void FileManageChild::ChangeFileName()
 }
 */
 
-void FileManageChild::SetButtonEnabled()
+void FileManageChild::SetButtonEnableOn()
 {
 	ui->editSeleFileBut->setEnabled(true);
 	ui->loadSeleFileBut->setEnabled(true);
+	this->boolFileSelected = true;
+}
+
+void FileManageChild::SetButtonEnableOff()
+{
+	ui->editSeleFileBut->setEnabled(false);
+	ui->loadSeleFileBut->setEnabled(false);
+	this->boolFileSelected = false;
 }
 
 void FileManageChild::loadSeleFileBut_clicked()
 {
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
-	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
-	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
-	this->booFileSelected = true;
-	pFilemanageForm->hide();
-	pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
-	pMainWindow->RefreshWindow();
+	if (this->boolFileSelected == true)
+	{
+		QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+		FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+		MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
+		pFilemanageForm->hide();
+		pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
+		pMainWindow->RefreshWindow();
+	}
+	else
+	{
+		//弹出对话框“请选择一个文件”
+	}
 }
 
 void FileManageChild::editSeleFileBut_clicked()
 {
-	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
-	this->booFileSelected = true;
-	pFilemanageForm->FileEditChildWidgetCall();
-	pFilemanageForm->FormFileEditChild->LoadLocalFile();
+	if (this->boolFileSelected == true)
+	{
+		QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+		FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
+		pFilemanageForm->FileEditChildWidgetCall();
+		pFilemanageForm->FormFileEditChild->LoadLocalFile();
+	}
+	else
+	{
+		//弹出对话框“请选择一个文件”
+	}
 }
 
 void FileManageChild::PreviewLocalFile()
 {
-	/*QString QfileName = this->ui->filelistWidget->currentItem()->text();
-	QfileName = rootStr + "/" + QfileName;
-	string CfileName = QfileName.toStdString();*/
 	m_pPrinterMes->OBJ_Vec.clear();
 	m_pPrinterMes->ReadObjectsFromXml(GetCurXmlFile());	
+	QString qfileName = this->ui->filelistWidget->currentItem()->text();
+	QFileInfo fi(qfileName);
+	qfileName = fi.baseName();
+	this->ui->fileNmaeLineEdit->setText(qfileName);
 }
 
 char* FileManageChild::GetCurXmlFile()
 {
-	QString qfileName = this->ui->filelistWidget->currentItem()->text();
-	qfileName = rootStr + "/" + qfileName;
-	string fileName = qfileName.toStdString();
-	char strTemp[256];
-	sprintf(strTemp,"%s",fileName.c_str());
-	return 	strTemp;
+	if (this->boolFileSelected == true)
+	{
+		QString qfileName = this->ui->filelistWidget->currentItem()->text();
+		qfileName = rootStr + "/" + qfileName;
+		string fileName = qfileName.toStdString();
+		char strTemp[256];
+		sprintf(strTemp,"%s",fileName.c_str());
+		return strTemp;
+	}
+	else
+	{
+		//弹出对话框“请选择一个文件”
+		return "";
+	}
 }
 
 bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
@@ -138,6 +165,7 @@ void FileManageChild::ShowLocalFilePath()
 	rootStr = "User/Label"; 
 	QDir rootDir(rootStr); 
 	slotShow(rootDir); 
+	SetButtonEnableOff();
 	QWidget *pQWidget(this);
 	pQWidget->update();
 }
@@ -145,6 +173,23 @@ void FileManageChild::ShowLocalFilePath()
 void FileManageChild::fileNmaeLineEdit_click()
 {
 	keyboardWidget->SetLineEdit(ui->fileNmaeLineEdit);
+}
+
+void FileManageChild::OKFileNameBut_clicked()
+{
+	if (boolFileSelected == true)
+	{
+		QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
+		QString tmpPath1 = "User/Label/" + qFileName1;
+		QString qFileName2 = this->ui->fileNmaeLineEdit->text();
+		QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
+		QFile::rename(tmpPath1,tmpPath2);
+		this->ShowLocalFilePath();
+	}
+	else
+	{
+		//弹出对话框“请选择一个文件”
+	}
 }
 
 FileManageChild::~FileManageChild()

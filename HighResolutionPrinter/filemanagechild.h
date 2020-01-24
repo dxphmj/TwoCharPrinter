@@ -34,17 +34,18 @@ public:
 	QString rootStr;
 	char* GetCurXmlFile();
 	QFileInfoList list;
-	bool booFileSelected;
+	bool boolFileSelected;
 
 public slots:  
 	void ShowLocalFilePath();
 	void PreviewLocalFile();
-	void SetButtonEnabled();
+	void SetButtonEnableOn();
+	void SetButtonEnableOff();
 	void slotShow(QDir dir); 
 	void loadSeleFileBut_clicked();
 	void editSeleFileBut_clicked();
 	void fileNmaeLineEdit_click();
-
+	void OKFileNameBut_clicked();
 	//用于实现更改文件名的槽函数
 	//void ChangeFileName();
 

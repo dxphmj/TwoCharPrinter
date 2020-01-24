@@ -573,6 +573,20 @@ void FileEditChild::mousePressEvent(QMouseEvent *event)
 	QPoint p_Relative = event->pos();
 	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
 	paintDot();
+	GetTextFromScreen();
+}
+
+void FileEditChild::GetTextFromScreen()
+{
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			QString tmpStr = QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strText);
+			this->ui->wordLineEdit->setText(tmpStr);
+			break;
+		}
+	}
 }
 
 //“另存为”按钮
@@ -581,7 +595,7 @@ void FileEditChild::saveasBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	//判断当前编辑的文件是否为本地文件
-	if (pFilemanageForm->FormFileManageChild->booFileSelected == true) //来源于本地
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		QFileInfo fi(qfileName);
@@ -608,7 +622,7 @@ void FileEditChild::saveBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	//判断文件是新建的，还是来源于本地
-	if (pFilemanageForm->FormFileManageChild->booFileSelected == true) //来源于本地
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		string tmpStr = qfileName.toStdString();
@@ -616,19 +630,13 @@ void FileEditChild::saveBut_clicked()
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
 		m_PrinterMes.m_StrFileName = tmpFilePath;
 		m_PrinterMes.SaveObjectsToXml();
+		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
 		//此处应当弹出"保存成功！"对话框，持续一秒
 	}
 	else //新建文件，与"另存为"相同
 	{
-		string tmpFileName = "NewLabel_";
-		m_PrinterMes.strMatrix = "1L7M";
-		m_PrinterMes.Pixel = 7;
-		m_PrinterMes.Reverse = "GLOBAL";
-		m_PrinterMes.Inverse = "GLOBAL";
-		m_PrinterMes.GenerateFileName(tmpFileName);
+		saveasBut_clicked();
 	}
-	pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
-	pFilemanageForm->FileManageChildWidgetCall();
 }
 
 void FileEditChild::variableTextBut_clicked()
@@ -729,6 +737,17 @@ void FileEditChild::DMCodeLineEdit_clicked()
  
 void FileEditChild::newTextBut_clicked()
 {
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			string tmpStr = this->ui->wordLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			//m_PrinterMes.OBJ_Vec[i].intLineSize = m_PrinterMes.OBJ_Vec[i].strText;
+			//m_PrinterMes.OBJ_Vec[i].intRowSize = atoi(m_PrinterMes.OBJ_Vec[i].strText.c_str());
+			return;
+		}
+	}
 	QString txtQString = ui->wordLineEdit->text();
 	string txtString = txtQString.toStdString();
 	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);

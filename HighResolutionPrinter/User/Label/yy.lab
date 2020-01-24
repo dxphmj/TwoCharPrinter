@@ -8,8 +8,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>15</LineStart>
-        <RowStart>18</RowStart>
+        <LineStart>20</LineStart>
+        <RowStart>76</RowStart>
         <LineSize>7</LineSize>
         <RowSize>12</RowSize>
         <SW>1</SW>
@@ -18,21 +18,21 @@
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
         <setFONT>7x5</setFONT>
-        <setTEXT>ye</setTEXT>
+        <setTEXT>yy</setTEXT>
     </OBJ>
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>0</LineStart>
-        <RowStart>0</RowStart>
-        <LineSize>8</LineSize>
-        <RowSize>24</RowSize>
+        <LineStart>30</LineStart>
+        <RowStart>76</RowStart>
+        <LineSize>7</LineSize>
+        <RowSize>12</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
         <setFONT>7x5</setFONT>
-        <setTEXT>year</setTEXT>
+        <setTEXT>yy</setTEXT>
     </OBJ>
 </MES>
