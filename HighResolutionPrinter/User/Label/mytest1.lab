@@ -1,0 +1,23 @@
+<MES>
+    <PRO>
+        <Matrix>1L7M</Matrix>
+        <Pixel>7</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>text</TYPE2>
+        <LineStart>10</LineStart>
+        <RowStart>1</RowStart>
+        <LineSize>7</LineSize>
+        <RowSize>12</RowSize>
+        <SW>1</SW>
+        <SS>0</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setFONT>7x5</setFONT>
+        <setTEXT>yy</setTEXT>
+    </OBJ>
+</MES>

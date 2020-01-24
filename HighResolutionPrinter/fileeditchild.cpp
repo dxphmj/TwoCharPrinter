@@ -555,37 +555,60 @@ void FileEditChild::mousePressEvent(QMouseEvent *event)
 	paintDot();
 }
 
-//当用户点击“另存为”按钮时
+//“另存为”按钮
 void FileEditChild::saveasBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
-	QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
-	if (qfileName != "")
+	//判断当前编辑的文件是否为本地文件
+	if (pFilemanageForm->FormFileManageChild->booFileSelected == true) //来源于本地
 	{
+		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		QFileInfo fi(qfileName);
 		qfileName = fi.baseName();
 		string tmpFileName = qfileName.toStdString();
-		m_PrinterMes.SaveObjectsToXml(m_PrinterMes.GenerateFileName(tmpFileName));
+		m_PrinterMes.GenerateFileName(tmpFileName);
 	}
-	else
+	else //新建文件
 	{
 		string tmpFileName = "NewLabel_";
-		m_PrinterMes.SaveObjectsToXml(m_PrinterMes.GenerateFileName(tmpFileName));
+		m_PrinterMes.strMatrix = "1L7M";
+		m_PrinterMes.Pixel = 7;
+		m_PrinterMes.Reverse = "GLOBAL";
+		m_PrinterMes.Inverse = "GLOBAL";
+		m_PrinterMes.GenerateFileName(tmpFileName);
 	}
+	pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
 	pFilemanageForm->FileManageChildWidgetCall();
 }
 
-//当用户点击“保存”按钮时
+//“保存”按钮
 void FileEditChild::saveBut_clicked()
 {
-	/*
-	  如何判断？？？
-	1.判断当前编辑的文件是否是本地已有文件：如果否，则2；如果是，则3
-	2.调用FileEditChild::saveasBut_clicked()，与“另存为”的功能相同
-	3.调用ClassMessage::SaveObjectsToXml(char* strFileName)，将OBJ对象保存到本地XML中(默认为覆盖）
-	4.弹出<保存成功>提示框，持续1秒
-	*/
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	//判断文件是新建的，还是来源于本地
+	if (pFilemanageForm->FormFileManageChild->booFileSelected == true) //来源于本地
+	{
+		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
+		string tmpStr = qfileName.toStdString();
+		char tmpFilePath[256];
+		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
+		m_PrinterMes.m_StrFileName = tmpFilePath;
+		m_PrinterMes.SaveObjectsToXml();
+		//此处应当弹出"保存成功！"对话框，持续一秒
+	}
+	else //新建文件，与"另存为"相同
+	{
+		string tmpFileName = "NewLabel_";
+		m_PrinterMes.strMatrix = "1L7M";
+		m_PrinterMes.Pixel = 7;
+		m_PrinterMes.Reverse = "GLOBAL";
+		m_PrinterMes.Inverse = "GLOBAL";
+		m_PrinterMes.GenerateFileName(tmpFileName);
+	}
+	pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
+	pFilemanageForm->FileManageChildWidgetCall();
 }
 
 void FileEditChild::variableTextBut_clicked()
@@ -770,7 +793,6 @@ void FileEditChild::newBarCodeBut_clicked()
 	{
 		t=55;
 	}
-
 
 	Create2Dcode(t,str);
 }

@@ -153,15 +153,15 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
-char* ClassMessage::GenerateFileName(string tmpFileName)
+void ClassMessage::GenerateFileName(string tmpFileName)
 {
 	int tmpFileNum = 1;
 	bool fileRepeat = true;
 	char CurFilePath[256];
 	sprintf(CurFilePath,"User/Label/%s%d.lab",tmpFileName.c_str(),tmpFileNum);
-	QFileInfo fi(CurFilePath);
 	while (fileRepeat == true)
 	{
+		QFileInfo fi(CurFilePath);
 		if (fi.exists())
 		{
 			tmpFileNum++;
@@ -172,12 +172,13 @@ char* ClassMessage::GenerateFileName(string tmpFileName)
 			break;
 		}
 	}
-	return CurFilePath;
+	m_StrFileName = CurFilePath;
+	SaveObjectsToXml();
 }
 
-void ClassMessage::SaveObjectsToXml(char* strFileName)
+void ClassMessage::SaveObjectsToXml()
 {
-	TiXmlDocument doc(strFileName);
+	TiXmlDocument doc;
 
 	//从本类中取数据（如m_arrObjects），然后保存
 	//OBJ_Control obj;
@@ -276,7 +277,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 	}	 
 	doc.InsertEndChild(itemMes);
 
-	doc.SaveFile(strFileName);
+	doc.SaveFile(m_StrFileName);
 
 }
 

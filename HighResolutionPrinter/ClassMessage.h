@@ -101,6 +101,7 @@ public:
 	int bytRowByteMul;//一列由几个byte表示
 	bool boDynamic;//是否动态打印
 	bool boPrintNow;//是否即时打印
+	char* m_StrFileName;//存放本地文件名称的成员变量
 	//vector<BYTE> bytTempDataVec;
 
     /////////////////////////////////////////////
@@ -120,12 +121,12 @@ public:
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
-	char* GenerateFileName(string tmpFileName);
+	void GenerateFileName(string tmpFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);
-	void SaveObjectsToXml(char* strFileName);
+	void SaveObjectsToXml();
 		
 };
 

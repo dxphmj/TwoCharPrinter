@@ -8,6 +8,7 @@ class FileManageChild;
 class FileEditChild;
 class varibleWidget;
 class timeCustom;
+class ClassMessage;
 
 namespace Ui {
 class FilemanageForm;
@@ -21,6 +22,7 @@ public:
     FilemanageForm(QWidget *parent = 0);
     ~FilemanageForm();
     Ui::FilemanageForm *ui;
+	ClassMessage *m_ClassMes;
 	 
 public:
 	FileManageChild *FormFileManageChild;//创建窗口页面指针

@@ -30,10 +30,12 @@ public:
 	QString rootStr;
 	char* GetCurXmlFile();
 	QFileInfoList list;
+	bool booFileSelected;
 
 public slots:  
 	void ShowLocalFilePath();
 	void PreviewLocalFile();
+	void SetButtonEnabled();
 	void slotShow(QDir dir); 
 	void loadSeleFileBut_clicked();
 	void editSeleFileBut_clicked();
