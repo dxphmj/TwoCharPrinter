@@ -320,10 +320,11 @@ void ClassMessage::ReadBmp(char* strFileName)
 	OBJ_Vec.push_back(bmpObj); 
 }
 
-void ClassMessage::ReadObjectsFromXml(char* strFileName)
+bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
+	if(loadOkay == false) return false;
 
 	TiXmlNode* node = 0;
 	TiXmlElement* todoElement = 0;
@@ -507,7 +508,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 			}
 			OBJ_Vec.push_back(obj);
 		}
-	}	
+	}
+	return true;
 }
 
 void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT ,

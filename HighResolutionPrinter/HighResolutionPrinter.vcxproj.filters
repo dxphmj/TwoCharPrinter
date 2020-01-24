@@ -399,6 +399,9 @@
     <ClCompile Include="language.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -607,6 +610,9 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_language.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleMain.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
