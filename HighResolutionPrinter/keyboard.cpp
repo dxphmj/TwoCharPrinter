@@ -1408,32 +1408,32 @@ void keyboard::LanEnglishBig()
 
 void keyboard::LanKoreanSmall()//韩语小写
 {
-//	ui->A_KBBut->setText("ㅁ");
-//	ui->B_KBBut->setText("ㅠ");
-//	ui->C_KBBut->setText("ㅊ");
-//	ui->D_KBBut->setText("ㅇ");
-//	ui->E_KBBut->setText("ㄷ");
-//	ui->F_KBBut->setText("ㄹ");
-//	ui->G_KBBut->setText("ㅎ");
-//	ui->H_KBBut->setText("ㅗ");
-//	ui->I_KBBut->setText("ㅑ");
-//	ui->J_KBBut->setText("ㅓ");
-//	ui->K_KBBut->setText("ㅏ");
-//	ui->L_KBBut->setText("ㅣ");
-//	ui->M_KBBut->setText("ㅡ");
-//	ui->N_KBBut->setText("ㅜ");
-//	ui->O_KBBut->setText("ㅐ");
-//	ui->P_KBBut->setText("ㅔ");
-//	ui->Q_KBBut->setText("ㅂ");
-//	ui->R_KBBut->setText("ㄱ");
-//	ui->S_KBBut->setText("ㄴ");
-//	ui->T_KBBut->setText("ㅅ");
-//	ui->U_KBBut->setText("ㅕ");
-//	ui->V_KBBut->setText("ㅍ");
-//	ui->W_KBBut->setText("ㅈ");
-//	ui->X_KBBut->setText("ㅌ");
-//	ui->Y_KBBut->setText("ㅛ");
-//	ui->Z_KBBut->setText("ㅋ");
+	ui->A_KBBut->setText(QStringLiteral("ㅁ"));
+	ui->B_KBBut->setText(QStringLiteral("ㅠ"));
+	ui->C_KBBut->setText(QStringLiteral("ㅊ"));
+	ui->D_KBBut->setText(QStringLiteral("ㅇ"));
+	ui->E_KBBut->setText(QStringLiteral("ㄷ"));
+	ui->F_KBBut->setText(QStringLiteral("ㄹ"));
+	ui->G_KBBut->setText(QStringLiteral("ㅎ"));
+	ui->H_KBBut->setText(QStringLiteral("ㅗ"));
+	ui->I_KBBut->setText(QStringLiteral("ㅑ"));
+	ui->J_KBBut->setText(QStringLiteral("ㅓ"));
+	ui->K_KBBut->setText(QStringLiteral("ㅏ"));
+	ui->L_KBBut->setText(QStringLiteral("ㅣ"));
+	ui->M_KBBut->setText(QStringLiteral("ㅡ"));
+	ui->N_KBBut->setText(QStringLiteral("ㅜ"));
+	ui->O_KBBut->setText(QStringLiteral("ㅐ"));
+	ui->P_KBBut->setText(QStringLiteral("ㅔ"));
+	ui->Q_KBBut->setText(QStringLiteral("ㅂ"));
+	ui->R_KBBut->setText(QStringLiteral("ㄱ"));
+	ui->S_KBBut->setText(QStringLiteral("ㄴ"));
+	ui->T_KBBut->setText(QStringLiteral("ㅅ"));
+	ui->U_KBBut->setText(QStringLiteral("ㅕ"));
+	ui->V_KBBut->setText(QStringLiteral("ㅍ"));
+	ui->W_KBBut->setText(QStringLiteral("ㅈ"));
+	ui->X_KBBut->setText(QStringLiteral("ㅌ"));
+	ui->Y_KBBut->setText(QStringLiteral("ㅛ"));
+	ui->Z_KBBut->setText(QStringLiteral("ㅋ"));
 //
 //
 //
@@ -1489,32 +1489,32 @@ void keyboard::LanKoreanSmall()//韩语小写
 
 void keyboard::LanKoreanBig()
 {
-	ui->A_KBBut->setText("ㅁ");
-	ui->B_KBBut->setText("파");
-	ui->C_KBBut->setText("카");
-	ui->D_KBBut->setText("나");
-	ui->E_KBBut->setText("ㄸ");
-	ui->F_KBBut->setText("다");
-	ui->G_KBBut->setText("라");
-	ui->H_KBBut->setText("마");
-	ui->I_KBBut->setText("");
-	ui->J_KBBut->setText("바");
-	ui->K_KBBut->setText("사");
-	ui->L_KBBut->setText("아");
-	ui->M_KBBut->setText("");
-	ui->N_KBBut->setText("하");
-	ui->O_KBBut->setText("ㅒ");
-	ui->P_KBBut->setText("ㅖ");
-	ui->Q_KBBut->setText("ㅃ");
-	ui->R_KBBut->setText("ㄲ");
-	ui->S_KBBut->setText("가");
-	ui->T_KBBut->setText("ㅆ");
-	ui->U_KBBut->setText("");
-	ui->V_KBBut->setText("타");
-	ui->W_KBBut->setText("ㅉ");
-	ui->X_KBBut->setText("차");
-	ui->Y_KBBut->setText("");
-	ui->Z_KBBut->setText("자");
+	ui->A_KBBut->setText(QStringLiteral("ㅁ"));
+	ui->B_KBBut->setText(QStringLiteral("파"));
+	ui->C_KBBut->setText(QStringLiteral("카"));
+	ui->D_KBBut->setText(QStringLiteral("나"));
+	ui->E_KBBut->setText(QStringLiteral("ㄸ"));
+	ui->F_KBBut->setText(QStringLiteral("다"));
+	ui->G_KBBut->setText(QStringLiteral("라"));
+	ui->H_KBBut->setText(QStringLiteral("마"));
+	ui->I_KBBut->setText(QStringLiteral(""));
+	ui->J_KBBut->setText(QStringLiteral("바"));
+	ui->K_KBBut->setText(QStringLiteral("사"));
+	ui->L_KBBut->setText(QStringLiteral("아"));
+	ui->M_KBBut->setText(QStringLiteral(""));
+	ui->N_KBBut->setText(QStringLiteral("하"));
+	ui->O_KBBut->setText(QStringLiteral("ㅒ"));
+	ui->P_KBBut->setText(QStringLiteral("ㅖ"));
+	ui->Q_KBBut->setText(QStringLiteral("ㅃ"));
+	ui->R_KBBut->setText(QStringLiteral("ㄲ"));
+	ui->S_KBBut->setText(QStringLiteral("가"));
+	ui->T_KBBut->setText(QStringLiteral("ㅆ"));
+	ui->U_KBBut->setText(QStringLiteral(""));
+	ui->V_KBBut->setText(QStringLiteral("타"));
+	ui->W_KBBut->setText(QStringLiteral("ㅉ"));
+	ui->X_KBBut->setText(QStringLiteral("차"));
+	ui->Y_KBBut->setText(QStringLiteral(""));
+	ui->Z_KBBut->setText(QStringLiteral("자"));
 }
 
 void keyboard::SymbolToEnglish()
