@@ -29,6 +29,7 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(OKFileNameBut_clicked()));	
 
 	SetButtonEnableOff();
+	boolSaveAsBtn_Clicked = false;
 	m_pPrinterMes = new ClassMessage;
 	ShowLocalFilePath(); 
 	keyboardWidget = new keyboard(this);
@@ -49,6 +50,7 @@ void FileManageChild::SetButtonEnableOn()
 {
 	ui->editSeleFileBut->setEnabled(true);
 	ui->loadSeleFileBut->setEnabled(true);
+	ui->OKFileNameBut->setEnabled(true);
 	this->boolFileSelected = true;
 }
 
@@ -56,6 +58,7 @@ void FileManageChild::SetButtonEnableOff()
 {
 	ui->editSeleFileBut->setEnabled(false);
 	ui->loadSeleFileBut->setEnabled(false);
+	ui->OKFileNameBut->setEnabled(false);
 	this->boolFileSelected = false;
 }
 
@@ -95,6 +98,18 @@ void FileManageChild::PreviewLocalFile()
 {
 	m_pPrinterMes->OBJ_Vec.clear();
 	m_pPrinterMes->ReadObjectsFromXml(GetCurXmlFile());	
+	QString qfileName = this->ui->filelistWidget->currentItem()->text();
+	QFileInfo fi(qfileName);
+	qfileName = fi.baseName();
+	this->ui->fileNmaeLineEdit->setText(qfileName);
+}
+
+void FileManageChild::PreviewSaveFile()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
+	m_pPrinterMes->OBJ_Vec.clear();
+	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.end());
 	QString qfileName = this->ui->filelistWidget->currentItem()->text();
 	QFileInfo fi(qfileName);
 	qfileName = fi.baseName();
@@ -177,18 +192,42 @@ void FileManageChild::fileNmaeLineEdit_click()
 
 void FileManageChild::OKFileNameBut_clicked()
 {
-	if (boolFileSelected == true)
+	if (this->boolSaveAsBtn_Clicked == true)
+	{
+		QString qFileName = this->ui->fileNmaeLineEdit->text();
+		QString qFilePath = "User/Label/" + qFileName + ".lab";
+		char charFilePath[256];
+		QFileInfo fi(qFilePath);
+		if (fi.exists()==0)
+		{
+			sprintf(charFilePath,"%s",qFilePath.toStdString().c_str());
+			QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+			FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+			pFilemanageForm->FormFileEditChild->m_PrinterMes.SaveObjectsToXml(charFilePath);
+			this->ShowLocalFilePath();
+			boolSaveAsBtn_Clicked = false;
+		}
+		else
+		{
+			//弹出文件名重复
+		}
+	}
+	else
 	{
 		QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
 		QString tmpPath1 = "User/Label/" + qFileName1;
 		QString qFileName2 = this->ui->fileNmaeLineEdit->text();
 		QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
-		QFile::rename(tmpPath1,tmpPath2);
-		this->ShowLocalFilePath();
-	}
-	else
-	{
-		//弹出对话框“请选择一个文件”
+		QFileInfo fi(tmpPath2);
+		if (fi.exists()==0)
+		{
+			QFile::rename(tmpPath1,tmpPath2);
+			this->ShowLocalFilePath();
+		}
+		else
+		{
+			//弹出文件名重复
+		}
 	}
 }
 

@@ -8,16 +8,16 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>1</LineStart>
-        <RowStart>2</RowStart>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
         <LineSize>7</LineSize>
-        <RowSize>24</RowSize>
+        <RowSize>66</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
         <setFONT>7x5</setFONT>
-        <setTEXT>Test</setTEXT>
+        <setTEXT>Hello,World</setTEXT>
     </OBJ>
 </MES>

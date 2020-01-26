@@ -59,8 +59,7 @@ public://参数
 	string strqrcodeECCLevel;//二维码的容错率等级
 	int intqrcodeQuietZone;//二维码空白框层数
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
-	int SelObjNum;//被选中的obj在OBJ_Vec[]中的位置
-
+	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
     //vector<vector<bool>> logobmp;//不明
@@ -125,12 +124,12 @@ public:
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
-	void GenerateFileName(string tmpFileName);
+	char* GenerateFileName(string tmpFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
 	bool ReadObjectsFromXml(char* strFileName);
-	void SaveObjectsToXml();
+	void SaveObjectsToXml(char* strFileName);
 	
 };
 

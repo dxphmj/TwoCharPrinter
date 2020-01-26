@@ -153,7 +153,7 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
-void ClassMessage::GenerateFileName(string tmpFileName)
+char* ClassMessage::GenerateFileName(string tmpFileName)
 {
 	int tmpFileNum = 1;
 	bool fileRepeat = true;
@@ -169,14 +169,14 @@ void ClassMessage::GenerateFileName(string tmpFileName)
 		}
 		else
 		{
+			fileRepeat = false;
 			break;
 		}
 	}
-	m_StrFileName = CurFilePath;
-	SaveObjectsToXml();
+	return CurFilePath;
 }
 
-void ClassMessage::SaveObjectsToXml()
+void ClassMessage::SaveObjectsToXml(char* strFileName)
 {
 	TiXmlDocument doc;
 
@@ -277,7 +277,7 @@ void ClassMessage::SaveObjectsToXml()
 	}	 
 	doc.InsertEndChild(itemMes);
 
-	doc.SaveFile(m_StrFileName);
+	doc.SaveFile(strFileName);
 
 }
 
@@ -1043,7 +1043,7 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	if (this->booFocus)
 	{
 		cPen.setStyle(Qt::SolidLine);
-		cPen.setWidth(2);
+		cPen.setWidth(3);
 		cPen.setColor(Qt::green);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);

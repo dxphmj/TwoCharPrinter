@@ -8,7 +8,7 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>1</LineStart>
+        <LineStart>20</LineStart>
         <RowStart>2</RowStart>
         <LineSize>7</LineSize>
         <RowSize>24</RowSize>

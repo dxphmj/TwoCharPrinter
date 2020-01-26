@@ -509,19 +509,23 @@ void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, 
 		case 0:
 			LineLength = 5;
 			RowLength = 6;
+			break;
 		case 1:
 			LineLength = 7;
 			RowLength = 6;
+			break;
 		case 2:
 			LineLength = 12;
 			RowLength = 13;
+			break;
 		case 3:
 			LineLength = 16;
 			RowLength = 13;
+			break;
 	}
 
-	textObj.intLineSize = LineLength/2;
-	textObj.intRowSize = RowLength/2 * txtLength;
+	textObj.intLineSize = LineLength;
+	textObj.intRowSize = RowLength * txtLength;
 	textObj.intSW = txtSW;
 	textObj.intSS = txtSS;
 	textObj.booNEG = txtNEG;
@@ -593,26 +597,36 @@ void FileEditChild::GetTextFromScreen()
 void FileEditChild::saveasBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	string tmpFileName;
 	//判断当前编辑的文件是否为本地文件
 	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		QFileInfo fi(qfileName);
 		qfileName = fi.baseName();
-		string tmpFileName = qfileName.toStdString();
-		m_PrinterMes.GenerateFileName(tmpFileName);
+		tmpFileName = qfileName.toStdString();
 	}
 	else //新建文件
 	{
-		string tmpFileName = "NewLabel_";
+		tmpFileName = "NewLabel_";
 		m_PrinterMes.strMatrix = "1L7M";
 		m_PrinterMes.Pixel = 7;
 		m_PrinterMes.Reverse = "GLOBAL";
 		m_PrinterMes.Inverse = "GLOBAL";
-		m_PrinterMes.GenerateFileName(tmpFileName);
 	}
-	pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
+	pFilemanageForm->FormFileManageChild->boolSaveAsBtn_Clicked = true;
+	char* tmpChar = m_PrinterMes.GenerateFileName((tmpFileName));
+	char FilePath[256];
+	sprintf(FilePath,"%s",tmpChar);
+	QString tmpFilePathStr = QString::fromStdString(FilePath);
+	QFileInfo fi(tmpFilePathStr);
+	QListWidgetItem *tmpItem = new QListWidgetItem(pFilemanageForm->FormFileManageChild->ui->filelistWidget);
+	tmpItem->setText(fi.baseName()+".lab");
+	pFilemanageForm->FormFileManageChild->ui->filelistWidget->addItem(tmpItem);
+	pFilemanageForm->FormFileManageChild->ui->filelistWidget->setCurrentItem(tmpItem);
+	//pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
+	pFilemanageForm->FormFileManageChild->PreviewSaveFile();
 	pFilemanageForm->FileManageChildWidgetCall();
 }
 
@@ -628,8 +642,7 @@ void FileEditChild::saveBut_clicked()
 		string tmpStr = qfileName.toStdString();
 		char tmpFilePath[256];
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
-		m_PrinterMes.m_StrFileName = tmpFilePath;
-		m_PrinterMes.SaveObjectsToXml();
+		m_PrinterMes.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
 		//此处应当弹出"保存成功！"对话框，持续一秒
 	}
@@ -743,8 +756,44 @@ void FileEditChild::newTextBut_clicked()
 		{
 			string tmpStr = this->ui->wordLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			//m_PrinterMes.OBJ_Vec[i].intLineSize = m_PrinterMes.OBJ_Vec[i].strText;
-			//m_PrinterMes.OBJ_Vec[i].intRowSize = atoi(m_PrinterMes.OBJ_Vec[i].strText.c_str());
+			int tmpStrLength = tmpStr.length();
+			m_PrinterMes.OBJ_Vec[i].intRowSize = tmpStrLength * 6;
+
+			/*map<string,int> fntMap3;
+			fntMap3.clear();
+			fntMap3.insert(make_pair("5x5",0));
+			fntMap3.insert(make_pair("7x5",1));
+			fntMap3.insert(make_pair("12x12",2));
+			fntMap3.insert(make_pair("16x12",3));
+
+			int RowLength;
+			int LineLength;
+			string tmpFont = this->ui-
+
+			switch(fntMap3[])
+			{
+			case 0:
+			LineLength = 5;
+			RowLength = 6;
+			case 1:
+			LineLength = 7;
+			RowLength = 6;
+			case 2:
+			LineLength = 12;
+			RowLength = 13;
+			case 3:
+			LineLength = 16;
+			RowLength = 13;
+			}
+
+			textObj.intLineSize = LineLength/2;
+			textObj.intRowSize = RowLength/2 * txtLength;
+			textObj.intSW = txtSW;
+			textObj.intSS = txtSS;
+			textObj.booNEG = txtNEG;
+			textObj.booBWDx = txtBWDx;
+			textObj.booBWDy = txtBWDy;*/
+
 			return;
 		}
 	}

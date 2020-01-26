@@ -35,7 +35,7 @@ public:
 	void ShowText();
 	void ChangeTime();
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
-
+	
 	QString aaaa;	
 	int degreenum;
 	int degreenumQr;

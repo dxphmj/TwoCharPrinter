@@ -31,10 +31,12 @@ public:
 
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
+	void PreviewSaveFile();
 	QString rootStr;
 	char* GetCurXmlFile();
 	QFileInfoList list;
 	bool boolFileSelected;
+	bool boolSaveAsBtn_Clicked;
 
 public slots:  
 	void ShowLocalFilePath();
