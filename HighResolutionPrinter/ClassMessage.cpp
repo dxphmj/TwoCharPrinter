@@ -180,24 +180,18 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 {
 	TiXmlDocument doc;
 
-	//从本类中取数据（如m_arrObjects），然后保存
-	//OBJ_Control obj;
-	//sprintf_s(obj.m_texts,"afds");
-	//m_arrObjects.push_back(obj);
-	//m_arrObjects.push_back(obj);
-
 	TiXmlElement itemMes( "MES" );
 
 	TiXmlElement itemPro( "PRO" );
 	TiXmlElement itemMatrix( "Matrix" );
-    TiXmlElement itemPixel("Pixel");
+	TiXmlElement itemPixel("Pixel");
 	TiXmlElement itemReverse("Reverse");
 	TiXmlElement itemInverse("Inverse");
-    TiXmlText textMatrix(strMatrix.c_str());
-	TiXmlText textPixel(to_String(Pixel).c_str());
+	TiXmlText textMatrix(strMatrix.c_str());
+	TiXmlText textPixel(to_String(Pixel+1).c_str());
 	TiXmlText textReverse(Reverse.c_str());
 	TiXmlText textInverse(Inverse.c_str());
-		
+
 	itemMatrix.InsertEndChild(textMatrix);
 	itemPixel.InsertEndChild(textPixel);
 	itemReverse.InsertEndChild(textReverse);
@@ -207,7 +201,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 	itemPro.InsertEndChild( itemReverse );
 	itemPro.InsertEndChild( itemInverse );
 	itemMes.InsertEndChild( itemPro );
-		
+
 	for(int i = 0; i < OBJ_Vec.size(); i++)
 	{
 		TiXmlElement itemObj( "OBJ" ); 
@@ -222,8 +216,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		TiXmlElement itemNEG("NEG");
 		TiXmlElement itemBWDx("BWDx");
 		TiXmlElement itemBWDy("BWDy");
-		TiXmlElement itemsetFONT("setFONT");
-		TiXmlElement itemSetTEXT( "setTEXT" );
+
 
 		TiXmlText textType1(OBJ_Vec[i].strType1.c_str());
 		TiXmlText textType2(OBJ_Vec[i].strType2.c_str());
@@ -236,8 +229,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		TiXmlText textNEG(to_String(OBJ_Vec[i].booNEG).c_str());///这几个bool是个坑
 		TiXmlText textBWDx(to_String(OBJ_Vec[i].booBWDx).c_str());
 		TiXmlText textBWDy(to_String(OBJ_Vec[i].booBWDy).c_str());
-		TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
-		TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+
 
 		itemTYPE1.InsertEndChild(textType1);
 		itemTYPE2.InsertEndChild(textType2);
@@ -250,15 +242,6 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		itemNEG.InsertEndChild(textNEG);
 		itemBWDx.InsertEndChild(textBWDx);
 		itemBWDy.InsertEndChild(textBWDy);
-		itemsetFONT.InsertEndChild(textSetFont);
-		itemSetTEXT.InsertEndChild(textSetTEXT);
-
-		if (OBJ_Vec[i].strType2=="serial")
-		{
-		} 
-		else if(OBJ_Vec[i].strType2=="time")
-		{
-		}
 
 		itemObj.InsertEndChild( itemTYPE1 );
 		itemObj.InsertEndChild( itemTYPE2 );
@@ -271,10 +254,146 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		itemObj.InsertEndChild( itemNEG );
 		itemObj.InsertEndChild( itemBWDx );
 		itemObj.InsertEndChild( itemBWDy );
-		itemObj.InsertEndChild( itemsetFONT );
-		itemObj.InsertEndChild( itemSetTEXT );
-		itemMes.InsertEndChild( itemObj ); 
+
+
+		if (OBJ_Vec[i].strType2=="text")
+		{
+			TiXmlElement itemsetFONT("setFONT");
+			TiXmlElement itemSetTEXT( "setTEXT" );
+
+			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+
+			itemsetFONT.InsertEndChild(textSetFont);
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+
+			itemObj.InsertEndChild( itemsetFONT );
+			itemObj.InsertEndChild( itemSetTEXT );
+		}
+		else if (OBJ_Vec[i].strType2=="serial")
+		{
+			TiXmlElement itemsetFONT("setFONT");
+			TiXmlElement itemSetTEXT( "setTEXT" );
+			TiXmlElement itemFirstLimit( "FirstLimit" );
+			TiXmlElement itemSecondLimit( "SecondLimit" );
+			TiXmlElement itemStartValue( "StartValue" );
+			TiXmlElement itemStep( "Step" );
+			TiXmlElement itemRepeat( "Repeat" );
+			TiXmlElement itemDigits( "Digits" );
+			TiXmlElement itemFormat( "Format" );
+			TiXmlElement itemCounter( "Counter" );
+
+			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textFirstLimit(to_String(OBJ_Vec[i].intSerialFirstLimit).c_str());
+			TiXmlText textSecondLimit(to_String(OBJ_Vec[i].intSerialSecondLimit).c_str());
+			TiXmlText textStartValue(to_String(OBJ_Vec[i].intSerialStartValue).c_str());
+			TiXmlText textStep(to_String(OBJ_Vec[i].intSerialStep).c_str());
+			TiXmlText textRepeat(to_String(OBJ_Vec[i].intSerialRepeat).c_str());
+			TiXmlText textDigits(to_String(OBJ_Vec[i].intSerialDigits).c_str());
+			TiXmlText textFormat(to_String(OBJ_Vec[i].bytSerialFormat).c_str());
+			TiXmlText textCounter(to_String(OBJ_Vec[i].intSerialCounter).c_str());
+
+
+			itemsetFONT.InsertEndChild(textSetFont);
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+			itemFirstLimit.InsertEndChild(textFirstLimit);
+			itemSecondLimit.InsertEndChild(textSecondLimit);
+			itemStartValue.InsertEndChild(textStartValue);
+			itemStep.InsertEndChild(textStep);
+			itemRepeat.InsertEndChild(textRepeat);
+			itemDigits.InsertEndChild(textDigits);
+			itemFormat.InsertEndChild(textFormat);
+			itemCounter.InsertEndChild(textCounter);
+
+
+			itemObj.InsertEndChild( itemsetFONT );
+			itemObj.InsertEndChild( itemSetTEXT );
+			itemObj.InsertEndChild( itemFirstLimit );
+			itemObj.InsertEndChild( itemSecondLimit );
+			itemObj.InsertEndChild( itemStartValue );
+			itemObj.InsertEndChild( itemStep );
+			itemObj.InsertEndChild( itemRepeat );
+			itemObj.InsertEndChild( itemDigits );
+			itemObj.InsertEndChild( itemFormat );
+			itemObj.InsertEndChild( itemCounter );
+		} 
+		else if(OBJ_Vec[i].strType2=="time")
+		{
+			TiXmlElement itemsetFONT("setFONT");
+			TiXmlElement itemSetTEXT( "setTEXT" );
+			TiXmlElement itemSetTIME( "setTIME" );
+			TiXmlElement itemETimeOffSet( "ETimeOffSet" );
+			TiXmlElement itemTimeOffSet( "TimeOffSet" );
+			TiXmlElement itemTimeOffSetUint( "TimeOffSetUint" );
+
+			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetTIME(OBJ_Vec[i].strTime.c_str());
+			TiXmlText textETimeOffSet(to_String(OBJ_Vec[i].booETimeOffSet).c_str());
+			TiXmlText textTimeOffSet(to_String(OBJ_Vec[i].intTimeOffSet).c_str());
+			TiXmlText textTimeOffSetUint(to_String(OBJ_Vec[i].strTimeOffSet).c_str());
+
+			itemsetFONT.InsertEndChild(textSetFont);
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+			itemSetTIME.InsertEndChild(textSetTIME);
+			itemETimeOffSet.InsertEndChild(textETimeOffSet);
+			itemTimeOffSet.InsertEndChild(textTimeOffSet);
+			itemTimeOffSetUint.InsertEndChild(textTimeOffSetUint);
+
+			itemObj.InsertEndChild( itemsetFONT );
+			itemObj.InsertEndChild( itemSetTEXT );
+			itemObj.InsertEndChild( itemSetTIME );
+			itemObj.InsertEndChild( itemETimeOffSet );
+			itemObj.InsertEndChild( itemTimeOffSet );
+			itemObj.InsertEndChild( itemTimeOffSetUint );
+		}
+		else if (OBJ_Vec[i].strType2=="logo")
+		{
+			TiXmlElement itemSetTEXT( "setTEXT" );
+
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+
+			itemObj.InsertEndChild( itemSetTEXT );
+		}
+		else if (OBJ_Vec[i].strType2=="qrcode")
+		{
+			TiXmlElement itemSetTEXT( "setTEXT" );
+			TiXmlElement itemVersion( "qrcodeVersion" );
+			TiXmlElement itemECCLevel( "qrcodeECCLevel" );
+			TiXmlElement itemQuietZone( "qrcodeQuietZone" );
+
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textVersion(to_String(OBJ_Vec[i].intQRVersion).c_str());
+			TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
+			TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
+
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+			itemVersion.InsertEndChild(textVersion);
+			itemECCLevel.InsertEndChild(textECCLevel);
+			itemQuietZone.InsertEndChild(textQuietZone);
+
+			itemObj.InsertEndChild( itemSetTEXT );
+			itemObj.InsertEndChild( itemVersion );
+			itemObj.InsertEndChild( itemECCLevel );
+			itemObj.InsertEndChild( itemQuietZone );
+		}
+		else if (OBJ_Vec[i].strType2=="datamatrix")
+		{
+			TiXmlElement itemSetTEXT( "setTEXT" );
+			TiXmlElement itemVersion( "qrcodeVersion" );
+			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textVersion(OBJ_Vec[i].strqrcodeVersion.c_str());
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+			itemVersion.InsertEndChild(textVersion);
+			itemObj.InsertEndChild( itemSetTEXT );
+			itemObj.InsertEndChild( itemVersion );
+		}
+		itemMes.InsertEndChild( itemObj );
 	}	 
+
 	doc.InsertEndChild(itemMes);
 
 	doc.SaveFile(strFileName);
@@ -1016,7 +1135,7 @@ OBJ_Control::OBJ_Control(void)
 	this->booBWDy=false;
 	this->strFont="7x5";
 	this->strText="Text";
-	this->strETimeOffSet="OFF";
+	this->booETimeOffSet=0;
 	this->intTimeOffSet=1;
 	this->intSerialFirstLimit=1;
 	this->intSerialSecondLimit=999999999;
@@ -1024,7 +1143,7 @@ OBJ_Control::OBJ_Control(void)
 	this->intSerialStep=1;
 	this->intSerialRepeat=1;
 	this->intSerialDigits=9;
-	this->strSerialCounter=0;
+	this->intSerialCounter=0;
 	this->bytSerialFormat=0;
 	this->intLineSize=0;
 	this->intRowSize=0;

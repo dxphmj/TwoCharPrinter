@@ -625,6 +625,7 @@ void FileEditChild::saveasBut_clicked()
 	tmpItem->setText(fi.baseName()+".lab");
 	pFilemanageForm->FormFileManageChild->ui->filelistWidget->addItem(tmpItem);
 	pFilemanageForm->FormFileManageChild->ui->filelistWidget->setCurrentItem(tmpItem);
+	pFilemanageForm->FormFileManageChild->SetButtonEnableOn();
 	//pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
 	pFilemanageForm->FormFileManageChild->PreviewSaveFile();
 	pFilemanageForm->FileManageChildWidgetCall();
