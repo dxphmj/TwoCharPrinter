@@ -64,34 +64,20 @@ void FileManageChild::SetButtonEnableOff()
 
 void FileManageChild::loadSeleFileBut_clicked()
 {
-	if (this->boolFileSelected == true)
-	{
-		QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
-		FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
-		MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
-		pFilemanageForm->hide();
-		pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
-		pMainWindow->RefreshWindow();
-	}
-	else
-	{
-		//弹出对话框“请选择一个文件”
-	}
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
+	pFilemanageForm->hide();
+	pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
+	pMainWindow->RefreshWindow();
 }
 
 void FileManageChild::editSeleFileBut_clicked()
 {
-	if (this->boolFileSelected == true)
-	{
-		QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-		FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
-		pFilemanageForm->FileEditChildWidgetCall();
-		pFilemanageForm->FormFileEditChild->LoadLocalFile();
-	}
-	else
-	{
-		//弹出对话框“请选择一个文件”
-	}
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
+	pFilemanageForm->FileEditChildWidgetCall();
+	pFilemanageForm->FormFileEditChild->LoadLocalFile();
 }
 
 void FileManageChild::PreviewLocalFile()
