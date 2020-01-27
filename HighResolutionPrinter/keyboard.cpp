@@ -115,6 +115,10 @@ void keyboard::caps1_kBBut_clicked()
 		{
 
 		case 0:  //chinese
+			{
+				LanChineseSmall();
+				break;
+			}
 		case 1:  //Japanese
 		case 3: //Chinese_others
 		case 7:  //English
@@ -855,11 +859,13 @@ void keyboard::caps1_kBBut_clicked()
 //			ui->Z_KBBut->setText("Z");*/
 //			break;
 		m_Upper = false;
+		m_symbol = true;
 	}
 	else //当前为大写
 	{
 		btnLanguageSel(m_LanType);
 		m_Upper = true;
+		m_symbol = true;
 	}
 
 }
@@ -871,34 +877,69 @@ void keyboard::symbol_KBBut_clicked()
 		switch (m_LantypeReverse)
 		{
 		case 0://English
-
-			ui->A_KBBut->setText("#");
-			ui->B_KBBut->setText("@");
-			ui->C_KBBut->setText("$");
-			ui->D_KBBut->setText("%");
-			/*ui->E_KBBut->setText("E");
-			ui->F_KBBut->setText("F");
-			ui->G_KBBut->setText("G");
-			ui->H_KBBut->setText("H");
-			ui->I_KBBut->setText("I");
-			ui->J_KBBut->setText("J");
-			ui->K_KBBut->setText("K");
-			ui->L_KBBut->setText("L");
-			ui->M_KBBut->setText("M");
-			ui->N_KBBut->setText("N");
-			ui->O_KBBut->setText("O");
-			ui->P_KBBut->setText("P");
-			ui->Q_KBBut->setText("Q");
-			ui->R_KBBut->setText("R");
-			ui->S_KBBut->setText("S");
-			ui->T_KBBut->setText("T");
-			ui->U_KBBut->setText("U");
-			ui->V_KBBut->setText("V");
-			ui->W_KBBut->setText("W");
-			ui->X_KBBut->setText("X");
-			ui->Y_KBBut->setText("Y");
-			ui->Z_KBBut->setText("Z");*/
-			break;
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				break;
+			}
+		case 1://Chinese
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral("："));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral("；"));
+				ui->G_KBBut->setText(QStringLiteral("“"));
+				ui->H_KBBut->setText(QStringLiteral("”"));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("！"));
+				ui->R_KBBut->setText(QStringLiteral("￥"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("？"));
+				break;
+			}
 		}
 		m_symbol = false;
 	}
@@ -1153,7 +1194,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
 		{
-			//LanEnglish();
+			LanChineseBig();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1293,6 +1334,13 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
+		case 1: //当前为ChineseSymbol
+		{
+			SymbolToChinese();
+			//	pWnd->btnShow();
+			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
+			break;
+		}
 	}
 
 }
@@ -1325,6 +1373,8 @@ void keyboard::LanEnglishSmall()
 	ui->X_KBBut->setText("x");
 	ui->Y_KBBut->setText("y");
 	ui->Z_KBBut->setText("z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
 	/*
 	GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
@@ -1404,6 +1454,72 @@ void keyboard::LanEnglishBig()
 	ui->X_KBBut->setText("X");
 	ui->Y_KBBut->setText("Y");
 	ui->Z_KBBut->setText("Z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+}
+
+void keyboard::LanChineseSmall()
+{
+	ui->A_KBBut->setText("a");
+	ui->B_KBBut->setText("b");
+	ui->C_KBBut->setText("c");
+	ui->D_KBBut->setText("d");
+	ui->E_KBBut->setText("e");
+	ui->F_KBBut->setText("f");
+	ui->G_KBBut->setText("g");
+	ui->H_KBBut->setText("h");
+	ui->I_KBBut->setText("i");
+	ui->J_KBBut->setText("j");
+	ui->K_KBBut->setText("k");
+	ui->L_KBBut->setText("l");
+	ui->M_KBBut->setText("m");
+	ui->N_KBBut->setText("n");
+	ui->O_KBBut->setText("o");
+	ui->P_KBBut->setText("p");
+	ui->Q_KBBut->setText("q");
+	ui->R_KBBut->setText("r");
+	ui->S_KBBut->setText("s");
+	ui->T_KBBut->setText("t");
+	ui->U_KBBut->setText("u");
+	ui->V_KBBut->setText("v");
+	ui->W_KBBut->setText("w");
+	ui->X_KBBut->setText("x");
+	ui->Y_KBBut->setText("y");
+	ui->Z_KBBut->setText("z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+}
+
+void keyboard::LanChineseBig()
+{
+	ui->A_KBBut->setText("A");
+	ui->B_KBBut->setText("B");
+	ui->C_KBBut->setText("C");
+	ui->D_KBBut->setText("D");
+	ui->E_KBBut->setText("E");
+	ui->F_KBBut->setText("F");
+	ui->G_KBBut->setText("G");
+	ui->H_KBBut->setText("H");
+	ui->I_KBBut->setText("I");
+	ui->J_KBBut->setText("J");
+	ui->K_KBBut->setText("K");
+	ui->L_KBBut->setText("L");
+	ui->M_KBBut->setText("M");
+	ui->N_KBBut->setText("N");
+	ui->O_KBBut->setText("O");
+	ui->P_KBBut->setText("P");
+	ui->Q_KBBut->setText("Q");
+	ui->R_KBBut->setText("R");
+	ui->S_KBBut->setText("S");
+	ui->T_KBBut->setText("T");
+	ui->U_KBBut->setText("U");
+	ui->V_KBBut->setText("V");
+	ui->W_KBBut->setText("W");
+	ui->X_KBBut->setText("X");
+	ui->Y_KBBut->setText("Y");
+	ui->Z_KBBut->setText("Z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
 }
 
 void keyboard::LanKoreanSmall()//韩语小写
@@ -1434,6 +1550,7 @@ void keyboard::LanKoreanSmall()//韩语小写
 	ui->X_KBBut->setText(QStringLiteral("ㅌ"));
 	ui->Y_KBBut->setText(QStringLiteral("ㅛ"));
 	ui->Z_KBBut->setText(QStringLiteral("ㅋ"));
+
 //
 //
 //
@@ -1520,5 +1637,11 @@ void keyboard::LanKoreanBig()
 void keyboard::SymbolToEnglish()
 {
 	LanEnglishBig();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToChinese()
+{
+	LanChineseSmall();
 	m_Upper = false;
 }

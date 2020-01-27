@@ -41,6 +41,7 @@ void language::LanChinese_KBBut_clicked()
 	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 0;
+	pKeyboard->m_LantypeReverse = 1;
 	pKeyboard->caps1_kBBut_clicked();
 	setVisible(false);   
 }

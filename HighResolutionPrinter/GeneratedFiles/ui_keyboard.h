@@ -313,8 +313,8 @@ public:
         QFont font6;
         font6.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
         font6.setPointSize(18);
-        font6.setBold(true);
-        font6.setWeight(75);
+        font6.setBold(false);
+        font6.setWeight(50);
         period_KBBut->setFont(font6);
         period_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         comma_KBBut = new QPushButton(keyboard);
