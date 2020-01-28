@@ -37,8 +37,17 @@ public:
 	void LanChineseBig();
 	void LanKoreanSmall();
 	void LanKoreanBig();
+	void LanCzechSmall();
+	void LanCzechBig();
+	void LanJapaneseSmall();
+	void LanJapaneseBig();
+
+
     void SymbolToEnglish();
 	void SymbolToChinese();
+	void SymbolToKore();
+	void SymbolCzech();
+	void SymbolJapanese();
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -66,7 +75,7 @@ public:
 		Russian=16,Spanish=17,Swedish=18,
 		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22};
 
-	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1};
+	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1,KoreSymbol = 2,CzechSynbol = 3,JapaneseSymbol = 4};
 	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
