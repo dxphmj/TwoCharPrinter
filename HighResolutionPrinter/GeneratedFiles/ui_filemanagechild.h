@@ -105,6 +105,7 @@ public:
         fileNmaeLineEdit = new lineedit_click(FileManageChild);
         fileNmaeLineEdit->setObjectName(QStringLiteral("fileNmaeLineEdit"));
         fileNmaeLineEdit->setGeometry(QRect(250, 280, 691, 51));
+        fileNmaeLineEdit->setFont(font1);
         fileNmaeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         OKFileNameBut = new QPushButton(FileManageChild);
         OKFileNameBut->setObjectName(QStringLiteral("OKFileNameBut"));

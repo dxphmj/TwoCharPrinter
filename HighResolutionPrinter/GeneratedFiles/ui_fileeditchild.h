@@ -723,7 +723,6 @@ public:
         page_3 = new QWidget();
         page_3->setObjectName(QStringLiteral("page_3"));
         keyboardStackWid->addWidget(page_3);
-        typeTab->raise();
         page_4 = new QWidget();
         page_4->setObjectName(QStringLiteral("page_4"));
         keyboardStackWid->addWidget(page_4);
@@ -804,7 +803,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(1);
+        typeTab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);

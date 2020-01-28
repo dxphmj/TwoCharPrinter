@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>791</width>
-    <height>321</height>
+    <height>391</height>
    </rect>
   </property>
   <property name="font">
@@ -22,7 +22,7 @@
    <string>keyboard</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgb(119,117,128);</string>
+   <string notr="true">background-color: rgb(72,61, 139);</string>
   </property>
   <widget class="QPushButton" name="Q_KBBut">
    <property name="geometry">
@@ -1124,6 +1124,69 @@
     <string>Esc</string>
    </property>
   </widget>
+  <widget class="QLabel" name="backgroundKBLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>791</width>
+     <height>391</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72,61, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>backgroundKBLabel</zorder>
+  <zorder>Q_KBBut</zorder>
+  <zorder>A_KBBut</zorder>
+  <zorder>shift_KBBut</zorder>
+  <zorder>space_KBBut</zorder>
+  <zorder>one_KBBut</zorder>
+  <zorder>two_KBBut</zorder>
+  <zorder>three_KBBut</zorder>
+  <zorder>four_KBBut</zorder>
+  <zorder>five_KBBut</zorder>
+  <zorder>six_KBBut</zorder>
+  <zorder>seven_KBBut</zorder>
+  <zorder>eight_KBBut</zorder>
+  <zorder>nine_KBBut</zorder>
+  <zorder>zero_KBBut</zorder>
+  <zorder>backspace_KBBut</zorder>
+  <zorder>I_KBBut</zorder>
+  <zorder>W_KBBut</zorder>
+  <zorder>O_KBBut</zorder>
+  <zorder>T_KBBut</zorder>
+  <zorder>R_KBBut</zorder>
+  <zorder>P_KBBut</zorder>
+  <zorder>Y_KBBut</zorder>
+  <zorder>E_KBBut</zorder>
+  <zorder>U_KBBut</zorder>
+  <zorder>S_KBBut</zorder>
+  <zorder>D_KBBut</zorder>
+  <zorder>F_KBBut</zorder>
+  <zorder>G_KBBut</zorder>
+  <zorder>H_KBBut</zorder>
+  <zorder>J_KBBut</zorder>
+  <zorder>K_KBBut</zorder>
+  <zorder>L_KBBut</zorder>
+  <zorder>enter_KBBut</zorder>
+  <zorder>N_KBBut</zorder>
+  <zorder>C_KBBut</zorder>
+  <zorder>B_KBBut</zorder>
+  <zorder>symbol_KBBut</zorder>
+  <zorder>X_KBBut</zorder>
+  <zorder>V_KBBut</zorder>
+  <zorder>M_KBBut</zorder>
+  <zorder>Z_KBBut</zorder>
+  <zorder>period_KBBut</zorder>
+  <zorder>comma_KBBut</zorder>
+  <zorder>language_KBBut</zorder>
+  <zorder>hide_KBBut</zorder>
+  <zorder>Esc_KBBut</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
