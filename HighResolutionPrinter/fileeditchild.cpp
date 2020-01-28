@@ -53,6 +53,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
 	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
 	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
+	connect(ui->newTimeBut,SIGNAL(clicked()),this,SLOT(newTimeBut_clicked()));
 
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
 	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
@@ -1216,4 +1217,81 @@ void FileEditChild::ChangeTime()
 	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
+}
+
+void FileEditChild::newTimeBut_clicked()
+{
+	int xPos=0;
+	int yPos=0;
+	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
+	{
+		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+		{
+			m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+			yPos=m_PrinterMes.OBJ_Vec.at(i).intLineStart;
+			xPos=m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+		}
+	}
+	OBJ_Control tempObj;
+	tempObj.intLineStart=yPos;
+	tempObj.intRowStart=xPos;
+	tempObj.strType1="text";
+	tempObj.strType2="time";
+	//以下先写死
+	tempObj.intSW=1;
+	tempObj.intSS=0;
+	tempObj.booNEG=false;
+	tempObj.booBWDx=false;
+	tempObj.booBWDy=false;
+
+	//CEdit* pEdit = (CEdit*)GetDlgItem(IDC_DATE_PREVIEW_EDIT);
+	CString strText;
+	//pEdit-> GetWindowText(strText);
+	strText=ui->PreviewEdit->text();
+	tempObj.strText=strText.toStdString();
+	//tempObj.strText=theApp.myModuleMain.UnicodeToUtf8_CSTR(strText);
+
+	CString formatText;
+	formatText=ui->DateTimeEdit->text();
+	//GetDlgItem(IDC_DATE_DATE_TIME_EDIT)->GetWindowText(formatText);
+	tempObj.strTime=m_TimeShow.CString2string(formatText);
+
+	CString  fontText;
+	int nIndex = ui->fontTypeTimeComBox->currentIndex();
+	//int nIndex = m_dateFontCombo.GetCurSel();  //当前选中的项
+	switch(nIndex)
+	{
+	case 0:
+		tempObj.intLineSize=5;
+		tempObj.intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+		break;
+	case 1:
+		tempObj.intLineSize=7;
+		tempObj.intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+		break;
+	case 2:
+		tempObj.intLineSize=12;
+		tempObj.intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+		break;
+	case 3:
+		tempObj.intLineSize=16;
+		tempObj.intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+		break;
+	}
+	fontText=ui->fontTypeTimeComBox->currentText();
+	//m_dateFontCombo.GetLBText(nIndex,fontText);
+	tempObj.strFont=m_TimeShow.CString2string(fontText);
+
+	tempObj.booETimeOffSet=ui->SkewComBox->currentIndex();
+	CString timeOffText;
+	timeOffText=ui->SkewSkewValueEdit->toPlainText();
+	//GetDlgItem(IDC_DATE_SKEW_VALUE_EDIT)->GetWindowText(timeOffText);
+	int timeOffText1=timeOffText.toInt();
+	tempObj.intTimeOffSet=timeOffText1;
+	tempObj.strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
+
+	tempObj.booFocus=true;
+	m_PrinterMes.OBJ_Vec.push_back(tempObj);
+	//this->ShowWindow(SW_HIDE);
+ 
 }
