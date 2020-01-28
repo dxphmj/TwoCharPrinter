@@ -87,7 +87,7 @@ void keyboard::SetPosition()
 	rectLineEdit = m_pInputEdit->geometry();
 	QRect rectKeyboard;
 	rectKeyboard = geometry();
-	QRect rect(rectLineEdit.left(),rectLineEdit.bottom(),rectKeyboard.width(),rectKeyboard.height());
+	QRect rect(rectLineEdit.left(),rectLineEdit.bottom()+50,rectKeyboard.width(),rectKeyboard.height());
 	setGeometry(rect);
 }
 

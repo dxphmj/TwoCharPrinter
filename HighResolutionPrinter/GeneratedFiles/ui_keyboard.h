@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -68,19 +69,20 @@ public:
     QPushButton *language_KBBut;
     QPushButton *hide_KBBut;
     QPushButton *Esc_KBBut;
+    QLabel *backgroundKBLabel;
 
     void setupUi(QWidget *keyboard)
     {
         if (keyboard->objectName().isEmpty())
             keyboard->setObjectName(QStringLiteral("keyboard"));
-        keyboard->resize(791, 321);
+        keyboard->resize(791, 391);
         QFont font;
         font.setFamily(QStringLiteral("Adobe Arabic"));
         font.setPointSize(7);
         font.setBold(true);
         font.setWeight(75);
         keyboard->setFont(font);
-        keyboard->setStyleSheet(QStringLiteral("background-color: rgb(119,117,128);"));
+        keyboard->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         Q_KBBut = new QPushButton(keyboard);
         Q_KBBut->setObjectName(QStringLiteral("Q_KBBut"));
         Q_KBBut->setGeometry(QRect(20, 105, 52, 52));
@@ -337,6 +339,57 @@ public:
         Esc_KBBut->setGeometry(QRect(20, 50, 52, 52));
         Esc_KBBut->setFont(font1);
         Esc_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        backgroundKBLabel = new QLabel(keyboard);
+        backgroundKBLabel->setObjectName(QStringLiteral("backgroundKBLabel"));
+        backgroundKBLabel->setGeometry(QRect(0, 0, 791, 391));
+        backgroundKBLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        backgroundKBLabel->raise();
+        Q_KBBut->raise();
+        A_KBBut->raise();
+        shift_KBBut->raise();
+        space_KBBut->raise();
+        one_KBBut->raise();
+        two_KBBut->raise();
+        three_KBBut->raise();
+        four_KBBut->raise();
+        five_KBBut->raise();
+        six_KBBut->raise();
+        seven_KBBut->raise();
+        eight_KBBut->raise();
+        nine_KBBut->raise();
+        zero_KBBut->raise();
+        backspace_KBBut->raise();
+        I_KBBut->raise();
+        W_KBBut->raise();
+        O_KBBut->raise();
+        T_KBBut->raise();
+        R_KBBut->raise();
+        P_KBBut->raise();
+        Y_KBBut->raise();
+        E_KBBut->raise();
+        U_KBBut->raise();
+        S_KBBut->raise();
+        D_KBBut->raise();
+        F_KBBut->raise();
+        G_KBBut->raise();
+        H_KBBut->raise();
+        J_KBBut->raise();
+        K_KBBut->raise();
+        L_KBBut->raise();
+        enter_KBBut->raise();
+        N_KBBut->raise();
+        C_KBBut->raise();
+        B_KBBut->raise();
+        symbol_KBBut->raise();
+        X_KBBut->raise();
+        V_KBBut->raise();
+        M_KBBut->raise();
+        Z_KBBut->raise();
+        period_KBBut->raise();
+        comma_KBBut->raise();
+        language_KBBut->raise();
+        hide_KBBut->raise();
+        Esc_KBBut->raise();
 
         retranslateUi(keyboard);
 
@@ -392,6 +445,7 @@ public:
         language_KBBut->setText(QApplication::translate("keyboard", "\360\237\214\220", 0));
         hide_KBBut->setText(QString());
         Esc_KBBut->setText(QApplication::translate("keyboard", "Esc", 0));
+        backgroundKBLabel->setText(QString());
     } // retranslateUi
 
 };
