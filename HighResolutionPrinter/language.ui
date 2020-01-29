@@ -120,7 +120,7 @@
     <string notr="true">background-color: rgb(182,181,186);</string>
    </property>
    <property name="text">
-    <string>Nederlands</string>
+    <string>Dutch</string>
    </property>
   </widget>
   <widget class="QPushButton" name="LanHindi">
