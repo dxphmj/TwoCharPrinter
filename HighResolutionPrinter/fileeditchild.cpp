@@ -205,6 +205,7 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	derta=1;
 	longth=0;
 	error_number = 0;
+	rotate_angle = 0;
 	//QString angle1=ui->degreeBarCodeShowLab->text();//暂时注掉
 	//int angle2=angle1.toInt();
 	//rotate_angle = angle2;
@@ -213,13 +214,17 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType;
 //	if(nType == 20 || nType == 8)
-//		my_symbol->height = 12;	 
+	my_symbol->height = 5;	 //此高度值会影响最终生成条形码点阵图的高度，且最小值为5
 
-	my_symbol->scale =0.5;
+	my_symbol->scale =1;
 	batch_mode = 0;
 	mirror_mode = 0;
 
-	//int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
+	my_symbol->whitespace_width=6;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
+	my_symbol->output_options= 1; //有无边框之类的控制;1:无边框，2：上下两条边界线，3：四条边框
+	my_symbol->border_width=0;//改变边框宽度           //条形码高度显示问题，所以边框显示也存在问题
+
+	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
 	if (ui->showNumCheckBox->isChecked())
 	{
 		my_symbol->show_hrt=1;
@@ -233,13 +238,13 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	std::string strTmp = ASCToUTF8(QRTEXT);*/
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 	longth = my_symbol->bitmap_height;
-	//longth = my_symbol->width;
+/*	//longth = my_symbol->width;
 	QString zoomvalue=ui->zoomShowBarCodeLab->text();
 	int zoomvalue1=zoomvalue.toInt();
 	derta = longth-zoomvalue1;     //将21改为zoomShowBarCodeLab中的值
 	//my_symbol->scale =proportion ;
 	//error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-
+	*/
 	generated = 1;
   
 	int xPos=0;
@@ -260,14 +265,10 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	bmpObj.strType1="text";
 	bmpObj.strType2="qrcode";
 
-//	bmpObj.intQRVersion=VersionBox.GetCurSel()+1;
-//	bmpObj.intQRErrLevel=ErrLevelBox.GetCurSel();
-//	bmpObj.intQREncodingMode=EncodingModeBox.GetCurSel();
-//	bmpObj.boQRBig = true;	 
-//	int version = bmpObj.intQRVersion;//设置版本号，这里设为2，对应尺寸：25 * 25
-//	int casesensitive = bmpObj.boQRBig;//是否区分大小写，true/false
-
-	bmpObj.intLineSize=my_symbol->bitmap_height-derta;
+	QString heightvalue = ui->heightBarCodeShowQRLab->text();
+	int heightvalue1=heightvalue.toInt();
+	bmpObj.intLineSize= heightvalue1;
+	//bmpObj.intLineSize=my_symbol->bitmap_height-derta;
 	bmpObj.intRowSize=my_symbol->bitmap_width;
 
 	//以下先写死
@@ -276,10 +277,11 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
-	i = derta*my_symbol->bitmap_width*3;
+	i=0;
+	//i = derta*my_symbol->bitmap_width*3;
 	int r, g, b;
-
-	for (int row = derta; row < my_symbol->bitmap_height; row++)
+	for (int row = 5; row < my_symbol->bitmap_height; row++)
+	//for (int row = derta; row < my_symbol->bitmap_height; row++)
 	{
 		for (int col = 0;col < my_symbol->bitmap_width; col++)
 		{
@@ -314,17 +316,22 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int mirror_mode;
 	char filetype[4];
 	int i;
+	int v;
 
 	error_number = 0;
 	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
 	//int angle2=angle1.toInt();
 	//rotate_angle = angle2;
-	//rotate_angle = 0;
+	rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType;
-	my_symbol->scale =1;
+	my_symbol->scale =0.5;
+
+	v=ui->sideLenQRComBox->currentIndex();
+	my_symbol->option_2=v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+
 	batch_mode = 0;
 	mirror_mode = 0;
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
@@ -410,16 +417,21 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	//int angle2=angle1.toInt();
 	//rotate_angle = angle2;
 
-	//rotate_angle = 0;
+	rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType;
-	my_symbol->scale =0.5;
+	my_symbol->scale =1;
+
+	
+
 	batch_mode = 0;
 	mirror_mode = 0;
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-	/*float barlongth;
+	
+	
+/*	float barlongth;
 	barlongth=my_symbol->bitmap_height;
 	float barwidth;
 	barwidth=my_symbol->bitmap_width;
