@@ -10,6 +10,7 @@
 #include <QVBoxLayout>  
 #include <QIcon>  
 #include <QStringList>
+#include <QMessageBox>
 
 class keyboard;
 class ClassMessage;
@@ -37,6 +38,7 @@ public:
 	QFileInfoList list;
 	bool boolFileSelected;
 	bool boolSaveAsBtn_Clicked;
+	void informationMessage();
 
 public slots:  
 	void ShowLocalFilePath();
