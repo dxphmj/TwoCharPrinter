@@ -6,9 +6,9 @@
 #include <QPainter>
 #include <io.h>
 #include "QFileInfo"
+#include <Windows.h>
 
 //#include <qwidget.h>
-
 
 ClassMessage::ClassMessage(void)
 {
@@ -439,12 +439,15 @@ void ClassMessage::ReadBmp(char* strFileName)
 	OBJ_Vec.push_back(bmpObj); 
 }
 
-bool ClassMessage::ReadObjectsFromXml(char* strFileName)
+void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
+	memset(CounterEditMes,false,sizeof(bool)*4);
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
-	if(loadOkay == false) return false;
-
+	if (!loadOkay)
+	{
+		return;
+	}
 	TiXmlNode* node = 0;
 	TiXmlElement* todoElement = 0;
 	TiXmlElement* itemElement = 0;
@@ -482,16 +485,16 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//sprintf_s(obj.m_texts,"%s",strText); 
 					strMatrix.assign(strText);
 				}
-				if(strcmp(strItem,"Pixel") == 0)
+				else if(strcmp(strItem,"Pixel") == 0)
 				{
 					//读入信息
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
 					//sprintf_s(obj.m_texts,"%s",strText); 
-					Pixel=atoi(strText);
+					Pixel=atoi(strText)-1;
 				}
-				if(strcmp(strItem,"Reverse") == 0)
+				else if(strcmp(strItem,"Reverse") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -500,7 +503,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//sprintf_s(obj.m_texts,"%s",strText); 
 					Reverse.assign(strText);
 				}
-				if(strcmp(strItem,"Inverse") == 0)
+				else if(strcmp(strItem,"Inverse") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -528,7 +531,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.strType1.assign(strText);
 				}
-				if(strcmp(strItem,"TYPE2") == 0)
+				else if(strcmp(strItem,"TYPE2") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -536,7 +539,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.strType2.assign(strText);
 				}
-				if(strcmp(strItem,"LineStart") == 0)
+				else if(strcmp(strItem,"LineStart") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -544,7 +547,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intLineStart=atoi(strText);
 				}
-				if(strcmp(strItem,"RowStart") == 0)
+				else if(strcmp(strItem,"RowStart") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -552,7 +555,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intRowStart=atoi(strText);
 				}
-				if(strcmp(strItem,"LineSize") == 0)
+				else if(strcmp(strItem,"LineSize") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -560,7 +563,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intLineSize=atoi(strText);
 				}
-				if(strcmp(strItem,"RowSize") == 0)
+				else if(strcmp(strItem,"RowSize") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -568,7 +571,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intRowSize=atoi(strText);
 				}
-				if(strcmp(strItem,"SW") == 0)
+				else if(strcmp(strItem,"SW") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -576,7 +579,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intSW=atoi(strText);
 				}
-				if(strcmp(strItem,"SS") == 0)
+				else if(strcmp(strItem,"SS") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -584,7 +587,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.intSS=atoi(strText);
 				}
-				if(strcmp(strItem,"NEG") == 0)
+				else if(strcmp(strItem,"NEG") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -592,7 +595,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.booNEG=atoi(strText);
 				}
-				if(strcmp(strItem,"BWDx") == 0)
+				else if(strcmp(strItem,"BWDx") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -600,7 +603,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.booBWDx=atoi(strText);
 				}
-				if(strcmp(strItem,"BWDy") == 0)
+				else if(strcmp(strItem,"BWDy") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -608,7 +611,7 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.booBWDy=atoi(strText);
 				}
-				if(strcmp(strItem,"setFONT") == 0)
+				else if(strcmp(strItem,"setFONT") == 0)
 				{
 					//读入信息
 					const char* strText; 
@@ -616,19 +619,176 @@ bool ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					obj.strFont.assign(strText);
 				}
-				if(strcmp(strItem,"setTEXT") == 0)
+
+
+				if (obj.strType1=="text"&&obj.strType2=="text")
 				{
-					//读入信息
-					const char* strText; 
-					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-					strText = nodeText->ValueTStr().c_str();
-					obj.strText.assign(strText);
+					if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}
+				}
+
+				else if (obj.strType1=="text"&&obj.strType2=="serial")
+				{
+					if(strcmp(strItem,"FirstLimit") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialFirstLimit=atoi(strText);
+					}
+					else if(strcmp(strItem,"SecondLimit") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialSecondLimit=atoi(strText);
+					}
+					else if(strcmp(strItem,"StartValue") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialStartValue=atoi(strText);
+					}
+					else if(strcmp(strItem,"Step") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialStep=atoi(strText);
+					}
+					else if(strcmp(strItem,"Repeat") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialRepeat=atoi(strText);
+					}
+					else if(strcmp(strItem,"Digits") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialDigits=atoi(strText);
+					}
+					else if(strcmp(strItem,"Format") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.bytSerialFormat=atoi(strText);
+					}
+					else if(strcmp(strItem,"Counter") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intSerialCounter=atoi(strText);
+						CounterEditMes[obj.intSerialCounter]=true;
+					}
+					else if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}						
+				}
+
+				else if (obj.strType1=="text"&&obj.strType2=="time")/////这个以后再写
+				{
+					if(strcmp(strItem,"setTIME") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strTime.assign(strText);
+					}
+					else if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}	
+				}
+
+				else if (obj.strType1=="text"&&obj.strType2=="logo")
+				{
+					if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}	
+					ReadBmp(const_cast<char*>(obj.strText.c_str()));
+				}
+				
+				else if (obj.strType1=="text"&&obj.strType2=="qrcode")
+				{
+					if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}	
+					if(strcmp(strItem,"qrcodeVersion") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strqrcodeVersion.assign(strText);
+					}
+					if(strcmp(strItem,"qrcodeECCLevel") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strqrcodeECCLevel.assign(strText);
+					}
+					if(strcmp(strItem,"qrcodeQuietZone") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intqrcodeQuietZone = atoi(strText);
+					}
+					ReadBmp(const_cast<char*>(obj.strText.c_str()));
 				}
 			}
 			OBJ_Vec.push_back(obj);
+			}
 		}
-	}
-	return true;
+
+		string strPathName=strFileName;
+		int lastN=strPathName.find_last_of('\\');
+		labName = strPathName.substr(lastN + 1);
+		labPath=strPathName.substr(0,lastN);
+
 }
 
 void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT ,
@@ -1187,6 +1347,23 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	pDC->drawLine((intRowStart+intRowSize)*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
 }
 
+wstring stringToWstring(const string& str)
+{
+	setlocale(LC_ALL, "chs"); 
+
+	const char* _Source = str.c_str();
+	size_t _Dsize = str.size() + 1;
+	wchar_t *_Dest = new wchar_t[_Dsize];
+	wmemset(_Dest, 0, _Dsize);
+	mbstowcs(_Dest,_Source,_Dsize);
+	wstring result = _Dest;
+	delete []_Dest;
+
+	setlocale(LC_ALL, "C");
+
+	return result;
+}
+
 void OBJ_Control::DrawDot(CDC* pDC)
 {
  	CBrush cbrushB(QColor(0,0,0));//黑笔
@@ -1404,7 +1581,9 @@ void OBJ_Control::DrawDot(CDC* pDC)
 				}
 			}
 		}
-	} 
+	}
+
+	//如果是文本
 	else
 	{
 		fntMap.clear();
@@ -1418,21 +1597,1047 @@ void OBJ_Control::DrawDot(CDC* pDC)
 		char Dot;///////////////////////////////////////////////////小心，这可能是个坑。。
 		int x1,y1,x2,y2;
 		ClassMessage objClassMessage;
+
 		//map<string,int>::iterator iterTemp=fntMap.begin();
 		//iterTemp=fntMap.find(strFont);
 		//int caseN=iterTemp->second;
+		//this->strFont = OBJ_Vec[i]
+
 		switch(fntMap[strFont])
 		{
 		case 0://5x5.fnt
 			theDog=0;//标记位
 			if (booBWDy)
 			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[strWText.length()-i-1];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*7+64;
+					bool objRead = objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
+					if (!objRead)
+					{
+						for (int r=0;r<7;r++)
+						{
+							if (r==6)
+							{
+								objbytTex5x5Line[r]=6;
+							} 
+							else
+							{
+								objbytTex5x5Line[r]=0;
+							}
+
+						}
+					}
+					if(intSS>0 && booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<5;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*m;
+								x2=5*(theDog+intRowStart+1)+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(5-p+intLineStart)-1;
+									y2=241-5*(5-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+
+					for (int k=0;k<objbytTex5x5Line[6];k++)
+					{
+						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex5x5Line[objbytTex5x5Line[6]-1-k]);
+						binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
+						for (int p =0;p<5;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(5-p+intLineStart)-1;
+								y2=241-5*(5-p+intLineStart-1)-1;
+
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束
+					theDog=theDog+objbytTex5x5Line[6]*intSW+intSS;
+				}
 			} 
 			else
 			{
-				for (int i=0;i<strText.length();i++)
+				wstring strWText=stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
 				{
-					wchar_t strTempText=strText[i];
+					wchar_t strTempText=strWText[i];
+					bytTextUni=(int)strTempText;
+					lonTextUniSetOff=bytTextUni*7+64;
+					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
+					if (!objRead)
+					{
+						for (int r=0;r<7;r++)
+						{
+							if (r==6)
+							{
+								objbytTex5x5Line[r]=6;
+							} 
+							else
+							{
+								objbytTex5x5Line[r]=0;
+							}
+
+						}
+					}
+					for (int k=0;k<objbytTex5x5Line[6];k++)
+					{
+						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex5x5Line[k]);
+						binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
+						for (int p =0;p<5;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(5-p+intLineStart)-1;
+								y2=241-5*(5-p+intLineStart-1)-1;
+
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<5;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*objbytTex5x5Line[6]*intSW+5*m;
+								x2=5*(theDog+intRowStart+1)+5*objbytTex5x5Line[6]*intSW+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(5-p+intLineStart)-1;
+									y2=241-5*(5-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+					theDog=theDog+objbytTex5x5Line[6]*intSW+intSS;
+				}
+			}
+			break;
+		case 1://7x5
+			theDog=0;//标记位
+			if (booBWDy)
+			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[strWText.length()-i-1];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*8+64;
+					
+					bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
+					if (!objRead)
+					{
+						for (int r=0;r<8;r++)
+						{
+							if (r==7)
+							{
+								objbytTex7x5Line[r]=6;
+							} 
+							else
+							{
+								objbytTex7x5Line[r]=0;
+							}
+						}
+					}
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<7;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*m;
+								x2=5*(theDog+intRowStart+1)+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(7-p+intLineStart)-1;
+									y2=241-5*(7-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+
+					for (int k=0;k<objbytTex7x5Line[7];k++)
+					{
+						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex7x5Line[objbytTex7x5Line[7]-1-k]);
+						binLineTemp=binLineTemp.substr(binLineTemp.length()-7,7);
+						for (int p =0;p<7;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(7-p+intLineStart)-1;
+								y2=241-5*(7-p+intLineStart-1)-1;
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+
+					theDog=theDog+objbytTex7x5Line[7]*intSW+intSS;
+				}
+			} 
+			else
+			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[i];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*8+64;
+
+					bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
+					if (!objRead)
+					{
+						for (int r=0;r<8;r++)
+						{
+							if (r==7)
+							{
+								objbytTex7x5Line[r]=6;
+							} 
+							else
+							{
+								objbytTex7x5Line[r]=0;
+							}
+
+						}
+					}
+					for (int k=0;k<objbytTex7x5Line[7];k++)
+					{
+						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex7x5Line[k]);
+						binLineTemp=binLineTemp.substr(binLineTemp.length()-7,7);
+						for (int p =0;p<7;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(7-p+intLineStart)-1;
+								y2=241-5*(7-p+intLineStart-1)-1;
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<7;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*objbytTex7x5Line[7]*intSW+5*m;
+								x2=5*(theDog+intRowStart+1)+5*objbytTex7x5Line[7]*intSW+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(7-p+intLineStart)-1;
+									y2=241-5*(7-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+					theDog=theDog+objbytTex7x5Line[7]*intSW+intSS;
+				}
+			}
+			break;
+
+		case 2://12x12
+
+			theDog=0;
+			if (booBWDy)
+			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[strWText.length()-i-1];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*25+64;
+					
+					bool objRead = objClassMessage.readBin("Font\\12x12.fnt",lonTextUniSetOff,objbytTex12x12Line,25);
+					if (!objRead)
+					{
+						for (int r=0;r<25;r++)
+						{
+							if (r==24)
+							{
+								objbytTex12x12Line[r]=12;
+							} 
+							else
+							{
+								objbytTex12x12Line[r]=0;
+							}
+
+						}
+					}
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<12;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*m;
+								x2=5*(theDog+intRowStart+1)+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(12-p+intLineStart)-1;
+									y2=241-5*(12-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+
+					for (int k=0;k<objbytTex12x12Line[24];k++)
+					{
+						string binLineTemp1,binLineTemp0;
+						binLineTemp1="0000"+objClassMessage.DEC_to_BIN((byte)objbytTex12x12Line[(objbytTex12x12Line[24]*2)-1-k*2]);
+						binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-4,4);
+						binLineTemp0="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex12x12Line[(objbytTex12x12Line[24]*2)-1-k*2-1]);
+						binLineTemp0=binLineTemp0.substr(binLineTemp0.length()-8,8);
+						binLineTemp=binLineTemp1+binLineTemp0;
+						//binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex12x12Line[5-k]);
+						//binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
+						for (int p =0;p<12;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(12-p+intLineStart)-1;
+								y2=241-5*(12-p+intLineStart-1)-1;
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+					theDog=theDog+objbytTex12x12Line[24]*intSW+intSS;
+				}
+			} 
+			else
+			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[i];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*25+64;
+
+					bool objRead = objClassMessage.readBin("Font\\12x12.fnt",lonTextUniSetOff,objbytTex12x12Line,25);
+					if (!objRead)
+					{
+						for (int r=0;r<25;r++)
+						{
+							if (r==24)
+							{
+								objbytTex12x12Line[r]=12;
+							} 
+							else
+							{
+								objbytTex12x12Line[r]=0;
+							}
+
+						}
+					}
+
+					for (int k=0;k<objbytTex12x12Line[24];k++)
+					{
+						string binLineTemp1,binLineTemp0;
+						binLineTemp1="0000"+objClassMessage.DEC_to_BIN((byte)objbytTex12x12Line[k*2+1]);
+						binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-4,4);
+						binLineTemp0="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex12x12Line[k*2]);
+						binLineTemp0=binLineTemp0.substr(binLineTemp0.length()-8,8);
+						binLineTemp=binLineTemp1+binLineTemp0;
+						for (int p =0;p<12;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(12-p+intLineStart)-1;
+								y2=241-5*(12-p+intLineStart-1)-1;
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<12;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*objbytTex12x12Line[24]*intSW+5*m;
+								x2=5*(theDog+intRowStart+1)+5*objbytTex12x12Line[24]*intSW+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(12-p+intLineStart)-1;
+									y2=241-5*(12-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+					theDog=theDog+objbytTex12x12Line[24]*intSW+intSS;
+				}
+			}
+			break;
+		case 3://16x12
+			theDog=0;
+			if (booBWDy)
+			{
+				//strText="中国";
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[strWText.length()-i-1];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*29+64;
+
+					bool objRead = objClassMessage.readBin("Font\\16x12.fnt",lonTextUniSetOff,objbytTex16x12Line,29);
+					if (!objRead)
+					{
+						for (int r=0;r<29;r++)
+						{
+							if (r==28)
+							{
+								objbytTex16x12Line[r]=14;
+							} 
+							else
+							{
+								objbytTex16x12Line[r]=0;
+							}
+
+						}
+					}
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<16;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*m;
+								x2=5*(theDog+intRowStart+1)+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(16-p+intLineStart)-1;
+									y2=241-5*(16-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+
+					for (int k=0;k<objbytTex16x12Line[28];k++)
+					{
+						string binLineTemp1,binLineTemp0;
+						binLineTemp1="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2]);
+						binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-8,8);
+						binLineTemp0="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2-1]);
+						binLineTemp0=binLineTemp0.substr(binLineTemp0.length()-8,8);
+						binLineTemp=binLineTemp1+binLineTemp0;
+						//binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex12x12Line[5-k]);
+						//binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
+						for (int p =0;p<16;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(16-p+intLineStart)-1;
+								y2=241-5*(16-p+intLineStart-1)-1;
+
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束；
+
+					theDog=theDog+objbytTex16x12Line[28]*intSW+intSS;
+				}
+			} 
+			else
+			{
+				wstring strWText = stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText = strWText[i];
+					bytTextUni = (int)strTempText;
+					lonTextUniSetOff = bytTextUni*29+64;
+
+					bool objRead = objClassMessage.readBin("Font\\16x12.fnt",lonTextUniSetOff,objbytTex16x12Line,29);
+					if (!objRead)
+					{
+						for (int r=0;r<29;r++)
+						{
+							if (r==28)
+							{
+								objbytTex16x12Line[r]=14;
+							} 
+							else
+							{
+								objbytTex16x12Line[r]=0;
+							}
+
+						}
+					}
+
+					for (int k=0;k<objbytTex16x12Line[28];k++)
+					{
+						string binLineTemp1,binLineTemp0;
+						binLineTemp1="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex16x12Line[k*2+1]);
+						binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-8,8);
+						binLineTemp0="00000000"+objClassMessage.DEC_to_BIN((byte)objbytTex16x12Line[k*2]);
+						binLineTemp0=binLineTemp0.substr(binLineTemp0.length()-8,8);
+						binLineTemp=binLineTemp1+binLineTemp0;
+						for (int p =0;p<16;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(16-p+intLineStart)-1;
+								y2=241-5*(16-p+intLineStart-1)-1;
+
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pDC->setBrush(cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2-x1-1,y2-y1-1);
+										pDC->Ellipse(rect);
+									}
+								}
+							}	
+						}
+					}//画列结束
+
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<16;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*objbytTex16x12Line[28]*intSW+5*m;
+								x2=5*(theDog+intRowStart+1)+5*objbytTex16x12Line[28]*intSW+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(16-p+intLineStart)-1;
+									y2=241-5*(16-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pDC->setBrush(cbrushB);
+								CRect rect(x1+1,y1+1,x2-x1-1,y2-y1-1);
+								pDC->Ellipse(rect);
+							}
+						}
+					}
+					theDog=theDog+objbytTex16x12Line[28]*intSW+intSS;
+				}
+
+			}
+			break;
+		}
+		intRowSize=theDog;
+
+		/*
+		case 0://5x5.fnt
+			theDog=0;//标记位
+			if (booBWDy)
+			{
+				wstring strWText=stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText=strWText[strWText.length()-i-1];
+					bytTextUni=(int)strTempText;
+					lonTextUniSetOff=bytTextUni*7+64;
+					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
+					if (!objRead)
+					{
+						for (int r=0;r<7;r++)
+						{
+							if (r==6)
+							{
+								objbytTex5x5Line[r]=6;
+							} 
+							else
+							{
+								objbytTex5x5Line[r]=0;
+							}
+						}
+					}
+					if(intSS>0&&booNEG)
+					{
+						for (int m=0;m<intSS;m++)
+						{
+							for(int p=0;p<5;p++)
+							{
+								x1=5*(theDog+intRowStart)+5*m;
+								x2=5*(theDog+intRowStart+1)+5*m;
+								if (booBWDx)
+								{
+									y1=241-5*(5-p+intLineStart)-1;
+									y2=241-5*(5-p+intLineStart-1)-1;
+								} 
+								else
+								{
+									y1=241-5*(intLineStart+p+1)-1;
+									y2=241-5*(intLineStart+p)-1;
+								}
+								pBrush=pDC->SelectObject(&cbrushB);
+								CRect rect(x1+1,y1+1,x2,y2);
+								pDC->Ellipse(&rect);
+							}
+						}
+					}
+					for (int k=0;k<objbytTex5x5Line[6];k++)
+					{
+						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex5x5Line[objbytTex5x5Line[6]-1-k]);
+						binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
+						for (int p =0;p<5;p++)
+						{
+							Dot=binLineTemp[p];
+							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
+							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
+							if (booBWDx)
+							{
+								y1=241-5*(intLineStart+p+1)-1;
+								y2=241-5*(intLineStart+p)-1;
+							} 
+							else
+							{
+								y1=241-5*(5-p+intLineStart)-1;
+								y2=241-5*(5-p+intLineStart-1)-1;
+							}
+							switch(Dot)
+							{
+							case '0':
+								if(booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pBrush=pDC->SelectObject(&cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
+										pDC->Ellipse(&rect);
+									}
+								}
+								break;
+							case '1':
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pBrush=pDC->SelectObject(&cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
+										pDC->Ellipse(&rect);
+									}
+								}
+								break;
+							default:
+								if(!booNEG)
+								{
+									for (int s=0;s<intSW;s++)
+									{
+										pBrush=pDC->SelectObject(&cbrushB);
+										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
+										pDC->Ellipse(&rect);
+									}
+								}
+							}	
+						}
+					}//画列结束
+					theDog=theDog+objbytTex5x5Line[6]*intSW+intSS;
+				}
+			} 
+			else
+			{
+				wstring strWText=stringToWstring(strText);
+				for (int i=0;i<strWText.length();i++)
+				{
+					wchar_t strTempText=strWText[i];
 					bytTextUni=(int)strTempText;
 					lonTextUniSetOff=bytTextUni*7+64;
 					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
@@ -1691,21 +2896,16 @@ void OBJ_Control::DrawDot(CDC* pDC)
 				}
 			}
 			break;
-		}
+
+		}*/
 	}
 
-
-
-
 	pDC->setBrush(cbrushB); //载入笔刷
+
 	//CRect rect(col*nStepPixels,row*nStepPixels,(col+1)*nStepPixels,(row+1)*nStepPixels);
 	//pDC->Ellipse(&rect); 
 
-	//pDC->SelectObject(pBrush); //恢复笔刷
-//	cbrushB.DeleteObject();
-//	pBrush->DeleteObject();*/
 	DrawFrame(pDC);
-		
 }
 	
 void OBJ_Control::ReadBmp(char* strFileName)

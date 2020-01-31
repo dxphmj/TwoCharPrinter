@@ -116,6 +116,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 
+	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
 
 	ui->typeBarCodeComBox->addItem(QStringLiteral("EANX"));
 	ui->typeBarCodeComBox->addItem(QStringLiteral("CODE39"));
@@ -497,48 +501,60 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 
 }
 
-void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent,
-	int txtRowSize, int txtLineSize, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
+int FileEditChild::GetCharLenFromFont(string txtFont, bool LineOrRow)
 {
-	OBJ_Control textObj;
-	textObj.intLineStart = 0;
-	textObj.intRowStart = 0;
-	textObj.strType1 = "text";
-	textObj.strType2 = "text";
-	textObj.strText = txtContent;
-	int txtLength = txtContent.length();
-
 	map<string,int> fntMap2;
 	fntMap2.clear();
 	fntMap2.insert(make_pair("5x5",0));
 	fntMap2.insert(make_pair("7x5",1));
 	fntMap2.insert(make_pair("12x12",2));
 	fntMap2.insert(make_pair("16x12",3));
+	
 	int RowLength;
 	int LineLength;
-
+	
 	switch(fntMap2[txtFont])
 	{
-		case 0:
-			LineLength = 5;
-			RowLength = 6;
-			break;
-		case 1:
-			LineLength = 7;
-			RowLength = 6;
-			break;
-		case 2:
-			LineLength = 12;
-			RowLength = 13;
-			break;
-		case 3:
-			LineLength = 16;
-			RowLength = 13;
-			break;
+	case 0:
+		LineLength = 5;
+		RowLength = 6;
+		break;
+	case 1:
+		LineLength = 7;
+		RowLength = 6;
+		break;
+	case 2:
+		LineLength = 12;
+		RowLength = 13;
+		break;
+	case 3:
+		LineLength = 16;
+		RowLength = 13;
+		break;
 	}
+	
+	if (LineOrRow == false)
+	{
+		return LineLength;
+	}
+	else
+	{
+		return RowLength;
+	}
+}
 
-	textObj.intLineSize = LineLength;
-	textObj.intRowSize = RowLength * txtLength;
+void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
+{
+	OBJ_Control textObj;
+	textObj.strType1 = "text";
+	textObj.strType2 = "text";
+	textObj.strFont = txtFont;
+	textObj.strText = txtContent;
+	int txtLength = txtContent.length();
+	textObj.intLineSize = GetCharLenFromFont(txtFont,false);
+	textObj.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	textObj.intLineStart = txtLineStart;
+	textObj.intRowStart = txtRowStart;
 	textObj.intSW = txtSW;
 	textObj.intSS = txtSS;
 	textObj.booNEG = txtNEG;
@@ -764,6 +780,7 @@ void FileEditChild::DMCodeLineEdit_clicked()
  
 void FileEditChild::newTextBut_clicked()
 {
+	//如果当前有obj被选中，则为更改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -771,49 +788,17 @@ void FileEditChild::newTextBut_clicked()
 			string tmpStr = this->ui->wordLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			int tmpStrLength = tmpStr.length();
-			m_PrinterMes.OBJ_Vec[i].intRowSize = tmpStrLength * 6;
-
-			/*map<string,int> fntMap3;
-			fntMap3.clear();
-			fntMap3.insert(make_pair("5x5",0));
-			fntMap3.insert(make_pair("7x5",1));
-			fntMap3.insert(make_pair("12x12",2));
-			fntMap3.insert(make_pair("16x12",3));
-
-			int RowLength;
-			int LineLength;
-			string tmpFont = this->ui-
-
-			switch(fntMap3[])
-			{
-			case 0:
-			LineLength = 5;
-			RowLength = 6;
-			case 1:
-			LineLength = 7;
-			RowLength = 6;
-			case 2:
-			LineLength = 12;
-			RowLength = 13;
-			case 3:
-			LineLength = 16;
-			RowLength = 13;
-			}
-
-			textObj.intLineSize = LineLength/2;
-			textObj.intRowSize = RowLength/2 * txtLength;
-			textObj.intSW = txtSW;
-			textObj.intSS = txtSS;
-			textObj.booNEG = txtNEG;
-			textObj.booBWDx = txtBWDx;
-			textObj.booBWDy = txtBWDy;*/
-
+			//m_PrinterMes.OBJ_Vec[i].intLineSize = GetCharLenFromFont()
+			//m_PrinterMes.OBJ_Vec[i].intRowSize = tmpStrLength * GetCharLenFromFont();
 			return;
 		}
 	}
+	//如果当前没有obj被选中，则为新建
 	QString txtQString = ui->wordLineEdit->text();
 	string txtString = txtQString.toStdString();
-	PushBackTextOBJ("7x5",false,false,false,txtString,20,20,0,0,0,1);
+	QString qTextFont = ui->fontTypeTextComBox->currentText();
+	string textFont = qTextFont.toStdString();
+	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 }
 
 void FileEditChild::newBarCodeBut_clicked()

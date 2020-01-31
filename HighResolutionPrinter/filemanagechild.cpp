@@ -36,16 +36,6 @@ FileManageChild::FileManageChild(QWidget *parent)
 	keyboardWidget->setVisible(false);
 }
 
-/*
-void FileManageChild::ChangeFileName()
-{
-	1.调用bool ClassMessage::JudgeXmlNameRepeat(char* strFileName)，判断xml名称是否重复
-	  strFileName = 用户在EditLine中输入的字符串
-	2.获取当前选中的文件路径，将其名称赋值为strFileName，即改名
-	3.刷新页面 QWidget * pQWidget(this);pQWidget->update();
-}
-*/
-
 void FileManageChild::SetButtonEnableOn()
 {
 	ui->editSeleFileBut->setEnabled(true);

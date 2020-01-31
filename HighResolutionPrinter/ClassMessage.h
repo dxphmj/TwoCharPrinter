@@ -199,7 +199,7 @@ public:
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
-	bool ReadObjectsFromXml(char* strFileName);
+	void ReadObjectsFromXml(char* strFileName);
 	void SaveObjectsToXml(char* strFileName);
 	string labPath;
 	string labName;
