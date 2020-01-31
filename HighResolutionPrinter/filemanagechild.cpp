@@ -6,6 +6,7 @@
 #include "QFile"
 #include "QFileInfo"
 #include <QTextCodec>
+#include <QDebug>
 #include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
@@ -186,6 +187,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		else
 		{
 			//弹出文件名重复
+			informationMessage();
 		}
 	}
 	else
@@ -203,8 +205,19 @@ void FileManageChild::OKFileNameBut_clicked()
 		else
 		{
 			//弹出文件名重复
+			informationMessage();
 		}
 	}
+}
+
+void FileManageChild::informationMessage()
+{
+	QMessageBox msgBox;
+	msgBox.setText(tr("<h1><i>Filename</i> </font>Repetition</font></h1>"));
+	msgBox.setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);\
+	                     QPushButton {background-color: rgb(0,0,230);color: rgb(255, 255, 255);font: bold;font-size:40px;color:rgb(255,255,255) }\
+	                     ");
+	msgBox.exec();
 }
 
 FileManageChild::~FileManageChild()

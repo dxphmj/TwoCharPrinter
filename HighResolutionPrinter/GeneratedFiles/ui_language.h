@@ -167,7 +167,7 @@ public:
         LanChinese->setText(QApplication::translate("language", "\347\256\200\344\275\223\344\270\255\346\226\207", 0));
         LanArabic->setText(QApplication::translate("language", "\302\240\330\271\330\261\330\250\331\212 \330\214", 0));
         LanCzech->setText(QApplication::translate("language", "\304\214esko", 0));
-        LanDutch->setText(QApplication::translate("language", "Nederlands", 0));
+        LanDutch->setText(QApplication::translate("language", "Dutch", 0));
         LanHindi->setText(QApplication::translate("language", "\340\244\271\340\244\277\340\244\250\340\245\215\340\244\246\340\245\200", 0));
         LanFarsi->setText(QApplication::translate("language", "\331\201\330\247\330\261\330\263\333\214\342\200\216", 0));
         LanGerman->setText(QApplication::translate("language", "Deutsch", 0));
