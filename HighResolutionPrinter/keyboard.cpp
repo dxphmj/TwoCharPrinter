@@ -151,6 +151,16 @@ void keyboard::caps1_kBBut_clicked()
 				LanGermanBig();
 				break;
 			}
+		case 11:  //Finnish
+			{
+				LanFarsiBig();
+				break;
+			}
+		case 12:  //Hindi
+			{
+				LanHindiBig();
+				break;
+			}
 		}
 
 		//case 5:  //Arabic
@@ -968,6 +978,16 @@ void keyboard::symbol_KBBut_clicked()
 				ui->Z_KBBut->setText(QStringLiteral("_"));
 				ui->comma_KBBut->setText(QStringLiteral(">"));
 				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
 				break;
 			}
 		case 4://Japanese
@@ -1045,6 +1065,90 @@ void keyboard::symbol_KBBut_clicked()
 				break;
 			}
 		case 6://German
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 7://Farsi
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 8://Hindi
 			{
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
@@ -1399,23 +1503,23 @@ void keyboard::btnLanguageSel(int m_LanType)
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
 		}
-	case 11:  //Finnish
+	case 11:  //FarsiSmall
 		{
-		//	LanFinnish();
+		    LanFarsiSmall();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
 		}
 	case 12:  //Hindi
 		{
-		//	LanHindi();
+		    LanHindiSmall();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
 		}
 	case 13:  //Hungarian
 		{
-		//	LanHungarian();
+		    //LanHindiBig();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1522,6 +1626,17 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 			SymbolToGerman();
 			break;
 		}
+		case 7:
+		{
+			SymbolToFarsi();
+			break;
+		}
+		case 8:
+		{
+			SymbolToHindi();
+			break;
+		}
+		
 	}
 
 }
@@ -1905,7 +2020,7 @@ void keyboard::LanCzechSmall()
 	ui->Z_KBBut->setText("y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("+"));
+	ui->one_KBBut->setText(QStringLiteral("ů"));
 	ui->two_KBBut->setText(QStringLiteral("ě"));
 	ui->three_KBBut->setText(QStringLiteral("š"));
 	ui->four_KBBut->setText(QStringLiteral("č"));
@@ -1994,7 +2109,7 @@ void keyboard::LanCzechBig()
 	ui->Z_KBBut->setText("Y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("1"));
+	ui->one_KBBut->setText(QStringLiteral("Ú"));
 	ui->two_KBBut->setText(QStringLiteral("Ě"));
 	ui->three_KBBut->setText(QStringLiteral("Š"));
 	ui->four_KBBut->setText(QStringLiteral("Č"));
@@ -2353,6 +2468,318 @@ void keyboard::LanGermanBig()
 	ui->zero_KBBut->setText(QStringLiteral("'"));
 }
 
+void keyboard::LanFarsiSmall()
+{
+	ui->A_KBBut->setText("a");
+	ui->B_KBBut->setText("b");
+	ui->C_KBBut->setText("c");
+	ui->D_KBBut->setText("d");
+	ui->E_KBBut->setText("e");
+	ui->F_KBBut->setText("f");
+	ui->G_KBBut->setText("g");
+	ui->H_KBBut->setText("h");
+	ui->I_KBBut->setText("i");
+	ui->J_KBBut->setText("j");
+	ui->K_KBBut->setText("k");
+	ui->L_KBBut->setText("l");
+	ui->M_KBBut->setText("m");
+	ui->N_KBBut->setText("n");
+	ui->O_KBBut->setText("o");
+	ui->P_KBBut->setText("p");
+	ui->Q_KBBut->setText("q");
+	ui->R_KBBut->setText("r");
+	ui->S_KBBut->setText("s");
+	ui->T_KBBut->setText("t");
+	ui->U_KBBut->setText("u");
+	ui->V_KBBut->setText("v");
+	ui->W_KBBut->setText("w");
+	ui->X_KBBut->setText("x");
+	ui->Y_KBBut->setText("y");
+	ui->Z_KBBut->setText("z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+	ui->one_KBBut->setText(QStringLiteral("½"));
+	ui->two_KBBut->setText(QStringLiteral("¤"));
+	ui->three_KBBut->setText(QStringLiteral("`"));
+	ui->four_KBBut->setText(QStringLiteral("å"));
+	ui->five_KBBut->setText(QStringLiteral("´"));
+	ui->six_KBBut->setText(QStringLiteral("'"));
+	ui->seven_KBBut->setText(QStringLiteral("ä"));
+	ui->eight_KBBut->setText(QStringLiteral("ö"));
+	ui->nine_KBBut->setText(QStringLiteral("§"));
+	ui->zero_KBBut->setText(QStringLiteral("¨"));
+}
+
+void keyboard::LanFarsiBig()
+{
+	ui->A_KBBut->setText("A");
+	ui->B_KBBut->setText("B");
+	ui->C_KBBut->setText("C");
+	ui->D_KBBut->setText("D");
+	ui->E_KBBut->setText("E");
+	ui->F_KBBut->setText("F");
+	ui->G_KBBut->setText("G");
+	ui->H_KBBut->setText("H");
+	ui->I_KBBut->setText("I");
+	ui->J_KBBut->setText("J");
+	ui->K_KBBut->setText("K");
+	ui->L_KBBut->setText("L");
+	ui->M_KBBut->setText("M");
+	ui->N_KBBut->setText("N");
+	ui->O_KBBut->setText("O");
+	ui->P_KBBut->setText("P");
+	ui->Q_KBBut->setText("Q");
+	ui->R_KBBut->setText("R");
+	ui->S_KBBut->setText("S");
+	ui->T_KBBut->setText("T");
+	ui->U_KBBut->setText("U");
+	ui->V_KBBut->setText("V");
+	ui->W_KBBut->setText("W");
+	ui->X_KBBut->setText("X");
+	ui->Y_KBBut->setText("Y");
+	ui->Z_KBBut->setText("Z");
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+	ui->one_KBBut->setText(QStringLiteral("½"));
+	ui->two_KBBut->setText(QStringLiteral("¤"));
+	ui->three_KBBut->setText(QStringLiteral("`"));
+	ui->four_KBBut->setText(QStringLiteral("Å"));
+	ui->five_KBBut->setText(QStringLiteral("´"));
+	ui->six_KBBut->setText(QStringLiteral("'"));
+	ui->seven_KBBut->setText(QStringLiteral("Ä"));
+	ui->eight_KBBut->setText(QStringLiteral("Ö"));
+	ui->nine_KBBut->setText(QStringLiteral("§"));
+	ui->zero_KBBut->setText(QStringLiteral("¨"));
+	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("´"));
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
+	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
+	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+	//		break;
+	//	}
+}
+
+void keyboard::LanHindiSmall()
+{
+	ui->A_KBBut->setText(QStringLiteral("ो"));
+	ui->B_KBBut->setText(QStringLiteral("व"));
+	ui->C_KBBut->setText(QStringLiteral("म"));
+	ui->D_KBBut->setText(QStringLiteral("्"));
+	ui->E_KBBut->setText(QStringLiteral("ा"));
+	ui->F_KBBut->setText(QStringLiteral("ि"));
+	ui->G_KBBut->setText(QStringLiteral("ु"));
+	ui->H_KBBut->setText(QStringLiteral("प"));
+	ui->I_KBBut->setText(QStringLiteral("ग"));
+	ui->J_KBBut->setText(QStringLiteral("र"));
+	ui->K_KBBut->setText(QStringLiteral("क"));
+	ui->L_KBBut->setText(QStringLiteral("त"));
+	ui->M_KBBut->setText(QStringLiteral("स"));
+	ui->N_KBBut->setText(QStringLiteral("ल"));
+	ui->O_KBBut->setText(QStringLiteral("द"));
+	ui->P_KBBut->setText(QStringLiteral("ज"));
+	ui->Q_KBBut->setText(QStringLiteral("ौ"));
+	ui->R_KBBut->setText(QStringLiteral("ी"));
+	ui->S_KBBut->setText(QStringLiteral("े"));
+	ui->T_KBBut->setText(QStringLiteral("ू"));
+	ui->U_KBBut->setText(QStringLiteral("ह"));
+	ui->V_KBBut->setText(QStringLiteral("न"));
+	ui->W_KBBut->setText(QStringLiteral("ै"));
+	ui->X_KBBut->setText(QStringLiteral("ं"));
+	ui->Y_KBBut->setText(QStringLiteral("ब"));
+	ui->Z_KBBut->setText(QStringLiteral("ॆ"));
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+	ui->one_KBBut->setText(QStringLiteral("ऍ"));
+	ui->two_KBBut->setText(QStringLiteral("ॅ"));
+	ui->three_KBBut->setText(QStringLiteral("्य"));
+	ui->four_KBBut->setText(QStringLiteral("ट"));
+	ui->five_KBBut->setText(QStringLiteral("च"));
+	ui->six_KBBut->setText(QStringLiteral("ॉ"));
+	ui->seven_KBBut->setText(QStringLiteral("़"));
+	ui->eight_KBBut->setText(QStringLiteral("ड"));
+	ui->nine_KBBut->setText(QStringLiteral("ृ"));
+	ui->zero_KBBut->setText(QStringLiteral("ॊ"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("स"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ल"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("व"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("न"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("म"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ं"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ॆ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ट"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("च"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("त"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("क"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("र"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("प"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ु"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ि"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("्"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("े"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ो"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ॉ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("़"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ड"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ज"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("द"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ग"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ह"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ब"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ू"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ी"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ा"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ै"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ौ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ृ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ॊ"));*/
+}
+
+void keyboard::LanHindiBig()
+{                                                //很多符号没有放上
+	ui->A_KBBut->setText(QStringLiteral("ओ"));
+	ui->B_KBBut->setText(QStringLiteral("ऴ"));
+	ui->C_KBBut->setText(QStringLiteral("ण"));
+	ui->D_KBBut->setText(QStringLiteral("अ"));
+	ui->E_KBBut->setText(QStringLiteral("आ"));
+	ui->F_KBBut->setText(QStringLiteral("इ"));
+	ui->G_KBBut->setText(QStringLiteral("उ"));
+	ui->H_KBBut->setText(QStringLiteral("फ"));
+	ui->I_KBBut->setText(QStringLiteral("ँ"));
+	ui->J_KBBut->setText(QStringLiteral("ऱ"));
+	ui->K_KBBut->setText(QStringLiteral("ख"));
+	ui->L_KBBut->setText(QStringLiteral("थ"));
+	ui->M_KBBut->setText(QStringLiteral("श"));
+	ui->N_KBBut->setText(QStringLiteral("ळ"));
+	ui->O_KBBut->setText(QStringLiteral("ध"));
+	ui->P_KBBut->setText(QStringLiteral("झ"));
+	ui->Q_KBBut->setText(QStringLiteral("औ"));
+	ui->R_KBBut->setText(QStringLiteral("ई"));
+	ui->S_KBBut->setText(QStringLiteral("ए"));
+	ui->T_KBBut->setText(QStringLiteral("घ"));
+	ui->U_KBBut->setText(QStringLiteral("ङ"));
+	ui->V_KBBut->setText(QStringLiteral("ऩ"));
+	ui->W_KBBut->setText(QStringLiteral("ऐ"));
+	ui->X_KBBut->setText(QStringLiteral("ँ"));
+	ui->Y_KBBut->setText(QStringLiteral("भ"));
+	ui->Z_KBBut->setText(QStringLiteral("ऎ"));
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
+	ui->one_KBBut->setText(QStringLiteral("ऒ"));
+	ui->two_KBBut->setText(QStringLiteral("ः"));
+	ui->three_KBBut->setText(QStringLiteral("्र"));
+	ui->four_KBBut->setText(QStringLiteral("र्"));
+	ui->five_KBBut->setText(QStringLiteral("ज्ञ"));
+	ui->six_KBBut->setText(QStringLiteral("त्र"));
+	ui->seven_KBBut->setText(QStringLiteral("क्ष"));
+	ui->eight_KBBut->setText(QStringLiteral("श्र"));
+	ui->nine_KBBut->setText(QStringLiteral("("));
+	ui->zero_KBBut->setText(QStringLiteral(")"));
+	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य़"));  没放上
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("।"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ष"));   没放上
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("श"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ळ"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ऴ"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ऩ"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ण"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ँ"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ऎ"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ठ"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("छ"));    没放上
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("थ"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ख"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ऱ"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("फ"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("उ"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("इ"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("अ"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ए"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ओ"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ऑ"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ञ"));    没放上
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ढ"));     没放上
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("झ"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ध"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("घ"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ङ"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("भ"));
+	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ऊ"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ई"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("आ"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ऐ"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("औ"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ऋ"));    没放上
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ः"));
+	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
+	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("श्र"));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("क्ष"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("त्र"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ज्ञ"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("र्"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("्र"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ॅ"));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ऍ"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ऒ"));
+	//		break;
+}
+
 void keyboard::SymbolToEnglish()
 {
 	LanEnglishBig();
@@ -2392,5 +2819,17 @@ void keyboard::SymbolToDutch()
 void keyboard::SymbolToGerman()
 {
 	LanGermanBig();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToFarsi()
+{
+	LanFarsiBig();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToHindi()
+{
+	LanHindiBig();
 	m_Upper = false;
 }

@@ -45,7 +45,10 @@ public:
 	void LanDutchBig();
 	void LanGermanSmall();
 	void LanGermanBig();
-
+	void LanFarsiSmall();
+	void LanFarsiBig();
+	void LanHindiSmall();
+	void LanHindiBig();
 
     void SymbolToEnglish();
 	void SymbolToChinese();
@@ -54,6 +57,8 @@ public:
 	void SymbolToJapanese();
 	void SymbolToDutch();
 	void SymbolToGerman();
+	void SymbolToFarsi();
+	void SymbolToHindi();
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -82,7 +87,7 @@ public:
 		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22};
 
 	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1,KoreSymbol = 2,CzechSynbol = 3,JapaneseSymbol = 4,
-	                         DutchSymbol = 5,GermanSymbol = 6};
+	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7};
 	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换

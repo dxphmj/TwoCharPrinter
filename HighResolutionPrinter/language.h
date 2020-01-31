@@ -27,6 +27,8 @@ private slots:
 	void LanCzech_KBBut_clicked();
 	void LanDutch_KBBut_clicked();
 	void LanGerman_KBBut_clicked();
+	void LanFarsi_KBBut_clicked();
+	void LanHindi_KBBut_clicked();
 
 };
 

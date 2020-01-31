@@ -17,6 +17,8 @@ language::language(QWidget *parent)
 	connect(ui->LanJapanese,SIGNAL(clicked()),this,SLOT(LanJapanese_KBBut_clicked()));
 	connect(ui->LanDutch,SIGNAL(clicked()),this,SLOT(LanDutch_KBBut_clicked()));
 	connect(ui->LanGerman,SIGNAL(clicked()),this,SLOT(LanGerman_KBBut_clicked()));
+	connect(ui->LanFarsi,SIGNAL(clicked()),this,SLOT(LanFarsi_KBBut_clicked()));
+	connect(ui->LanHindi,SIGNAL(clicked()),this,SLOT(LanHindi_KBBut_clicked()));
 }
 
 language::~language()
@@ -96,6 +98,26 @@ void language::LanGerman_KBBut_clicked()
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 10;
 	pKeyboard->m_LantypeReverse = 6;//German
+	pKeyboard->caps1_kBBut_clicked();
+	setVisible(false); 
+}
+
+void language::LanFarsi_KBBut_clicked()
+{
+	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
+	pKeyboard->m_Upper = true;
+	pKeyboard->m_LanType = 11;
+	pKeyboard->m_LantypeReverse = 7;//Farsi
+	pKeyboard->caps1_kBBut_clicked();
+	setVisible(false); 
+}
+
+void language::LanHindi_KBBut_clicked()
+{
+	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
+	pKeyboard->m_Upper = true;
+	pKeyboard->m_LanType = 12;
+	pKeyboard->m_LantypeReverse = 8;//Hindi
 	pKeyboard->caps1_kBBut_clicked();
 	setVisible(false); 
 }
