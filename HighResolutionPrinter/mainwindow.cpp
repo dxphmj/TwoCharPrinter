@@ -5,6 +5,9 @@
 #include "filemanageform.h"
 #include "paramsettingform.h"
 #include "ClassMessage.h"
+#include "PrintThead.h"
+#include "PrintCreatThread.h"
+#include "PrintShowThread.h"
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -12,6 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+	m_bPrintNow = false;
+	m_bDynamicPrint = false;
 
 	ui->previewLab->installEventFilter(this);
  
@@ -25,6 +31,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->fileManageBut,SIGNAL(clicked()),this,SLOT(fileManageBut_clicked()));
 	connect(ui->paraManageBut,SIGNAL(clicked()),this,SLOT(paraManageBut_clicked()));
 	connect(ui->closeBut,SIGNAL(clicked()),this,SLOT(closeBut_clicked()));
+	connect(ui->startPrintBut,SIGNAL(clicked()),this,SLOT(PrintBut_clicked()));
 
 	ui->fileManageBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/fileManage.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/fileManage.bmp);border: 1px solid rgb(12 , 138 , 235);\
@@ -53,6 +60,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(myTimer,SIGNAL(timeout()),this,SLOT(GetDateTime()));
 	ui->timeShowLab->setStyleSheet("qproperty-alignment: 'AlignVCenter | AlignRight';color:rgb(255,255,255);font-size:40px;");
 	 
+	m_pPrintThread = new PrintThead(this);//启动打印线程
+	m_pPrintThread->start();
 }
 
 MainWindow::~MainWindow()
@@ -92,6 +101,16 @@ void MainWindow::paraManageBut_clicked()
 void MainWindow::closeBut_clicked()
 {
 
+}
+
+void MainWindow::PrintBut_clicked()
+{
+	m_bPrintNow = !m_bPrintNow;
+
+	m_pPrintCreateThread = new PrintCreatThread(this);//启动打印内容生成线程
+	m_pPrintCreateThread->start();
+	m_pPrintShowThread = new PrintShowThread(this);//启动主界面打印显示线程
+	m_pPrintShowThread->start();
 }
 
 void MainWindow::GetDateTime()
