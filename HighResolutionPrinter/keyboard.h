@@ -92,9 +92,10 @@ public:
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
 	int m_LantypeReverse;//符号种类
+	Ui::keyboard* ui;
 
 private:
-	Ui::keyboard* ui;
+	//Ui::keyboard* ui;
 	QString value;
 	QString str;
 	QString val;
@@ -102,6 +103,7 @@ private:
 
 public:
 	//QString A_KBBut_sendData();
+	void btnhide();
 
 public slots:
 	void caps1_kBBut_clicked();
@@ -154,7 +156,8 @@ private slots:
 	void comma_KBBut_clicked();
 	void period_KBBut_clicked();
 	
-
+public slots:
+	void esc_kBBut_clicked();
 };
 
 #endif // KEYBOARD_H

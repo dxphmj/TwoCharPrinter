@@ -4,6 +4,7 @@
 #include <QtWidgets/QStackedWidget>
 #include "lineedit_click.h"
 #include "language.h"
+#include <QHBoxLayout>
 
 keyboard::keyboard(QWidget *parent)
 	: QWidget(parent),
@@ -13,6 +14,7 @@ keyboard::keyboard(QWidget *parent)
 	ui->setupUi(this);
 	languageWidget = new language(this);
 	languageWidget->setVisible(false);
+	btnhide();
 
 	connect(ui->A_KBBut,SIGNAL(clicked()),this,SLOT(A_KBBut_clicked()));
 	connect(ui->B_KBBut,SIGNAL(clicked()),this,SLOT(B_KBBut_clicked()));
@@ -61,6 +63,7 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps1_kBBut_clicked()));
 	connect(ui->symbol_KBBut,SIGNAL(clicked()),this,SLOT(symbol_KBBut_clicked()));
 
+	connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//父窗口执行槽函数
 
 
 	m_LanType = English;
@@ -105,6 +108,22 @@ void keyboard::backspace_KBBut_clicked()
 void keyboard::language_KBBut_clicked()
 {
 	languageWidget->setVisible(true);
+}
+
+void keyboard::btnhide()
+{
+	ui->fontBox1_KBBut->hide();
+	ui->fontBox2_KBBut->hide();
+	ui->fontBox3_KBBut->hide();
+	ui->fontBox4_KBBut->hide();
+	ui->fontBox5_KBBut->hide();
+	ui->fontBox6_KBBut->hide();
+	ui->fontBox7_KBBut->hide();
+	ui->fontBox8_KBBut->hide();
+	ui->fontBox9_KBBut->hide();
+	ui->fontBox10_KBBut->hide();
+	ui->fontBoxRedu_KBBut->hide();
+	ui->fontBoxAdd_KBBut->hide();
 }
 
 void keyboard::caps1_kBBut_clicked()
@@ -1432,6 +1451,27 @@ void keyboard::period_KBBut_clicked()
 {
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->period_KBBut->text());
+}
+
+void keyboard::esc_kBBut_clicked()
+{
+	//QWidget *qw=new QWidget(this);
+	//qw->setGeometry(20,10,750,30);
+	//QHBoxLayout *qb=new QHBoxLayout(qw);
+	//QPushButton *pb2=new QPushButton("first");
+	//qb->addWidget(pb2);
+	ui->fontBox1_KBBut->show();
+	ui->fontBox2_KBBut->show();
+	ui->fontBox3_KBBut->show();
+	ui->fontBox4_KBBut->show();
+	ui->fontBox5_KBBut->show();
+	ui->fontBox6_KBBut->show();
+	ui->fontBox7_KBBut->show();
+	ui->fontBox8_KBBut->show();
+	ui->fontBox9_KBBut->show();
+	ui->fontBox10_KBBut->show();
+	ui->fontBoxRedu_KBBut->show();
+	ui->fontBoxAdd_KBBut->show();
 }
 
 void keyboard::btnLanguageSel(int m_LanType)
