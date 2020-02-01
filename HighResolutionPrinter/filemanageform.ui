@@ -110,6 +110,23 @@
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="fileManageBackLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>800</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72,61, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>fileManageBackLabel</zorder>
   <zorder>fileControlLab</zorder>
   <zorder>editFileBut</zorder>
   <zorder>manageFileBut</zorder>

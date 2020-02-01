@@ -2,6 +2,8 @@
 #include "ui_language.h"
 #include <QtWidgets/QStackedWidget>
 #include "keyboard.h"
+#include <QPushButton>
+#include <QHBoxLayout>
 
 language::language(QWidget *parent)
 	: QWidget(parent),
@@ -19,6 +21,9 @@ language::language(QWidget *parent)
 	connect(ui->LanGerman,SIGNAL(clicked()),this,SLOT(LanGerman_KBBut_clicked()));
 	connect(ui->LanFarsi,SIGNAL(clicked()),this,SLOT(LanFarsi_KBBut_clicked()));
 	connect(ui->LanHindi,SIGNAL(clicked()),this,SLOT(LanHindi_KBBut_clicked()));
+
+	connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//将信号传给父窗口
+
 }
 
 language::~language()
@@ -49,7 +54,7 @@ void language::LanChinese_KBBut_clicked()
 	pKeyboard->m_LanType = 0;
 	pKeyboard->m_LantypeReverse = 1;//Chinese
 	pKeyboard->caps1_kBBut_clicked();
-	setVisible(false);   
+	setVisible(false);  
 }
 
 void language::LanKorean_KBBut_clicked()
@@ -121,3 +126,9 @@ void language::LanHindi_KBBut_clicked()
 	pKeyboard->caps1_kBBut_clicked();
 	setVisible(false); 
 }
+
+void language::sendslot()
+{
+	emit languageEvent();//中间量，将子窗口的槽函数转化为父窗口的信号
+}
+

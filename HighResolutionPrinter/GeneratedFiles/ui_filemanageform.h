@@ -31,6 +31,7 @@ public:
     QWidget *page;
     QWidget *page_2;
     QLabel *fileControlLab;
+    QLabel *fileManageBackLabel;
 
     void setupUi(QWidget *FilemanageForm)
     {
@@ -69,6 +70,11 @@ public:
         fileControlLab->setObjectName(QStringLiteral("fileControlLab"));
         fileControlLab->setGeometry(QRect(10, 19, 181, 761));
         fileControlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        fileManageBackLabel = new QLabel(FilemanageForm);
+        fileManageBackLabel->setObjectName(QStringLiteral("fileManageBackLabel"));
+        fileManageBackLabel->setGeometry(QRect(0, 0, 1280, 800));
+        fileManageBackLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        fileManageBackLabel->raise();
         fileControlLab->raise();
         editFileBut->raise();
         manageFileBut->raise();
@@ -87,6 +93,7 @@ public:
         manageFileBut->setText(QApplication::translate("FilemanageForm", "\347\256\241\347\220\206\346\226\207\344\273\266", 0));
         exitBut->setText(QApplication::translate("FilemanageForm", "\351\200\200\345\207\272", 0));
         fileControlLab->setText(QString());
+        fileManageBackLabel->setText(QString());
     } // retranslateUi
 
 };
