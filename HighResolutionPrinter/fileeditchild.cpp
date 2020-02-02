@@ -60,6 +60,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->addTimeBut,SIGNAL(clicked()),this,SLOT(addTimeBut_clicked()));
 	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
 	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
+	connect(ui->newSerialBut,SIGNAL(clicked()),this,SLOT(newSerialNumber_click()));
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
@@ -147,6 +148,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
+	SerialNumber=0;
 
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
@@ -1313,4 +1315,45 @@ void FileEditChild::newTimeBut_clicked()
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
  
+}
+void FileEditChild::newSerialNumber_click()
+{
+
+	QString a=ui->initialValSerialLineEdit->text();
+	QString b=ui->termValSerialLineEdit->text();	
+	QString c=ui->startValSerialLineEdit->text();	
+	QString d=ui->stepLenSerialLineEdit->text();
+	QString e=ui->digitSerialLineEdit->text();
+	int start=a.toInt();
+	int new_start=c.toInt();
+	int stop=b.toInt();
+	int step=d.toInt();
+	int f=e.toInt();
+	if (start>stop)
+	{
+		int c;
+		c=start;
+		start=stop;
+		stop=c;
+	}
+	if (SerialNumber==0)
+	{
+		SerialNumber=new_start;
+	}	
+	QString SerialNumber_1=QString::number(SerialNumber);//Êı×Ö×ª×Ö·û´®
+	QString SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+
+	ui->serialLineEdit->setText(SerialNumber_2);	
+	if (SerialNumber>=start&&SerialNumber+step<stop)
+	{
+		if (start<stop)
+		{
+			SerialNumber=SerialNumber+step;
+		}
+		else
+		{
+			SerialNumber=SerialNumber-step;
+		}
+	}
+
 }

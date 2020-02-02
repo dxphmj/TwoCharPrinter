@@ -45,7 +45,8 @@ public:
 	float ZoomfactorDM;
 	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
-
+	QString SerialNumber_2;
+	int SerialNumber;
 private:
 	Ui::FileEditChild* ui;
 	
@@ -64,6 +65,7 @@ private slots:
 	void newBarCodeBut_clicked();
 	void newQRBut_clicked();
 	void newDMBut_clicked();
+	void newSerialNumber_click();
 	void saveasBut_clicked();
 	void saveBut_clicked();
 	void moveUpBut_clicked();
