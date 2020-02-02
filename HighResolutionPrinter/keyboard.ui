@@ -1140,6 +1140,294 @@
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="fontBoxRedu_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>◄</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox6_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>345</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox8_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>475</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox3_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox2_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>85</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox5_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>280</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox9_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox1_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox10_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>605</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox4_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>215</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBox7_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>410</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="fontBoxAdd_KBBut">
+   <property name="geometry">
+    <rect>
+     <x>735</x>
+     <y>0</y>
+     <width>42</width>
+     <height>42</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>黑体</family>
+     <pointsize>16</pointsize>
+     <weight>50</weight>
+     <bold>false</bold>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(182,181,186);</string>
+   </property>
+   <property name="text">
+    <string>►</string>
+   </property>
+  </widget>
   <zorder>backgroundKBLabel</zorder>
   <zorder>Q_KBBut</zorder>
   <zorder>A_KBBut</zorder>
@@ -1187,6 +1475,18 @@
   <zorder>language_KBBut</zorder>
   <zorder>hide_KBBut</zorder>
   <zorder>Esc_KBBut</zorder>
+  <zorder>fontBoxRedu_KBBut</zorder>
+  <zorder>fontBox6_KBBut</zorder>
+  <zorder>fontBox8_KBBut</zorder>
+  <zorder>fontBox3_KBBut</zorder>
+  <zorder>fontBox2_KBBut</zorder>
+  <zorder>fontBox5_KBBut</zorder>
+  <zorder>fontBox9_KBBut</zorder>
+  <zorder>fontBox1_KBBut</zorder>
+  <zorder>fontBox10_KBBut</zorder>
+  <zorder>fontBox4_KBBut</zorder>
+  <zorder>fontBox7_KBBut</zorder>
+  <zorder>fontBoxAdd_KBBut</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

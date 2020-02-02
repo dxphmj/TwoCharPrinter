@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QWidget>
@@ -33,6 +34,7 @@ public:
     QPushButton *paraExitBut;
     QPushButton *savePrintSetBut;
     QPushButton *resetBut;
+    QLabel *paraManageBackLabel;
 
     void setupUi(QWidget *ParamSettingForm)
     {
@@ -89,6 +91,19 @@ public:
         resetBut->setFont(font);
         resetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
+        paraManageBackLabel = new QLabel(ParamSettingForm);
+        paraManageBackLabel->setObjectName(QStringLiteral("paraManageBackLabel"));
+        paraManageBackLabel->setGeometry(QRect(0, 0, 1280, 800));
+        paraManageBackLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        paraManageBackLabel->raise();
+        printSettingBut->raise();
+        sysSettingBut->raise();
+        countSettingBut->raise();
+        aboutMacBut->raise();
+        paraManageStacWid->raise();
+        paraExitBut->raise();
+        savePrintSetBut->raise();
+        resetBut->raise();
 
         retranslateUi(ParamSettingForm);
 
@@ -105,6 +120,7 @@ public:
         paraExitBut->setText(QApplication::translate("ParamSettingForm", "\351\200\200\345\207\272", 0));
         savePrintSetBut->setText(QApplication::translate("ParamSettingForm", "\344\277\235\345\255\230", 0));
         resetBut->setText(QApplication::translate("ParamSettingForm", "\351\207\215\347\275\256", 0));
+        paraManageBackLabel->setText(QString());
     } // retranslateUi
 
 };

@@ -184,6 +184,31 @@ background-color: rgb(0, 0, 230);</string>
     <string>重置</string>
    </property>
   </widget>
+  <widget class="QLabel" name="paraManageBackLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1280</width>
+     <height>800</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72,61, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>paraManageBackLabel</zorder>
+  <zorder>printSettingBut</zorder>
+  <zorder>sysSettingBut</zorder>
+  <zorder>countSettingBut</zorder>
+  <zorder>aboutMacBut</zorder>
+  <zorder>paraManageStacWid</zorder>
+  <zorder>paraExitBut</zorder>
+  <zorder>savePrintSetBut</zorder>
+  <zorder>resetBut</zorder>
  </widget>
  <resources>
   <include location="Res.qrc"/>

@@ -42,7 +42,7 @@
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>3</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="printStyleTab">
     <attribute name="title">
