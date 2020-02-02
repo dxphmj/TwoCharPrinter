@@ -11,8 +11,6 @@ class printSetting : public QWidget
 public:
 	printSetting(QWidget *parent = 0);
 	~printSetting();
-
-private:
 	Ui::printSetting ui;
 };
 

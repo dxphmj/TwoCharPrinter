@@ -803,7 +803,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(0);
+        typeTab->setCurrentIndex(5);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);

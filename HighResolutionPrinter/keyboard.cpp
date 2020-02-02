@@ -61,8 +61,6 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps1_kBBut_clicked()));
 	connect(ui->symbol_KBBut,SIGNAL(clicked()),this,SLOT(symbol_KBBut_clicked()));
 
-
-
 	m_LanType = English;
 	m_Upper = false;
 	m_LantypeReverse = EnglishSymbol;

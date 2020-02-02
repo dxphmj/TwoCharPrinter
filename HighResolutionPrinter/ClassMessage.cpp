@@ -7,6 +7,7 @@
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
+#include "backend\zint.h"
 
 //#include <qwidget.h>
 
@@ -120,11 +121,11 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 	int x_pos = p_Relative.x();
 	int y_pos = p_Relative.y();
 	//判断该位置是否在控件editPreviewText范围内
-	if ((x_pos>=10 && x_pos<=1051) && (y_pos>=10 && y_pos<=251))
+	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
 	{
 		int nLin;
 		int nRow;	 
-		nLin = ( 251 - y_pos ) / 5;
+		nLin = ( 241 - y_pos ) / 5;
 		nRow = x_pos / 5;
 		vector<OBJ_Control>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
@@ -437,6 +438,75 @@ void ClassMessage::ReadBmp(char* strFileName)
 	}  
 	bmpObj.booFocus = true;
 	OBJ_Vec.push_back(bmpObj); 
+}
+
+void ClassMessage::GenerateCode(int nType,QString strContent)
+{
+	//struct zint_symbol *my_symbol;
+	//int rotate_angle = 0;
+	//int error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+	//int i;
+	//int v;
+	//my_symbol = ZBarcode_Create();
+	//my_symbol->input_mode = UNICODE_MODE;
+	//my_symbol->symbology = nType;
+	//my_symbol->scale = 0.5;
+
+	//v=ui->sideLenQRComBox->currentIndex();
+	//my_symbol->option_2=v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+
+
+	//int xPos=0;
+	//int yPos=0;
+	//for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
+	//{
+	//	if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+	//	{
+	//		m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+	//		yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
+	//		xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+	//	}
+	//}
+
+	//OBJ_Control bmpObj;
+	//bmpObj.intLineStart=yPos;
+	//bmpObj.intRowStart=xPos;
+	//bmpObj.strType1="text";
+	//bmpObj.strType2="qrcode";
+	//bmpObj.intLineSize=my_symbol->bitmap_height;
+	//bmpObj.intRowSize=my_symbol->bitmap_width;
+
+	////以下先写死
+	//bmpObj.intSW=1;
+	//bmpObj.intSS=1;
+	//bmpObj.booNEG=false;
+	//bmpObj.booBWDx=false;
+	//bmpObj.booBWDy=false;
+	//i = 0;
+	//int r, g, b;
+
+	//for (int row = 0; row < my_symbol->bitmap_height; row++)
+	//{
+	//	for (int col = 0;col < my_symbol->bitmap_width; col++)
+	//	{
+	//		r = my_symbol->bitmap[i];
+	//		g = my_symbol->bitmap[i + 1];
+	//		b = my_symbol->bitmap[i + 2];
+	//		i += 3;
+	//		if (r == 0 && g == 0 && b == 0)
+	//		{
+	//			//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
+	//			bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+	//		}
+	//		else
+	//		{
+	//			//		bmpObj.boDotBmp[col][row-proportion] = false;
+	//			bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+	//		}
+	//	}
+	//}
+	//bmpObj.strText = strContent.toStdString();
+	//bmpObj.booFocus = true;
 }
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)

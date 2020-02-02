@@ -34,6 +34,9 @@ private slots:
 	void sysSettingBut_clicked();
 	void countSettingBut_clicked();
 	void aboutMacBut_clicked();
+
+	void holdConfigurationBut_clicked(); 
+
 };
 
 #endif // PARAMSETTINGFORM_H

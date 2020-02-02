@@ -11,8 +11,6 @@ class aboutMac : public QWidget
 public:
 	aboutMac(QWidget *parent = 0);
 	~aboutMac();
-
-private:
 	Ui::aboutMac ui;
 };
 

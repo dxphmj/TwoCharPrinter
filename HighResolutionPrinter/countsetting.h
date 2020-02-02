@@ -11,8 +11,6 @@ class countSetting : public QWidget
 public:
 	countSetting(QWidget *parent = 0);
 	~countSetting();
-
-private:
 	Ui::countSetting ui;
 };
 

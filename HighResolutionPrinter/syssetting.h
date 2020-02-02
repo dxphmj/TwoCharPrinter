@@ -11,8 +11,6 @@ class sysSetting : public QWidget
 public:
 	sysSetting(QWidget *parent = 0);
 	~sysSetting();
-
-private:
 	Ui::sysSetting ui;
 };
 

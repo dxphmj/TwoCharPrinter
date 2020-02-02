@@ -23,7 +23,7 @@ public:
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 
-	void mousePressEvent(QMouseEvent *event);
+	void MouseBeenPressed(QMouseEvent *event);
 	void GetTextFromScreen();
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
@@ -43,7 +43,7 @@ public:
 	float Zoomfactor; 
 	float ZoomfactorQr;
 	float ZoomfactorDM;
-
+	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
 
 private:

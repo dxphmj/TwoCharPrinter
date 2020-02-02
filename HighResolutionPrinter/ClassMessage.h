@@ -184,7 +184,7 @@ public:
 	////////////////////////////////////
 
 public:
-	 string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//²é
+	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//²é
 	BYTE getByteFromDot(bool boDot,int moveNum); 
 	string DEC_to_BIN(long long Dec);
 	string to_String(int n);
@@ -195,6 +195,7 @@ public:
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
+	void GenerateCode(int nType,QString strContent);
 	char* GenerateFileName(string tmpFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
