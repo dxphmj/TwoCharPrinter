@@ -54,7 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
  
 	ui->previewLab->setStyleSheet("background-color: rgb(255,255,255);"); 
 
-	m_PrinterMes->ReadBmp("D:\\1.bmp");
+//	m_PrinterMes->ReadBmp("D:\\1.bmp");
 	myTimer = new QTimer(this);
 	myTimer->start(0);
 	connect(myTimer,SIGNAL(timeout()),this,SLOT(GetDateTime()));

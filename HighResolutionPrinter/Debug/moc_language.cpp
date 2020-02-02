@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_language_t {
-    QByteArrayData data[12];
-    char stringdata0[243];
+    QByteArrayData data[14];
+    char stringdata0[266];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -30,27 +30,29 @@ struct qt_meta_stringdata_language_t {
 static const qt_meta_stringdata_language_t qt_meta_stringdata_language = {
     {
 QT_MOC_LITERAL(0, 0, 8), // "language"
-QT_MOC_LITERAL(1, 9, 16), // "OKLanBut_clicked"
-QT_MOC_LITERAL(2, 26, 0), // ""
-QT_MOC_LITERAL(3, 27, 24), // "lanEnglish_KBBut_clicked"
-QT_MOC_LITERAL(4, 52, 24), // "LanChinese_KBBut_clicked"
-QT_MOC_LITERAL(5, 77, 23), // "LanKorean_KBBut_clicked"
-QT_MOC_LITERAL(6, 101, 25), // "LanJapanese_KBBut_clicked"
-QT_MOC_LITERAL(7, 127, 22), // "LanCzech_KBBut_clicked"
-QT_MOC_LITERAL(8, 150, 22), // "LanDutch_KBBut_clicked"
-QT_MOC_LITERAL(9, 173, 23), // "LanGerman_KBBut_clicked"
-QT_MOC_LITERAL(10, 197, 22), // "LanFarsi_KBBut_clicked"
-QT_MOC_LITERAL(11, 220, 22) // "LanHindi_KBBut_clicked"
+QT_MOC_LITERAL(1, 9, 13), // "languageEvent"
+QT_MOC_LITERAL(2, 23, 0), // ""
+QT_MOC_LITERAL(3, 24, 16), // "OKLanBut_clicked"
+QT_MOC_LITERAL(4, 41, 24), // "lanEnglish_KBBut_clicked"
+QT_MOC_LITERAL(5, 66, 24), // "LanChinese_KBBut_clicked"
+QT_MOC_LITERAL(6, 91, 23), // "LanKorean_KBBut_clicked"
+QT_MOC_LITERAL(7, 115, 25), // "LanJapanese_KBBut_clicked"
+QT_MOC_LITERAL(8, 141, 22), // "LanCzech_KBBut_clicked"
+QT_MOC_LITERAL(9, 164, 22), // "LanDutch_KBBut_clicked"
+QT_MOC_LITERAL(10, 187, 23), // "LanGerman_KBBut_clicked"
+QT_MOC_LITERAL(11, 211, 22), // "LanFarsi_KBBut_clicked"
+QT_MOC_LITERAL(12, 234, 22), // "LanHindi_KBBut_clicked"
+QT_MOC_LITERAL(13, 257, 8) // "sendslot"
 
     },
-    "language\0OKLanBut_clicked\0\0"
+    "language\0languageEvent\0\0OKLanBut_clicked\0"
     "lanEnglish_KBBut_clicked\0"
     "LanChinese_KBBut_clicked\0"
     "LanKorean_KBBut_clicked\0"
     "LanJapanese_KBBut_clicked\0"
     "LanCzech_KBBut_clicked\0LanDutch_KBBut_clicked\0"
     "LanGerman_KBBut_clicked\0LanFarsi_KBBut_clicked\0"
-    "LanHindi_KBBut_clicked"
+    "LanHindi_KBBut_clicked\0sendslot"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,26 +62,34 @@ static const uint qt_meta_data_language[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: name, argc, parameters, tag, flags
+       1,    0,   74,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   64,    2, 0x08 /* Private */,
-       3,    0,   65,    2, 0x08 /* Private */,
-       4,    0,   66,    2, 0x08 /* Private */,
-       5,    0,   67,    2, 0x08 /* Private */,
-       6,    0,   68,    2, 0x08 /* Private */,
-       7,    0,   69,    2, 0x08 /* Private */,
-       8,    0,   70,    2, 0x08 /* Private */,
-       9,    0,   71,    2, 0x08 /* Private */,
-      10,    0,   72,    2, 0x08 /* Private */,
-      11,    0,   73,    2, 0x08 /* Private */,
+       3,    0,   75,    2, 0x08 /* Private */,
+       4,    0,   76,    2, 0x08 /* Private */,
+       5,    0,   77,    2, 0x08 /* Private */,
+       6,    0,   78,    2, 0x08 /* Private */,
+       7,    0,   79,    2, 0x08 /* Private */,
+       8,    0,   80,    2, 0x08 /* Private */,
+       9,    0,   81,    2, 0x08 /* Private */,
+      10,    0,   82,    2, 0x08 /* Private */,
+      11,    0,   83,    2, 0x08 /* Private */,
+      12,    0,   84,    2, 0x08 /* Private */,
+      13,    0,   85,    2, 0x08 /* Private */,
+
+ // signals: parameters
+    QMetaType::Void,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -100,17 +110,28 @@ void language::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         language *_t = static_cast<language *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
-        case 0: _t->OKLanBut_clicked(); break;
-        case 1: _t->lanEnglish_KBBut_clicked(); break;
-        case 2: _t->LanChinese_KBBut_clicked(); break;
-        case 3: _t->LanKorean_KBBut_clicked(); break;
-        case 4: _t->LanJapanese_KBBut_clicked(); break;
-        case 5: _t->LanCzech_KBBut_clicked(); break;
-        case 6: _t->LanDutch_KBBut_clicked(); break;
-        case 7: _t->LanGerman_KBBut_clicked(); break;
-        case 8: _t->LanFarsi_KBBut_clicked(); break;
-        case 9: _t->LanHindi_KBBut_clicked(); break;
+        case 0: _t->languageEvent(); break;
+        case 1: _t->OKLanBut_clicked(); break;
+        case 2: _t->lanEnglish_KBBut_clicked(); break;
+        case 3: _t->LanChinese_KBBut_clicked(); break;
+        case 4: _t->LanKorean_KBBut_clicked(); break;
+        case 5: _t->LanJapanese_KBBut_clicked(); break;
+        case 6: _t->LanCzech_KBBut_clicked(); break;
+        case 7: _t->LanDutch_KBBut_clicked(); break;
+        case 8: _t->LanGerman_KBBut_clicked(); break;
+        case 9: _t->LanFarsi_KBBut_clicked(); break;
+        case 10: _t->LanHindi_KBBut_clicked(); break;
+        case 11: _t->sendslot(); break;
         default: ;
+        }
+    } else if (_c == QMetaObject::IndexOfMethod) {
+        int *result = reinterpret_cast<int *>(_a[0]);
+        void **func = reinterpret_cast<void **>(_a[1]);
+        {
+            typedef void (language::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&language::languageEvent)) {
+                *result = 0;
+            }
         }
     }
     Q_UNUSED(_a);
@@ -141,14 +162,20 @@ int language::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 10)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 10;
+        _id -= 12;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 10)
+        if (_id < 12)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 10;
+        _id -= 12;
     }
     return _id;
+}
+
+// SIGNAL 0
+void language::languageEvent()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, Q_NULLPTR);
 }
 QT_END_MOC_NAMESPACE

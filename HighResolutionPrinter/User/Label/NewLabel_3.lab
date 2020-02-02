@@ -1,0 +1,25 @@
+<MES>
+    <PRO>
+        <Matrix>1L7M</Matrix>
+        <Pixel>8</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>qrcode</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>21</LineSize>
+        <RowSize>21</RowSize>
+        <SW>1</SW>
+        <SS>1</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setTEXT>HELO</setTEXT>
+        <qrcodeVersion>40</qrcodeVersion>
+        <qrcodeECCLevel>0</qrcodeECCLevel>
+        <qrcodeQuietZone>0</qrcodeQuietZone>
+    </OBJ>
+</MES>

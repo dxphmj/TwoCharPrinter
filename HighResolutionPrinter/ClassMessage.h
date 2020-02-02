@@ -91,6 +91,7 @@ public://·½·¨
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
+	void CreateQrcode();
 
 private:
 	//ClassMessage objClassMessage;

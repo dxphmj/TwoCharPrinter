@@ -312,45 +312,7 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 }
 
 void FileEditChild::CreateQrcode(int nType,QString strContent)
-{
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	//int generated;
-	//int batch_mode;
-	//int mirror_mode;
-	//char filetype[4];
-	int i;
-	int v;
-
-	//error_number = 0;
-	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
-	//int angle2=angle1.toInt();
-	//rotate_angle = angle2;
-	rotate_angle = 0;
-	//generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = nType;
-	my_symbol->scale = 0.5;
-
-	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2=v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
-
-	//batch_mode = 0;
-	//mirror_mode = 0;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-	/*float barlongth;
-	barlongth=my_symbol->bitmap_height;
-	float barwidth;
-	barwidth=my_symbol->bitmap_width;
-	float p;
-	p=25/barlongth;
-	my_symbol->scale =1;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-*/
-	//generated = 1;
-
+{	 
 	int xPos=0;
 	int yPos=0;
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
@@ -366,44 +328,17 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	OBJ_Control bmpObj;
 	bmpObj.intLineStart=yPos;
 	bmpObj.intRowStart=xPos;
-	bmpObj.strType1="text";
-	bmpObj.strType2="qrcode";
-	bmpObj.intLineSize=my_symbol->bitmap_height;
-	bmpObj.intRowSize=my_symbol->bitmap_width;
-
 	//以下先写死
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
-	i = 0;
-	int r, g, b;
+	bmpObj.intQRVersion = nType;
+  	bmpObj.strText = strContent.toStdString();
 
-	for (int row = 0; row < my_symbol->bitmap_height; row++)
-	{
-		for (int col = 0;col < my_symbol->bitmap_width; col++)
-		{
-			r = my_symbol->bitmap[i];
-			g = my_symbol->bitmap[i + 1];
-			b = my_symbol->bitmap[i + 2];
-			i += 3;
-			if (r == 0 && g == 0 && b == 0)
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
-			}
-			else
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = false;
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
-			}
-		}
-	}
-	bmpObj.strText = strContent.toStdString();
-	bmpObj.booFocus = true;
+	bmpObj.CreateQrcode();
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
-
 }
 
 void FileEditChild::CreateDMcode(int nType,QString strContent)
