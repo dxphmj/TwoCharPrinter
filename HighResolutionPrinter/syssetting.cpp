@@ -1,7 +1,4 @@
-�?include "syssetting.h"
-#include "syssetting.h"
-#include "UILanguage.h"
-#include "mainwindow.h"
+﻿#include "syssetting.h"
 
 sysSetting::sysSetting(QWidget *parent)
 	: QWidget(parent)
@@ -23,10 +20,10 @@ sysSetting::sysSetting(QWidget *parent)
 	connect(ui.addSecondBut,SIGNAL(clicked()),this,SLOT(addSecondBut()));
 	connect(ui.reduceSecondBut,SIGNAL(clicked()),this,SLOT(reduceSecondBut()));
 
-	ui.sysLanguageListWid->addItem(QStringLiteral("简体中�?));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("简体中文"));  
 	ui.sysLanguageListWid->addItem(QStringLiteral("English")); 
 	ui.sysLanguageListWid->addItem(QStringLiteral("العربية"));  
-	ui.sysLanguageListWid->addItem(QStringLiteral("わぶ�?));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("わぶん"));  
 	ui.sysLanguageListWid->addItem(QStringLiteral("한글"));  
     ui.sysLanguageListWid->addItem(QStringLiteral("français"));
 	ui.sysLanguageListWid->addItem(QStringLiteral("deutsch"));
@@ -84,18 +81,6 @@ sysSetting::sysSetting(QWidget *parent)
 								  padding-left:7px;padding-top:7px;}\
 								  "); 
 
-
-	//QLabel * label = new QLabel(this);
-	//int      number = 10;
-	//label->setText(tr("<font style = 'font-size:14px; color:red;'> num </font>") 
-	//	+ tr("<font style = 'font-family:MicrosoftYaHei; font-size:20px; color:#F13232;'>%1</font>").arg(number));
-	////label��̬����Ϊ�ı���С
-	//label->adjustSize();
-
-	MainWindow* theApp = (MainWindow*)(this->parent()->parent());
-	CUILanguage languageTool(theApp);
-	languageTool.ChangeLanguage(ENGLISH);
- 
 }
 
 void sysSetting::seleSysLanguage()

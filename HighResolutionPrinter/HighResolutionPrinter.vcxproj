@@ -27,7 +27,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <OutputDirectory>debug\</OutputDirectory>
     <ATLMinimizesCRunTimeLibraryUsage>false</ATLMinimizesCRunTimeLibraryUsage>
-    <CharacterSet>NotSet</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
     <ConfigurationType>Application</ConfigurationType>
     <IntermediateDirectory>debug\</IntermediateDirectory>
     <PrimaryOutput>HighResolutionPrinter</PrimaryOutput>
