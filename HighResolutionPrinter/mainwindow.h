@@ -45,7 +45,7 @@ public:
 
 	void RefreshWindow();
 
-private:
+public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;

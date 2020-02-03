@@ -432,6 +432,9 @@
     <ClCompile Include="ParamSetting.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
+    <ClCompile Include="UILanguage.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -714,6 +717,9 @@
     </CustomBuild>
     <CustomBuild Include="PrintShowThread.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="UILanguage.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

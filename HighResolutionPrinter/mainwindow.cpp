@@ -118,3 +118,4 @@ void MainWindow::GetDateTime()
 	 QTime timeNow=QTime::currentTime();
 	 ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString())+tr("  "));
 }
+
