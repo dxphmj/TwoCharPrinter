@@ -136,7 +136,7 @@ void FileManageChild::slotShow(QDir dir)
 {  
 	QStringList stringList;  
 	stringList << "*";
-	QFileInfoList InfoList = dir.entryInfoList(QDir :: AllEntries, QDir :: DirsFirst);  
+	QFileInfoList InfoList = dir.entryInfoList(QDir :: Files, QDir :: Name);  
 	showFileInfoList(InfoList);  
 }  
 
@@ -184,7 +184,8 @@ void FileManageChild::OKFileNameBut_clicked()
 			FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 			pFilemanageForm->FormFileEditChild->m_PrinterMes.SaveObjectsToXml(charFilePath);
 			this->ShowLocalFilePath();
-			boolSaveAsBtn_Clicked = false;
+			keyboardWidget->setVisible(false);
+			this->boolSaveAsBtn_Clicked = false;
 		}
 		else
 		{
@@ -203,6 +204,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		{
 			QFile::rename(tmpPath1,tmpPath2);
 			this->ShowLocalFilePath();
+			keyboardWidget->setVisible(false);
 		}
 		else
 		{

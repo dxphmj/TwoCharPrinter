@@ -3,10 +3,24 @@
 
 #include <QMainWindow>
 #include <QTimer>
+#include <QQueue>
+ 
+#include <string>
+#include <vector>
+#include <map>
+#include <queue>
+
+#include "ParamSetting.h"
+
+using namespace std;
+typedef unsigned char BYTE;
 
 class FilemanageForm;
 class ParamSettingForm;
 class ClassMessage;
+class PrintThead;
+class PrintShowThread;
+class PrintCreatThread;
 
 namespace Ui {
 	class MainWindow;
@@ -22,9 +36,16 @@ public:
 
 public:
  	ClassMessage* m_PrinterMes; //打印监控用
+    queue<vector<BYTE>> queCtr;//命令队列 
+	queue<vector<BYTE>> ForPreQue;//欲打印队列
+	CParamSetting m_ParamSetting;
+
+	bool m_bPrintNow;
+	bool m_bDynamicPrint;
+
 	void RefreshWindow();
 
-private:
+public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;
@@ -33,6 +54,7 @@ private slots:
 	void fileManageBut_clicked();
 	void paraManageBut_clicked();
 	void closeBut_clicked();
+	void PrintBut_clicked();
 
 	bool eventFilter(QObject *watched, QEvent *event);
 
@@ -40,6 +62,9 @@ private slots:
 
 public:
 	QTimer  *myTimer;
+	PrintThead *m_pPrintThread;
+	PrintCreatThread *m_pPrintCreateThread;
+	PrintShowThread *m_pPrintShowThread;
 };
 
 #endif // MAINWINDOW_H

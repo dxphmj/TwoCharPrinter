@@ -91,6 +91,7 @@ public://方法
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
+	void CreateQrcode();
 
 private:
 	//ClassMessage objClassMessage;
@@ -184,7 +185,7 @@ public:
 	////////////////////////////////////
 
 public:
-	 string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//查
+	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//查
 	BYTE getByteFromDot(bool boDot,int moveNum); 
 	string DEC_to_BIN(long long Dec);
 	string to_String(int n);

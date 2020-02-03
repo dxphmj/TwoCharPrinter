@@ -63,7 +63,7 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps1_kBBut_clicked()));
 	connect(ui->symbol_KBBut,SIGNAL(clicked()),this,SLOT(symbol_KBBut_clicked()));
 
-	connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//父窗口执行槽函数
+	//connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//父窗口执行槽函数
 
 
 	m_LanType = English;
@@ -136,11 +136,13 @@ void keyboard::caps1_kBBut_clicked()
 		case 0:  //chinese
 			{
 				LanChineseSmall();
+				btnshow();
 				break;
 			}
 		case 1:  //Japanese
 			{
 				LanJapaneseSmall();
+				btnshow();
 				break;
 			}
 		case 3: //Chinese_others
@@ -148,11 +150,13 @@ void keyboard::caps1_kBBut_clicked()
 		case 21://Japanese_others
 			{
 				LanEnglishBig();
+				btnhide();
 				break;
 			}
 		case 22: //Korean_others
 			{
 				LanKoreanSmall();
+				btnshow();
 				break;
 			}
 		case 8:  //Czech
@@ -163,21 +167,25 @@ void keyboard::caps1_kBBut_clicked()
 		case 9:  //Dutch
 			{
 				LanDutchBig();
+				btnhide();
 				break;
 			}
 		case 10:  //German
 			{
 				LanGermanBig();
+				btnhide();
 				break;
 			}
 		case 11:  //Finnish
 			{
 				LanFarsiBig();
+				btnhide();
 				break;
 			}
 		case 12:  //Hindi
 			{
 				LanHindiBig();
+				btnhide();
 				break;
 			}
 		}
@@ -1211,6 +1219,7 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		}
 		m_symbol = false;
+		btnhide();
 	}
 	else //当前为符号
 	{
@@ -1453,7 +1462,7 @@ void keyboard::period_KBBut_clicked()
 	m_pInputEdit->insert(ui->period_KBBut->text());
 }
 
-void keyboard::esc_kBBut_clicked()
+void keyboard::btnshow()
 {
 	//QWidget *qw=new QWidget(this);
 	//qw->setGeometry(20,10,750,30);
@@ -1483,12 +1492,14 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 1:  //Japanese
 		{
 			LanJapaneseBig();
+			btnhide();
 			break;
 		}
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
 		{
 			LanChineseBig();
+			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1497,6 +1508,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 22: //Korean_others
 		{
 			LanKoreanBig();
+			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1518,6 +1530,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 7:  //English
 		{
 			LanEnglishSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1525,6 +1538,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 8:  //Czech
 		{
 			LanCzechSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1532,6 +1546,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 9:  //Dutch
 		{
 		    LanDutchSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1539,6 +1554,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 10: //German
 		{
 			LanGermanSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1546,6 +1562,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 11:  //FarsiSmall
 		{
 		    LanFarsiSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1553,6 +1570,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 12:  //Hindi
 		{
 		    LanHindiSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1624,6 +1642,8 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 0: //当前为EnglishSymbol
 		{
 			SymbolToEnglish();
+			btnhide();
+
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1645,6 +1665,7 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 3: //当前为KoreSymbol
 		{
 			SymbolToCzech();
+			btnhide();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1659,21 +1680,25 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 5:
 		{
 			SymbolToDutch();
+			btnhide();
 			break;
 		}
 		case 6:
 		{
 			SymbolToGerman();
+			btnhide();
 			break;
 		}
 		case 7:
 		{
 			SymbolToFarsi();
+			btnhide();
 			break;
 		}
 		case 8:
 		{
 			SymbolToHindi();
+			btnhide();
 			break;
 		}
 		
@@ -1854,6 +1879,7 @@ void keyboard::LanChineseSmall()
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 }
 
 void keyboard::LanChineseBig()
@@ -1936,6 +1962,7 @@ void keyboard::LanKoreanSmall()//韩语小写
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 
 //
 //
@@ -2248,6 +2275,7 @@ void keyboard::LanJapaneseSmall()
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 }
 
 void keyboard::LanJapaneseBig()

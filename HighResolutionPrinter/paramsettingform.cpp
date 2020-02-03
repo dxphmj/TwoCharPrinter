@@ -106,8 +106,8 @@ QString ParamSettingForm::getNum(QString str)
 void ParamSettingForm::holdConfigurationBut_clicked()
 {
 	//先给m_ParamSetting中的参数赋值，然后调用CParamSetting中的函数SaveParam2Xml进行保存
-	//MainWindow* theApp = (MainWindow*)(this->parent());
-	//theApp->m_ParamSetting.SaveParam2Xml();
+	MainWindow* theApp = (MainWindow*)(this->parent());
+	theApp->m_ParamSetting.SaveParam2Xml();
 
 	//以下代码放入SaveParam2Xml()函数中
 
@@ -128,6 +128,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	xmlWriter.writeStartElement("Print_style"); //写下一个 entry 的开始标签
 	//xmlWriter.writeAttribute("term", "sidebearings"); //然后给这个标签一个属性 term，属性值是 of vectors。
+
 	xmlWriter.writeTextElement("Printing_speed",getNum(m_printSetting->ui.printSpeedShowLab->text())); //输出一个仅包含文本内容的标签
 	xmlWriter.writeTextElement("Print_delay", getNum(m_printSetting->ui.printDelayShowLab->text()));
 	xmlWriter.writeTextElement("synFrequency", getNum(m_printSetting->ui.synFrequencyShowLab->text()));
@@ -155,6 +156,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	xmlWriter.writeStartElement("advanced_setting");
 	//xmlWriter.writeAttribute("term", "subtraction");
+
 	int t = m_printSetting->DPIradioBG->checkedId();
 	QString  T;
 	switch(t)
@@ -198,6 +200,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	xmlWriter.writeStartElement("Sprinklerhead_setting");
 	//xmlWriter.writeAttribute("term", "subtraction");
+
 	if (m_printSetting->ui.adaptParaCheckBox->isChecked())
 	{
 		xmlWriter.writeTextElement("adaptPara","1");
@@ -245,6 +248,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	//xmlWriter.writeEndElement();
 
 	xmlWriter.writeEndElement();
+
 	 
 
 	xmlWriter.writeStartElement("system_setting");
@@ -262,6 +266,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	xmlWriter.writeStartElement("count_setting");
 	//xmlWriter.writeAttribute("term", "of vectors");
+
 	//xmlWriter.writeTextElement("page","111");
 	xmlWriter.writeEndElement();
 

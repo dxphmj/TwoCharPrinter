@@ -22,7 +22,7 @@ language::language(QWidget *parent)
 	connect(ui->LanFarsi,SIGNAL(clicked()),this,SLOT(LanFarsi_KBBut_clicked()));
 	connect(ui->LanHindi,SIGNAL(clicked()),this,SLOT(LanHindi_KBBut_clicked()));
 
-	connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//将信号传给父窗口
+	//connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//将信号传给父窗口
 
 }
 
@@ -127,8 +127,8 @@ void language::LanHindi_KBBut_clicked()
 	setVisible(false); 
 }
 
-void language::sendslot()
-{
-	emit languageEvent();//中间量，将子窗口的槽函数转化为父窗口的信号
-}
+//void language::sendslot()
+//{
+//	emit languageEvent();//中间量，将子窗口的槽函数转化为父窗口的信号
+//}
 

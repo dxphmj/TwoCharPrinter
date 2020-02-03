@@ -7,6 +7,7 @@
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
+#include "backend\zint.h"
 
 //#include <qwidget.h>
 
@@ -120,11 +121,11 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 	int x_pos = p_Relative.x();
 	int y_pos = p_Relative.y();
 	//判断该位置是否在控件editPreviewText范围内
-	if ((x_pos>=10 && x_pos<=1051) && (y_pos>=10 && y_pos<=251))
+	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
 	{
 		int nLin;
 		int nRow;	 
-		nLin = ( 251 - y_pos ) / 5;
+		nLin = ( 241 - y_pos ) / 5;
 		nRow = x_pos / 5;
 		vector<OBJ_Control>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
@@ -409,14 +410,13 @@ void ClassMessage::ReadBmp(char* strFileName)
 	pImage = pLoad.toImage();
 
 	OBJ_Control bmpObj;
-	bmpObj.intX=100;
-	bmpObj.intY=0;
 	bmpObj.intLineStart=0;
 	bmpObj.intRowStart=0;
 	bmpObj.strType1="text";
 	bmpObj.strType2="logo";
-	bmpObj.intLineSize=pImage.height();
-	bmpObj.intRowSize=pImage.width();
+	bmpObj.strText = strFileName;
+	bmpObj.intLineSize=pImage.width();
+	bmpObj.intRowSize=pImage.height();
 	bmpObj.intSW=1;
 	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
@@ -429,14 +429,14 @@ void ClassMessage::ReadBmp(char* strFileName)
 		for(int x = 0; x< pImage.width(); x++)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 100)
-				bmpObj.boDotBmp[x][pImage.height()-y-1] = true;//由于坐标系的原因，上下必须颠倒
+			if(average < 200)
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
 			else
-				bmpObj.boDotBmp[x][pImage.height()-y-1] = false;
+				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
 		}  
 	}  
 	bmpObj.booFocus = true;
-	OBJ_Vec.push_back(bmpObj); 
+	this->OBJ_Vec.push_back(bmpObj); 
 }
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
@@ -707,6 +707,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
+
 					}						
 				}
 
@@ -739,8 +740,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
+						obj.ReadBmp(const_cast<char*>(obj.strText.c_str()));
 					}	
-					ReadBmp(const_cast<char*>(obj.strText.c_str()));
 				}
 				
 				else if (obj.strType1=="text"&&obj.strType2=="qrcode")
@@ -760,6 +761,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strqrcodeVersion.assign(strText);
+						obj.intQRVersion = atoi(strText);
 					}
 					if(strcmp(strItem,"qrcodeECCLevel") == 0)
 					{
@@ -776,18 +778,20 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.intqrcodeQuietZone = atoi(strText);
+
+						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
+						obj.CreateQrcode();
 					}
-					ReadBmp(const_cast<char*>(obj.strText.c_str()));
 				}
 			}
 			OBJ_Vec.push_back(obj);
-			}
 		}
+	}
 
-		string strPathName=strFileName;
-		int lastN=strPathName.find_last_of('\\');
-		labName = strPathName.substr(lastN + 1);
-		labPath=strPathName.substr(0,lastN);
+	string strPathName=strFileName;
+	int lastN=strPathName.find_last_of('\\');
+	labName = strPathName.substr(lastN + 1);
+	labPath=strPathName.substr(0,lastN);
 
 }
 
@@ -2522,382 +2526,6 @@ void OBJ_Control::DrawDot(CDC* pDC)
 			break;
 		}
 		intRowSize=theDog;
-
-		/*
-		case 0://5x5.fnt
-			theDog=0;//标记位
-			if (booBWDy)
-			{
-				wstring strWText=stringToWstring(strText);
-				for (int i=0;i<strWText.length();i++)
-				{
-					wchar_t strTempText=strWText[strWText.length()-i-1];
-					bytTextUni=(int)strTempText;
-					lonTextUniSetOff=bytTextUni*7+64;
-					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
-					if (!objRead)
-					{
-						for (int r=0;r<7;r++)
-						{
-							if (r==6)
-							{
-								objbytTex5x5Line[r]=6;
-							} 
-							else
-							{
-								objbytTex5x5Line[r]=0;
-							}
-						}
-					}
-					if(intSS>0&&booNEG)
-					{
-						for (int m=0;m<intSS;m++)
-						{
-							for(int p=0;p<5;p++)
-							{
-								x1=5*(theDog+intRowStart)+5*m;
-								x2=5*(theDog+intRowStart+1)+5*m;
-								if (booBWDx)
-								{
-									y1=241-5*(5-p+intLineStart)-1;
-									y2=241-5*(5-p+intLineStart-1)-1;
-								} 
-								else
-								{
-									y1=241-5*(intLineStart+p+1)-1;
-									y2=241-5*(intLineStart+p)-1;
-								}
-								pBrush=pDC->SelectObject(&cbrushB);
-								CRect rect(x1+1,y1+1,x2,y2);
-								pDC->Ellipse(&rect);
-							}
-						}
-					}
-					for (int k=0;k<objbytTex5x5Line[6];k++)
-					{
-						binLineTemp="0000000"+objClassMessage.DEC_to_BIN((byte)objbytTex5x5Line[objbytTex5x5Line[6]-1-k]);
-						binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
-						for (int p =0;p<5;p++)
-						{
-							Dot=binLineTemp[p];
-							x1=5*(theDog+intRowStart)+5*k*intSW+5*intSS;
-							x2=5*(theDog+intRowStart+1)+5*k*intSW+5*intSS;
-							if (booBWDx)
-							{
-								y1=241-5*(intLineStart+p+1)-1;
-								y2=241-5*(intLineStart+p)-1;
-							} 
-							else
-							{
-								y1=241-5*(5-p+intLineStart)-1;
-								y2=241-5*(5-p+intLineStart-1)-1;
-							}
-							switch(Dot)
-							{
-							case '0':
-								if(booNEG)
-								{
-									for (int s=0;s<intSW;s++)
-									{
-										pBrush=pDC->SelectObject(&cbrushB);
-										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
-										pDC->Ellipse(&rect);
-									}
-								}
-								break;
-							case '1':
-								if(!booNEG)
-								{
-									for (int s=0;s<intSW;s++)
-									{
-										pBrush=pDC->SelectObject(&cbrushB);
-										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
-										pDC->Ellipse(&rect);
-									}
-								}
-								break;
-							default:
-								if(!booNEG)
-								{
-									for (int s=0;s<intSW;s++)
-									{
-										pBrush=pDC->SelectObject(&cbrushB);
-										CRect rect(x1+5*s+1,y1+1,x2+5*s,y2);
-										pDC->Ellipse(&rect);
-									}
-								}
-							}	
-						}
-					}//画列结束
-					theDog=theDog+objbytTex5x5Line[6]*intSW+intSS;
-				}
-			} 
-			else
-			{
-				wstring strWText=stringToWstring(strText);
-				for (int i=0;i<strWText.length();i++)
-				{
-					wchar_t strTempText=strWText[i];
-					bytTextUni=(int)strTempText;
-					lonTextUniSetOff=bytTextUni*7+64;
-					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
-					if (!objRead)
-					{
-						for (int r=0;r<7;r++)
-						{
-							if (r==6)
-							{
-								objbytTex5x5Line[r]=6;
-							} 
-							else
-							{
-								objbytTex5x5Line[r]=0;
-							}
-								
-						}
-					}
-					switch(objbytTex5x5Line[6])
-					{
-					case 6:
-						for (int k=0;k<6;k++)
-						{
-							binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex5x5Line[k]);
-							binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
-							for (int p =0;p<5;p++)
-							{
-								Dot=binLineTemp[p];
-								x1=5*(theDog+intRowStart)+5*k*intSW;
-								x2=5*(theDog+intRowStart+1)+5*k*intSW;
-								if (booBWDx)
-								{
-									y1=241-5*(intLineStart+p+1)-1;
-									y2=241-5*(intLineStart+p)-1;
-								} 
-								else
-								{
-									y1=241-5*(5-p+intLineStart)-1;
-									y2=241-5*(5-p+intLineStart-1)-1;
-
-								}
-								switch(Dot)
-								{
-								case '0':
-									if(booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-												
-										}
-									}
-									break;
-								case '1':
-									if(!booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-
-										}
-									}
-									break;
-								default:
-									if(!booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-
-										}
-									}
-								}	
-							}
-						}//画列结束；
-
-						if(intSS>0&&booNEG)
-						{
-							for (int m=0;m<intSS;m++)
-							{
-								for(int p=0;p<5;p++)
-								{
-									x1=5*(theDog+intRowStart)+5*6*intSW+5*m;
-									x2=5*(theDog+intRowStart+1)+5*6*intSW+5*m;
-									if (booBWDx)
-									{
-										y1=241-5*(5-p+intLineStart)-1;
-										y2=241-5*(5-p+intLineStart-1)-1;
-									} 
-									else
-									{
-										y1=241-5*(intLineStart+p+1)-1;
-										y2=241-5*(intLineStart+p)-1;
-									}
-									pDC->setBrush(cbrushB);
-									CRect rect(x1,y1,x2-x1,y2-y1);
-									pDC->Ellipse(rect);
-								}
-							}
-						}
-						theDog=theDog+6*intSW+intSS;
-						break;
-					case 5:
-						break;
-					case 4:
-						break;
-					case 3:
-						break;
-					//default:
-							
-					}
-				}
-			}
-			break;
-		case 1:
-			theDog=0;//标记位
-			if (booBWDy)
-			{
-			} 
-			else
-			{
-				for (int i=0;i<strText.length();i++)
-				{
-					wchar_t strTempText=strText[i];
-					bytTextUni=(int)strTempText;
-					lonTextUniSetOff=bytTextUni*8+64;
-
-					bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
-					if (!objRead)
-					{
-						for (int r=0;r<8;r++)
-						{
-							if (r==7)
-							{
-								objbytTex7x5Line[r]=6;
-							} 
-							else
-							{
-								objbytTex7x5Line[r]=0;
-							}
-
-						}
-					}
-					switch(objbytTex7x5Line[7])
-					{
-					case 7:
-						break;
-					case 6:
-						for (int k=0;k<6;k++)
-						{
-							binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex7x5Line[k]);
-							binLineTemp=binLineTemp.substr(binLineTemp.length()-7,7);
-							for (int p =0;p<7;p++)
-							{
-								Dot=binLineTemp[p];
-								x1=5*(theDog+intRowStart)+5*k*intSW;
-								x2=5*(theDog+intRowStart+1)+5*k*intSW;
-								if (booBWDx)
-								{
-									y1=241-5*(intLineStart+p+1)-1;
-									y2=241-5*(intLineStart+p)-1;
-								} 
-								else
-								{
-									y1=241-5*(7-p+intLineStart)-1;
-									y2=241-5*(7-p+intLineStart-1)-1;
-
-								}
-								switch(Dot)
-								{
-								case '0':
-									if(booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-
-										}
-									}
-									break;
-								case '1':
-									if(!booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-
-										}
-									}
-									break;
-								default:
-									if(!booNEG)
-									{
-										for (int s=0;s<intSW;s++)
-										{
-											pDC->setBrush(cbrushB);
-
-											CRect rect(x1,y1,x2-x1,y2-y1);
-											pDC->Ellipse(rect);
-
-										}
-									}
-								}	
-							}
-						}//画列结束；
-
-						if(intSS>0&&booNEG)
-						{
-							for (int m=0;m<intSS;m++)
-							{
-								for(int p=0;p<7;p++)
-								{
-									x1=5*(theDog+intRowStart)+5*6*intSW+5*m;
-									x2=5*(theDog+intRowStart+1)+5*6*intSW+5*m;
-									if (booBWDx)
-									{
-										y1=241-5*(5-p+intLineStart)-1;
-										y2=241-5*(5-p+intLineStart-1)-1;
-									} 
-									else
-									{
-										y1=241-5*(intLineStart+p+1)-1;
-										y2=241-5*(intLineStart+p)-1;
-									}
-									pDC->setBrush(cbrushB);
-									CRect rect(x1,y1,x2-x1,y2-y1);
-									pDC->Ellipse(rect);
-								}
-							}
-						}
-						theDog=theDog+6*intSW+intSS;
-						break;
-					case 5:
-						break;
-					case 4:
-						break;
-					case 3:
-						break;
-						//default:
-
-					}
-				}
-			}
-			break;
-
-		}*/
 	}
 
 	pDC->setBrush(cbrushB); //载入笔刷
@@ -2913,49 +2541,90 @@ void OBJ_Control::ReadBmp(char* strFileName)
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
-		 
-	/*
-	QString csInfo("");//Storage Card\\User\\Logo\\1.bmp
-	//csInfo.Format(_T("%s", strFileName));
-	csInfo = QString(strFileName);
-	HBITMAP hBitmap = (HBITMAP)::SHLoadDIBitmap(csInfo);
+	QImage pImage;
+	pImage = pLoad.toImage();
 
-	BITMAP bmpObj = {0};
-	if (   ::GetObject(hBitmap, sizeof(bmpObj), &bmpObj) == 0|| bmpObj.bmWidth <= 0|| bmpObj.bmHeight <= 0)
-	{
-		return ;
-	}
+	int intLineSize = pImage.width();
+	int intRowSize = pImage.height();
+
+	for(int y = 0; y< pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x< pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+			if(average < 200)
+				boDotBmp[intLineSize-x-1][y] = true;
+			else
+				boDotBmp[intLineSize-x-1][y] = false;
+		}  
+	}  
+}
+
+void OBJ_Control::CreateQrcode()
+{
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	//int generated;
+	//int batch_mode;
+	//int mirror_mode;
+	//char filetype[4];
+	int i;
+	int v;
+
+	//error_number = 0;
+	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
+	//int angle2=angle1.toInt();
+	//rotate_angle = angle2;
+	rotate_angle = 0;
+	//generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = UNICODE_MODE;
+	my_symbol->symbology = intQRVersion; //临时用一下变量intQRVersion
+	my_symbol->scale = 0.5;
+
+//	v=ui->sideLenQRComBox->currentIndex();
+	my_symbol->option_2 = 1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+
+	//batch_mode = 0;
+	//mirror_mode = 0;
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strText.c_str(),strText.size(),rotate_angle);
+	/*float barlongth;
+	barlongth=my_symbol->bitmap_height;
+	float barwidth;
+	barwidth=my_symbol->bitmap_width;
+	float p;
+	p=25/barlongth;
+	my_symbol->scale =1;
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+*/
+	//generated = 1;
 		
-	CDC memDC ;
-	memDC.CreateCompatibleDC(NULL) ;//创建内存DC 
-	CBitmap bitmap ;
-	bitmap.Attach(hBitmap) ;
-	memDC.SelectObject(&bitmap) ;
-	//	pDC->BitBlt(0,0,25,25,&memDC,0,0,SRCCOPY);//显示
+	intLineSize=my_symbol->bitmap_height;
+	intRowSize=my_symbol->bitmap_width;
 
-	intRowSize=bmpObj.bmWidth;
-	intLineSize=bmpObj.bmHeight;
-	//	CSize myCSize=memDC.GetViewportExt();
+	i = 0;
+	int r, g, b;
 
-	for (int x=0;x<intRowSize;x++)
+	for (int row = 0; row < my_symbol->bitmap_height; row++)
 	{
-		for (int y=0;y<intLineSize;y++)
+		for (int col = 0;col < my_symbol->bitmap_width; col++)
 		{
-			COLORREF pixColor=memDC.GetPixel(x,y);
-			BYTE red = GetRValue(pixColor);
-			BYTE green = GetGValue(pixColor);
-			BYTE blue = GetBValue(pixColor);
-			if (red==255&&green==255&&blue==255)
+			r = my_symbol->bitmap[i];
+			g = my_symbol->bitmap[i + 1];
+			b = my_symbol->bitmap[i + 2];
+			i += 3;
+			if (r == 0 && g == 0 && b == 0)
 			{
-				boDotBmp[x][intLineSize-y-1]=false;
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//由于坐标系的原因，上下必须颠倒
 			}
 			else
 			{
-				boDotBmp[x][intLineSize-y-1]=true;
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
 			}
 		}
-	}*/
-		 
+	}
+	booFocus = true;
 }
-
 

@@ -1,23 +1,22 @@
 <MES>
     <PRO>
         <Matrix>1L7M</Matrix>
-        <Pixel>9</Pixel>
+        <Pixel>8</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
-        <LineStart>18</LineStart>
-        <RowStart>32</RowStart>
-        <LineSize>7</LineSize>
-        <RowSize>30</RowSize>
+        <TYPE2>logo</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>25</LineSize>
+        <RowSize>25</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>DREAM</setTEXT>
+        <setTEXT>User\\logo\\3.bmp</setTEXT>
     </OBJ>
 </MES>

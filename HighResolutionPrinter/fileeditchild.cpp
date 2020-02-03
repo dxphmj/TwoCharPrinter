@@ -25,6 +25,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->QRCodeLineEdit,SIGNAL(clicked()),this,SLOT(QRCodeLineEdit_clicked()));
 	connect(ui->DMCodeLineEdit,SIGNAL(clicked()),this,SLOT(DMCodeLineEdit_clicked()));
 	connect(ui->newTextBut,SIGNAL(clicked()),this,SLOT(newTextBut_clicked()));
+	connect(ui->newBmpBut,SIGNAL(clicked()),this,SLOT(newBmpBut_clicked()));
 	connect(ui->newBarCodeBut,SIGNAL(clicked()),this,SLOT(newBarCodeBut_clicked()));
 	connect(ui->newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
 	connect(ui->newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
@@ -60,10 +61,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->addTimeBut,SIGNAL(clicked()),this,SLOT(addTimeBut_clicked()));
 	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
 	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
+	connect(ui->newSerialBut,SIGNAL(clicked()),this,SLOT(newSerialNumber_click()));
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
 	keyboardWidget->setVisible(false);
+	ui->typeTab->setCurrentIndex(0);
 	
 	ui->editPreviewText->installEventFilter(this);
 	ui->editPreviewText->viewport()->installEventFilter(this);
@@ -146,6 +149,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
+	SerialNumber=0;
 
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
@@ -311,45 +315,7 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 }
 
 void FileEditChild::CreateQrcode(int nType,QString strContent)
-{
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	int batch_mode;
-	int mirror_mode;
-	char filetype[4];
-	int i;
-	int v;
-
-	error_number = 0;
-	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
-	//int angle2=angle1.toInt();
-	//rotate_angle = angle2;
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = nType;
-	my_symbol->scale =0.5;
-
-	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2=v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
-
-	batch_mode = 0;
-	mirror_mode = 0;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-	/*float barlongth;
-	barlongth=my_symbol->bitmap_height;
-	float barwidth;
-	barwidth=my_symbol->bitmap_width;
-	float p;
-	p=25/barlongth;
-	my_symbol->scale =1;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-*/
-	generated = 1;
-
+{	 
 	int xPos=0;
 	int yPos=0;
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
@@ -365,44 +331,17 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	OBJ_Control bmpObj;
 	bmpObj.intLineStart=yPos;
 	bmpObj.intRowStart=xPos;
-	bmpObj.strType1="text";
-	bmpObj.strType2="qrcode";
-	bmpObj.intLineSize=my_symbol->bitmap_height;
-	bmpObj.intRowSize=my_symbol->bitmap_width;
-
 	//以下先写死
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
-	i = 0;
-	int r, g, b;
+	bmpObj.intQRVersion = nType;
+  	bmpObj.strText = strContent.toStdString();
 
-	for (int row = 0; row < my_symbol->bitmap_height; row++)
-	{
-		for (int col = 0;col < my_symbol->bitmap_width; col++)
-		{
-			r = my_symbol->bitmap[i];
-			g = my_symbol->bitmap[i + 1];
-			b = my_symbol->bitmap[i + 2];
-			i += 3;
-			if (r == 0 && g == 0 && b == 0)
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
-			}
-			else
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = false;
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
-			}
-		}
-	}
-	bmpObj.strText = strContent.toStdString();
-	bmpObj.booFocus = true;
+	bmpObj.CreateQrcode();
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
-
 }
 
 void FileEditChild::CreateDMcode(int nType,QString strContent)
@@ -576,6 +515,8 @@ void FileEditChild::paintDot()
 {
 	QPainter painter(ui->editPreviewText);
 	m_PrinterMes.DrawDot(&painter);
+	QWidget *pQWidget(this);
+	pQWidget->update();
 }
 
 bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
@@ -583,30 +524,21 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintDot();
-		QWidget *pQWidget(this);
-		pQWidget->update();
 	}
-	else if (watched == ui->editPreviewText->viewport())
+	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
-		if (event->type() == QEvent::MouseButtonPress)
-		{
-			//qDebug() << __FILE__<<__LINE__<< QString::number(event->type());
-			QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-			mousePressEvent(mouseEvent);
-			QWidget *pQWidget(this);
-			pQWidget->update();
-		}
+		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+		MouseBeenPressed(mouseEvent);
 	}
 	return QWidget::eventFilter(watched, event);
 }
 
-void FileEditChild::mousePressEvent(QMouseEvent *event)
+void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 {
-	//QPoint p_Global = event->globalPos();
 	QPoint p_Relative = event->pos();
 	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
-	paintDot();
 	GetTextFromScreen();
+	paintDot();
 }
 
 void FileEditChild::GetTextFromScreen()
@@ -616,10 +548,65 @@ void FileEditChild::GetTextFromScreen()
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			QString tmpStr = QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strText);
-			this->ui->wordLineEdit->setText(tmpStr);
-			break;
+			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
+			{
+				this->ui->typeTab->setCurrentIndex(0);
+				this->ui->wordLineEdit->setText(tmpStr);
+				this->ui->newTextBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
+			{
+				this->ui->typeTab->setCurrentIndex(1);
+				this->ui->DateTimeEdit->setText(tmpStr);
+				this->ui->newTimeBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
+			{
+				this->ui->typeTab->setCurrentIndex(2);
+				this->ui->serialLineEdit->setText(tmpStr);
+				this->ui->newSerialBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "logo")
+			{
+				this->ui->typeTab->setCurrentIndex(3);
+				//this->ui->serialLineEdit->setText(tmpStr);
+				this->ui->newBmpBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "2Dcode")
+			{
+				this->ui->typeTab->setCurrentIndex(4);
+				this->ui->barCodeLineEdit->setText(tmpStr);
+				this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
+			{
+				this->ui->typeTab->setCurrentIndex(5);
+				this->ui->QRCodeLineEdit->setText(tmpStr);
+				this->ui->newQRBut->setText(QStringLiteral("修改"));
+			}
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "DMcode")
+			{
+				this->ui->typeTab->setCurrentIndex(6);
+				this->ui->DMCodeLineEdit->setText(tmpStr);
+				this->ui->newDMBut->setText(QStringLiteral("修改"));
+			}
+			return;
 		}
 	}
+	this->ui->wordLineEdit->setText("");
+	this->ui->DateTimeEdit->setText("");
+	this->ui->serialLineEdit->setText("");
+	this->ui->newBarCodeBut->setText("");
+	this->ui->QRCodeLineEdit->setText("");
+	this->ui->DMCodeLineEdit->setText("");
+
+	this->ui->newTextBut->setText(QStringLiteral("新建"));
+	this->ui->newTimeBut->setText(QStringLiteral("新建"));
+	this->ui->newSerialBut->setText(QStringLiteral("新建"));
+	this->ui->newBmpBut->setText(QStringLiteral("新建"));
+	this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
+	this->ui->newQRBut->setText(QStringLiteral("新建"));
+	this->ui->newDMBut->setText(QStringLiteral("新建"));
 }
 
 //“另存为”按钮
@@ -709,6 +696,7 @@ void FileEditChild::ReadBmp(char* strFileName)
 	bmpObj.intRowStart=0;
 	bmpObj.strType1="text";
 	bmpObj.strType2="logo";
+	bmpObj.strText = strFileName;
 	bmpObj.intLineSize=pImage.width();
 	bmpObj.intRowSize=pImage.height();
 	bmpObj.intSW=1;
@@ -717,13 +705,13 @@ void FileEditChild::ReadBmp(char* strFileName)
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
 
-	for(int y = 0; y<pImage.height(); y++)
+	for(int y = 0; y< pImage.height(); y++)
 	{  
 		QRgb* line = (QRgb *)pImage.scanLine(y);  
-		for(int x = 0; x<pImage.width(); x++)
+		for(int x = 0; x< pImage.width(); x++)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 100)
+			if(average < 200)
 				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
 			else
 				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
@@ -736,16 +724,18 @@ void FileEditChild::ReadBmp(char* strFileName)
 
 void FileEditChild::selBmpBut_clicked()
 {
-	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
-	aaaa=fileName;
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
 	QImage image,result;
 	image.load(fileName); 
 	result = image.scaled(ui->bmpPreviewLab->width(), ui->bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
 	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
+	QFileInfo bmpInfo(fileName);
+	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
 }
 
 void FileEditChild::delBut_clicked()
 {
+	/*
 	vector<OBJ_Control>::iterator itr = m_PrinterMes.OBJ_Vec.begin();
 	while (itr != m_PrinterMes.OBJ_Vec.end())
 	{
@@ -756,6 +746,7 @@ void FileEditChild::delBut_clicked()
 				continue;
 			}
 	}
+	*/
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -787,9 +778,6 @@ void FileEditChild::newTextBut_clicked()
 		{
 			string tmpStr = this->ui->wordLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			int tmpStrLength = tmpStr.length();
-			//m_PrinterMes.OBJ_Vec[i].intLineSize = GetCharLenFromFont()
-			//m_PrinterMes.OBJ_Vec[i].intRowSize = tmpStrLength * GetCharLenFromFont();
 			return;
 		}
 	}
@@ -803,6 +791,16 @@ void FileEditChild::newTextBut_clicked()
 
 void FileEditChild::newBarCodeBut_clicked()
 {
+	//如果当前有obj被选中，则为修改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
 	int t;
 	QString str;
 	str = ui->barCodeLineEdit->text();
@@ -844,6 +842,16 @@ void FileEditChild::newBarCodeBut_clicked()
 
 void FileEditChild::newQRBut_clicked()
 {
+	//如果当前有obj被选中，则为修改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
 	QString str;
 	str = ui->QRCodeLineEdit->text();
 	CreateQrcode(58,str);
@@ -851,6 +859,16 @@ void FileEditChild::newQRBut_clicked()
 
 void FileEditChild::newDMBut_clicked()
 {
+	//如果当前有obj被选中，则为修改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
 	QString str;
 	str = ui->DMCodeLineEdit->text();
 	CreateDMcode(71,str);
@@ -858,9 +876,18 @@ void FileEditChild::newDMBut_clicked()
 
 void FileEditChild::newBmpBut_clicked()
 {
-	 
+	//如果当前有obj被选中，则为修改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
 	char *pic;
-	QByteArray ba=aaaa.toLatin1();
+	QByteArray ba = bmpFileRelativePath.toLatin1();
 	pic=ba.data();
 	ReadBmp(pic);
 
@@ -1291,4 +1318,45 @@ void FileEditChild::newTimeBut_clicked()
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
  
+}
+void FileEditChild::newSerialNumber_click()
+{
+
+	QString a=ui->initialValSerialLineEdit->text();
+	QString b=ui->termValSerialLineEdit->text();	
+	QString c=ui->startValSerialLineEdit->text();	
+	QString d=ui->stepLenSerialLineEdit->text();
+	QString e=ui->digitSerialLineEdit->text();
+	int start=a.toInt();
+	int new_start=c.toInt();
+	int stop=b.toInt();
+	int step=d.toInt();
+	int f=e.toInt();
+	if (start>stop)
+	{
+		int c;
+		c=start;
+		start=stop;
+		stop=c;
+	}
+	if (SerialNumber==0)
+	{
+		SerialNumber=new_start;
+	}	
+	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	QString SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+
+	ui->serialLineEdit->setText(SerialNumber_2);	
+	if (SerialNumber>=start&&SerialNumber+step<stop)
+	{
+		if (start<stop)
+		{
+			SerialNumber=SerialNumber+step;
+		}
+		else
+		{
+			SerialNumber=SerialNumber-step;
+		}
+	}
+
 }

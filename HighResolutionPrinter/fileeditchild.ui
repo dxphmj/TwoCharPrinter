@@ -69,7 +69,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>另存为</string>
+    <string>另存�?/string>
    </property>
   </widget>
   <widget class="QPushButton" name="delBut">
@@ -664,7 +664,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -793,7 +793,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数器&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -883,7 +883,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;起始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;起始�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -930,7 +930,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;终止值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;终止�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -996,7 +996,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -1207,7 +1207,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="heightBmpRedBut">
@@ -1238,7 +1238,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBmpLab">
@@ -1356,7 +1356,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="widthBmpRedBut">
@@ -1387,7 +1387,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="selBmpBut">
@@ -1484,7 +1484,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="barCodeTab">
     <attribute name="title">
-     <string>条形码</string>
+     <string>条形�?/string>
     </attribute>
     <widget class="lineedit_click" name="barCodeLineEdit">
      <property name="geometry">
@@ -1564,7 +1564,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="variableBarCodeBut">
@@ -1618,7 +1618,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="typeBarCodeLab">
@@ -1725,7 +1725,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBarCodeLab">
@@ -1784,7 +1784,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBarCodeShowQRLab">
@@ -1873,7 +1873,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="QRCodeTab">
     <attribute name="title">
-     <string>QR码</string>
+     <string>QR�?/string>
     </attribute>
     <widget class="lineedit_click" name="QRCodeLineEdit">
      <property name="geometry">
@@ -2021,7 +2021,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>DM码</string>
+     <string>DM�?/string>
     </attribute>
     <widget class="QPushButton" name="variableDMBut">
      <property name="geometry">
@@ -2290,7 +2290,7 @@ border-radius:10px;</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>＋</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="degreeTextShowLab">
@@ -2352,7 +2352,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>－</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="rotateTextLab">
@@ -2411,7 +2411,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>＋</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QPushButton" name="internalTextRedBut">
@@ -2442,7 +2442,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>－</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="internalShowTextLab">

@@ -1,23 +1,25 @@
 <MES>
     <PRO>
         <Matrix>1L7M</Matrix>
-        <Pixel>7</Pixel>
+        <Pixel>8</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
+        <TYPE2>qrcode</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>7</LineSize>
-        <RowSize>66</RowSize>
+        <LineSize>21</LineSize>
+        <RowSize>21</RowSize>
         <SW>1</SW>
-        <SS>0</SS>
+        <SS>1</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>Hello,World</setTEXT>
+        <setTEXT>GOOD MORNING</setTEXT>
+        <qrcodeVersion>58</qrcodeVersion>
+        <qrcodeECCLevel>0</qrcodeECCLevel>
+        <qrcodeQuietZone>0</qrcodeQuietZone>
     </OBJ>
 </MES>

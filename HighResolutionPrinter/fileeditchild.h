@@ -23,7 +23,7 @@ public:
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 
-	void mousePressEvent(QMouseEvent *event);
+	void MouseBeenPressed(QMouseEvent *event);
 	void GetTextFromScreen();
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
@@ -36,16 +36,17 @@ public:
 	void ChangeTime();
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
 	
-	QString aaaa;	
+	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
 	int degreenumQr;
 	int degreenumDM;
 	float Zoomfactor; 
 	float ZoomfactorQr;
 	float ZoomfactorDM;
-
+	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
-
+	QString SerialNumber_2;
+	int SerialNumber;
 private:
 	Ui::FileEditChild* ui;
 	
@@ -64,6 +65,7 @@ private slots:
 	void newBarCodeBut_clicked();
 	void newQRBut_clicked();
 	void newDMBut_clicked();
+	void newSerialNumber_click();
 	void saveasBut_clicked();
 	void saveBut_clicked();
 	void moveUpBut_clicked();

@@ -1,0 +1,10 @@
+<MES>
+  <MainWindow>
+    <No1Lab>text1</No1Lab>
+    <closeBut>serial1</closeBut>
+  </MainWindow>
+  <FilemanageForm>
+    <manageFileBut>text2</manageFileBut>
+    <exitBut>serial2</exitBut>
+  </FilemanageForm>
+</MES>
