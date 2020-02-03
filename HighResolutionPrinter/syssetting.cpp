@@ -1,4 +1,4 @@
-�?include "syssetting.h"
+#include "syssetting.h"
 #include "syssetting.h"
 #include "UILanguage.h"
 #include "mainwindow.h"
@@ -23,16 +23,16 @@ sysSetting::sysSetting(QWidget *parent)
 	connect(ui.addSecondBut,SIGNAL(clicked()),this,SLOT(addSecondBut()));
 	connect(ui.reduceSecondBut,SIGNAL(clicked()),this,SLOT(reduceSecondBut()));
 
-	ui.sysLanguageListWid->addItem(QStringLiteral("简体中�?));  
-	ui.sysLanguageListWid->addItem(QStringLiteral("English")); 
-	ui.sysLanguageListWid->addItem(QStringLiteral("العربية"));  
-	ui.sysLanguageListWid->addItem(QStringLiteral("わぶ�?));  
-	ui.sysLanguageListWid->addItem(QStringLiteral("한글"));  
-    ui.sysLanguageListWid->addItem(QStringLiteral("français"));
-	ui.sysLanguageListWid->addItem(QStringLiteral("deutsch"));
-	ui.sysLanguageListWid->addItem(QStringLiteral("русский"));
-	ui.sysLanguageListWid->addItem(QStringLiteral("Português"));
-	ui.sysLanguageListWid->addItem(QStringLiteral("Español"));
+	//ui.sysLanguageListWid->addItem(QStringLiteral("简体中�?));  
+	//ui.sysLanguageListWid->addItem(QStringLiteral("English")); 
+	//ui.sysLanguageListWid->addItem(QStringLiteral("العربية"));  
+	//ui.sysLanguageListWid->addItem(QStringLiteral("わぶ�?));  
+	//ui.sysLanguageListWid->addItem(QStringLiteral("한글"));  
+ //   ui.sysLanguageListWid->addItem(QStringLiteral("français"));
+	//ui.sysLanguageListWid->addItem(QStringLiteral("deutsch"));
+	//ui.sysLanguageListWid->addItem(QStringLiteral("русский"));
+	//ui.sysLanguageListWid->addItem(QStringLiteral("Português"));
+	//ui.sysLanguageListWid->addItem(QStringLiteral("Español"));
 	
 
 	ui.addYearBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\

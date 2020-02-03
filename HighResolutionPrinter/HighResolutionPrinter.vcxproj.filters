@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Form Files">
@@ -402,15 +402,6 @@
     <ClCompile Include="ModuleMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="automessagebox.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_automessagebox.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_automessagebox.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
     <ClCompile Include="PrintThead.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -439,7 +430,7 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ParamSetting.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClCompile>
     <ClCompile Include="UILanguage.cpp">
       <Filter>Generated Files</Filter>
@@ -657,7 +648,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParamSetting.h">
-      <Filter>Header Files</Filter>
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -718,7 +709,6 @@
     <CustomBuild Include="language.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
-    <CustomBuild Include="automessagebox.h">
     <CustomBuild Include="PrintThead.h">
       <Filter>Header Files</Filter>
     </CustomBuild>
