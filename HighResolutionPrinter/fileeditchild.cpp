@@ -221,15 +221,23 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType;
-//	if(nType == 20 || nType == 8)
-	my_symbol->height = 5;	 //此高度值会影响最终生成条形码点阵图的高度，且最小值为5
-
-	my_symbol->scale =1;
+	QString zoomvalue=ui->heightBarCodeShowQRLab->text();
+	int zoomvalue1=zoomvalue.toInt();
+	//	if(nType == 20 || nType == 8)
+	my_symbol->height =5;	 //此高度值会影响最终生成条形码点阵图的高度，且最小值为5
+	if (zoomvalue1==21)
+	{	
+		my_symbol->scale =0.75;//height最小值为5时，bitmap_height最小值为28，所以只能改scale的值，来控制条形码的高度了，
+	}                          //但数字的显示分辨率还是不太够
+	else
+	{	
+		my_symbol->scale =0.9;
+	}
 	batch_mode = 0;
 	mirror_mode = 0;
 
 	my_symbol->whitespace_width=6;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
-	my_symbol->output_options= 1; //有无边框之类的控制;1:无边框，2：上下两条边界线，3：四条边框
+	my_symbol->output_options= 1; //有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
 	my_symbol->border_width=0;//改变边框宽度           //条形码高度显示问题，所以边框显示也存在问题
 
 	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
