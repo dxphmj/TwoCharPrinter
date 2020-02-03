@@ -36,7 +36,7 @@ public:
 	void ChangeTime();
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
 	
-	QString aaaa;	
+	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
 	int degreenumQr;
 	int degreenumDM;

@@ -25,6 +25,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->QRCodeLineEdit,SIGNAL(clicked()),this,SLOT(QRCodeLineEdit_clicked()));
 	connect(ui->DMCodeLineEdit,SIGNAL(clicked()),this,SLOT(DMCodeLineEdit_clicked()));
 	connect(ui->newTextBut,SIGNAL(clicked()),this,SLOT(newTextBut_clicked()));
+	connect(ui->newBmpBut,SIGNAL(clicked()),this,SLOT(newBmpBut_clicked()));
 	connect(ui->newBarCodeBut,SIGNAL(clicked()),this,SLOT(newBarCodeBut_clicked()));
 	connect(ui->newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
 	connect(ui->newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
@@ -695,6 +696,7 @@ void FileEditChild::ReadBmp(char* strFileName)
 	bmpObj.intRowStart=0;
 	bmpObj.strType1="text";
 	bmpObj.strType2="logo";
+	bmpObj.strText = strFileName;
 	bmpObj.intLineSize=pImage.width();
 	bmpObj.intRowSize=pImage.height();
 	bmpObj.intSW=1;
@@ -703,13 +705,13 @@ void FileEditChild::ReadBmp(char* strFileName)
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
 
-	for(int y = 0; y<pImage.height(); y++)
+	for(int y = 0; y< pImage.height(); y++)
 	{  
 		QRgb* line = (QRgb *)pImage.scanLine(y);  
-		for(int x = 0; x<pImage.width(); x++)
+		for(int x = 0; x< pImage.width(); x++)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 100)
+			if(average < 200)
 				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
 			else
 				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
@@ -722,12 +724,13 @@ void FileEditChild::ReadBmp(char* strFileName)
 
 void FileEditChild::selBmpBut_clicked()
 {
-	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "/home/jana", tr("Image Files (*.png *.jpg *.bmp)"));
-	aaaa=fileName;
+	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
 	QImage image,result;
 	image.load(fileName); 
 	result = image.scaled(ui->bmpPreviewLab->width(), ui->bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
 	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
+	QFileInfo bmpInfo(fileName);
+	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
 }
 
 void FileEditChild::delBut_clicked()
@@ -884,7 +887,7 @@ void FileEditChild::newBmpBut_clicked()
 	}
 	//如果当前没有obj被选中，则为新建
 	char *pic;
-	QByteArray ba=aaaa.toLatin1();
+	QByteArray ba = bmpFileRelativePath.toLatin1();
 	pic=ba.data();
 	ReadBmp(pic);
 

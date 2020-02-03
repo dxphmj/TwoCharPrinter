@@ -183,7 +183,7 @@ void FileManageChild::OKFileNameBut_clicked()
 			pFilemanageForm->FormFileEditChild->m_PrinterMes.SaveObjectsToXml(charFilePath);
 			this->ShowLocalFilePath();
 			keyboardWidget->setVisible(false);
-			boolSaveAsBtn_Clicked = false;
+			this->boolSaveAsBtn_Clicked = false;
 		}
 		else
 		{

@@ -430,7 +430,7 @@
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
     <ClCompile Include="ParamSetting.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -645,7 +645,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParamSetting.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

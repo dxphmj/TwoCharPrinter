@@ -17,9 +17,9 @@
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>YYYUU</setTEXT>
+        <setTEXT>GOOD MORNING</setTEXT>
         <qrcodeVersion>58</qrcodeVersion>
-        <qrcodeECCLevel>72477928</qrcodeECCLevel>
+        <qrcodeECCLevel>0</qrcodeECCLevel>
         <qrcodeQuietZone>0</qrcodeQuietZone>
     </OBJ>
 </MES>

@@ -1,23 +1,22 @@
 <MES>
     <PRO>
         <Matrix>1L7M</Matrix>
-        <Pixel>7</Pixel>
+        <Pixel>8</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
-        <LineStart>40</LineStart>
+        <TYPE2>logo</TYPE2>
+        <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>8</LineSize>
-        <RowSize>66</RowSize>
+        <LineSize>25</LineSize>
+        <RowSize>25</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>ZHANGWEIJUN</setTEXT>
+        <setTEXT>User\\logo\\3.bmp</setTEXT>
     </OBJ>
 </MES>

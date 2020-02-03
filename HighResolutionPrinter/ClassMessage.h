@@ -196,7 +196,6 @@ public:
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
-	void GenerateCode(int nType,QString strContent);
 	char* GenerateFileName(string tmpFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
