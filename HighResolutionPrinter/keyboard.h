@@ -157,7 +157,7 @@ private slots:
 	void period_KBBut_clicked();
 	
 public slots:
-	void esc_kBBut_clicked();
+	void btnshow();
 };
 
 #endif // KEYBOARD_H

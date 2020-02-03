@@ -30,7 +30,7 @@ private slots:
 	void LanFarsi_KBBut_clicked();
 	void LanHindi_KBBut_clicked();
 
-	void sendslot();
+	//void sendslot();
 
 signals:
 	void languageEvent();

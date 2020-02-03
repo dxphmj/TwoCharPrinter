@@ -1,4 +1,4 @@
-#include "keyboard.h"
+ï»¿#include "keyboard.h"
 #include "ui_keyboard.h"
 #include <QAction>
 #include <QtWidgets/QStackedWidget>
@@ -62,7 +62,9 @@ keyboard::keyboard(QWidget *parent)
 	//connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps_KBBut_clicked()));
 	connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps1_kBBut_clicked()));
 	connect(ui->symbol_KBBut,SIGNAL(clicked()),this,SLOT(symbol_KBBut_clicked()));
-	connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//¸¸´°¿ÚÖ´ÐÐ²Ûº¯Êý
+
+	//connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//çˆ¶çª—å£æ‰§è¡Œæ§½å‡½æ•°
+
 
 	m_LanType = English;
 	m_Upper = false;
@@ -126,7 +128,7 @@ void keyboard::btnhide()
 
 void keyboard::caps1_kBBut_clicked()
 {
-	if ( m_Upper == true )//Èç¹ûµ±Ç°ÎªÐ¡Ð´
+	if ( m_Upper == true )//å¦‚æžœå½“å‰ä¸ºå°å†™
 	{
 		switch (m_LanType)
 		{
@@ -134,11 +136,13 @@ void keyboard::caps1_kBBut_clicked()
 		case 0:  //chinese
 			{
 				LanChineseSmall();
+				btnshow();
 				break;
 			}
 		case 1:  //Japanese
 			{
 				LanJapaneseSmall();
+				btnshow();
 				break;
 			}
 		case 3: //Chinese_others
@@ -146,11 +150,13 @@ void keyboard::caps1_kBBut_clicked()
 		case 21://Japanese_others
 			{
 				LanEnglishBig();
+				btnhide();
 				break;
 			}
 		case 22: //Korean_others
 			{
 				LanKoreanSmall();
+				btnshow();
 				break;
 			}
 		case 8:  //Czech
@@ -161,21 +167,25 @@ void keyboard::caps1_kBBut_clicked()
 		case 9:  //Dutch
 			{
 				LanDutchBig();
+				btnhide();
 				break;
 			}
 		case 10:  //German
 			{
 				LanGermanBig();
+				btnhide();
 				break;
 			}
 		case 11:  //Finnish
 			{
 				LanFarsiBig();
+				btnhide();
 				break;
 			}
 		case 12:  //Hindi
 			{
 				LanHindiBig();
+				btnhide();
 				break;
 			}
 		}
@@ -201,7 +211,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Å®"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -213,7 +223,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ãš"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -224,19 +234,19 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("¡¦"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ë‡"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ã‰"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Ã"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Ã"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ã"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Å½"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Å˜"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ÄŒ"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Å "));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Äš"));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("¡ã"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â°"));
 		//		break;
 		//	}
 		//case 9:  //Dutch
@@ -252,7 +262,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("¡À"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Â±"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -287,7 +297,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("¡ì"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â§"));
 		//		break;
 		//	}
 		//case 10: //German
@@ -302,8 +312,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ã„"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã–"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -315,7 +325,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ãš"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -335,7 +345,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("¡ì"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Â§"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
 		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("^"));
@@ -353,8 +363,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ã„"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã–"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -365,8 +375,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Â´"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ã…"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -385,62 +395,62 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¡è"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Â¤"));
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â½"));
 		//		break;
 		//	}
 		//case 12:  //Hindi
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("à¥Ÿ"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("à¥¤"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("à¤·"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("à¤¶"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("à¤³"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("à¤´"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("à¤©"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("à¤£"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("à¤"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("à¤Ž"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("à¤ "));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("à¤›"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("à¤¥"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("à¤–"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("à¤±"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("à¤«"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("à¤‰"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("à¤‡"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("à¤…"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("à¤"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("à¤“"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("à¤‘"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("à¤ž"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("à¤¢"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("à¤"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("à¤§"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("à¤˜"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("à¤™"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("à¤­"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("à¤Š"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("à¤ˆ"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("à¤†"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("à¤"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("à¤”"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("à¤‹"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("à¤ƒ"));
 		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("???"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("???"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("???"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("???"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("??"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("??"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("à¤¶à¥à¤°"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("à¤•à¥à¤·"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("à¤¤à¥à¤°"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("à¤œà¥à¤ž"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("à¤°à¥"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("à¥à¤°"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("à¥…"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("à¤"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("à¤’"));
 		//		break;
 		//	}
 		//case 13:  //Hungarian
@@ -455,8 +465,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ã"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã‰"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -466,9 +476,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Å°"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ãš"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -479,9 +489,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ã“"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("Ãœ"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ã–"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("="));
@@ -491,7 +501,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("+"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("¡ì"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â§"));
 		//		break;
 		//	}
 		//case 14:  //Italian
@@ -506,8 +516,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¡ã"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Â°"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã§"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -517,9 +527,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("¡ì"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Â§"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("¨¦"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ã©"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -539,7 +549,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Â£"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
 		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("|"));
@@ -558,7 +568,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã‡"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -582,9 +592,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("¡ª¡ª"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("£©"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("£¨"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("â€”â€”"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ï¼‰"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("ï¼ˆ"));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("&&"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("^"));
@@ -599,52 +609,52 @@ void keyboard::caps1_kBBut_clicked()
 		//case 16:  //Russian
 		//	{
 		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("."));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("§À"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("§¢"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("§¾"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("§´"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("§ª"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("§®"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("§³"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("§¹"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("§Á"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("§¿"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("§¨"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("§¥"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("§­"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("§°"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("§²"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("§±"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("§¡"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("§£"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("§½"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("§¶"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("Ð®"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("Ð‘"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("Ð¬"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Ð¢"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("Ð˜"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("Ðœ"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("Ð¡"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ð§"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Ð¯"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ð­"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ð–"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("Ð”"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("Ð›"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("Ðž"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("Ð "));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ÐŸ"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("Ð"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("Ð’"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("Ð«"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("Ð¤"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("§¼"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("§·"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("§©"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("§»"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("§º"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("§¤"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("§¯"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("§¦"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("§¬"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("§µ"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("§¸"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("§«"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ðª"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ð¥"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("Ð—"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("Ð©"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("Ð¨"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("Ð“"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Ð"));
+		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("Ð•"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("Ðš"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("Ð£"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("Ð¦"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Ð™"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("£©"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ï¼‰"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T(":"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("¡í"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("â„–"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§§"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Ð"));
 		//		break;
 		//	}
 		//case 17:  //Spanish
@@ -659,8 +669,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¡§"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Â¨"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã‘"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -670,7 +680,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ã‡"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
 		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
@@ -683,7 +693,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Â¿"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
 		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
@@ -692,10 +702,10 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("¡¤"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Â·"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Âª"));
 		//		break;
 		//	}
 		//case 18:  //Swedish
@@ -710,8 +720,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ã„"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã–"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -723,7 +733,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("*"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ã…"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -742,11 +752,11 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¡è"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Â¤"));
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â½"));
 		//		break;
 		//	}
 		//case 19:  //Thai
@@ -760,21 +770,21 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("B"));
 		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("S"));
 		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("Ã‡"));
 		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("C"));
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ã–"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Åž"));
 		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Y"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("M"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("K"));
 		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("Ãœ"));
 		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("A"));
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("Ä°"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("U"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("X"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("W"));
@@ -786,7 +796,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("D"));
 		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("O"));
 		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("?"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("Äž"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("G"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("F"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("_"));
@@ -854,7 +864,7 @@ void keyboard::caps1_kBBut_clicked()
 		m_Upper = false;
 		m_symbol = true;
 	}
-	else //µ±Ç°Îª´óÐ´
+	else //å½“å‰ä¸ºå¤§å†™
 	{
 		btnLanguageSel(m_LanType);
 		m_Upper = true;
@@ -865,7 +875,7 @@ void keyboard::caps1_kBBut_clicked()
 
 void keyboard::symbol_KBBut_clicked()
 {
-	if ( m_symbol == true )//Èç¹ûµ±Ç°Îª×ÖÄ¸
+	if ( m_symbol == true )//å¦‚æžœå½“å‰ä¸ºå­—æ¯
 	{
 		switch (m_LantypeReverse)
 		{
@@ -880,11 +890,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -906,21 +916,21 @@ void keyboard::symbol_KBBut_clicked()
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
-				ui->D_KBBut->setText(QStringLiteral("£º"));
+				ui->D_KBBut->setText(QStringLiteral("ï¼š"));
 				ui->E_KBBut->setText(QStringLiteral("#"));
-				ui->F_KBBut->setText(QStringLiteral("£»"));
-				ui->G_KBBut->setText(QStringLiteral("¡°"));
-				ui->H_KBBut->setText(QStringLiteral("¡±"));
+				ui->F_KBBut->setText(QStringLiteral("ï¼›"));
+				ui->G_KBBut->setText(QStringLiteral("â€œ"));
+				ui->H_KBBut->setText(QStringLiteral("â€"));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
-				ui->Q_KBBut->setText(QStringLiteral("£¡"));
-				ui->R_KBBut->setText(QStringLiteral("£¤"));
+				ui->Q_KBBut->setText(QStringLiteral("ï¼"));
+				ui->R_KBBut->setText(QStringLiteral("ï¿¥"));
 				ui->S_KBBut->setText(QStringLiteral(")"));
 				ui->T_KBBut->setText(QStringLiteral("%"));
 				ui->U_KBBut->setText(QStringLiteral("*"));
@@ -930,7 +940,7 @@ void keyboard::symbol_KBBut_clicked()
 				ui->Y_KBBut->setText(QStringLiteral("&&"));
 				ui->Z_KBBut->setText(QStringLiteral("_"));
 				ui->comma_KBBut->setText(QStringLiteral(">"));
-				ui->period_KBBut->setText(QStringLiteral("£¿"));
+				ui->period_KBBut->setText(QStringLiteral("ï¼Ÿ"));
 				break;
 			}
 		case 2://Kore
@@ -938,21 +948,21 @@ void keyboard::symbol_KBBut_clicked()
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
-				ui->D_KBBut->setText(QStringLiteral("£º"));
+				ui->D_KBBut->setText(QStringLiteral("ï¼š"));
 				ui->E_KBBut->setText(QStringLiteral("#"));
-				ui->F_KBBut->setText(QStringLiteral("£»"));
-				ui->G_KBBut->setText(QStringLiteral("¡°"));
-				ui->H_KBBut->setText(QStringLiteral("¡±"));
+				ui->F_KBBut->setText(QStringLiteral("ï¼›"));
+				ui->G_KBBut->setText(QStringLiteral("â€œ"));
+				ui->H_KBBut->setText(QStringLiteral("â€"));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
-				ui->Q_KBBut->setText(QStringLiteral("£¡"));
-				ui->R_KBBut->setText(QStringLiteral("£¤"));
+				ui->Q_KBBut->setText(QStringLiteral("ï¼"));
+				ui->R_KBBut->setText(QStringLiteral("ï¿¥"));
 				ui->S_KBBut->setText(QStringLiteral(")"));
 				ui->T_KBBut->setText(QStringLiteral("%"));
 				ui->U_KBBut->setText(QStringLiteral("*"));
@@ -962,7 +972,7 @@ void keyboard::symbol_KBBut_clicked()
 				ui->Y_KBBut->setText(QStringLiteral("&&"));
 				ui->Z_KBBut->setText(QStringLiteral("_"));
 				ui->comma_KBBut->setText(QStringLiteral(">"));
-				ui->period_KBBut->setText(QStringLiteral("£¿"));
+				ui->period_KBBut->setText(QStringLiteral("ï¼Ÿ"));
 				break;
 			}
 		case 3://Czech
@@ -976,11 +986,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1018,11 +1028,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1050,11 +1060,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1092,11 +1102,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1134,11 +1144,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1176,11 +1186,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("¡¶"));
-				ui->K_KBBut->setText(QStringLiteral("¡·"));
-				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
+				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
+				ui->L_KBBut->setText(QStringLiteral("ã€"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->N_KBBut->setText(QStringLiteral("â€¦"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -1209,8 +1219,9 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		}
 		m_symbol = false;
+		btnhide();
 	}
-	else //µ±Ç°Îª·ûºÅ
+	else //å½“å‰ä¸ºç¬¦å·
 	{
 		btnSymbolSel(m_LantypeReverse);
 		m_symbol = true;
@@ -1451,7 +1462,7 @@ void keyboard::period_KBBut_clicked()
 	m_pInputEdit->insert(ui->period_KBBut->text());
 }
 
-void keyboard::esc_kBBut_clicked()
+void keyboard::btnshow()
 {
 	//QWidget *qw=new QWidget(this);
 	//qw->setGeometry(20,10,750,30);
@@ -1481,12 +1492,14 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 1:  //Japanese
 		{
 			LanJapaneseBig();
+			btnhide();
 			break;
 		}
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
 		{
 			LanChineseBig();
+			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1495,6 +1508,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 22: //Korean_others
 		{
 			LanKoreanBig();
+			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -1516,6 +1530,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 7:  //English
 		{
 			LanEnglishSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1523,6 +1538,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 8:  //Czech
 		{
 			LanCzechSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1530,6 +1546,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 9:  //Dutch
 		{
 		    LanDutchSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1537,6 +1554,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 10: //German
 		{
 			LanGermanSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1544,6 +1562,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 11:  //FarsiSmall
 		{
 		    LanFarsiSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1551,6 +1570,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 12:  //Hindi
 		{
 		    LanHindiSmall();
+			btnhide();
 		//	pWnd->btnHide();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_HIDE);
 			break;
@@ -1619,35 +1639,38 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 {
 	switch (m_LantypeReverse)
 	{
-		case 0: //µ±Ç°ÎªEnglishSymbol
+		case 0: //å½“å‰ä¸ºEnglishSymbol
 		{
 			SymbolToEnglish();
+			btnhide();
+
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 1: //µ±Ç°ÎªChineseSymbol
+		case 1: //å½“å‰ä¸ºChineseSymbol
 		{
 			SymbolToChinese();
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 2: //µ±Ç°ÎªKoreSymbol
+		case 2: //å½“å‰ä¸ºKoreSymbol
 		{
 			SymbolToKore();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 3: //µ±Ç°ÎªKoreSymbol
+		case 3: //å½“å‰ä¸ºKoreSymbol
 		{
 			SymbolToCzech();
+			btnhide();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 4: //µ±Ç°ÎªKoreSymbol
+		case 4: //å½“å‰ä¸ºKoreSymbol
 		{
 			SymbolToJapanese();
 				//	pWnd->btnShow();
@@ -1657,21 +1680,25 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 5:
 		{
 			SymbolToDutch();
+			btnhide();
 			break;
 		}
 		case 6:
 		{
 			SymbolToGerman();
+			btnhide();
 			break;
 		}
 		case 7:
 		{
 			SymbolToFarsi();
+			btnhide();
 			break;
 		}
 		case 8:
 		{
 			SymbolToHindi();
+			btnhide();
 			break;
 		}
 		
@@ -1852,6 +1879,7 @@ void keyboard::LanChineseSmall()
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 }
 
 void keyboard::LanChineseBig()
@@ -1896,34 +1924,34 @@ void keyboard::LanChineseBig()
 	ui->zero_KBBut->setText("0");
 }
 
-void keyboard::LanKoreanSmall()//º«ÓïÐ¡Ð´
+void keyboard::LanKoreanSmall()//éŸ©è¯­å°å†™
 {
-	ui->A_KBBut->setText(QStringLiteral("?"));
-	ui->B_KBBut->setText(QStringLiteral("?"));
-	ui->C_KBBut->setText(QStringLiteral("?"));
-	ui->D_KBBut->setText(QStringLiteral("?"));
-	ui->E_KBBut->setText(QStringLiteral("?"));
-	ui->F_KBBut->setText(QStringLiteral("?"));
-	ui->G_KBBut->setText(QStringLiteral("?"));
-	ui->H_KBBut->setText(QStringLiteral("?"));
-	ui->I_KBBut->setText(QStringLiteral("?"));
-	ui->J_KBBut->setText(QStringLiteral("?"));
-	ui->K_KBBut->setText(QStringLiteral("?"));
-	ui->L_KBBut->setText(QStringLiteral("?"));
-	ui->M_KBBut->setText(QStringLiteral("?"));
-	ui->N_KBBut->setText(QStringLiteral("?"));
-	ui->O_KBBut->setText(QStringLiteral("?"));
-	ui->P_KBBut->setText(QStringLiteral("?"));
-	ui->Q_KBBut->setText(QStringLiteral("?"));
-	ui->R_KBBut->setText(QStringLiteral("?"));
-	ui->S_KBBut->setText(QStringLiteral("?"));
-	ui->T_KBBut->setText(QStringLiteral("?"));
-	ui->U_KBBut->setText(QStringLiteral("?"));
-	ui->V_KBBut->setText(QStringLiteral("?"));
-	ui->W_KBBut->setText(QStringLiteral("?"));
-	ui->X_KBBut->setText(QStringLiteral("?"));
-	ui->Y_KBBut->setText(QStringLiteral("?"));
-	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->A_KBBut->setText(QStringLiteral("ã…"));
+	ui->B_KBBut->setText(QStringLiteral("ã… "));
+	ui->C_KBBut->setText(QStringLiteral("ã…Š"));
+	ui->D_KBBut->setText(QStringLiteral("ã…‡"));
+	ui->E_KBBut->setText(QStringLiteral("ã„·"));
+	ui->F_KBBut->setText(QStringLiteral("ã„¹"));
+	ui->G_KBBut->setText(QStringLiteral("ã…Ž"));
+	ui->H_KBBut->setText(QStringLiteral("ã…—"));
+	ui->I_KBBut->setText(QStringLiteral("ã…‘"));
+	ui->J_KBBut->setText(QStringLiteral("ã…“"));
+	ui->K_KBBut->setText(QStringLiteral("ã…"));
+	ui->L_KBBut->setText(QStringLiteral("ã…£"));
+	ui->M_KBBut->setText(QStringLiteral("ã…¡"));
+	ui->N_KBBut->setText(QStringLiteral("ã…œ"));
+	ui->O_KBBut->setText(QStringLiteral("ã…"));
+	ui->P_KBBut->setText(QStringLiteral("ã…”"));
+	ui->Q_KBBut->setText(QStringLiteral("ã…‚"));
+	ui->R_KBBut->setText(QStringLiteral("ã„±"));
+	ui->S_KBBut->setText(QStringLiteral("ã„´"));
+	ui->T_KBBut->setText(QStringLiteral("ã……"));
+	ui->U_KBBut->setText(QStringLiteral("ã…•"));
+	ui->V_KBBut->setText(QStringLiteral("ã…"));
+	ui->W_KBBut->setText(QStringLiteral("ã…ˆ"));
+	ui->X_KBBut->setText(QStringLiteral("ã…Œ"));
+	ui->Y_KBBut->setText(QStringLiteral("ã…›"));
+	ui->Z_KBBut->setText(QStringLiteral("ã…‹"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -1934,6 +1962,7 @@ void keyboard::LanKoreanSmall()//º«ÓïÐ¡Ð´
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 
 //
 //
@@ -1941,37 +1970,37 @@ void keyboard::LanKoreanSmall()//º«ÓïÐ¡Ð´
 //	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
 //	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
 //	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-//	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("?"));
+//	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ã…¡"));
+//	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ã…œ"));
+//	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ã… "));
+//	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ã…"));
+//	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ã…Š"));
+//	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ã…Œ"));
+//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ã…‹"));
 //	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("'"));
 //	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(";"));
-//	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("?"));
+//	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ã…£"));
+//	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ã…"));
+//	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ã…“"));
+//	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ã…—"));
+//	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ã…Ž"));
+//	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ã„¹"));
+//	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ã…‡"));
+//	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ã„´"));
+//	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ã…"));
 //	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
 //	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("]"));
 //	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("["));
-//	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("?"));
-//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("?"));
+//	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ã…”"));
+//	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ã…"));
+//	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ã…‘"));
+//	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ã…•"));
+//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ã…›"));
+//	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ã……"));
+//	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ã„±"));
+//	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ã„·"));
+//	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ã…ˆ"));
+//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ã…‚"));
 //	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("="));
 //	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
 //	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
@@ -1990,32 +2019,32 @@ void keyboard::LanKoreanSmall()//º«ÓïÐ¡Ð´
 
 void keyboard::LanKoreanBig()
 {
-	ui->A_KBBut->setText(QStringLiteral("?"));
-	ui->B_KBBut->setText(QStringLiteral("?"));
-	ui->C_KBBut->setText(QStringLiteral("?"));
-	ui->D_KBBut->setText(QStringLiteral("?"));
-	ui->E_KBBut->setText(QStringLiteral("?"));
-	ui->F_KBBut->setText(QStringLiteral("?"));
-	ui->G_KBBut->setText(QStringLiteral("?"));
-	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->A_KBBut->setText(QStringLiteral("ã…"));
+	ui->B_KBBut->setText(QStringLiteral("íŒŒ"));
+	ui->C_KBBut->setText(QStringLiteral("ì¹´"));
+	ui->D_KBBut->setText(QStringLiteral("ë‚˜"));
+	ui->E_KBBut->setText(QStringLiteral("ã„¸"));
+	ui->F_KBBut->setText(QStringLiteral("ë‹¤"));
+	ui->G_KBBut->setText(QStringLiteral("ë¼"));
+	ui->H_KBBut->setText(QStringLiteral("ë§ˆ"));
 	ui->I_KBBut->setText(QStringLiteral(""));
-	ui->J_KBBut->setText(QStringLiteral("?"));
-	ui->K_KBBut->setText(QStringLiteral("?"));
-	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("ë°”"));
+	ui->K_KBBut->setText(QStringLiteral("ì‚¬"));
+	ui->L_KBBut->setText(QStringLiteral("ì•„"));
 	ui->M_KBBut->setText(QStringLiteral(""));
-	ui->N_KBBut->setText(QStringLiteral("?"));
-	ui->O_KBBut->setText(QStringLiteral("?"));
-	ui->P_KBBut->setText(QStringLiteral("?"));
-	ui->Q_KBBut->setText(QStringLiteral("?"));
-	ui->R_KBBut->setText(QStringLiteral("?"));
-	ui->S_KBBut->setText(QStringLiteral("?"));
-	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("í•˜"));
+	ui->O_KBBut->setText(QStringLiteral("ã…’"));
+	ui->P_KBBut->setText(QStringLiteral("ã…–"));
+	ui->Q_KBBut->setText(QStringLiteral("ã…ƒ"));
+	ui->R_KBBut->setText(QStringLiteral("ã„²"));
+	ui->S_KBBut->setText(QStringLiteral("ê°€"));
+	ui->T_KBBut->setText(QStringLiteral("ã…†"));
 	ui->U_KBBut->setText(QStringLiteral(""));
-	ui->V_KBBut->setText(QStringLiteral("?"));
-	ui->W_KBBut->setText(QStringLiteral("?"));
-	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("íƒ€"));
+	ui->W_KBBut->setText(QStringLiteral("ã…‰"));
+	ui->X_KBBut->setText(QStringLiteral("ì°¨"));
 	ui->Y_KBBut->setText(QStringLiteral(""));
-	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("ìž"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -2058,16 +2087,16 @@ void keyboard::LanCzechSmall()
 	ui->Z_KBBut->setText("y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("¨§"));
-	ui->three_KBBut->setText(QStringLiteral("?"));
-	ui->four_KBBut->setText(QStringLiteral("?"));
-	ui->five_KBBut->setText(QStringLiteral("?"));
-	ui->six_KBBut->setText(QStringLiteral("?"));
-	ui->seven_KBBut->setText(QStringLiteral("?"));
-	ui->eight_KBBut->setText(QStringLiteral("¨¢"));
-	ui->nine_KBBut->setText(QStringLiteral("¨ª"));
-	ui->zero_KBBut->setText(QStringLiteral("¨¦"));
+	ui->one_KBBut->setText(QStringLiteral("Å¯"));
+	ui->two_KBBut->setText(QStringLiteral("Ä›"));
+	ui->three_KBBut->setText(QStringLiteral("Å¡"));
+	ui->four_KBBut->setText(QStringLiteral("Ä"));
+	ui->five_KBBut->setText(QStringLiteral("Å™"));
+	ui->six_KBBut->setText(QStringLiteral("Å¾"));
+	ui->seven_KBBut->setText(QStringLiteral("Ã½"));
+	ui->eight_KBBut->setText(QStringLiteral("Ã¡"));
+	ui->nine_KBBut->setText(QStringLiteral("Ã­"));
+	ui->zero_KBBut->setText(QStringLiteral("Ã©"));
 	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
@@ -2078,8 +2107,8 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("c"));
 	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("x"));
 	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("y"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¡ì"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Â§"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Å¯"));
 	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("l"));
 	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("k"));
 	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("j"));
@@ -2089,9 +2118,9 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("d"));
 	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("s"));
 	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("a"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("¡§"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Â¨"));
 	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T(")"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("¨²"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ãº"));
 	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("p"));
 	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("o"));
 	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("i"));
@@ -2102,17 +2131,17 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("e"));
 	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("w"));
 	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Â´"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("="));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("¨¦"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("¨ª"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("¨¢"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("¨§"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ã©"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Ã­"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Ã¡"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ã½"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Å¾"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Å™"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Ä"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Å¡"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ä›"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("+"));
 	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T(";"));*/
 }
@@ -2147,16 +2176,16 @@ void keyboard::LanCzechBig()
 	ui->Z_KBBut->setText("Y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("?"));
-	ui->three_KBBut->setText(QStringLiteral("?"));
-	ui->four_KBBut->setText(QStringLiteral("?"));
-	ui->five_KBBut->setText(QStringLiteral("?"));
-	ui->six_KBBut->setText(QStringLiteral("?"));
-	ui->seven_KBBut->setText(QStringLiteral("?"));
-	ui->eight_KBBut->setText(QStringLiteral("?"));
-	ui->nine_KBBut->setText(QStringLiteral("?"));
-	ui->zero_KBBut->setText(QStringLiteral("?"));
+	ui->one_KBBut->setText(QStringLiteral("Ãš"));
+	ui->two_KBBut->setText(QStringLiteral("Äš"));
+	ui->three_KBBut->setText(QStringLiteral("Å "));
+	ui->four_KBBut->setText(QStringLiteral("ÄŒ"));
+	ui->five_KBBut->setText(QStringLiteral("Å˜"));
+	ui->six_KBBut->setText(QStringLiteral("Å½"));
+	ui->seven_KBBut->setText(QStringLiteral("Ã"));
+	ui->eight_KBBut->setText(QStringLiteral("Ã"));
+	ui->nine_KBBut->setText(QStringLiteral("Ã"));
+	ui->zero_KBBut->setText(QStringLiteral("Ã‰"));
 	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
@@ -2168,7 +2197,7 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
 	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Å®"));
 	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -2180,7 +2209,7 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
 	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ãš"));
 	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -2191,19 +2220,19 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
 	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
 	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("¡¦"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ë‡"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ã‰"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Ã"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Ã"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ã"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Å½"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Å˜"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ÄŒ"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Å "));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Äš"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("¡ã"));*/
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â°"));*/
 }
 
 void keyboard::LanJapaneseSmall()
@@ -2246,6 +2275,7 @@ void keyboard::LanJapaneseSmall()
 	ui->eight_KBBut->setText("8");
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
+	btnshow();
 }
 
 void keyboard::LanJapaneseBig()
@@ -2383,7 +2413,7 @@ void keyboard::LanDutchBig()
 	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
 	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("¡À"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Â±"));
 	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -2418,7 +2448,7 @@ void keyboard::LanDutchBig()
 	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
 	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("¡ì"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â§"));
 	//		break;
 }
 
@@ -2450,8 +2480,8 @@ void keyboard::LanGermanSmall()
 	ui->X_KBBut->setText("x");
 	ui->Y_KBBut->setText("z");
 	ui->Z_KBBut->setText("y");
-	ui->comma_KBBut->setText(QStringLiteral("?"));
-	ui->period_KBBut->setText(QStringLiteral("?"));
+	ui->comma_KBBut->setText(QStringLiteral("Ã¤"));
+	ui->period_KBBut->setText(QStringLiteral("Ã¶"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -2492,11 +2522,11 @@ void keyboard::LanGermanBig()
 	ui->X_KBBut->setText("X");
 	ui->Y_KBBut->setText("Z");
 	ui->Z_KBBut->setText("Y");
-	ui->comma_KBBut->setText(QStringLiteral("?"));//µÂÓïÕâÀïÃ»ÓÐ¶ººÅ
-	ui->period_KBBut->setText(QStringLiteral("?"));//µÂÓïµÄ×¨Êô·ûºÅ
+	ui->comma_KBBut->setText(QStringLiteral("Ã„"));//å¾·è¯­è¿™é‡Œæ²¡æœ‰é€—å·
+	ui->period_KBBut->setText(QStringLiteral("Ã–"));//å¾·è¯­çš„ä¸“å±žç¬¦å·
 	ui->one_KBBut->setText(QStringLiteral("!"));
 	ui->two_KBBut->setText(QStringLiteral("\\"));
-	ui->three_KBBut->setText(QStringLiteral("¡ì"));
+	ui->three_KBBut->setText(QStringLiteral("Â§"));
 	ui->four_KBBut->setText(QStringLiteral("$"));
 	ui->five_KBBut->setText(QStringLiteral("%"));
 	ui->six_KBBut->setText(QStringLiteral("&&"));
@@ -2536,16 +2566,16 @@ void keyboard::LanFarsiSmall()
 	ui->Z_KBBut->setText("z");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("¡è"));
+	ui->one_KBBut->setText(QStringLiteral("Â½"));
+	ui->two_KBBut->setText(QStringLiteral("Â¤"));
 	ui->three_KBBut->setText(QStringLiteral("`"));
-	ui->four_KBBut->setText(QStringLiteral("?"));
-	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("Ã¥"));
+	ui->five_KBBut->setText(QStringLiteral("Â´"));
 	ui->six_KBBut->setText(QStringLiteral("'"));
-	ui->seven_KBBut->setText(QStringLiteral("?"));
-	ui->eight_KBBut->setText(QStringLiteral("?"));
-	ui->nine_KBBut->setText(QStringLiteral("¡ì"));
-	ui->zero_KBBut->setText(QStringLiteral("¡§"));
+	ui->seven_KBBut->setText(QStringLiteral("Ã¤"));
+	ui->eight_KBBut->setText(QStringLiteral("Ã¶"));
+	ui->nine_KBBut->setText(QStringLiteral("Â§"));
+	ui->zero_KBBut->setText(QStringLiteral("Â¨"));
 }
 
 void keyboard::LanFarsiBig()
@@ -2578,16 +2608,16 @@ void keyboard::LanFarsiBig()
 	ui->Z_KBBut->setText("Z");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("¡è"));
+	ui->one_KBBut->setText(QStringLiteral("Â½"));
+	ui->two_KBBut->setText(QStringLiteral("Â¤"));
 	ui->three_KBBut->setText(QStringLiteral("`"));
-	ui->four_KBBut->setText(QStringLiteral("?"));
-	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("Ã…"));
+	ui->five_KBBut->setText(QStringLiteral("Â´"));
 	ui->six_KBBut->setText(QStringLiteral("'"));
-	ui->seven_KBBut->setText(QStringLiteral("?"));
-	ui->eight_KBBut->setText(QStringLiteral("?"));
-	ui->nine_KBBut->setText(QStringLiteral("¡ì"));
-	ui->zero_KBBut->setText(QStringLiteral("¡§"));
+	ui->seven_KBBut->setText(QStringLiteral("Ã„"));
+	ui->eight_KBBut->setText(QStringLiteral("Ã–"));
+	ui->nine_KBBut->setText(QStringLiteral("Â§"));
+	ui->zero_KBBut->setText(QStringLiteral("Â¨"));
 	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
 	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
 	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
@@ -2598,8 +2628,8 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
 	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
 	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ã„"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ã–"));
 	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
 	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
 	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
@@ -2610,8 +2640,8 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
 	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
 	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Â´"));
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ã…"));
 	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
 	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
 	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
@@ -2630,90 +2660,90 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
 	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
 	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¡è"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Â¤"));
 	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
 	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
 	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Â½"));
 	//		break;
 	//	}
 }
 
 void keyboard::LanHindiSmall()
 {
-	ui->A_KBBut->setText(QStringLiteral("?"));
-	ui->B_KBBut->setText(QStringLiteral("?"));
-	ui->C_KBBut->setText(QStringLiteral("?"));
-	ui->D_KBBut->setText(QStringLiteral("?"));
-	ui->E_KBBut->setText(QStringLiteral("?"));
-	ui->F_KBBut->setText(QStringLiteral("?"));
-	ui->G_KBBut->setText(QStringLiteral("?"));
-	ui->H_KBBut->setText(QStringLiteral("?"));
-	ui->I_KBBut->setText(QStringLiteral("?"));
-	ui->J_KBBut->setText(QStringLiteral("?"));
-	ui->K_KBBut->setText(QStringLiteral("?"));
-	ui->L_KBBut->setText(QStringLiteral("?"));
-	ui->M_KBBut->setText(QStringLiteral("?"));
-	ui->N_KBBut->setText(QStringLiteral("?"));
-	ui->O_KBBut->setText(QStringLiteral("?"));
-	ui->P_KBBut->setText(QStringLiteral("?"));
-	ui->Q_KBBut->setText(QStringLiteral("?"));
-	ui->R_KBBut->setText(QStringLiteral("?"));
-	ui->S_KBBut->setText(QStringLiteral("?"));
-	ui->T_KBBut->setText(QStringLiteral("?"));
-	ui->U_KBBut->setText(QStringLiteral("?"));
-	ui->V_KBBut->setText(QStringLiteral("?"));
-	ui->W_KBBut->setText(QStringLiteral("?"));
-	ui->X_KBBut->setText(QStringLiteral("?"));
-	ui->Y_KBBut->setText(QStringLiteral("?"));
-	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->A_KBBut->setText(QStringLiteral("à¥‹"));
+	ui->B_KBBut->setText(QStringLiteral("à¤µ"));
+	ui->C_KBBut->setText(QStringLiteral("à¤®"));
+	ui->D_KBBut->setText(QStringLiteral("à¥"));
+	ui->E_KBBut->setText(QStringLiteral("à¤¾"));
+	ui->F_KBBut->setText(QStringLiteral("à¤¿"));
+	ui->G_KBBut->setText(QStringLiteral("à¥"));
+	ui->H_KBBut->setText(QStringLiteral("à¤ª"));
+	ui->I_KBBut->setText(QStringLiteral("à¤—"));
+	ui->J_KBBut->setText(QStringLiteral("à¤°"));
+	ui->K_KBBut->setText(QStringLiteral("à¤•"));
+	ui->L_KBBut->setText(QStringLiteral("à¤¤"));
+	ui->M_KBBut->setText(QStringLiteral("à¤¸"));
+	ui->N_KBBut->setText(QStringLiteral("à¤²"));
+	ui->O_KBBut->setText(QStringLiteral("à¤¦"));
+	ui->P_KBBut->setText(QStringLiteral("à¤œ"));
+	ui->Q_KBBut->setText(QStringLiteral("à¥Œ"));
+	ui->R_KBBut->setText(QStringLiteral("à¥€"));
+	ui->S_KBBut->setText(QStringLiteral("à¥‡"));
+	ui->T_KBBut->setText(QStringLiteral("à¥‚"));
+	ui->U_KBBut->setText(QStringLiteral("à¤¹"));
+	ui->V_KBBut->setText(QStringLiteral("à¤¨"));
+	ui->W_KBBut->setText(QStringLiteral("à¥ˆ"));
+	ui->X_KBBut->setText(QStringLiteral("à¤‚"));
+	ui->Y_KBBut->setText(QStringLiteral("à¤¬"));
+	ui->Z_KBBut->setText(QStringLiteral("à¥†"));
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("?"));
-	ui->three_KBBut->setText(QStringLiteral("??"));
-	ui->four_KBBut->setText(QStringLiteral("?"));
-	ui->five_KBBut->setText(QStringLiteral("?"));
-	ui->six_KBBut->setText(QStringLiteral("?"));
-	ui->seven_KBBut->setText(QStringLiteral("?"));
-	ui->eight_KBBut->setText(QStringLiteral("?"));
-	ui->nine_KBBut->setText(QStringLiteral("?"));
-	ui->zero_KBBut->setText(QStringLiteral("?"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
+	ui->one_KBBut->setText(QStringLiteral("à¤"));
+	ui->two_KBBut->setText(QStringLiteral("à¥…"));
+	ui->three_KBBut->setText(QStringLiteral("à¥à¤¯"));
+	ui->four_KBBut->setText(QStringLiteral("à¤Ÿ"));
+	ui->five_KBBut->setText(QStringLiteral("à¤š"));
+	ui->six_KBBut->setText(QStringLiteral("à¥‰"));
+	ui->seven_KBBut->setText(QStringLiteral("à¤¼"));
+	ui->eight_KBBut->setText(QStringLiteral("à¤¡"));
+	ui->nine_KBBut->setText(QStringLiteral("à¥ƒ"));
+	ui->zero_KBBut->setText(QStringLiteral("à¥Š"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("à¤¯"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("à¤¸"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("à¤²"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("à¤µ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("à¤¨"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("à¤®"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("à¤‚"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("à¥†"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("à¤Ÿ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("à¤š"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("à¤¤"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("à¤•"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("à¤°"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("à¤ª"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("à¥"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("à¤¿"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("à¥"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("à¥‡"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("à¥‹"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("à¥‰"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("à¤¼"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("à¤¡"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("à¤œ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("à¤¦"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("à¤—"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("à¤¹"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("à¤¬"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("à¥‚"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("à¥€"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("à¤¾"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("à¥ˆ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("à¥Œ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("à¥ƒ"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
 	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
 	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
@@ -2725,96 +2755,96 @@ void keyboard::LanHindiSmall()
 	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
 	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));*/
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("à¥Š"));*/
 }
 
 void keyboard::LanHindiBig()
-{                                                //ºÜ¶à·ûºÅÃ»ÓÐ·ÅÉÏ
-	ui->A_KBBut->setText(QStringLiteral("?"));
-	ui->B_KBBut->setText(QStringLiteral("?"));
-	ui->C_KBBut->setText(QStringLiteral("?"));
-	ui->D_KBBut->setText(QStringLiteral("?"));
-	ui->E_KBBut->setText(QStringLiteral("?"));
-	ui->F_KBBut->setText(QStringLiteral("?"));
-	ui->G_KBBut->setText(QStringLiteral("?"));
-	ui->H_KBBut->setText(QStringLiteral("?"));
-	ui->I_KBBut->setText(QStringLiteral("?"));
-	ui->J_KBBut->setText(QStringLiteral("?"));
-	ui->K_KBBut->setText(QStringLiteral("?"));
-	ui->L_KBBut->setText(QStringLiteral("?"));
-	ui->M_KBBut->setText(QStringLiteral("?"));
-	ui->N_KBBut->setText(QStringLiteral("?"));
-	ui->O_KBBut->setText(QStringLiteral("?"));
-	ui->P_KBBut->setText(QStringLiteral("?"));
-	ui->Q_KBBut->setText(QStringLiteral("?"));
-	ui->R_KBBut->setText(QStringLiteral("?"));
-	ui->S_KBBut->setText(QStringLiteral("?"));
-	ui->T_KBBut->setText(QStringLiteral("?"));
-	ui->U_KBBut->setText(QStringLiteral("?"));
-	ui->V_KBBut->setText(QStringLiteral("?"));
-	ui->W_KBBut->setText(QStringLiteral("?"));
-	ui->X_KBBut->setText(QStringLiteral("?"));
-	ui->Y_KBBut->setText(QStringLiteral("?"));
-	ui->Z_KBBut->setText(QStringLiteral("?"));
+{                                                //å¾ˆå¤šç¬¦å·æ²¡æœ‰æ”¾ä¸Š
+	ui->A_KBBut->setText(QStringLiteral("à¤“"));
+	ui->B_KBBut->setText(QStringLiteral("à¤´"));
+	ui->C_KBBut->setText(QStringLiteral("à¤£"));
+	ui->D_KBBut->setText(QStringLiteral("à¤…"));
+	ui->E_KBBut->setText(QStringLiteral("à¤†"));
+	ui->F_KBBut->setText(QStringLiteral("à¤‡"));
+	ui->G_KBBut->setText(QStringLiteral("à¤‰"));
+	ui->H_KBBut->setText(QStringLiteral("à¤«"));
+	ui->I_KBBut->setText(QStringLiteral("à¤"));
+	ui->J_KBBut->setText(QStringLiteral("à¤±"));
+	ui->K_KBBut->setText(QStringLiteral("à¤–"));
+	ui->L_KBBut->setText(QStringLiteral("à¤¥"));
+	ui->M_KBBut->setText(QStringLiteral("à¤¶"));
+	ui->N_KBBut->setText(QStringLiteral("à¤³"));
+	ui->O_KBBut->setText(QStringLiteral("à¤§"));
+	ui->P_KBBut->setText(QStringLiteral("à¤"));
+	ui->Q_KBBut->setText(QStringLiteral("à¤”"));
+	ui->R_KBBut->setText(QStringLiteral("à¤ˆ"));
+	ui->S_KBBut->setText(QStringLiteral("à¤"));
+	ui->T_KBBut->setText(QStringLiteral("à¤˜"));
+	ui->U_KBBut->setText(QStringLiteral("à¤™"));
+	ui->V_KBBut->setText(QStringLiteral("à¤©"));
+	ui->W_KBBut->setText(QStringLiteral("à¤"));
+	ui->X_KBBut->setText(QStringLiteral("à¤"));
+	ui->Y_KBBut->setText(QStringLiteral("à¤­"));
+	ui->Z_KBBut->setText(QStringLiteral("à¤Ž"));
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("?"));
-	ui->two_KBBut->setText(QStringLiteral("?"));
-	ui->three_KBBut->setText(QStringLiteral("??"));
-	ui->four_KBBut->setText(QStringLiteral("??"));
-	ui->five_KBBut->setText(QStringLiteral("???"));
-	ui->six_KBBut->setText(QStringLiteral("???"));
-	ui->seven_KBBut->setText(QStringLiteral("???"));
-	ui->eight_KBBut->setText(QStringLiteral("???"));
+	ui->one_KBBut->setText(QStringLiteral("à¤’"));
+	ui->two_KBBut->setText(QStringLiteral("à¤ƒ"));
+	ui->three_KBBut->setText(QStringLiteral("à¥à¤°"));
+	ui->four_KBBut->setText(QStringLiteral("à¤°à¥"));
+	ui->five_KBBut->setText(QStringLiteral("à¤œà¥à¤ž"));
+	ui->six_KBBut->setText(QStringLiteral("à¤¤à¥à¤°"));
+	ui->seven_KBBut->setText(QStringLiteral("à¤•à¥à¤·"));
+	ui->eight_KBBut->setText(QStringLiteral("à¤¶à¥à¤°"));
 	ui->nine_KBBut->setText(QStringLiteral("("));
 	ui->zero_KBBut->setText(QStringLiteral(")"));
-	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));  Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("?"));   Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));   Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("?"));   Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("?"));    Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("?"));   Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("?"));    Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("?"));     Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("?"));    Ã»·ÅÉÏ
-	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
+	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("à¥Ÿ"));  æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("à¥¤"));   æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("à¤·"));   æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("à¤¶"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("à¤³"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("à¤´"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("à¤©"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("à¤£"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("à¤"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("à¤Ž"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("à¤ "));   æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("à¤›"));    æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("à¤¥"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("à¤–"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("à¤±"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("à¤«"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("à¤‰"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("à¤‡"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("à¤…"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("à¤"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("à¤“"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("à¤‘"));   æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("à¤ž"));    æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("à¤¢"));     æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("à¤"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("à¤§"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("à¤˜"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("à¤™"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("à¤­"));
+	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("à¤Š"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("à¤ˆ"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("à¤†"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("à¤"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("à¤”"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("à¤‹"));    æ²¡æ”¾ä¸Š
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("à¤ƒ"));
 	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
 	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("???"));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("???"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("???"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("???"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("??"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("??"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("?"));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("à¤¶à¥à¤°"));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("à¤•à¥à¤·"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("à¤¤à¥à¤°"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("à¤œà¥à¤ž"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("à¤°à¥"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("à¥à¤°"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("à¥…"));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("à¤"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("à¤’"));
 	//		break;
 }
 
