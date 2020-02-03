@@ -1,4 +1,6 @@
 #include "syssetting.h"
+#include "UILanguage.h"
+#include "mainwindow.h"
 
 sysSetting::sysSetting(QWidget *parent)
 	: QWidget(parent)
@@ -54,6 +56,18 @@ sysSetting::sysSetting(QWidget *parent)
 								  padding-left:7px;padding-top:7px;}\
 								  "); 
 
+
+	//QLabel * label = new QLabel(this);
+	//int      number = 10;
+	//label->setText(tr("<font style = 'font-size:14px; color:red;'> num </font>") 
+	//	+ tr("<font style = 'font-family:MicrosoftYaHei; font-size:20px; color:#F13232;'>%1</font>").arg(number));
+	////label动态调整为文本大小
+	//label->adjustSize();
+
+	MainWindow* theApp = (MainWindow*)(this->parent()->parent());
+	CUILanguage languageTool(theApp);
+	languageTool.ChangeLanguage(ENGLISH);
+ 
 }
 
 sysSetting::~sysSetting()
