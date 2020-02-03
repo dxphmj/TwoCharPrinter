@@ -9,6 +9,9 @@
 #include <vector>
 #include <map>
 #include <queue>
+
+#include "ParamSetting.h"
+
 using namespace std;
 typedef unsigned char BYTE;
 
@@ -35,6 +38,7 @@ public:
  	ClassMessage* m_PrinterMes; //打印监控用
     queue<vector<BYTE>> queCtr;//命令队列 
 	queue<vector<BYTE>> ForPreQue;//欲打印队列
+	CParamSetting m_ParamSetting;
 
 	bool m_bPrintNow;
 	bool m_bDynamicPrint;

@@ -429,6 +429,9 @@
     <ClCompile Include="Debug\moc_PrintShowThread.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="ParamSetting.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -640,6 +643,9 @@
     </ClInclude>
     <ClInclude Include="ModuleMain.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParamSetting.h">
+      <Filter>Generated Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

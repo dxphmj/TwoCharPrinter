@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
+#include "mainwindow.h"
 
 ParamSettingForm::ParamSettingForm(QWidget *parent) :
     QWidget(parent),
@@ -84,6 +85,12 @@ void ParamSettingForm::aboutMacBut_clicked()
 
 void ParamSettingForm::holdConfigurationBut_clicked()
 {
+	//先给m_ParamSetting中的参数赋值，然后调用CParamSetting中的函数SaveParam2Xml进行保存
+	MainWindow* theApp = (MainWindow*)(this->parent());
+	theApp->m_ParamSetting.SaveParam2Xml();
+
+	//以下代码放入SaveParam2Xml()函数中
+
 	QFile file("bookindex.xml"); //以只写方式创建一个文件
 	if (!file.open(QFile::WriteOnly | QFile::Text)) {
 		qDebug() << "Error: Cannot write file: "
