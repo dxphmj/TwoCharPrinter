@@ -131,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -174,7 +174,7 @@ QTabBar::tab{height:50}</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -202,7 +202,7 @@ QTabBar::tab{height:50}</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -216,10 +216,16 @@ QTabBar::tab{height:50}</string>
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>175</y>
+       <y>170</y>
        <width>181</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -230,10 +236,16 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>540</x>
-       <y>175</y>
+       <y>170</y>
        <width>181</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -244,7 +256,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>160</x>
-       <y>310</y>
+       <y>270</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -267,7 +279,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>540</x>
-       <y>310</y>
+       <y>270</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -294,7 +306,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QListWidget" name="SkewUUnitlistWidget">
      <property name="geometry">
       <rect>
-       <x>600</x>
+       <x>610</x>
        <y>270</y>
        <width>181</width>
        <height>121</height>
@@ -309,7 +321,7 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>0</x>
        <y>60</y>
-       <width>111</width>
+       <width>121</width>
        <height>41</height>
       </rect>
      </property>
@@ -322,7 +334,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -335,7 +347,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLineEdit" name="DateTimeEdit">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>130</x>
        <y>60</y>
        <width>671</width>
        <height>41</height>
@@ -377,11 +389,19 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="SkewComBox">
      <property name="geometry">
       <rect>
-       <x>600</x>
-       <y>165</y>
+       <x>610</x>
+       <y>160</y>
        <width>181</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -393,7 +413,7 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>10</x>
        <y>10</y>
-       <width>101</width>
+       <width>111</width>
        <height>41</height>
       </rect>
      </property>
@@ -406,7 +426,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -442,7 +462,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLineEdit" name="PreviewEdit">
      <property name="geometry">
       <rect>
-       <x>110</x>
+       <x>130</x>
        <y>10</y>
        <width>671</width>
        <height>41</height>
@@ -464,7 +484,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QTextEdit" name="SkewSkewValueEdit">
      <property name="geometry">
       <rect>
-       <x>600</x>
+       <x>610</x>
        <y>210</y>
        <width>181</width>
        <height>51</height>
@@ -506,11 +526,19 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="fontTypeTimeComBox">
      <property name="geometry">
       <rect>
-       <x>600</x>
-       <y>115</y>
+       <x>610</x>
+       <y>110</y>
        <width>181</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -535,7 +563,7 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>500</x>
        <y>280</y>
-       <width>101</width>
+       <width>111</width>
        <height>41</height>
       </rect>
      </property>
@@ -548,7 +576,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -576,7 +604,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -604,7 +632,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -632,7 +660,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -665,7 +693,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -693,7 +721,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -706,11 +734,17 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="fontTypeSerialComBox">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>250</y>
+       <x>600</x>
+       <y>245</y>
        <width>131</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -720,11 +754,17 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="formatSerialComBox">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>300</y>
+       <x>600</x>
+       <y>295</y>
        <width>131</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -749,7 +789,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -762,11 +802,17 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="counterSerialComBox">
      <property name="geometry">
       <rect>
-       <x>590</x>
-       <y>200</y>
+       <x>600</x>
+       <y>195</y>
        <width>131</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -776,7 +822,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newSerialBut">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>580</x>
        <y>360</y>
        <width>161</width>
        <height>41</height>
@@ -833,7 +879,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -880,7 +926,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -946,7 +992,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -993,7 +1039,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1006,7 +1052,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLineEdit" name="reptCountSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>600</x>
        <y>100</y>
        <width>131</width>
        <height>41</height>
@@ -1027,7 +1073,7 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>490</x>
        <y>100</y>
-       <width>101</width>
+       <width>111</width>
        <height>41</height>
       </rect>
      </property>
@@ -1040,7 +1086,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1053,7 +1099,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLineEdit" name="digitSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>590</x>
+       <x>600</x>
        <y>150</y>
        <width>131</width>
        <height>41</height>
@@ -1087,7 +1133,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1213,7 +1259,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1241,7 +1287,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1379,7 +1425,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -1593,7 +1639,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1621,7 +1667,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1635,10 +1681,16 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>170</x>
-       <y>130</y>
+       <y>125</y>
        <width>211</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -1694,7 +1746,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1778,7 +1830,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -1847,8 +1899,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="variableQRBut">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>130</y>
+       <x>510</x>
+       <y>150</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -1870,8 +1922,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="reverseCheckBox">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>240</y>
+       <x>190</x>
+       <y>260</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -1879,7 +1931,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -1898,8 +1950,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newQRBut">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>230</y>
+       <x>510</x>
+       <y>250</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -1921,11 +1973,17 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="sideLenQRComBox">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>140</y>
+       <x>190</x>
+       <y>155</y>
        <width>181</width>
-       <height>31</height>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -1935,8 +1993,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="sideLenQRLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>135</y>
+       <x>90</x>
+       <y>155</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1950,7 +2008,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -1968,8 +2026,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="variableDMBut">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>160</y>
+       <x>280</x>
+       <y>230</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -1991,8 +2049,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="sideLenDMLab">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>160</y>
+       <x>180</x>
+       <y>130</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2006,7 +2064,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>14</pointsize>
+       <pointsize>16</pointsize>
       </font>
      </property>
      <property name="text">
@@ -2019,11 +2077,17 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="sideLenDMComBox">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>165</y>
-       <width>211</width>
-       <height>31</height>
+       <x>280</x>
+       <y>130</y>
+       <width>181</width>
+       <height>41</height>
       </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
@@ -2052,8 +2116,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newDMBut">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>260</y>
+       <x>280</x>
+       <y>330</y>
        <width>181</width>
        <height>41</height>
       </rect>

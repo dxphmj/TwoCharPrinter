@@ -82,6 +82,8 @@ public:
     QPushButton *fontBox4_KBBut;
     QPushButton *fontBox7_KBBut;
     QPushButton *fontBoxAdd_KBBut;
+    QPushButton *languageRedu_KBBut;
+    QPushButton *languageAdd_KBBut;
 
     void setupUi(QWidget *keyboard)
     {
@@ -415,6 +417,16 @@ public:
         fontBoxAdd_KBBut->setGeometry(QRect(735, 0, 42, 42));
         fontBoxAdd_KBBut->setFont(font1);
         fontBoxAdd_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        languageRedu_KBBut = new QPushButton(keyboard);
+        languageRedu_KBBut->setObjectName(QStringLiteral("languageRedu_KBBut"));
+        languageRedu_KBBut->setGeometry(QRect(60, 264, 52, 52));
+        languageRedu_KBBut->setFont(font1);
+        languageRedu_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        languageAdd_KBBut = new QPushButton(keyboard);
+        languageAdd_KBBut->setObjectName(QStringLiteral("languageAdd_KBBut"));
+        languageAdd_KBBut->setGeometry(QRect(680, 264, 52, 52));
+        languageAdd_KBBut->setFont(font6);
+        languageAdd_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         backgroundKBLabel->raise();
         Q_KBBut->raise();
         A_KBBut->raise();
@@ -474,6 +486,8 @@ public:
         fontBox4_KBBut->raise();
         fontBox7_KBBut->raise();
         fontBoxAdd_KBBut->raise();
+        languageRedu_KBBut->raise();
+        languageAdd_KBBut->raise();
 
         retranslateUi(keyboard);
 
@@ -542,6 +556,8 @@ public:
         fontBox4_KBBut->setText(QString());
         fontBox7_KBBut->setText(QString());
         fontBoxAdd_KBBut->setText(QApplication::translate("keyboard", "\342\226\272", 0));
+        languageRedu_KBBut->setText(QApplication::translate("keyboard", "\342\227\204", 0));
+        languageAdd_KBBut->setText(QApplication::translate("keyboard", "\342\226\272", 0));
     } // retranslateUi
 
 };

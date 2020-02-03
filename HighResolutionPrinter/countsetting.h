@@ -12,7 +12,7 @@ public:
 	countSetting(QWidget *parent = 0);
 	~countSetting();
 
-private:
+public:
 	Ui::countSetting ui;
 };
 

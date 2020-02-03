@@ -31,7 +31,7 @@
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -78,7 +78,7 @@
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">
@@ -111,7 +111,7 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="hourShowBut">
+  <widget class="QLabel" name="hourShowLab">
    <property name="geometry">
     <rect>
      <x>132</x>
@@ -189,7 +189,7 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="minShowBut">
+  <widget class="QLabel" name="minShowLab">
    <property name="geometry">
     <rect>
      <x>339</x>
@@ -267,7 +267,7 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="secondShowBut">
+  <widget class="QLabel" name="secondShowLab">
    <property name="geometry">
     <rect>
      <x>546</x>
@@ -345,7 +345,7 @@ border-radius:5px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="yearShowBut">
+  <widget class="QLabel" name="yearShowLab">
    <property name="geometry">
     <rect>
      <x>132</x>
@@ -423,7 +423,7 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="monthShowBut">
+  <widget class="QLabel" name="monthShowLab">
    <property name="geometry">
     <rect>
      <x>339</x>
@@ -449,7 +449,7 @@ border-radius:10px;</string>
 background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
-    <string>01</string>
+    <string>1</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -501,7 +501,7 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QLabel" name="dayShowBut">
+  <widget class="QLabel" name="dayShowLab">
    <property name="geometry">
     <rect>
      <x>546</x>
@@ -527,7 +527,7 @@ border-radius:10px;</string>
 background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
-    <string>08</string>
+    <string>8</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -560,7 +560,7 @@ border-radius:10px;</string>
    <property name="geometry">
     <rect>
      <x>782</x>
-     <y>241</y>
+     <y>161</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -574,7 +574,7 @@ border-radius:10px;</string>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -587,48 +587,48 @@ border-radius:10px;</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="comboBox">
+  <widget class="QListWidget" name="sysLanguageListWid">
    <property name="geometry">
     <rect>
-     <x>782</x>
-     <y>289</y>
-     <width>141</width>
-     <height>31</height>
+     <x>730</x>
+     <y>210</y>
+     <width>256</width>
+     <height>301</height>
     </rect>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>141</width>
-     <height>31</height>
-    </size>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+     <pointsize>14</pointsize>
+    </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(0, 0, 230);</string>
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
   </widget>
   <zorder>addHourBut</zorder>
-  <zorder>hourShowBut</zorder>
+  <zorder>hourShowLab</zorder>
   <zorder>reduceHourBut</zorder>
   <zorder>addMinBut</zorder>
-  <zorder>minShowBut</zorder>
+  <zorder>minShowLab</zorder>
   <zorder>reduceMinBut</zorder>
   <zorder>addSecondBut</zorder>
-  <zorder>secondShowBut</zorder>
+  <zorder>secondShowLab</zorder>
   <zorder>reduceSecondBut</zorder>
   <zorder>addYearBut</zorder>
-  <zorder>yearShowBut</zorder>
+  <zorder>yearShowLab</zorder>
   <zorder>reduceYearBut</zorder>
   <zorder>addMonthBut</zorder>
-  <zorder>monthShowBut</zorder>
+  <zorder>monthShowLab</zorder>
   <zorder>reduceMonthBut</zorder>
   <zorder>addDayBut</zorder>
-  <zorder>dayShowBut</zorder>
+  <zorder>dayShowLab</zorder>
   <zorder>reduceDayBut</zorder>
   <zorder>sysLanguageLab</zorder>
-  <zorder>comboBox</zorder>
   <zorder>backLightLab</zorder>
   <zorder>lightHorSlider</zorder>
   <zorder>sysTimeSetLab</zorder>
+  <zorder>sysLanguageListWid</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

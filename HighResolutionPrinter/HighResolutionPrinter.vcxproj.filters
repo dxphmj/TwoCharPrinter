@@ -402,6 +402,15 @@
     <ClCompile Include="ModuleMain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="automessagebox.cpp">
+      <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_automessagebox.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_automessagebox.cpp">
+      <Filter>Generated Files\Debug</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -672,6 +681,9 @@
     </CustomBuild>
     <CustomBuild Include="language.h">
       <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="automessagebox.h">
+      <Filter>Generated Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>

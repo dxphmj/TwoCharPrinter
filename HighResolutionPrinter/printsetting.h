@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_printsetting.h"
+#include <QButtonGroup>
 
 class printSetting : public QWidget
 {
@@ -12,8 +13,38 @@ public:
 	printSetting(QWidget *parent = 0);
 	~printSetting();
 
-private:
+public:
 	Ui::printSetting ui;
+
+public:
+	QString getNum(QString str);
+	QButtonGroup* DPIradioBG;
+	QButtonGroup* NozzleradioBG;
+
+private slots:
+	void printSpeedRedBut();
+	void printSpeedAddBut();
+	void printDelayRedBut();
+	void printDelayAddBut();
+	void synFrequencyRedBut();
+	void synFrequencyAddBut();
+	void printGrayRedBut();
+	void printGrayAddBut();
+	void repeteNumRedBut();
+	void repeteNumAddBut();
+	void repeteDelayRedBut();
+	void repeteDelayAddBut();
+	void voltRedBut();
+	void voltAddBut();
+	void PWRedBut();
+	void PWAddBut();
+	void offsetRedBut();
+	void offsetAddBut();
+	void flashSprayInternalRedBut();
+	void flashSprayInternalAddBut();
+	void flashSprayTimesRedBut();
+	void flashSprayTimesAddBut();
+
 };
 
 #endif // PRINTSETTING_H

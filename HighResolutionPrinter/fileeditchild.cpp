@@ -1077,7 +1077,7 @@ void FileEditChild::zoomBarCodeRedBut_clicked()
 //		ZoomfactorQr=0.5;
 //	}
 //	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
+	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
 //}
 
 //void FileEditChild::zoomQRRedBut_clicked()

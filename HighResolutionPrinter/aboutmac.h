@@ -12,7 +12,7 @@ public:
 	aboutMac(QWidget *parent = 0);
 	~aboutMac();
 
-private:
+public:
 	Ui::aboutMac ui;
 };
 

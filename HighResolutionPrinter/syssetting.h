@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_syssetting.h"
+#include "printsetting.h"
 
 class sysSetting : public QWidget
 {
@@ -11,9 +12,26 @@ class sysSetting : public QWidget
 public:
 	sysSetting(QWidget *parent = 0);
 	~sysSetting();
+	printSetting *m_printSetting;
 
-private:
+public:
 	Ui::sysSetting ui;
+
+private slots:
+	void seleSysLanguage();
+	void addYearBut();
+	void reduceYearBut();
+	void addMonthBut();
+	void reduceMonthBut();
+	void addDayBut();
+	void reduceDayBut();
+	void addHourBut();
+	void reduceHourBut();
+	void addMinBut();
+	void reduceMinBut();
+	void addSecondBut();
+	void reduceSecondBut();
+
 };
 
 #endif // SYSSETTING_H

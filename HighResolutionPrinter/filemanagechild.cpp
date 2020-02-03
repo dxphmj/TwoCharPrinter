@@ -7,11 +7,13 @@
 #include "QFileInfo"
 #include <QTextCodec>
 #include <QDebug>
+#include <QPushButton>
 #include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
 #include "keyboard.h"
 #include "ClassMessage.h"
+#include "automessagebox.h"
 
 FileManageChild::FileManageChild(QWidget *parent)
 	: QWidget(parent),
@@ -212,12 +214,17 @@ void FileManageChild::OKFileNameBut_clicked()
 
 void FileManageChild::informationMessage()
 {
-	QMessageBox msgBox;
-	msgBox.setText(tr("<h1><i>Filename</i> </font>Repetition</font></h1>"));
-	msgBox.setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);\
-	                     QPushButton {background-color: rgb(0,0,230);color: rgb(255, 255, 255);font: bold;font-size:40px;color:rgb(255,255,255) }\
-	                     ");
-	msgBox.exec();
+	CAutoMessageBox msg;
+	msg.AutoSetSize(440,200);
+
+	msg.setText(tr("<h1><i>Filename</i><p align='center'> </font>Repetition</font></p></h1>"));
+	msg.setWindowTitle(tr("Warning"));
+	msg.setIcon(QMessageBox::Critical);
+	msg.addButton(tr("OK"),QMessageBox::ActionRole);
+	msg.setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);\
+					   QPushButton {background-color: rgb(0,0,0);color: rgb(255, 255, 255);font: bold;font-size:40px;color:rgb(255,255,255)};\
+					   ");
+    msg.exec();
 }
 
 FileManageChild::~FileManageChild()
