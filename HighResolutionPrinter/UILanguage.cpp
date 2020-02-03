@@ -22,13 +22,14 @@ CUILanguage::~CUILanguage(void)
 void CUILanguage::ChangeLanguage(int nLanguageType)
 {
 	MainWindow* pMainwindow = (MainWindow*)(m_pMainwindow);
+	char strFileName[100];
 
 	//根据nLanguageType 读取相应的xml文件
+	if(nLanguageType == ENGLISH)
+		sprintf(strFileName,"%s","System\\english.xml");
 
 	//先读取窗体的名称，根据窗体的名称获得窗体指针，然后再给窗体的各控件赋值 
 
-	char strFileName[100];
-	sprintf(strFileName,"%s","System\\english.xml");
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
 	if (!loadOkay)
@@ -56,11 +57,11 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 		
 		if(strcmp(str,"MainWindow") == 0)
 		{
-			ChangeLanguageForItem(pMainwindow,node);			 
+			ChangeLanguageForItem((QObject*)(pMainwindow),node);			 
 		}
 		else if(strcmp(str,"FilemanageForm") == 0)
 		{
-			ChangeLanguageForItem(pMainwindow->m_fileManage,node);			 
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_fileManage),node);			 
 		}
 	} 
 }
@@ -80,7 +81,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
 		if(tempButton)
 			tempButton->setText(QString::fromLocal8Bit(strText));
-		else
+		else if(tempLabel)
 			tempLabel->setText(QString::fromLocal8Bit(strText));
 	}			 
 }

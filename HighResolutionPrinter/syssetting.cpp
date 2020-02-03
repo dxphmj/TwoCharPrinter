@@ -1,5 +1,4 @@
 #include "syssetting.h"
-#include "syssetting.h"
 #include "UILanguage.h"
 #include "mainwindow.h"
 
@@ -23,16 +22,16 @@ sysSetting::sysSetting(QWidget *parent)
 	connect(ui.addSecondBut,SIGNAL(clicked()),this,SLOT(addSecondBut()));
 	connect(ui.reduceSecondBut,SIGNAL(clicked()),this,SLOT(reduceSecondBut()));
 
-	//ui.sysLanguageListWid->addItem(QStringLiteral("简体中�?));  
-	//ui.sysLanguageListWid->addItem(QStringLiteral("English")); 
-	//ui.sysLanguageListWid->addItem(QStringLiteral("العربية"));  
-	//ui.sysLanguageListWid->addItem(QStringLiteral("わぶ�?));  
-	//ui.sysLanguageListWid->addItem(QStringLiteral("한글"));  
- //   ui.sysLanguageListWid->addItem(QStringLiteral("français"));
-	//ui.sysLanguageListWid->addItem(QStringLiteral("deutsch"));
-	//ui.sysLanguageListWid->addItem(QStringLiteral("русский"));
-	//ui.sysLanguageListWid->addItem(QStringLiteral("Português"));
-	//ui.sysLanguageListWid->addItem(QStringLiteral("Español"));
+	ui.sysLanguageListWid->addItem(QStringLiteral("ARABIC"));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("CHINESE_SIMPLIFIED")); 
+	ui.sysLanguageListWid->addItem(QStringLiteral("CHINESE_TRADITIONAL"));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("CZECH"));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("DUTCH")); 
+	ui.sysLanguageListWid->addItem(QStringLiteral("ENGLISH"));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("ESTONIAN"));  
+	ui.sysLanguageListWid->addItem(QStringLiteral("FARSI")); 
+	ui.sysLanguageListWid->addItem(QStringLiteral("FINNISH"));  
+	 
 	
 
 	ui.addYearBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
@@ -83,24 +82,14 @@ sysSetting::sysSetting(QWidget *parent)
 								  QPushButton:pressed{border-image: url(:/Images/movedown.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								  padding-left:7px;padding-top:7px;}\
 								  "); 
-
-
-	//QLabel * label = new QLabel(this);
-	//int      number = 10;
-	//label->setText(tr("<font style = 'font-size:14px; color:red;'> num </font>") 
-	//	+ tr("<font style = 'font-family:MicrosoftYaHei; font-size:20px; color:#F13232;'>%1</font>").arg(number));
-	////label��̬����Ϊ�ı���С
-	//label->adjustSize();
-
-	MainWindow* theApp = (MainWindow*)(this->parent()->parent());
-	CUILanguage languageTool(theApp);
-	languageTool.ChangeLanguage(ENGLISH);
- 
+	m_pMainWindow = (MainWindow*)(this->parent()->parent());
+	 
 }
 
 void sysSetting::seleSysLanguage()
 {
-	
+ 	CUILanguage languageTool(m_pMainWindow);
+	languageTool.ChangeLanguage(ui.sysLanguageListWid->currentRow());
 }
 
 

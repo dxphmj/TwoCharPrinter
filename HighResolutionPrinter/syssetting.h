@@ -5,6 +5,9 @@
 #include "ui_syssetting.h"
 #include "printsetting.h"
 
+
+class MainWindow;
+
 class sysSetting : public QWidget
 {
 	Q_OBJECT
@@ -16,6 +19,8 @@ public:
 
 public:
 	Ui::sysSetting ui;
+
+	MainWindow* m_pMainWindow;
 
 private slots:
 	void seleSysLanguage();

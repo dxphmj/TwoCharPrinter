@@ -171,9 +171,6 @@
     <ClCompile Include="Debug\moc_variblewidget.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
-      <Filter>Generated Files</Filter>
-    </ClCompile>
     <ClCompile Include="xml\tinystr.cpp">
       <Filter>xml</Filter>
     </ClCompile>
@@ -429,10 +426,22 @@
     <ClCompile Include="Debug\moc_PrintShowThread.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="automessagebox.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\moc_automessagebox.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
+    <ClCompile Include="Release\moc_automessagebox.cpp">
+      <Filter>Generated Files\Release</Filter>
+    </ClCompile>
     <ClCompile Include="ParamSetting.cpp">
-      <Filter>Generated Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="UILanguage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
       <Filter>Generated Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -648,7 +657,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ParamSetting.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -719,7 +728,10 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="UILanguage.h">
-      <Filter>Generated Files</Filter>
+      <Filter>Header Files</Filter>
+    </CustomBuild>
+    <CustomBuild Include="automessagebox.h">
+      <Filter>Header Files</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
