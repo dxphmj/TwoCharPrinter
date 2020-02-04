@@ -1,10 +1,47 @@
 <MES>
   <MainWindow>
-    <No1Lab>text1</No1Lab>
-    <closeBut>serial1</closeBut>
+    <nameDispLab>&lt;span style="font-size:30px"&gt;Multi-Function Intelligent Printer</nameDispLab>
+    <fileManageBut>&lt;span style="font-size:10px"&gt;File
+Management</fileManageBut>
+    <paraManageBut>Parameter Management</paraManageBut>
+    <startPrintBut>Start Printing</startPrintBut>
+    <closeBut>Shutdown System</closeBut>
+    <No1Lab>&lt;span style="font-size:10px"&gt;The Cartridge 1</No1Lab>
+    <No2Lab>&lt;span style="font-size:10px"&gt;The Cartridge 2</No2Lab>
+    <printParaLab>Speed: 40&#x000A;&#x000A;&#x000A;Delayed: 152&#x000A;&#x000A;&#x000A;Direction: Reverse</printParaLab>
+    <signalParaLab>Voltage: 8.8V&#x000A;&#x000A;&#x000A;Pulse Width: 1.8&#x000A;&#x000A;&#x000A;Gray level: 5</signalParaLab>
+    <fileNmaeLab>&#x000A;File Nmae: default.spr&#x000A;&#x000A;&#x000A;Count value: 100</fileNmaeLab>
   </MainWindow>
   <FilemanageForm>
-    <manageFileBut>text2</manageFileBut>
-    <exitBut>serial2</exitBut>
+    <editFileBut>Edit File</editFileBut>
+    <exitBut>Exit</exitBut>
+    <manageFileBut>Manage File</manageFileBut>
   </FilemanageForm>
+  <FileEditChild>
+    <fontTypeTextLab>Font Type</fontTypeTextLab>
+    <fontSizeTextLab>Font Size</fontSizeTextLab>
+    <variableTextBut>Variable</variableTextBut>
+    <newTextBut>New Construction</newTextBut>
+    <delBut>Del</delBut>
+    <saveBut>Save</saveBut>
+    <saveasBut>Save As</saveasBut>
+    <rotateTextLab>Rotate</rotateTextLab>
+    <internalTextLab>Space Between</internalTextLab>
+  </FileEditChild>
 </MES>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -66,7 +66,8 @@ public:
         nameDispLab->setObjectName(QStringLiteral("nameDispLab"));
         nameDispLab->setGeometry(QRect(0, 0, 641, 71));
         nameDispLab->setFont(font);
-        nameDispLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        nameDispLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+"color: rgb(255, 255, 255);"));
         nameDispLab->setTextFormat(Qt::AutoText);
         nameDispLab->setMargin(1);
         previewLab = new QLabel(centralWidget);
@@ -81,7 +82,8 @@ public:
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(14);
         fileNmaeLab->setFont(font1);
-        fileNmaeLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        fileNmaeLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+"color: rgb(255, 255, 255);"));
         fileNmaeLab->setMargin(0);
         paraManageBut = new QPushButton(centralWidget);
         paraManageBut->setObjectName(QStringLiteral("paraManageBut"));
@@ -129,11 +131,13 @@ public:
         font3.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font3.setPointSize(12);
         No1Lab->setFont(font3);
+        No1Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         No1Lab->setAlignment(Qt::AlignCenter);
         No2Lab = new QLabel(centralWidget);
         No2Lab->setObjectName(QStringLiteral("No2Lab"));
         No2Lab->setGeometry(QRect(1010, 670, 81, 31));
         No2Lab->setFont(font3);
+        No2Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         No2Lab->setAlignment(Qt::AlignCenter);
         timeShowLab = new QLabel(centralWidget);
         timeShowLab->setObjectName(QStringLiteral("timeShowLab"));
@@ -144,13 +148,15 @@ public:
         signalParaLab->setObjectName(QStringLiteral("signalParaLab"));
         signalParaLab->setGeometry(QRect(290, 420, 281, 311));
         signalParaLab->setFont(font1);
-        signalParaLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        signalParaLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+"color: rgb(255, 255, 255);"));
         signalParaLab->setMargin(0);
         printParaLab = new QLabel(centralWidget);
         printParaLab->setObjectName(QStringLiteral("printParaLab"));
         printParaLab->setGeometry(QRect(570, 420, 273, 311));
         printParaLab->setFont(font1);
-        printParaLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        printParaLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+"color: rgb(255, 255, 255);"));
         printParaLab->setMargin(0);
         progCtrlLab = new QLabel(centralWidget);
         progCtrlLab->setObjectName(QStringLiteral("progCtrlLab"));

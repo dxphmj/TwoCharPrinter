@@ -63,6 +63,10 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 		{
 			ChangeLanguageForItem((QObject*)(pMainwindow->m_fileManage),node);			 
 		}
+		else if(strcmp(str,"FileEditChild") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_fileManage->FormFileEditChild),node);			 
+		}
 	} 
 }
 
@@ -79,9 +83,12 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 
 		QPushButton *tempButton = pWidge->findChild<QPushButton *>(strItem);
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
+		/*QTabWidget * tempTabWidget = pWidge->findChild<QTabWidget *>(strItem);*/
 		if(tempButton)
 			tempButton->setText(QString::fromLocal8Bit(strText));
 		else if(tempLabel)
 			tempLabel->setText(QString::fromLocal8Bit(strText));
+		/*else if(tempTabWidget)
+		tempTabWidget->setText(QString::fromLocal8Bit(strText));*/
 	}			 
 }

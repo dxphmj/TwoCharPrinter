@@ -26,10 +26,10 @@ public:
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
 
-	//void LanArabic1();
-	//void LanArabic2();
-	//void LanArabic3();
-	//void LanArabic4();
+	void LanArabic1();
+	void LanArabic2();
+	void LanArabic3();
+	void LanArabic4();
 
 	void LanEnglishSmall();
 	void LanEnglishBig();
@@ -84,7 +84,7 @@ public:
 		Czech=8,Dutch=9,German=10,Finnish=11,
 		Hindi=12,Hungarian=13,Italian=14,Portuguese=15,
 		Russian=16,Spanish=17,Swedish=18,
-		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22};
+		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Arabic2 = 23,Arabic3 = 24,Arabic4 = 25};
 
 	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1,KoreSymbol = 2,CzechSynbol = 3,JapaneseSymbol = 4,
 	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7};
@@ -104,6 +104,7 @@ private:
 public:
 	//QString A_KBBut_sendData();
 	void btnhide();
+	void btnArabicARhide();
 
 public slots:
 	void caps1_kBBut_clicked();
@@ -155,9 +156,12 @@ private slots:
 	void space_KBBut_clicked();
 	void comma_KBBut_clicked();
 	void period_KBBut_clicked();
+	void languageAdd_KBBut_clicked();
+	void languageRedu_KBBut_clicked();
 	
 public slots:
 	void btnshow();
+	void btnArabicARshow();
 };
 
 #endif // KEYBOARD_H

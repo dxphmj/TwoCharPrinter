@@ -16,6 +16,7 @@ using namespace std;
 typedef unsigned char BYTE;
 
 class FilemanageForm;
+class FileEditChild;
 class ParamSettingForm;
 class ClassMessage;
 class PrintThead;
