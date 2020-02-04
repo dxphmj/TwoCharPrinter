@@ -1366,5 +1366,20 @@ void FileEditChild::newSerialNumber_click()
 			SerialNumber=SerialNumber-step;
 		}
 	}
-
+	//如果当前有obj被选中，则为更改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			string tmpStr = this->ui->serialLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
+	QString txtQString = ui->serialLineEdit->text();
+	string txtString = txtQString.toStdString();
+	QString qTextFont = ui->fontTypeTextComBox->currentText();
+	string textFont = qTextFont.toStdString();
+	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 }
