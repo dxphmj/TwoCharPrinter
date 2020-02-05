@@ -150,7 +150,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
 	SerialNumber=0;
-
+	SerialNumber_length=0;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
 	//m_PrinterMes.ReadBmp("D:\\1.bmp");
@@ -1368,17 +1368,18 @@ void FileEditChild::newTimeBut_clicked()
 }
 void FileEditChild::newSerialNumber_click()
 {
-
 	QString a=ui->initialValSerialLineEdit->text();
 	QString b=ui->termValSerialLineEdit->text();	
 	QString c=ui->startValSerialLineEdit->text();	
 	QString d=ui->stepLenSerialLineEdit->text();
 	QString e=ui->digitSerialLineEdit->text();
+	QString g=ui->reptCountSerialLineEdit->text();
 	int start=a.toInt();
 	int new_start=c.toInt();
 	int stop=b.toInt();
 	int step=d.toInt();
 	int f=e.toInt();
+	int time=g.toInt();
 	if (start>stop)
 	{
 		int c;
@@ -1392,9 +1393,14 @@ void FileEditChild::newSerialNumber_click()
 	}	
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
 	QString SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+	for (int s=1;s<time;s++)
+	{
+		SerialNumber_2=SerialNumber_2+SerialNumber_2;
+		
+	}
 
 	ui->serialLineEdit->setText(SerialNumber_2);	
-	if (SerialNumber>=start&&SerialNumber+step<stop)
+	if (SerialNumber>=start&&SerialNumber+step<=stop)
 	{
 		if (start<stop)
 		{
@@ -1405,6 +1411,7 @@ void FileEditChild::newSerialNumber_click()
 			SerialNumber=SerialNumber-step;
 		}
 	}
+
 	//如果当前有obj被选中，则为更改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{

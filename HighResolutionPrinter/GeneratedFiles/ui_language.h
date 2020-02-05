@@ -138,7 +138,8 @@ public:
         OKLanBut->setObjectName(QStringLiteral("OKLanBut"));
         OKLanBut->setGeometry(QRect(631, 240, 157, 77));
         OKLanBut->setFont(font);
-        OKLanBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        OKLanBut->setStyleSheet(QLatin1String("background-color: rgb(182,181,186);\n"
+"color: rgb(0, 0, 0);"));
         LanThai = new QPushButton(language);
         LanThai->setObjectName(QStringLiteral("LanThai"));
         LanThai->setGeometry(QRect(317, 240, 157, 77));
