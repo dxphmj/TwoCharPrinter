@@ -24,7 +24,7 @@ public:
 	ModuleMain m_TimeShow;
 
 	void MouseBeenPressed(QMouseEvent *event);
-	void GetTextFromScreen();
+	void GetObjSettingsFromScreen();
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
@@ -47,6 +47,7 @@ public:
  	keyboard  *keyboardWidget;
 	QString SerialNumber_2;
 	int SerialNumber;
+	int SerialNumber_length;
 private:
 	Ui::FileEditChild* ui;
 	
