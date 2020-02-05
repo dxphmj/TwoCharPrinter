@@ -47,6 +47,7 @@ public:
  	keyboard  *keyboardWidget;
 	QString SerialNumber_2;
 	int SerialNumber;
+	int SerialNumber_length;
 private:
 	Ui::FileEditChild* ui;
 	
