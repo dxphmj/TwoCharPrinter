@@ -426,9 +426,6 @@
     <ClCompile Include="Debug\moc_PrintShowThread.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="automessagebox.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
     <ClCompile Include="Debug\moc_automessagebox.cpp">
       <Filter>Generated Files\Release</Filter>
     </ClCompile>
@@ -443,6 +440,9 @@
     </ClCompile>
     <ClCompile Include="GeneratedFiles\qrc_Res.cpp">
       <Filter>Generated Files</Filter>
+    </ClCompile>
+    <ClCompile Include="automessagebox.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

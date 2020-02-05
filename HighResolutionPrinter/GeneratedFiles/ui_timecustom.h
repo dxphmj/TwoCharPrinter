@@ -72,7 +72,7 @@ public:
         timeTypeLab->setAlignment(Qt::AlignCenter);
         fontDateComBox = new QComboBox(timeCustom);
         fontDateComBox->setObjectName(QStringLiteral("fontDateComBox"));
-        fontDateComBox->setGeometry(QRect(820, 170, 181, 31));
+        fontDateComBox->setGeometry(QRect(820, 165, 181, 41));
         fontDateComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         fontDateLab = new QLabel(timeCustom);
@@ -83,10 +83,11 @@ public:
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(14);
         fontDateLab->setFont(font1);
+        fontDateLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         fontDateLab->setAlignment(Qt::AlignCenter);
         offsetDateComBox = new QComboBox(timeCustom);
         offsetDateComBox->setObjectName(QStringLiteral("offsetDateComBox"));
-        offsetDateComBox->setGeometry(QRect(820, 275, 181, 31));
+        offsetDateComBox->setGeometry(QRect(820, 270, 181, 41));
         offsetDateComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         offsetDateLab = new QLabel(timeCustom);
@@ -94,12 +95,14 @@ public:
         offsetDateLab->setGeometry(QRect(720, 270, 101, 41));
         offsetDateLab->setMinimumSize(QSize(101, 41));
         offsetDateLab->setFont(font1);
+        offsetDateLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         offsetDateLab->setAlignment(Qt::AlignCenter);
         offsetValDateLab = new QLabel(timeCustom);
         offsetValDateLab->setObjectName(QStringLiteral("offsetValDateLab"));
         offsetValDateLab->setGeometry(QRect(720, 365, 101, 41));
         offsetValDateLab->setMinimumSize(QSize(101, 41));
         offsetValDateLab->setFont(font1);
+        offsetValDateLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         offsetValDateLab->setAlignment(Qt::AlignCenter);
         offsetValDateLineEdit = new QLineEdit(timeCustom);
         offsetValDateLineEdit->setObjectName(QStringLiteral("offsetValDateLineEdit"));
@@ -110,6 +113,7 @@ public:
         offsetUnitDateLab->setGeometry(QRect(720, 475, 101, 41));
         offsetUnitDateLab->setMinimumSize(QSize(101, 41));
         offsetUnitDateLab->setFont(font1);
+        offsetUnitDateLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         offsetUnitDateLab->setAlignment(Qt::AlignCenter);
         offsetUnitDateListWid = new QListWidget(timeCustom);
         offsetUnitDateListWid->setObjectName(QStringLiteral("offsetUnitDateListWid"));

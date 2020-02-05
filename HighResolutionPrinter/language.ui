@@ -381,7 +381,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(182,181,186);</string>
+    <string notr="true">background-color: rgb(182,181,186);
+color: rgb(0, 0, 0);</string>
    </property>
    <property name="text">
     <string>确定</string>

@@ -32,7 +32,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/editFile.bmp);</string>
+    <string notr="true">background-image: url(:/Images/editFile.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>编辑文件</string>
@@ -54,7 +55,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/manageFile.bmp);</string>
+    <string notr="true">background-image: url(:/Images/manageFile.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>管理文件</string>
@@ -76,7 +78,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/exit.bmp);</string>
+    <string notr="true">background-image: url(:/Images/exit.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>退出</string>
