@@ -545,11 +545,11 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 {
 	QPoint p_Relative = event->pos();
 	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
-	GetTextFromScreen();
+	GetObjSettingsFromScreen();
 	paintDot();
 }
 
-void FileEditChild::GetTextFromScreen()
+void FileEditChild::GetObjSettingsFromScreen()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
@@ -561,6 +561,28 @@ void FileEditChild::GetTextFromScreen()
 				this->ui->typeTab->setCurrentIndex(0);
 				this->ui->wordLineEdit->setText(tmpStr);
 				this->ui->newTextBut->setText(QStringLiteral("ÐÞ¸Ä"));
+				map<string,int> gfntMap;
+				gfntMap.clear();
+				gfntMap.insert(make_pair("5x5",0));
+				gfntMap.insert(make_pair("7x5",1));
+				gfntMap.insert(make_pair("12x12",2));
+				gfntMap.insert(make_pair("16x12",3));
+				switch(gfntMap[m_PrinterMes.OBJ_Vec[i].strFont])
+				{
+				case 0:
+					this->ui->fontTypeTextComBox->setCurrentIndex(0);
+					break;
+				case 1:
+					this->ui->fontTypeTextComBox->setCurrentIndex(1);
+					break;
+				case 2:
+					this->ui->fontTypeTextComBox->setCurrentIndex(2);
+					break;
+				case 3:
+					this->ui->fontTypeTextComBox->setCurrentIndex(3);
+					break;
+				}
+				
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
 			{
@@ -786,6 +808,23 @@ void FileEditChild::newTextBut_clicked()
 		{
 			string tmpStr = this->ui->wordLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strFont = tmpFont;
+			switch(this->ui->fontTypeTextComBox->currentIndex())
+			{
+			case 0:
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 5;
+				break;
+			case 1:
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 7;
+				break;
+			case 2:
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 12;
+				break;
+			case 3:
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
+				break;
+			}
 			return;
 		}
 	}

@@ -24,7 +24,7 @@ public:
 	ModuleMain m_TimeShow;
 
 	void MouseBeenPressed(QMouseEvent *event);
-	void GetTextFromScreen();
+	void GetObjSettingsFromScreen();
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
