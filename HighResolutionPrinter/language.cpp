@@ -21,6 +21,7 @@ language::language(QWidget *parent)
 	connect(ui->LanGerman,SIGNAL(clicked()),this,SLOT(LanGerman_KBBut_clicked()));
 	connect(ui->LanFarsi,SIGNAL(clicked()),this,SLOT(LanFarsi_KBBut_clicked()));
 	connect(ui->LanHindi,SIGNAL(clicked()),this,SLOT(LanHindi_KBBut_clicked()));
+	connect(ui->LanArabic,SIGNAL(clicked()),this,SLOT(LanArabic_KBBut_clicked()));
 
 	//connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//将信号传给父窗口
 
@@ -125,6 +126,16 @@ void language::LanHindi_KBBut_clicked()
 	pKeyboard->m_LantypeReverse = 8;//Hindi
 	pKeyboard->caps1_kBBut_clicked();
 	setVisible(false); 
+}
+
+void language::LanArabic_KBBut_clicked()
+{
+	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
+	pKeyboard->m_Upper = true;
+	pKeyboard->m_LanType = 5;
+	pKeyboard->m_LantypeReverse = 9;//Hindi
+	pKeyboard->caps1_kBBut_clicked();
+	setVisible(false);
 }
 
 //void language::sendslot()

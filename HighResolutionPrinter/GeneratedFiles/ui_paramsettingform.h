@@ -49,22 +49,26 @@ public:
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
         printSettingBut->setFont(font);
-        printSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/printSetting.bmp);"));
+        printSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/printSetting.bmp);\n"
+"color: rgb(255, 255, 255);"));
         sysSettingBut = new QPushButton(ParamSettingForm);
         sysSettingBut->setObjectName(QStringLiteral("sysSettingBut"));
         sysSettingBut->setGeometry(QRect(30, 180, 144, 144));
         sysSettingBut->setFont(font);
-        sysSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/sysSetting.bmp);"));
+        sysSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/sysSetting.bmp);\n"
+"color: rgb(255, 255, 255);"));
         countSettingBut = new QPushButton(ParamSettingForm);
         countSettingBut->setObjectName(QStringLiteral("countSettingBut"));
         countSettingBut->setGeometry(QRect(30, 330, 144, 144));
         countSettingBut->setFont(font);
-        countSettingBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/countSetting.bmp);"));
+        countSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/countSetting.bmp);\n"
+"color: rgb(255, 255, 255);"));
         aboutMacBut = new QPushButton(ParamSettingForm);
         aboutMacBut->setObjectName(QStringLiteral("aboutMacBut"));
         aboutMacBut->setGeometry(QRect(30, 480, 144, 144));
         aboutMacBut->setFont(font);
-        aboutMacBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/aboutMac.bmp);"));
+        aboutMacBut->setStyleSheet(QLatin1String("background-image: url(:/Images/aboutMac.bmp);\n"
+"color: rgb(255, 255, 255);"));
         paraManageStacWid = new QStackedWidget(ParamSettingForm);
         paraManageStacWid->setObjectName(QStringLiteral("paraManageStacWid"));
         paraManageStacWid->setGeometry(QRect(200, 20, 1061, 691));
@@ -78,7 +82,8 @@ public:
         paraExitBut->setObjectName(QStringLiteral("paraExitBut"));
         paraExitBut->setGeometry(QRect(30, 630, 144, 144));
         paraExitBut->setFont(font);
-        paraExitBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/exit.bmp);"));
+        paraExitBut->setStyleSheet(QLatin1String("background-image: url(:/Images/exit.bmp);\n"
+"color: rgb(255, 255, 255);"));
         savePrintSetBut = new QPushButton(ParamSettingForm);
         savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
         savePrintSetBut->setGeometry(QRect(850, 730, 111, 51));

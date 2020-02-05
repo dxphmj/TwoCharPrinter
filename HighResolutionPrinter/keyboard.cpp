@@ -15,6 +15,7 @@ keyboard::keyboard(QWidget *parent)
 	languageWidget = new language(this);
 	languageWidget->setVisible(false);
 	btnhide();
+	btnArabicARhide();
 
 	connect(ui->A_KBBut,SIGNAL(clicked()),this,SLOT(A_KBBut_clicked()));
 	connect(ui->B_KBBut,SIGNAL(clicked()),this,SLOT(B_KBBut_clicked()));
@@ -55,6 +56,8 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->space_KBBut,SIGNAL(clicked()),this,SLOT(space_KBBut_clicked()));
 	connect(ui->comma_KBBut,SIGNAL(clicked()),this,SLOT(comma_KBBut_clicked()));
 	connect(ui->period_KBBut,SIGNAL(clicked()),this,SLOT(period_KBBut_clicked()));
+	connect(ui->languageAdd_KBBut,SIGNAL(clicked()),this,SLOT(languageAdd_KBBut_clicked()));
+	connect(ui->languageRedu_KBBut,SIGNAL(clicked()),this,SLOT(languageRedu_KBBut_clicked()));
 
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
 	connect(ui->backspace_KBBut,SIGNAL(clicked()),this,SLOT(backspace_KBBut_clicked()));
@@ -126,6 +129,12 @@ void keyboard::btnhide()
 	ui->fontBoxAdd_KBBut->hide();
 }
 
+void keyboard::btnArabicARhide()
+{
+	ui->languageAdd_KBBut->hide();
+	ui->languageRedu_KBBut->hide();
+}
+
 void keyboard::caps1_kBBut_clicked()
 {
 	if ( m_Upper == true )//如果当前为小写
@@ -137,19 +146,30 @@ void keyboard::caps1_kBBut_clicked()
 			{
 				LanChineseSmall();
 				btnshow();
+				btnArabicARhide();
 				break;
 			}
 		case 1:  //Japanese
 			{
 				LanJapaneseSmall();
 				btnshow();
+				btnArabicARhide();
 				break;
+			}
+		case 5:  //Arabic
+			{
+				LanArabic1();
+				btnhide();
+				btnArabicARshow();
+				break;
+
 			}
 		case 3: //Chinese_others
 		case 7:  //English
 		case 21://Japanese_others
 			{
 				LanEnglishBig();
+				btnArabicARhide();
 				btnhide();
 				break;
 			}
@@ -157,34 +177,42 @@ void keyboard::caps1_kBBut_clicked()
 			{
 				LanKoreanSmall();
 				btnshow();
+				btnArabicARhide();
 				break;
 			}
 		case 8:  //Czech
 			{
 				LanCzechBig();
+				btnhide();
+				btnArabicARhide();
 				break;
+
 			}
 		case 9:  //Dutch
 			{
 				LanDutchBig();
 				btnhide();
+				btnArabicARhide();
 				break;
 			}
 		case 10:  //German
 			{
 				LanGermanBig();
+				btnArabicARhide();
 				btnhide();
 				break;
 			}
 		case 11:  //Finnish
 			{
 				LanFarsiBig();
+				btnArabicARhide();
 				btnhide();
 				break;
 			}
 		case 12:  //Hindi
 			{
 				LanHindiBig();
+				btnArabicARhide();
 				btnhide();
 				break;
 			}
@@ -1462,6 +1490,55 @@ void keyboard::period_KBBut_clicked()
 	m_pInputEdit->insert(ui->period_KBBut->text());
 }
 
+void keyboard::languageAdd_KBBut_clicked()
+{
+	if (m_LanType == 5)
+	{
+		m_LanType = 23;
+		LanArabic2();
+	}
+	else if (m_LanType == 23)
+	{
+		m_LanType = 24;
+		LanArabic3();
+	} 
+	else if (m_LanType == 24)
+	{
+		m_LanType = 25;
+		LanArabic4();
+	} 
+	else if (m_LanType  == 25)
+	{
+		m_LanType =5;
+		LanArabic1();
+	} 
+}
+
+void keyboard::languageRedu_KBBut_clicked()
+{
+
+	if (m_LanType == 5)
+	{
+		m_LanType = 25;
+		LanArabic4();
+	}
+	else if (m_LanType == 25)
+	{
+		m_LanType = 24;
+		LanArabic3();
+	} 
+	else if (m_LanType == 24)
+	{
+		m_LanType = 23;
+		LanArabic2();
+	} 
+	else if (m_LanType  == 23)
+	{
+		m_LanType =5;
+		LanArabic1();
+	} 
+}
+
 void keyboard::btnshow()
 {
 	//QWidget *qw=new QWidget(this);
@@ -1481,6 +1558,12 @@ void keyboard::btnshow()
 	ui->fontBox10_KBBut->show();
 	ui->fontBoxRedu_KBBut->show();
 	ui->fontBoxAdd_KBBut->show();
+}
+
+void keyboard::btnArabicARshow()
+{
+	ui->languageAdd_KBBut->show();
+	ui->languageRedu_KBBut->show();
 }
 
 void keyboard::btnLanguageSel(int m_LanType)
@@ -1705,6 +1788,364 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 	}
 
 }
+
+void keyboard::LanArabic1()
+{
+	ui->A_KBBut->setText(QStringLiteral("ﮓ"));
+	ui->B_KBBut->setText(QStringLiteral("ﺈ"));
+	ui->C_KBBut->setText(QStringLiteral("ﺆ"));
+	ui->D_KBBut->setText(QStringLiteral("ﮕ"));
+	ui->E_KBBut->setText(QStringLiteral("ﭺ"));
+	ui->F_KBBut->setText(QStringLiteral("ﯼ"));
+	ui->G_KBBut->setText(QStringLiteral("ﯽ"));
+	ui->H_KBBut->setText(QStringLiteral("ﯾ"));
+	ui->I_KBBut->setText(QStringLiteral("ﮋ"));
+	ui->J_KBBut->setText(QStringLiteral("ﯿ"));
+	ui->K_KBBut->setText(QStringLiteral("ﺀ"));
+	ui->L_KBBut->setText(QStringLiteral("ﺁ"));
+	ui->M_KBBut->setText(QStringLiteral("ﺊ"));
+	ui->N_KBBut->setText(QStringLiteral("ﺉ"));
+	ui->O_KBBut->setText(QStringLiteral("ﮎ"));
+	ui->P_KBBut->setText(QStringLiteral("ﮏ"));
+	ui->Q_KBBut->setText(QStringLiteral("ﭘ"));
+	ui->R_KBBut->setText(QStringLiteral("ﭻ"));
+	ui->S_KBBut->setText(QStringLiteral("ﮔ"));
+	ui->T_KBBut->setText(QStringLiteral("ﭼ"));
+	ui->U_KBBut->setText(QStringLiteral("ﮊ"));
+	ui->V_KBBut->setText(QStringLiteral("ﺇ"));
+	ui->W_KBBut->setText(QStringLiteral("ﭙ"));
+	ui->X_KBBut->setText(QStringLiteral("ﺅ"));
+	ui->Y_KBBut->setText(QStringLiteral("ﺋ"));
+	ui->Z_KBBut->setText(QStringLiteral("ﺄ"));
+	ui->comma_KBBut->setText(QStringLiteral("ﺋ"));
+	ui->period_KBBut->setText(QStringLiteral("ﺌ"));
+	ui->one_KBBut->setText(QStringLiteral("۱"));
+	ui->two_KBBut->setText(QStringLiteral("۲"));
+	ui->three_KBBut->setText(QStringLiteral("۳"));
+	ui->four_KBBut->setText(QStringLiteral("۴"));
+	ui->five_KBBut->setText(QStringLiteral("۵"));
+	ui->six_KBBut->setText(QStringLiteral("۶"));
+	ui->seven_KBBut->setText(QStringLiteral("۷"));
+	ui->eight_KBBut->setText(QStringLiteral("۸"));
+	ui->nine_KBBut->setText(QStringLiteral("۹"));
+	ui->zero_KBBut->setText(QStringLiteral("۰"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﺍ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﺌ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﺋ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﺊ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﺉ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﺈ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﺇ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﺆ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﺅ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﺄ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﺃ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﺂ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﺁ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﺀ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﯿ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﯾ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﯽ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﯼ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﮕ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﮔ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﮓ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﮒ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﮑ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﮐ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﮏ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﮎ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﮋ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﮊ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﭽ"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﭼ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﭻ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﭺ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﭙ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﭘ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﭗ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﭖ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("۰"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("۹"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("۸"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("۷"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("۶"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("۵"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("۴"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("۳"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("۲"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("۱"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("؟"));*/
+}
+
+void keyboard::LanArabic2()
+{
+	ui->A_KBBut->setText(QStringLiteral("ﺞ"));
+	ui->B_KBBut->setText(QStringLiteral("ﺭ"));
+	ui->C_KBBut->setText(QStringLiteral("ﺫ"));
+	ui->D_KBBut->setText(QStringLiteral("ﺠ"));
+	ui->E_KBBut->setText(QStringLiteral("ﺓ"));
+	ui->F_KBBut->setText(QStringLiteral("ﺡ"));
+	ui->G_KBBut->setText(QStringLiteral("ﺢ"));
+	ui->H_KBBut->setText(QStringLiteral("ﺣ"));
+	ui->I_KBBut->setText(QStringLiteral("ﺘ"));
+	ui->J_KBBut->setText(QStringLiteral("ﺤ"));
+	ui->K_KBBut->setText(QStringLiteral("ﺥ"));
+	ui->L_KBBut->setText(QStringLiteral("ﺦ"));
+	ui->M_KBBut->setText(QStringLiteral("ﺯ"));
+	ui->N_KBBut->setText(QStringLiteral("ﺮ"));
+	ui->O_KBBut->setText(QStringLiteral("ﺙ"));
+	ui->P_KBBut->setText(QStringLiteral("ﺚ"));
+	ui->Q_KBBut->setText(QStringLiteral("ﺑ"));
+	ui->R_KBBut->setText(QStringLiteral("ﺔ"));
+	ui->S_KBBut->setText(QStringLiteral("ﺟ"));
+	ui->T_KBBut->setText(QStringLiteral("ﺕ"));
+	ui->U_KBBut->setText(QStringLiteral("ﺗ"));
+	ui->V_KBBut->setText(QStringLiteral("ﺬ"));
+	ui->W_KBBut->setText(QStringLiteral("ﺒ"));
+	ui->X_KBBut->setText(QStringLiteral("ﺪ"));
+	ui->Y_KBBut->setText(QStringLiteral("ﺖ"));
+	ui->Z_KBBut->setText(QStringLiteral("ﺩ"));
+	ui->comma_KBBut->setText(QStringLiteral("ﺰ"));
+	ui->period_KBBut->setText(QStringLiteral("ﺱ"));
+	ui->one_KBBut->setText(QStringLiteral("۱"));
+	ui->two_KBBut->setText(QStringLiteral("۲"));
+	ui->three_KBBut->setText(QStringLiteral("۳"));
+	ui->four_KBBut->setText(QStringLiteral("۴"));
+	ui->five_KBBut->setText(QStringLiteral("۵"));
+	ui->six_KBBut->setText(QStringLiteral("۶"));
+	ui->seven_KBBut->setText(QStringLiteral("۷"));
+	ui->eight_KBBut->setText(QStringLiteral("۸"));
+	ui->nine_KBBut->setText(QStringLiteral("۹"));
+	ui->zero_KBBut->setText(QStringLiteral("۰"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﺲ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﺱ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﺰ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﺯ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﺮ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﺭ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﺬ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﺫ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﺪ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﺩ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﺨ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﺧ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﺦ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﺥ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﺤ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﺣ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﺢ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﺡ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﺠ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﺟ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﺞ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﺝ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﺜ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﺛ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﺚ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﺙ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﺘ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﺗ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﺖ"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﺕ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﺔ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﺓ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﺒ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﺑ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﺐ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﺏ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("۰"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("۹"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("۸"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("۷"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("۶"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("۵"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("۴"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("۳"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("۲"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("۱"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﺎ"));*/
+}
+
+void keyboard::LanArabic3()
+{
+	ui->A_KBBut->setText(QStringLiteral("ﻍ"));
+	ui->B_KBBut->setText(QStringLiteral("ﻜ"));
+	ui->C_KBBut->setText(QStringLiteral("ﻚ"));
+	ui->D_KBBut->setText(QStringLiteral("ﻏ"));
+	ui->E_KBBut->setText(QStringLiteral("ﻂ"));
+	ui->F_KBBut->setText(QStringLiteral("ﻐ"));
+	ui->G_KBBut->setText(QStringLiteral("ﻑ"));
+	ui->H_KBBut->setText(QStringLiteral("ﻒ"));
+	ui->I_KBBut->setText(QStringLiteral("ﻇ"));
+	ui->J_KBBut->setText(QStringLiteral("ﻓ"));
+	ui->K_KBBut->setText(QStringLiteral("ﻔ"));
+	ui->L_KBBut->setText(QStringLiteral("ﻕ"));
+	ui->M_KBBut->setText(QStringLiteral("ﻞ"));
+	ui->N_KBBut->setText(QStringLiteral("ﻝ"));
+	ui->O_KBBut->setText(QStringLiteral("ﻈ"));
+	ui->P_KBBut->setText(QStringLiteral("ﻉ"));
+	ui->Q_KBBut->setText(QStringLiteral("ﻀ"));
+	ui->R_KBBut->setText(QStringLiteral("ﻃ"));
+	ui->S_KBBut->setText(QStringLiteral("ﻎ"));
+	ui->T_KBBut->setText(QStringLiteral("ﺕ"));
+	ui->U_KBBut->setText(QStringLiteral("ﺗ"));
+	ui->V_KBBut->setText(QStringLiteral("ﻛ"));
+	ui->W_KBBut->setText(QStringLiteral("ﻁ"));
+	ui->X_KBBut->setText(QStringLiteral("ﻙ"));
+	ui->Y_KBBut->setText(QStringLiteral("ﺖ"));
+	ui->Z_KBBut->setText(QStringLiteral("ﻘ"));
+	ui->comma_KBBut->setText(QStringLiteral("ﻟ"));
+	ui->period_KBBut->setText(QStringLiteral("ﻟ"));
+	ui->one_KBBut->setText(QStringLiteral("ﺴ"));
+	ui->two_KBBut->setText(QStringLiteral("ﺵ"));
+	ui->three_KBBut->setText(QStringLiteral("ﺶ"));
+	ui->four_KBBut->setText(QStringLiteral("ﺷ"));
+	ui->five_KBBut->setText(QStringLiteral("ﺸ"));
+	ui->six_KBBut->setText(QStringLiteral("ﺹ"));
+	ui->seven_KBBut->setText(QStringLiteral("ﺺ"));
+	ui->eight_KBBut->setText(QStringLiteral("ﺻ"));
+	ui->nine_KBBut->setText(QStringLiteral("ﺼ"));
+	ui->zero_KBBut->setText(QStringLiteral("ﺽ"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﻡ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﻟ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﻟ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﻞ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﻝ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﻜ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﻛ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﻚ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﻙ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﻘ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﻗ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﻖ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﻕ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﻔ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﻓ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﻒ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﻑ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﻐ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﻏ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﻎ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﻍ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﻌ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﻋ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﻊ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﻉ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﻈ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﻇ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﻆ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﻅ"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﻄ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﻃ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﻂ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﻁ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﻀ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﺿ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﺾ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ﺽ"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("ﺼ"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("ﺻ"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("ﺺ"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("ﺹ"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ﺸ"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ﺷ"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("ﺶ"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ﺵ"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ﺴ"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﺳ"));*/
+}
+
+void keyboard::LanArabic4()
+{
+	ui->A_KBBut->setText(QStringLiteral("ﻼ"));
+	ui->B_KBBut->setText(QStringLiteral(""));
+	ui->C_KBBut->setText(QStringLiteral(""));
+	ui->D_KBBut->setText(QStringLiteral(""));
+	ui->E_KBBut->setText(QStringLiteral("ﻱ"));
+	ui->F_KBBut->setText(QStringLiteral(""));
+	ui->G_KBBut->setText(QStringLiteral(""));
+	ui->H_KBBut->setText(QStringLiteral(""));
+	ui->I_KBBut->setText(QStringLiteral("ﻶ"));
+	ui->J_KBBut->setText(QStringLiteral(""));
+	ui->K_KBBut->setText(QStringLiteral(""));
+	ui->L_KBBut->setText(QStringLiteral(""));
+	ui->M_KBBut->setText(QStringLiteral(""));
+	ui->N_KBBut->setText(QStringLiteral(""));
+	ui->O_KBBut->setText(QStringLiteral("ﻷ"));
+	ui->P_KBBut->setText(QStringLiteral("ﻸ"));
+	ui->Q_KBBut->setText(QStringLiteral("ﻯ"));
+	ui->R_KBBut->setText(QStringLiteral("ﻲ"));
+	ui->S_KBBut->setText(QStringLiteral(""));
+	ui->T_KBBut->setText(QStringLiteral("ﻳ"));
+	ui->U_KBBut->setText(QStringLiteral("ﻵ"));
+	ui->V_KBBut->setText(QStringLiteral(""));
+	ui->W_KBBut->setText(QStringLiteral("ﻰ"));
+	ui->X_KBBut->setText(QStringLiteral(""));
+	ui->Y_KBBut->setText(QStringLiteral("ﻴ"));
+	ui->Z_KBBut->setText(QStringLiteral(""));
+	ui->comma_KBBut->setText(QStringLiteral(""));
+	ui->period_KBBut->setText(QStringLiteral(""));
+	ui->one_KBBut->setText(QStringLiteral("ﻣ"));
+	ui->two_KBBut->setText(QStringLiteral("ﻤ"));
+	ui->three_KBBut->setText(QStringLiteral("ﻥ"));
+	ui->four_KBBut->setText(QStringLiteral("ﻦ"));
+	ui->five_KBBut->setText(QStringLiteral("ﻧ"));
+	ui->six_KBBut->setText(QStringLiteral("ﻨ"));
+	ui->seven_KBBut->setText(QStringLiteral("ﻩ"));
+	ui->eight_KBBut->setText(QStringLiteral("ﻪ"));
+	ui->nine_KBBut->setText(QStringLiteral("ﻫ"));
+	ui->zero_KBBut->setText(QStringLiteral("ﻬ"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T(""));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T(""));
+
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﻼ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﻻ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﻺ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﻹ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﻸ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﻷ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﻶ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﻵ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﻴ"));
+	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﻳ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﻲ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﻱ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﻰ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﻯ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﻮ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﻭ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ﻬ"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("ﻫ"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("ﻪ"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("ﻩ"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("ﻨ"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ﻧ"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ﻦ"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("ﻥ"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ﻤ"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ﻣ"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﻢ"));*/
+}
+
 
 void keyboard::LanEnglishSmall()
 {

@@ -46,17 +46,20 @@ public:
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
         editFileBut->setFont(font);
-        editFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/editFile.bmp);"));
+        editFileBut->setStyleSheet(QLatin1String("background-image: url(:/Images/editFile.bmp);\n"
+"color: rgb(255, 255, 255);"));
         manageFileBut = new QPushButton(FilemanageForm);
         manageFileBut->setObjectName(QStringLiteral("manageFileBut"));
         manageFileBut->setGeometry(QRect(10, 340, 144, 144));
         manageFileBut->setFont(font);
-        manageFileBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/manageFile.bmp);"));
+        manageFileBut->setStyleSheet(QLatin1String("background-image: url(:/Images/manageFile.bmp);\n"
+"color: rgb(255, 255, 255);"));
         exitBut = new QPushButton(FilemanageForm);
         exitBut->setObjectName(QStringLiteral("exitBut"));
         exitBut->setGeometry(QRect(10, 560, 144, 144));
         exitBut->setFont(font);
-        exitBut->setStyleSheet(QStringLiteral("background-image: url(:/Images/exit.bmp);"));
+        exitBut->setStyleSheet(QLatin1String("background-image: url(:/Images/exit.bmp);\n"
+"color: rgb(255, 255, 255);"));
         stackedWidget = new QStackedWidget(FilemanageForm);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
         stackedWidget->setGeometry(QRect(190, 20, 1061, 761));

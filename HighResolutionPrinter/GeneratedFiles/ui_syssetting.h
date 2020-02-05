@@ -74,6 +74,7 @@ public:
         sysTimeSetLab->setGeometry(QRect(320, 40, 141, 41));
         sysTimeSetLab->setMinimumSize(QSize(141, 41));
         sysTimeSetLab->setFont(font);
+        sysTimeSetLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         sysTimeSetLab->setAlignment(Qt::AlignCenter);
         addHourBut = new QPushButton(sysSetting);
         addHourBut->setObjectName(QStringLiteral("addHourBut"));

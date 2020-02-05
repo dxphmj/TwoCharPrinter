@@ -32,7 +32,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/printSetting.bmp);</string>
+    <string notr="true">background-image: url(:/Images/printSetting.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>打印设置</string>
@@ -54,7 +55,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/sysSetting.bmp);</string>
+    <string notr="true">background-image: url(:/Images/sysSetting.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>系统设置</string>
@@ -76,7 +78,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/countSetting.bmp);</string>
+    <string notr="true">background-image: url(:/Images/countSetting.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>计数设置</string>
@@ -98,7 +101,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/aboutMac.bmp);</string>
+    <string notr="true">background-image: url(:/Images/aboutMac.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>关于本机</string>
@@ -132,7 +136,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-image: url(:/Images/exit.bmp);</string>
+    <string notr="true">background-image: url(:/Images/exit.bmp);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>退出</string>
