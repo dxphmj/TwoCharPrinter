@@ -75,6 +75,7 @@ Management</fileManageBut>
     <sideLenDMLab>Type</sideLenDMLab>
     <variableDMBut>Variable</variableDMBut>
     <newDMBut>New</newDMBut>
+    <typeTab>Text#Time#Serial#Picture#BarCode#QRCode#DMCode</typeTab>
   </FileEditChild>
   <FileManageChild>
     <localFileBut>Local File</localFileBut>
@@ -119,6 +120,7 @@ Management</fileManageBut>
      <flashSprayCheckBox>Flash Spray Check</flashSprayCheckBox>
      <flashSprayInternalLab>Interval s</flashSprayInternalLab>
      <flashSprayTimesLab>Count</flashSprayTimesLab>
+     <printSetTabWid>PrintConfige#Advance#PrintHead#UV Lamp</printSetTabWid>
   </printSetting>
   <sysSetting>
      <sysTimeSetLab>System Time</sysTimeSetLab>
