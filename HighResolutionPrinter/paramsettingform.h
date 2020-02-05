@@ -23,7 +23,7 @@ public:
 private:
     Ui::ParamSettingForm *ui;
 
-private:
+public:
 	printSetting *m_printSetting;//创建窗口页面指针
 	sysSetting  *m_sysSetting;
 	countSetting  *m_countSetting;

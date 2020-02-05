@@ -8,9 +8,14 @@ Management</fileManageBut>
     <closeBut>Shutdown System</closeBut>
     <No1Lab>&lt;span style="font-size:10px"&gt;The Cartridge 1</No1Lab>
     <No2Lab>&lt;span style="font-size:10px"&gt;The Cartridge 2</No2Lab>
-    <printParaLab>Speed: 40&#x000A;&#x000A;&#x000A;Delayed: 152&#x000A;&#x000A;&#x000A;Direction: Reverse</printParaLab>
-    <signalParaLab>Voltage: 8.8V&#x000A;&#x000A;&#x000A;Pulse Width: 1.8&#x000A;&#x000A;&#x000A;Gray level: 5</signalParaLab>
-    <fileNmaeLab>&#x000A;File Nmae: default.spr&#x000A;&#x000A;&#x000A;Count value: 100</fileNmaeLab>
+    <speedMWLab>Speed: 40</speedMWLab>
+    <timeDelayMWLab>Delayed: 152</timeDelayMWLab>
+    <dirMWLab>Direction: Reverse</dirMWLab>
+    <voltMWLab>Voltage: 8.8V</voltMWLab>
+    <PWMWLab>Pulse Width: 1.8</PWMWLab>
+    <grayMWLab>Gray level: 5</grayMWLab>
+    <fileNmaeLab>File Nmae: default.spr</fileNmaeLab>
+    <countValMWLab>Count value: 100</countValMWLab>
   </MainWindow>
   <FilemanageForm>
     <editFileBut>Edit File</editFileBut>
@@ -27,7 +32,114 @@ Management</fileManageBut>
     <saveasBut>Save As</saveasBut>
     <rotateTextLab>Rotate</rotateTextLab>
     <internalTextLab>Space Between</internalTextLab>
+
+    <addTimeBut>Add</addTimeBut>
+    <refreshTimeBut>Refresh</refreshTimeBut>
+    <newTimeBut>New</newTimeBut>
+    <fontTypeTimeLab>Font Type</fontTypeTimeLab>
+    <fontTypeTimeLab_3>Excursion</fontTypeTimeLab_3>
+    <fontTypeTimeLab_4>Deviation Value</fontTypeTimeLab_4>
+    <fontTypeTimeLab_5>Deviation Unit</fontTypeTimeLab_5>
+    <fontTypeTimeLab_6>Preview</fontTypeTimeLab_6>
+    <fontTypeTimeLab_7>Date/Time</fontTypeTimeLab_7>
+    
+    <initialValSerialLab>Initial Value </initialValSerialLab>
+    <termValSerialLab>End Value</termValSerialLab>
+    <startValSerialLab>Start Value</startValSerialLab>
+    <stepLenSerialLab>Step Length</stepLenSerialLab>
+    <reptCountSerialLab>Repeat Count</reptCountSerialLab>
+    <digitSerialLab>Digit</digitSerialLab>
+    <counterSerialLab>Counter</counterSerialLab>
+    <fontTypeSerialLab>Font Type</fontTypeSerialLab>
+    <formatSerialLab>Format</formatSerialLab>
+    <newSerialBut>New</newSerialBut>
+    
+    <heightBmpLab>Height</heightBmpLab>
+    <widthBmpLab>Width</widthBmpLab>
+    <reverseBmpCheckBox>Reverse Colors</reverseBmpCheckBox>
+    <selBmpBut>Select Graphics</selBmpBut>
+    <newBmpBut>New</newBmpBut>
+
+    <typeBarCodeLab>Type</typeBarCodeLab>
+    <zoomBarCodeLab>Zoom</zoomBarCodeLab>
+    <heightBarCodeLab>Height</heightBarCodeLab>
+    <variableBarCodeBut>Variable</variableBarCodeBut>
+    <newBarCodeBut>New</newBarCodeBut>
+
+    <showNumCheckBox>Show Num</showNumCheckBox>
+    <sideLenQRLab>Side Length</sideLenQRLab>
+    <reverseCheckBox>Reverse Colors</reverseCheckBox>
+    <variableQRBut>Variable</variableQRBut>
+    <newQRBut>New</newQRBut>
+
+    <sideLenDMLab>Type</sideLenDMLab>
+    <variableDMBut>Variable</variableDMBut>
+    <newDMBut>New</newDMBut>
   </FileEditChild>
+  <FileManageChild>
+    <localFileBut>Local File</localFileBut>
+    <UdiskFileBut>U Disk File</UdiskFileBut>
+    <loadSeleFileBut>Load Selected File</loadSeleFileBut>
+    <editSeleFileBut>Edit Selected File</editSeleFileBut>
+    <delSeleFileBut>Del Selected File</delSeleFileBut>
+    <copyFile2localBut>Copy Local</copyFile2localBut>
+    <OKFileNameBut>OK</OKFileNameBut>
+  </FileManageChild>
+  <ParamSettingForm>
+    <printSettingBut>Print Setup</printSettingBut>
+    <sysSettingBut>System Setup</sysSettingBut>
+    <countSettingBut>Count Setup</countSettingBut>
+    <aboutMacBut>About This Mac</aboutMacBut>
+    <paraExitBut>Exit</paraExitBut>
+    <resetBut>Reset</resetBut>
+    <savePrintSetBut>Save</savePrintSetBut>
+  </ParamSettingForm>
+  <printSetting>
+     <printSpeedLab>Print Speed m/min</printSpeedLab>
+     <printDelayLab>Print Delay ms</printDelayLab>
+     <synFrequencyLab>Synchronous Frequency</synFrequencyLab>
+     <printGrayLab>Print Grayscale</printGrayLab>
+     <trigLab>Trigger Mode</trigLab>
+     <inkjetLab>Inkjet Mode</inkjetLab>
+     <printDirLab>Print Method</printDirLab>
+     <synWheelCheckBox>Enable Synchronization Wheel</synWheelCheckBox>
+     <voiceCheckBox>Voice Check</voiceCheckBox>
+
+     <repetePrintCheckBox>Repete Print Check</repetePrintCheckBox>
+     <repeteLab>The Times Of Repetition</repeteLab>
+     <repeteDelayLab>Repeat Delay ms</repeteDelayLab>
+
+     <inkTypeLab>Ink Type</inkTypeLab>
+     <adaptParaCheckBox>Adaptive Parameter</adaptParaCheckBox> 
+     <inkVoltLab>Voltage V</inkVoltLab>
+     <PWLab>Pulse Width ms</PWLab>
+     <nozzleSelLab>Nozzle Selection</nozzleSelLab>
+     <offsetLab>Offset mm</offsetLab>
+     <flashSprayLab>Flash Spray Setup</flashSprayLab>
+     <flashSprayCheckBox>Flash Spray Check</flashSprayCheckBox>
+     <flashSprayInternalLab>Interval s</flashSprayInternalLab>
+     <flashSprayTimesLab>Count</flashSprayTimesLab>
+  </printSetting>
+  <sysSetting>
+     <sysTimeSetLab>System Time</sysTimeSetLab>
+     <backLightLab>Back Light</backLightLab>
+     <sysLanguageLab>System Language</sysLanguageLab>
+  </sysSetting>
+  <countSetting>
+      <counterOneLab>Counter 1</counterOneLab>
+      <currentVal1Lab>Current Value</currentVal1Lab>
+      <initialVal1Lab>Initial Value</initialVal1Lab>
+      <repeteTime1Lab>The Times Of Repetition</repeteTime1Lab>
+      <stepVal1Lab>Step Value</stepVal1Lab>
+      <maxVal1Lab>Max Value</maxVal1Lab>
+      <counterTwoLab>Counter 2</counterTwoLab>
+      <currentVal2Lab>Current Value</currentVal2Lab>
+      <initialVal2Lab>Initial Value</initialVal2Lab>
+      <repeteTime2Lab>The Times Of Repetition</repeteTime2Lab>
+      <stepVal2Lab>Step Value</stepVal2Lab>
+      <maxVal2Lab>Max Value</maxVal2Lab>
+      <printTimeLab>Print The Number</printTimeLab>
+  </countSetting>
 </MES>
 
 

@@ -1,11 +1,12 @@
 #include "UILanguage.h"
 #include <QTextCodec>
 #include "xml\tinyxml.h"
-
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "filemanageform.h"
 #include "ui_filemanageform.h"
+#include "paramsettingform.h"
+#include "ui_paramsettingform.h"
 
 CUILanguage::CUILanguage(QObject* pMainwindow)
 {
@@ -67,6 +68,26 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 		{
 			ChangeLanguageForItem((QObject*)(pMainwindow->m_fileManage->FormFileEditChild),node);			 
 		}
+		else if(strcmp(str,"FileManageChild") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_fileManage->FormFileManageChild),node);			 
+		}
+		else if(strcmp(str,"ParamSettingForm") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting),node);			 
+		}
+		else if(strcmp(str,"printSetting") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting->m_printSetting),node);			 
+		}
+		else if(strcmp(str,"sysSetting") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting->m_sysSetting),node);			 
+		}
+		else if(strcmp(str,"countSetting") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting->m_countSetting),node);			 
+		}
 	} 
 }
 
@@ -84,6 +105,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QPushButton *tempButton = pWidge->findChild<QPushButton *>(strItem);
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
 		/*QTabWidget * tempTabWidget = pWidge->findChild<QTabWidget *>(strItem);*/
+		//checkbox
 		if(tempButton)
 			tempButton->setText(QString::fromLocal8Bit(strText));
 		else if(tempLabel)
