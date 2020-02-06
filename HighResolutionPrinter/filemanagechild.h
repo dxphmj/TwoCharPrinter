@@ -50,9 +50,8 @@ public slots:
 	void editSeleFileBut_clicked();
 	void fileNmaeLineEdit_click();
 	void OKFileNameBut_clicked();
-	//用于实现更改文件名的槽函数
-	//void ChangeFileName();
-
+	void delSeleFileBut_clicked();
+	
 protected:
 	bool eventFilter(QObject *watched, QEvent *event);
 };

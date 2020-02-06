@@ -30,6 +30,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
 	connect(ui->newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
 
+	connect(ui->internalTextAddBut,SIGNAL(clicked()),this,SLOT(internalTextAddBut_clicked()));
+	connect(ui->internalTextRedBut,SIGNAL(clicked()),this,SLOT(internalTextRedBut_clicked()));
+
 	connect(ui->moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
 	connect(ui->moveDownBut,SIGNAL(clicked()),this,SLOT(moveDownBut_clicked()));
 	connect(ui->moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
@@ -123,6 +126,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeTextComBox->setCurrentIndex(0);
 
 	ui->typeBarCodeComBox->addItem(QStringLiteral("EANX"));
 	ui->typeBarCodeComBox->addItem(QStringLiteral("CODE39"));
@@ -556,6 +560,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			QString tmpStr = QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strText);
+			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intSS));
 			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
 			{
 				this->ui->typeTab->setCurrentIndex(0);
@@ -623,19 +628,35 @@ void FileEditChild::GetObjSettingsFromScreen()
 			return;
 		}
 	}
-	this->ui->wordLineEdit->setText("");
-	this->ui->DateTimeEdit->setText("");
-	this->ui->serialLineEdit->setText("");
-	this->ui->newBarCodeBut->setText("");
-	this->ui->QRCodeLineEdit->setText("");
-	this->ui->DMCodeLineEdit->setText("");
+	//设置右侧框基础参数
+	this->ui->internalShowTextLab->setText("0");
 
+	//设置文本typeTab
+	this->ui->wordLineEdit->setText("");
 	this->ui->newTextBut->setText(QStringLiteral("新建"));
+	this->ui->fontTypeTextComBox->setCurrentIndex(-1);
+
+	//设置时间typeTab
+	this->ui->DateTimeEdit->setText("");
 	this->ui->newTimeBut->setText(QStringLiteral("新建"));
+
+	//设置序列号typeTab
+	this->ui->serialLineEdit->setText("");
 	this->ui->newSerialBut->setText(QStringLiteral("新建"));
+
+	//设置图片typeTab
 	this->ui->newBmpBut->setText(QStringLiteral("新建"));
+
+	//设置二维码typeTab
+	this->ui->newBarCodeBut->setText("");
 	this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
+
+	//设置QR码typeTab
+	this->ui->QRCodeLineEdit->setText("");
 	this->ui->newQRBut->setText(QStringLiteral("新建"));
+	
+	//设置DM码typeTab
+	this->ui->DMCodeLineEdit->setText("");
 	this->ui->newDMBut->setText(QStringLiteral("新建"));
 }
 
@@ -829,10 +850,9 @@ void FileEditChild::newTextBut_clicked()
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	QString txtQString = ui->wordLineEdit->text();
-	string txtString = txtQString.toStdString();
-	QString qTextFont = ui->fontTypeTextComBox->currentText();
-	string textFont = qTextFont.toStdString();
+	string txtString = ui->wordLineEdit->text().toStdString();
+	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
+	//int intTmpSS = ui->internalShowTextLab->text().toInt();
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 }
 
@@ -940,6 +960,36 @@ void FileEditChild::newBmpBut_clicked()
 
 }
 
+void FileEditChild::internalTextAddBut_clicked()
+{
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			m_PrinterMes.OBJ_Vec[i].intSS += 1;
+			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i].intSS);
+			this->ui->internalShowTextLab->setText(tmpStr);
+			return;
+		}
+	}
+	this->ui->internalShowTextLab->setText("0");
+}
+
+void FileEditChild::internalTextRedBut_clicked()
+{
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			m_PrinterMes.OBJ_Vec[i].intSS -= 1;
+			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i].intSS);
+			this->ui->internalShowTextLab->setText(tmpStr);
+			return;
+		}
+	}
+	this->ui->internalShowTextLab->setText("0");
+}
+
 void FileEditChild::moveUpBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
@@ -950,7 +1000,6 @@ void FileEditChild::moveUpBut_clicked()
 			if( EndPos < 241 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intLineStart += 1;
-				paintDot();
 			}
 		}
 	}
@@ -965,7 +1014,6 @@ void FileEditChild::moveDownBut_clicked()
 			if( m_PrinterMes.OBJ_Vec[i].intLineStart > 0 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intLineStart -= 1;
-				paintDot();
 			}
 		}
 	}
@@ -980,7 +1028,6 @@ void FileEditChild::moveLeftBut_clicked()
 			if( m_PrinterMes.OBJ_Vec[i].intRowStart > 0 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intRowStart -= 1;
-				paintDot();
 			}
 		}
 	}
@@ -996,7 +1043,6 @@ void FileEditChild::moveRightBut_clicked()
 			if( EndPos < 1041 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intRowStart += 1;
-				paintDot();
 			}
 		}
 	}
@@ -1366,6 +1412,7 @@ void FileEditChild::newTimeBut_clicked()
 	//this->ShowWindow(SW_HIDE);
  
 }
+
 void FileEditChild::newSerialNumber_click()
 {
 	QString a=ui->initialValSerialLineEdit->text();

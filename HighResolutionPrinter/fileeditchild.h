@@ -69,6 +69,8 @@ private slots:
 	void newSerialNumber_click();
 	void saveasBut_clicked();
 	void saveBut_clicked();
+	void internalTextAddBut_clicked();
+	void internalTextRedBut_clicked();
 	void moveUpBut_clicked();
 	void moveDownBut_clicked();
 	void moveLeftBut_clicked();
