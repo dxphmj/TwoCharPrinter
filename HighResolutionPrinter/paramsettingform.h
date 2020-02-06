@@ -1,4 +1,4 @@
-#ifndef PARAMSETTINGFORM_H
+ï»¿#ifndef PARAMSETTINGFORM_H
 #define PARAMSETTINGFORM_H
 
 #include <QWidget>
@@ -19,12 +19,11 @@ public:
     explicit ParamSettingForm(QWidget *parent = 0);
     ~ParamSettingForm();
 
-
 private:
     Ui::ParamSettingForm *ui;
 
 public:
-	printSetting *m_printSetting;//´´½¨´°¿ÚÒ³ÃæÖ¸Õë
+	printSetting *m_printSetting;//åˆ›å»ºçª—å£é¡µé¢æŒ‡é’ˆ
 	sysSetting  *m_sysSetting;
 	countSetting  *m_countSetting;
 	aboutMac  *m_aboutMac;

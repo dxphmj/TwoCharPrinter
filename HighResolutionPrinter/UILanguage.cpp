@@ -26,7 +26,9 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 	char strFileName[100];
 
 	//根据nLanguageType 读取相应的xml文件
-	if(nLanguageType == ENGLISH)
+	if(nLanguageType == 1)
+		sprintf(strFileName,"%s","System\\chinese.xml");
+	if(nLanguageType == 5)
 		sprintf(strFileName,"%s","System\\english.xml");
 
 	//先读取窗体的名称，根据窗体的名称获得窗体指针，然后再给窗体的各控件赋值 
@@ -106,6 +108,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
 		QCheckBox *tempCheck = pWidge->findChild<QCheckBox *>(strItem);
 		QTabWidget * tempQTabWidget = pWidge->findChild<QTabWidget *>(strItem); 
+		QComboBox *tempQComboBox = pWidge->findChild<QComboBox *>(strItem); 
  		 
 		if(tempButton)
 			tempButton->setText(QString::fromLocal8Bit(strText));
@@ -122,6 +125,20 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
     
 			while (substr != NULL) {    
 					tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
+					i++;  
+					substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
+					往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
+			}    			
+ 		}
+		else if(tempQComboBox)
+		{
+			//以#分解字符
+			char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
+			int i =0;  
+			char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
+    
+			while (substr != NULL) {    
+					tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
 					i++;  
 					substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
 					往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  

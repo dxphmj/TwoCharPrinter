@@ -1,4 +1,6 @@
-#pragma once
+ï»¿#pragma once
+
+#include <QString>
 
 typedef unsigned char BYTE;
 
@@ -8,23 +10,61 @@ public:
 	CParamSetting(void);
 	virtual ~CParamSetting(void);
 
-public:
-	//pcf¿ØÖÆ0X00
-	BYTE pcf0X00bit1_bit0 ;// ÁĞ´¥·¢·½Ê½£º0Îª±àÂëÆ÷1Ïà£¬1Îª±àÂëÆ÷2Ïà£¬2ÎªÄÚ²¿Ò»ÁĞµãÊı£¨¼´µÈÓÚ64K/»®ËÙÂÊ£©
-	BYTE pcf0X00bit2 ; //Í¬²½Æ÷·´Ïà£¬0£ºA->B£¬1:B->A
-	BYTE pcf0X00bit4 ; //¹ÊÕÏÔËĞĞ£¬ÕıÔÚ´òÓ¡Óöµ½¹ÊÕÏÊ±µÄ´¦Àí£¬0´òÓ¡Í£Ö¹£¬1 ´òÓ¡¼ÌĞø£¬µ«Ä«µãÃ»ÓĞÅç³öÀ´
-	BYTE pcf0X00bit5; //²úÆ·¼ÆÊıÆ÷ÖØÖÃ£¬0 ²»ÖØÖÃ£¬1 ÖØÖÃµ½Éè¶¨Öµ
-	BYTE pcf0X00bit6 ; //´òÓ¡¼ÆÊıÆ÷ÖØÖÃ£¬0 ²»ÖØÖÃ£¬1 ÖØÖÃµ½Éè¶¨Öµ
+	//pcfæ§åˆ¶0X00
+	//BYTE pcf0X00bit1_bit0 ;// åˆ—è§¦å‘æ–¹å¼ï¼š0ä¸ºç¼–ç å™¨1ç›¸ï¼Œ1ä¸ºç¼–ç å™¨2ç›¸ï¼Œ2ä¸ºå†…éƒ¨ä¸€åˆ—ç‚¹æ•°ï¼ˆå³ç­‰äº64K/åˆ’é€Ÿç‡ï¼‰
+	//BYTE pcf0X00bit2 ; //åŒæ­¥å™¨åç›¸ï¼Œ0ï¼šA->Bï¼Œ1:B->A
+	//BYTE pcf0X00bit4 ; //æ•…éšœè¿è¡Œï¼Œæ­£åœ¨æ‰“å°é‡åˆ°æ•…éšœæ—¶çš„å¤„ç†ï¼Œ0æ‰“å°åœæ­¢ï¼Œ1 æ‰“å°ç»§ç»­ï¼Œä½†å¢¨ç‚¹æ²¡æœ‰å–·å‡ºæ¥
+	//BYTE pcf0X00bit5; //äº§å“è®¡æ•°å™¨é‡ç½®ï¼Œ0 ä¸é‡ç½®ï¼Œ1 é‡ç½®åˆ°è®¾å®šå€¼
+	//BYTE pcf0X00bit6 ; //æ‰“å°è®¡æ•°å™¨é‡ç½®ï¼Œ0 ä¸é‡ç½®ï¼Œ1 é‡ç½®åˆ°è®¾å®šå€¼
 
-	//pcf¿ØÖÆ0X01
-	BYTE pcf0X01bit0 ; //ÊÇ·ñÆôÓÃµçÑÛ£¬0Îª¹Ø±Õ£¬1ÎªÆôÓÃ
-	BYTE pcf0X01bit2 ; //µçÑÛÓĞĞ§µçÆ½£¬0ÎªµÍµçÆ½£¬1Îª¸ßµçÆ½
-	BYTE pcf0X01bit3 ; //ÅçÓ¡Ä£Ê½Îªµ¥´Î»¹ÊÇÁ¬Ğø£¬0Îªµ¥´Î£¬1ÎªÁ¬Ğø
+	////pcfæ§åˆ¶0X01
+	//BYTE pcf0X01bit0 ; //æ˜¯å¦å¯ç”¨ç”µçœ¼ï¼Œ0ä¸ºå…³é—­ï¼Œ1ä¸ºå¯ç”¨
+	//BYTE pcf0X01bit2 ; //ç”µçœ¼æœ‰æ•ˆç”µå¹³ï¼Œ0ä¸ºä½ç”µå¹³ï¼Œ1ä¸ºé«˜ç”µå¹³
+	//BYTE pcf0X01bit3 ; //å–·å°æ¨¡å¼ä¸ºå•æ¬¡è¿˜æ˜¯è¿ç»­ï¼Œ0ä¸ºå•æ¬¡ï¼Œ1ä¸ºè¿ç»­
 
+	QString m_PrintingSpeed;
+	QString m_PrintDelay;
+	QString m_SynFrequency;
+	QString m_PrintGray;
+	QString m_TriggerMode;
+	QString m_InkjetMode;
+	QString m_PrintingDirection;
+	bool m_SynWheelCheck;
+	bool m_VoiceCheck;
+
+	int DPIradioBGcheckedId;
+	QString m_DPI150RadioBut;
+	QString m_DPI200RadioBut;
+	QString m_DPI300RadioBut;
+	QString m_DPI600RadioBut;
+	bool m_RepetePrintCheck;
+	QString m_RepeatTimes;
+	QString m_RepeatDelay;
+
+	bool m_AdaptParaCheck;
+	QString m_InkVoltage;
+	QString m_InkPulseWidth;
+	int NozzleradioBGcheckedId;
+	QString m_NozzleSel1RadioBut;
+	QString m_NozzleSel2RadioBut;
+	QString m_Offset;
+	bool m_FlashSprayCheck;
+	QString m_FlashSprayInterval;
+	QString m_FlashSprayFrequency;
+
+	QString m_YearShow;
+	QString m_MonthShow;
+	QString m_DayShow;
+	QString m_HourShow;
+	QString m_MinShow;
+	QString m_SecondShow;
+	QString m_DateTimeShow;
+	QString m_SysLanguage;
 
 public:
 	void SaveParam2Xml();
 	void OpenParamFromXml();
 
 };
+
 

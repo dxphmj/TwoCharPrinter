@@ -1,45 +1,44 @@
 <MES>
   <MainWindow>
-    <nameDispLab>&lt;span style="font-size:30px"&gt;Multi-Function Intelligent Printer</nameDispLab>
-    <fileManageBut>&lt;span style="font-size:10px"&gt;File
-Management</fileManageBut>
-    <paraManageBut>Parameter Management</paraManageBut>
-    <startPrintBut>Start Printing</startPrintBut>
-    <closeBut>Shutdown System</closeBut>
-    <No1Lab>&lt;span style="font-size:10px"&gt;The Cartridge 1</No1Lab>
-    <No2Lab>&lt;span style="font-size:10px"&gt;The Cartridge 2</No2Lab>
-    <speedMWLab>Speed: 40</speedMWLab>
-    <timeDelayMWLab>Delayed: 152</timeDelayMWLab>
-    <dirMWLab>Direction: Reverse</dirMWLab>
-    <voltMWLab>Voltage: 8.8V</voltMWLab>
-    <PWMWLab>Pulse Width: 1.8</PWMWLab>
-    <grayMWLab>Gray level: 5</grayMWLab>
-    <fileNmaeLab>File Nmae: default.spr</fileNmaeLab>
-    <countValMWLab>Count value: 100</countValMWLab>
+    <nameDispLab>Multifunction Intelligent Inkjet Printer</nameDispLab>
+    <fileManageBut>File</fileManageBut>
+    <paraManageBut>Parameter</paraManageBut>
+    <startPrintBut>Printing</startPrintBut>
+    <closeBut>Shutdown</closeBut>
+    <No1Lab>Cartridge 1</No1Lab>
+    <No2Lab>Cartridge 2</No2Lab>
+    <speedMWLab>Speed:</speedMWLab>
+    <timeDelayMWLab>Delayed:</timeDelayMWLab>
+    <dirMWLab>Direction:</dirMWLab>
+    <voltMWLab>Voltage:</voltMWLab>
+    <PWMWLab>Pulse-Width:</PWMWLab>
+    <grayMWLab>Grayscale:</grayMWLab>
+    <fileNmaeLab>FileNmae:</fileNmaeLab>
+    <countValMWLab>Counting:</countValMWLab>
   </MainWindow>
   <FilemanageForm>
-    <editFileBut>Edit File</editFileBut>
+    <editFileBut>EditFile</editFileBut>
     <exitBut>Exit</exitBut>
     <manageFileBut>Manage File</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
-    <fontTypeTextLab>Font Type</fontTypeTextLab>
-    <fontSizeTextLab>Font Size</fontSizeTextLab>
+    <fontTypeTextLab>Font-Type</fontTypeTextLab>
+    <fontSizeTextLab>Font-Size</fontSizeTextLab>
     <variableTextBut>Variable</variableTextBut>
-    <newTextBut>New Construction</newTextBut>
+    <newTextBut>New</newTextBut>
     <delBut>Del</delBut>
     <saveBut>Save</saveBut>
     <saveasBut>Save As</saveasBut>
     <rotateTextLab>Rotate</rotateTextLab>
-    <internalTextLab>Space Between</internalTextLab>
+    <internalTextLab>Internal</internalTextLab>
 
     <addTimeBut>Add</addTimeBut>
     <refreshTimeBut>Refresh</refreshTimeBut>
     <newTimeBut>New</newTimeBut>
-    <fontTypeTimeLab>Font Type</fontTypeTimeLab>
-    <fontTypeTimeLab_3>Excursion</fontTypeTimeLab_3>
-    <fontTypeTimeLab_4>Deviation Value</fontTypeTimeLab_4>
-    <fontTypeTimeLab_5>Deviation Unit</fontTypeTimeLab_5>
+    <fontTypeTimeLab>Font-Type</fontTypeTimeLab>
+    <fontTypeTimeLab_3>Offset</fontTypeTimeLab_3>
+    <fontTypeTimeLab_4>Offset Value</fontTypeTimeLab_4>
+    <fontTypeTimeLab_5>Offset Unit</fontTypeTimeLab_5>
     <fontTypeTimeLab_6>Preview</fontTypeTimeLab_6>
     <fontTypeTimeLab_7>Date/Time</fontTypeTimeLab_7>
     
@@ -80,17 +79,17 @@ Management</fileManageBut>
   <FileManageChild>
     <localFileBut>Local File</localFileBut>
     <UdiskFileBut>U Disk File</UdiskFileBut>
-    <loadSeleFileBut>Load Selected File</loadSeleFileBut>
-    <editSeleFileBut>Edit Selected File</editSeleFileBut>
-    <delSeleFileBut>Del Selected File</delSeleFileBut>
-    <copyFile2localBut>Copy Local</copyFile2localBut>
+    <loadSeleFileBut>Load Selected-File</loadSeleFileBut>
+    <editSeleFileBut>Edit Selected-File</editSeleFileBut>
+    <delSeleFileBut>Del Selected-File</delSeleFileBut>
+    <copyFile2localBut>Copy To Local</copyFile2localBut>
     <OKFileNameBut>OK</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
-    <printSettingBut>Print Setup</printSettingBut>
-    <sysSettingBut>System Setup</sysSettingBut>
-    <countSettingBut>Count Setup</countSettingBut>
-    <aboutMacBut>About This Mac</aboutMacBut>
+    <printSettingBut>Print-Set</printSettingBut>
+    <sysSettingBut>System-Set</sysSettingBut>
+    <countSettingBut>Count-Set</countSettingBut>
+    <aboutMacBut>About-Self</aboutMacBut>
     <paraExitBut>Exit</paraExitBut>
     <resetBut>Reset</resetBut>
     <savePrintSetBut>Save</savePrintSetBut>
@@ -104,10 +103,13 @@ Management</fileManageBut>
      <inkjetLab>Inkjet Mode</inkjetLab>
      <printDirLab>Print Method</printDirLab>
      <synWheelCheckBox>Enable Synchronization Wheel</synWheelCheckBox>
-     <voiceCheckBox>Voice Check</voiceCheckBox>
+     <voiceCheckBox>Voice</voiceCheckBox>
+     <trigComBox>External Electric Eye#Automatic#Photoelectricity#Encoder#Photoelectric Coding#Light Automatically</trigComBox>
+     <inkjetComBox>Left#Right</inkjetComBox>
+     <printDirComBox>Forward#Reverse</printDirComBox>
 
-     <repetePrintCheckBox>Repete Print Check</repetePrintCheckBox>
-     <repeteLab>The Times Of Repetition</repeteLab>
+     <repetePrintCheckBox>Repete Print</repetePrintCheckBox>
+     <repeteLab>Times Of Repetition</repeteLab>
      <repeteDelayLab>Repeat Delay ms</repeteDelayLab>
 
      <inkTypeLab>Ink Type</inkTypeLab>
@@ -117,7 +119,7 @@ Management</fileManageBut>
      <nozzleSelLab>Nozzle Selection</nozzleSelLab>
      <offsetLab>Offset mm</offsetLab>
      <flashSprayLab>Flash Spray Setup</flashSprayLab>
-     <flashSprayCheckBox>Flash Spray Check</flashSprayCheckBox>
+     <flashSprayCheckBox>Flash Spray</flashSprayCheckBox>
      <flashSprayInternalLab>Interval s</flashSprayInternalLab>
      <flashSprayTimesLab>Count</flashSprayTimesLab>
      <printSetTabWid>PrintConfige#Advance#PrintHead#UV Lamp</printSetTabWid>
@@ -131,13 +133,13 @@ Management</fileManageBut>
       <counterOneLab>Counter 1</counterOneLab>
       <currentVal1Lab>Current Value</currentVal1Lab>
       <initialVal1Lab>Initial Value</initialVal1Lab>
-      <repeteTime1Lab>The Times Of Repetition</repeteTime1Lab>
+      <repeteTime1Lab>Times Of Repetition</repeteTime1Lab>
       <stepVal1Lab>Step Value</stepVal1Lab>
       <maxVal1Lab>Max Value</maxVal1Lab>
       <counterTwoLab>Counter 2</counterTwoLab>
       <currentVal2Lab>Current Value</currentVal2Lab>
       <initialVal2Lab>Initial Value</initialVal2Lab>
-      <repeteTime2Lab>The Times Of Repetition</repeteTime2Lab>
+      <repeteTime2Lab>Times Of Repetition</repeteTime2Lab>
       <stepVal2Lab>Step Value</stepVal2Lab>
       <maxVal2Lab>Max Value</maxVal2Lab>
       <printTimeLab>Print The Number</printTimeLab>

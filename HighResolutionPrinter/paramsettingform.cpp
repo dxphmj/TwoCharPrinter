@@ -1,9 +1,7 @@
-#include "paramsettingform.h"
+ï»¿#include "paramsettingform.h"
 #include "ui_paramsettingform.h"
-#include <QFile>
-#include <QDebug>
-#include <QXmlStreamWriter>
 #include "mainwindow.h"
+#include "ParamSetting.h"
 
 ParamSettingForm::ParamSettingForm(QWidget *parent) :
     QWidget(parent),
@@ -41,7 +39,7 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
 	
-	m_printSetting = new printSetting(this);//ÊµÀı»¯´°¿ÚÒ³Ãæ
+	m_printSetting = new printSetting(this);//å®ä¾‹åŒ–çª—å£é¡µé¢
 	m_sysSetting = new sysSetting(this);
 	m_countSetting = new countSetting(this);
 	m_aboutMac = new aboutMac(this);
@@ -85,7 +83,7 @@ void ParamSettingForm::aboutMacBut_clicked()
 
 QString ParamSettingForm::getNum(QString str)
 {
-	//»ñÈ¡Êı×Ö
+	//è·å–æ•°å­—
 	QString str1 = str;
 	QString res;
 	QChar ch;
@@ -105,179 +103,96 @@ QString ParamSettingForm::getNum(QString str)
 
 void ParamSettingForm::holdConfigurationBut_clicked()
 {
-	//ÏÈ¸øm_ParamSettingÖĞµÄ²ÎÊı¸³Öµ£¬È»ºóµ÷ÓÃCParamSettingÖĞµÄº¯ÊıSaveParam2Xml½øĞĞ±£´æ
+	//å…ˆç»™m_ParamSettingä¸­çš„å‚æ•°èµ‹å€¼ï¼Œç„¶åè°ƒç”¨CParamSettingä¸­çš„å‡½æ•°SaveParam2Xmlè¿›è¡Œä¿å­˜
 	MainWindow* theApp = (MainWindow*)(this->parent());
+	
+	theApp->m_ParamSetting.m_PrintingSpeed = getNum(m_printSetting->ui.printSpeedShowLab->text());
+	theApp->m_ParamSetting.m_PrintDelay = getNum(m_printSetting->ui.printDelayShowLab->text());
+	theApp->m_ParamSetting.m_SynFrequency = getNum(m_printSetting->ui.synFrequencyShowLab->text());
+	theApp->m_ParamSetting.m_PrintGray = getNum(m_printSetting->ui.printGrayShowLab->text());
+	theApp->m_ParamSetting.m_TriggerMode = m_printSetting->ui.trigComBox->currentText();
+	theApp->m_ParamSetting.m_InkjetMode = m_printSetting->ui.inkjetComBox->currentText();
+	theApp->m_ParamSetting.m_PrintingDirection = m_printSetting->ui.printDirComBox->currentText();
+
+	if (m_printSetting->ui.synWheelCheckBox->isChecked())//åˆ¤æ–­å¯ç”¨åŒæ­¥è½®æ˜¯å¦é€‰ä¸­
+	{
+		theApp->m_ParamSetting.m_SynWheelCheck = true;
+	} 
+	else
+	{
+		theApp->m_ParamSetting.m_SynWheelCheck = false;
+	}
+
+	if (m_printSetting->ui.voiceCheckBox->isChecked())//åˆ¤æ–­å£°éŸ³æ˜¯å¦é€‰ä¸­
+	{
+		theApp->m_ParamSetting.m_VoiceCheck = true;
+	} 
+	else
+	{
+		theApp->m_ParamSetting.m_VoiceCheck = false;
+	}
+
+	theApp->m_ParamSetting.DPIradioBGcheckedId = m_printSetting->DPIradioBG->checkedId();
+	theApp->m_ParamSetting.m_DPI150RadioBut = m_printSetting->ui.DPI150RadioBut->text();
+	theApp->m_ParamSetting.m_DPI200RadioBut = m_printSetting->ui.DPI200RadioBut->text();
+	theApp->m_ParamSetting.m_DPI300RadioBut = m_printSetting->ui.DPI300RadioBut->text();
+	theApp->m_ParamSetting.m_DPI600RadioBut = m_printSetting->ui.DPI600RadioBut->text();
+    
+	if (m_printSetting->ui.repetePrintCheckBox->isChecked())//åˆ¤æ–­é‡å¤æ‰“å°æ˜¯å¦é€‰ä¸­
+    {
+		theApp->m_ParamSetting.m_RepetePrintCheck = true;
+    } 
+    else
+    {
+		theApp->m_ParamSetting.m_RepetePrintCheck = false;
+    }
+
+	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
+	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());
+
+	if (m_printSetting->ui.adaptParaCheckBox->isChecked())//åˆ¤æ–­è‡ªé€‚åº”å‚æ•°æ˜¯å¦é€‰ä¸­
+	{
+		theApp->m_ParamSetting.m_AdaptParaCheck = true;
+	} 
+	else
+	{
+		theApp->m_ParamSetting.m_AdaptParaCheck = false;
+	}
+
+	theApp->m_ParamSetting.m_InkVoltage = getNum(m_printSetting->ui.voltShowLab->text());
+	theApp->m_ParamSetting.m_InkPulseWidth = getNum(m_printSetting->ui.PWShowLab->text());
+	
+	theApp->m_ParamSetting.NozzleradioBGcheckedId = m_printSetting->NozzleradioBG->checkedId();
+	theApp->m_ParamSetting.m_NozzleSel1RadioBut = m_printSetting->ui.nozzleSel1RadioBut->text();
+	theApp->m_ParamSetting.m_NozzleSel2RadioBut = m_printSetting->ui.nozzleSel2RadioBut->text();
+	theApp->m_ParamSetting.m_Offset = getNum(m_printSetting->ui.offsetShowLab->text());
+
+	if (m_printSetting->ui.flashSprayCheckBox->isChecked())//åˆ¤æ–­é—ªå–·æ˜¯å¦é€‰ä¸­
+	{
+		theApp->m_ParamSetting.m_FlashSprayCheck = true;
+	} 
+	else
+	{
+		theApp->m_ParamSetting.m_FlashSprayCheck = false;
+	}
+
+	theApp->m_ParamSetting.m_FlashSprayInterval = getNum(m_printSetting->ui.flashSprayInternalShowLab->text());
+	theApp->m_ParamSetting.m_FlashSprayFrequency = getNum(m_printSetting->ui.flashSprayTimesShowLab->text());
+
+
+	theApp->m_ParamSetting.m_YearShow = getNum(m_sysSetting->ui.yearShowLab->text());
+	theApp->m_ParamSetting.m_MonthShow = getNum(m_sysSetting->ui.monthShowLab->text());
+	theApp->m_ParamSetting.m_DayShow = getNum(m_sysSetting->ui.dayShowLab->text());
+	theApp->m_ParamSetting.m_HourShow = getNum(m_sysSetting->ui.hourShowLab->text());
+	theApp->m_ParamSetting.m_MinShow = getNum(m_sysSetting->ui.minShowLab->text());
+	theApp->m_ParamSetting.m_SecondShow = getNum(m_sysSetting->ui.secondShowLab->text());
+	theApp->m_ParamSetting.m_DateTimeShow = theApp->m_ParamSetting.m_YearShow+
+		                                    theApp->m_ParamSetting.m_MonthShow+
+											theApp->m_ParamSetting.m_DayShow+
+											theApp->m_ParamSetting.m_HourShow+
+											theApp->m_ParamSetting.m_MinShow+
+											theApp->m_ParamSetting.m_SecondShow;
+	theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
+
 	theApp->m_ParamSetting.SaveParam2Xml();
-
-	//ÒÔÏÂ´úÂë·ÅÈëSaveParam2Xml()º¯ÊıÖĞ
-
-	QFile file("bookindex.xml"); //ÒÔÖ»Ğ´·½Ê½´´½¨Ò»¸öÎÄ¼ş
-	if (!file.open(QFile::WriteOnly | QFile::Text)) {
-		qDebug() << "Error: Cannot write file: "
-			<< qPrintable(file.errorString());
-		return;
-	}
-
-	QXmlStreamWriter xmlWriter(&file);
-	xmlWriter.setAutoFormatting(true); //¸ñÊ½Êä³ö£¬Ò²¾ÍÊÇ»áÓĞ±êÇ©µÄËõ½ø
-	xmlWriter.writeStartDocument();//¿ªÊ¼½øĞĞ XML ÎÄµµµÄÊä³ö,Õâ¸öº¯Êı»áĞ´ÏÂ <?xml version="1.0" encoding="UTF-8"?>
-	xmlWriter.writeStartElement("configuration_information"); //¸ù½Úµã
-
-
-	xmlWriter.writeStartElement("printsetting"); //Ğ´ÏÂÒ»¸ö entry µÄ¿ªÊ¼±êÇ©
-
-	xmlWriter.writeStartElement("Print_style"); //Ğ´ÏÂÒ»¸ö entry µÄ¿ªÊ¼±êÇ©
-	//xmlWriter.writeAttribute("term", "sidebearings"); //È»ºó¸øÕâ¸ö±êÇ©Ò»¸öÊôĞÔ term£¬ÊôĞÔÖµÊÇ of vectors¡£
-
-	xmlWriter.writeTextElement("Printing_speed",getNum(m_printSetting->ui.printSpeedShowLab->text())); //Êä³öÒ»¸ö½ö°üº¬ÎÄ±¾ÄÚÈİµÄ±êÇ©
-	xmlWriter.writeTextElement("Print_delay", getNum(m_printSetting->ui.printDelayShowLab->text()));
-	xmlWriter.writeTextElement("synFrequency", getNum(m_printSetting->ui.synFrequencyShowLab->text()));
-	xmlWriter.writeTextElement("Print_Gray", getNum(m_printSetting->ui.printGrayShowLab->text()));
-	xmlWriter.writeTextElement("Trigger_mode", m_printSetting->ui.trigComBox->currentText());
-	xmlWriter.writeTextElement("Inkjet_mode", m_printSetting->ui.inkjetComBox->currentText());
-	xmlWriter.writeTextElement("Printing_direction", m_printSetting->ui.printDirComBox->currentText());
-	if (m_printSetting->ui.synWheelCheckBox->isChecked())
-	{
-		xmlWriter.writeTextElement("Enable_synchro_wheel", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("Enable_synchro_wheel","0");
-	}
-	if (m_printSetting->ui.voiceCheckBox->isChecked())
-	{
-		xmlWriter.writeTextElement("voice", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("voice","0");
-	}
-	xmlWriter.writeEndElement(); //¹Ø±Õ±êÇ©
-
-	xmlWriter.writeStartElement("advanced_setting");
-	//xmlWriter.writeAttribute("term", "subtraction");
-
-	int t = m_printSetting->DPIradioBG->checkedId();
-	QString  T;
-	switch(t)
-	{
-	case 1:
-		{
-			T=m_printSetting->ui.DPI150RadioBut->text();
-			break;
-		}
-	case 2:
-		{
-			T=m_printSetting->ui.DPI200RadioBut->text();
-			break;
-		}
-	case 3:
-		{
-			T=m_printSetting->ui.DPI300RadioBut->text();
-			break;
-		}
-	case 4:
-		{
-			T=m_printSetting->ui.DPI600RadioBut->text();
-			break;
-		}
-	}
-	xmlWriter.writeTextElement("DPI",T);
-	
-	if (m_printSetting->ui.repetePrintCheckBox->isChecked())
-	{
-		xmlWriter.writeTextElement("Repeat_printing", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("Repetitions","0");
-	}
-	
-	xmlWriter.writeTextElement("Repeat_times", getNum(m_printSetting->ui.repeteNumShowLab->text()));
-	xmlWriter.writeTextElement("Repeat_delay", getNum(m_printSetting->ui.repeteDelayShowLab->text()));
-	
-	xmlWriter.writeEndElement();
-
-	xmlWriter.writeStartElement("Sprinklerhead_setting");
-	//xmlWriter.writeAttribute("term", "subtraction");
-
-	if (m_printSetting->ui.adaptParaCheckBox->isChecked())
-	{
-		xmlWriter.writeTextElement("adaptPara","1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("adaptPara","0");
-	}
-
-	xmlWriter.writeTextElement("Ink_Voltage", getNum(m_printSetting->ui.voltShowLab->text()));
-	xmlWriter.writeTextElement("Ink_Pulse_width", getNum(m_printSetting->ui.PWShowLab->text()));
-	xmlWriter.writeTextElement("Offset", getNum(m_printSetting->ui.offsetShowLab->text()));
-	xmlWriter.writeTextElement("Flash_spray_interval", getNum(m_printSetting->ui.flashSprayInternalShowLab->text()));
-	xmlWriter.writeTextElement("Flash_spray_frequency", getNum(m_printSetting->ui.flashSprayTimesShowLab->text()));
-	int n = m_printSetting->NozzleradioBG->checkedId();
-	QString  N;
-	switch(n)
-	{
-	case 1:
-		{
-			N=m_printSetting->ui.nozzleSel1RadioBut->text();
-			break;
-		}
-	case 2:
-		{
-			N=m_printSetting->ui.nozzleSel2RadioBut->text();
-			break;
-		}
-	}
-	xmlWriter.writeTextElement("nozzle_choose",N);
-
-	if (m_printSetting->ui.flashSprayCheckBox->isChecked())
-	{
-		xmlWriter.writeTextElement("Flash_spray","1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("Flash_spray","0");
-	}
-	xmlWriter.writeEndElement();
-
-	//xmlWriter.writeStartElement("UVlamp_setting");
-	////xmlWriter.writeAttribute("term", "of vectors");
-	//xmlWriter.writeTextElement("page", "9");
-	//xmlWriter.writeEndElement();
-
-	xmlWriter.writeEndElement();
-
-	 
-
-	xmlWriter.writeStartElement("system_setting");
-	//xmlWriter.writeAttribute("term", "subtraction");
-	QString a = getNum(m_sysSetting->ui.yearShowLab->text());
-	QString b = getNum(m_sysSetting->ui.monthShowLab->text());
-	QString c = getNum(m_sysSetting->ui.dayShowLab->text());
-	QString d = getNum(m_sysSetting->ui.hourShowLab->text());
-	QString e = getNum(m_sysSetting->ui.minShowLab->text());
-	QString f = getNum(m_sysSetting->ui.secondShowLab->text());
-
-	xmlWriter.writeTextElement("system_time",a+b+c+d+e+f);
-	xmlWriter.writeEndElement();
-
-
-	xmlWriter.writeStartElement("count_setting");
-	//xmlWriter.writeAttribute("term", "of vectors");
-
-	//xmlWriter.writeTextElement("page","111");
-	xmlWriter.writeEndElement();
-
-	xmlWriter.writeEndElement();
-
-	xmlWriter.writeEndDocument(); //Õâ¸ö XML ÎÄµµÒÑ¾­Ğ´Íê¡£
-
-	file.close();
-	if (file.error()) {
-		qDebug() << "Error: Cannot write file: "
-			<< qPrintable(file.errorString());
-		return;
-	}
 }
