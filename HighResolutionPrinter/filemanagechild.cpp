@@ -29,7 +29,8 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(SetButtonEnableOn()));
 	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(PreviewLocalFile()));
 	connect(ui->fileNmaeLineEdit,SIGNAL(clicked()),this,SLOT(fileNmaeLineEdit_click())); 
-	connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(OKFileNameBut_clicked()));	
+	connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(OKFileNameBut_clicked()));
+	connect(ui->delSeleFileBut,SIGNAL(clicked()),this,SLOT(delSeleFileBut_clicked()));
 
 	SetButtonEnableOff();
 	boolSaveAsBtn_Clicked = false;
@@ -43,6 +44,7 @@ void FileManageChild::SetButtonEnableOn()
 {
 	ui->editSeleFileBut->setEnabled(true);
 	ui->loadSeleFileBut->setEnabled(true);
+	ui->delSeleFileBut->setEnabled(true);
 	ui->OKFileNameBut->setEnabled(true);
 	this->boolFileSelected = true;
 }
@@ -51,6 +53,7 @@ void FileManageChild::SetButtonEnableOff()
 {
 	ui->editSeleFileBut->setEnabled(false);
 	ui->loadSeleFileBut->setEnabled(false);
+	ui->delSeleFileBut->setEnabled(false);
 	ui->OKFileNameBut->setEnabled(false);
 	this->boolFileSelected = false;
 }
@@ -71,6 +74,15 @@ void FileManageChild::editSeleFileBut_clicked()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
 	pFilemanageForm->FileEditChildWidgetCall();
 	pFilemanageForm->FormFileEditChild->LoadLocalFile();
+}
+
+void FileManageChild::delSeleFileBut_clicked()
+{
+	QString qFileName = this->ui->filelistWidget->currentItem()->text();
+	QString qFilePath = "User/label/" + qFileName;
+	QFile qSelFile(qFilePath);
+	qSelFile.remove();
+	this->ShowLocalFilePath();
 }
 
 void FileManageChild::PreviewLocalFile()
@@ -177,7 +189,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		QString qFilePath = "User/Label/" + qFileName + ".lab";
 		char charFilePath[256];
 		QFileInfo fi(qFilePath);
-		if (fi.exists()==0)
+		if (!fi.exists())
 		{
 			sprintf(charFilePath,"%s",qFilePath.toStdString().c_str());
 			QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
