@@ -9,22 +9,20 @@
             <m_TriggerMode>外置电眼</m_TriggerMode>
             <m_InkjetMode>左喷</m_InkjetMode>
             <m_PrintingDirection>正向</m_PrintingDirection>
-            <m_SynWheelCheck>1</m_SynWheelCheck>
-            <m_VoiceCheck>1</m_VoiceCheck>
+            <m_SynWheelCheck>0</m_SynWheelCheck>
+            <m_VoiceCheck>0</m_VoiceCheck>
         </Print_style>
         <advanced_setting>
-            <m_DPI600RadioBut>600</m_DPI600RadioBut>
-            <m_RepetePrintCheck>1</m_RepetePrintCheck>
+            <m_RepetePrintCheck>0</m_RepetePrintCheck>
             <m_RepeatTimes>1</m_RepeatTimes>
             <m_RepeatDelay>100</m_RepeatDelay>
         </advanced_setting>
         <Sprinklerhead_setting>
-            <m_AdaptParaCheck>1</m_AdaptParaCheck>
+            <m_AdaptParaCheck>0</m_AdaptParaCheck>
             <m_InkVoltage>85</m_InkVoltage>
             <m_InkPulseWidth>18</m_InkPulseWidth>
-            <m_NozzleSel1RadioBut>1</m_NozzleSel1RadioBut>
-            <m_Offset>7</m_Offset>
-            <m_FlashSprayCheck>1</m_FlashSprayCheck>
+            <m_Offset>0</m_Offset>
+            <m_FlashSprayCheck>0</m_FlashSprayCheck>
             <m_FlashSprayInterval>5</m_FlashSprayInterval>
             <m_FlashSprayFrequency>1</m_FlashSprayFrequency>
         </Sprinklerhead_setting>
@@ -32,7 +30,7 @@
     </printsetting>
     <system_setting>
         <m_DateTimeShow>202018132730</m_DateTimeShow>
-        <m_SysLanguage>CHINESE_SIMPLIFIED</m_SysLanguage>
+        <m_SysLanguage></m_SysLanguage>
     </system_setting>
     <count_setting/>
 </configuration_information>

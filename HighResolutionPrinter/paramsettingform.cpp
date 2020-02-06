@@ -149,15 +149,8 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
 	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());
-
-	if (m_printSetting->ui.adaptParaCheckBox->isChecked())//判断自适应参数是否选中
-	{
-		theApp->m_ParamSetting.m_AdaptParaCheck = true;
-	} 
-	else
-	{
-		theApp->m_ParamSetting.m_AdaptParaCheck = false;
-	}
+	 
+	theApp->m_ParamSetting.m_AdaptParaCheck = m_printSetting->ui.adaptParaCheckBox->isChecked();	 
 
 	theApp->m_ParamSetting.m_InkVoltage = getNum(m_printSetting->ui.voltShowLab->text());
 	theApp->m_ParamSetting.m_InkPulseWidth = getNum(m_printSetting->ui.PWShowLab->text());
@@ -166,15 +159,9 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_NozzleSel1RadioBut = m_printSetting->ui.nozzleSel1RadioBut->text();
 	theApp->m_ParamSetting.m_NozzleSel2RadioBut = m_printSetting->ui.nozzleSel2RadioBut->text();
 	theApp->m_ParamSetting.m_Offset = getNum(m_printSetting->ui.offsetShowLab->text());
-
-	if (m_printSetting->ui.flashSprayCheckBox->isChecked())//判断闪喷是否选中
-	{
-		theApp->m_ParamSetting.m_FlashSprayCheck = true;
-	} 
-	else
-	{
-		theApp->m_ParamSetting.m_FlashSprayCheck = false;
-	}
+	 
+	theApp->m_ParamSetting.m_FlashSprayCheck = m_printSetting->ui.flashSprayCheckBox->isChecked();
+	 
 
 	theApp->m_ParamSetting.m_FlashSprayInterval = getNum(m_printSetting->ui.flashSprayInternalShowLab->text());
 	theApp->m_ParamSetting.m_FlashSprayFrequency = getNum(m_printSetting->ui.flashSprayTimesShowLab->text());
@@ -192,7 +179,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 											theApp->m_ParamSetting.m_HourShow+
 											theApp->m_ParamSetting.m_MinShow+
 											theApp->m_ParamSetting.m_SecondShow;
-	theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
+//	theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
 
 	theApp->m_ParamSetting.SaveParam2Xml();
 }
