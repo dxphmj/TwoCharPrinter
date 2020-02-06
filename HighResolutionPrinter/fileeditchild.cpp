@@ -29,10 +29,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->newBarCodeBut,SIGNAL(clicked()),this,SLOT(newBarCodeBut_clicked()));
 	connect(ui->newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
 	connect(ui->newDMBut,SIGNAL(clicked()),this,SLOT(newDMBut_clicked()));
-
 	connect(ui->internalTextAddBut,SIGNAL(clicked()),this,SLOT(internalTextAddBut_clicked()));
 	connect(ui->internalTextRedBut,SIGNAL(clicked()),this,SLOT(internalTextRedBut_clicked()));
-
 	connect(ui->moveUpBut,SIGNAL(clicked()),this,SLOT(moveUpBut_clicked()));
 	connect(ui->moveDownBut,SIGNAL(clicked()),this,SLOT(moveDownBut_clicked()));
 	connect(ui->moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
@@ -1439,10 +1437,11 @@ void FileEditChild::newSerialNumber_click()
 		SerialNumber=new_start;
 	}	
 	QString SerialNumber_1=QString::number(SerialNumber);//Êý×Ö×ª×Ö·û´®
-	QString SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
 	for (int s=1;s<time;s++)
 	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_2;
+		SerialNumber_2=SerialNumber_2+SerialNumber_3;
 		
 	}
 

@@ -97,7 +97,6 @@ private slots:
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
-
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
