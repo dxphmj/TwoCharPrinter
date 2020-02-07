@@ -28,6 +28,8 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 	//根据nLanguageType 读取相应的xml文件
 	if(nLanguageType == 1)
 		sprintf(strFileName,"%s","System\\chinese.xml");
+	if(nLanguageType == 0)
+		sprintf(strFileName,"%s","System\\arabic.xml");
 	if(nLanguageType == 5)
 		sprintf(strFileName,"%s","System\\english.xml");
 

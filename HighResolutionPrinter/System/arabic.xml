@@ -1,6 +1,6 @@
 <MES>
   <MainWindow>
-    <nameDispLab>Multifunction Intelligent Inkjet Printer</nameDispLab>
+    <nameDispLab>多功能智能喷码机</nameDispLab>
     <fileManageBut>File</fileManageBut>
     <paraManageBut>Parameter</paraManageBut>
     <startPrintBut>Printing</startPrintBut>
