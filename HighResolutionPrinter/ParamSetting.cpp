@@ -2,6 +2,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
+#include <QXmlStreamReader>
 
 
 CParamSetting::CParamSetting(void)
@@ -30,7 +31,7 @@ void CParamSetting::SaveParam2Xml()
 
 	xmlWriter.writeStartElement("printsetting"); //一级节点
 
-	xmlWriter.writeStartElement("Print_style"); //二级节点
+	//xmlWriter.writeStartElement("Print_style"); //二级节点
 	xmlWriter.writeTextElement("m_PrintingSpeed",m_PrintingSpeed); //输出一个仅包含文本内容的标签
 	xmlWriter.writeTextElement("m_PrintDelay", m_PrintDelay);
 	xmlWriter.writeTextElement("m_SynFrequency", m_SynFrequency);
@@ -40,10 +41,10 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_PrintingDirection", m_PrintingDirection);
 	xmlWriter.writeTextElement("m_SynWheelCheck",QString::number(m_SynWheelCheck));
 	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
-	xmlWriter.writeEndElement(); //关闭标签
+	//xmlWriter.writeEndElement(); //关闭标签
 
 
-	xmlWriter.writeStartElement("advanced_setting"); //二级节点
+	//xmlWriter.writeStartElement("advanced_setting"); //二级节点
 	switch(DPIradioBGcheckedId)//判断点击DPI中哪个radio
 	{
 	case 1:
@@ -70,9 +71,9 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
-	xmlWriter.writeEndElement();
+	//xmlWriter.writeEndElement();
 
-	xmlWriter.writeStartElement("Sprinklerhead_setting"); //二级节点
+	//xmlWriter.writeStartElement("Sprinklerhead_setting"); //二级节点
 	xmlWriter.writeTextElement("m_AdaptParaCheck",QString::number(m_AdaptParaCheck));
 	xmlWriter.writeTextElement("m_InkVoltage", m_InkVoltage);
 	xmlWriter.writeTextElement("m_InkPulseWidth", m_InkPulseWidth);
@@ -93,11 +94,11 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_FlashSprayCheck",QString::number(m_FlashSprayCheck));
 	xmlWriter.writeTextElement("m_FlashSprayInterval", m_FlashSprayInterval);
 	xmlWriter.writeTextElement("m_FlashSprayFrequency", m_FlashSprayFrequency);
-	xmlWriter.writeEndElement();
+	//xmlWriter.writeEndElement();
 
-	xmlWriter.writeStartElement("UVlamp_setting"); //二级节点
+	//xmlWriter.writeStartElement("UVlamp_setting"); //二级节点
 	////xmlWriter.writeTextElement("page", "9");
-	xmlWriter.writeEndElement();
+	//xmlWriter.writeEndElement();
 
 	xmlWriter.writeEndElement();
 
@@ -113,7 +114,7 @@ void CParamSetting::SaveParam2Xml()
 	////xmlWriter.writeTextElement("page","111");
 	xmlWriter.writeEndElement();
 
-	xmlWriter.writeEndElement();
+	//xmlWriter.writeEndElement();
 
 	xmlWriter.writeEndDocument(); //这个 XML 文档已经写完。
 
@@ -127,5 +128,61 @@ void CParamSetting::SaveParam2Xml()
 
 void CParamSetting::OpenParamFromXml()
 {
-
+	QFile file("System\\Configuration.xml");
+	if(file.open(QFile::ReadOnly | QFile::Text))
+	{
+		//构建QXmlStreamReader对象
+		QXmlStreamReader xmlReader(&file);
+		//xmlReader.setDevice(&file);
+		while(!xmlReader.atEnd())
+		{
+			xmlReader.readNext();
+			//判断是否是节点的开始
+		if(xmlReader.isStartElement())
+		 {
+			 xmlReader.readNext();
+         		if(xmlReader.name() == "m_PrintingSpeed")
+				    m_PrintingSpeed = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_PrintDelay")
+					m_PrintDelay = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_SynFrequency")
+					m_SynFrequency = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_PrintGray")
+					m_PrintGray = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_InkjetMode")
+					m_InkjetMode = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_PrintingDirection")
+					m_PrintingDirection = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_SynWheelCheck")
+					m_SynWheelCheck = 1;
+                else if(xmlReader.name() == "m_VoiceCheck")
+					m_VoiceCheck = 1;
+				else if(xmlReader.name() == "m_RepetePrintCheck")
+					m_RepetePrintCheck = 1;
+				else if(xmlReader.name() == "m_RepeatTimes")
+					m_RepeatTimes = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_RepeatDelay")
+					m_RepeatDelay = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_AdaptParaCheck")
+					m_AdaptParaCheck = 1;
+				else if(xmlReader.name() == "m_InkVoltage")
+					m_InkVoltage = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_InkPulseWidth")
+					m_InkPulseWidth = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_Offset")
+					m_Offset = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_FlashSprayCheck")
+					m_FlashSprayCheck = 1;
+				else if(xmlReader.name() == "m_FlashSprayInterval")
+					m_FlashSprayInterval = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_FlashSprayFrequency")
+					m_FlashSprayFrequency = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_DateTimeShow")
+					m_DateTimeShow = xmlReader.readElementText();
+				else if(xmlReader.name() == "m_SysLanguage")
+					m_SysLanguage = xmlReader.readElementText();
+		 }
+		}
+	}
+	file.close();
 }

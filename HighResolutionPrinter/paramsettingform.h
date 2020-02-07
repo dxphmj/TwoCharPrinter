@@ -39,6 +39,7 @@ private slots:
 	void aboutMacBut_clicked();
 
 	void holdConfigurationBut_clicked(); 
+	void readConfigurationBut_clicked();
 
 };
 

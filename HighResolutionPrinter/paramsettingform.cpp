@@ -16,25 +16,25 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
 	connect(ui->aboutMacBut,SIGNAL(clicked()),this,SLOT(aboutMacBut_clicked()));
 
 	connect(ui->savePrintSetBut,SIGNAL(clicked()),this,SLOT(holdConfigurationBut_clicked()));
+	connect(ui->resetBut,SIGNAL(clicked()),this,SLOT(readConfigurationBut_clicked()));
 
-
-	ui->printSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/printSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
+	ui->printSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/printSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									   QPushButton:pressed{border-image: url(:/Images/printSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									   padding-left:7px;padding-top:7px;}\
 									   "); 
-	ui->sysSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
+	ui->sysSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/sysSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 "); 
-	ui->countSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/countSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
+	ui->countSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/countSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 									   QPushButton:pressed{border-image: url(:/Images/countSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									   padding-left:7px;padding-top:7px;}\
 									   "); 
-	ui->aboutMacBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/aboutMac.bmp);border-radius:15px;color:rgb(255,255,255)}\
+	ui->aboutMacBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/aboutMac.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								   QPushButton:pressed{border-image: url(:/Images/aboutMac.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
-	ui->paraExitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;color:rgb(255,255,255)}\
+	ui->paraExitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								   QPushButton:pressed{border-image: url(:/Images/exit.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
@@ -165,3 +165,13 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 	theApp->m_ParamSetting.SaveParam2Xml();
 }
+
+void ParamSettingForm::readConfigurationBut_clicked()
+{
+	MainWindow* theApp = (MainWindow*)(this->parent());
+	theApp->m_ParamSetting.OpenParamFromXml();
+
+	m_printSetting->ui.printSpeedShowLab->setText(theApp->m_ParamSetting.m_PrintingSpeed);
+}
+
+
