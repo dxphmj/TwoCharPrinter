@@ -151,7 +151,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
-	SerialNumber=0;
+	SerialNumber=-1;
 	SerialNumber_length=0;
  //	m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
     //m_PrinterMes.ReadObjectsFromXml("User\\Label\\qr.lab");
@@ -1425,17 +1425,28 @@ void FileEditChild::newSerialNumber_click()
 	int step=d.toInt();
 	int f=e.toInt();
 	int time=g.toInt();
+	int n=0;
+	int m=1;
 	if (start>stop)
 	{
 		int c;
 		c=start;
 		start=stop;
 		stop=c;
+		 n=1;
 	}
-	if (SerialNumber==0)
+	if (SerialNumber==-1)
 	{
 		SerialNumber=new_start;
 	}	
+	
+	if (SerialNumber<start||SerialNumber>stop)
+	{
+		ui->serialLineEdit->setText("Out of range");
+		return;
+	}
+
+
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
 	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
 	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
@@ -1445,10 +1456,33 @@ void FileEditChild::newSerialNumber_click()
 		
 	}
 
-	ui->serialLineEdit->setText(SerialNumber_2);	
-	if (SerialNumber>=start&&SerialNumber+step<=stop)
+	ui->serialLineEdit->setText(SerialNumber_2);
+
+
+	//如果当前有obj被选中，则为更改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (start<stop)
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			string tmpStr = this->ui->serialLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			m=0;
+			break;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
+	if (m)
+	{
+		QString txtQString = ui->serialLineEdit->text();
+		string txtString = txtQString.toStdString();
+		QString qTextFont = ui->fontTypeTextComBox->currentText();
+		string textFont = qTextFont.toStdString();
+		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+	}
+
+	if (SerialNumber>=start&&SerialNumber<=stop)
+	{
+		if (n==0)
 		{
 			SerialNumber=SerialNumber+step;
 		}
@@ -1458,20 +1492,5 @@ void FileEditChild::newSerialNumber_click()
 		}
 	}
 
-	//如果当前有obj被选中，则为更改当选中的obj
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			return;
-		}
-	}
-	//如果当前没有obj被选中，则为新建
-	QString txtQString = ui->serialLineEdit->text();
-	string txtString = txtQString.toStdString();
-	QString qTextFont = ui->fontTypeTextComBox->currentText();
-	string textFont = qTextFont.toStdString();
-	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+
 }
