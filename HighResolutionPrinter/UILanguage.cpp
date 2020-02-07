@@ -18,7 +18,7 @@ CUILanguage::CUILanguage(QObject* pMainwindow)
 
 CUILanguage::~CUILanguage(void)
 {
-}
+} 
 
 void CUILanguage::ChangeLanguage(int nLanguageType)
 {
@@ -26,10 +26,17 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 	char strFileName[100];
 
 	//根据nLanguageType 读取相应的xml文件
-	if(nLanguageType == 1)
+	if(nLanguageType == 1){
 		sprintf(strFileName,"%s","System\\chinese.xml");
+		m_nLanguage = 1;
+	}
+	if(nLanguageType == 0)
+		sprintf(strFileName,"%s","System\\arabic.xml");
 	if(nLanguageType == 5)
+	{
 		sprintf(strFileName,"%s","System\\english.xml");
+		m_nLanguage = 5;
+	}
 
 	//先读取窗体的名称，根据窗体的名称获得窗体指针，然后再给窗体的各控件赋值 
 
@@ -97,25 +104,52 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 {
 	//读入各控件信息,并赋值
 	TiXmlNode* nodeTmp = 0;
+	QFont font;
+	switch(m_nLanguage)
+	{
+		case 0:    ;break;
+		case 1: font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));;break;
+		case 2:    ;break;
+		case 3:    ;break;
+		case 4:    ;break;
+		case 5: font.setFamily(QStringLiteral("Times New Roman"));;break;
+		default: ;
+	}
 	for( nodeTmp = node->IterateChildren(0);nodeTmp;nodeTmp = node->IterateChildren( nodeTmp ) )
 	{
 		const char* strItem = nodeTmp->ValueTStr().c_str();				 
 		const char* strText; 
 		TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-		strText = nodeText->ValueTStr().c_str();			 
+		strText = nodeText->ValueTStr().c_str();
+
+		const char* tempVal= strItem;
+		QString str(tempVal);
+
+		if(str =="fontsize")
+		{
+			font.setPointSize(atoi(strText));
+		}
 
 		QPushButton *tempButton = pWidge->findChild<QPushButton *>(strItem);
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
 		QCheckBox *tempCheck = pWidge->findChild<QCheckBox *>(strItem);
 		QTabWidget * tempQTabWidget = pWidge->findChild<QTabWidget *>(strItem); 
-		QComboBox *tempQComboBox = pWidge->findChild<QComboBox *>(strItem); 
  		 
 		if(tempButton)
+		{
+			tempButton->setFont(font);
 			tempButton->setText(QString::fromLocal8Bit(strText));
+		}
 		else if(tempLabel)
+		{
+			tempLabel->setFont(font);
 			tempLabel->setText(QString::fromLocal8Bit(strText));
+		}
 		else if(tempCheck)
+		{
+			tempCheck->setFont(font);
 			tempCheck->setText(QString::fromLocal8Bit(strText));
+		}
 		else if(tempQTabWidget)
 		{
 			//以#分解字符
@@ -125,24 +159,11 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
     
 			while (substr != NULL) {    
 					tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
+					tempQTabWidget->setFont(font);
 					i++;  
 					substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
 					往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
 			}    			
  		}
-		else if(tempQComboBox)
-		{
-			//以#分解字符
-			char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
-			int i =0;  
-			char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
-    
-			while (substr != NULL) {    
-					tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
-					i++;  
-					substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
-					往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
-			}    			
- 		}
-	}			 
+	}		 
 }

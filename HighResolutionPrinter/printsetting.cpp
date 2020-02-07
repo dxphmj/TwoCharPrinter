@@ -86,10 +86,12 @@ printSetting::printSetting(QWidget *parent)
 	DPIradioBG->addButton(ui.DPI200RadioBut,2);
 	DPIradioBG->addButton(ui.DPI300RadioBut,3);
 	DPIradioBG->addButton(ui.DPI600RadioBut,4);
+	ui.DPI150RadioBut->setChecked(1);
 
 	NozzleradioBG = new QButtonGroup;
 	NozzleradioBG->addButton(ui.nozzleSel1RadioBut,1);
 	NozzleradioBG->addButton(ui.nozzleSel2RadioBut,2);
+	ui.nozzleSel1RadioBut->setChecked(1);
 
 }
 

@@ -29,7 +29,7 @@
     <property name="font">
      <font>
       <family>楷体</family>
-      <pointsize>16</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -102,7 +102,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>10</x>
       <y>420</y>
-      <width>281</width>
+      <width>121</width>
       <height>155</height>
      </rect>
     </property>
@@ -117,7 +117,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;文件名：default.spr&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;文件名：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -135,7 +135,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>楷体</family>
-      <pointsize>16</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -164,7 +164,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>楷体</family>
-      <pointsize>16</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -187,7 +187,7 @@ color: rgb(255, 255, 255);</string>
     <property name="font">
      <font>
       <family>楷体</family>
-      <pointsize>16</pointsize>
+      <pointsize>18</pointsize>
      </font>
     </property>
     <property name="styleSheet">
@@ -256,9 +256,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="No1Lab">
     <property name="geometry">
      <rect>
-      <x>890</x>
+      <x>870</x>
       <y>670</y>
-      <width>81</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -281,9 +281,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="No2Lab">
     <property name="geometry">
      <rect>
-      <x>1010</x>
+      <x>990</x>
       <y>670</y>
-      <width>81</width>
+      <width>121</width>
       <height>31</height>
      </rect>
     </property>
@@ -331,7 +331,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>420</y>
-      <width>281</width>
+      <width>101</width>
       <height>103</height>
      </rect>
     </property>
@@ -346,7 +346,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;电压：8.8V&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;电压：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -373,7 +373,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>10</x>
       <y>576</y>
-      <width>281</width>
+      <width>111</width>
       <height>155</height>
      </rect>
     </property>
@@ -388,7 +388,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数值：100&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数值：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -399,7 +399,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>524</y>
-      <width>281</width>
+      <width>141</width>
       <height>103</height>
      </rect>
     </property>
@@ -414,7 +414,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;脉宽：1.8&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;脉宽：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -425,7 +425,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>628</y>
-      <width>281</width>
+      <width>121</width>
       <height>103</height>
      </rect>
     </property>
@@ -440,7 +440,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;灰度：5&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;灰度：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -451,7 +451,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>570</x>
       <y>628</y>
-      <width>281</width>
+      <width>121</width>
       <height>103</height>
      </rect>
     </property>
@@ -466,7 +466,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;方向：逆向&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;方向：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -477,7 +477,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>570</x>
       <y>420</y>
-      <width>281</width>
+      <width>111</width>
       <height>103</height>
      </rect>
     </property>
@@ -492,7 +492,7 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;速度：40&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;速度：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -503,7 +503,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>570</x>
       <y>524</y>
-      <width>281</width>
+      <width>111</width>
       <height>103</height>
      </rect>
     </property>
@@ -518,7 +518,241 @@ color: rgb(255, 255, 255);</string>
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;延时：152&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;延时：&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="fileNameShowLab">
+    <property name="geometry">
+     <rect>
+      <x>129</x>
+      <y>420</y>
+      <width>161</width>
+      <height>155</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="countValShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>119</x>
+      <y>576</y>
+      <width>171</width>
+      <height>155</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="voltShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>390</x>
+      <y>420</y>
+      <width>61</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="voltUnitMWLab">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>420</y>
+      <width>121</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;V&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="PWShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>429</x>
+      <y>524</y>
+      <width>141</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="grayShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>409</x>
+      <y>628</y>
+      <width>161</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="speedShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>420</y>
+      <width>180</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="timeDelayShowMWLab">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>524</y>
+      <width>180</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+    <property name="margin">
+     <number>0</number>
+    </property>
+   </widget>
+   <widget class="QLabel" name="dirMWLab_2">
+    <property name="geometry">
+     <rect>
+      <x>689</x>
+      <y>628</y>
+      <width>161</width>
+      <height>103</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>14</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
     <property name="margin">
      <number>0</number>
@@ -545,6 +779,15 @@ color: rgb(255, 255, 255);</string>
    <zorder>dirMWLab</zorder>
    <zorder>speedMWLab</zorder>
    <zorder>timeDelayMWLab</zorder>
+   <zorder>fileNameShowLab</zorder>
+   <zorder>countValShowMWLab</zorder>
+   <zorder>voltShowMWLab</zorder>
+   <zorder>voltUnitMWLab</zorder>
+   <zorder>PWShowMWLab</zorder>
+   <zorder>grayShowMWLab</zorder>
+   <zorder>speedShowMWLab</zorder>
+   <zorder>timeDelayShowMWLab</zorder>
+   <zorder>dirMWLab_2</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

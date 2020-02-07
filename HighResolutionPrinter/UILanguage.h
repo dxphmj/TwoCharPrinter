@@ -41,6 +41,7 @@ public:
 
 public:
 	QObject* m_pMainwindow;
+	int m_nLanguage;
 
 public:
 	void ChangeLanguage(int nLanguageType);

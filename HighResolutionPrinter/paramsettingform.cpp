@@ -18,23 +18,23 @@ ParamSettingForm::ParamSettingForm(QWidget *parent) :
 	connect(ui->savePrintSetBut,SIGNAL(clicked()),this,SLOT(holdConfigurationBut_clicked()));
 
 
-	ui->printSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/printSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->printSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/printSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
 									   QPushButton:pressed{border-image: url(:/Images/printSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									   padding-left:7px;padding-top:7px;}\
 									   "); 
-	ui->sysSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->sysSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/sysSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 "); 
-	ui->countSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/countSetting.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->countSettingBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/countSetting.bmp);border-radius:15px;color:rgb(255,255,255)}\
 									   QPushButton:pressed{border-image: url(:/Images/countSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									   padding-left:7px;padding-top:7px;}\
 									   "); 
-	ui->aboutMacBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/aboutMac.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->aboutMacBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/aboutMac.bmp);border-radius:15px;color:rgb(255,255,255)}\
 								   QPushButton:pressed{border-image: url(:/Images/aboutMac.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
-	ui->paraExitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->paraExitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;color:rgb(255,255,255)}\
 								   QPushButton:pressed{border-image: url(:/Images/exit.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
@@ -113,39 +113,18 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_TriggerMode = m_printSetting->ui.trigComBox->currentText();
 	theApp->m_ParamSetting.m_InkjetMode = m_printSetting->ui.inkjetComBox->currentText();
 	theApp->m_ParamSetting.m_PrintingDirection = m_printSetting->ui.printDirComBox->currentText();
+	theApp->m_ParamSetting.m_SynWheelCheck = m_printSetting->ui.synWheelCheckBox->isChecked();
+	theApp->m_ParamSetting.m_VoiceCheck = m_printSetting->ui.voiceCheckBox->isChecked();
 
-	if (m_printSetting->ui.synWheelCheckBox->isChecked())//判断启用同步轮是否选中
-	{
-		theApp->m_ParamSetting.m_SynWheelCheck = true;
-	} 
-	else
-	{
-		theApp->m_ParamSetting.m_SynWheelCheck = false;
-	}
 
-	if (m_printSetting->ui.voiceCheckBox->isChecked())//判断声音是否选中
-	{
-		theApp->m_ParamSetting.m_VoiceCheck = true;
-	} 
-	else
-	{
-		theApp->m_ParamSetting.m_VoiceCheck = false;
-	}
+
 
 	theApp->m_ParamSetting.DPIradioBGcheckedId = m_printSetting->DPIradioBG->checkedId();
 	theApp->m_ParamSetting.m_DPI150RadioBut = m_printSetting->ui.DPI150RadioBut->text();
 	theApp->m_ParamSetting.m_DPI200RadioBut = m_printSetting->ui.DPI200RadioBut->text();
 	theApp->m_ParamSetting.m_DPI300RadioBut = m_printSetting->ui.DPI300RadioBut->text();
 	theApp->m_ParamSetting.m_DPI600RadioBut = m_printSetting->ui.DPI600RadioBut->text();
-    
-	if (m_printSetting->ui.repetePrintCheckBox->isChecked())//判断重复打印是否选中
-    {
-		theApp->m_ParamSetting.m_RepetePrintCheck = true;
-    } 
-    else
-    {
-		theApp->m_ParamSetting.m_RepetePrintCheck = false;
-    }
+	theApp->m_ParamSetting.m_RepetePrintCheck = m_printSetting->ui.repetePrintCheckBox->isChecked();
 
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
 	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());
@@ -179,7 +158,10 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 											theApp->m_ParamSetting.m_HourShow+
 											theApp->m_ParamSetting.m_MinShow+
 											theApp->m_ParamSetting.m_SecondShow;
-//	theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
+	if (m_sysSetting->ui.sysLanguageListWid->currentRow() != -1)
+	{	
+		theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
+	}
 
 	theApp->m_ParamSetting.SaveParam2Xml();
 }

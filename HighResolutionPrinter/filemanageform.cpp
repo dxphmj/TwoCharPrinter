@@ -20,15 +20,15 @@ FilemanageForm::FilemanageForm(QWidget *parent) :
 	connect(ui->editFileBut,SIGNAL(clicked()),this,SLOT(editFileBut_clicked()));
 	connect(ui->manageFileBut,SIGNAL(clicked()),this,SLOT(manageFileBut_clicked()));
 
-	ui->editFileBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/editFile.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->editFileBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/editFile.bmp);border-radius:15px;color:rgb(255,255,255)}\
 								   QPushButton:pressed{border-image: url(:/Images/editFile.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								   padding-left:7px;padding-top:7px;}\
 								   "); 
-	ui->manageFileBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/manageFile.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->manageFileBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/manageFile.bmp);border-radius:15px;color:rgb(255,255,255)}\
 									 QPushButton:pressed{border-image: url(:/Images/manageFile.bmp);border: 1px solid rgb(12 , 138 , 235);\
 									 padding-left:7px;padding-top:7px;}\
 									 "); 
-	ui->exitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+	ui->exitBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/exit.bmp);border-radius:15px;color:rgb(255,255,255)}\
 							   QPushButton:pressed{border-image: url(:/Images/exit.bmp);border: 1px solid rgb(12 , 138 , 235);\
 							   padding-left:7px;padding-top:7px;}\
 							   "); 

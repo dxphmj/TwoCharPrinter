@@ -74,7 +74,7 @@ public:
     {
         if (countSetting->objectName().isEmpty())
             countSetting->setObjectName(QStringLiteral("countSetting"));
-        countSetting->resize(1061, 691);
+        countSetting->resize(1061, 651);
         counterOneLab = new QLabel(countSetting);
         counterOneLab->setObjectName(QStringLiteral("counterOneLab"));
         counterOneLab->setGeometry(QRect(430, 20, 141, 41));
@@ -87,7 +87,7 @@ public:
         counterOneLab->setAlignment(Qt::AlignCenter);
         currentVal1Lab = new QLabel(countSetting);
         currentVal1Lab->setObjectName(QStringLiteral("currentVal1Lab"));
-        currentVal1Lab->setGeometry(QRect(40, 90, 141, 41));
+        currentVal1Lab->setGeometry(QRect(60, 90, 141, 41));
         currentVal1Lab->setMinimumSize(QSize(141, 41));
         currentVal1Lab->setFont(font);
         currentVal1Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -106,7 +106,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         printTimeLab = new QLabel(countSetting);
         printTimeLab->setObjectName(QStringLiteral("printTimeLab"));
-        printTimeLab->setGeometry(QRect(170, 600, 141, 41));
+        printTimeLab->setGeometry(QRect(120, 600, 191, 41));
         printTimeLab->setMinimumSize(QSize(141, 41));
         printTimeLab->setFont(font);
         printTimeLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -127,20 +127,20 @@ public:
         printTimeShowLab->setAlignment(Qt::AlignCenter);
         curValAdd1But = new QPushButton(countSetting);
         curValAdd1But->setObjectName(QStringLiteral("curValAdd1But"));
-        curValAdd1But->setGeometry(QRect(440, 90, 41, 41));
+        curValAdd1But->setGeometry(QRect(460, 90, 41, 41));
         curValAdd1But->setMinimumSize(QSize(41, 41));
         curValAdd1But->setFont(font1);
         curValAdd1But->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);background-color: rgb(0, 0, 230);"));
         curValRed1But = new QPushButton(countSetting);
         curValRed1But->setObjectName(QStringLiteral("curValRed1But"));
-        curValRed1But->setGeometry(QRect(180, 90, 41, 41));
+        curValRed1But->setGeometry(QRect(200, 90, 41, 41));
         curValRed1But->setMinimumSize(QSize(41, 41));
         curValRed1But->setFont(font1);
         curValRed1But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         currentValShow1Lab = new QLabel(countSetting);
         currentValShow1Lab->setObjectName(QStringLiteral("currentValShow1Lab"));
-        currentValShow1Lab->setGeometry(QRect(230, 90, 201, 41));
+        currentValShow1Lab->setGeometry(QRect(250, 90, 201, 41));
         currentValShow1Lab->setMinimumSize(QSize(0, 41));
         currentValShow1Lab->setFont(font);
         currentValShow1Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
@@ -182,21 +182,21 @@ public:
 "background-color: rgb(0, 0, 230);"));
         initialAdd1But = new QPushButton(countSetting);
         initialAdd1But->setObjectName(QStringLiteral("initialAdd1But"));
-        initialAdd1But->setGeometry(QRect(440, 160, 41, 41));
+        initialAdd1But->setGeometry(QRect(460, 160, 41, 41));
         initialAdd1But->setMinimumSize(QSize(41, 41));
         initialAdd1But->setFont(font1);
         initialAdd1But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         initialValShow1Lab = new QLabel(countSetting);
         initialValShow1Lab->setObjectName(QStringLiteral("initialValShow1Lab"));
-        initialValShow1Lab->setGeometry(QRect(230, 160, 201, 41));
+        initialValShow1Lab->setGeometry(QRect(250, 160, 201, 41));
         initialValShow1Lab->setMinimumSize(QSize(0, 41));
         initialValShow1Lab->setFont(font);
         initialValShow1Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         initialValShow1Lab->setAlignment(Qt::AlignCenter);
         initialVal1Lab = new QLabel(countSetting);
         initialVal1Lab->setObjectName(QStringLiteral("initialVal1Lab"));
-        initialVal1Lab->setGeometry(QRect(40, 160, 141, 41));
+        initialVal1Lab->setGeometry(QRect(60, 160, 141, 41));
         initialVal1Lab->setMinimumSize(QSize(141, 41));
         initialVal1Lab->setFont(font);
         initialVal1Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -217,7 +217,7 @@ public:
         maxVal1Lab->setAlignment(Qt::AlignCenter);
         initialRed1But = new QPushButton(countSetting);
         initialRed1But->setObjectName(QStringLiteral("initialRed1But"));
-        initialRed1But->setGeometry(QRect(180, 160, 41, 41));
+        initialRed1But->setGeometry(QRect(200, 160, 41, 41));
         initialRed1But->setMinimumSize(QSize(41, 41));
         initialRed1But->setFont(font1);
         initialRed1But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -231,42 +231,42 @@ public:
         maxValShow1Lab->setAlignment(Qt::AlignCenter);
         repeteRed1But = new QPushButton(countSetting);
         repeteRed1But->setObjectName(QStringLiteral("repeteRed1But"));
-        repeteRed1But->setGeometry(QRect(180, 230, 41, 41));
+        repeteRed1But->setGeometry(QRect(200, 230, 41, 41));
         repeteRed1But->setMinimumSize(QSize(41, 41));
         repeteRed1But->setFont(font1);
         repeteRed1But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 255);"));
         repeteAdd1But = new QPushButton(countSetting);
         repeteAdd1But->setObjectName(QStringLiteral("repeteAdd1But"));
-        repeteAdd1But->setGeometry(QRect(440, 230, 41, 41));
+        repeteAdd1But->setGeometry(QRect(460, 230, 41, 41));
         repeteAdd1But->setMinimumSize(QSize(41, 41));
         repeteAdd1But->setFont(font1);
         repeteAdd1But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 255);"));
         repeteTimeShow1Lab = new QLabel(countSetting);
         repeteTimeShow1Lab->setObjectName(QStringLiteral("repeteTimeShow1Lab"));
-        repeteTimeShow1Lab->setGeometry(QRect(230, 230, 201, 41));
+        repeteTimeShow1Lab->setGeometry(QRect(250, 230, 201, 41));
         repeteTimeShow1Lab->setMinimumSize(QSize(0, 41));
         repeteTimeShow1Lab->setFont(font);
         repeteTimeShow1Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         repeteTimeShow1Lab->setAlignment(Qt::AlignCenter);
         repeteTime1Lab = new QLabel(countSetting);
         repeteTime1Lab->setObjectName(QStringLiteral("repeteTime1Lab"));
-        repeteTime1Lab->setGeometry(QRect(40, 230, 141, 41));
+        repeteTime1Lab->setGeometry(QRect(0, 230, 201, 41));
         repeteTime1Lab->setMinimumSize(QSize(141, 41));
         repeteTime1Lab->setFont(font);
         repeteTime1Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         repeteTime1Lab->setAlignment(Qt::AlignCenter);
         repeteTime2Lab = new QLabel(countSetting);
         repeteTime2Lab->setObjectName(QStringLiteral("repeteTime2Lab"));
-        repeteTime2Lab->setGeometry(QRect(40, 520, 141, 41));
+        repeteTime2Lab->setGeometry(QRect(0, 520, 201, 41));
         repeteTime2Lab->setMinimumSize(QSize(141, 41));
         repeteTime2Lab->setFont(font);
         repeteTime2Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         repeteTime2Lab->setAlignment(Qt::AlignCenter);
         initialAdd2But = new QPushButton(countSetting);
         initialAdd2But->setObjectName(QStringLiteral("initialAdd2But"));
-        initialAdd2But->setGeometry(QRect(440, 450, 41, 41));
+        initialAdd2But->setGeometry(QRect(460, 450, 41, 41));
         initialAdd2But->setMinimumSize(QSize(41, 41));
         initialAdd2But->setFont(font1);
         initialAdd2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -294,14 +294,14 @@ public:
 "background-color: rgb(0, 0, 230);"));
         currentVal2Lab = new QLabel(countSetting);
         currentVal2Lab->setObjectName(QStringLiteral("currentVal2Lab"));
-        currentVal2Lab->setGeometry(QRect(40, 380, 141, 41));
+        currentVal2Lab->setGeometry(QRect(60, 380, 141, 41));
         currentVal2Lab->setMinimumSize(QSize(141, 41));
         currentVal2Lab->setFont(font);
         currentVal2Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         currentVal2Lab->setAlignment(Qt::AlignCenter);
         repeteAdd2But = new QPushButton(countSetting);
         repeteAdd2But->setObjectName(QStringLiteral("repeteAdd2But"));
-        repeteAdd2But->setGeometry(QRect(440, 520, 41, 41));
+        repeteAdd2But->setGeometry(QRect(460, 520, 41, 41));
         repeteAdd2But->setMinimumSize(QSize(41, 41));
         repeteAdd2But->setFont(font1);
         repeteAdd2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -322,35 +322,35 @@ public:
         counterTwoLab->setAlignment(Qt::AlignCenter);
         curValAdd2But = new QPushButton(countSetting);
         curValAdd2But->setObjectName(QStringLiteral("curValAdd2But"));
-        curValAdd2But->setGeometry(QRect(440, 380, 41, 41));
+        curValAdd2But->setGeometry(QRect(460, 380, 41, 41));
         curValAdd2But->setMinimumSize(QSize(41, 41));
         curValAdd2But->setFont(font1);
         curValAdd2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         initialValShow2Lab = new QLabel(countSetting);
         initialValShow2Lab->setObjectName(QStringLiteral("initialValShow2Lab"));
-        initialValShow2Lab->setGeometry(QRect(230, 450, 201, 41));
+        initialValShow2Lab->setGeometry(QRect(250, 450, 201, 41));
         initialValShow2Lab->setMinimumSize(QSize(0, 41));
         initialValShow2Lab->setFont(font);
         initialValShow2Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         initialValShow2Lab->setAlignment(Qt::AlignCenter);
         repeteTimeShow2Lab = new QLabel(countSetting);
         repeteTimeShow2Lab->setObjectName(QStringLiteral("repeteTimeShow2Lab"));
-        repeteTimeShow2Lab->setGeometry(QRect(230, 520, 201, 41));
+        repeteTimeShow2Lab->setGeometry(QRect(250, 520, 201, 41));
         repeteTimeShow2Lab->setMinimumSize(QSize(0, 41));
         repeteTimeShow2Lab->setFont(font);
         repeteTimeShow2Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         repeteTimeShow2Lab->setAlignment(Qt::AlignCenter);
         curValRed2But = new QPushButton(countSetting);
         curValRed2But->setObjectName(QStringLiteral("curValRed2But"));
-        curValRed2But->setGeometry(QRect(180, 380, 41, 41));
+        curValRed2But->setGeometry(QRect(200, 380, 41, 41));
         curValRed2But->setMinimumSize(QSize(41, 41));
         curValRed2But->setFont(font1);
         curValRed2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         initialVal2Lab = new QLabel(countSetting);
         initialVal2Lab->setObjectName(QStringLiteral("initialVal2Lab"));
-        initialVal2Lab->setGeometry(QRect(40, 450, 141, 41));
+        initialVal2Lab->setGeometry(QRect(60, 450, 141, 41));
         initialVal2Lab->setMinimumSize(QSize(141, 41));
         initialVal2Lab->setFont(font);
         initialVal2Lab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -371,14 +371,14 @@ public:
         maxValShow2Lab->setAlignment(Qt::AlignCenter);
         currentValShow2Lab = new QLabel(countSetting);
         currentValShow2Lab->setObjectName(QStringLiteral("currentValShow2Lab"));
-        currentValShow2Lab->setGeometry(QRect(230, 380, 201, 41));
+        currentValShow2Lab->setGeometry(QRect(250, 380, 201, 41));
         currentValShow2Lab->setMinimumSize(QSize(0, 41));
         currentValShow2Lab->setFont(font);
         currentValShow2Lab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         currentValShow2Lab->setAlignment(Qt::AlignCenter);
         initialRed2But = new QPushButton(countSetting);
         initialRed2But->setObjectName(QStringLiteral("initialRed2But"));
-        initialRed2But->setGeometry(QRect(180, 450, 41, 41));
+        initialRed2But->setGeometry(QRect(200, 450, 41, 41));
         initialRed2But->setMinimumSize(QSize(41, 41));
         initialRed2But->setFont(font1);
         initialRed2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -392,7 +392,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         repeteRed2But = new QPushButton(countSetting);
         repeteRed2But->setObjectName(QStringLiteral("repeteRed2But"));
-        repeteRed2But->setGeometry(QRect(180, 520, 41, 41));
+        repeteRed2But->setGeometry(QRect(200, 520, 41, 41));
         repeteRed2But->setMinimumSize(QSize(41, 41));
         repeteRed2But->setFont(font1);
         repeteRed2But->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"

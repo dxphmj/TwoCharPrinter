@@ -236,7 +236,7 @@ public:
         timeTab->setObjectName(QStringLiteral("timeTab"));
         SkewUUnitlistWidget = new QListWidget(timeTab);
         SkewUUnitlistWidget->setObjectName(QStringLiteral("SkewUUnitlistWidget"));
-        SkewUUnitlistWidget->setGeometry(QRect(610, 270, 181, 121));
+        SkewUUnitlistWidget->setGeometry(QRect(620, 270, 171, 121));
         SkewUUnitlistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         fontTypeTimeLab_7 = new QLabel(timeTab);
         fontTypeTimeLab_7->setObjectName(QStringLiteral("fontTypeTimeLab_7"));
@@ -258,7 +258,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         SkewComBox = new QComboBox(timeTab);
         SkewComBox->setObjectName(QStringLiteral("SkewComBox"));
-        SkewComBox->setGeometry(QRect(610, 160, 181, 41));
+        SkewComBox->setGeometry(QRect(620, 160, 171, 41));
         QFont font2;
         font2.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
         font2.setPointSize(14);
@@ -288,7 +288,7 @@ public:
         PreviewEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         SkewSkewValueEdit = new QTextEdit(timeTab);
         SkewSkewValueEdit->setObjectName(QStringLiteral("SkewSkewValueEdit"));
-        SkewSkewValueEdit->setGeometry(QRect(610, 210, 181, 51));
+        SkewSkewValueEdit->setGeometry(QRect(620, 210, 171, 51));
         SkewSkewValueEdit->setFont(font);
         SkewSkewValueEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         newTimeBut = new QPushButton(timeTab);
@@ -299,7 +299,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         fontTypeTimeComBox = new QComboBox(timeTab);
         fontTypeTimeComBox->setObjectName(QStringLiteral("fontTypeTimeComBox"));
-        fontTypeTimeComBox->setGeometry(QRect(610, 110, 181, 41));
+        fontTypeTimeComBox->setGeometry(QRect(620, 110, 171, 41));
         fontTypeTimeComBox->setFont(font2);
         fontTypeTimeComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
@@ -309,28 +309,28 @@ public:
         FormatlistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         fontTypeTimeLab_5 = new QLabel(timeTab);
         fontTypeTimeLab_5->setObjectName(QStringLiteral("fontTypeTimeLab_5"));
-        fontTypeTimeLab_5->setGeometry(QRect(500, 280, 111, 41));
+        fontTypeTimeLab_5->setGeometry(QRect(500, 280, 121, 41));
         fontTypeTimeLab_5->setMinimumSize(QSize(101, 41));
         fontTypeTimeLab_5->setFont(font);
         fontTypeTimeLab_5->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         fontTypeTimeLab_5->setAlignment(Qt::AlignCenter);
         fontTypeTimeLab_3 = new QLabel(timeTab);
         fontTypeTimeLab_3->setObjectName(QStringLiteral("fontTypeTimeLab_3"));
-        fontTypeTimeLab_3->setGeometry(QRect(500, 160, 101, 41));
+        fontTypeTimeLab_3->setGeometry(QRect(500, 160, 121, 41));
         fontTypeTimeLab_3->setMinimumSize(QSize(101, 41));
         fontTypeTimeLab_3->setFont(font);
         fontTypeTimeLab_3->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         fontTypeTimeLab_3->setAlignment(Qt::AlignCenter);
         fontTypeTimeLab = new QLabel(timeTab);
         fontTypeTimeLab->setObjectName(QStringLiteral("fontTypeTimeLab"));
-        fontTypeTimeLab->setGeometry(QRect(500, 110, 101, 41));
+        fontTypeTimeLab->setGeometry(QRect(500, 110, 121, 41));
         fontTypeTimeLab->setMinimumSize(QSize(101, 41));
         fontTypeTimeLab->setFont(font);
         fontTypeTimeLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         fontTypeTimeLab->setAlignment(Qt::AlignCenter);
         fontTypeTimeLab_4 = new QLabel(timeTab);
         fontTypeTimeLab_4->setObjectName(QStringLiteral("fontTypeTimeLab_4"));
-        fontTypeTimeLab_4->setGeometry(QRect(500, 220, 101, 41));
+        fontTypeTimeLab_4->setGeometry(QRect(500, 220, 121, 41));
         fontTypeTimeLab_4->setMinimumSize(QSize(101, 41));
         fontTypeTimeLab_4->setFont(font);
         fontTypeTimeLab_4->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -340,14 +340,14 @@ public:
         serialTab->setObjectName(QStringLiteral("serialTab"));
         formatSerialLab = new QLabel(serialTab);
         formatSerialLab->setObjectName(QStringLiteral("formatSerialLab"));
-        formatSerialLab->setGeometry(QRect(490, 295, 101, 41));
+        formatSerialLab->setGeometry(QRect(470, 295, 131, 41));
         formatSerialLab->setMinimumSize(QSize(101, 41));
         formatSerialLab->setFont(font);
         formatSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         formatSerialLab->setAlignment(Qt::AlignCenter);
         fontTypeSerialLab = new QLabel(serialTab);
         fontTypeSerialLab->setObjectName(QStringLiteral("fontTypeSerialLab"));
-        fontTypeSerialLab->setGeometry(QRect(490, 245, 101, 41));
+        fontTypeSerialLab->setGeometry(QRect(470, 245, 131, 41));
         fontTypeSerialLab->setMinimumSize(QSize(101, 41));
         fontTypeSerialLab->setFont(font);
         fontTypeSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -366,7 +366,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         counterSerialLab = new QLabel(serialTab);
         counterSerialLab->setObjectName(QStringLiteral("counterSerialLab"));
-        counterSerialLab->setGeometry(QRect(490, 195, 101, 41));
+        counterSerialLab->setGeometry(QRect(470, 195, 131, 41));
         counterSerialLab->setMinimumSize(QSize(101, 41));
         counterSerialLab->setFont(font);
         counterSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -390,7 +390,7 @@ public:
         serialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         initialValSerialLab = new QLabel(serialTab);
         initialValSerialLab->setObjectName(QStringLiteral("initialValSerialLab"));
-        initialValSerialLab->setGeometry(QRect(40, 110, 101, 41));
+        initialValSerialLab->setGeometry(QRect(20, 110, 121, 41));
         initialValSerialLab->setMinimumSize(QSize(101, 41));
         initialValSerialLab->setFont(font);
         initialValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -402,7 +402,7 @@ public:
         initialValSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         termValSerialLab = new QLabel(serialTab);
         termValSerialLab->setObjectName(QStringLiteral("termValSerialLab"));
-        termValSerialLab->setGeometry(QRect(40, 170, 101, 41));
+        termValSerialLab->setGeometry(QRect(20, 170, 121, 41));
         termValSerialLab->setMinimumSize(QSize(101, 41));
         termValSerialLab->setFont(font);
         termValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -419,7 +419,7 @@ public:
         startValSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         startValSerialLab = new QLabel(serialTab);
         startValSerialLab->setObjectName(QStringLiteral("startValSerialLab"));
-        startValSerialLab->setGeometry(QRect(40, 230, 101, 41));
+        startValSerialLab->setGeometry(QRect(20, 230, 121, 41));
         startValSerialLab->setMinimumSize(QSize(101, 41));
         startValSerialLab->setFont(font);
         startValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -431,7 +431,7 @@ public:
         stepLenSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         stepLenSerialLab = new QLabel(serialTab);
         stepLenSerialLab->setObjectName(QStringLiteral("stepLenSerialLab"));
-        stepLenSerialLab->setGeometry(QRect(40, 290, 101, 41));
+        stepLenSerialLab->setGeometry(QRect(20, 290, 121, 41));
         stepLenSerialLab->setMinimumSize(QSize(101, 41));
         stepLenSerialLab->setFont(font);
         stepLenSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -443,7 +443,7 @@ public:
         reptCountSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         reptCountSerialLab = new QLabel(serialTab);
         reptCountSerialLab->setObjectName(QStringLiteral("reptCountSerialLab"));
-        reptCountSerialLab->setGeometry(QRect(490, 100, 111, 41));
+        reptCountSerialLab->setGeometry(QRect(470, 100, 131, 41));
         reptCountSerialLab->setMinimumSize(QSize(101, 41));
         reptCountSerialLab->setFont(font);
         reptCountSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -455,7 +455,7 @@ public:
         digitSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         digitSerialLab = new QLabel(serialTab);
         digitSerialLab->setObjectName(QStringLiteral("digitSerialLab"));
-        digitSerialLab->setGeometry(QRect(490, 150, 101, 41));
+        digitSerialLab->setGeometry(QRect(470, 150, 131, 41));
         digitSerialLab->setMinimumSize(QSize(101, 41));
         digitSerialLab->setFont(font);
         digitSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -791,7 +791,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         rotateTextLab = new QLabel(FileEditChild);
         rotateTextLab->setObjectName(QStringLiteral("rotateTextLab"));
-        rotateTextLab->setGeometry(QRect(840, 450, 61, 41));
+        rotateTextLab->setGeometry(QRect(830, 450, 71, 41));
         rotateTextLab->setMinimumSize(QSize(41, 41));
         rotateTextLab->setFont(font3);
         rotateTextLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -819,7 +819,7 @@ public:
         internalShowTextLab->setAlignment(Qt::AlignCenter);
         internalTextLab = new QLabel(FileEditChild);
         internalTextLab->setObjectName(QStringLiteral("internalTextLab"));
-        internalTextLab->setGeometry(QRect(840, 500, 61, 41));
+        internalTextLab->setGeometry(QRect(830, 500, 71, 41));
         internalTextLab->setMinimumSize(QSize(41, 41));
         internalTextLab->setFont(font3);
         internalTextLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
@@ -847,7 +847,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(0);
+        typeTab->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -884,7 +884,7 @@ public:
         stepLenSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\255\245\351\225\277</span></p></body></html>", 0));
         reptCountSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\207\215\345\244\215\350\256\241\346\225\260</span></p></body></html>", 0));
         digitSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\344\275\215\346\225\260</span></p></body></html>", 0));
-        typeTab->setTabText(typeTab->indexOf(serialTab), QApplication::translate("FileEditChild", "\345\272\217\345\217\267", 0));
+        typeTab->setTabText(typeTab->indexOf(serialTab), QApplication::translate("FileEditChild", "\345\272\217\345\210\227\345\217\267", 0));
         heightBmpShowBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
         heightBmpAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         heightBmpRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
