@@ -7,16 +7,19 @@
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>logo</TYPE2>
+        <TYPE2>qrcode</TYPE2>
         <LineStart>0</LineStart>
-        <RowStart>0</RowStart>
-        <LineSize>25</LineSize>
-        <RowSize>25</RowSize>
+        <RowStart>26</RowStart>
+        <LineSize>21</LineSize>
+        <RowSize>21</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>User/logo/1.bmp</setTEXT>
+        <setTEXT>AAAA</setTEXT>
+        <qrcodeVersion>58</qrcodeVersion>
+        <qrcodeECCLevel>0</qrcodeECCLevel>
+        <qrcodeQuietZone>0</qrcodeQuietZone>
     </OBJ>
 </MES>

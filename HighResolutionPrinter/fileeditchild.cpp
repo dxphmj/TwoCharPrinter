@@ -194,10 +194,36 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->FormatlistWidget->addItem("%B - Full month name");
 	ui->FormatlistWidget->addItem("%p - am / pm");
 
+	ui->delBut->setText(QStringLiteral("清空"));
 }
 
 FileEditChild::~FileEditChild()
 {
+}
+
+void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
+{
+	QPen qGrayPen(Qt::gray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	//QPainter qFramePainter(qTextEdit);
+	int i,j;
+	for (i=0; i<=1041; i+=5)
+	{
+		//画列
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(i,0,i,241);
+	}
+	for (j=0; j<=241; j+=5)
+	{
+		//画行
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(0,j,1041,j);
+	}
+	qFramePainter->setPen(qRedPen);
+	qFramePainter->drawLine(0,0,0,240);
+	qFramePainter->drawLine(0,0,1040,0);
+	qFramePainter->drawLine(0,240,1040,240);
+	qFramePainter->drawLine(1040,0,1040,240);
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -341,9 +367,11 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	OBJ_Control bmpObj;
 	bmpObj.intLineStart=yPos;
 	bmpObj.intRowStart=xPos;
+	bmpObj.strType1="text";
+	bmpObj.strType2="QRcode";
 	//以下先写死
 	bmpObj.intSW=1;
-	bmpObj.intSS=1;
+	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
 	bmpObj.booBWDx=false;
 	bmpObj.booBWDy=false;
@@ -534,6 +562,8 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintDot();
+		QPainter qFramePainter(this->ui->editPreviewText);
+		DrawBackFrame(&qFramePainter);
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -623,10 +653,12 @@ void FileEditChild::GetObjSettingsFromScreen()
 				this->ui->DMCodeLineEdit->setText(tmpStr);
 				this->ui->newDMBut->setText(QStringLiteral("修改"));
 			}
+			this->ui->delBut->setText(QStringLiteral("删除"));
 			return;
 		}
 	}
 	//设置右侧框基础参数
+	this->ui->delBut->setText(QStringLiteral("清空"));
 	this->ui->internalShowTextLab->setText("0");
 
 	//设置文本typeTab
@@ -658,7 +690,6 @@ void FileEditChild::GetObjSettingsFromScreen()
 	this->ui->newDMBut->setText(QStringLiteral("新建"));
 }
 
-//“另存为”按钮
 void FileEditChild::saveasBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -691,12 +722,10 @@ void FileEditChild::saveasBut_clicked()
 	pFilemanageForm->FormFileManageChild->ui->filelistWidget->addItem(tmpItem);
 	pFilemanageForm->FormFileManageChild->ui->filelistWidget->setCurrentItem(tmpItem);
 	pFilemanageForm->FormFileManageChild->SetButtonEnableOn();
-	//pFilemanageForm->FormFileManageChild->ShowLocalFilePath();
 	pFilemanageForm->FormFileManageChild->PreviewSaveFile();
 	pFilemanageForm->FileManageChildWidgetCall();
 }
 
-//“保存”按钮
 void FileEditChild::saveBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -761,9 +790,9 @@ void FileEditChild::ReadBmp(char* strFileName)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 			if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
+				bmpObj.boDotBmp[bmpObj.intRowStart + bmpObj.intLineSize-x-1][bmpObj.intLineStart + y] = true;
 			else
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
+				bmpObj.boDotBmp[bmpObj.intRowStart + bmpObj.intLineSize-x-1][bmpObj.intLineStart + y] = false;
 		}  
 
 	}  
@@ -784,18 +813,19 @@ void FileEditChild::selBmpBut_clicked()
 
 void FileEditChild::delBut_clicked()
 {
-	/*
-	vector<OBJ_Control>::iterator itr = m_PrinterMes.OBJ_Vec.begin();
-	while (itr != m_PrinterMes.OBJ_Vec.end())
+	vector<OBJ_Control>::iterator ite;
+	for(ite = m_PrinterMes.OBJ_Vec.begin(); ite != m_PrinterMes.OBJ_Vec.end();)
 	{
-		if (itr->booFocus)
-			{
-				itr = m_PrinterMes.OBJ_Vec.erase(itr);
-				paintDot();
-				continue;
-			}
+		if(ite->booFocus)
+		{
+			ite = m_PrinterMes.OBJ_Vec.erase(ite);
+			this->ui->delBut->setText(QStringLiteral("清空"));
+			return;
+		}
+		else
+			++ite;
 	}
-	*/
+	m_PrinterMes.OBJ_Vec.clear();
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -852,6 +882,7 @@ void FileEditChild::newTextBut_clicked()
 	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
 	//int intTmpSS = ui->internalShowTextLab->text().toInt();
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+	this->ui->newTextBut->setText(QStringLiteral("修改"));
 }
 
 void FileEditChild::newBarCodeBut_clicked()
@@ -994,8 +1025,8 @@ void FileEditChild::moveUpBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			int EndPos = m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize ;
-			if( EndPos < 241 )
+			int EndPos = (m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize)*5 ;
+			if( EndPos < 240 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intLineStart += 1;
 			}
@@ -1037,8 +1068,8 @@ void FileEditChild::moveRightBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			int EndPos = m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize ;
-			if( EndPos < 1041 )
+			int EndPos = (m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize)*5 ;
+			if( EndPos < 1040 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intRowStart += 1;
 			}

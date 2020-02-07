@@ -23,6 +23,7 @@ public:
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 
+	void DrawBackFrame(QPainter *qFramePainter);
 	void MouseBeenPressed(QMouseEvent *event);
 	void GetObjSettingsFromScreen();
 	void Create2Dcode(int nType,QString strContent);
