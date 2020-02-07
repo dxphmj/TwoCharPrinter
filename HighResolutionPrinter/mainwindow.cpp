@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+ï»¿#include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include <QTime>
@@ -60,7 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(myTimer,SIGNAL(timeout()),this,SLOT(GetDateTime()));
 	ui->timeShowLab->setStyleSheet("qproperty-alignment: 'AlignVCenter | AlignRight';color:rgb(255,255,255);font-size:40px;");
 	 
-	m_pPrintThread = new PrintThead(this);//Æô¶¯´òÓ¡Ïß³Ì
+	m_pPrintThread = new PrintThead(this);//å¯åŠ¨æ‰“å°çº¿ç¨‹
 	m_pPrintThread->start();
 }
 
@@ -107,9 +107,9 @@ void MainWindow::PrintBut_clicked()
 {
 	m_bPrintNow = !m_bPrintNow;
 
-	m_pPrintCreateThread = new PrintCreatThread(this);//Æô¶¯´òÓ¡ÄÚÈÝÉú³ÉÏß³Ì
+	m_pPrintCreateThread = new PrintCreatThread(this);//å¯åŠ¨æ‰“å°å†…å®¹ç”Ÿæˆçº¿ç¨‹
 	m_pPrintCreateThread->start();
-	m_pPrintShowThread = new PrintShowThread(this);//Æô¶¯Ö÷½çÃæ´òÓ¡ÏÔÊ¾Ïß³Ì
+	m_pPrintShowThread = new PrintShowThread(this);//å¯åŠ¨ä¸»ç•Œé¢æ‰“å°æ˜¾ç¤ºçº¿ç¨‹
 	m_pPrintShowThread->start();
 }
 

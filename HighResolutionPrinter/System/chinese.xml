@@ -7,14 +7,14 @@
     <closeBut>关闭系统</closeBut>
     <No1Lab>墨盒1</No1Lab>
     <No2Lab>墨盒2</No2Lab>
-    <speedMWLab>速度：40</speedMWLab>
-    <timeDelayMWLab>延时：152</timeDelayMWLab>
-    <dirMWLab>方向：逆向</dirMWLab>
-    <voltMWLab>电压：8.8V</voltMWLab>
-    <PWMWLab>脉宽：1.8</PWMWLab>
-    <grayMWLab>灰度：5</grayMWLab>
-    <fileNmaeLab>文件名：default.spr</fileNmaeLab>
-    <countValMWLab>计数值：100</countValMWLab>
+    <speedMWLab>速度：</speedMWLab>
+    <timeDelayMWLab>延时：</timeDelayMWLab>
+    <dirMWLab>方向：</dirMWLab>
+    <voltMWLab>电压：</voltMWLab>
+    <PWMWLab>脉宽：</PWMWLab>
+    <grayMWLab>灰度：</grayMWLab>
+    <fileNmaeLab>文件名：</fileNmaeLab>
+    <countValMWLab>计数值：</countValMWLab>
   </MainWindow>
   <FilemanageForm>
     <editFileBut>编辑文件</editFileBut>

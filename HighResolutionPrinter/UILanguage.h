@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include <QWidget>
 
@@ -33,6 +33,7 @@
 
 class TiXmlNode;
 
+
 class CUILanguage
 {
 public:
@@ -41,6 +42,7 @@ public:
 
 public:
 	QObject* m_pMainwindow;
+	bool m_codemode;
 
 public:
 	void ChangeLanguage(int nLanguageType);

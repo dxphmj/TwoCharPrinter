@@ -1,148 +1,148 @@
 <MES>
   <MainWindow>
-    <nameDispLab>�๦�����������</nameDispLab>
-    <fileManageBut>File</fileManageBut>
-    <paraManageBut>Parameter</paraManageBut>
-    <startPrintBut>Printing</startPrintBut>
-    <closeBut>Shutdown</closeBut>
-    <No1Lab>Cartridge 1</No1Lab>
-    <No2Lab>Cartridge 2</No2Lab>
-    <speedMWLab>Speed:</speedMWLab>
-    <timeDelayMWLab>Delayed:</timeDelayMWLab>
-    <dirMWLab>Direction:</dirMWLab>
-    <voltMWLab>Voltage:</voltMWLab>
-    <PWMWLab>Pulse Width:</PWMWLab>
-    <grayMWLab>Grayscale:</grayMWLab>
-    <fileNmaeLab>FileNmae:</fileNmaeLab>
-    <countValMWLab>Counting:</countValMWLab>
+    <nameDispLab>طائرة نفاثة ذكية متعددة الوظائف</nameDispLab>
+    <fileManageBut>إدارة الملفات</fileManageBut>
+    <paraManageBut>إدارة البارامترات</paraManageBut>
+    <startPrintBut>ابدأ الطباعة</startPrintBut>
+    <closeBut>أغلق النظام</closeBut>
+    <No1Lab>خراطيش الحبر1</No1Lab>
+    <No2Lab>2 خراطيش الحبر</No2Lab>
+    <speedMWLab>السرعة:</speedMWLab>
+    <timeDelayMWLab>تأخير الوقت:</timeDelayMWLab>
+    <dirMWLab>الاتجاه:</dirMWLab>
+    <voltMWLab>الفولطية:</voltMWLab>
+    <PWMWLab>النبض:</PWMWLab>
+    <grayMWLab>الرمادي:</grayMWLab>
+    <fileNmaeLab>اسم الملف:</fileNmaeLab>
+    <countValMWLab>القيمة:</countValMWLab>
   </MainWindow>
   <FilemanageForm>
-    <editFileBut>EditFile</editFileBut>
-    <exitBut>Exit</exitBut>
-    <manageFileBut>Manage File</manageFileBut>
+    <editFileBut>تحرير الوثائق</editFileBut>
+    <exitBut>الانسحاب</exitBut>
+    <manageFileBut>وثائق الإدارة</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
-    <fontTypeTextLab>Font Type</fontTypeTextLab>
-    <fontSizeTextLab>Font Size</fontSizeTextLab>
-    <variableTextBut>Variable</variableTextBut>
-    <newTextBut>New</newTextBut>
-    <delBut>Del</delBut>
-    <saveBut>Save</saveBut>
-    <saveasBut>Save As</saveasBut>
-    <rotateTextLab>Rotate</rotateTextLab>
-    <internalTextLab>Internal</internalTextLab>
+    <fontTypeTextLab>الخط</fontTypeTextLab>
+    <fontSizeTextLab>ب -ا -</fontSizeTextLab>
+    <variableTextBut>المتغيرة</variableTextBut>
+    <newTextBut>الجديدة</newTextBut>
+    <delBut>حذف</delBut>
+    <saveBut>حفظ</saveBut>
+    <saveasBut>الباقي</saveasBut>
+    <rotateTextLab>تدور</rotateTextLab>
+    <internalTextLab>بين</internalTextLab>
 
-    <addTimeBut>Add</addTimeBut>
-    <refreshTimeBut>Refresh</refreshTimeBut>
-    <newTimeBut>New</newTimeBut>
-    <fontTypeTimeLab>Font Type</fontTypeTimeLab>
-    <fontTypeTimeLab_3>Offset</fontTypeTimeLab_3>
-    <fontTypeTimeLab_4>Offset Value</fontTypeTimeLab_4>
-    <fontTypeTimeLab_5>Offset Unit</fontTypeTimeLab_5>
-    <fontTypeTimeLab_6>Preview</fontTypeTimeLab_6>
-    <fontTypeTimeLab_7>Date/Time</fontTypeTimeLab_7>
+    <addTimeBut>إضافة</addTimeBut>
+    <refreshTimeBut>تحديث</refreshTimeBut>
+    <newTimeBut>الجديدة</newTimeBut>
+    <fontTypeTimeLab>الخط</fontTypeTimeLab>
+    <fontTypeTimeLab_3>لتحويل</fontTypeTimeLab_3>
+    <fontTypeTimeLab_4>الانحراف</fontTypeTimeLab_4>
+    <fontTypeTimeLab_5>وحدة تحويل مسار</fontTypeTimeLab_5>
+    <fontTypeTimeLab_6>معاينة</fontTypeTimeLab_6>
+    <fontTypeTimeLab_7>التاريخ/الوقت</fontTypeTimeLab_7>
     
-    <initialValSerialLab>Initial Value </initialValSerialLab>
-    <termValSerialLab>End Value</termValSerialLab>
-    <startValSerialLab>Start Value</startValSerialLab>
-    <stepLenSerialLab>Step Length</stepLenSerialLab>
-    <reptCountSerialLab>Repeat Count</reptCountSerialLab>
-    <digitSerialLab>Digit</digitSerialLab>
-    <counterSerialLab>Counter</counterSerialLab>
-    <fontTypeSerialLab>Font Type</fontTypeSerialLab>
-    <formatSerialLab>Format</formatSerialLab>
-    <newSerialBut>New</newSerialBut>
+    <initialValSerialLab>العتبة </initialValSerialLab>
+    <termValSerialLab>قيمة الإنهاء</termValSerialLab>
+    <startValSerialLab>بداية</startValSerialLab>
+    <stepLenSerialLab>خطوة أطوال</stepLenSerialLab>
+    <reptCountSerialLab>كرر العد</reptCountSerialLab>
+    <digitSerialLab>أرقام</digitSerialLab>
+    <counterSerialLab>عداد</counterSerialLab>
+    <fontTypeSerialLab>الخط</fontTypeSerialLab>
+    <formatSerialLab>شكل</formatSerialLab>
+    <newSerialBut>الجديدة</newSerialBut>
     
-    <heightBmpLab>Height</heightBmpLab>
-    <widthBmpLab>Width</widthBmpLab>
-    <reverseBmpCheckBox>Reverse Colors</reverseBmpCheckBox>
-    <selBmpBut>Select Graphics</selBmpBut>
-    <newBmpBut>New</newBmpBut>
+    <heightBmpLab>عالية</heightBmpLab>
+    <widthBmpLab>عرض</widthBmpLab>
+    <reverseBmpCheckBox>عكس الألوان</reverseBmpCheckBox>
+    <selBmpBut>إختر الرسومات</selBmpBut>
+    <newBmpBut>الجديدة</newBmpBut>
 
-    <typeBarCodeLab>Type</typeBarCodeLab>
-    <zoomBarCodeLab>Zoom</zoomBarCodeLab>
-    <heightBarCodeLab>Height</heightBarCodeLab>
-    <variableBarCodeBut>Variable</variableBarCodeBut>
-    <newBarCodeBut>New</newBarCodeBut>
+    <typeBarCodeLab>أنواع</typeBarCodeLab>
+    <zoomBarCodeLab>التكبير</zoomBarCodeLab>
+    <heightBarCodeLab>عالية</heightBarCodeLab>
+    <variableBarCodeBut>المتغيرة</variableBarCodeBut>
+    <newBarCodeBut>الجديدة</newBarCodeBut>
 
-    <showNumCheckBox>Show Num</showNumCheckBox>
-    <sideLenQRLab>Side Length</sideLenQRLab>
-    <reverseCheckBox>Reverse Colors</reverseCheckBox>
-    <variableQRBut>Variable</variableQRBut>
-    <newQRBut>New</newQRBut>
+    <showNumCheckBox>أرني الأرقام</showNumCheckBox>
+    <sideLenQRLab>طول</sideLenQRLab>
+    <reverseCheckBox>ألوان مختلفة</reverseCheckBox>
+    <variableQRBut>المتغيرة</variableQRBut>
+    <newQRBut>الجديدة</newQRBut>
 
-    <sideLenDMLab>Type</sideLenDMLab>
-    <variableDMBut>Variable</variableDMBut>
-    <newDMBut>New</newDMBut>
-    <typeTab>Text#Time#Serial#Picture#BarCode#QRCode#DMCode</typeTab>
+    <sideLenDMLab>أنواع</sideLenDMLab>
+    <variableDMBut>المتغيرة</variableDMBut>
+    <newDMBut>الجديدة</newDMBut>
+    <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
   </FileEditChild>
   <FileManageChild>
-    <localFileBut>Local File</localFileBut>
-    <UdiskFileBut>U Disk File</UdiskFileBut>
-    <loadSeleFileBut>Load Selected File</loadSeleFileBut>
-    <editSeleFileBut>Edit Selected File</editSeleFileBut>
-    <delSeleFileBut>Del Selected File</delSeleFileBut>
-    <copyFile2localBut>Copy To Local</copyFile2localBut>
-    <OKFileNameBut>OK</OKFileNameBut>
+    <localFileBut>الوثائق المحلية</localFileBut>
+    <UdiskFileBut>ملف قرص U</UdiskFileBut>
+    <loadSeleFileBut>تحميل ملفّ مُنتقى</loadSeleFileBut>
+    <editSeleFileBut>تحرير مُنتقى ملف</editSeleFileBut>
+    <delSeleFileBut>احذف مُنتقى ملف</delSeleFileBut>
+    <copyFile2localBut>نسخ محلية</copyFile2localBut>
+    <OKFileNameBut>تحديد</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
-    <printSettingBut>Print Set</printSettingBut>
-    <sysSettingBut>System Set</sysSettingBut>
-    <countSettingBut>Count Set</countSettingBut>
-    <aboutMacBut>About Self</aboutMacBut>
-    <paraExitBut>Exit</paraExitBut>
-    <resetBut>Reset</resetBut>
-    <savePrintSetBut>Save</savePrintSetBut>
+    <printSettingBut>إعداد الطباعة</printSettingBut>
+    <sysSettingBut>إعدادات النظام</sysSettingBut>
+    <countSettingBut>إعداد العد</countSettingBut>
+    <aboutMacBut>عن الآلة</aboutMacBut>
+    <paraExitBut>الانسحاب</paraExitBut>
+    <resetBut>الاستبدال</resetBut>
+    <savePrintSetBut>حفظ</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
-     <printSpeedLab>Print Speed m/min</printSpeedLab>
-     <printDelayLab>Print Delay ms</printDelayLab>
-     <synFrequencyLab>Synchronous Frequency</synFrequencyLab>
-     <printGrayLab>Print Grayscale</printGrayLab>
-     <trigLab>Trigger Mode</trigLab>
-     <inkjetLab>Inkjet Mode</inkjetLab>
-     <printDirLab>Print Method</printDirLab>
-     <synWheelCheckBox>Enable Synchronization Wheel</synWheelCheckBox>
-     <voiceCheckBox>Voice</voiceCheckBox>
-     <trigComBox>External Electric Eye#Automatic#Photoelectricity#Encoder#Photoelectric Coding#Light Automatically</trigComBox>
-     <inkjetComBox>Left#Right</inkjetComBox>
-     <printDirComBox>Forward#Reverse</printDirComBox>
+     <printSpeedLab>سرعة الطباعة M/MIN.</printSpeedLab>
+     <printDelayLab>طباعة تأخير M.</printDelayLab>
+     <synFrequencyLab>تردد متزامن</synFrequencyLab>
+     <printGrayLab>طباعة الرمادي</printGrayLab>
+     <trigLab>طريقة الإطلاق</trigLab>
+     <inkjetLab>طريقة رش الحبر</inkjetLab>
+     <printDirLab>اتجاه الطباعة</printDirLab>
+     <synWheelCheckBox>مكّن التزامن</synWheelCheckBox>
+     <voiceCheckBox>الصوت</voiceCheckBox>
+     <trigComBox>العين الخارجية#تلقائيا#ضوئي#جهاز التشفير#شفرة كهروضوئية#الضوء</trigComBox>
+     <inkjetComBox>اليسار رش#اليمين رش</inkjetComBox>
+     <printDirComBox>تتحرك#العكسية</printDirComBox>
 
-     <repetePrintCheckBox>Repete Print</repetePrintCheckBox>
-     <repeteLab>Times Of Repetition</repeteLab>
-     <repeteDelayLab>Repeat Delay ms</repeteDelayLab>
+     <repetePrintCheckBox>كرر الطباعة</repetePrintCheckBox>
+     <repeteLab>مرات متكررة</repeteLab>
+     <repeteDelayLab>كرر تأخير M.</repeteDelayLab>
 
-     <inkTypeLab>Ink Type</inkTypeLab>
-     <adaptParaCheckBox>Adaptive Parameter</adaptParaCheckBox> 
-     <inkVoltLab>Voltage V</inkVoltLab>
-     <PWLab>Pulse Width ms</PWLab>
-     <nozzleSelLab>Nozzle Selection</nozzleSelLab>
-     <offsetLab>Offset mm</offsetLab>
-     <flashSprayLab>Flash Spray Setup</flashSprayLab>
-     <flashSprayCheckBox>Flash Spray</flashSprayCheckBox>
-     <flashSprayInternalLab>Interval s</flashSprayInternalLab>
-     <flashSprayTimesLab>Count</flashSprayTimesLab>
-     <printSetTabWid>PrintConfige#Advance#PrintHead#UV Lamp</printSetTabWid>
+     <inkTypeLab>نوع الحبر</inkTypeLab>
+     <adaptParaCheckBox>معايير التكيف الذاتي</adaptParaCheckBox> 
+     <inkVoltLab>الفولطية</inkVoltLab>
+     <PWLab>عرض النبض</PWLab>
+     <nozzleSelLab>اختيار فوهة</nozzleSelLab>
+     <offsetLab>تحويل مسار</offsetLab>
+     <flashSprayLab>فلاش إعدادات</flashSprayLab>
+     <flashSprayCheckBox>شيم رش</flashSprayCheckBox>
+     <flashSprayInternalLab>المباعدة س</flashSprayInternalLab>
+     <flashSprayTimesLab>عدد</flashSprayTimesLab>
+     <printSetTabWid>أسلوب الطباعة#إعدادات متقدمة#إعداد المحرك#أضواء UV إعدادات</printSetTabWid>
   </printSetting>
   <sysSetting>
-     <sysTimeSetLab>System Time</sysTimeSetLab>
-     <backLightLab>Back Light</backLightLab>
-     <sysLanguageLab>System Language</sysLanguageLab>
+     <sysTimeSetLab>وقت النظام</sysTimeSetLab>
+     <backLightLab>ضوء الظهر</backLightLab>
+     <sysLanguageLab>لغة النظام</sysLanguageLab>
   </sysSetting>
   <countSetting>
-      <counterOneLab>Counter 1</counterOneLab>
-      <currentVal1Lab>Current Value</currentVal1Lab>
-      <initialVal1Lab>Initial Value</initialVal1Lab>
-      <repeteTime1Lab>Times Of Repetition</repeteTime1Lab>
-      <stepVal1Lab>Step Value</stepVal1Lab>
-      <maxVal1Lab>Max Value</maxVal1Lab>
-      <counterTwoLab>Counter 2</counterTwoLab>
-      <currentVal2Lab>Current Value</currentVal2Lab>
-      <initialVal2Lab>Initial Value</initialVal2Lab>
-      <repeteTime2Lab>Times Of Repetition</repeteTime2Lab>
-      <stepVal2Lab>Step Value</stepVal2Lab>
-      <maxVal2Lab>Max Value</maxVal2Lab>
-      <printTimeLab>Print The Number</printTimeLab>
+      <counterOneLab>العداد 1.</counterOneLab>
+      <currentVal1Lab>القيمة الحالية</currentVal1Lab>
+      <initialVal1Lab>القيمة الأولية</initialVal1Lab>
+      <repeteTime1Lab>مرات متكررة</repeteTime1Lab>
+      <stepVal1Lab>خطوة للأمام</stepVal1Lab>
+      <maxVal1Lab>الأقصى</maxVal1Lab>
+      <counterTwoLab>العداد 2.</counterTwoLab>
+      <currentVal2Lab>القيمة الحالية</currentVal2Lab>
+      <initialVal2Lab>القيمة الأولية</initialVal2Lab>
+      <repeteTime2Lab>مرات متكررة</repeteTime2Lab>
+      <stepVal2Lab>خطوة للأمام</stepVal2Lab>
+      <maxVal2Lab>الأقصى</maxVal2Lab>
+      <printTimeLab>عدد الطباعة</printTimeLab>
   </countSetting>
 </MES>
 

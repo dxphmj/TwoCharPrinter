@@ -1,4 +1,4 @@
-#include "UILanguage.h"
+﻿#include "UILanguage.h"
 #include <QTextCodec>
 #include "xml\tinyxml.h"
 #include "mainwindow.h"
@@ -25,15 +25,19 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 	MainWindow* pMainwindow = (MainWindow*)(m_pMainwindow);
 	char strFileName[100];
 
-	//����nLanguageType ��ȡ��Ӧ��xml�ļ�
+	m_codemode = false;//定义变量用于判断编码方式 初始为false
+	//根据nLanguageType 读取相应的xml文件
 	if(nLanguageType == 1)
+	{	
 		sprintf(strFileName,"%s","System\\chinese.xml");
+	    m_codemode = true;   //中文时变量为true
+	 }
 	if(nLanguageType == 0)
 		sprintf(strFileName,"%s","System\\arabic.xml");
 	if(nLanguageType == 5)
 		sprintf(strFileName,"%s","System\\english.xml");
-
-	//�ȶ�ȡ��������ƣ����ݴ�������ƻ�ô���ָ�룬Ȼ���ٸ�����ĸ��ؼ���ֵ 
+	/*m_chinesetype = nLanguageType;*/
+	//先读取窗体的名称，根据窗体的名称获得窗体指针，然后再给窗体的各控件赋值 
 
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
@@ -97,7 +101,7 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 
 void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 {
-	//������ؼ���Ϣ,����ֵ
+	//读入各控件信息,并赋值
 	TiXmlNode* nodeTmp = 0;
 	for( nodeTmp = node->IterateChildren(0);nodeTmp;nodeTmp = node->IterateChildren( nodeTmp ) )
 	{
@@ -111,40 +115,81 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QCheckBox *tempCheck = pWidge->findChild<QCheckBox *>(strItem);
 		QTabWidget * tempQTabWidget = pWidge->findChild<QTabWidget *>(strItem); 
 		QComboBox *tempQComboBox = pWidge->findChild<QComboBox *>(strItem); 
- 		 
-		if(tempButton)
-			tempButton->setText(QString::fromLocal8Bit(strText));
-		else if(tempLabel)
-			tempLabel->setText(QString::fromLocal8Bit(strText));
-		else if(tempCheck)
-			tempCheck->setText(QString::fromLocal8Bit(strText));
-		else if(tempQTabWidget)
-		{
-			//��#�ֽ��ַ�
-			char seg[] = "#"; /*�ָ������ָ�������Ϊ��ָ���ķֺţ��ո��*/  
-			int i =0;  
-			char *substr= strtok((char*)strText, seg);/*�����ֳɵķָ��,substrΪ�ָ���������ַ���*/  
+ 		
+	  //中文编码和多语言不一样 fromLocal8Bit适用于中文转换，fromUtf8适用于其他种类语言。
+		if (m_codemode)  //中文进入的编码函数fromLocal8Bit 
+			{
+				if(tempButton	)
+					tempButton->setText(QString::fromLocal8Bit(strText));
+				else if(tempLabel)
+				tempLabel->setText(QString::fromLocal8Bit(strText));
+				else if(tempCheck)
+				tempCheck->setText(QString::fromLocal8Bit(strText));
+				else if(tempQTabWidget)
+				{
+				//以#分解字符
+				char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
+				int i =0;  
+				char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
     
-			while (substr != NULL) {    
-					tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
-					i++;  
-					substr = strtok(NULL,seg);/*�ڵ�һ�ε���ʱ��strtok()����������str�ַ����� 
-					����ĵ����򽫲���str���ó�NULL��ÿ�ε��óɹ��򷵻ر��ָ��Ƭ�ε�ָ�롣*/  
-			}    			
- 		}
-		else if(tempQComboBox)
-		{
-			//��#�ֽ��ַ�
-			char seg[] = "#"; /*�ָ������ָ�������Ϊ��ָ���ķֺţ��ո��*/  
-			int i =0;  
-			char *substr= strtok((char*)strText, seg);/*�����ֳɵķָ��,substrΪ�ָ���������ַ���*/  
+				while (substr != NULL) {    
+						tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
+						i++;  
+						substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
+						往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
+						}    			
+ 				}
+				else if(tempQComboBox)
+				{
+				//以#分解字符
+				char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
+				int i =0;  
+				char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
     
-			while (substr != NULL) {    
-					tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
+				while (substr != NULL) {    
+						tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
+						i++;  
+						substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
+						往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
+					}    			
+ 				}
+			}
+		else    //非中文语言时 进入的编码函数fromUtf8  多语言在fromUtf8函数下不乱码
+			{   
+				if(tempButton	)
+			    tempButton->setText(QString::fromUtf8(strText));
+		        else if(tempLabel)
+			    tempLabel->setText(QString::fromUtf8(strText));
+		        else if(tempCheck)
+		     	tempCheck->setText(QString::fromUtf8(strText));
+		        else if(tempQTabWidget)
+		       {
+			     //以#分解字符
+			    char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
+			    int i =0;  
+			    char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
+    
+			    while (substr != NULL) {    
+					tempQTabWidget->setTabText(i,QString::fromUtf8(substr));
 					i++;  
-					substr = strtok(NULL,seg);/*�ڵ�һ�ε���ʱ��strtok()����������str�ַ����� 
-					����ĵ����򽫲���str���ó�NULL��ÿ�ε��óɹ��򷵻ر��ָ��Ƭ�ε�ָ�롣*/  
-			}    			
- 		}
-	}			 
+					substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
+					往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
+		 	        }    			
+ 		       }
+		       else if(tempQComboBox)
+		       {
+			    //以#分解字符
+			    char seg[] = "#"; /*分隔符，分隔符可以为你指定的分号，空格等*/  
+			    int i =0;  
+			    char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
+     
+			    while (substr != NULL) {    
+					  tempQComboBox->setItemText(i,QString::fromUtf8(substr));
+					  i++;  
+					  substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
+					  往后的调用则将参数str设置成NULL。每次调用成功则返回被分割出片段的指针。*/  
+			           }    			
+ 		       }
+	        }
+	}
 }

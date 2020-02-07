@@ -1,4 +1,4 @@
-#ifndef MAINWINDOW_H
+ï»¿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
@@ -36,9 +36,9 @@ public:
     ~MainWindow();
 
 public:
- 	ClassMessage* m_PrinterMes; //´òÓ¡¼à¿ØÓÃ
-    queue<vector<BYTE>> queCtr;//ÃüÁî¶ÓÁĞ 
-	queue<vector<BYTE>> ForPreQue;//Óû´òÓ¡¶ÓÁĞ
+ 	ClassMessage* m_PrinterMes; //æ‰“å°ç›‘æ§ç”¨
+    queue<vector<BYTE>> queCtr;//å‘½ä»¤é˜Ÿåˆ— 
+	queue<vector<BYTE>> ForPreQue;//æ¬²æ‰“å°é˜Ÿåˆ—
 	CParamSetting m_ParamSetting;
 
 	bool m_bPrintNow;
