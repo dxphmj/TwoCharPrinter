@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1061</width>
-    <height>691</height>
+    <height>651</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -562,9 +562,9 @@ border-radius:10px;</string>
   <widget class="QLabel" name="sysLanguageLab">
    <property name="geometry">
     <rect>
-     <x>782</x>
+     <x>762</x>
      <y>161</y>
-     <width>141</width>
+     <width>191</width>
      <height>41</height>
     </rect>
    </property>

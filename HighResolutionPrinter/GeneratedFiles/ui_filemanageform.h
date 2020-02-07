@@ -44,7 +44,7 @@ public:
         editFileBut->setGeometry(QRect(10, 120, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font.setPointSize(16);
+        font.setPointSize(18);
         editFileBut->setFont(font);
         editFileBut->setStyleSheet(QLatin1String("background-image: url(:/Images/editFile.bmp);\n"
 "color: rgb(255, 255, 255);"));

@@ -26,7 +26,7 @@ public:
     {
         if (aboutMac->objectName().isEmpty())
             aboutMac->setObjectName(QStringLiteral("aboutMac"));
-        aboutMac->resize(1061, 691);
+        aboutMac->resize(1061, 651);
 
         retranslateUi(aboutMac);
 
