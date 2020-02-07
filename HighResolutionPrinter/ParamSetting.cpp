@@ -15,7 +15,7 @@ CParamSetting::~CParamSetting(void)
 
 void CParamSetting::SaveParam2Xml()
 {
-	QFile file("System\\bookindex.xml"); //以只写方式创建一个文件
+	QFile file("System\\Configuration.xml"); //以只写方式创建一个文件
 	if (!file.open(QFile::WriteOnly | QFile::Text)) {
 		qDebug() << "Error: Cannot write file: "
 			<< qPrintable(file.errorString());
@@ -38,24 +38,8 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_TriggerMode", m_TriggerMode);
 	xmlWriter.writeTextElement("m_InkjetMode", m_InkjetMode);
 	xmlWriter.writeTextElement("m_PrintingDirection", m_PrintingDirection);
-
-	if (m_SynWheelCheck)//判断启用同步轮是否选中
-	{
-		xmlWriter.writeTextElement("m_SynWheelCheck", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("m_SynWheelCheck","0");
-	}
-
-	if (m_VoiceCheck)//判断声音是否选中
-	{
-		xmlWriter.writeTextElement("m_VoiceCheck", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("m_VoiceCheck","0");
-	}
+	xmlWriter.writeTextElement("m_SynWheelCheck",QString::number(m_SynWheelCheck));
+	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
 	xmlWriter.writeEndElement(); //关闭标签
 
 
@@ -83,25 +67,13 @@ void CParamSetting::SaveParam2Xml()
 			break;
 		}
 	}
-
-	if (m_RepetePrintCheck)//判断重复打印是否选中
-	{
-		xmlWriter.writeTextElement("m_RepetePrintCheck", "1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("m_RepetePrintCheck","0");
-	}
-
+	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
 	xmlWriter.writeEndElement();
 
 	xmlWriter.writeStartElement("Sprinklerhead_setting"); //二级节点
- 
 	xmlWriter.writeTextElement("m_AdaptParaCheck",QString::number(m_AdaptParaCheck));
-	 
-
 	xmlWriter.writeTextElement("m_InkVoltage", m_InkVoltage);
 	xmlWriter.writeTextElement("m_InkPulseWidth", m_InkPulseWidth);
 	switch(NozzleradioBGcheckedId)//判断点击喷头选择中哪个radio
@@ -118,16 +90,7 @@ void CParamSetting::SaveParam2Xml()
 		}
 	}		
 	xmlWriter.writeTextElement("m_Offset", m_Offset);
-
-	if (m_FlashSprayCheck)//判断闪喷是否选中
-	{
-		xmlWriter.writeTextElement("m_FlashSprayCheck","1");
-	} 
-	else
-	{
-		xmlWriter.writeTextElement("m_FlashSprayCheck","0");
-	}
-
+	xmlWriter.writeTextElement("m_FlashSprayCheck",QString::number(m_FlashSprayCheck));
 	xmlWriter.writeTextElement("m_FlashSprayInterval", m_FlashSprayInterval);
 	xmlWriter.writeTextElement("m_FlashSprayFrequency", m_FlashSprayFrequency);
 	xmlWriter.writeEndElement();
