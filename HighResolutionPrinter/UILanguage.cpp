@@ -1,4 +1,4 @@
-ï»¿#include "UILanguage.h"
+#include "UILanguage.h"
 #include <QTextCodec>
 #include "xml\tinyxml.h"
 #include "mainwindow.h"
@@ -18,26 +18,35 @@ CUILanguage::CUILanguage(QObject* pMainwindow)
 
 CUILanguage::~CUILanguage(void)
 {
-}
+} 
 
 void CUILanguage::ChangeLanguage(int nLanguageType)
 {
 	MainWindow* pMainwindow = (MainWindow*)(m_pMainwindow);
 	char strFileName[100];
 
-	m_codemode = false;//å®šä¹‰å˜é‡ç”¨äºåˆ¤æ–­ç¼–ç æ–¹å¼ åˆå§‹ä¸ºfalse
-	//æ ¹æ®nLanguageType è¯»å–ç›¸åº”çš„xmlæ–‡ä»¶
+	m_codemode = false;//¶¨Òå±äÁ¿ÓÃÓÚÅĞ¶Ï±àÂë·½Ê½ ³õÊ¼Îªfalse
+	//¸ù¾İnLanguageType ¶ÁÈ¡ÏàÓ¦µÄxmlÎÄ¼ş
 	if(nLanguageType == 1)
 	{	
-		sprintf(strFileName,"%s","System\\chinese.xml");
-	    m_codemode = true;   //ä¸­æ–‡æ—¶å˜é‡ä¸ºtrue
+	   sprintf(strFileName,"%s","System\\chinese.xml");
+	    m_codemode = true;   //ÖĞÎÄÊ±±äÁ¿Îªtrue
+          m_nLanguage = 1;
 	 }
 	if(nLanguageType == 0)
-		sprintf(strFileName,"%s","System\\arabic.xml");
+	{
+        sprintf(strFileName,"%s","System\\arabic.xml");
+         m_nLanguage = 0;
+      }
 	if(nLanguageType == 5)
-		sprintf(strFileName,"%s","System\\english.xml");
+	{
+	    sprintf(strFileName,"%s","System\\english.xml");
 	/*m_chinesetype = nLanguageType;*/
-	//å…ˆè¯»å–çª—ä½“çš„åç§°ï¼Œæ ¹æ®çª—ä½“çš„åç§°è·å¾—çª—ä½“æŒ‡é’ˆï¼Œç„¶åå†ç»™çª—ä½“çš„å„æ§ä»¶èµ‹å€¼ 
+	//ÏÈ¶ÁÈ¡´°ÌåµÄÃû³Æ£¬¸ù¾İ´°ÌåµÄÃû³Æ»ñµÃ´°ÌåÖ¸Õë£¬È»ºóÔÙ¸ø´°ÌåµÄ¸÷¿Ø¼ş¸³Öµ 
+		m_nLanguage = 5;
+	}
+
+	// ? ?        ?    ?       ? ?   ? ??   ?     ?  ?   ? 
 
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
@@ -101,14 +110,33 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 
 void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 {
-	//è¯»å…¥å„æ§ä»¶ä¿¡æ¯,å¹¶èµ‹å€¼
+	//¶ÁÈë¸÷¿Ø¼şĞÅÏ¢,²¢¸³Öµ
 	TiXmlNode* nodeTmp = 0;
+	QFont font;
+	switch(m_nLanguage)
+	{
+		case 0:    ;break;
+		case 1: font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));;break;
+		case 2:    ;break;
+		case 3:    ;break;
+		case 4:    ;break;
+		case 5: font.setFamily(QStringLiteral("Times New Roman"));;break;
+		default: ;
+	}
 	for( nodeTmp = node->IterateChildren(0);nodeTmp;nodeTmp = node->IterateChildren( nodeTmp ) )
 	{
 		const char* strItem = nodeTmp->ValueTStr().c_str();				 
 		const char* strText; 
 		TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-		strText = nodeText->ValueTStr().c_str();			 
+		strText = nodeText->ValueTStr().c_str();
+
+		const char* tempVal= strItem;
+		QString str(tempVal);
+
+		if(str =="fontsize")
+		{
+			font.setPointSize(atoi(strText));
+		}
 
 		QPushButton *tempButton = pWidge->findChild<QPushButton *>(strItem);
 		QLabel *tempLabel = pWidge->findChild<QLabel *>(strItem);
@@ -116,80 +144,103 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QTabWidget * tempQTabWidget = pWidge->findChild<QTabWidget *>(strItem); 
 		QComboBox *tempQComboBox = pWidge->findChild<QComboBox *>(strItem); 
  		
-	  //ä¸­æ–‡ç¼–ç å’Œå¤šè¯­è¨€ä¸ä¸€æ · fromLocal8Bité€‚ç”¨äºä¸­æ–‡è½¬æ¢ï¼ŒfromUtf8é€‚ç”¨äºå…¶ä»–ç§ç±»è¯­è¨€ã€‚
-		if (m_codemode)  //ä¸­æ–‡è¿›å…¥çš„ç¼–ç å‡½æ•°fromLocal8Bit 
+	  //ÖĞÎÄ±àÂëºÍ¶àÓïÑÔ²»Ò»Ñù fromLocal8BitÊÊÓÃÓÚÖĞÎÄ×ª»»£¬fromUtf8ÊÊÓÃÓÚÆäËûÖÖÀàÓïÑÔ¡£
+		if (m_codemode)  //ÖĞÎÄ½øÈëµÄ±àÂëº¯ÊıfromLocal8Bit 
 			{
 				if(tempButton	)
-					tempButton->setText(QString::fromLocal8Bit(strText));
+				{
+					tempButton->setFont(font);
+                    tempButton->setText(QString::fromLocal8Bit(strText));
+				}        
 				else if(tempLabel)
-				tempLabel->setText(QString::fromLocal8Bit(strText));
+				{
+				tempLabel->setFont(font);
+                tempLabel->setText(QString::fromLocal8Bit(strText));
+				}
 				else if(tempCheck)
-				tempCheck->setText(QString::fromLocal8Bit(strText));
+                {
+				tempCheck->setFont(font);
+                tempCheck->setText(QString::fromLocal8Bit(strText));
+				}
 				else if(tempQTabWidget)
 				{
-				//ä»¥#åˆ†è§£å­—ç¬¦
-				char seg[] = "#"; /*åˆ†éš”ç¬¦ï¼Œåˆ†éš”ç¬¦å¯ä»¥ä¸ºä½ æŒ‡å®šçš„åˆ†å·ï¼Œç©ºæ ¼ç­‰*/  
+				//ÒÔ#·Ö½â×Ö·û
+				char seg[] = "#"; /*·Ö¸ô·û£¬·Ö¸ô·û¿ÉÒÔÎªÄãÖ¸¶¨µÄ·ÖºÅ£¬¿Õ¸ñµÈ*/  
 				int i =0;  
-				char *substr= strtok((char*)strText, seg);/*åˆ©ç”¨ç°æˆçš„åˆ†å‰²å‡½æ•°,substrä¸ºåˆ†å‰²å‡ºæ¥çš„å­å­—ç¬¦ä¸²*/  
+				char *substr= strtok((char*)strText, seg);/*ÀûÓÃÏÖ³ÉµÄ·Ö¸îº¯Êı,substrÎª·Ö¸î³öÀ´µÄ×Ó×Ö·û´®*/  
     
 				while (substr != NULL) {    
 						tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
+                        tempQTabWidget->setFont(font);
 						i++;  
-						substr = strtok(NULL,seg);/*åœ¨ç¬¬ä¸€æ¬¡è°ƒç”¨æ—¶ï¼Œstrtok()å¿…éœ€ç»™äºˆå‚æ•°strå­—ç¬¦ä¸²ï¼Œ 
-						å¾€åçš„è°ƒç”¨åˆ™å°†å‚æ•°strè®¾ç½®æˆNULLã€‚æ¯æ¬¡è°ƒç”¨æˆåŠŸåˆ™è¿”å›è¢«åˆ†å‰²å‡ºç‰‡æ®µçš„æŒ‡é’ˆã€‚*/  
+						substr = strtok(NULL,seg);/*ÔÚµÚÒ»´Îµ÷ÓÃÊ±£¬strtok()±ØĞè¸øÓè²ÎÊıstr×Ö·û´®£¬ 
+						ÍùºóµÄµ÷ÓÃÔò½«²ÎÊıstrÉèÖÃ³ÉNULL¡£Ã¿´Îµ÷ÓÃ³É¹¦Ôò·µ»Ø±»·Ö¸î³öÆ¬¶ÎµÄÖ¸Õë¡£*/  
 						}    			
  				}
 				else if(tempQComboBox)
 				{
-				//ä»¥#åˆ†è§£å­—ç¬¦
-				char seg[] = "#"; /*åˆ†éš”ç¬¦ï¼Œåˆ†éš”ç¬¦å¯ä»¥ä¸ºä½ æŒ‡å®šçš„åˆ†å·ï¼Œç©ºæ ¼ç­‰*/  
+				//ÒÔ#·Ö½â×Ö·û
+				char seg[] = "#"; /*·Ö¸ô·û£¬·Ö¸ô·û¿ÉÒÔÎªÄãÖ¸¶¨µÄ·ÖºÅ£¬¿Õ¸ñµÈ*/  
 				int i =0;  
-				char *substr= strtok((char*)strText, seg);/*åˆ©ç”¨ç°æˆçš„åˆ†å‰²å‡½æ•°,substrä¸ºåˆ†å‰²å‡ºæ¥çš„å­å­—ç¬¦ä¸²*/  
+				char *substr= strtok((char*)strText, seg);/*ÀûÓÃÏÖ³ÉµÄ·Ö¸îº¯Êı,substrÎª·Ö¸î³öÀ´µÄ×Ó×Ö·û´®*/  
     
 				while (substr != NULL) {    
 						tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
+                        tempQComboBox->setFont(font);
 						i++;  
-						substr = strtok(NULL,seg);/*åœ¨ç¬¬ä¸€æ¬¡è°ƒç”¨æ—¶ï¼Œstrtok()å¿…éœ€ç»™äºˆå‚æ•°strå­—ç¬¦ä¸²ï¼Œ 
-						å¾€åçš„è°ƒç”¨åˆ™å°†å‚æ•°strè®¾ç½®æˆNULLã€‚æ¯æ¬¡è°ƒç”¨æˆåŠŸåˆ™è¿”å›è¢«åˆ†å‰²å‡ºç‰‡æ®µçš„æŒ‡é’ˆã€‚*/  
+						substr = strtok(NULL,seg);/*ÔÚµÚÒ»´Îµ÷ÓÃÊ±£¬strtok()±ØĞè¸øÓè²ÎÊıstr×Ö·û´®£¬ 
+						ÍùºóµÄµ÷ÓÃÔò½«²ÎÊıstrÉèÖÃ³ÉNULL¡£Ã¿´Îµ÷ÓÃ³É¹¦Ôò·µ»Ø±»·Ö¸î³öÆ¬¶ÎµÄÖ¸Õë¡£*/  
 					}    			
  				}
 			}
-		else    //éä¸­æ–‡è¯­è¨€æ—¶ è¿›å…¥çš„ç¼–ç å‡½æ•°fromUtf8  å¤šè¯­è¨€åœ¨fromUtf8å‡½æ•°ä¸‹ä¸ä¹±ç 
+		else    //·ÇÖĞÎÄÓïÑÔÊ± ½øÈëµÄ±àÂëº¯ÊıfromUtf8  ¶àÓïÑÔÔÚfromUtf8º¯ÊıÏÂ²»ÂÒÂë
 			{   
 				if(tempButton	)
-			    tempButton->setText(QString::fromUtf8(strText));
-		        else if(tempLabel)
-			    tempLabel->setText(QString::fromUtf8(strText));
-		        else if(tempCheck)
-		     	tempCheck->setText(QString::fromUtf8(strText));
-		        else if(tempQTabWidget)
-		       {
-			     //ä»¥#åˆ†è§£å­—ç¬¦
-			    char seg[] = "#"; /*åˆ†éš”ç¬¦ï¼Œåˆ†éš”ç¬¦å¯ä»¥ä¸ºä½ æŒ‡å®šçš„åˆ†å·ï¼Œç©ºæ ¼ç­‰*/  
-			    int i =0;  
-			    char *substr= strtok((char*)strText, seg);/*åˆ©ç”¨ç°æˆçš„åˆ†å‰²å‡½æ•°,substrä¸ºåˆ†å‰²å‡ºæ¥çš„å­å­—ç¬¦ä¸²*/  
+				{
+					tempButton->setFont(font);
+                    tempButton->setText(QString::fromUtf8(strText));
+				}
+                        
+				else if(tempLabel)
+				{
+				   tempLabel->setFont(font);
+                   tempLabel->setText(QString::fromUtf8(strText));
+				}
+				else if(tempCheck)
+                {
+				   tempCheck->setFont(font);
+                   tempCheck->setText(QString::fromUtf8(strText));
+				}
+				else if(tempQTabWidget)
+				{
+				//ÒÔ#·Ö½â×Ö·û
+				char seg[] = "#"; /*·Ö¸ô·û£¬·Ö¸ô·û¿ÉÒÔÎªÄãÖ¸¶¨µÄ·ÖºÅ£¬¿Õ¸ñµÈ*/  
+				int i =0;  
+				char *substr= strtok((char*)strText, seg);/*ÀûÓÃÏÖ³ÉµÄ·Ö¸îº¯Êı,substrÎª·Ö¸î³öÀ´µÄ×Ó×Ö·û´®*/  
     
-			    while (substr != NULL) {    
-					tempQTabWidget->setTabText(i,QString::fromUtf8(substr));
-					i++;  
-					substr = strtok(NULL,seg);/*åœ¨ç¬¬ä¸€æ¬¡è°ƒç”¨æ—¶ï¼Œstrtok()å¿…éœ€ç»™äºˆå‚æ•°strå­—ç¬¦ä¸²ï¼Œ 
-					å¾€åçš„è°ƒç”¨åˆ™å°†å‚æ•°strè®¾ç½®æˆNULLã€‚æ¯æ¬¡è°ƒç”¨æˆåŠŸåˆ™è¿”å›è¢«åˆ†å‰²å‡ºç‰‡æ®µçš„æŒ‡é’ˆã€‚*/  
-		 	        }    			
- 		       }
-		       else if(tempQComboBox)
-		       {
-			    //ä»¥#åˆ†è§£å­—ç¬¦
-			    char seg[] = "#"; /*åˆ†éš”ç¬¦ï¼Œåˆ†éš”ç¬¦å¯ä»¥ä¸ºä½ æŒ‡å®šçš„åˆ†å·ï¼Œç©ºæ ¼ç­‰*/  
-			    int i =0;  
-			    char *substr= strtok((char*)strText, seg);/*åˆ©ç”¨ç°æˆçš„åˆ†å‰²å‡½æ•°,substrä¸ºåˆ†å‰²å‡ºæ¥çš„å­å­—ç¬¦ä¸²*/  
-     
-			    while (substr != NULL) {    
-					  tempQComboBox->setItemText(i,QString::fromUtf8(substr));
-					  i++;  
-					  substr = strtok(NULL,seg);/*åœ¨ç¬¬ä¸€æ¬¡è°ƒç”¨æ—¶ï¼Œstrtok()å¿…éœ€ç»™äºˆå‚æ•°strå­—ç¬¦ä¸²ï¼Œ 
-					  å¾€åçš„è°ƒç”¨åˆ™å°†å‚æ•°strè®¾ç½®æˆNULLã€‚æ¯æ¬¡è°ƒç”¨æˆåŠŸåˆ™è¿”å›è¢«åˆ†å‰²å‡ºç‰‡æ®µçš„æŒ‡é’ˆã€‚*/  
-			           }    			
- 		       }
-	        }
+				while (substr != NULL) {    
+						tempQTabWidget->setTabText(i,QString::fromUtf8(substr));
+                        tempQTabWidget->setFont(font);
+						i++;  
+						substr = strtok(NULL,seg);/*ÔÚµÚÒ»´Îµ÷ÓÃÊ±£¬strtok()±ØĞè¸øÓè²ÎÊıstr×Ö·û´®£¬ 
+						ÍùºóµÄµ÷ÓÃÔò½«²ÎÊıstrÉèÖÃ³ÉNULL¡£Ã¿´Îµ÷ÓÃ³É¹¦Ôò·µ»Ø±»·Ö¸î³öÆ¬¶ÎµÄÖ¸Õë¡£*/  
+						}    			
+ 				}
+				else if(tempQComboBox)
+				{
+				//ÒÔ#·Ö½â×Ö·û
+				char seg[] = "#"; /*·Ö¸ô·û£¬·Ö¸ô·û¿ÉÒÔÎªÄãÖ¸¶¨µÄ·ÖºÅ£¬¿Õ¸ñµÈ*/  
+				int i =0;  
+				char *substr= strtok((char*)strText, seg);/*ÀûÓÃÏÖ³ÉµÄ·Ö¸îº¯Êı,substrÎª·Ö¸î³öÀ´µÄ×Ó×Ö·û´®*/  
+    
+				while (substr != NULL) {    
+						tempQComboBox->setItemText(i,QString::fromUtf8(substr));
+                        tempQComboBox->setFont(font);
+						i++;  
+						substr = strtok(NULL,seg);/*ÔÚµÚÒ»´Îµ÷ÓÃÊ±£¬strtok()±ØĞè¸øÓè²ÎÊıstr×Ö·û´®£¬ 
+						ÍùºóµÄµ÷ÓÃÔò½«²ÎÊıstrÉèÖÃ³ÉNULL¡£Ã¿´Îµ÷ÓÃ³É¹¦Ôò·µ»Ø±»·Ö¸î³öÆ¬¶ÎµÄÖ¸Õë¡£*/  
+					}    			
+ 				}
+			}
 	}
 }

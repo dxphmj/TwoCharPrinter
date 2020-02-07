@@ -140,12 +140,17 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 				if (itr->booFocus == true)
 				{
 					itr->booFocus = false;
-					break;
 				}
 				else if (itr->booFocus == false)
 				{
 					itr->booFocus = true;
-					break;
+				}
+			}
+			else
+			{
+				if (itr->booFocus == true)
+				{
+					itr->booFocus = false;
 				}
 			}
 			++itr;
@@ -784,6 +789,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 				}
 			}
+			obj.booFocus = false;
 			OBJ_Vec.push_back(obj);
 		}
 	}
@@ -1334,7 +1340,7 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	else
 	{
 		cPen.setStyle(Qt::SolidLine);
-		cPen.setWidth(1);
+		cPen.setWidth(3);
 		cPen.setColor(Qt::blue);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);
@@ -1373,13 +1379,17 @@ void OBJ_Control::DrawDot(CDC* pDC)
  	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
 	cbrushB.setStyle(Qt::SolidPattern);
 	CBrush cbrushW(QColor(255,255,255));//°×±Ê
-	cbrushW.setStyle(Qt::SolidPattern);
+	cbrushW.setStyle(Qt::NoBrush);
+	//cbrushW.setStyle(Qt::SolidPattern);
+	CPen cPenInvisible(Qt::NoPen);
 		 
 	if (strType2=="logo"||strType2=="qrcode"||strType2=="datamatrix")
 	{
-		int bmpWidth,bmpHeight;
+		int bmpWidth,bmpHeight,bmpXStart,bmpYStart;
 		bmpWidth=intRowSize;
 		bmpHeight=intLineSize;
+		//bmpXStart = intRowStart;
+		//bmpYStart = intLineStart;
 		if (booBWDy)
 		{
 			for (int i=0;i<bmpWidth;i++)
@@ -1393,6 +1403,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5); //widthºÍheightÏÈÐ´ËÀ
@@ -1403,6 +1414,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1415,6 +1427,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1424,6 +1437,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1439,6 +1453,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
@@ -1449,6 +1464,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
@@ -1461,6 +1477,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
@@ -1470,6 +1487,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((bmpWidth-i-1)*5,241-(j+1)*5-1,5,5);
@@ -1495,6 +1513,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1505,6 +1524,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1517,6 +1537,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1526,6 +1547,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(bmpHeight-j)*5-1,5,5);
@@ -1541,6 +1563,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(j+1)*5-1,5,5);
@@ -1551,6 +1574,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(j+1)*5-1,5,5);
@@ -1563,6 +1587,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							if (boDotBmp[i][j])
 							{
 								pDC->setBrush(cbrushB);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect((intRowStart+i)*5,241-(intLineStart+j+1)*5-1,5,5);
@@ -1573,6 +1598,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 							else
 							{
 								pDC->setBrush(cbrushW);
+								pDC->setPen(cPenInvisible);
 								for(int sw=0;sw<intSW;sw++)
 								{
 									CRect rect(i*5,241-(j+1)*5-1,5,5);
@@ -2528,7 +2554,7 @@ void OBJ_Control::DrawDot(CDC* pDC)
 		intRowSize=theDog;
 	}
 
-	pDC->setBrush(cbrushB); //ÔØÈë±ÊË¢
+	//pDC->setBrush(cbrushB); //ÔØÈë±ÊË¢
 
 	//CRect rect(col*nStepPixels,row*nStepPixels,(col+1)*nStepPixels,(row+1)*nStepPixels);
 	//pDC->Ellipse(&rect); 
@@ -2600,7 +2626,8 @@ void OBJ_Control::CreateQrcode()
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 */
 	//generated = 1;
-		
+	strType1="text";
+	strType2="qrcode";		
 	intLineSize=my_symbol->bitmap_height;
 	intRowSize=my_symbol->bitmap_width;
 
@@ -2627,4 +2654,3 @@ void OBJ_Control::CreateQrcode()
 	}
 	booFocus = true;
 }
-

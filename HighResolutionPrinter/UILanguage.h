@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <QWidget>
 
@@ -43,6 +43,7 @@ public:
 public:
 	QObject* m_pMainwindow;
 	bool m_codemode;
+	int m_nLanguage;
 
 public:
 	void ChangeLanguage(int nLanguageType);

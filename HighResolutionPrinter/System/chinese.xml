@@ -1,27 +1,34 @@
 <MES>
   <MainWindow>
+    <fontsize>24</fontsize>
     <nameDispLab>多功能智能喷码机</nameDispLab>
+    <fontsize>18</fontsize>
     <fileManageBut>文件管理</fileManageBut>
     <paraManageBut>参数管理</paraManageBut>
     <startPrintBut>开始打印</startPrintBut>
     <closeBut>关闭系统</closeBut>
+    <fontsize>10</fontsize>
     <No1Lab>墨盒1</No1Lab>
     <No2Lab>墨盒2</No2Lab>
+    <fontsize>18</fontsize>
     <speedMWLab>速度：</speedMWLab>
     <timeDelayMWLab>延时：</timeDelayMWLab>
     <dirMWLab>方向：</dirMWLab>
     <voltMWLab>电压：</voltMWLab>
+    <voltUnitMWLab>V</voltUnitMWLab>
     <PWMWLab>脉宽：</PWMWLab>
     <grayMWLab>灰度：</grayMWLab>
     <fileNmaeLab>文件名：</fileNmaeLab>
     <countValMWLab>计数值：</countValMWLab>
   </MainWindow>
   <FilemanageForm>
+    <fontsize>18</fontsize>
     <editFileBut>编辑文件</editFileBut>
     <exitBut>退出</exitBut>
     <manageFileBut>管理文件</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
+    <fontsize>16</fontsize>
     <fontTypeTextLab>字体</fontTypeTextLab>
     <fontSizeTextLab>字号</fontSizeTextLab>
     <variableTextBut>可变</variableTextBut>
@@ -74,9 +81,10 @@
     <sideLenDMLab>类型</sideLenDMLab>
     <variableDMBut>可变</variableDMBut>
     <newDMBut>新建</newDMBut>
-    <typeTab>文件#时间#序号#图片#条形码#QR码#DM码</typeTab>
+    <typeTab>文本#时间#序列号#图片#条形码#QR码#DM码</typeTab>
   </FileEditChild>
   <FileManageChild>
+    <fontsize>16</fontsize>
     <localFileBut>本地文件</localFileBut>
     <UdiskFileBut>U盘文件</UdiskFileBut>
     <loadSeleFileBut>加载选中文件</loadSeleFileBut>
@@ -86,15 +94,18 @@
     <OKFileNameBut>确定</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
+    <fontsize>18</fontsize>
     <printSettingBut>打印设置</printSettingBut>
     <sysSettingBut>系统设置</sysSettingBut>
     <countSettingBut>计数设置</countSettingBut>
     <aboutMacBut>关于本机</aboutMacBut>
     <paraExitBut>退出</paraExitBut>
+    <fontsize>16</fontsize>
     <resetBut>重置</resetBut>
     <savePrintSetBut>保存</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
+    <fontsize>16</fontsize>
      <printSpeedLab>打印速度m/min</printSpeedLab>
      <printDelayLab>打印延时ms</printDelayLab>
      <synFrequencyLab>同步倍频</synFrequencyLab>
@@ -125,11 +136,13 @@
      <printSetTabWid>打印风格#高级设置#喷头设置#UV灯设置</printSetTabWid>
   </printSetting>
   <sysSetting>
+    <fontsize>16</fontsize>
      <sysTimeSetLab>系统时间</sysTimeSetLab>
      <backLightLab>背光亮度</backLightLab>
      <sysLanguageLab>系统语言</sysLanguageLab>
   </sysSetting>
   <countSetting>
+    <fontsize>16</fontsize>
       <counterOneLab>计数器1</counterOneLab>
       <currentVal1Lab>当前值</currentVal1Lab>
       <initialVal1Lab>初始值</initialVal1Lab>

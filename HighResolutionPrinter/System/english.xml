@@ -1,27 +1,33 @@
 <MES>
-  <MainWindow>
+   <MainWindow>
+    <fontsize>16</fontsize>
     <nameDispLab>Multifunction Intelligent Inkjet Printer</nameDispLab>
     <fileManageBut>File</fileManageBut>
     <paraManageBut>Parameter</paraManageBut>
     <startPrintBut>Printing</startPrintBut>
     <closeBut>Shutdown</closeBut>
+    <fontsize>10</fontsize>
     <No1Lab>Cartridge 1</No1Lab>
     <No2Lab>Cartridge 2</No2Lab>
+    <fontsize>14</fontsize>
     <speedMWLab>Speed:</speedMWLab>
     <timeDelayMWLab>Delayed:</timeDelayMWLab>
     <dirMWLab>Direction:</dirMWLab>
     <voltMWLab>Voltage:</voltMWLab>
+    <voltUnitMWLab>V</voltUnitMWLab>
     <PWMWLab>Pulse Width:</PWMWLab>
     <grayMWLab>Grayscale:</grayMWLab>
     <fileNmaeLab>FileNmae:</fileNmaeLab>
     <countValMWLab>Counting:</countValMWLab>
   </MainWindow>
   <FilemanageForm>
+    <fontsize>14</fontsize>
     <editFileBut>EditFile</editFileBut>
     <exitBut>Exit</exitBut>
     <manageFileBut>Manage File</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
+    <fontsize>12</fontsize>
     <fontTypeTextLab>Font Type</fontTypeTextLab>
     <fontSizeTextLab>Font Size</fontSizeTextLab>
     <variableTextBut>Variable</variableTextBut>
@@ -30,6 +36,7 @@
     <saveBut>Save</saveBut>
     <saveasBut>Save As</saveasBut>
     <rotateTextLab>Rotate</rotateTextLab>
+    <fontsize>11</fontsize>
     <internalTextLab>Internal</internalTextLab>
 
     <addTimeBut>Add</addTimeBut>
@@ -77,6 +84,7 @@
     <typeTab>Text#Time#Serial#Picture#BarCode#QRCode#DMCode</typeTab>
   </FileEditChild>
   <FileManageChild>
+    <fontsize>12</fontsize>
     <localFileBut>Local File</localFileBut>
     <UdiskFileBut>U Disk File</UdiskFileBut>
     <loadSeleFileBut>Load Selected File</loadSeleFileBut>
@@ -86,6 +94,7 @@
     <OKFileNameBut>OK</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
+    <fontsize>16</fontsize>
     <printSettingBut>Print Set</printSettingBut>
     <sysSettingBut>System Set</sysSettingBut>
     <countSettingBut>Count Set</countSettingBut>
@@ -95,6 +104,7 @@
     <savePrintSetBut>Save</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
+    <fontsize>12</fontsize>
      <printSpeedLab>Print Speed m/min</printSpeedLab>
      <printDelayLab>Print Delay ms</printDelayLab>
      <synFrequencyLab>Synchronous Frequency</synFrequencyLab>
@@ -125,11 +135,13 @@
      <printSetTabWid>PrintConfige#Advance#PrintHead#UV Lamp</printSetTabWid>
   </printSetting>
   <sysSetting>
+    <fontsize>14</fontsize>
      <sysTimeSetLab>System Time</sysTimeSetLab>
      <backLightLab>Back Light</backLightLab>
      <sysLanguageLab>System Language</sysLanguageLab>
   </sysSetting>
   <countSetting>
+    <fontsize>12</fontsize>
       <counterOneLab>Counter 1</counterOneLab>
       <currentVal1Lab>Current Value</currentVal1Lab>
       <initialVal1Lab>Initial Value</initialVal1Lab>

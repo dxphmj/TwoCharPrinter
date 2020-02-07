@@ -47,7 +47,7 @@ public:
         printSettingBut->setGeometry(QRect(30, 30, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font.setPointSize(16);
+        font.setPointSize(18);
         printSettingBut->setFont(font);
         printSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/printSetting.bmp);\n"
 "color: rgb(255, 255, 255);"));
@@ -71,7 +71,7 @@ public:
 "color: rgb(255, 255, 255);"));
         paraManageStacWid = new QStackedWidget(ParamSettingForm);
         paraManageStacWid->setObjectName(QStringLiteral("paraManageStacWid"));
-        paraManageStacWid->setGeometry(QRect(200, 20, 1061, 691));
+        paraManageStacWid->setGeometry(QRect(200, 20, 1061, 651));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         paraManageStacWid->addWidget(page);
@@ -86,14 +86,17 @@ public:
 "color: rgb(255, 255, 255);"));
         savePrintSetBut = new QPushButton(ParamSettingForm);
         savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
-        savePrintSetBut->setGeometry(QRect(850, 730, 111, 51));
-        savePrintSetBut->setFont(font);
+        savePrintSetBut->setGeometry(QRect(850, 680, 111, 51));
+        QFont font1;
+        font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+        font1.setPointSize(16);
+        savePrintSetBut->setFont(font1);
         savePrintSetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         resetBut = new QPushButton(ParamSettingForm);
         resetBut->setObjectName(QStringLiteral("resetBut"));
-        resetBut->setGeometry(QRect(500, 730, 111, 51));
-        resetBut->setFont(font);
+        resetBut->setGeometry(QRect(500, 680, 111, 51));
+        resetBut->setFont(font1);
         resetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         paraManageBackLabel = new QLabel(ParamSettingForm);

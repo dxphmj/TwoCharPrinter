@@ -82,6 +82,11 @@ void FileManageChild::delSeleFileBut_clicked()
 	QString qFilePath = "User/label/" + qFileName;
 	QFile qSelFile(qFilePath);
 	qSelFile.remove();
+	if (!qSelFile.remove())
+	{
+		this->m_pPrinterMes->OBJ_Vec.clear();
+		this->ui->fileNmaeLineEdit->setText("");
+	}
 	this->ShowLocalFilePath();
 }
 
@@ -101,6 +106,14 @@ void FileManageChild::PreviewSaveFile()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
 	m_pPrinterMes->OBJ_Vec.clear();
 	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.end());
+	//取消选中状态
+	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
+	{
+		if (m_pPrinterMes->OBJ_Vec[i].booFocus)
+		{
+			m_pPrinterMes->OBJ_Vec[i].booFocus = false;
+		}
+	}
 	QString qfileName = this->ui->filelistWidget->currentItem()->text();
 	QFileInfo fi(qfileName);
 	qfileName = fi.baseName();
@@ -130,6 +143,9 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->filePrivewtextEdit && event->type() == QEvent::Paint)
 	{
 		paintDot();
+		QPainter qFramePainter(this->ui->filePrivewtextEdit);
+		FileEditChild m_FileEditChild;
+		m_FileEditChild.DrawBackFrame(&qFramePainter);
 		QWidget *m_QWidget(this);
 		m_QWidget->update();
 	}

@@ -28,7 +28,7 @@
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -51,7 +51,7 @@ color: rgb(255, 255, 255);</string>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -74,7 +74,7 @@ color: rgb(255, 255, 255);</string>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>18</pointsize>
     </font>
    </property>
    <property name="styleSheet">

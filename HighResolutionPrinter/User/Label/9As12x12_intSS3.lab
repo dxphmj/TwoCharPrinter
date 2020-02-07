@@ -7,19 +7,17 @@
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>qrcode</TYPE2>
+        <TYPE2>text</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>21</LineSize>
-        <RowSize>21</RowSize>
+        <LineSize>12</LineSize>
+        <RowSize>135</RowSize>
         <SW>1</SW>
-        <SS>1</SS>
+        <SS>3</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>GOOD MORNING</setTEXT>
-        <qrcodeVersion>58</qrcodeVersion>
-        <qrcodeECCLevel>0</qrcodeECCLevel>
-        <qrcodeQuietZone>0</qrcodeQuietZone>
+        <setFONT>12x12</setFONT>
+        <setTEXT>AAAAAAAAA</setTEXT>
     </OBJ>
 </MES>

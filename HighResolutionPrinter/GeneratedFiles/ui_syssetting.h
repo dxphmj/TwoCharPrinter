@@ -53,7 +53,7 @@ public:
     {
         if (sysSetting->objectName().isEmpty())
             sysSetting->setObjectName(QStringLiteral("sysSetting"));
-        sysSetting->resize(1061, 691);
+        sysSetting->resize(1061, 651);
         backLightLab = new QLabel(sysSetting);
         backLightLab->setObjectName(QStringLiteral("backLightLab"));
         backLightLab->setGeometry(QRect(110, 600, 141, 41));
@@ -199,7 +199,7 @@ public:
 "border-radius:10px;"));
         sysLanguageLab = new QLabel(sysSetting);
         sysLanguageLab->setObjectName(QStringLiteral("sysLanguageLab"));
-        sysLanguageLab->setGeometry(QRect(782, 161, 141, 41));
+        sysLanguageLab->setGeometry(QRect(762, 161, 191, 41));
         sysLanguageLab->setMinimumSize(QSize(141, 41));
         sysLanguageLab->setFont(font);
         sysLanguageLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
