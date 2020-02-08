@@ -2,7 +2,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
-#include <QXmlStreamReader>
+#include "paramsettingform.h"
 
 
 CParamSetting::CParamSetting(void)
@@ -126,63 +126,127 @@ void CParamSetting::SaveParam2Xml()
 	}
 }
 
-void CParamSetting::OpenParamFromXml()
+void CParamSetting::ReadOneParam(QWidget* pWidge)
 {
-	QFile file("System\\Configuration.xml");
-	if(file.open(QFile::ReadOnly | QFile::Text))
-	{
-		//构建QXmlStreamReader对象
-		QXmlStreamReader xmlReader(&file);
-		//xmlReader.setDevice(&file);
-		while(!xmlReader.atEnd())
+	while(!xmlReader.atEnd())
+	{        
+		if(xmlReader.isEndElement()) 
+		{ 
+			xmlReader.readNext();
+			break;       
+		} 
+		QString strTmp = xmlReader.name().toString();
+		if(!xmlReader.isStartElement())
 		{
 			xmlReader.readNext();
-			//判断是否是节点的开始
-		if(xmlReader.isStartElement())
-		 {
-			 xmlReader.readNext();
-         		if(xmlReader.name() == "m_PrintingSpeed")
-				    m_PrintingSpeed = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_PrintDelay")
-					m_PrintDelay = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_SynFrequency")
-					m_SynFrequency = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_PrintGray")
-					m_PrintGray = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_InkjetMode")
-					m_InkjetMode = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_PrintingDirection")
-					m_PrintingDirection = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_SynWheelCheck")
-					m_SynWheelCheck = 1;
-                else if(xmlReader.name() == "m_VoiceCheck")
-					m_VoiceCheck = 1;
-				else if(xmlReader.name() == "m_RepetePrintCheck")
-					m_RepetePrintCheck = 1;
-				else if(xmlReader.name() == "m_RepeatTimes")
-					m_RepeatTimes = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_RepeatDelay")
-					m_RepeatDelay = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_AdaptParaCheck")
-					m_AdaptParaCheck = 1;
-				else if(xmlReader.name() == "m_InkVoltage")
-					m_InkVoltage = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_InkPulseWidth")
-					m_InkPulseWidth = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_Offset")
-					m_Offset = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_FlashSprayCheck")
-					m_FlashSprayCheck = 1;
-				else if(xmlReader.name() == "m_FlashSprayInterval")
-					m_FlashSprayInterval = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_FlashSprayFrequency")
-					m_FlashSprayFrequency = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_DateTimeShow")
-					m_DateTimeShow = xmlReader.readElementText();
-				else if(xmlReader.name() == "m_SysLanguage")
-					m_SysLanguage = xmlReader.readElementText();
-		 }
+			continue;
+		}
+		QString ItemValue = xmlReader.readElementText();
+		printSetting *pPrintSetting = qobject_cast<printSetting*>(pWidge);  
+		sysSetting *pSysSetting = qobject_cast<sysSetting*>(pWidge);  
+		if(pPrintSetting)		//printsetting
+		{
+			if(xmlReader.name().toString() == "m_PrintingSpeed")  
+				m_PrintingSpeed = ItemValue;   
+			else if(xmlReader.name().toString() == "m_PrintDelay")
+				m_PrintDelay = ItemValue;
+			else if(xmlReader.name().toString() == "m_SynFrequency")
+				m_SynFrequency = ItemValue;
+			else if(xmlReader.name().toString() == "m_PrintGray")
+				m_PrintGray = ItemValue;
+			else if(xmlReader.name().toString() == "m_InkjetMode")
+				m_InkjetMode = ItemValue;
+			else if(xmlReader.name().toString() == "m_PrintingDirection")
+				m_PrintingDirection = ItemValue;
+			else if(xmlReader.name().toString() == "m_SynWheelCheck")
+				m_SynWheelCheck = 1;
+			else if(xmlReader.name().toString() == "m_VoiceCheck")
+				m_VoiceCheck = 1;
+			else if(xmlReader.name().toString() == "m_RepetePrintCheck")
+				m_RepetePrintCheck = 1;
+			else if(xmlReader.name().toString() == "m_RepeatTimes")
+				m_RepeatTimes = ItemValue;
+			else if(xmlReader.name().toString() == "m_RepeatDelay")
+				m_RepeatDelay = ItemValue;
+			else if(xmlReader.name().toString() == "m_AdaptParaCheck")
+				m_AdaptParaCheck = 1;
+			else if(xmlReader.name().toString() == "m_InkVoltage")
+				m_InkVoltage = ItemValue;
+			else if(xmlReader.name().toString() == "m_InkPulseWidth")
+				m_InkPulseWidth = ItemValue;
+			else if(xmlReader.name().toString() == "m_Offset")
+				m_Offset = ItemValue;
+			else if(xmlReader.name().toString() == "m_FlashSprayCheck")
+				m_FlashSprayCheck = 1;
+			else if(xmlReader.name().toString() == "m_FlashSprayInterval")
+				m_FlashSprayInterval = ItemValue;
+			else if(xmlReader.name().toString() == "m_FlashSprayFrequency")
+				m_FlashSprayFrequency = ItemValue;
+		}
+		else if(pSysSetting)//system_setting
+		{		
+			if(xmlReader.name() == "m_DateTimeShow")
+				m_DateTimeShow = ItemValue;
+			else if(xmlReader.name() == "m_SysLanguage")
+				m_SysLanguage = ItemValue;
+		}
+
+		xmlReader.readNext(); 
+	}
+}
+
+void CParamSetting::OpenParamFromXml(ParamSettingForm* pParamSettingForm)
+{
+	QFile file("System\\Configuration.xml");
+	if(!file.open(QFile::ReadOnly | QFile::Text)) return;
+	 
+	//构建QXmlStreamReader对象
+	xmlReader.setDevice(&file);
+	while(!xmlReader.atEnd())
+	{
+		//判断是否是节点的开始
+		QString strTmp = xmlReader.name().toString();
+		if(xmlReader.isStartElement() && xmlReader.name().toString() == "printsetting")
+		{		
+			xmlReader.readNext(); 
+			while(!xmlReader.atEnd())
+			{        
+				if(xmlReader.isEndElement()) 
+				{           
+					xmlReader.readNext(); 
+					break;       
+				}        
+				if(xmlReader.isStartElement())	
+				{
+					ReadOneParam(pParamSettingForm->m_printSetting);	
+					break;
+				}
+				xmlReader.readNext();
+			 }							 
+		}
+		else if(xmlReader.isStartElement() && xmlReader.name().toString() == "system_setting")
+		{		
+			xmlReader.readNext(); 
+			while(!xmlReader.atEnd())
+			{        
+				if(xmlReader.isEndElement()) 
+				{           
+					xmlReader.readNext(); 
+					break;       
+				}        
+				if(xmlReader.isStartElement())
+				{
+					ReadOneParam(pParamSettingForm->m_sysSetting);	
+					break;
+				}
+				xmlReader.readNext();					 
+			 }							 
+		}
+		else
+		{
+			xmlReader.readNext();
+			strTmp = xmlReader.name().toString();
 		}
 	}
-	file.close();
-}
+}     
+ 

@@ -1,36 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration_information>
     <printsetting>
-        <Print_style>
-            <m_PrintingSpeed>85</m_PrintingSpeed>
-            <m_PrintDelay>20</m_PrintDelay>
-            <m_SynFrequency>1</m_SynFrequency>
-            <m_PrintGray>1</m_PrintGray>
-            <m_TriggerMode>External Electric Eye</m_TriggerMode>
-            <m_InkjetMode>Left</m_InkjetMode>
-            <m_PrintingDirection>Forward</m_PrintingDirection>
-            <m_SynWheelCheck>0</m_SynWheelCheck>
-            <m_VoiceCheck>0</m_VoiceCheck>
-        </Print_style>
-        <advanced_setting>
-            <m_RepetePrintCheck>0</m_RepetePrintCheck>
-            <m_RepeatTimes>1</m_RepeatTimes>
-            <m_RepeatDelay>100</m_RepeatDelay>
-        </advanced_setting>
-        <Sprinklerhead_setting>
-            <m_AdaptParaCheck>0</m_AdaptParaCheck>
-            <m_InkVoltage>85</m_InkVoltage>
-            <m_InkPulseWidth>18</m_InkPulseWidth>
-            <m_Offset>0</m_Offset>
-            <m_FlashSprayCheck>0</m_FlashSprayCheck>
-            <m_FlashSprayInterval>5</m_FlashSprayInterval>
-            <m_FlashSprayFrequency>1</m_FlashSprayFrequency>
-        </Sprinklerhead_setting>
-        <UVlamp_setting/>
+        <m_PrintingSpeed>85</m_PrintingSpeed>
+        <m_PrintDelay>20</m_PrintDelay>
+        <m_SynFrequency>1</m_SynFrequency>
+        <m_PrintGray>1</m_PrintGray>
+        <m_TriggerMode>gg</m_TriggerMode>
+        <m_InkjetMode>asdf</m_InkjetMode>
+        <m_PrintingDirection>tt</m_PrintingDirection>
+        <m_SynWheelCheck>0</m_SynWheelCheck>
+        <m_VoiceCheck>0</m_VoiceCheck>
+        <m_DPI150RadioBut>150</m_DPI150RadioBut>
+        <m_RepetePrintCheck>0</m_RepetePrintCheck>
+        <m_RepeatTimes>1</m_RepeatTimes>
+        <m_RepeatDelay>100</m_RepeatDelay>
+        <m_AdaptParaCheck>0</m_AdaptParaCheck>
+        <m_InkVoltage>85</m_InkVoltage>
+        <m_InkPulseWidth>18</m_InkPulseWidth>
+        <m_NozzleSel1RadioBut>1</m_NozzleSel1RadioBut>
+        <m_Offset>0</m_Offset>
+        <m_FlashSprayCheck>0</m_FlashSprayCheck>
+        <m_FlashSprayInterval>5</m_FlashSprayInterval>
+        <m_FlashSprayFrequency>1</m_FlashSprayFrequency>
     </printsetting>
     <system_setting>
         <m_DateTimeShow>202018132730</m_DateTimeShow>
-        <m_SysLanguage>ENGLISH</m_SysLanguage>
-    </system_setting>
-    <count_setting/>
-</configuration_information>
+        <m_SysLanguage></m_SysLanguage>
+    </system_setting> 
+ </configuration_information>
+
