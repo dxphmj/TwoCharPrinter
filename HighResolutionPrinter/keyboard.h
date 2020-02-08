@@ -4,6 +4,8 @@
 #include <QWidget>
 #include <QLineEdit>
 #include <QString>
+#include <QMap>
+#include <QVector>
 
 class lineedit_click;
 class language;
@@ -25,6 +27,7 @@ public:
 	void btnSymbolSel(int m_LantypeReverse);
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
+	void setText2KBLineedit();
 
 	void LanArabic1();
 	void LanArabic2();
@@ -78,6 +81,9 @@ public:
 	bool m_symbol;
 	lineedit_click* m_pInputEdit;
 	language  *languageWidget;
+	int i1,j1;
+	QMap< QString,QString >ChineseLanMap;//定义map对象
+	QString key;
 
 	enum LanTypeEnum{ Chinese = 0,Japanese=1,Korean=2,Chinese_others=3,
 		Others=4,Arabic=5,Farsi=6,English=7,
@@ -105,15 +111,20 @@ public:
 	//QString A_KBBut_sendData();
 	void btnhide();
 	void btnArabicARhide();
+	void CreateChineseMapLan();
+	void FontSelect();
+	QVector<QString>splitOut;
 
 public slots:
 	void caps1_kBBut_clicked();
+	void languagespell();//不是clicked
 
 private slots:
 	void enter_KBBut_clicked();
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
-	
+
+
 	void symbol_KBBut_clicked();
 
 
@@ -153,6 +164,7 @@ private slots:
 	void num8_KBBut_clicked();
 	void num9_KBBut_clicked();
 	void num0_KBBut_clicked();
+
 	void space_KBBut_clicked();
 	void comma_KBBut_clicked();
 	void period_KBBut_clicked();

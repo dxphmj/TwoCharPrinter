@@ -1476,7 +1476,7 @@
     <string>►</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="wordCombLineEdit">
+  <widget class="lineedit_click" name="wordCombLineEdit">
    <property name="geometry">
     <rect>
      <x>20</x>
@@ -1563,6 +1563,13 @@ color: rgb(0, 0, 0);</string>
   <zorder>wordCombLineEdit</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>lineedit_click</class>
+   <extends>QLineEdit</extends>
+   <header location="global">lineedit_click.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

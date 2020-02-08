@@ -15,9 +15,9 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
-#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
+#include <lineedit_click.h>
 
 QT_BEGIN_NAMESPACE
 
@@ -85,7 +85,7 @@ public:
     QPushButton *fontBoxAdd_KBBut;
     QPushButton *languageRedu_KBBut;
     QPushButton *languageAdd_KBBut;
-    QLineEdit *wordCombLineEdit;
+    lineedit_click *wordCombLineEdit;
 
     void setupUi(QWidget *keyboard)
     {
@@ -429,7 +429,7 @@ public:
         languageAdd_KBBut->setGeometry(QRect(680, 264, 52, 52));
         languageAdd_KBBut->setFont(font6);
         languageAdd_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
-        wordCombLineEdit = new QLineEdit(keyboard);
+        wordCombLineEdit = new lineedit_click(keyboard);
         wordCombLineEdit->setObjectName(QStringLiteral("wordCombLineEdit"));
         wordCombLineEdit->setGeometry(QRect(20, 0, 81, 42));
         QFont font7;
