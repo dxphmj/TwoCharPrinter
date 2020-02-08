@@ -169,7 +169,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 void ParamSettingForm::readConfigurationBut_clicked()
 {
 	MainWindow* theApp = (MainWindow*)(this->parent());
-	theApp->m_ParamSetting.OpenParamFromXml();
+	theApp->m_ParamSetting.OpenParamFromXml(this);
 
 	m_printSetting->ui.printSpeedShowLab->setText(theApp->m_ParamSetting.m_PrintingSpeed);
 }

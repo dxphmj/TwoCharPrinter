@@ -1,8 +1,11 @@
 ﻿#pragma once
 
 #include <QString>
+#include <QXmlStreamReader>
 
 typedef unsigned char BYTE;
+
+class ParamSettingForm;
 
 class CParamSetting
 {
@@ -62,8 +65,12 @@ public:
 	QString m_SysLanguage;
 
 public:
+	QXmlStreamReader xmlReader;
+
 	void SaveParam2Xml();
-	void OpenParamFromXml();
+	void OpenParamFromXml(ParamSettingForm* pParamSettingForm);
+
+	void ReadOneParam(QWidget* pWidge);
 
 };
 
