@@ -127,6 +127,7 @@ void keyboard::btnhide()
 	ui->fontBox10_KBBut->hide();
 	ui->fontBoxRedu_KBBut->hide();
 	ui->fontBoxAdd_KBBut->hide();
+	ui->wordCombLineEdit->hide();
 }
 
 void keyboard::btnArabicARhide()
@@ -1558,6 +1559,8 @@ void keyboard::btnshow()
 	ui->fontBox10_KBBut->show();
 	ui->fontBoxRedu_KBBut->show();
 	ui->fontBoxAdd_KBBut->show();
+	ui->wordCombLineEdit->show();
+
 }
 
 void keyboard::btnArabicARshow()
