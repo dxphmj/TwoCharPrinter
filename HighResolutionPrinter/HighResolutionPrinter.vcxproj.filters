@@ -471,15 +471,6 @@
     <ClCompile Include="Debug\moc_variabledm.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
-    <ClCompile Include="numkeyboard.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Release\moc_numkeyboard.cpp">
-      <Filter>Generated Files\Release</Filter>
-    </ClCompile>
-    <ClCompile Include="Debug\moc_numkeyboard.cpp">
-      <Filter>Generated Files\Debug</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -704,9 +695,6 @@
     <ClInclude Include="GeneratedFiles\ui_variabledm.h">
       <Filter>Generated Files</Filter>
     </ClInclude>
-    <ClInclude Include="GeneratedFiles\ui_numkeyboard.h">
-      <Filter>Generated Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="aboutmac.ui">
@@ -797,12 +785,6 @@
       <Filter>Header Files</Filter>
     </CustomBuild>
     <CustomBuild Include="variabledm.ui">
-      <Filter>Form Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="numkeyboard.h">
-      <Filter>Header Files</Filter>
-    </CustomBuild>
-    <CustomBuild Include="numkeyboard.ui">
       <Filter>Form Files</Filter>
     </CustomBuild>
   </ItemGroup>
