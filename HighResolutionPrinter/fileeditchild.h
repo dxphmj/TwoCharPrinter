@@ -49,6 +49,7 @@ public:
 	QString SerialNumber_2;
 	int SerialNumber;
 	int SerialNumber_length;
+	int Barheight;
 private:
 	Ui::FileEditChild* ui;
 	
@@ -91,8 +92,8 @@ private slots:
 
 	void newBmpBut_clicked();
 
-	void zoomBarCodeAddBut_clicked();
-	void zoomBarCodeRedBut_clicked();
+	//void zoomBarCodeAddBut_clicked();
+	//void zoomBarCodeRedBut_clicked();
 	//void zoomQRAddBut_clicked();
 	//void zoomQRRedBut_clicked();
 	//void zoomDMAddBut_clicked();
@@ -102,6 +103,10 @@ private slots:
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
 	void ScrollBarChanged(int);
+	void rimwideAddBut_clicked();
+	void rimwideRedButt_clicked();
+	void whitespaceAddBut_clicked();
+	void whitespaceRedButt_clicked();
 
 protected:
 	//void paintEvent(QPaintEvent *event);
