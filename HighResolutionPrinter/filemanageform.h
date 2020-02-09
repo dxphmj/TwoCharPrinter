@@ -7,6 +7,9 @@
 class FileManageChild;
 class FileEditChild;
 class varibleWidget;
+class variableBarCode;
+class variableQR;
+class variableDM;
 class timeCustom;
 class ClassMessage;
 
@@ -28,6 +31,10 @@ public:
 	FileManageChild *FormFileManageChild;//创建窗口页面指针
 	FileEditChild  *FormFileEditChild;
 	varibleWidget  *fontVarWidget;
+	variableBarCode  *BarCodeWidget;
+	variableQR  *QRWidget;
+	variableDM  *DMWidget;
+
 	timeCustom  *timeCustomWidget;
 
 private slots:
@@ -38,6 +45,9 @@ private slots:
 public:
 	void timeCustomCall();
 	void variableWidgetCall();
+	void variableBarCodeWidgetCall();
+	void variableQRWidgetCall();
+	void variableDMWidgetCall();
 	void FileEditChildWidgetCall();
 	void FileManageChildWidgetCall();
 };

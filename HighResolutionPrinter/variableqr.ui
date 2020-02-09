@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>varibleWidget</class>
- <widget class="QWidget" name="varibleWidget">
+ <class>variableQR</class>
+ <widget class="QWidget" name="variableQR">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
     <width>1061</width>
-    <height>761</height>
+    <height>791</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>varibleWidget</string>
+   <string>variableQR</string>
   </property>
-  <widget class="QPushButton" name="returnVarTextBut">
+  <widget class="QPushButton" name="returnVarQRBut">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>660</y>
+     <x>830</x>
+     <y>670</y>
      <width>131</width>
      <height>41</height>
     </rect>

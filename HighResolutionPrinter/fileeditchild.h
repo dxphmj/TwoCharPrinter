@@ -56,6 +56,9 @@ private:
 
 private slots:
 	void variableTextBut_clicked();
+	void variableBarCodeBut_clicked();
+	void variableQRBut_clicked();
+	void variableDMBut_clicked();
 	void customTimeBut_clicked();
 	void selBmpBut_clicked();
 	void delBut_clicked();

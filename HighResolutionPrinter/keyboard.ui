@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>791</width>
+    <width>751</width>
     <height>391</height>
    </rect>
   </property>
@@ -27,7 +27,7 @@
   <widget class="QPushButton" name="Q_KBBut">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>5</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -51,7 +51,7 @@
   <widget class="QPushButton" name="A_KBBut">
    <property name="geometry">
     <rect>
-     <x>55</x>
+     <x>38</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -75,7 +75,7 @@
   <widget class="QPushButton" name="shift_KBBut">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>5</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -99,7 +99,7 @@
   <widget class="QPushButton" name="space_KBBut">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>200</x>
      <y>264</y>
      <width>331</width>
      <height>52</height>
@@ -123,7 +123,7 @@
   <widget class="QPushButton" name="one_KBBut">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>72</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -147,7 +147,7 @@
   <widget class="QPushButton" name="two_KBBut">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>139</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -171,7 +171,7 @@
   <widget class="QPushButton" name="three_KBBut">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>206</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -195,7 +195,7 @@
   <widget class="QPushButton" name="four_KBBut">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>273</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -219,7 +219,7 @@
   <widget class="QPushButton" name="five_KBBut">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>340</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -243,7 +243,7 @@
   <widget class="QPushButton" name="six_KBBut">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>407</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -267,7 +267,7 @@
   <widget class="QPushButton" name="seven_KBBut">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>474</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -291,7 +291,7 @@
   <widget class="QPushButton" name="eight_KBBut">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>541</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -315,7 +315,7 @@
   <widget class="QPushButton" name="nine_KBBut">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>608</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -339,7 +339,7 @@
   <widget class="QPushButton" name="zero_KBBut">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>675</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -363,7 +363,7 @@
   <widget class="QPushButton" name="backspace_KBBut">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>675</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -385,7 +385,7 @@
   <widget class="QPushButton" name="I_KBBut">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>474</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -409,7 +409,7 @@
   <widget class="QPushButton" name="W_KBBut">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>72</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -433,7 +433,7 @@
   <widget class="QPushButton" name="O_KBBut">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>541</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -457,7 +457,7 @@
   <widget class="QPushButton" name="T_KBBut">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>273</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -481,7 +481,7 @@
   <widget class="QPushButton" name="R_KBBut">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>206</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -505,7 +505,7 @@
   <widget class="QPushButton" name="P_KBBut">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>608</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -529,7 +529,7 @@
   <widget class="QPushButton" name="Y_KBBut">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>340</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -553,7 +553,7 @@
   <widget class="QPushButton" name="E_KBBut">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>139</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -577,7 +577,7 @@
   <widget class="QPushButton" name="U_KBBut">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>407</x>
      <y>105</y>
      <width>52</width>
      <height>52</height>
@@ -601,7 +601,7 @@
   <widget class="QPushButton" name="S_KBBut">
    <property name="geometry">
     <rect>
-     <x>125</x>
+     <x>105</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -625,7 +625,7 @@
   <widget class="QPushButton" name="D_KBBut">
    <property name="geometry">
     <rect>
-     <x>195</x>
+     <x>173</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -649,7 +649,7 @@
   <widget class="QPushButton" name="F_KBBut">
    <property name="geometry">
     <rect>
-     <x>265</x>
+     <x>240</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -673,7 +673,7 @@
   <widget class="QPushButton" name="G_KBBut">
    <property name="geometry">
     <rect>
-     <x>335</x>
+     <x>307</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -697,7 +697,7 @@
   <widget class="QPushButton" name="H_KBBut">
    <property name="geometry">
     <rect>
-     <x>405</x>
+     <x>374</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -721,7 +721,7 @@
   <widget class="QPushButton" name="J_KBBut">
    <property name="geometry">
     <rect>
-     <x>475</x>
+     <x>441</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -745,7 +745,7 @@
   <widget class="QPushButton" name="K_KBBut">
    <property name="geometry">
     <rect>
-     <x>545</x>
+     <x>508</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -769,7 +769,7 @@
   <widget class="QPushButton" name="L_KBBut">
    <property name="geometry">
     <rect>
-     <x>615</x>
+     <x>575</x>
      <y>158</y>
      <width>52</width>
      <height>52</height>
@@ -793,7 +793,7 @@
   <widget class="QPushButton" name="enter_KBBut">
    <property name="geometry">
     <rect>
-     <x>685</x>
+     <x>640</x>
      <y>158</y>
      <width>87</width>
      <height>52</height>
@@ -817,7 +817,7 @@
   <widget class="QPushButton" name="N_KBBut">
    <property name="geometry">
     <rect>
-     <x>440</x>
+     <x>407</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -841,7 +841,7 @@
   <widget class="QPushButton" name="C_KBBut">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>206</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -865,7 +865,7 @@
   <widget class="QPushButton" name="B_KBBut">
    <property name="geometry">
     <rect>
-     <x>370</x>
+     <x>340</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -889,7 +889,7 @@
   <widget class="QPushButton" name="symbol_KBBut">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>675</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -911,7 +911,7 @@
   <widget class="QPushButton" name="X_KBBut">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>139</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -935,7 +935,7 @@
   <widget class="QPushButton" name="V_KBBut">
    <property name="geometry">
     <rect>
-     <x>300</x>
+     <x>273</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -959,7 +959,7 @@
   <widget class="QPushButton" name="M_KBBut">
    <property name="geometry">
     <rect>
-     <x>510</x>
+     <x>474</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -983,7 +983,7 @@
   <widget class="QPushButton" name="Z_KBBut">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>72</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -1007,7 +1007,7 @@
   <widget class="QPushButton" name="period_KBBut">
    <property name="geometry">
     <rect>
-     <x>650</x>
+     <x>608</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -1031,7 +1031,7 @@
   <widget class="QPushButton" name="comma_KBBut">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>541</x>
      <y>211</y>
      <width>52</width>
      <height>52</height>
@@ -1055,7 +1055,7 @@
   <widget class="QPushButton" name="language_KBBut">
    <property name="geometry">
     <rect>
-     <x>131</x>
+     <x>110</x>
      <y>264</y>
      <width>81</width>
      <height>52</height>
@@ -1079,7 +1079,7 @@
   <widget class="QPushButton" name="hide_KBBut">
    <property name="geometry">
     <rect>
-     <x>580</x>
+     <x>540</x>
      <y>264</y>
      <width>81</width>
      <height>52</height>
@@ -1103,7 +1103,7 @@
   <widget class="QPushButton" name="Esc_KBBut">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>5</x>
      <y>50</y>
      <width>52</width>
      <height>52</height>
@@ -1129,7 +1129,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>791</width>
+     <width>751</width>
      <height>391</height>
     </rect>
    </property>
@@ -1143,7 +1143,7 @@
   <widget class="QPushButton" name="fontBoxRedu_KBBut">
    <property name="geometry">
     <rect>
-     <x>675</x>
+     <x>632</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1167,7 +1167,7 @@
   <widget class="QPushButton" name="fontBox6_KBBut">
    <property name="geometry">
     <rect>
-     <x>395</x>
+     <x>365</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1191,7 +1191,7 @@
   <widget class="QPushButton" name="fontBox8_KBBut">
    <property name="geometry">
     <rect>
-     <x>507</x>
+     <x>472</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1215,7 +1215,7 @@
   <widget class="QPushButton" name="fontBox3_KBBut">
    <property name="geometry">
     <rect>
-     <x>227</x>
+     <x>204</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1239,7 +1239,7 @@
   <widget class="QPushButton" name="fontBox2_KBBut">
    <property name="geometry">
     <rect>
-     <x>171</x>
+     <x>151</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1263,7 +1263,7 @@
   <widget class="QPushButton" name="fontBox5_KBBut">
    <property name="geometry">
     <rect>
-     <x>339</x>
+     <x>311</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1287,7 +1287,7 @@
   <widget class="QPushButton" name="fontBox9_KBBut">
    <property name="geometry">
     <rect>
-     <x>563</x>
+     <x>525</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1311,7 +1311,7 @@
   <widget class="QPushButton" name="fontBox1_KBBut">
    <property name="geometry">
     <rect>
-     <x>115</x>
+     <x>97</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1335,7 +1335,7 @@
   <widget class="QPushButton" name="fontBox10_KBBut">
    <property name="geometry">
     <rect>
-     <x>619</x>
+     <x>579</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1359,7 +1359,7 @@
   <widget class="QPushButton" name="fontBox4_KBBut">
    <property name="geometry">
     <rect>
-     <x>283</x>
+     <x>258</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1383,7 +1383,7 @@
   <widget class="QPushButton" name="fontBox7_KBBut">
    <property name="geometry">
     <rect>
-     <x>451</x>
+     <x>418</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1407,7 +1407,7 @@
   <widget class="QPushButton" name="fontBoxAdd_KBBut">
    <property name="geometry">
     <rect>
-     <x>731</x>
+     <x>685</x>
      <y>0</y>
      <width>42</width>
      <height>42</height>
@@ -1431,7 +1431,7 @@
   <widget class="QPushButton" name="languageRedu_KBBut">
    <property name="geometry">
     <rect>
-     <x>60</x>
+     <x>50</x>
      <y>264</y>
      <width>52</width>
      <height>52</height>
@@ -1455,7 +1455,7 @@
   <widget class="QPushButton" name="languageAdd_KBBut">
    <property name="geometry">
     <rect>
-     <x>680</x>
+     <x>630</x>
      <y>264</y>
      <width>52</width>
      <height>52</height>
@@ -1476,10 +1476,10 @@
     <string>►</string>
    </property>
   </widget>
-  <widget class="QLineEdit" name="wordCombLineEdit">
+  <widget class="lineedit_click" name="wordCombLineEdit">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>5</x>
      <y>0</y>
      <width>81</width>
      <height>42</height>
@@ -1563,6 +1563,13 @@ color: rgb(0, 0, 0);</string>
   <zorder>wordCombLineEdit</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>lineedit_click</class>
+   <extends>QLineEdit</extends>
+   <header location="global">lineedit_click.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

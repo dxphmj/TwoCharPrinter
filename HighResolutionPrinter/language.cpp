@@ -55,6 +55,8 @@ void language::LanChinese_KBBut_clicked()
 	pKeyboard->m_LanType = 0;
 	pKeyboard->m_LantypeReverse = 1;//Chinese
 	pKeyboard->caps1_kBBut_clicked();
+	pKeyboard->setText2KBLineedit();//×ßÖÐÎÄ±à¼­¿ò
+	/*pKeyboard->languagespell();*/
 	setVisible(false);  
 }
 
