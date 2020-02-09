@@ -29,7 +29,6 @@ public:
 	void SetLineEdit(lineedit_click* pInputEdit);
 	void setText2KBLineedit();
 
-
 	void LanArabic1();
 	void LanArabic2();
 	void LanArabic3();
@@ -80,10 +79,7 @@ public:
 public:
 	bool m_Upper;
 	bool m_symbol;
-	/*bool m_spell;*/
 	lineedit_click* m_pInputEdit;
-	lineedit_click* m_pspellEdit;
-	
 	language  *languageWidget;
 	int i1,j1;
 	QMap< QString,QString >ChineseLanMap;//定义map对象
@@ -118,12 +114,11 @@ public:
 	void CreateChineseMapLan();
 	void FontSelect();
 	QVector<QString>splitOut;
-	void changeCurrentLineEdit();
 
 public slots:
 	void caps1_kBBut_clicked();
 	void languagespell();//不是clicked
-
+	void InsertChineseToLine();
 
 private slots:
 	void enter_KBBut_clicked();
@@ -172,17 +167,6 @@ private slots:
 	void num8_KBBut_clicked();
 	void num9_KBBut_clicked();
 	void num0_KBBut_clicked();
-	void fontBox1_KBBut_clicked();
-	void fontBox2_KBBut_clicked();
-	void fontBox3_KBBut_clicked();
-	void fontBox4_KBBut_clicked();
-	void fontBox5_KBBut_clicked();
-	void fontBox6_KBBut_clicked();
-	void fontBox7_KBBut_clicked();
-	void fontBox8_KBBut_clicked();
-	void fontBox9_KBBut_clicked();
-	void fontBox10_KBBut_clicked();
-	
 
 	void space_KBBut_clicked();
 	void comma_KBBut_clicked();
