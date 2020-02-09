@@ -2,9 +2,10 @@
 #include "ui_language.h"
 #include <QtWidgets/QStackedWidget>
 #include "keyboard.h"
+#include "fileeditchild.h"
 #include <QPushButton>
 #include <QHBoxLayout>
-
+#include <QTabWidget>
 language::language(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::language)
@@ -24,7 +25,7 @@ language::language(QWidget *parent)
 	connect(ui->LanArabic,SIGNAL(clicked()),this,SLOT(LanArabic_KBBut_clicked()));
 
 	//connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//将信号传给父窗口
-
+	//m_FileEditChildSpell = new FileEditChild;
 }
 
 language::~language()
@@ -45,6 +46,16 @@ void language::lanEnglish_KBBut_clicked()
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 7;
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
+
+	/*if ()
+	{
+	} 
+	else
+	{
+	}*/
 	setVisible(false); 
 }
 
@@ -53,10 +64,11 @@ void language::LanChinese_KBBut_clicked()
 	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 0;
+	//pKeyboard->m_spell = false;
 	pKeyboard->m_LantypeReverse = 1;//Chinese
 	pKeyboard->caps1_kBBut_clicked();
 	pKeyboard->setText2KBLineedit();//走中文编辑框
-	/*pKeyboard->languagespell();*/
+	pKeyboard->languagespell();
 	setVisible(false);  
 }
 
@@ -67,6 +79,8 @@ void language::LanKorean_KBBut_clicked()
 	pKeyboard->m_LanType = 22;
 	pKeyboard->m_LantypeReverse = 2;//Kore 
 	pKeyboard->caps1_kBBut_clicked();
+	pKeyboard->setText2KBLineedit();//走中文编辑框
+	pKeyboard->languagespell();
 	setVisible(false);   
 }
 
@@ -77,6 +91,8 @@ void language::LanJapanese_KBBut_clicked()
 	pKeyboard->m_LanType = 1;
 	pKeyboard->m_LantypeReverse = 4;//Japanese 
 	pKeyboard->caps1_kBBut_clicked();
+	pKeyboard->setText2KBLineedit();//z走拼写编辑框
+	pKeyboard->languagespell();
 	setVisible(false); 
 }
 
@@ -87,6 +103,9 @@ void language::LanCzech_KBBut_clicked()
 	pKeyboard->m_LanType = 8;
 	pKeyboard->m_LantypeReverse = 3;//Czech 
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false); 
 }
 
@@ -97,6 +116,9 @@ void language::LanDutch_KBBut_clicked()
 	pKeyboard->m_LanType = 9;
 	pKeyboard->m_LantypeReverse = 5;//Dutch
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false); 
 }
 
@@ -107,6 +129,9 @@ void language::LanGerman_KBBut_clicked()
 	pKeyboard->m_LanType = 10;
 	pKeyboard->m_LantypeReverse = 6;//German
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false); 
 }
 
@@ -117,6 +142,9 @@ void language::LanFarsi_KBBut_clicked()
 	pKeyboard->m_LanType = 11;
 	pKeyboard->m_LantypeReverse = 7;//Farsi
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false); 
 }
 
@@ -127,6 +155,9 @@ void language::LanHindi_KBBut_clicked()
 	pKeyboard->m_LanType = 12;
 	pKeyboard->m_LantypeReverse = 8;//Hindi
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false); 
 }
 
@@ -137,6 +168,9 @@ void language::LanArabic_KBBut_clicked()
 	pKeyboard->m_LanType = 5;
 	pKeyboard->m_LantypeReverse = 9;//Hindi
 	pKeyboard->caps1_kBBut_clicked();
+	QTabWidget *m_tabWidSpell = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());  
+	FileEditChild *m_FileEditChildSpell = qobject_cast<FileEditChild*>(m_tabWidSpell->parentWidget());  
+	m_FileEditChildSpell->wordLineEdit_clicked();
 	setVisible(false);
 }
 

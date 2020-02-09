@@ -54,6 +54,12 @@ private:
 	
 	QString str1;
 
+public slots:
+	void wordLineEdit_clicked();
+	void barCodeLineEdit_clicked();
+	void QRCodeLineEdit_clicked();
+	void DMCodeLineEdit_clicked();
+
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
@@ -62,10 +68,6 @@ private slots:
 	void customTimeBut_clicked();
 	void selBmpBut_clicked();
 	void delBut_clicked();
-	void wordLineEdit_clicked();
-	void barCodeLineEdit_clicked();
-	void QRCodeLineEdit_clicked();
-	void DMCodeLineEdit_clicked();
 	void newTextBut_clicked();
 	void newBarCodeBut_clicked();
 	void newQRBut_clicked();

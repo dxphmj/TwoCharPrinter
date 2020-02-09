@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+//class FileEditChild;
+
 namespace Ui {
 	class language;
 }
@@ -14,6 +16,9 @@ class language : public QWidget
 public:
 	language(QWidget *parent = 0);
 	~language();
+
+public:
+	/*FileEditChild *m_FileEditChildSpell;*/
 
 private:
 	Ui::language *ui;
