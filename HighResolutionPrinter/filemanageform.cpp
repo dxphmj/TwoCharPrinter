@@ -4,6 +4,10 @@
 #include <QStackedWidget>
 #include "fileeditchild.h"
 #include "variblewidget.h"
+#include "variablebarcode.h"
+#include "variableqr.h"
+#include "variabledm.h"
+
 #include "timecustom.h"
 #include "filemanagechild.h"
 
@@ -36,11 +40,17 @@ FilemanageForm::FilemanageForm(QWidget *parent) :
  	FormFileManageChild = new FileManageChild(this);//实例化窗口页面
  	FormFileEditChild = new FileEditChild(this);
 	fontVarWidget = new varibleWidget(this);
+	BarCodeWidget = new variableBarCode(this);
+	QRWidget = new variableQR(this);
+	DMWidget = new variableDM(this);
 	timeCustomWidget = new timeCustom(this);
 
  	ui->stackedWidget->addWidget(FormFileManageChild);
 	ui->stackedWidget->addWidget(FormFileEditChild);
 	ui->stackedWidget->addWidget(fontVarWidget);
+	ui->stackedWidget->addWidget(BarCodeWidget);
+	ui->stackedWidget->addWidget(QRWidget);
+	ui->stackedWidget->addWidget(DMWidget);
 	ui->stackedWidget->addWidget(timeCustomWidget);
  	ui->stackedWidget->setCurrentWidget(FormFileEditChild);
 }
@@ -69,6 +79,21 @@ void FilemanageForm::manageFileBut_clicked()
 void FilemanageForm::variableWidgetCall()
 {
 	ui->stackedWidget->setCurrentWidget(fontVarWidget);
+}
+
+void FilemanageForm::variableBarCodeWidgetCall()
+{
+	ui->stackedWidget->setCurrentWidget(BarCodeWidget);
+}
+
+void FilemanageForm::variableQRWidgetCall()
+{
+	ui->stackedWidget->setCurrentWidget(QRWidget);
+}
+
+void FilemanageForm::variableDMWidgetCall()
+{
+	ui->stackedWidget->setCurrentWidget(DMWidget);
 }
 
 void FilemanageForm::timeCustomCall()

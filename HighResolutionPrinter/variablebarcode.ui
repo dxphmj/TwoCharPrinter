@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>varibleWidget</class>
- <widget class="QWidget" name="varibleWidget">
+ <class>variableBarCode</class>
+ <widget class="QWidget" name="variableBarCode">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,13 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>varibleWidget</string>
+   <string>variableBarCode</string>
   </property>
-  <widget class="QPushButton" name="returnVarTextBut">
+  <widget class="QPushButton" name="returnVarBarCodeBut">
    <property name="geometry">
     <rect>
-     <x>730</x>
-     <y>660</y>
+     <x>800</x>
+     <y>630</y>
      <width>131</width>
      <height>41</height>
     </rect>
