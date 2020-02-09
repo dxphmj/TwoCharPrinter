@@ -98,6 +98,8 @@ private slots:
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
+	void ScrollBarChanged(int);
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
