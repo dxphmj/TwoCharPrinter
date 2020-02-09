@@ -36,10 +36,6 @@ public:
 	bool m_VoiceCheck;
 
 	int DPIradioBGcheckedId;
-	QString m_DPI150RadioBut;
-	QString m_DPI200RadioBut;
-	QString m_DPI300RadioBut;
-	QString m_DPI600RadioBut;
 	bool m_RepetePrintCheck;
 	QString m_RepeatTimes;
 	QString m_RepeatDelay;
@@ -48,8 +44,6 @@ public:
 	QString m_InkVoltage;
 	QString m_InkPulseWidth;
 	int NozzleradioBGcheckedId;
-	QString m_NozzleSel1RadioBut;
-	QString m_NozzleSel2RadioBut;
 	QString m_Offset;
 	bool m_FlashSprayCheck;
 	QString m_FlashSprayInterval;
@@ -61,7 +55,6 @@ public:
 	QString m_HourShow;
 	QString m_MinShow;
 	QString m_SecondShow;
-	QString m_DateTimeShow;
 	QString m_SysLanguage;
 
 public:

@@ -69,7 +69,7 @@ keyboard::keyboard(QWidget *parent)
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	connect(ui->wordCombLineEdit,SIGNAL(textChanged(QString)),this,SLOT(languagespell()));
 
-	//connect(languageWidget,SIGNAL(languageEvent()),this,SLOT(esc_kBBut_clicked()));//父窗口执行槽函数
+	//connect(ui->fontBox1_KBBut,SIGNAL(clicked()),this,SLOT(InsertChineseToLine()));//父窗口执行槽函数
 
 
 	m_LanType = English;
@@ -142,7 +142,6 @@ void keyboard::btnArabicARhide()
 void keyboard::setText2KBLineedit()
 {
 	m_pInputEdit = ui->wordCombLineEdit;
-
 }
 
 
@@ -197,6 +196,12 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 		splitOut.clear();
 		//break;
 	}
+}
+
+void keyboard::InsertChineseToLine()
+{
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
 }
 
 void keyboard::CreateChineseMapLan()

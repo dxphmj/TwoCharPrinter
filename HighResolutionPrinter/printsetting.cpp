@@ -68,18 +68,18 @@ printSetting::printSetting(QWidget *parent)
 									 QRadioButton{color:rgb(255, 255, 255);}\
 									 ");
 
-	ui.trigComBox->addItem(QStringLiteral("外置电眼"));
-	ui.trigComBox->addItem(QStringLiteral("自动"));
-	ui.trigComBox->addItem(QStringLiteral("光电"));
-	ui.trigComBox->addItem(QStringLiteral("编码器"));
-	ui.trigComBox->addItem(QStringLiteral("光电编码"));
-	ui.trigComBox->addItem(QStringLiteral("光自动"));
+	ui.trigComBox->addItem(QStringLiteral("外置电眼"),0);
+	ui.trigComBox->addItem(QStringLiteral("自动"),1);
+	ui.trigComBox->addItem(QStringLiteral("光电"),2);
+	ui.trigComBox->addItem(QStringLiteral("编码器"),3);
+	ui.trigComBox->addItem(QStringLiteral("光电编码"),4);
+	ui.trigComBox->addItem(QStringLiteral("光自动"),5);
 
-	ui.inkjetComBox->addItem(QStringLiteral("左喷"));
-	ui.inkjetComBox->addItem(QStringLiteral("右喷"));
+	ui.inkjetComBox->addItem(QStringLiteral("左喷",0));
+	ui.inkjetComBox->addItem(QStringLiteral("右喷"),1);
 
-	ui.printDirComBox->addItem(QStringLiteral("正向"));
-	ui.printDirComBox->addItem(QStringLiteral("逆向"));
+	ui.printDirComBox->addItem(QStringLiteral("正向"),0);
+	ui.printDirComBox->addItem(QStringLiteral("逆向"),1);
 
 	DPIradioBG = new QButtonGroup;
 	DPIradioBG->addButton(ui.DPI150RadioBut,1);

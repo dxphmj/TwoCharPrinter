@@ -110,9 +110,9 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_PrintDelay = getNum(m_printSetting->ui.printDelayShowLab->text());
 	theApp->m_ParamSetting.m_SynFrequency = getNum(m_printSetting->ui.synFrequencyShowLab->text());
 	theApp->m_ParamSetting.m_PrintGray = getNum(m_printSetting->ui.printGrayShowLab->text());
-	theApp->m_ParamSetting.m_TriggerMode = m_printSetting->ui.trigComBox->currentText();
-	theApp->m_ParamSetting.m_InkjetMode = m_printSetting->ui.inkjetComBox->currentText();
-	theApp->m_ParamSetting.m_PrintingDirection = m_printSetting->ui.printDirComBox->currentText();
+	theApp->m_ParamSetting.m_TriggerMode = QVariant(m_printSetting->ui.trigComBox->currentIndex()).toString();
+	theApp->m_ParamSetting.m_InkjetMode = QVariant(m_printSetting->ui.inkjetComBox->currentIndex()).toString();
+	theApp->m_ParamSetting.m_PrintingDirection = QVariant(m_printSetting->ui.printDirComBox->currentIndex()).toString();
 	theApp->m_ParamSetting.m_SynWheelCheck = m_printSetting->ui.synWheelCheckBox->isChecked();
 	theApp->m_ParamSetting.m_VoiceCheck = m_printSetting->ui.voiceCheckBox->isChecked();
 
@@ -120,10 +120,6 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 
 	theApp->m_ParamSetting.DPIradioBGcheckedId = m_printSetting->DPIradioBG->checkedId();
-	theApp->m_ParamSetting.m_DPI150RadioBut = m_printSetting->ui.DPI150RadioBut->text();
-	theApp->m_ParamSetting.m_DPI200RadioBut = m_printSetting->ui.DPI200RadioBut->text();
-	theApp->m_ParamSetting.m_DPI300RadioBut = m_printSetting->ui.DPI300RadioBut->text();
-	theApp->m_ParamSetting.m_DPI600RadioBut = m_printSetting->ui.DPI600RadioBut->text();
 	theApp->m_ParamSetting.m_RepetePrintCheck = m_printSetting->ui.repetePrintCheckBox->isChecked();
 
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
@@ -135,8 +131,6 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_InkPulseWidth = getNum(m_printSetting->ui.PWShowLab->text());
 	
 	theApp->m_ParamSetting.NozzleradioBGcheckedId = m_printSetting->NozzleradioBG->checkedId();
-	theApp->m_ParamSetting.m_NozzleSel1RadioBut = m_printSetting->ui.nozzleSel1RadioBut->text();
-	theApp->m_ParamSetting.m_NozzleSel2RadioBut = m_printSetting->ui.nozzleSel2RadioBut->text();
 	theApp->m_ParamSetting.m_Offset = getNum(m_printSetting->ui.offsetShowLab->text());
 	 
 	theApp->m_ParamSetting.m_FlashSprayCheck = m_printSetting->ui.flashSprayCheckBox->isChecked();
@@ -152,13 +146,8 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_HourShow = getNum(m_sysSetting->ui.hourShowLab->text());
 	theApp->m_ParamSetting.m_MinShow = getNum(m_sysSetting->ui.minShowLab->text());
 	theApp->m_ParamSetting.m_SecondShow = getNum(m_sysSetting->ui.secondShowLab->text());
-	theApp->m_ParamSetting.m_DateTimeShow = theApp->m_ParamSetting.m_YearShow+
-		                                    theApp->m_ParamSetting.m_MonthShow+
-											theApp->m_ParamSetting.m_DayShow+
-											theApp->m_ParamSetting.m_HourShow+
-											theApp->m_ParamSetting.m_MinShow+
-											theApp->m_ParamSetting.m_SecondShow;
-	if (m_sysSetting->ui.sysLanguageListWid->currentRow() != -1)
+
+	if (m_sysSetting->ui.sysLanguageListWid->currentRow() != -1)//等语言全部填入后再完善
 	{	
 		theApp->m_ParamSetting.m_SysLanguage = m_sysSetting->ui.sysLanguageListWid->currentItem()->text();
 	}
@@ -170,8 +159,6 @@ void ParamSettingForm::readConfigurationBut_clicked()
 {
 	MainWindow* theApp = (MainWindow*)(this->parent());
 	theApp->m_ParamSetting.OpenParamFromXml(this);
-
-	m_printSetting->ui.printSpeedShowLab->setText(theApp->m_ParamSetting.m_PrintingSpeed);
 }
 
 
