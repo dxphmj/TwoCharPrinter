@@ -14,6 +14,7 @@
 
 class keyboard;
 class ClassMessage;
+class FileEditChild;
 
 namespace Ui {
 	class FileManageChild;
@@ -29,6 +30,7 @@ public:
 	Ui::FileManageChild *ui;  
 	ClassMessage*  m_pPrinterMes;
 	keyboard  *keyboardWidget;
+	FileEditChild *m_FileEditChild;
 
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
@@ -51,6 +53,9 @@ public slots:
 	void fileNmaeLineEdit_click();
 	void OKFileNameBut_clicked();
 	void delSeleFileBut_clicked();
+	void UdiskFileBut_clicked();
+	void copyFile2localBut_clicked();
+	void ScrollBarChanged(int);
 	
 protected:
 	bool eventFilter(QObject *watched, QEvent *event);

@@ -69,7 +69,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>另存为</string>
+    <string>另存�?/string>
    </property>
   </widget>
   <widget class="QPushButton" name="delBut">
@@ -131,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -669,7 +669,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -697,7 +697,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="serialTab">
     <attribute name="title">
-     <string>序列号</string>
+     <string>序列�?/string>
     </attribute>
     <widget class="QLabel" name="formatSerialLab">
      <property name="geometry">
@@ -826,7 +826,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数器&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -919,7 +919,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;起始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;起始�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -969,7 +969,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;终止值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;终止�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -1038,7 +1038,7 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -1237,7 +1237,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>初始化</string>
+      <string>初始�?/string>
      </property>
     </widget>
    </widget>
@@ -1304,7 +1304,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="heightBmpRedBut">
@@ -1335,7 +1335,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBmpLab">
@@ -1459,7 +1459,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="widthBmpRedBut">
@@ -1490,7 +1490,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QPushButton" name="selBmpBut">
@@ -1604,7 +1604,7 @@ background-color: rgb(0, 0, 230);</string>
 </string>
      </property>
      <property name="text">
-      <string>等比例</string>
+      <string>等比�?/string>
      </property>
      <property name="checked">
       <bool>false</bool>
@@ -1616,7 +1616,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="barCodeTab">
     <attribute name="title">
-     <string>条形码</string>
+     <string>条形�?/string>
     </attribute>
     <widget class="lineedit_click" name="barCodeLineEdit">
      <property name="geometry">
@@ -1637,11 +1637,116 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
-    <widget class="QLabel" name="zoomShowBarCodeLab">
+    <widget class="QLabel" name="whitespaceLab">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>210</y>
+       <x>540</x>
+       <y>275</y>
+       <width>131</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;9&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="zoomBarCodeLab_2">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>275</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;空白宽度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="variableBarCodeBut">
+     <property name="geometry">
+      <rect>
+       <x>160</x>
+       <y>345</y>
+       <width>181</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>可变</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="typerimComBox">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>95</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="rimwideLab">
+     <property name="geometry">
+      <rect>
+       <x>540</x>
+       <y>185</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1668,11 +1773,11 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QPushButton" name="zoomBarCodeRedBut">
+    <widget class="QPushButton" name="heightBarCodeAddBut">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>210</y>
+       <x>290</x>
+       <y>185</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1696,17 +1801,54 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
-    <widget class="QPushButton" name="variableBarCodeBut">
+    <widget class="QPushButton" name="heightBarCodeRedBut">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>120</y>
-       <width>181</width>
+       <x>120</x>
+       <y>185</y>
+       <width>41</width>
        <height>41</height>
       </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>�?/string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="typeBarCodeLab_2">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>95</y>
+       <width>111</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
      </property>
      <property name="font">
       <font>
@@ -1715,49 +1857,20 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
+      <string notr="true">color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>可变</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;边框类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
-    </widget>
-    <widget class="QPushButton" name="zoomBarCodeAddBut">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>210</y>
-       <width>41</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>41</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>黑体</family>
-       <pointsize>14</pointsize>
-       <weight>75</weight>
-       <bold>true</bold>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
-     </property>
-     <property name="text">
-      <string>＋</string>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="typeBarCodeLab">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>125</y>
+       <x>20</x>
+       <y>100</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1784,62 +1897,11 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QLabel" name="zoomBarCodeLab">
+    <widget class="QPushButton" name="whitespaceRedBut">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>210</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>楷体</family>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;缩放&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QComboBox" name="typeBarCodeComBox">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>125</y>
-       <width>211</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>宋体</family>
-       <pointsize>14</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="heightBarCodeAddBut">
-     <property name="geometry">
-      <rect>
-       <x>330</x>
-       <y>300</y>
+       <x>500</x>
+       <y>275</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1863,45 +1925,14 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>＋</string>
+      <string>�?/string>
      </property>
     </widget>
-    <widget class="QLabel" name="heightBarCodeLab">
+    <widget class="QPushButton" name="rimwideAddBut">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>300</y>
-       <width>101</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
-     </property>
-     <property name="font">
-      <font>
-       <family>楷体</family>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;高度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="heightBarCodeRedBut">
-     <property name="geometry">
-      <rect>
-       <x>160</x>
-       <y>300</y>
+       <x>670</x>
+       <y>185</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1925,14 +1956,14 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
-      <string>－</string>
+      <string>�?/string>
      </property>
     </widget>
     <widget class="QLabel" name="heightBarCodeShowQRLab">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>300</y>
+       <x>160</x>
+       <y>185</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1959,11 +1990,73 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QPushButton" name="whitespaceAddBut">
+     <property name="geometry">
+      <rect>
+       <x>670</x>
+       <y>275</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>�?/string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="rimwideRedBut">
+     <property name="geometry">
+      <rect>
+       <x>500</x>
+       <y>185</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>�?/string>
+     </property>
+    </widget>
     <widget class="QCheckBox" name="showNumCheckBox">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>310</y>
+       <x>110</x>
+       <y>285</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -1988,11 +2081,42 @@ background-color: rgb(0, 0, 230);</string>
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="heightBarCodeLab">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>185</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;高度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
     <widget class="QPushButton" name="newBarCodeBut">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>210</y>
+       <x>410</x>
+       <y>345</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -2011,10 +2135,61 @@ background-color: rgb(0, 0, 230);</string>
       <string>新建</string>
      </property>
     </widget>
+    <widget class="QLabel" name="zoomBarCodeLab">
+     <property name="geometry">
+      <rect>
+       <x>380</x>
+       <y>185</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;边框宽度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="typeBarCodeComBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>100</y>
+       <width>211</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+    </widget>
    </widget>
    <widget class="QWidget" name="QRCodeTab">
     <attribute name="title">
-     <string>QR码</string>
+     <string>QR�?/string>
     </attribute>
     <widget class="lineedit_click" name="QRCodeLineEdit">
      <property name="geometry">
@@ -2165,7 +2340,7 @@ background-color: rgb(0, 0, 230);</string>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
-     <string>DM码</string>
+     <string>DM�?/string>
     </attribute>
     <widget class="QPushButton" name="variableDMBut">
      <property name="geometry">
@@ -2437,7 +2612,7 @@ border-radius:10px;</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>＋</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="degreeTextShowLab">
@@ -2499,7 +2674,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>－</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="rotateTextLab">
@@ -2561,7 +2736,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>＋</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QPushButton" name="internalTextRedBut">
@@ -2592,7 +2767,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
    </property>
    <property name="text">
-    <string>－</string>
+    <string>�?/string>
    </property>
   </widget>
   <widget class="QLabel" name="internalShowTextLab">
@@ -2753,7 +2928,7 @@ background-color: rgb(0, 0, 230);</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;移动倍速&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;移动倍�?lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
