@@ -55,7 +55,6 @@ public:
     QLabel *fontTypeTimeLab_6;
     QPushButton *addTimeBut;
     QLineEdit *PreviewEdit;
-    QTextEdit *SkewSkewValueEdit;
     QPushButton *newTimeBut;
     QComboBox *fontTypeTimeComBox;
     QListWidget *FormatlistWidget;
@@ -63,6 +62,7 @@ public:
     QLabel *fontTypeTimeLab_3;
     QLabel *fontTypeTimeLab;
     QLabel *fontTypeTimeLab_4;
+    lineedit_click *SkewSkewValueEdit;
     QWidget *serialTab;
     QLabel *formatSerialLab;
     QLabel *fontTypeSerialLab;
@@ -73,16 +73,16 @@ public:
     QPushButton *newSerialBut;
     lineedit_click *serialLineEdit;
     QLabel *initialValSerialLab;
-    QLineEdit *initialValSerialLineEdit;
+    lineedit_click *initialValSerialLineEdit;
     QLabel *termValSerialLab;
-    QLineEdit *termValSerialLineEdit;
-    QLineEdit *startValSerialLineEdit;
+    lineedit_click *termValSerialLineEdit;
+    lineedit_click *startValSerialLineEdit;
     QLabel *startValSerialLab;
-    QLineEdit *stepLenSerialLineEdit;
+    lineedit_click *stepLenSerialLineEdit;
     QLabel *stepLenSerialLab;
-    QLineEdit *reptCountSerialLineEdit;
+    lineedit_click *reptCountSerialLineEdit;
     QLabel *reptCountSerialLab;
-    QLineEdit *digitSerialLineEdit;
+    lineedit_click *digitSerialLineEdit;
     QLabel *digitSerialLab;
     QPushButton *withdrawSerialBut;
     QPushButton *initialSerialBut;
@@ -293,11 +293,6 @@ public:
         PreviewEdit->setFont(font);
         PreviewEdit->setAutoFillBackground(false);
         PreviewEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        SkewSkewValueEdit = new QTextEdit(timeTab);
-        SkewSkewValueEdit->setObjectName(QStringLiteral("SkewSkewValueEdit"));
-        SkewSkewValueEdit->setGeometry(QRect(570, 210, 171, 51));
-        SkewSkewValueEdit->setFont(font);
-        SkewSkewValueEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         newTimeBut = new QPushButton(timeTab);
         newTimeBut->setObjectName(QStringLiteral("newTimeBut"));
         newTimeBut->setGeometry(QRect(250, 360, 181, 41));
@@ -342,6 +337,11 @@ public:
         fontTypeTimeLab_4->setFont(font);
         fontTypeTimeLab_4->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         fontTypeTimeLab_4->setAlignment(Qt::AlignCenter);
+        SkewSkewValueEdit = new lineedit_click(timeTab);
+        SkewSkewValueEdit->setObjectName(QStringLiteral("SkewSkewValueEdit"));
+        SkewSkewValueEdit->setGeometry(QRect(570, 210, 171, 51));
+        SkewSkewValueEdit->setFont(font);
+        SkewSkewValueEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         typeTab->addTab(timeTab, QString());
         serialTab = new QWidget();
         serialTab->setObjectName(QStringLiteral("serialTab"));
@@ -402,7 +402,7 @@ public:
         initialValSerialLab->setFont(font);
         initialValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         initialValSerialLab->setAlignment(Qt::AlignCenter);
-        initialValSerialLineEdit = new QLineEdit(serialTab);
+        initialValSerialLineEdit = new lineedit_click(serialTab);
         initialValSerialLineEdit->setObjectName(QStringLiteral("initialValSerialLineEdit"));
         initialValSerialLineEdit->setGeometry(QRect(140, 110, 131, 41));
         initialValSerialLineEdit->setFont(font);
@@ -414,12 +414,12 @@ public:
         termValSerialLab->setFont(font);
         termValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         termValSerialLab->setAlignment(Qt::AlignCenter);
-        termValSerialLineEdit = new QLineEdit(serialTab);
+        termValSerialLineEdit = new lineedit_click(serialTab);
         termValSerialLineEdit->setObjectName(QStringLiteral("termValSerialLineEdit"));
         termValSerialLineEdit->setGeometry(QRect(140, 170, 131, 41));
         termValSerialLineEdit->setFont(font);
         termValSerialLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
-        startValSerialLineEdit = new QLineEdit(serialTab);
+        startValSerialLineEdit = new lineedit_click(serialTab);
         startValSerialLineEdit->setObjectName(QStringLiteral("startValSerialLineEdit"));
         startValSerialLineEdit->setGeometry(QRect(140, 230, 131, 41));
         startValSerialLineEdit->setFont(font);
@@ -431,7 +431,7 @@ public:
         startValSerialLab->setFont(font);
         startValSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         startValSerialLab->setAlignment(Qt::AlignCenter);
-        stepLenSerialLineEdit = new QLineEdit(serialTab);
+        stepLenSerialLineEdit = new lineedit_click(serialTab);
         stepLenSerialLineEdit->setObjectName(QStringLiteral("stepLenSerialLineEdit"));
         stepLenSerialLineEdit->setGeometry(QRect(140, 290, 131, 41));
         stepLenSerialLineEdit->setFont(font);
@@ -443,7 +443,7 @@ public:
         stepLenSerialLab->setFont(font);
         stepLenSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         stepLenSerialLab->setAlignment(Qt::AlignCenter);
-        reptCountSerialLineEdit = new QLineEdit(serialTab);
+        reptCountSerialLineEdit = new lineedit_click(serialTab);
         reptCountSerialLineEdit->setObjectName(QStringLiteral("reptCountSerialLineEdit"));
         reptCountSerialLineEdit->setGeometry(QRect(560, 100, 131, 41));
         reptCountSerialLineEdit->setFont(font);
@@ -455,7 +455,7 @@ public:
         reptCountSerialLab->setFont(font);
         reptCountSerialLab->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         reptCountSerialLab->setAlignment(Qt::AlignCenter);
-        digitSerialLineEdit = new QLineEdit(serialTab);
+        digitSerialLineEdit = new lineedit_click(serialTab);
         digitSerialLineEdit->setObjectName(QStringLiteral("digitSerialLineEdit"));
         digitSerialLineEdit->setGeometry(QRect(560, 150, 131, 41));
         digitSerialLineEdit->setFont(font);
@@ -904,7 +904,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(3);
+        typeTab->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);

@@ -6,6 +6,7 @@
 #include "ClassMessage.h"
 
 class keyboard;
+class numkeyboard;
 class FileManageChild;
 #include "ModuleMain.h"
 namespace Ui {
@@ -46,6 +47,7 @@ public:
 	float ZoomfactorDM;
 	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
+	numkeyboard *numkeyboardWidget;
 	QString SerialNumber_2;
 	int SerialNumber;
 	int SerialNumber_length;
@@ -101,6 +103,15 @@ private slots:
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
+
+	void SkewSkewValueEdit_clicked();
+	void initialValSerialLineEdit_clicked();
+	void termValSerialLineEdit_clicked();
+	void startValSerialLineEdit_clicked();
+	void stepLenSerialLineEdit_clicked();
+	void reptCountSerialLineEdit_clicked();
+	void digitSerialLineEdit_clicked();
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();

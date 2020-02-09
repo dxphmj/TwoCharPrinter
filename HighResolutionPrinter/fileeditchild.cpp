@@ -9,6 +9,7 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
+#include "numkeyboard.h"
 #include "time.h"
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
@@ -66,12 +67,25 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
 	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
 	connect(ui->newSerialBut,SIGNAL(clicked()),this,SLOT(newSerialNumber_click()));
+
+	connect(ui->SkewSkewValueEdit,SIGNAL(clicked()),this,SLOT(SkewSkewValueEdit_clicked()));
+	connect(ui->initialValSerialLineEdit,SIGNAL(clicked()),this,SLOT(initialValSerialLineEdit_clicked()));
+	connect(ui->termValSerialLineEdit,SIGNAL(clicked()),this,SLOT(termValSerialLineEdit_clicked()));
+	connect(ui->startValSerialLineEdit,SIGNAL(clicked()),this,SLOT(startValSerialLineEdit_clicked()));
+    connect(ui->stepLenSerialLineEdit,SIGNAL(clicked()),this,SLOT(stepLenSerialLineEdit_clicked()));
+	connect(ui->reptCountSerialLineEdit,SIGNAL(clicked()),this,SLOT(reptCountSerialLineEdit_clicked()));
+	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
+
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
 	keyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
 	
+	numkeyboardWidget = new numkeyboard(ui->typeTab);
+	numkeyboardWidget->setVisible(false);
+	ui->typeTab->setCurrentIndex(0);
+
 	ui->editPreviewText->installEventFilter(this);
 	ui->editPreviewText->viewport()->installEventFilter(this);
 
@@ -1362,7 +1376,7 @@ void FileEditChild::addTimeBut_clicked()
 	}
 	ui->DateTimeEdit->setText(timeFormatStr);
 	QString skewvalue1;
-	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	//skewvalue1=ui->SkewSkewValueEdit->toPlainText();
 	int skewvalue2=skewvalue1.toInt();
 	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
@@ -1385,7 +1399,7 @@ void FileEditChild::ChangeTime()
 	CString timeFormatStr;
 	timeFormatStr=ui->DateTimeEdit->text();
 	QString skewvalue1;
-	skewvalue1=ui->SkewSkewValueEdit->toPlainText();
+	//skewvalue1=ui->SkewSkewValueEdit->toPlainText();
 	int skewvalue2=skewvalue1.toInt();
 	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
@@ -1457,7 +1471,7 @@ void FileEditChild::newTimeBut_clicked()
 
 	tempObj.booETimeOffSet=ui->SkewComBox->currentIndex();
 	CString timeOffText;
-	timeOffText=ui->SkewSkewValueEdit->toPlainText();
+	//timeOffText=ui->SkewSkewValueEdit->toPlainText();
 	//GetDlgItem(IDC_DATE_SKEW_VALUE_EDIT)->GetWindowText(timeOffText);
 	int timeOffText1=timeOffText.toInt();
 	tempObj.intTimeOffSet=timeOffText1;
@@ -1467,6 +1481,41 @@ void FileEditChild::newTimeBut_clicked()
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
  
+}
+
+void FileEditChild::SkewSkewValueEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->SkewSkewValueEdit);
+}
+
+void FileEditChild::initialValSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->initialValSerialLineEdit);
+}
+
+void FileEditChild::termValSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->termValSerialLineEdit);
+}
+
+void FileEditChild::startValSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->startValSerialLineEdit);
+}
+
+void FileEditChild::stepLenSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->stepLenSerialLineEdit);
+}
+
+void FileEditChild::reptCountSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->reptCountSerialLineEdit);
+}
+
+void FileEditChild::digitSerialLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->digitSerialLineEdit);
 }
 
 void FileEditChild::newSerialNumber_click()
