@@ -14,6 +14,10 @@ public:
 
 public:
 	Ui::varibleWidget ui;
+
+private slots:
+	void returnVarTextBut_clicked();
+
 };
 
 #endif // VARIBLEWIDGET_H

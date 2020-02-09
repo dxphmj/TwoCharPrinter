@@ -1,24 +1,23 @@
-#include "variblewidget.h"
+#include "variableqr.h"
 #include <QTableWidget>
 #include "filemanageform.h"
 
-varibleWidget::varibleWidget(QWidget *parent)
+variableQR::variableQR(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
 
-	connect(ui.returnVarTextBut,SIGNAL(clicked()),this,SLOT(returnVarTextBut_clicked()));
+	connect(ui.returnVarQRBut,SIGNAL(clicked()),this,SLOT(returnVarQRBut_clicked()));
 }
 
-varibleWidget::~varibleWidget()
+variableQR::~variableQR()
 {
 
 }
 
-void varibleWidget::returnVarTextBut_clicked()
+void variableQR::returnVarQRBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	pFilemanageForm->FileEditChildWidgetCall();
-
 }

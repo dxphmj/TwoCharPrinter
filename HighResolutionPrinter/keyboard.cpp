@@ -60,6 +60,7 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->languageRedu_KBBut,SIGNAL(clicked()),this,SLOT(languageRedu_KBBut_clicked()));
 
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
+	connect(ui->Esc_KBBut,SIGNAL(clicked()),this,SLOT(Esc_KBBut_clicked()));
 	connect(ui->backspace_KBBut,SIGNAL(clicked()),this,SLOT(backspace_KBBut_clicked()));
 	connect(ui->language_KBBut,SIGNAL(clicked()),this,SLOT(language_KBBut_clicked()));
 	//connect(ui->shift_KBBut,SIGNAL(clicked()),this,SLOT(caps_KBBut_clicked()));
@@ -101,6 +102,11 @@ void keyboard::SetPosition()
 }
 
 void keyboard::enter_KBBut_clicked()
+{
+	this->setVisible(false);
+}
+
+void keyboard::Esc_KBBut_clicked()
 {
 	this->setVisible(false);
 }

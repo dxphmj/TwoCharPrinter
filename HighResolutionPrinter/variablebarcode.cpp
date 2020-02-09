@@ -1,21 +1,21 @@
-#include "variblewidget.h"
+#include "variablebarcode.h"
 #include <QTableWidget>
 #include "filemanageform.h"
 
-varibleWidget::varibleWidget(QWidget *parent)
+variableBarCode::variableBarCode(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
 
-	connect(ui.returnVarTextBut,SIGNAL(clicked()),this,SLOT(returnVarTextBut_clicked()));
+	connect(ui.returnVarBarCodeBut,SIGNAL(clicked()),this,SLOT(returnVarBarCodeBut_clicked()));
 }
 
-varibleWidget::~varibleWidget()
+variableBarCode::~variableBarCode()
 {
 
 }
 
-void varibleWidget::returnVarTextBut_clicked()
+void variableBarCode::returnVarBarCodeBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  

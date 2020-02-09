@@ -31,7 +31,6 @@ public:
     QPushButton *UdiskFileBut;
     QTextEdit *filePrivewtextEdit;
     QScrollBar *filePreHorScrollBar;
-    QScrollBar *filePreVerScrollBar;
     QPushButton *loadSeleFileBut;
     QPushButton *editSeleFileBut;
     QPushButton *delSeleFileBut;
@@ -71,10 +70,6 @@ public:
         filePreHorScrollBar->setObjectName(QStringLiteral("filePreHorScrollBar"));
         filePreHorScrollBar->setGeometry(QRect(10, 251, 1021, 25));
         filePreHorScrollBar->setOrientation(Qt::Horizontal);
-        filePreVerScrollBar = new QScrollBar(FileManageChild);
-        filePreVerScrollBar->setObjectName(QStringLiteral("filePreVerScrollBar"));
-        filePreVerScrollBar->setGeometry(QRect(1031, 10, 25, 241));
-        filePreVerScrollBar->setOrientation(Qt::Vertical);
         loadSeleFileBut = new QPushButton(FileManageChild);
         loadSeleFileBut->setObjectName(QStringLiteral("loadSeleFileBut"));
         loadSeleFileBut->setGeometry(QRect(550, 390, 371, 61));

@@ -56,6 +56,9 @@ private:
 
 private slots:
 	void variableTextBut_clicked();
+	void variableBarCodeBut_clicked();
+	void variableQRBut_clicked();
+	void variableDMBut_clicked();
 	void customTimeBut_clicked();
 	void selBmpBut_clicked();
 	void delBut_clicked();
@@ -98,6 +101,8 @@ private slots:
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
+	void ScrollBarChanged(int);
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();

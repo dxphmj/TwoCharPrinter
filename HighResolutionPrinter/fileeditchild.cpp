@@ -17,6 +17,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->setupUi(this);
 
 	connect(ui->variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
+	connect(ui->variableBarCodeBut,SIGNAL(clicked()),this,SLOT(variableBarCodeBut_clicked()));
+	connect(ui->variableQRBut,SIGNAL(clicked()),this,SLOT(variableQRBut_clicked()));
+	connect(ui->variableDMBut,SIGNAL(clicked()),this,SLOT(variableDMBut_clicked()));
 	//connect(ui->customTimeBut,SIGNAL(clicked()),this,SLOT(customTimeBut_clicked()));
 	connect(ui->selBmpBut,SIGNAL(clicked()),this,SLOT(selBmpBut_clicked()));
 	connect(ui->delBut,SIGNAL(clicked()),this,SLOT(delBut_clicked()));
@@ -63,6 +66,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
 	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
 	connect(ui->newSerialBut,SIGNAL(clicked()),this,SLOT(newSerialNumber_click()));
+	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
+
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
@@ -74,7 +79,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	ui->typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
-							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:114px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:105px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
@@ -87,6 +92,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 		                                  QCheckBox{color:rgb(255, 255, 255);}\
 										 ");
+	ui->proportionBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+										  QCheckBox{color:rgb(255, 255, 255);}\
+										  ");
 	ui->moveUpBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/moveup.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
@@ -195,10 +203,19 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->FormatlistWidget->addItem("%p - am / pm");
 
 	ui->delBut->setText(QStringLiteral("清空"));
+
+	ui->textpreviewScrollBar->setRange(0,100);
+	ui->editPreviewText->setGeometry(10, 10, 3121, 241);
 }
 
 FileEditChild::~FileEditChild()
 {
+}
+
+void FileEditChild::ScrollBarChanged(int value)
+{
+	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
+	ui->editPreviewText->move(-2080*p,10);
 }
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
@@ -207,7 +224,7 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 	//QPainter qFramePainter(qTextEdit);
 	int i,j;
-	for (i=0; i<=1041; i+=5)
+	for (i=0; i<=3121; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
@@ -217,13 +234,13 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(0,j,1041,j);
+		qFramePainter->drawLine(0,j,3121,j);
 	}
 	qFramePainter->setPen(qRedPen);
 	qFramePainter->drawLine(0,0,0,240);
-	qFramePainter->drawLine(0,0,1040,0);
-	qFramePainter->drawLine(0,240,1040,240);
-	qFramePainter->drawLine(1040,0,1040,240);
+	qFramePainter->drawLine(0,0,3120,0);
+	qFramePainter->drawLine(0,240,3120,240);
+	qFramePainter->drawLine(3120,0,3120,240);
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -754,6 +771,27 @@ void FileEditChild::variableTextBut_clicked()
 	pFilemanageForm->variableWidgetCall();
 }
 
+void FileEditChild::variableBarCodeBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->variableBarCodeWidgetCall();
+}
+
+void FileEditChild::variableQRBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->variableQRWidgetCall();
+}
+
+void FileEditChild::variableDMBut_clicked()
+{
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	pFilemanageForm->variableDMWidgetCall();
+}
+
 void FileEditChild::customTimeBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
@@ -1069,7 +1107,7 @@ void FileEditChild::moveRightBut_clicked()
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			int EndPos = (m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize)*5 ;
-			if( EndPos < 1040 )
+			if( EndPos < 3120 )
 			{
 				m_PrinterMes.OBJ_Vec[i].intRowStart += 1;
 			}

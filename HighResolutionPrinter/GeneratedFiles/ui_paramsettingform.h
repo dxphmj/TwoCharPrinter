@@ -44,7 +44,7 @@ public:
         ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSettingBut = new QPushButton(ParamSettingForm);
         printSettingBut->setObjectName(QStringLiteral("printSettingBut"));
-        printSettingBut->setGeometry(QRect(30, 30, 144, 144));
+        printSettingBut->setGeometry(QRect(30, 60, 144, 144));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(18);
@@ -53,19 +53,19 @@ public:
 "color: rgb(255, 255, 255);"));
         sysSettingBut = new QPushButton(ParamSettingForm);
         sysSettingBut->setObjectName(QStringLiteral("sysSettingBut"));
-        sysSettingBut->setGeometry(QRect(30, 180, 144, 144));
+        sysSettingBut->setGeometry(QRect(30, 240, 144, 144));
         sysSettingBut->setFont(font);
         sysSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/sysSetting.bmp);\n"
 "color: rgb(255, 255, 255);"));
         countSettingBut = new QPushButton(ParamSettingForm);
         countSettingBut->setObjectName(QStringLiteral("countSettingBut"));
-        countSettingBut->setGeometry(QRect(30, 330, 144, 144));
+        countSettingBut->setGeometry(QRect(30, 330, 0, 0));
         countSettingBut->setFont(font);
         countSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/countSetting.bmp);\n"
 "color: rgb(255, 255, 255);"));
         aboutMacBut = new QPushButton(ParamSettingForm);
         aboutMacBut->setObjectName(QStringLiteral("aboutMacBut"));
-        aboutMacBut->setGeometry(QRect(30, 480, 144, 144));
+        aboutMacBut->setGeometry(QRect(30, 420, 144, 144));
         aboutMacBut->setFont(font);
         aboutMacBut->setStyleSheet(QLatin1String("background-image: url(:/Images/aboutMac.bmp);\n"
 "color: rgb(255, 255, 255);"));
@@ -80,7 +80,7 @@ public:
         paraManageStacWid->addWidget(page_2);
         paraExitBut = new QPushButton(ParamSettingForm);
         paraExitBut->setObjectName(QStringLiteral("paraExitBut"));
-        paraExitBut->setGeometry(QRect(30, 630, 144, 144));
+        paraExitBut->setGeometry(QRect(30, 600, 144, 144));
         paraExitBut->setFont(font);
         paraExitBut->setStyleSheet(QLatin1String("background-image: url(:/Images/exit.bmp);\n"
 "color: rgb(255, 255, 255);"));

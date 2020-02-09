@@ -1,21 +1,21 @@
-#include "variblewidget.h"
+#include "variabledm.h"
 #include <QTableWidget>
 #include "filemanageform.h"
 
-varibleWidget::varibleWidget(QWidget *parent)
+variableDM::variableDM(QWidget *parent)
 	: QWidget(parent)
 {
 	ui.setupUi(this);
+	connect(ui.returnVarDMBut,SIGNAL(clicked()),this,SLOT(returnVarDMBut_clicked()));
 
-	connect(ui.returnVarTextBut,SIGNAL(clicked()),this,SLOT(returnVarTextBut_clicked()));
 }
 
-varibleWidget::~varibleWidget()
+variableDM::~variableDM()
 {
 
 }
 
-void varibleWidget::returnVarTextBut_clicked()
+void variableDM::returnVarDMBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  

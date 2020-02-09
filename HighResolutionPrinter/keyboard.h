@@ -122,6 +122,8 @@ public slots:
 
 private slots:
 	void enter_KBBut_clicked();
+	void Esc_KBBut_clicked();
+
 	void backspace_KBBut_clicked();
 	void language_KBBut_clicked();
 

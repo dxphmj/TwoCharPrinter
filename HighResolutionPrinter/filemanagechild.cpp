@@ -20,10 +20,11 @@ FileManageChild::FileManageChild(QWidget *parent)
 	ui(new Ui::FileManageChild)
 {
 	ui->setupUi(this);
-
+	
 	ui->filePrivewtextEdit->installEventFilter(this);
 
-	connect(ui->localFileBut,SIGNAL(clicked()),this,SLOT(ShowLocalFilePath()));  
+	connect(ui->localFileBut,SIGNAL(clicked()),this,SLOT(ShowLocalFilePath()));
+	connect(ui->UdiskFileBut,SIGNAL(clicked()),this,SLOT(UdiskFileBut_clicked()));
 	connect(ui->loadSeleFileBut, SIGNAL(clicked()),this,SLOT(loadSeleFileBut_clicked())); 
 	connect(ui->editSeleFileBut,SIGNAL(clicked()),this,SLOT(editSeleFileBut_clicked()));
 	connect(ui->filelistWidget,SIGNAL(itemClicked(QListWidgetItem*)),this,SLOT(SetButtonEnableOn()));
@@ -31,6 +32,8 @@ FileManageChild::FileManageChild(QWidget *parent)
 	connect(ui->fileNmaeLineEdit,SIGNAL(clicked()),this,SLOT(fileNmaeLineEdit_click())); 
 	connect(ui->OKFileNameBut,SIGNAL(clicked()),this,SLOT(OKFileNameBut_clicked()));
 	connect(ui->delSeleFileBut,SIGNAL(clicked()),this,SLOT(delSeleFileBut_clicked()));
+	connect(ui->copyFile2localBut,SIGNAL(clicked()),this,SLOT(copyFile2localBut_clicked()));
+	connect(ui->filePreHorScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 
 	SetButtonEnableOff();
 	boolSaveAsBtn_Clicked = false;
@@ -38,6 +41,16 @@ FileManageChild::FileManageChild(QWidget *parent)
 	ShowLocalFilePath(); 
 	keyboardWidget = new keyboard(this);
 	keyboardWidget->setVisible(false);
+
+	ui->filePreHorScrollBar->setRange(0,100);
+	ui->filePrivewtextEdit->setGeometry(10, 10, 3121, 241);
+	
+}
+
+void FileManageChild::ScrollBarChanged(int value)
+{
+	double p = static_cast<double>(value)/static_cast<double>(ui->filePreHorScrollBar->maximum());
+	ui->filePrivewtextEdit->move(-2080*p,10);
 }
 
 void FileManageChild::SetButtonEnableOn()
@@ -46,6 +59,7 @@ void FileManageChild::SetButtonEnableOn()
 	ui->loadSeleFileBut->setEnabled(true);
 	ui->delSeleFileBut->setEnabled(true);
 	ui->OKFileNameBut->setEnabled(true);
+	ui->copyFile2localBut->setEnabled(true);
 	this->boolFileSelected = true;
 }
 
@@ -55,6 +69,7 @@ void FileManageChild::SetButtonEnableOff()
 	ui->loadSeleFileBut->setEnabled(false);
 	ui->delSeleFileBut->setEnabled(false);
 	ui->OKFileNameBut->setEnabled(false);
+	ui->copyFile2localBut->setEnabled(false);
 	this->boolFileSelected = false;
 }
 
@@ -86,6 +101,27 @@ void FileManageChild::delSeleFileBut_clicked()
 	{
 		this->m_pPrinterMes->OBJ_Vec.clear();
 		this->ui->fileNmaeLineEdit->setText("");
+	}
+	this->ShowLocalFilePath();
+}
+
+void FileManageChild::copyFile2localBut_clicked()
+{
+	QString qFileName = this->ui->fileNmaeLineEdit->text();
+	QString qFilePath = "User/Label/" + qFileName + ".lab";
+	QString qNewName = qFileName + "_copy";
+	QString qNewPath = "User/Label/" + qNewName + ".lab";
+	QFile qFile(qFilePath);
+	QFileInfo qNewFile(qNewPath);
+	if (!qNewFile.exists())
+	{
+		qFile.copy(qFilePath,qNewPath);
+		this->ui->fileNmaeLineEdit->setText(qNewName);
+	}
+	else
+	{
+		//弹出文件名重复
+		informationMessage();
 	}
 	this->ShowLocalFilePath();
 }
@@ -144,10 +180,7 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 	{
 		paintDot();
 		QPainter qFramePainter(this->ui->filePrivewtextEdit);
-		FileEditChild m_FileEditChild;
-		m_FileEditChild.DrawBackFrame(&qFramePainter);
-		QWidget *m_QWidget(this);
-		m_QWidget->update();
+		m_FileEditChild->DrawBackFrame(&qFramePainter);
 	}
 	return QWidget::eventFilter(watched,event);
 }
@@ -181,6 +214,11 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 		ui->filelistWidget->addItem(tmpListWidgetItem);  
 	}  
 }  
+
+void FileManageChild::UdiskFileBut_clicked()
+{
+	this->ui->filelistWidget->clear();
+}
 
 void FileManageChild::ShowLocalFilePath()
 {
