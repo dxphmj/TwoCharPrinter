@@ -6,6 +6,7 @@
 #include "ClassMessage.h"
 
 class keyboard;
+class numkeyboard;
 class FileManageChild;
 #include "ModuleMain.h"
 namespace Ui {
@@ -46,9 +47,11 @@ public:
 	float ZoomfactorDM;
 	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
+	numkeyboard *numkeyboardWidget;
 	QString SerialNumber_2;
 	int SerialNumber;
 	int SerialNumber_length;
+	int Barheight;
 private:
 	Ui::FileEditChild* ui;
 	
@@ -91,8 +94,8 @@ private slots:
 
 	void newBmpBut_clicked();
 
-	void zoomBarCodeAddBut_clicked();
-	void zoomBarCodeRedBut_clicked();
+	//void zoomBarCodeAddBut_clicked();
+	//void zoomBarCodeRedBut_clicked();
 	//void zoomQRAddBut_clicked();
 	//void zoomQRRedBut_clicked();
 	//void zoomDMAddBut_clicked();
@@ -101,7 +104,19 @@ private slots:
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
+
+	void SkewSkewValueEdit_clicked();
+	void initialValSerialLineEdit_clicked();
+	void termValSerialLineEdit_clicked();
+	void startValSerialLineEdit_clicked();
+	void stepLenSerialLineEdit_clicked();
+	void reptCountSerialLineEdit_clicked();
+	void digitSerialLineEdit_clicked();
 	void ScrollBarChanged(int);
+	void rimwideAddBut_clicked();
+	void rimwideRedButt_clicked();
+	void whitespaceAddBut_clicked();
+	void whitespaceRedButt_clicked();
 
 protected:
 	//void paintEvent(QPaintEvent *event);
