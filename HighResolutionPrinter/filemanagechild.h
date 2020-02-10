@@ -41,6 +41,7 @@ public:
 	bool boolFileSelected;
 	bool boolSaveAsBtn_Clicked;
 	void informationMessage();
+	void DrawBackFrame(QPainter *qFramePainter);
 
 public slots:  
 	void ShowLocalFilePath();
