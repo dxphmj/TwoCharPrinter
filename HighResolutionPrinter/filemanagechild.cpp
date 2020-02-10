@@ -180,7 +180,7 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 	{
 		paintDot();
 		QPainter qFramePainter(this->ui->filePrivewtextEdit);
-		m_FileEditChild->DrawBackFrame(&qFramePainter);
+		DrawBackFrame(&qFramePainter);
 	}
 	return QWidget::eventFilter(watched,event);
 }
@@ -191,6 +191,30 @@ void FileManageChild::paintDot()
 	m_pPrinterMes->DrawDot(&painter);
 	QWidget *m_QWidget(this);
 	m_QWidget->update();
+}
+
+void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
+{
+	QPen qGrayPen(Qt::gray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	int i,j;
+	for (i=0; i<=3121; i+=5)
+	{
+		//»­ÁÐ
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(i,0,i,241);
+	}
+	for (j=0; j<=241; j+=5)
+	{
+		//»­ÐÐ
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(0,j,3121,j);
+	}
+	qFramePainter->setPen(qRedPen);
+	qFramePainter->drawLine(0,0,0,240);
+	qFramePainter->drawLine(0,0,3120,0);
+	qFramePainter->drawLine(0,240,3120,240);
+	qFramePainter->drawLine(3120,0,3120,240);
 }
 
 void FileManageChild::slotShow(QDir dir)  

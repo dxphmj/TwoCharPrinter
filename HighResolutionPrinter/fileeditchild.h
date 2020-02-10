@@ -120,6 +120,8 @@ private slots:
 	void whitespaceAddBut_clicked();
 	void whitespaceRedButt_clicked();
 
+	void ChangePixel();
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
