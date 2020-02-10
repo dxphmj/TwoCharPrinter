@@ -173,54 +173,167 @@ void keyboard::changeCurrentlineedit()
 
 void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应的汉字置入备选框中
 {
-	QString key = m_pInputEdit->text();
-	CreateChineseMapLan();
-	QString value = ChineseLanMap[key];
-	if ( value == "" )          
-	{	
-		j1 = 0;
-		QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
-		QStringList temp = Delstr.split(",");
-		int length = temp.length();
-
-		for ( int i =0 ;i < length;i++)
-		{
-			splitOut.push_back(temp.at(i));
-		} 
-		FontSelect();
-		splitOut.clear();
-	}
-	else
+	switch (m_LanType)
 	{
-		j1 = 0;
-		//value +=QStringLiteral(",");
-		//splitOut = split(value);
-		QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
-		int length = temp.length();//读取分割后的字符串个数
+	case 0: //chinese
+		{	
+			QString key = m_pInputEdit->text();
+			CreateChineseMapLan();
+			QString value = ChineseLanMap[key];
+			if ( value == "" )          
+			{	
+				j1 = 0;
+				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
+				QStringList temp = Delstr.split(",");
+				int length = temp.length();
 
-		for ( int i =0 ;i < length;i++)//遍历，将每一个字符串置入到vector对应的位置
-		{
-			splitOut.push_back(temp.at(i));
-		} 
-		if ( splitOut.size() < 11 )
-		{
-			i1 = 1;
-		} 
-		else if( splitOut.size() <21)
-		{
-			i1 = 11;
+				for ( int i =0 ;i < length;i++)
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				FontSelect();
+				splitOut.clear();
+			}
+			else
+			{
+				j1 = 0;
+				//value +=QStringLiteral(",");
+				//splitOut = split(value);
+				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
+				int length = temp.length();//读取分割后的字符串个数
+
+				for ( int i =0 ;i < length;i++)//遍历，将每一个字符串置入到vector对应的位置
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				if ( splitOut.size() < 11 )
+				{
+					i1 = 1;
+				} 
+				else if( splitOut.size() <21)
+				{
+					i1 = 11;
+				}
+				else if( splitOut.size() < 31)
+				{
+					i1 = 21;
+				}
+				else
+				{
+					i1 = 31;
+				}
+				FontSelect();
+				splitOut.clear();
+				//break;
+			}
+			break;
 		}
-		else if( splitOut.size() < 31)
-		{
-			i1 = 21;
+	case 1: //Japanese
+		{	
+			QString key = m_pInputEdit->text();
+			CreateJapaneseMapLan();
+			QString value = JapaneseLanMap[key];
+			if ( value == "" )          
+			{	
+				j1 = 0;
+				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
+				QStringList temp = Delstr.split(",");
+				int length = temp.length();
+
+				for ( int i =0 ;i < length;i++)
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				FontSelect();
+				splitOut.clear();
+			}
+			else
+			{
+				j1 = 0;
+				//value +=QStringLiteral(",");
+				//splitOut = split(value);
+				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
+				int length = temp.length();//读取分割后的字符串个数
+
+				for ( int i =0 ;i < length;i++)//遍历，将每一个字符串置入到vector对应的位置
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				if ( splitOut.size() < 11 )
+				{
+					i1 = 1;
+				} 
+				else if( splitOut.size() <21)
+				{
+					i1 = 11;
+				}
+				else if( splitOut.size() < 31)
+				{
+					i1 = 21;
+				}
+				else
+				{
+					i1 = 31;
+				}
+				FontSelect();
+				splitOut.clear();
+				//break;
+			}
+			break;
 		}
-		else
-		{
-			i1 = 31;
+	case 22: //Korean
+		{	
+			QString key = m_pInputEdit->text();
+			CreateKoreanMapLan();
+			QString value = KoreanLanMap[key];
+			if ( value == "" )          
+			{	
+				j1 = 0;
+				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
+				QStringList temp = Delstr.split(",");
+				int length = temp.length();
+
+				for ( int i =0 ;i < length;i++)
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				FontSelect();
+				splitOut.clear();
+			}
+			else
+			{
+				j1 = 0;
+				//value +=QStringLiteral(",");
+				//splitOut = split(value);
+				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
+				int length = temp.length();//读取分割后的字符串个数
+
+				for ( int i =0 ;i < length;i++)//遍历，将每一个字符串置入到vector对应的位置
+				{
+					splitOut.push_back(temp.at(i));
+				} 
+				if ( splitOut.size() < 11 )
+				{
+					i1 = 1;
+				} 
+				else if( splitOut.size() <21)
+				{
+					i1 = 11;
+				}
+				else if( splitOut.size() < 31)
+				{
+					i1 = 21;
+				}
+				else
+				{
+					i1 = 31;
+				}
+				FontSelect();
+				splitOut.clear();
+				//break;
+			}
+			break;
 		}
-		FontSelect();
-		splitOut.clear();
-		//break;
 	}
 }
 
@@ -230,7 +343,7 @@ void keyboard::InsertChineseToLine()
 	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
 }
 
-void keyboard::CreateChineseMapLan()
+void keyboard::CreateChineseMapLan()//中文字库
 {
 	ChineseLanMap[QStringLiteral("an")] = QStringLiteral("安,氨,鞍,俺,岸,按,案,胺,暗, , , , , , ");
 	ChineseLanMap[QStringLiteral("ai")] = QStringLiteral("哎,哀,唉,埃,挨,皑,癌,矮,蔼,艾,爱,隘,碍, , ");
@@ -1369,6 +1482,3052 @@ void keyboard::CreateChineseMapLan()
 	ChineseLanMap[QStringLiteral("zuo")] = QStringLiteral("昨,左,佐,作,坐,座,做, , , , , , , , ");
 }//中文字库
 
+void keyboard::CreateJapaneseMapLan()
+{
+	JapaneseLanMap[QStringLiteral("a")] = QStringLiteral("あ,ア, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ka")] = QStringLiteral("か,カ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("sa")] = QStringLiteral("さ,サ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ta")] = QStringLiteral("た,タ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("na")] = QStringLiteral("な,ナ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ha")] = QStringLiteral("は,ハ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ma")] = QStringLiteral("ま,マ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ya")] = QStringLiteral("や,ヤ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ra")] = QStringLiteral("ら,ラ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("wa")] = QStringLiteral("わ,ワ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("n")] = QStringLiteral("ん,ン, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("i")] = QStringLiteral("い,イ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ki")] = QStringLiteral("き,キ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("shi")] = QStringLiteral("し,シ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("chi")] = QStringLiteral("ち,チ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ni")] = QStringLiteral("に,ニ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("hi")] = QStringLiteral("ひ,ヒ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("mi")] = QStringLiteral("み,ミ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ri")] = QStringLiteral("り,リ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("u")] = QStringLiteral("う,ウ, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("ku")] = QStringLiteral("く,ク, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("su")] = QStringLiteral("す,ス, , , , , , , , , , , , , ");
+
+
+
+	JapaneseLanMap[QStringLiteral("tsu")] = QStringLiteral("つ,ツ, , , , , , , , , , , , , ");
+
+	JapaneseLanMap[QStringLiteral("nu")] = QStringLiteral("ぬ,ヌ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("fu")] = QStringLiteral("ふ,フ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("mu")] = QStringLiteral("む,ム, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("yu")] = QStringLiteral("ゆ,ユ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ru")] = QStringLiteral("る,ル, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("e")] = QStringLiteral("え,エ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ke")] = QStringLiteral("け,ケ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("se")] = QStringLiteral("せ,セ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("te")] = QStringLiteral("て,テ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ne")] = QStringLiteral("ね,ネ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("he")] = QStringLiteral("へ,ヘ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("me")] = QStringLiteral("め,メ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("re")] = QStringLiteral("れ,レ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("o")] = QStringLiteral("お,オ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ko")] = QStringLiteral("こ,コ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("so")] = QStringLiteral("そ,ソ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("to")] = QStringLiteral("と,ト, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("no")] = QStringLiteral("の,ノ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ho")] = QStringLiteral("ほ,ホ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("mo")] = QStringLiteral("も,モ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("yo")] = QStringLiteral("よ,ヨ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ro")] = QStringLiteral("ろ,ロ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("wo")] = QStringLiteral("を,ヲ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ga")] = QStringLiteral("が,ガ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("za")] = QStringLiteral("ざ,ザ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("da")] = QStringLiteral("だ,ダ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ba")] = QStringLiteral("ば,バ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("gi")] = QStringLiteral("ぎ,ギ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ji")] = QStringLiteral("じ,ジ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("zi")] = QStringLiteral("じ,ジ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("di")] = QStringLiteral("ぢ,ヂ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("bi")] = QStringLiteral("び,ビ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("gu")] = QStringLiteral("ぐ,グ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("zu")] = QStringLiteral("ず,ズ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("du")] = QStringLiteral("づ,ヅ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("bu")] = QStringLiteral("ぶ,ブ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ge")] = QStringLiteral("げ,ゲ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ze")] = QStringLiteral("ぜ,ゼ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("de")] = QStringLiteral("で,デ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("be")] = QStringLiteral("べ,ベ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("go")] = QStringLiteral("ご,ゴ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("zo")] = QStringLiteral("ぞ,ゾ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("do")] = QStringLiteral("ど,ド, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("bo")] = QStringLiteral("ぼ,ボ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pa")] = QStringLiteral("ぱ,パ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pi")] = QStringLiteral("ぴ,ピ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pu")] = QStringLiteral("プ,ピ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pe")] = QStringLiteral("ぺ,ペ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("po")] = QStringLiteral("ぽ,ポ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("kya")] = QStringLiteral("きゃ,キャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("gya")] = QStringLiteral("ぎゃ,ギャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("sha")] = QStringLiteral("しゃ,シャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ja")] = QStringLiteral("じゃ,ジャ,ヂャ, , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("cha")] = QStringLiteral("ちゃ,チャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("nya")] = QStringLiteral("にゃ,ニャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("dya")] = QStringLiteral("ぢゃ, , , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("hya")] = QStringLiteral("ひゃ,ヒャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("bya")] = QStringLiteral("びゃ,ビャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pya")] = QStringLiteral("ぴゃ,ピャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("mya")] = QStringLiteral("みゃ,ミャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("rya")] = QStringLiteral("りゃ,リャ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("kyu")] = QStringLiteral("キュ,きゅ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("gyu")] = QStringLiteral("ぎゅ,ギュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("shu")] = QStringLiteral("しゅ,シュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ju")] = QStringLiteral("じゅ,ジュ,ヂュ, , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("chu")] = QStringLiteral("ちゅ,チュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("nyu")] = QStringLiteral("にゅ,ニュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("hyu")] = QStringLiteral("ひゅ,ヒュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("byu")] = QStringLiteral("びゅ,ビュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pyu")] = QStringLiteral("ぴゅ,ピュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("myu")] = QStringLiteral("みゅ,ミュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ryu")] = QStringLiteral("りゅ,リュ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("kyo")] = QStringLiteral("きょ,キョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("gyo")] = QStringLiteral("ぎょ,ギョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("sho")] = QStringLiteral("しょ,ショ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("jo")] = QStringLiteral("じょ,ジョ,ジョ, , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("cho")] = QStringLiteral("ちょ,ショ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("dyo")] = QStringLiteral("ぢょ, , , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("nyo")] = QStringLiteral("にょ,ニョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("hyo")] = QStringLiteral("ひょ,ヒョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("byo")] = QStringLiteral("びょ,ビョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("pyo")] = QStringLiteral("ぴょ,ピョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("myo")] = QStringLiteral("みょ,ミョ, , , , , , , , , , , , , ");
+
+
+	JapaneseLanMap[QStringLiteral("ryo")] = QStringLiteral("りょ,リョ, , , , , , , , , , , , , ");
+}
+
+void keyboard::CreateKoreanMapLan()
+{
+	KoreanLanMap[QStringLiteral("ㄱ"
+
+		)] = QStringLiteral("ㄱ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴ"
+
+		)] = QStringLiteral("ㄴ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹ"
+
+		)] = QStringLiteral("ㄹ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁ"
+
+		)] = QStringLiteral("ㅁ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂ"
+
+		)] = QStringLiteral("ㅂ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅ"
+
+		)] = QStringLiteral("ㅅ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇ"
+
+		)] = QStringLiteral("ㅇ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈ"
+
+		)] = QStringLiteral("ㅈ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊ"
+
+		)] = QStringLiteral("ㅊ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋ"
+
+		)] = QStringLiteral("ㅋ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌ"
+
+		)] = QStringLiteral("ㅌ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍ"
+
+		)] = QStringLiteral("ㅍ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎ"
+
+		)] = QStringLiteral("ㅎ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲ"
+
+		)] = QStringLiteral("ㄲ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸ"
+
+		)] = QStringLiteral("ㄸ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃ"
+
+		)] = QStringLiteral("ㅃ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆ"
+
+		)] = QStringLiteral("ㅆ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉ"
+
+		)] = QStringLiteral("ㅉ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅏ"
+
+		)] = QStringLiteral("ㅏ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅑ"
+
+		)] = QStringLiteral("ㅅ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅓ"
+
+		)] = QStringLiteral("ㅓ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅕ"
+
+		)] = QStringLiteral("ㅕ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅗ"
+
+		)] = QStringLiteral("ㅗ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅛ"
+
+		)] = QStringLiteral("ㅛ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅜ"
+
+		)] = QStringLiteral("ㅜ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅠ"
+
+		)] = QStringLiteral("ㅠ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅡ"
+
+		)] = QStringLiteral("ㅡ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅣ"
+
+		)] = QStringLiteral("ㅣ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅐ"
+
+		)] = QStringLiteral("ㅐ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅒ"
+
+		)] = QStringLiteral("ㅒ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅔ"
+
+		)] = QStringLiteral("ㅔ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅖ"
+
+		)] = QStringLiteral("ㅖ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅘ"
+
+		)] = QStringLiteral("ㅘ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅙ"
+
+		)] = QStringLiteral("ㅙ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅚ"
+
+		)] = QStringLiteral("ㅚ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅝ"
+
+		)] = QStringLiteral("ㅝ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅞ"
+
+		)] = QStringLiteral("ㅞ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅟ"
+
+		)] = QStringLiteral("ㅟ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅢ"
+
+		)] = QStringLiteral("ㅢ, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가"
+
+		)] = QStringLiteral("가, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나"
+
+		)] = QStringLiteral("나, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다"
+
+		)] = QStringLiteral("다, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라"
+
+		)] = QStringLiteral("라, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마"
+
+		)] = QStringLiteral("마, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바"
+
+		)] = QStringLiteral("바, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사"
+
+		)] = QStringLiteral("사, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아"
+
+		)] = QStringLiteral("아, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자"
+
+		)] = QStringLiteral("자, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차"
+
+		)] = QStringLiteral("차, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카"
+
+		)] = QStringLiteral("카, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타"
+
+		)] = QStringLiteral("타, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파"
+
+		)] = QStringLiteral("파, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하"
+
+		)] = QStringLiteral("하, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅏ"
+
+		)] = QStringLiteral("가, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅑ"
+
+		)] = QStringLiteral("갸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅓ"
+
+		)] = QStringLiteral("거, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅕ"
+
+		)] = QStringLiteral("겨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅗ"
+
+		)] = QStringLiteral("고, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅛ"
+
+		)] = QStringLiteral("교, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅜ"
+
+		)] = QStringLiteral("구, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅠ"
+
+		)] = QStringLiteral("규, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅡ"
+
+		)] = QStringLiteral("그, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅣ"
+
+		)] = QStringLiteral("기, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅏ"
+
+		)] = QStringLiteral("나, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅑ"
+
+		)] = QStringLiteral("냐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅓ"
+
+		)] = QStringLiteral("너, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅕ"
+
+		)] = QStringLiteral("녀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅗ"
+
+		)] = QStringLiteral("노, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅛ"
+
+		)] = QStringLiteral("뇨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅜ"
+
+		)] = QStringLiteral("누, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅠ"
+
+		)] = QStringLiteral("뉴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅡ"
+
+		)] = QStringLiteral("느, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅣ"
+
+		)] = QStringLiteral("니, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅏ"
+
+		)] = QStringLiteral("다, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅑ"
+
+		)] = QStringLiteral("댜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅓ"
+
+		)] = QStringLiteral("더, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅕ"
+
+		)] = QStringLiteral("뎌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅗ"
+
+		)] = QStringLiteral("도, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅛ"
+
+		)] = QStringLiteral("됴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅜ"
+
+		)] = QStringLiteral("두, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅠ"
+
+		)] = QStringLiteral("듀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅡ"
+
+		)] = QStringLiteral("드, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅣ"
+
+		)] = QStringLiteral("디, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅏ"
+
+		)] = QStringLiteral("라, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅑ"
+
+		)] = QStringLiteral("랴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅓ"
+
+		)] = QStringLiteral("러, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅕ"
+
+		)] = QStringLiteral("려, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅗ"
+
+		)] = QStringLiteral("로, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅛ"
+
+		)] = QStringLiteral("료, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅜ"
+
+		)] = QStringLiteral("루, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅠ"
+
+		)] = QStringLiteral("류, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅡ"
+
+		)] = QStringLiteral("르, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅣ"
+
+		)] = QStringLiteral("리, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅏ"
+
+		)] = QStringLiteral("마, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅑ"
+
+		)] = QStringLiteral("먀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅓ"
+
+		)] = QStringLiteral("머, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅕ"
+
+		)] = QStringLiteral("며, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅗ"
+
+		)] = QStringLiteral("모, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅛ"
+
+		)] = QStringLiteral("묘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅜ"
+
+		)] = QStringLiteral("무, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅠ"
+
+		)] = QStringLiteral("뮤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅡ"
+
+		)] = QStringLiteral("므, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅣ"
+
+		)] = QStringLiteral("미, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅏ"
+
+		)] = QStringLiteral("바, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅑ"
+
+		)] = QStringLiteral("뱌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅓ"
+
+		)] = QStringLiteral("버, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅕ"
+
+		)] = QStringLiteral("벼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅗ"
+
+		)] = QStringLiteral("보, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅛ"
+
+		)] = QStringLiteral("뵤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅜ"
+
+		)] = QStringLiteral("부, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅠ"
+
+		)] = QStringLiteral("뷰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅡ"
+
+		)] = QStringLiteral("브, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅣ"
+
+		)] = QStringLiteral("비, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅏ"
+
+		)] = QStringLiteral("사, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅑ"
+
+		)] = QStringLiteral("샤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅓ"
+
+		)] = QStringLiteral("서, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅕ"
+
+		)] = QStringLiteral("셔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅗ"
+
+		)] = QStringLiteral("소, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅛ"
+
+		)] = QStringLiteral("쇼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅜ"
+
+		)] = QStringLiteral("수, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅠ"
+
+		)] = QStringLiteral("슈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅡ"
+
+		)] = QStringLiteral("스, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅣ"
+
+		)] = QStringLiteral("시, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅏ"
+
+		)] = QStringLiteral("아, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅑ"
+
+		)] = QStringLiteral("야, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅓ"
+
+		)] = QStringLiteral("어, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅕ"
+
+		)] = QStringLiteral("여, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅗ"
+
+		)] = QStringLiteral("오, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅛ"
+
+		)] = QStringLiteral("요, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅜ"
+
+		)] = QStringLiteral("우, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅠ"
+
+		)] = QStringLiteral("유, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅡ"
+
+		)] = QStringLiteral("으, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅣ"
+
+		)] = QStringLiteral("이, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅏ"
+
+		)] = QStringLiteral("자, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅑ"
+
+		)] = QStringLiteral("쟈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅓ"
+
+		)] = QStringLiteral("저, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅕ"
+
+		)] = QStringLiteral("져, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅗ"
+
+		)] = QStringLiteral("조, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅛ"
+
+		)] = QStringLiteral("쵸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅜ"
+
+		)] = QStringLiteral("추, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅠ"
+
+		)] = QStringLiteral("츄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅡ"
+
+		)] = QStringLiteral("츠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅣ"
+
+		)] = QStringLiteral("치, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅏ"
+
+		)] = QStringLiteral("카, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅑ"
+
+		)] = QStringLiteral("캬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅓ"
+
+		)] = QStringLiteral("커, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅕ"
+
+		)] = QStringLiteral("켜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅗ"
+
+		)] = QStringLiteral("코, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅛ"
+
+		)] = QStringLiteral("쿄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅜ"
+
+		)] = QStringLiteral("쿠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅠ"
+
+		)] = QStringLiteral("큐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅡ"
+
+		)] = QStringLiteral("크, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅣ"
+
+		)] = QStringLiteral("키, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅏ"
+
+		)] = QStringLiteral("타, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅑ"
+
+		)] = QStringLiteral("탸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅓ"
+
+		)] = QStringLiteral("터, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅕ"
+
+		)] = QStringLiteral("텨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅗ"
+
+		)] = QStringLiteral("토, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅛ"
+
+		)] = QStringLiteral("툐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅜ"
+
+		)] = QStringLiteral("투, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅠ"
+
+		)] = QStringLiteral("튜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅡ"
+
+		)] = QStringLiteral("트, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅣ"
+
+		)] = QStringLiteral("티, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅏ"
+
+		)] = QStringLiteral("파, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅑ"
+
+		)] = QStringLiteral("퍄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅓ"
+
+		)] = QStringLiteral("퍼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅕ"
+
+		)] = QStringLiteral("펴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅗ"
+
+		)] = QStringLiteral("포, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅛ"
+
+		)] = QStringLiteral("표, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅜ"
+
+		)] = QStringLiteral("푸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅠ"
+
+		)] = QStringLiteral("퓨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅡ"
+
+		)] = QStringLiteral("프, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅣ"
+
+		)] = QStringLiteral("피, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅏ"
+
+		)] = QStringLiteral("하, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅑ"
+
+		)] = QStringLiteral("햐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅓ"
+
+		)] = QStringLiteral("허, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅕ"
+
+		)] = QStringLiteral("혀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅗ"
+
+		)] = QStringLiteral("호, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅛ"
+
+		)] = QStringLiteral("효, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅜ"
+
+		)] = QStringLiteral("후, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅠ"
+
+		)] = QStringLiteral("휴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅡ"
+
+		)] = QStringLiteral("흐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅣ"
+
+		)] = QStringLiteral("히, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅏ"
+
+		)] = QStringLiteral("까, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅑ"
+
+		)] = QStringLiteral("꺄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅓ"
+
+		)] = QStringLiteral("꺼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅕ"
+
+		)] = QStringLiteral("껴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅗ"
+
+		)] = QStringLiteral("꼬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅛ"
+
+		)] = QStringLiteral("꾜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅜ"
+
+		)] = QStringLiteral("꾸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅠ"
+
+		)] = QStringLiteral("뀨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅡ"
+
+		)] = QStringLiteral("끄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅣ"
+
+		)] = QStringLiteral("끼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅏ"
+
+		)] = QStringLiteral("따, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅑ"
+
+		)] = QStringLiteral("땨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅓ"
+
+		)] = QStringLiteral("떠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅕ"
+
+		)] = QStringLiteral("뗘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅗ"
+
+		)] = QStringLiteral("또, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅛ"
+
+		)] = QStringLiteral("뚀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅜ"
+
+		)] = QStringLiteral("뚜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅠ"
+
+		)] = QStringLiteral("뜌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅡ"
+
+		)] = QStringLiteral("뜨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅣ"
+
+		)] = QStringLiteral("띠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅏ"
+
+		)] = QStringLiteral("빠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅑ"
+
+		)] = QStringLiteral("뺘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅓ"
+
+		)] = QStringLiteral("뻐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅕ"
+
+		)] = QStringLiteral("뼈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅗ"
+
+		)] = QStringLiteral("뽀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅛ"
+
+		)] = QStringLiteral("뾰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅜ"
+
+		)] = QStringLiteral("뿌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅠ"
+
+		)] = QStringLiteral("쀼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅡ"
+
+		)] = QStringLiteral("쁘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅣ"
+
+		)] = QStringLiteral("삐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅏ"
+
+		)] = QStringLiteral("싸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅑ"
+
+		)] = QStringLiteral("쌰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅓ"
+
+		)] = QStringLiteral("써, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅕ"
+
+		)] = QStringLiteral("쎠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅗ"
+
+		)] = QStringLiteral("쏘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅛ"
+
+		)] = QStringLiteral("쑈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅜ"
+
+		)] = QStringLiteral("쑤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅠ"
+
+		)] = QStringLiteral("쓔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅡ"
+
+		)] = QStringLiteral("쓰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅣ"
+
+		)] = QStringLiteral("씨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅏ"
+
+		)] = QStringLiteral("짜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅑ"
+
+		)] = QStringLiteral("쨔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅓ"
+
+		)] = QStringLiteral("쩌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅕ"
+
+		)] = QStringLiteral("쪄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅗ"
+
+		)] = QStringLiteral("쪼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅛ"
+
+		)] = QStringLiteral("쬬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅜ"
+
+		)] = QStringLiteral("쭈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅠ"
+
+		)] = QStringLiteral("쮸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅡ"
+
+		)] = QStringLiteral("쯔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅣ"
+
+		)] = QStringLiteral("찌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅐ"
+
+		)] = QStringLiteral("개, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅒ"
+
+		)] = QStringLiteral("걔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅔ"
+
+		)] = QStringLiteral("게, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅖ"
+
+		)] = QStringLiteral("계, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅘ"
+
+		)] = QStringLiteral("과, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅙ"
+
+		)] = QStringLiteral("괘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅚ"
+
+		)] = QStringLiteral("괴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅝ"
+
+		)] = QStringLiteral("궈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅞ"
+
+		)] = QStringLiteral("궤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅟ"
+
+		)] = QStringLiteral("귀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄱㅢ"
+
+		)] = QStringLiteral("긔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅐ"
+
+		)] = QStringLiteral("내, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅒ"
+
+		)] = QStringLiteral("냬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅔ"
+
+		)] = QStringLiteral("네, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅖ"
+
+		)] = QStringLiteral("녜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅘ"
+
+		)] = QStringLiteral("놔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅙ"
+
+		)] = QStringLiteral("놰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅚ"
+
+		)] = QStringLiteral("뇌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅝ"
+
+		)] = QStringLiteral("눠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅞ"
+
+		)] = QStringLiteral("눼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅟ"
+
+		)] = QStringLiteral("뉘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄴㅢ"
+
+		)] = QStringLiteral("늬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅐ"
+
+		)] = QStringLiteral("대, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅒ"
+
+		)] = QStringLiteral("댸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅔ"
+
+		)] = QStringLiteral("데, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅖ"
+
+		)] = QStringLiteral("뎨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅘ"
+
+		)] = QStringLiteral("돠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅙ"
+
+		)] = QStringLiteral("돼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅚ"
+
+		)] = QStringLiteral("되, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅝ"
+
+		)] = QStringLiteral("둬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅞ"
+
+		)] = QStringLiteral("뒈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅟ"
+
+		)] = QStringLiteral("뒤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄷㅢ"
+
+		)] = QStringLiteral("듸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅐ"
+
+		)] = QStringLiteral("래, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅒ"
+
+		)] = QStringLiteral("럐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅔ"
+
+		)] = QStringLiteral("레, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅖ"
+
+		)] = QStringLiteral("례, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅘ"
+
+		)] = QStringLiteral("롸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅙ"
+
+		)] = QStringLiteral("뢔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅚ"
+
+		)] = QStringLiteral("뢰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅝ"
+
+		)] = QStringLiteral("뤄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅞ"
+
+		)] = QStringLiteral("뤠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅟ"
+
+		)] = QStringLiteral("뤼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄹㅢ"
+
+		)] = QStringLiteral("릐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅐ"
+
+		)] = QStringLiteral("매, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅒ"
+
+		)] = QStringLiteral("먜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅔ"
+
+		)] = QStringLiteral("메, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅖ"
+
+		)] = QStringLiteral("몌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅘ"
+
+		)] = QStringLiteral("뫄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅙ"
+
+		)] = QStringLiteral("뫠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅚ"
+
+		)] = QStringLiteral("뫼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅝ"
+
+		)] = QStringLiteral("뭐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅞ"
+
+		)] = QStringLiteral("뭬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅟ"
+
+		)] = QStringLiteral("뮈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅁㅢ"
+
+		)] = QStringLiteral("믜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅐ"
+
+		)] = QStringLiteral("배, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅒ"
+
+		)] = QStringLiteral("뱨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅔ"
+
+		)] = QStringLiteral("베, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅖ"
+
+		)] = QStringLiteral("볘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅘ"
+
+		)] = QStringLiteral("봐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅙ"
+
+		)] = QStringLiteral("봬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅚ"
+
+		)] = QStringLiteral("뵈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅝ"
+
+		)] = QStringLiteral("붜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅞ"
+
+		)] = QStringLiteral("붸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅟ"
+
+		)] = QStringLiteral("뷔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅂㅢ"
+
+		)] = QStringLiteral("븨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅐ"
+
+		)] = QStringLiteral("새, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅒ"
+
+		)] = QStringLiteral("섀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅔ"
+
+		)] = QStringLiteral("세, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅖ"
+
+		)] = QStringLiteral("셰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅘ"
+
+		)] = QStringLiteral("솨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅙ"
+
+		)] = QStringLiteral("쇄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅚ"
+
+		)] = QStringLiteral("쇠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅝ"
+
+		)] = QStringLiteral("숴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅞ"
+
+		)] = QStringLiteral("쉐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅟ"
+
+		)] = QStringLiteral("쉬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅅㅢ"
+
+		)] = QStringLiteral("싀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅐ"
+
+		)] = QStringLiteral("애, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅒ"
+
+		)] = QStringLiteral("얘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅔ"
+
+		)] = QStringLiteral("에, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅖ"
+
+		)] = QStringLiteral("예, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅘ"
+
+		)] = QStringLiteral("와, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅙ"
+
+		)] = QStringLiteral("왜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅚ"
+
+		)] = QStringLiteral("외, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅝ"
+
+		)] = QStringLiteral("워, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅞ"
+
+		)] = QStringLiteral("웨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅟ"
+
+		)] = QStringLiteral("위, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅇㅢ"
+
+		)] = QStringLiteral("의, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅐ"
+
+		)] = QStringLiteral("재, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅒ"
+
+		)] = QStringLiteral("쟤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅔ"
+
+		)] = QStringLiteral("제, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅖ"
+
+		)] = QStringLiteral("졔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅘ"
+
+		)] = QStringLiteral("좌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅙ"
+
+		)] = QStringLiteral("좨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅚ"
+
+		)] = QStringLiteral("죄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅝ"
+
+		)] = QStringLiteral("줘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅞ"
+
+		)] = QStringLiteral("줴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅟ"
+
+		)] = QStringLiteral("쥐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅈㅢ"
+
+		)] = QStringLiteral("즤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅐ"
+
+		)] = QStringLiteral("채, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅒ"
+
+		)] = QStringLiteral("챼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅔ"
+
+		)] = QStringLiteral("체, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅖ"
+
+		)] = QStringLiteral("쳬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅘ"
+
+		)] = QStringLiteral("촤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅙ"
+
+		)] = QStringLiteral("쵀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅚ"
+
+		)] = QStringLiteral("최, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅝ"
+
+		)] = QStringLiteral("춰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅞ"
+
+		)] = QStringLiteral("췌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅟ"
+
+		)] = QStringLiteral("취, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅊㅢ"
+
+		)] = QStringLiteral("츼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅐ"
+
+		)] = QStringLiteral("캐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅒ"
+
+		)] = QStringLiteral("컈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅔ"
+
+		)] = QStringLiteral("케, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅖ"
+
+		)] = QStringLiteral("켸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅘ"
+
+		)] = QStringLiteral("콰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅙ"
+
+		)] = QStringLiteral("쾌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅚ"
+
+		)] = QStringLiteral("쾨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅝ"
+
+		)] = QStringLiteral("쿼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅞ"
+
+		)] = QStringLiteral("퀘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅟ"
+
+		)] = QStringLiteral("퀴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅋㅢ"
+
+		)] = QStringLiteral("킈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅐ"
+
+		)] = QStringLiteral("태, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅒ"
+
+		)] = QStringLiteral("턔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅔ"
+
+		)] = QStringLiteral("테, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅖ"
+
+		)] = QStringLiteral("톄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅘ"
+
+		)] = QStringLiteral("톼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅙ"
+
+		)] = QStringLiteral("퇘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅚ"
+
+		)] = QStringLiteral("퇴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅝ"
+
+		)] = QStringLiteral("퉈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅞ"
+
+		)] = QStringLiteral("퉤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅟ"
+
+		)] = QStringLiteral("튀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅌㅢ"
+
+		)] = QStringLiteral("틔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅐ"
+
+		)] = QStringLiteral("패, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅒ"
+
+		)] = QStringLiteral("퍠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅔ"
+
+		)] = QStringLiteral("페, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅖ"
+
+		)] = QStringLiteral("폐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅘ"
+
+		)] = QStringLiteral("퐈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅙ"
+
+		)] = QStringLiteral("퐤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅚ"
+
+		)] = QStringLiteral("푀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅝ"
+
+		)] = QStringLiteral("풔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅞ"
+
+		)] = QStringLiteral("풰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅟ"
+
+		)] = QStringLiteral("퓌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅍㅢ"
+
+		)] = QStringLiteral("픠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅐ"
+
+		)] = QStringLiteral("해, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅒ"
+
+		)] = QStringLiteral("햬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅔ"
+
+		)] = QStringLiteral("헤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅖ"
+
+		)] = QStringLiteral("혜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅘ"
+
+		)] = QStringLiteral("화, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅙ"
+
+		)] = QStringLiteral("홰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅚ"
+
+		)] = QStringLiteral("회, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅝ"
+
+		)] = QStringLiteral("훠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅞ"
+
+		)] = QStringLiteral("훼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅟ"
+
+		)] = QStringLiteral("휘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅎㅢ"
+
+		)] = QStringLiteral("희, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅐ"
+
+		)] = QStringLiteral("깨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅒ"
+
+		)] = QStringLiteral("꺠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅔ"
+
+		)] = QStringLiteral("께, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅖ"
+
+		)] = QStringLiteral("꼐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅘ"
+
+		)] = QStringLiteral("꽈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅙ"
+
+		)] = QStringLiteral("꽤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅚ"
+
+		)] = QStringLiteral("꾀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅝ"
+
+		)] = QStringLiteral("꿔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅞ"
+
+		)] = QStringLiteral("꿰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅟ"
+
+		)] = QStringLiteral("뀌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄲㅢ"
+
+		)] = QStringLiteral("끠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅐ"
+
+		)] = QStringLiteral("때, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅒ"
+
+		)] = QStringLiteral("떄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅔ"
+
+		)] = QStringLiteral("떼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅖ"
+
+		)] = QStringLiteral("뗴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅘ"
+
+		)] = QStringLiteral("똬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅙ"
+
+		)] = QStringLiteral("뙈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅚ"
+
+		)] = QStringLiteral("뙤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅝ"
+
+		)] = QStringLiteral("뚸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅞ"
+
+		)] = QStringLiteral("뛔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅟ"
+
+		)] = QStringLiteral("뛰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㄸㅢ"
+
+		)] = QStringLiteral("띄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅐ"
+
+		)] = QStringLiteral("빼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅒ"
+
+		)] = QStringLiteral("뺴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅔ"
+
+		)] = QStringLiteral("뻬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅖ"
+
+		)] = QStringLiteral("뼤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅘ"
+
+		)] = QStringLiteral("뽜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅙ"
+
+		)] = QStringLiteral("뽸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅚ"
+
+		)] = QStringLiteral("뾔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅝ"
+
+		)] = QStringLiteral("뿨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅞ"
+
+		)] = QStringLiteral("쀄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅟ"
+
+		)] = QStringLiteral("쀠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅃㅢ"
+
+		)] = QStringLiteral("쁴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅐ"
+
+		)] = QStringLiteral("쌔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅒ"
+
+		)] = QStringLiteral("썌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅔ"
+
+		)] = QStringLiteral("쎄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅖ"
+
+		)] = QStringLiteral("쎼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅘ"
+
+		)] = QStringLiteral("쏴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅙ"
+
+		)] = QStringLiteral("쐐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅚ"
+
+		)] = QStringLiteral("쐬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅝ"
+
+		)] = QStringLiteral("쒀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅞ"
+
+		)] = QStringLiteral("쒜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅟ"
+
+		)] = QStringLiteral("쒸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅆㅢ"
+
+		)] = QStringLiteral("씌, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅐ"
+
+		)] = QStringLiteral("째, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅒ"
+
+		)] = QStringLiteral("쨰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅔ"
+
+		)] = QStringLiteral("쩨, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅖ"
+
+		)] = QStringLiteral("쪠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅘ"
+
+		)] = QStringLiteral("쫘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅙ"
+
+		)] = QStringLiteral("쫴, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅚ"
+
+		)] = QStringLiteral("쬐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅝ"
+
+		)] = QStringLiteral("쭤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅞ"
+
+		)] = QStringLiteral("쮀, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅟ"
+
+		)] = QStringLiteral("쮜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("ㅉㅢ"
+
+		)] = QStringLiteral("쯰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㄱ"
+
+		)] = QStringLiteral("각, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㄴ"
+
+		)] = QStringLiteral("간, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㄷ"
+
+		)] = QStringLiteral("갇, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㄹ"
+
+		)] = QStringLiteral("갈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㅁ"
+
+		)] = QStringLiteral("감, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㅂ"
+
+		)] = QStringLiteral("갑, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("가ㅇ"
+
+		)] = QStringLiteral("강, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㄱ"
+
+		)] = QStringLiteral("낙, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㄴ"
+
+		)] = QStringLiteral("난, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㄷ"
+
+		)] = QStringLiteral("낟, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㄹ"
+
+		)] = QStringLiteral("날, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㅁ"
+
+		)] = QStringLiteral("남, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㅂ"
+
+		)] = QStringLiteral("납, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("나ㅇ"
+
+		)] = QStringLiteral("낭, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㄱ"
+
+		)] = QStringLiteral("닥, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㄴ"
+
+		)] = QStringLiteral("단, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㄷ"
+
+		)] = QStringLiteral("닫, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㄹ"
+
+		)] = QStringLiteral("달, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㅁ"
+
+		)] = QStringLiteral("담, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㅂ"
+
+		)] = QStringLiteral("답, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("다ㅇ"
+
+		)] = QStringLiteral("당, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㄱ"
+
+		)] = QStringLiteral("락, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㄴ"
+
+		)] = QStringLiteral("란, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㄷ"
+
+		)] = QStringLiteral("랃, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㄹ"
+
+		)] = QStringLiteral("랄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㅁ"
+
+		)] = QStringLiteral("람, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㅂ"
+
+		)] = QStringLiteral("랍, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("라ㅇ"
+
+		)] = QStringLiteral("랑, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㄱ"
+
+		)] = QStringLiteral("막, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㄴ"
+
+		)] = QStringLiteral("만, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㄷ"
+
+		)] = QStringLiteral("맏, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㄹ"
+
+		)] = QStringLiteral("말, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㅁ"
+
+		)] = QStringLiteral("맘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㅂ"
+
+		)] = QStringLiteral("맙, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("마ㅇ"
+
+		)] = QStringLiteral("망, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㄱ"
+
+		)] = QStringLiteral("박, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㄴ"
+
+		)] = QStringLiteral("반, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㄷ"
+
+		)] = QStringLiteral("받, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㄹ"
+
+		)] = QStringLiteral("발, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㅁ"
+
+		)] = QStringLiteral("밤, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㅂ"
+
+		)] = QStringLiteral("밥, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("바ㅇ"
+
+		)] = QStringLiteral("방, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㄱ"
+
+		)] = QStringLiteral("삭, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㄴ"
+
+		)] = QStringLiteral("산, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㄷ"
+
+		)] = QStringLiteral("삳, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㄹ"
+
+		)] = QStringLiteral("살, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㅁ"
+
+		)] = QStringLiteral("삼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㅂ"
+
+		)] = QStringLiteral("삽, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("사ㅇ"
+
+		)] = QStringLiteral("상, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㄱ"
+
+		)] = QStringLiteral("악, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㄴ"
+
+		)] = QStringLiteral("안, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㄷ"
+
+		)] = QStringLiteral("앋, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㄹ"
+
+		)] = QStringLiteral("알, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㅁ"
+
+		)] = QStringLiteral("암, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㅂ"
+
+		)] = QStringLiteral("압, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("아ㅇ"
+
+		)] = QStringLiteral("앙, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㄱ"
+
+		)] = QStringLiteral("작, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㄴ"
+
+		)] = QStringLiteral("잔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㄷ"
+
+		)] = QStringLiteral("잗, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㄹ"
+
+		)] = QStringLiteral("잘, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㅁ"
+
+		)] = QStringLiteral("잠, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㅂ"
+
+		)] = QStringLiteral("잡, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("자ㅇ"
+
+		)] = QStringLiteral("장, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㄱ"
+
+		)] = QStringLiteral("착, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㄴ"
+
+		)] = QStringLiteral("찬, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㄷ"
+
+		)] = QStringLiteral("찯, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㄹ"
+
+		)] = QStringLiteral("찰, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㅁ"
+
+		)] = QStringLiteral("참, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㅂ"
+
+		)] = QStringLiteral("찹, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("차ㅇ"
+
+		)] = QStringLiteral("창, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㄱ"
+
+		)] = QStringLiteral("칵, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㄴ"
+
+		)] = QStringLiteral("칸, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㄷ"
+
+		)] = QStringLiteral("칻, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㄹ"
+
+		)] = QStringLiteral("칼, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㅁ"
+
+		)] = QStringLiteral("캄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㅂ"
+
+		)] = QStringLiteral("캅, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("카ㅇ"
+
+		)] = QStringLiteral("캉, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㄱ"
+
+		)] = QStringLiteral("탁, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㄴ"
+
+		)] = QStringLiteral("탄, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㄷ"
+
+		)] = QStringLiteral("탇, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㄹ"
+
+		)] = QStringLiteral("탈, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㅁ"
+
+		)] = QStringLiteral("탐, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㅂ"
+
+		)] = QStringLiteral("탑, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("타ㅇ"
+
+		)] = QStringLiteral("탕, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㄱ"
+
+		)] = QStringLiteral("팍, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㄴ"
+
+		)] = QStringLiteral("판, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㄷ"
+
+		)] = QStringLiteral("팓, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㄹ"
+
+		)] = QStringLiteral("팔, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㅁ"
+
+		)] = QStringLiteral("팜, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㅂ"
+
+		)] = QStringLiteral("팝, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("파ㅇ"
+
+		)] = QStringLiteral("팡, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㄱ"
+
+		)] = QStringLiteral("학, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㄴ"
+
+		)] = QStringLiteral("한, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㄷ"
+
+		)] = QStringLiteral("핟, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㄹ"
+
+		)] = QStringLiteral("할, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㅁ"
+
+		)] = QStringLiteral("함, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㅂ"
+
+		)] = QStringLiteral("합, , , , , , , , , , , , , , ");
+
+
+	KoreanLanMap[QStringLiteral("하ㅇ"
+
+		)] = QStringLiteral("항, , , , , , , , , , , , , , ");
+}
+
 void keyboard::FontSelect()
 {
 	ui->fontBox1_KBBut->setText(splitOut[j1]);
@@ -1477,563 +4636,563 @@ void keyboard::caps1_kBBut_clicked()
 		//	}
 		//case 8:  //Czech
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ů"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ˇ"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("É"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Í"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Á"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ý"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Ž"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Ř"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Č"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Š"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ě"));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("°"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ů"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ú"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ˇ"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("É"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Í"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Á"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Ý"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Ž"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Ř"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Č"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Š"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Ě"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("°"));
 		//		break;
 		//	}
 		//case 9:  //Dutch
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("±"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T(">"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("|"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("~"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("±"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral(">"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("|"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("~"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("§"));
 		//		break;
 		//	}
 		//case 10: //German
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("-"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("§"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("-"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ú"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("§"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("^"));
 		//		break;
 		//	}
 		//case 11:  //Finnish
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("´"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("´"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Å"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¤"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("½"));
 		//		break;
 		//	}
 		//case 12:  //Hindi
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य़"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("।"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ष"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("श"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ळ"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ऴ"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ऩ"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ण"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ँ"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ऎ"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ठ"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("छ"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("थ"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ख"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ऱ"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("फ"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("उ"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("इ"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("अ"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ए"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ओ"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ऑ"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ञ"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ढ"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("झ"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ध"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("घ"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ङ"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("भ"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ऊ"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ई"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("आ"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ऐ"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("औ"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ऋ"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ः"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("श्र"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("क्ष"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("त्र"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ज्ञ"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("र्"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("्र"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ॅ"));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ऍ"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ऒ"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("य़"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("।"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ष"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("श"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ळ"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ऴ"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ऩ"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ण"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ँ"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ऎ"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ठ"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("छ"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("थ"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ख"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ऱ"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("फ"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("उ"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("इ"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("अ"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ए"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ओ"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ऑ"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ञ"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ढ"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("झ"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ध"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("घ"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ङ"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("भ"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ऊ"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ई"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("आ"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ऐ"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("औ"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ऋ"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ः"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("श्र"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("क्ष"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("त्र"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ज्ञ"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("र्"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("्र"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ॅ"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ऍ"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ऒ"));
 		//		break;
 		//	}
 		//case 13:  //Hungarian
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Á"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("É"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ű"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ú"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ő"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("Ó"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("Ü"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("Ö"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("+"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Á"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("É"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Ű"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Ú"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ő"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Ó"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("Ü"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Ö"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("+"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("§"));
 		//		break;
 		//	}
 		//case 14:  //Italian
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("°"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ç"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("§"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("é"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("£"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("|"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("°"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ç"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("§"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("é"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("£"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("|"));
 		//		break;
 		//	}
 		//case 15:  //Portuguese
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(">"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("<"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ç"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("}"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("{"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("`"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("——"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("（"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("@"));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("\""));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(">"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("<"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ç"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("}"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("{"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("`"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("——"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("）"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("（"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("@"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("\""));
 		//		break;
 		//	}
 		//case 16:  //Russian
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("."));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("Ю"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("Б"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("Ь"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Т"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("И"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("М"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("С"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ч"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Я"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Э"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ж"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("Д"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("Л"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("О"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("Р"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("П"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("А"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("В"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("Ы"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("Ф"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("Ъ"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Х"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("З"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("Щ"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("Ш"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("Г"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Н"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("Е"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("К"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("У"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("Ц"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Й"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("+"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("）"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("№"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("Ё"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("."));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("Ю"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("Б"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("Ь"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("Т"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("И"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("М"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("С"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("Ч"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Я"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Э"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ж"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("Д"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("Л"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("О"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("Р"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("П"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("А"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("В"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("Ы"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("Ф"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("\\"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Ъ"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Х"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("З"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("Щ"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("Ш"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("Г"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Н"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("Е"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("К"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("У"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("Ц"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Й"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("+"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("）"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("№"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Ё"));
 		//		break;
 		//	}
 		//case 17:  //Spanish
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("¨"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ñ"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("Ç"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("¿"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("·"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ª"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("¨"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ñ"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Ç"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("¿"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("·"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ª"));
 		//		break;
 		//	}
 		//case 18:  //Swedish
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ä"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ö"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Å"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("`"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¤"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("½"));
 		//		break;
 		//	}
 		//case 19:  //Thai
@@ -2042,53 +5201,53 @@ void keyboard::caps1_kBBut_clicked()
 		//	}
 		//case 20:  //Turkish
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T(","));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("B"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("S"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("Z"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("Ç"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("C"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("V"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("Ö"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("J"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ş"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Y"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("M"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("K"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("T"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("Ü"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("A"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("E"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("İ"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("U"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("X"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("W"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Q"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("H"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("N"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("R"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("D"));
-		//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("O"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("I"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("Ğ"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("G"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("F"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("_"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("'"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&&"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("^"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-//		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("*"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral(","));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("B"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("S"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("Z"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("Ç"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("C"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("V"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("Ö"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("J"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ş"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Y"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("M"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("K"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("T"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("Ü"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("A"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("E"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("İ"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("U"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("X"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("W"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Q"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("H"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("N"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("R"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("D"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("O"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("I"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("Ğ"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("G"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("F"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("_"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("'"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("^"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+//		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("*"));
 //		//	}*/
 //		m_Upper = true;
 //	}
@@ -3160,53 +6319,53 @@ void keyboard::LanArabic1()
 	ui->eight_KBBut->setText(QStringLiteral("۸"));
 	ui->nine_KBBut->setText(QStringLiteral("۹"));
 	ui->zero_KBBut->setText(QStringLiteral("۰"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﺍ"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﺌ"));//已用
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﺋ"));//已用
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﺊ"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﺉ"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﺈ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﺇ"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﺆ"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﺅ"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﺄ"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﺃ"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﺂ"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﺁ"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﺀ"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﯿ"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﯾ"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﯽ"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﯼ"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﮕ"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﮔ"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﮓ"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﮒ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﮑ"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﮐ"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﮏ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﮎ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﮋ"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﮊ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﭽ"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﭼ"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﭻ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﭺ"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﭙ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﭘ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﭗ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﭖ"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("۰"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("۹"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("۸"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("۷"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("۶"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("۵"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("۴"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("۳"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("۲"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("۱"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("؟"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ﺍ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ﺌ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ﺋ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ﺊ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ﺉ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ﺈ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ﺇ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ﺆ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ﺅ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ﺄ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ﺃ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ﺂ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ﺁ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ﺀ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ﯿ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ﯾ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ﯽ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ﯼ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ﮕ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ﮔ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ﮓ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ﮒ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ﮑ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ﮐ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ﮏ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ﮎ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ﮋ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ﮊ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ﭽ"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ﭼ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ﭻ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ﭺ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ﭙ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ﭘ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ﭗ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ﭖ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("۰"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("۹"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("۸"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("۷"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("۶"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("۵"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("۴"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("۳"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("۲"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("۱"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("؟"));*/
 }
 
 void keyboard::LanArabic2()
@@ -3249,53 +6408,53 @@ void keyboard::LanArabic2()
 	ui->eight_KBBut->setText(QStringLiteral("۸"));
 	ui->nine_KBBut->setText(QStringLiteral("۹"));
 	ui->zero_KBBut->setText(QStringLiteral("۰"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﺲ"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﺱ"));//已用
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﺰ"));//已用
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﺯ"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﺮ"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﺭ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﺬ"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﺫ"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﺪ"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﺩ"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﺨ"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﺧ"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﺦ"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﺥ"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﺤ"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﺣ"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﺢ"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﺡ"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﺠ"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﺟ"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﺞ"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﺝ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﺜ"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﺛ"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﺚ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﺙ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﺘ"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﺗ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﺖ"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﺕ"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﺔ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﺓ"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﺒ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﺑ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﺐ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﺏ"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("۰"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("۹"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("۸"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("۷"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("۶"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("۵"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("۴"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("۳"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("۲"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("۱"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﺎ"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ﺲ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ﺱ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ﺰ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ﺯ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ﺮ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ﺭ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ﺬ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ﺫ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ﺪ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ﺩ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ﺨ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ﺧ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ﺦ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ﺥ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ﺤ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ﺣ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ﺢ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ﺡ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ﺠ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ﺟ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ﺞ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ﺝ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ﺜ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ﺛ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ﺚ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ﺙ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ﺘ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ﺗ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ﺖ"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ﺕ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ﺔ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ﺓ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ﺒ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ﺑ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ﺐ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ﺏ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("۰"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("۹"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("۸"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("۷"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("۶"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("۵"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("۴"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("۳"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("۲"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("۱"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ﺎ"));*/
 }
 
 void keyboard::LanArabic3()
@@ -3338,53 +6497,53 @@ void keyboard::LanArabic3()
 	ui->eight_KBBut->setText(QStringLiteral("ﺻ"));
 	ui->nine_KBBut->setText(QStringLiteral("ﺼ"));
 	ui->zero_KBBut->setText(QStringLiteral("ﺽ"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("ﻡ"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("ﻟ"));//已用
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ﻟ"));//已用
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ﻞ"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ﻝ"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ﻜ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ﻛ"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ﻚ"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ﻙ"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ﻘ"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ﻗ"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ﻖ"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ﻕ"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ﻔ"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ﻓ"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ﻒ"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ﻑ"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ﻐ"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ﻏ"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ﻎ"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﻍ"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﻌ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﻋ"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﻊ"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﻉ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﻈ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﻇ"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﻆ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﻅ"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﻄ"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﻃ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﻂ"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﻁ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﻀ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﺿ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﺾ"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ﺽ"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("ﺼ"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("ﺻ"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("ﺺ"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("ﺹ"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ﺸ"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ﺷ"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("ﺶ"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ﺵ"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ﺴ"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﺳ"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ﻡ"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ﻟ"));//已用
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ﻟ"));//已用
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ﻞ"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ﻝ"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ﻜ"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ﻛ"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ﻚ"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ﻙ"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ﻘ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ﻗ"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ﻖ"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ﻕ"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ﻔ"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ﻓ"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ﻒ"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ﻑ"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ﻐ"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ﻏ"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ﻎ"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ﻍ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ﻌ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ﻋ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ﻊ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ﻉ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ﻈ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ﻇ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ﻆ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ﻅ"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ﻄ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ﻃ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ﻂ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ﻁ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ﻀ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ﺿ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ﺾ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ﺽ"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("ﺼ"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("ﺻ"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("ﺺ"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("ﺹ"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ﺸ"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ﺷ"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("ﺶ"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ﺵ"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ﺴ"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ﺳ"));*/
 }
 
 void keyboard::LanArabic4()
@@ -3427,54 +6586,54 @@ void keyboard::LanArabic4()
 	ui->eight_KBBut->setText(QStringLiteral("ﻪ"));
 	ui->nine_KBBut->setText(QStringLiteral("ﻫ"));
 	ui->zero_KBBut->setText(QStringLiteral("ﻬ"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T(""));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T(""));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral(""));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral(""));
 
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ﻼ"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ﻻ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ﻺ"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ﻹ"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ﻸ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ﻷ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ﻶ"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ﻵ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ﻴ"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ﻳ"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ﻲ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ﻱ"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ﻰ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ﻯ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ﻮ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ﻭ"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("ﻬ"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("ﻫ"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("ﻪ"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("ﻩ"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("ﻨ"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ﻧ"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("ﻦ"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("ﻥ"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ﻤ"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ﻣ"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ﻢ"));*/
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ﻼ"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ﻻ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ﻺ"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ﻹ"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ﻸ"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ﻷ"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ﻶ"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ﻵ"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ﻴ"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ﻳ"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ﻲ"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ﻱ"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ﻰ"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ﻯ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ﻮ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ﻭ"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ﻬ"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("ﻫ"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("ﻪ"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("ﻩ"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("ﻨ"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ﻧ"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ﻦ"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("ﻥ"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ﻤ"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ﻣ"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ﻢ"));*/
 }
 
 
@@ -3519,53 +6678,53 @@ void keyboard::LanEnglishSmall()
 	ui->nine_KBBut->setText("9");
 	ui->zero_KBBut->setText("0");
 	/*
-	GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("m"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("n"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("b"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("v"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("c"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("x"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("z"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("'"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(";"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("l"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("k"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("j"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("h"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("g"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("f"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("d"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("s"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("a"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("]"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("["));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("p"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("o"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("i"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("u"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("y"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("t"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("r"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("e"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("w"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("="));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("`"));
+	GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("/"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("m"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("n"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("b"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("v"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("c"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("x"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("z"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("'"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral(";"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("l"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("k"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("j"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("h"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("g"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("f"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("d"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("s"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("a"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("\\"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("]"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("["));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("p"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("o"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("i"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("u"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("y"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("t"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("r"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("e"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("w"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("q"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("="));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("-"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("0"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("9"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("8"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("7"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("6"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("5"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("4"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("3"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("2"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("`"));
 	*/
 }
 
@@ -3739,53 +6898,53 @@ void keyboard::LanKoreanSmall()//韩语小写
 //
 //
 //
-//	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
-//	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-//	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-//	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("ㅡ"));
-//	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ㅜ"));
-//	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ㅠ"));
-//	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ㅍ"));
-//	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ㅊ"));
-//	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ㅌ"));
-//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ㅋ"));
-//	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("'"));
-//	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T(";"));
-//	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("ㅣ"));
-//	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ㅏ"));
-//	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ㅓ"));
-//	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("ㅗ"));
-//	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ㅎ"));
-//	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ㄹ"));
-//	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("ㅇ"));
-//	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ㄴ"));
-//	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ㅁ"));
-//	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("\\"));
-//	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("]"));
-//	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("["));
-//	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ㅔ"));
-//	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ㅐ"));
-//	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ㅑ"));
-//	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ㅕ"));
-//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ㅛ"));
-//	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ㅅ"));
-//	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ㄱ"));
-//	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ㄷ"));
-//	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ㅈ"));
-//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ㅂ"));
-//	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("="));
-//	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
-//	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
-//	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
-//	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
-//	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
-//	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
-//	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
-//	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
-//	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
-//	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
-//	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-//	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("`"));*/
+//	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("/"));
+//	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
+//	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
+//	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ㅡ"));
+//	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ㅜ"));
+//	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ㅠ"));
+//	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ㅍ"));
+//	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ㅊ"));
+//	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ㅌ"));
+//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ㅋ"));
+//	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("'"));
+//	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral(";"));
+//	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ㅣ"));
+//	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ㅏ"));
+//	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ㅓ"));
+//	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ㅗ"));
+//	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ㅎ"));
+//	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ㄹ"));
+//	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ㅇ"));
+//	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ㄴ"));
+//	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ㅁ"));
+//	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("\\"));
+//	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("]"));
+//	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("["));
+//	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ㅔ"));
+//	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ㅐ"));
+//	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ㅑ"));
+//	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ㅕ"));
+//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ㅛ"));
+//	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ㅅ"));
+//	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ㄱ"));
+//	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ㄷ"));
+//	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ㅈ"));
+//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ㅂ"));
+//	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("="));
+//	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("-"));
+//	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("0"));
+//	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("9"));
+//	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("8"));
+//	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("7"));
+//	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("6"));
+//	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("5"));
+//	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("4"));
+//	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("3"));
+//	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("2"));
+//	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
+//	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("`"));*/
 //}
 }
 
@@ -3869,53 +7028,53 @@ void keyboard::LanCzechSmall()
 	ui->eight_KBBut->setText(QStringLiteral("á"));
 	ui->nine_KBBut->setText(QStringLiteral("í"));
 	ui->zero_KBBut->setText(QStringLiteral("é"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("/"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("m"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("n"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("b"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("v"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("c"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("x"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("y"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("§"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("ů"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("l"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("k"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("j"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("h"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("g"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("f"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("d"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("s"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("a"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("¨"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T(")"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ú"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("p"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("o"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("i"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("u"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("z"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("t"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("r"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("e"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("w"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("´"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("="));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("é"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("í"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("á"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("ý"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("ž"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ř"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("č"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("š"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ě"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("+"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T(";"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("/"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("m"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("n"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("b"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("v"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("c"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("x"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("y"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("§"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ů"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("l"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("k"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("j"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("h"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("g"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("f"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("d"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("s"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("a"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("¨"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral(")"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ú"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("p"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("o"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("i"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("u"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("z"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("t"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("r"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("e"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("w"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("q"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("´"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("="));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("é"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("í"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("á"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("ý"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("ž"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ř"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("č"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("š"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ě"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("+"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral(";"));*/
 }
 
 void keyboard::LanCzechBig()
@@ -3958,53 +7117,53 @@ void keyboard::LanCzechBig()
 	ui->eight_KBBut->setText(QStringLiteral("Á"));
 	ui->nine_KBBut->setText(QStringLiteral("Í"));
 	ui->zero_KBBut->setText(QStringLiteral("É"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("?"));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Y"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("!"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ů"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("("));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Ú"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ˇ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("%"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("É"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("Í"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("Á"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("Ý"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("Ž"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("Ř"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("Č"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("Š"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("Ě"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("°"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("!"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ů"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("("));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ú"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ˇ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("%"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("É"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Í"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Á"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Ý"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Ž"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Ř"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Č"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Š"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Ě"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("°"));*/
 }
 
 void keyboard::LanJapaneseSmall()
@@ -4174,53 +7333,53 @@ void keyboard::LanDutchBig()
 	ui->eight_KBBut->setText(QStringLiteral("("));
 	ui->nine_KBBut->setText(QStringLiteral(")"));
 	ui->zero_KBBut->setText(QStringLiteral("'"));
-	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("="));
-	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("`"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("±"));
-	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T(">"));
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("|"));
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("^"));
-	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("~"));
-	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("'"));
-	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("_"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("$"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("§"));
+	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("="));
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("`"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("±"));
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral(">"));
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("|"));
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("^"));
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+	//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("~"));
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("'"));
+	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("_"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("§"));
 	//		break;
 }
 
@@ -4390,53 +7549,53 @@ void keyboard::LanFarsiBig()
 	ui->eight_KBBut->setText(QStringLiteral("Ö"));
 	ui->nine_KBBut->setText(QStringLiteral("§"));
 	ui->zero_KBBut->setText(QStringLiteral("¨"));
-	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("_"));
-	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T(":"));
-	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(";"));
-	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("M"));
-	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("N"));
-	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("B"));
-	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("V"));
-	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("C"));
-	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("X"));
-	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("Z"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("Ä"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("Ö"));
-	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("L"));
-	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("K"));
-	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("J"));
-	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("H"));
-	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("G"));
-	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("F"));
-	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("D"));
-	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("S"));
-	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("A"));
-	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("'"));
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("´"));
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("Å"));
-	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("P"));
-	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("O"));
-	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("I"));
-	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("U"));
-	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("Z"));
-	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("T"));
-	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("R"));
-	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("E"));
-	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("W"));
-	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("Q"));
-	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("`"));
-	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("?"));
-	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("="));
-	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T(")"));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("("));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("/"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("&"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("%"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("¤"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("#"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("\""));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("½"));
+	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("M"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("N"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("B"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("V"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ä"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ö"));
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("H"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("G"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("F"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("´"));
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Å"));
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("U"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Z"));
+	//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("T"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("R"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("`"));
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
+	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¤"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("½"));
 	//		break;
 	//	}
 }
@@ -4481,53 +7640,53 @@ void keyboard::LanHindiSmall()
 	ui->eight_KBBut->setText(QStringLiteral("ड"));
 	ui->nine_KBBut->setText(QStringLiteral("ृ"));
 	ui->zero_KBBut->setText(QStringLiteral("ॊ"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("."));
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("स"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ल"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("व"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("न"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("म"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ं"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ॆ"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ट"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("च"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("त"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("क"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("र"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("प"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("ु"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("ि"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("्"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("े"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ो"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ॉ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("़"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ड"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("ज"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("द"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("ग"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ह"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("ब"));
-	GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ू"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ी"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("ा"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ै"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("ौ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ृ"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("-"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(_T("0"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("9"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("8"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("7"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("6"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("5"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("4"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("3"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("2"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ॊ"));*/
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("य"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("स"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ल"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("व"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("न"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("म"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ं"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ॆ"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ट"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("च"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("त"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("क"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("र"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("प"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ु"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ि"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("्"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("े"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ो"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ॉ"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("़"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ड"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ज"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("द"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ग"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ह"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ब"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ू"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ी"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ा"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ै"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ौ"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ृ"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("-"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("0"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("9"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("8"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("7"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("6"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("5"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("4"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("3"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("2"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ॊ"));*/
 }
 
 void keyboard::LanHindiBig()
@@ -4570,53 +7729,53 @@ void keyboard::LanHindiBig()
 	ui->eight_KBBut->setText(QStringLiteral("श्र"));
 	ui->nine_KBBut->setText(QStringLiteral("("));
 	ui->zero_KBBut->setText(QStringLiteral(")"));
-	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(_T("य़"));  没放上
-	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(_T("।"));   没放上
-	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(_T("ष"));   没放上
-	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(_T("श"));
-	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(_T("ळ"));
-	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(_T("ऴ"));
-	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(_T("ऩ"));
-	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(_T("ण"));
-	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(_T("ँ"));
-	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(_T("ऎ"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(_T("ठ"));   没放上
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(_T("छ"));    没放上
-	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(_T("थ"));
-	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(_T("ख"));
-	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(_T("ऱ"));
-	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(_T("फ"));
-	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(_T("उ"));
-	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(_T("इ"));
-	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(_T("अ"));
-	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(_T("ए"));
-	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(_T("ओ"));
-	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(_T("ऑ"));   没放上
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(_T("ञ"));    没放上
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(_T("ढ"));     没放上
-	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(_T("झ"));
-	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(_T("ध"));
-	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(_T("घ"));
-	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(_T("ङ"));
-	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(_T("भ"));
-	//		GetDlgItem(IDC_MIAN_T)->SetWindowText(_T("ऊ"));
-	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(_T("ई"));
-	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(_T("आ"));
-	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(_T("ऐ"));
-	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(_T("औ"));
-	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(_T("ऋ"));    没放上
-	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(_T("ः"));
-	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(_T(")"));
-	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(_T("("));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(_T("श्र"));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(_T("क्ष"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(_T("त्र"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(_T("ज्ञ"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(_T("र्"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(_T("्र"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(_T("ॅ"));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(_T("ऍ"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(_T("ऒ"));
+	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("य़"));  没放上
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("।"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ष"));   没放上
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("श"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ळ"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ऴ"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ऩ"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ण"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ँ"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ऎ"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ठ"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("छ"));    没放上
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("थ"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ख"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ऱ"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("फ"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("उ"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("इ"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("अ"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ए"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ओ"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ऑ"));   没放上
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ञ"));    没放上
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ढ"));     没放上
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("झ"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ध"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("घ"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ङ"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("भ"));
+	//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ऊ"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ई"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("आ"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ऐ"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("औ"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ऋ"));    没放上
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ः"));
+	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral(")"));
+	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("श्र"));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("क्ष"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("त्र"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ज्ञ"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("र्"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("्र"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ॅ"));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ऍ"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ऒ"));
 	//		break;
 }
 

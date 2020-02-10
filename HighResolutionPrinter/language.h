@@ -3,9 +3,12 @@
 
 #include <QWidget>
 
+
 namespace Ui {
 	class language;
 }
+
+
 
 class language : public QWidget
 {
@@ -14,6 +17,7 @@ class language : public QWidget
 public:
 	language(QWidget *parent = 0);
 	~language();
+
 
 private:
 	Ui::language *ui;

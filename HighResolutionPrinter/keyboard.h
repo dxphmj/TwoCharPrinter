@@ -84,6 +84,8 @@ public:
 	language  *languageWidget;
 	int i1,j1;
 	QMap< QString,QString >ChineseLanMap;//定义map对象
+	QMap< QString,QString >JapaneseLanMap;
+	QMap< QString,QString >KoreanLanMap;
 	QString key;
 
 	enum LanTypeEnum{ Chinese = 0,Japanese=1,Korean=2,Chinese_others=3,
@@ -113,6 +115,8 @@ public:
 	void btnhide();
 	void btnArabicARhide();
 	void CreateChineseMapLan();
+	void CreateJapaneseMapLan();
+	void CreateKoreanMapLan();
 	void FontSelect();
 	QVector<QString>splitOut;
 

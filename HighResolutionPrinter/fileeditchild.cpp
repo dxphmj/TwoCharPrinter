@@ -16,6 +16,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui(new Ui::FileEditChild)
 {
 	ui->setupUi(this);
+	/*m_LineeditChange = WordLineedit;*/
 
 	connect(ui->variableTextBut,SIGNAL(clicked()),this,SLOT(variableTextBut_clicked()));
 	connect(ui->variableBarCodeBut,SIGNAL(clicked()),this,SLOT(variableBarCodeBut_clicked()));
@@ -242,6 +243,23 @@ void FileEditChild::ScrollBarChanged(int value)
 	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
 	ui->editPreviewText->move(-2080*p,10);
 }
+
+//void FileEditChild::lineeditChange()
+//{
+//	switch(m_LineeditChange)
+//	{
+//	case 0:
+//		{
+//			wordLineEdit_clicked();
+//			break;
+//		}
+//	case 1:	
+//		{
+//			barCodeLineEdit_clicked();
+//			break;
+//		}
+//	}
+//}
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {

@@ -7,11 +7,14 @@
 #include "fileeditchild.h"
 #include <QTabWidget>
 
+//extern int m_LineeditChange;
+
 language::language(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::language)
 {
 	ui->setupUi(this);
+	
 
 	connect(ui->OKLanBut,SIGNAL(clicked()),this,SLOT(OKLanBut_clicked()));
 	connect(ui->LanEnglish,SIGNAL(clicked()),this,SLOT(lanEnglish_KBBut_clicked()));
@@ -49,7 +52,20 @@ void language::lanEnglish_KBBut_clicked()
 	pKeyboard->caps1_kBBut_clicked();
 	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
 	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
-	pFileEditChild->wordLineEdit_clicked();
+	/*pFileEditChild->lineeditChange();*/
+	//if (m_LineeditChange == 0)
+	//{
+			pFileEditChild->wordLineEdit_clicked();
+	//		/*break;
+
+	//		}
+	//		case 1:
+	//		{
+			//pFileEditChild->barCodeLineEdit_clicked();
+	//		break;
+	//		}*/
+	//}
+	//
 
 	setVisible(false); 
 }

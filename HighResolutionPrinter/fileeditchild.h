@@ -24,6 +24,10 @@ public:
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 
+	/*enum LineeditChangeEnum{ WordLineedit = 0,barLineEdit = 1,QRLineEdit = 2,DMLineEdit = 3};
+	int m_LineeditChange;
+	void lineeditChange();*/
+
 	void DrawBackFrame(QPainter *qFramePainter);
 	void MouseBeenPressed(QMouseEvent *event);
 	void GetObjSettingsFromScreen();
