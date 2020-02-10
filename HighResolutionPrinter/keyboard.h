@@ -63,6 +63,12 @@ public:
 	void SymbolToGerman();
 	void SymbolToFarsi();
 	void SymbolToHindi();
+
+	void SymbolToArabic();
+	void SymbolToArabic2();
+	void SymbolToArabic3();
+	void SymbolToArabic4();
+
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -96,7 +102,8 @@ public:
 		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Arabic2 = 23,Arabic3 = 24,Arabic4 = 25};
 
 	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1,KoreSymbol = 2,CzechSynbol = 3,JapaneseSymbol = 4,
-	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7};
+	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7,ArabicSymbol = 8,Arabic2Symbol = 9,
+	                         Arabic3Symbol = 10,Arabic4Symbol = 11};
 	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
@@ -123,7 +130,6 @@ public:
 public slots:
 	void caps1_kBBut_clicked();
 	void languagespell();//不是clicked
-	void InsertChineseToLine();
 
 private slots:
 	void enter_KBBut_clicked();
@@ -182,6 +188,9 @@ private slots:
 	void fontBox8_KBBut_clicked();
 	void fontBox9_KBBut_clicked();
 	void fontBox10_KBBut_clicked();
+
+	void fontBoxRedu_KBBut_clicked();
+	void fontBoxAdd_KBBut_clicked();
 
 	void space_KBBut_clicked();
 	void comma_KBBut_clicked();

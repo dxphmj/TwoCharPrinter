@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "numkeyboard.h"
 #include "time.h"
+
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::FileEditChild)
@@ -77,6 +78,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->reptCountSerialLineEdit,SIGNAL(clicked()),this,SLOT(reptCountSerialLineEdit_clicked()));
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
+	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
 
     ui->wordLineEdit->setFocus();
 
@@ -147,6 +149,23 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
 	ui->fontTypeTextComBox->setCurrentIndex(0);
+
+	//画布宽度item选项（单位：5x5像素）
+	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
+	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
+	ui->pixelComBox->addItem(QStringLiteral("12px"));//2
+	ui->pixelComBox->addItem(QStringLiteral("16px"));//3
+	ui->pixelComBox->addItem(QStringLiteral("24px"));//4
+	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
+	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
+	ui->pixelComBox->setCurrentIndex(6);
+
+	//移动速度item选项（单位：5x5像素点）
+	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
+	ui->moveSpeedComBox->addItem(QStringLiteral("2"));//1
+	ui->moveSpeedComBox->addItem(QStringLiteral("5"));//2
+	ui->moveSpeedComBox->addItem(QStringLiteral("10"));//3
+	ui->moveSpeedComBox->addItem(QStringLiteral("50"));//4
 
 	ui->typeBarCodeComBox->addItem(QStringLiteral("EANX"));
 	ui->typeBarCodeComBox->addItem(QStringLiteral("CODE39"));
@@ -244,6 +263,7 @@ void FileEditChild::ScrollBarChanged(int value)
 	ui->editPreviewText->move(-2080*p,10);
 }
 
+
 //void FileEditChild::lineeditChange()
 //{
 //	switch(m_LineeditChange)
@@ -260,30 +280,46 @@ void FileEditChild::ScrollBarChanged(int value)
 //		}
 //	}
 //}
+void FileEditChild::ChangePixel()
+{
+	QPainter qFramePainter(this->ui->editPreviewText);
+	DrawBackFrame(&qFramePainter);
+}
+
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	QPen qGrayPen(Qt::gray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
-	//QPainter qFramePainter(qTextEdit);
+
+	QMap <QString,int> PixelMap;
+	PixelMap.insert("5px",25);
+	PixelMap.insert("7px",35);
+	PixelMap.insert("12px",60);
+	PixelMap.insert("16px",80);
+	PixelMap.insert("24px",120);
+	PixelMap.insert("32px",160);
+	PixelMap.insert("48px",240);
+
+	QString CurPixelItem = this->ui->pixelComBox->currentText();
 	int i,j;
 	for (i=0; i<=3121; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,0,i,241);
+		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
 	}
-	for (j=0; j<=241; j+=5)
+	for (j=241; j>=241-PixelMap[CurPixelItem]-1; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,0,0,240);
-	qFramePainter->drawLine(0,0,3120,0);
+	qFramePainter->drawLine(0,240,0,240-PixelMap[CurPixelItem]);
 	qFramePainter->drawLine(0,240,3120,240);
-	qFramePainter->drawLine(3120,0,3120,240);
+	qFramePainter->drawLine(0,240-PixelMap[CurPixelItem],3120,240-PixelMap[CurPixelItem]);
+	qFramePainter->drawLine(3120,240,3120,240-PixelMap[CurPixelItem]);	
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -956,6 +992,7 @@ void FileEditChild::newTextBut_clicked()
 	//int intTmpSS = ui->internalShowTextLab->text().toInt();
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	this->ui->newTextBut->setText(QStringLiteral("修改"));
+	this->ui->delBut->setText(QStringLiteral("删除"));
 }
 
 void FileEditChild::newBarCodeBut_clicked()
@@ -1098,10 +1135,15 @@ void FileEditChild::moveUpBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			int EndPos = (m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize)*5 ;
-			if( EndPos < 240 )
+			int EndPos = m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize;
+			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
+			if( (EndPos + MoveSpeed) < 48 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart += 1;
+				m_PrinterMes.OBJ_Vec[i].intLineStart += MoveSpeed;
+			}
+			else
+			{
+				m_PrinterMes.OBJ_Vec[i].intLineStart = 48 - m_PrinterMes.OBJ_Vec[i].intLineSize;
 			}
 		}
 	}
@@ -1113,9 +1155,14 @@ void FileEditChild::moveDownBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			if( m_PrinterMes.OBJ_Vec[i].intLineStart > 0 )
+			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
+			if( m_PrinterMes.OBJ_Vec[i].intLineStart - MoveSpeed > 0 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart -= 1;
+				m_PrinterMes.OBJ_Vec[i].intLineStart -= MoveSpeed;
+			}
+			else
+			{
+				m_PrinterMes.OBJ_Vec[i].intLineStart = 0 ;
 			}
 		}
 	}
@@ -1127,9 +1174,14 @@ void FileEditChild::moveLeftBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			if( m_PrinterMes.OBJ_Vec[i].intRowStart > 0 )
+			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
+			if( m_PrinterMes.OBJ_Vec[i].intRowStart - MoveSpeed > 0 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart -= 1;
+				m_PrinterMes.OBJ_Vec[i].intRowStart -= MoveSpeed;
+			}
+			else
+			{
+				m_PrinterMes.OBJ_Vec[i].intRowStart = 0;
 			}
 		}
 	}
@@ -1141,10 +1193,15 @@ void FileEditChild::moveRightBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			int EndPos = (m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize)*5 ;
-			if( EndPos < 3120 )
+			int EndPos = m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize;
+			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
+			if( EndPos + MoveSpeed < 624 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart += 1;
+				m_PrinterMes.OBJ_Vec[i].intRowStart += MoveSpeed;
+			}
+			else
+			{
+				m_PrinterMes.OBJ_Vec[i].intRowStart = 624 - m_PrinterMes.OBJ_Vec[i].intRowSize;
 			}
 		}
 	}

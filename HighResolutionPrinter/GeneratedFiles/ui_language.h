@@ -14,6 +14,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -42,15 +43,16 @@ public:
     QPushButton *LanThai;
     QPushButton *LanSpanish;
     QPushButton *LanSwedish;
+    QLabel *backgroundLanLabel;
 
     void setupUi(QWidget *language)
     {
         if (language->objectName().isEmpty())
             language->setObjectName(QStringLiteral("language"));
-        language->resize(791, 321);
+        language->resize(727, 321);
         LanEnglish = new QPushButton(language);
         LanEnglish->setObjectName(QStringLiteral("LanEnglish"));
-        LanEnglish->setGeometry(QRect(2, 3, 157, 77));
+        LanEnglish->setGeometry(QRect(2, 3, 143, 77));
         QFont font;
         font.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
         font.setPointSize(16);
@@ -58,103 +60,131 @@ public:
         LanEnglish->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanChinese = new QPushButton(language);
         LanChinese->setObjectName(QStringLiteral("LanChinese"));
-        LanChinese->setGeometry(QRect(160, 3, 157, 77));
+        LanChinese->setGeometry(QRect(147, 3, 143, 77));
         LanChinese->setFont(font);
         LanChinese->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanArabic = new QPushButton(language);
         LanArabic->setObjectName(QStringLiteral("LanArabic"));
-        LanArabic->setGeometry(QRect(317, 3, 157, 77));
+        LanArabic->setGeometry(QRect(292, 3, 143, 77));
         LanArabic->setFont(font);
         LanArabic->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanCzech = new QPushButton(language);
         LanCzech->setObjectName(QStringLiteral("LanCzech"));
-        LanCzech->setGeometry(QRect(474, 3, 157, 77));
+        LanCzech->setGeometry(QRect(437, 3, 143, 77));
         LanCzech->setFont(font);
         LanCzech->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanDutch = new QPushButton(language);
         LanDutch->setObjectName(QStringLiteral("LanDutch"));
-        LanDutch->setGeometry(QRect(631, 3, 157, 77));
+        LanDutch->setGeometry(QRect(582, 3, 143, 77));
         LanDutch->setFont(font);
         LanDutch->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanHindi = new QPushButton(language);
         LanHindi->setObjectName(QStringLiteral("LanHindi"));
-        LanHindi->setGeometry(QRect(474, 82, 157, 77));
+        LanHindi->setGeometry(QRect(437, 82, 143, 77));
         LanHindi->setFont(font);
         LanHindi->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanFarsi = new QPushButton(language);
         LanFarsi->setObjectName(QStringLiteral("LanFarsi"));
-        LanFarsi->setGeometry(QRect(2, 82, 157, 77));
+        LanFarsi->setGeometry(QRect(2, 82, 143, 77));
         LanFarsi->setFont(font);
         LanFarsi->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanGerman = new QPushButton(language);
         LanGerman->setObjectName(QStringLiteral("LanGerman"));
-        LanGerman->setGeometry(QRect(317, 82, 157, 77));
+        LanGerman->setGeometry(QRect(292, 82, 143, 77));
         LanGerman->setFont(font);
         LanGerman->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanFinnish = new QPushButton(language);
         LanFinnish->setObjectName(QStringLiteral("LanFinnish"));
-        LanFinnish->setGeometry(QRect(160, 82, 157, 77));
+        LanFinnish->setGeometry(QRect(147, 82, 143, 77));
         LanFinnish->setFont(font);
         LanFinnish->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanHungarian = new QPushButton(language);
         LanHungarian->setObjectName(QStringLiteral("LanHungarian"));
-        LanHungarian->setGeometry(QRect(631, 82, 157, 77));
+        LanHungarian->setGeometry(QRect(582, 82, 143, 77));
         LanHungarian->setFont(font);
         LanHungarian->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanRussian = new QPushButton(language);
         LanRussian->setObjectName(QStringLiteral("LanRussian"));
-        LanRussian->setGeometry(QRect(631, 161, 157, 77));
+        LanRussian->setGeometry(QRect(582, 161, 143, 77));
         QFont font1;
         font1.setFamily(QStringLiteral("Adobe Arabic"));
-        font1.setPointSize(16);
+        font1.setPointSize(14);
         LanRussian->setFont(font1);
         LanRussian->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanJapanese = new QPushButton(language);
         LanJapanese->setObjectName(QStringLiteral("LanJapanese"));
-        LanJapanese->setGeometry(QRect(160, 161, 157, 77));
+        LanJapanese->setGeometry(QRect(147, 161, 143, 77));
         LanJapanese->setFont(font);
         LanJapanese->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanKorean = new QPushButton(language);
         LanKorean->setObjectName(QStringLiteral("LanKorean"));
-        LanKorean->setGeometry(QRect(317, 161, 157, 77));
+        LanKorean->setGeometry(QRect(292, 161, 143, 77));
         LanKorean->setFont(font);
         LanKorean->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanItalian = new QPushButton(language);
         LanItalian->setObjectName(QStringLiteral("LanItalian"));
-        LanItalian->setGeometry(QRect(2, 161, 157, 77));
+        LanItalian->setGeometry(QRect(2, 161, 143, 77));
         LanItalian->setFont(font);
         LanItalian->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanPortuguese = new QPushButton(language);
         LanPortuguese->setObjectName(QStringLiteral("LanPortuguese"));
-        LanPortuguese->setGeometry(QRect(474, 161, 157, 77));
+        LanPortuguese->setGeometry(QRect(437, 161, 143, 77));
         LanPortuguese->setFont(font);
         LanPortuguese->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         Lan1 = new QPushButton(language);
         Lan1->setObjectName(QStringLiteral("Lan1"));
-        Lan1->setGeometry(QRect(474, 240, 157, 77));
+        Lan1->setGeometry(QRect(437, 240, 143, 77));
         Lan1->setFont(font);
         Lan1->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         OKLanBut = new QPushButton(language);
         OKLanBut->setObjectName(QStringLiteral("OKLanBut"));
-        OKLanBut->setGeometry(QRect(631, 240, 157, 77));
+        OKLanBut->setGeometry(QRect(582, 240, 143, 77));
         OKLanBut->setFont(font);
         OKLanBut->setStyleSheet(QLatin1String("background-color: rgb(182,181,186);\n"
 "color: rgb(0, 0, 0);"));
         LanThai = new QPushButton(language);
         LanThai->setObjectName(QStringLiteral("LanThai"));
-        LanThai->setGeometry(QRect(317, 240, 157, 77));
+        LanThai->setGeometry(QRect(292, 240, 143, 77));
         LanThai->setFont(font);
         LanThai->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanSpanish = new QPushButton(language);
         LanSpanish->setObjectName(QStringLiteral("LanSpanish"));
-        LanSpanish->setGeometry(QRect(2, 240, 157, 77));
+        LanSpanish->setGeometry(QRect(2, 240, 143, 77));
         LanSpanish->setFont(font);
         LanSpanish->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         LanSwedish = new QPushButton(language);
         LanSwedish->setObjectName(QStringLiteral("LanSwedish"));
-        LanSwedish->setGeometry(QRect(160, 240, 157, 77));
-        LanSwedish->setFont(font);
+        LanSwedish->setGeometry(QRect(147, 240, 143, 77));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
+        font2.setPointSize(12);
+        LanSwedish->setFont(font2);
         LanSwedish->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
+        backgroundLanLabel = new QLabel(language);
+        backgroundLanLabel->setObjectName(QStringLiteral("backgroundLanLabel"));
+        backgroundLanLabel->setGeometry(QRect(0, 0, 727, 321));
+        backgroundLanLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        backgroundLanLabel->raise();
+        LanEnglish->raise();
+        LanChinese->raise();
+        LanArabic->raise();
+        LanCzech->raise();
+        LanDutch->raise();
+        LanHindi->raise();
+        LanFarsi->raise();
+        LanGerman->raise();
+        LanFinnish->raise();
+        LanHungarian->raise();
+        LanRussian->raise();
+        LanJapanese->raise();
+        LanKorean->raise();
+        LanItalian->raise();
+        LanPortuguese->raise();
+        Lan1->raise();
+        OKLanBut->raise();
+        LanThai->raise();
+        LanSpanish->raise();
+        LanSwedish->raise();
 
         retranslateUi(language);
 
@@ -184,6 +214,7 @@ public:
         LanThai->setText(QApplication::translate("language", "\340\270\240\340\270\262\340\270\251\340\270\262\340\271\204\340\270\227\340\270\242", 0));
         LanSpanish->setText(QApplication::translate("language", "Espa\303\261ol", 0));
         LanSwedish->setText(QApplication::translate("language", "Svenskt spr\303\245k", 0));
+        backgroundLanLabel->setText(QString());
     } // retranslateUi
 
 };

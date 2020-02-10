@@ -106,12 +106,28 @@ QString printSetting::getNum(QString str)
 	QString str1 = str;
 	QString res;
 	QChar ch;
+	int j = 0;
 
 	for(int i=0;i<str1.size();i++)
 	{
 		ch = str1.at(i);
 		if(ch.toLatin1() <'0'||ch > '9')
-			continue;
+		{
+			if(j == 0)
+			{
+				if(ch.toLatin1() == '.')
+				{
+					res.append(ch);
+					j++;
+					continue;
+				}	
+				else
+					continue;
+			}	
+			else
+				continue;
+		}
+			
 		if(((ch.toLatin1()-'0')%2)!=0||((ch.toLatin1()-'0')%2)!=1)
 			res.append(ch);
 
@@ -174,7 +190,7 @@ void printSetting::printDelayAddBut()
 	QString str = ui.printDelayShowLab->text();
 	QString str2 = getNum(str);
 	int printDelayFactor = str2.toInt();
-	if (printDelayFactor>0)
+	if (printDelayFactor >= 0)
 	{
 		printDelayFactor+=2;
 	} 
@@ -325,16 +341,7 @@ void printSetting::voltRedBut()
 {
 	QString str = ui.voltShowLab->text();
 	QString str2 = getNum(str);
-	int num_1 = str2.toInt();
-	double voltFactor;
-	if (num_1/10 == 0)
-	{
-		voltFactor = num_1;
-	} 
-	else
-	{
-		voltFactor = num_1/10.0;
-	}
+	double voltFactor = str2.toDouble();
 	
 	if (voltFactor>0)
 	{
@@ -352,16 +359,8 @@ void printSetting::voltAddBut()
 {
 	QString str = ui.voltShowLab->text();
 	QString str2 = getNum(str);
-	int num_1 = str2.toInt();
-	double voltFactor;
-	if (num_1/10 == 0)
-	{
-		voltFactor = num_1;
-	} 
-	else
-	{
-		voltFactor = num_1/10.0;
-	}
+	double voltFactor = str2.toDouble();
+
 	if (voltFactor>=0)
 	{
 		voltFactor+=0.1;
@@ -378,16 +377,7 @@ void printSetting::PWRedBut()
 {
 	QString str = ui.PWShowLab->text();
 	QString str2 = getNum(str);
-	int num_1 = str2.toInt();
-	double PWFactor;
-	if (num_1/10 == 0)
-	{
-		PWFactor = num_1;
-	} 
-	else
-	{
-		PWFactor = num_1/10.0;
-	}
+	double PWFactor = str2.toDouble();
 
 	if (PWFactor>0)
 	{
@@ -405,16 +395,8 @@ void printSetting::PWAddBut()
 {
 	QString str = ui.PWShowLab->text();
 	QString str2 = getNum(str);
-	int num_1 = str2.toInt();
-	double PWFactor;
-	if (num_1/10 == 0)
-	{
-		PWFactor = num_1;
-	} 
-	else
-	{
-		PWFactor = num_1/10.0;
-	}
+	double PWFactor = str2.toDouble();
+
 	if (PWFactor>=0)
 	{
 		PWFactor+=0.1;

@@ -1,4 +1,4 @@
-ï»¿#include "keyboard.h"
+#include "keyboard.h"
 #include "ui_keyboard.h"
 #include <QAction>
 #include <QtWidgets/QStackedWidget>
@@ -70,6 +70,8 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->fontBox8_KBBut,SIGNAL(clicked()),this,SLOT(fontBox8_KBBut_clicked()));
 	connect(ui->fontBox9_KBBut,SIGNAL(clicked()),this,SLOT(fontBox9_KBBut_clicked()));
 	connect(ui->fontBox10_KBBut,SIGNAL(clicked()),this,SLOT(fontBox10_KBBut_clicked()));
+	connect(ui->fontBoxRedu_KBBut,SIGNAL(clicked()),this,SLOT(fontBoxRedu_KBBut_clicked()));
+	connect(ui->fontBoxAdd_KBBut,SIGNAL(clicked()),this,SLOT(fontBoxAdd_KBBut_clicked()));
 
 
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
@@ -82,9 +84,7 @@ keyboard::keyboard(QWidget *parent)
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	connect(ui->wordCombLineEdit,SIGNAL(textChanged(QString)),this,SLOT(languagespell()));
-
-	//connect(ui->fontBox1_KBBut,SIGNAL(clicked()),this,SLOT(InsertChineseToLine()));//çˆ¶çª—å£æ‰§è¡Œæ§½å‡½æ•°
-
+	
 
 	m_LanType = English;
 	m_Upper = false;
@@ -126,8 +126,17 @@ void keyboard::Esc_KBBut_clicked()
 
 void keyboard::backspace_KBBut_clicked()
 {
-	m_pInputEdit->backspace();
-	QString str1 = m_pInputEdit->text();
+	setText2KBLineedit();
+	if (m_pInputEdit->text() != "")
+	{
+		m_pInputEdit->backspace();
+	} 
+	else
+	{
+		changeCurrentlineedit();
+	    m_pInputEdit->backspace();
+	}
+	setText2KBLineedit();
 }
 
 void keyboard::language_KBBut_clicked()
@@ -171,7 +180,7 @@ void keyboard::changeCurrentlineedit()
 	pFileEditChild->wordLineEdit_clicked();
 }
 
-void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš„æ±‰å­—ç½®å…¥å¤‡é€‰æ¡†ä¸­
+void keyboard::languagespell()   //»ñÈ¡ÖĞÎÄ±à¼­¿òÄÚµÄÆ´Òô ½«¶ÔÓ¦µÄºº×ÖÖÃÈë±¸Ñ¡¿òÖĞ
 {
 	switch (m_LanType)
 	{
@@ -182,6 +191,8 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 			QString value = ChineseLanMap[key];
 			if ( value == "" )          
 			{	
+                        splitOut.clear();
+              		i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -199,10 +210,10 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 				j1 = 0;
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
-				QStringList temp = value.split(",");//ä»¥é€—å·åˆ†å‰²å­—ç¬¦ä¸²ï¼Œå°†å¤‡é€‰çš„æ¯ä¸ªæ±‰å­—å•ç‹¬åˆ†å‰²æˆä¸€ä¸ªå­—ç¬¦ä¸²
-				int length = temp.length();//è¯»å–åˆ†å‰²åçš„å­—ç¬¦ä¸²ä¸ªæ•°
+				QStringList temp = value.split(",");//ÒÔ¶ººÅ·Ö¸î×Ö·û´®£¬½«±¸Ñ¡µÄÃ¿¸öºº×Öµ¥¶À·Ö¸î³ÉÒ»¸ö×Ö·û´®
+				int length = temp.length();//¶ÁÈ¡·Ö¸îºóµÄ×Ö·û´®¸öÊı
 
-				for ( int i =0 ;i < length;i++)//éå†ï¼Œå°†æ¯ä¸€ä¸ªå­—ç¬¦ä¸²ç½®å…¥åˆ°vectorå¯¹åº”çš„ä½ç½®
+				for ( int i =0 ;i < length;i++)//±éÀú£¬½«Ã¿Ò»¸ö×Ö·û´®ÖÃÈëµ½vector¶ÔÓ¦µÄÎ»ÖÃ
 				{
 					splitOut.push_back(temp.at(i));
 				} 
@@ -223,7 +234,6 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 					i1 = 31;
 				}
 				FontSelect();
-				splitOut.clear();
 				//break;
 			}
 			break;
@@ -235,6 +245,8 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 			QString value = JapaneseLanMap[key];
 			if ( value == "" )          
 			{	
+                        splitOut.clear();
+              		i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -252,10 +264,10 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 				j1 = 0;
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
-				QStringList temp = value.split(",");//ä»¥é€—å·åˆ†å‰²å­—ç¬¦ä¸²ï¼Œå°†å¤‡é€‰çš„æ¯ä¸ªæ±‰å­—å•ç‹¬åˆ†å‰²æˆä¸€ä¸ªå­—ç¬¦ä¸²
-				int length = temp.length();//è¯»å–åˆ†å‰²åçš„å­—ç¬¦ä¸²ä¸ªæ•°
+				QStringList temp = value.split(",");//ÒÔ¶ººÅ·Ö¸î×Ö·û´®£¬½«±¸Ñ¡µÄÃ¿¸öºº×Öµ¥¶À·Ö¸î³ÉÒ»¸ö×Ö·û´®
+				int length = temp.length();//¶ÁÈ¡·Ö¸îºóµÄ×Ö·û´®¸öÊı
 
-				for ( int i =0 ;i < length;i++)//éå†ï¼Œå°†æ¯ä¸€ä¸ªå­—ç¬¦ä¸²ç½®å…¥åˆ°vectorå¯¹åº”çš„ä½ç½®
+				for ( int i =0 ;i < length;i++)//±éÀú£¬½«Ã¿Ò»¸ö×Ö·û´®ÖÃÈëµ½vector¶ÔÓ¦µÄÎ»ÖÃ
 				{
 					splitOut.push_back(temp.at(i));
 				} 
@@ -276,7 +288,6 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 					i1 = 31;
 				}
 				FontSelect();
-				splitOut.clear();
 				//break;
 			}
 			break;
@@ -288,6 +299,8 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 			QString value = KoreanLanMap[key];
 			if ( value == "" )          
 			{	
+                        splitOut.clear();
+              		i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -305,10 +318,10 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 				j1 = 0;
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
-				QStringList temp = value.split(",");//ä»¥é€—å·åˆ†å‰²å­—ç¬¦ä¸²ï¼Œå°†å¤‡é€‰çš„æ¯ä¸ªæ±‰å­—å•ç‹¬åˆ†å‰²æˆä¸€ä¸ªå­—ç¬¦ä¸²
-				int length = temp.length();//è¯»å–åˆ†å‰²åçš„å­—ç¬¦ä¸²ä¸ªæ•°
+				QStringList temp = value.split(",");//ÒÔ¶ººÅ·Ö¸î×Ö·û´®£¬½«±¸Ñ¡µÄÃ¿¸öºº×Öµ¥¶À·Ö¸î³ÉÒ»¸ö×Ö·û´®
+				int length = temp.length();//¶ÁÈ¡·Ö¸îºóµÄ×Ö·û´®¸öÊı
 
-				for ( int i =0 ;i < length;i++)//éå†ï¼Œå°†æ¯ä¸€ä¸ªå­—ç¬¦ä¸²ç½®å…¥åˆ°vectorå¯¹åº”çš„ä½ç½®
+				for ( int i =0 ;i < length;i++)//±éÀú£¬½«Ã¿Ò»¸ö×Ö·û´®ÖÃÈëµ½vector¶ÔÓ¦µÄÎ»ÖÃ
 				{
 					splitOut.push_back(temp.at(i));
 				} 
@@ -329,4203 +342,4198 @@ void keyboard::languagespell()   //è·å–ä¸­æ–‡ç¼–è¾‘æ¡†å†…çš„æ‹¼éŸ³ å°†å¯¹åº”çš
 					i1 = 31;
 				}
 				FontSelect();
-				splitOut.clear();
 				//break;
 			}
 			break;
 		}
+
 	}
 }
 
-void keyboard::InsertChineseToLine()
+void keyboard::CreateChineseMapLan()//ÖĞÎÄ×Ö¿â
+
 {
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
-}
+	ChineseLanMap[QStringLiteral("an")] = QStringLiteral("°²,°±,°°,°³,°¶,°´,°¸,°·,°µ, , , , , , ");
+	ChineseLanMap[QStringLiteral("ai")] = QStringLiteral("°¥,°§,°¦,°£,°¤,°¨,°©,°«,°ª,°¬,°®,°¯,°­, , ");
+	ChineseLanMap[QStringLiteral("a")] = QStringLiteral("°¢,°¡, , , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("yi")] = QStringLiteral("Ò»,ÒÁ,ÒÂ,Ò½,ÒÀ,Ò¿,Ò¼,Ò¾,ÒÇ,ÒÄ,ÒÊ,ÒË,ÒÌ,ÒÈ,ÒÆ,ÒÅ,ÒÃ,ÒÉ,ÒÍ,ÒÒ,ÒÑ,ÒÔ,ÒÓ,ÒÏ,ÒĞ,ÒÎ,Òå,ÒÚ,Òä,ÒÕ,Òé,Òà,ÒÙ,Òì,ÒÛ,ÒÖ,Òë,ÒØ,Ò×,Òï,Òè,Òß,Òæ,Òê,Òî,Òİ,Òâ,Òç,ÒŞ,Òá,Òã,Òí,ÒÜ, , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("ang")] = QStringLiteral("°¹,°º,°», , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("ao")] = QStringLiteral("°¼,°½,°¾,°¿,°À,°Á,°Â,°Ä,°Ã, , , , , , ");
+	ChineseLanMap[QStringLiteral("ba")] = QStringLiteral("°Ë,°Í,°È,°Ç,°É,°Ì,°Æ,°Ê,°Î,°Ï,°Ñ,°Ğ,°Ó,°Ö,°Õ,°Ô, , , , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bai")] = QStringLiteral("°×,°Ù,°Û,°Ø,°Ú,°Ü,°İ,°Ş, , , , , , , ");
+	ChineseLanMap[QStringLiteral("ban")] = QStringLiteral("°â,°à,°ã,°ä,°ß,°á,°å,°æ,°ì,°ë,°é,°ç,°è,°í,°ê");
+	ChineseLanMap[QStringLiteral("bang")] = QStringLiteral("°î,°ï,°ğ,°ó,°ñ,°ò,°ö,°ø,°ô,°ù,°õ,°÷, , , ");
+	ChineseLanMap[QStringLiteral("bao")] = QStringLiteral("°ü,°ú,°û,°ı,±¢,±¦,±¥,±£,±¤,±¨,±§,±ª,±«,±©,±¬,°ş,±¡,ÆÙ, , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bei")] = QStringLiteral("±°,±­,±¯,±®,±±,±´,±·,±¸,±³,±µ,±¶,±»,±¹,±º,±²");
+	ChineseLanMap[QStringLiteral("ben")] = QStringLiteral("±¼,±¾,±½,±¿,º», , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("beng")] = QStringLiteral("±À,±Á,±Â,±Ã,±Å,±Ä, , , , , , , , ,");
 
-void keyboard::CreateChineseMapLan()//ä¸­æ–‡å­—åº“
-{
-	ChineseLanMap[QStringLiteral("an")] = QStringLiteral("å®‰,æ°¨,é,ä¿º,å²¸,æŒ‰,æ¡ˆ,èƒº,æš—, , , , , , ");
-	ChineseLanMap[QStringLiteral("ai")] = QStringLiteral("å“,å“€,å”‰,åŸƒ,æŒ¨,çš‘,ç™Œ,çŸ®,è”¼,è‰¾,çˆ±,éš˜,ç¢, , ");
-	ChineseLanMap[QStringLiteral("a")] = QStringLiteral("é˜¿,å•Š, , , , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("yi")] = QStringLiteral("ä¸€,ä¼Š,è¡£,åŒ»,ä¾,é“±,å£¹,æ–,ä»ª,å¤·,æ²‚,å®œ,å§¨,èƒ°,ç§»,é—,é¢,ç–‘,å½,ä¹™,å·²,ä»¥,çŸ£,èš,å€š,æ¤…,ä¹‰,äº¿,å¿†,è‰º,è®®,äº¦,å±¹,å¼‚,å½¹,æŠ‘,è¯‘,é‚‘,æ˜“,ç»,è¯£,ç–«,ç›Š,è°Š,ç¿Œ,é€¸,æ„,æº¢,è‚„,è£”,æ¯…,ç¿¼,è‡†, , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("ang")] = QStringLiteral("è‚®,æ˜‚,ç›, , , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("ao")] = QStringLiteral("å‡¹,æ•–,ç†¬,ç¿±,è¢„,å‚²,å¥¥,æ¾³,æ‡Š, , , , , , ");
-	ChineseLanMap[QStringLiteral("ba")] = QStringLiteral("å…«,å·´,å­,æ‰’,å§,ç–¤,æŒ,ç¬†,æ‹”,è·‹,æŠŠ,é¶,å,çˆ¸,ç½¢,éœ¸, , , , , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bai")] = QStringLiteral("ç™½,ç™¾,ä½°,æŸ,æ‘†,è´¥,æ‹œ,ç¨—, , , , , , , ");
-	ChineseLanMap[QStringLiteral("ban")] = QStringLiteral("æ‰³,ç­,èˆ¬,é¢,æ–‘,æ¬,æ¿,ç‰ˆ,åŠ,åŠ,ä¼´,æ‰®,æ‹Œ,ç»Š,ç“£");
-	ChineseLanMap[QStringLiteral("bang")] = QStringLiteral("é‚¦,å¸®,æ¢†,ç»‘,æ¦œ,è†€,èšŒ,å‚,æ£’,è°¤,ç£…,é•‘, , , ");
-	ChineseLanMap[QStringLiteral("bao")] = QStringLiteral("åŒ…,è‹,èƒ,è¤’,é›¹,å®,é¥±,ä¿,å ¡,æŠ¥,æŠ±,è±¹,é²,æš´,çˆ†,å‰¥,è–„,ç€‘, , , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bei")] = QStringLiteral("å‘,æ¯,æ‚²,ç¢‘,åŒ—,è´,ç‹ˆ,å¤‡,èƒŒ,é’¡,å€,è¢«,æƒ«,ç„™,è¾ˆ");
-	ChineseLanMap[QStringLiteral("ben")] = QStringLiteral("å¥”,æœ¬,è‹¯,ç¬¨,å¤¯, , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("beng")] = QStringLiteral("å´©,ç»·,ç”­,æ³µ,è¿¸,è¹¦, , , , , , , , ,");
+	ChineseLanMap[QStringLiteral("bi")] = QStringLiteral("±Æ,±Ç,±È,±Ë,±Ê,±É,±Ò,±Ø,±Ï,±Õ,±Ó,±Ñ,±İ,±Ğ,±Ö,±Ô,±Í,±×,±Ì,±Î,±Ú,±Ü,±Û, , , , , , , ");
+	ChineseLanMap[QStringLiteral("bian")] = QStringLiteral("±ß,±à,±Ş,±á,±â,±å,±ã,±ä,±é,±æ,±ç,±è, , , ");
+	ChineseLanMap[QStringLiteral("biao")] = QStringLiteral("±ë,±ê,±ì,±í, , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bie")] = QStringLiteral("±ï,±î,±ğ,±ñ, , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bin")] = QStringLiteral("±ö,±ò,±ó,±õ,±ô,±÷, , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bing")] = QStringLiteral("±ù,±ø,±û,±ü,±ú,±ş,±ı,²¢,²¡, , , , , , ");
+	ChineseLanMap[QStringLiteral("bo")] = QStringLiteral("²¦,²¨,²£,²§,²±,²¤,²¥,²®,²µ,²¯,²´,²ª,²¬,²°,²©,²³,²«,²­,²²,²·, , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("bu")] = QStringLiteral("²¹,²¸,²¶,²»,²¼,²½,²À,²¿,²º,²¾, , , , , ");
+	ChineseLanMap[QStringLiteral("ca")] = QStringLiteral("²Á, , , , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("cai")] = QStringLiteral("²Â,²Å,²Ä,²Æ,²Ã,²É,²Ê,²Ç,²È,²Ë,²Ì, , , , ");
+	ChineseLanMap[QStringLiteral("can")] = QStringLiteral("²Î,²Í,²Ğ,²Ï,²Ñ,²Ò,²Ó, , , , , , , , ");
+	ChineseLanMap[QStringLiteral("cang")] = QStringLiteral("²Ö,²×,²Ô,²Õ,²Ø, , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("cao")] = QStringLiteral("²Ù,²Ú,²Ü,²Û,²İ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("bi")] = QStringLiteral("é€¼,é¼»,æ¯”,å½¼,ç¬”,é„™,å¸,å¿…,æ¯•,é—­,åº‡,æ¯–,é™›,æ¯™,æ•,ç—¹,è“–,å¼Š,ç¢§,è”½,å£,é¿,è‡‚, , , , , , , ");
-	ChineseLanMap[QStringLiteral("bian")] = QStringLiteral("è¾¹,ç¼–,é­,è´¬,æ‰,å,ä¾¿,å˜,é,è¾¨,è¾©,è¾«, , , ");
-	ChineseLanMap[QStringLiteral("biao")] = QStringLiteral("å½ª,æ ‡,è†˜,è¡¨, , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bie")] = QStringLiteral("æ†‹,é³–,åˆ«,ç˜ª, , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bin")] = QStringLiteral("å®¾,å½¬,æ–Œ,æ»¨,æ¿’,æ‘ˆ, , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bing")] = QStringLiteral("å†°,å…µ,ä¸™,ç§‰,æŸ„,ç‚³,é¥¼,å¹¶,ç—…, , , , , , ");
-	ChineseLanMap[QStringLiteral("bo")] = QStringLiteral("æ‹¨,æ³¢,ç»,é’µ,è„–,è ,æ’­,ä¼¯,é©³,å¸›,æ³Š,å‹ƒ,é“‚,èˆ¶,åš,æ¸¤,æ,ç®”,è†Š,åœ, , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("bu")] = QStringLiteral("è¡¥,å“º,æ•,ä¸,å¸ƒ,æ­¥,æ€–,éƒ¨,åŸ ,ç°¿, , , , , ");
-	ChineseLanMap[QStringLiteral("ca")] = QStringLiteral("æ“¦, , , , , , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("cai")] = QStringLiteral("çŒœ,æ‰,æ,è´¢,è£,é‡‡,å½©,ç¬,è¸©,èœ,è”¡, , , , ");
-	ChineseLanMap[QStringLiteral("can")] = QStringLiteral("å‚,é¤,æ®‹,èš•,æƒ­,æƒ¨,ç¿, , , , , , , , ");
-	ChineseLanMap[QStringLiteral("cang")] = QStringLiteral("ä»“,æ²§,è‹,èˆ±,è—, , , , , , , , , , ");
-	ChineseLanMap[QStringLiteral("cao")] = QStringLiteral("æ“,ç³™,æ›¹,æ§½,è‰, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ce")] = QStringLiteral("²á,²à,²Ş,²â,²ß, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ce")] = QStringLiteral("å†Œ,ä¾§,å•,æµ‹,ç­–, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ceng")] = QStringLiteral("²ã,²ä,Ôø, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ceng")] = QStringLiteral("å±‚,è¹­,æ›¾, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cha")] = QStringLiteral("²æ,²å,²é,²ç,²è,²ë,²ì,²ê,²í,²ï,²î,É², , , ");
 
-	ChineseLanMap[QStringLiteral("cha")] = QStringLiteral("å‰,æ’,æŸ¥,èŒ¬,èŒ¶,æ½,å¯Ÿ,ç¢´,å²”,è¯§,å·®,åˆ¹, , , ");
 
+	ChineseLanMap[QStringLiteral("chai")] = QStringLiteral("²ğ,²ñ,²ò, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chai")] = QStringLiteral("æ‹†,æŸ´,è±º, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chan")] = QStringLiteral("²ô,²ó,²÷,²ö,²ø,²õ,²ú,²ù,²û,²ü, , , , , ");
 
-	ChineseLanMap[QStringLiteral("chan")] = QStringLiteral("æº,æ€,è°—,é¦‹,ç¼ ,è‰,äº§,é“²,é˜,é¢¤, , , , , ");
 
+	ChineseLanMap[QStringLiteral("chang")] = QStringLiteral("²ı,²ş,³¦,³¢,³¥,³£,³§,³¡,³¨,³©,³«,³ª, , , ");
 
-	ChineseLanMap[QStringLiteral("chang")] = QStringLiteral("æ˜Œ,çŒ–,è‚ ,å°,å¿,å¸¸,å‚,åœº,æ•,ç•…,å€¡,å”±, , , ");
 
+	ChineseLanMap[QStringLiteral("chao")] = QStringLiteral("³­,³®,³¬,³²,³¯,³°,³±,³³,³´,´Â, , , , , ");
 
-	ChineseLanMap[QStringLiteral("chao")] = QStringLiteral("æŠ„,é’,è¶…,å·¢,æœ,å˜²,æ½®,åµ,ç‚’,ç»°, , , , , ");
 
+	ChineseLanMap[QStringLiteral("che")] = QStringLiteral("³µ,³¶,³¹,³¸,³·,³º, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("che")] = QStringLiteral("è½¦,æ‰¯,å½»,æ£,æ’¤,æ¾ˆ, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chen")] = QStringLiteral("³»,³¾,³¼,³À,³Á,³½,³Â,³¿,³Ä,³Ã, , , , , ");
 
-	ChineseLanMap[QStringLiteral("chen")] = QStringLiteral("éƒ´,å°˜,è‡£,å¿±,æ²‰,è¾°,é™ˆ,æ™¨,è¡¬,è¶, , , , , ");
 
+	ChineseLanMap[QStringLiteral("cheng")] = QStringLiteral("³Æ,³Å,³É,³Ê,³Ğ,³Ï,³Ç,³Ë,³Í,³Ì,³Î,³È,³Ñ,³Ò,³Ó");
 
-	ChineseLanMap[QStringLiteral("cheng")] = QStringLiteral("ç§°,æ’‘,æˆ,å‘ˆ,æ‰¿,è¯š,åŸ,ä¹˜,æƒ©,ç¨‹,æ¾„,æ©™,é€,éª‹,ç§¤");
 
+	ChineseLanMap[QStringLiteral("chi")] = QStringLiteral("³Ô,³Õ,³Ú,³Ø,³Û,³Ù,³Ö,³ß,³Ş,³İ,³Ü,³â,³à,³ã,³á");
 
-	ChineseLanMap[QStringLiteral("chi")] = QStringLiteral("åƒ,ç—´,å¼›,æ± ,é©°,è¿Ÿ,æŒ,å°º,ä¾ˆ,é½¿,è€»,æ–¥,èµ¤,ç‚½,ç¿…");
 
+	ChineseLanMap[QStringLiteral("chong")] = QStringLiteral("³ä,³å,³æ,³ç,³è, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chong")] = QStringLiteral("å……,å†²,è™«,å´‡,å® , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chou")] = QStringLiteral("³é,³ğ,³ñ,³ë,³î,³í,³ï,³ê,³ì,³ó,³ò,³ô, , , ");
 
-	ChineseLanMap[QStringLiteral("chou")] = QStringLiteral("æŠ½,ä»‡,ç»¸,ç•´,æ„,ç¨ ,ç­¹,é…¬,è¸Œ,ä¸‘,ç…,è‡­, , , ");
 
+	ChineseLanMap[QStringLiteral("chu")] = QStringLiteral("³ö,³õ,³ı,³ø,³ü,³ú,³û,³÷,³ù,´¡,´¢,³ş,´¦,´¤,´¥,´£,Ğó, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chu")] = QStringLiteral("å‡º,åˆ,é™¤,å¨,æ»,é”„,é›,æ©±,èº‡,ç¡€,å‚¨,æ¥š,å¤„,æ,è§¦,çŸ—,ç•œ, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chuai")] = QStringLiteral("´§, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chuai")] = QStringLiteral("æ£, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chuan")] = QStringLiteral("´¨,´©,´«,´¬,´ª,´­,´®, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chuan")] = QStringLiteral("å·,ç©¿,ä¼ ,èˆ¹,æ¤½,å–˜,ä¸², , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chuang")] = QStringLiteral("´³,´¯,´°,´²,´´, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chuang")] = QStringLiteral("é—¯,ç–®,çª—,åºŠ,åˆ›, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chun")] = QStringLiteral("´º,´»,´¿,´½,´¾,´¼,´À, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chun")] = QStringLiteral("æ˜¥,æ¤¿,çº¯,å”‡,æ·³,é†‡,è ¢, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("chuo")] = QStringLiteral("´Á, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("chuo")] = QStringLiteral("æˆ³, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ci")] = QStringLiteral("´Ã,´Ê,´Ä,´É,´È,´Ç,´Å,´Æ,´Ë,´Î,´Ì,´Í, , , ");
 
-	ChineseLanMap[QStringLiteral("ci")] = QStringLiteral("ç–µ,è¯,èŒ¨,ç“·,æ…ˆ,è¾,ç£,é›Œ,æ­¤,æ¬¡,åˆº,èµ, , , ");
 
+	ChineseLanMap[QStringLiteral("cong")] = QStringLiteral("´Ñ,´Ó,´Ò,´Ğ,´Ï,´Ô, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cong")] = QStringLiteral("å›±,ä»,åŒ†,è‘±,èª,ä¸›, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cou")] = QStringLiteral("´Õ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cou")] = QStringLiteral("å‡‘, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cu")] = QStringLiteral("´Ö,´Ù,´×,´Ø, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cu")] = QStringLiteral("ç²—,ä¿ƒ,é†‹,ç°‡, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cuan")] = QStringLiteral("´Ú,´Ü,´Û, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cuan")] = QStringLiteral("è¹¿,çªœ,ç¯¡, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cui")] = QStringLiteral("´Ş,´ß,´İ,´à,´ã,´á,´â,´ä, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cui")] = QStringLiteral("å´”,å‚¬,æ‘§,è„†,æ·¬,ç˜,ç²¹,ç¿ , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cun")] = QStringLiteral("´å,´æ,´ç, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cun")] = QStringLiteral("æ‘,å­˜,å¯¸, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("cuo")] = QStringLiteral("´ê,´è,´é,´ì,´ë,´í, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("cuo")] = QStringLiteral("æ“,ç£‹,æ’®,æŒ«,æª,é”™, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("da")] = QStringLiteral("´î,´ï,´ğ,´ñ,´ò,´ó, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("da")] = QStringLiteral("æ­,è¾¾,ç­”,ç˜©,æ‰“,å¤§, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dai")] = QStringLiteral("´ô,´õ,´ö,´ú,´ø,´ı,µ¡,´ù,´û,´ü,´ş,´÷, , , ");
 
-	ChineseLanMap[QStringLiteral("dai")] = QStringLiteral("å‘†,æ­¹,å‚£,ä»£,å¸¦,å¾…,æ€ ,æ®†,è´·,è¢‹,é€®,æˆ´, , , ");
 
+	ChineseLanMap[QStringLiteral("dan")] = QStringLiteral("µ¤,µ¥,µ£,µ¢,µ¦,µ¨,µ§,µ©,µ«,µ®,µ¯,µ¬,µ­,µ°,µª");
 
-	ChineseLanMap[QStringLiteral("dan")] = QStringLiteral("ä¸¹,å•,æ‹…,è€½,éƒ¸,èƒ†,æ¸,æ—¦,ä½†,è¯,å¼¹,æƒ®,æ·¡,è›‹,æ°®");
 
+	ChineseLanMap[QStringLiteral("dang")] = QStringLiteral("µ±,µ²,µ³,µ´,µµ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("dang")] = QStringLiteral("å½“,æŒ¡,å…š,è¡,æ¡£, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dao")] = QStringLiteral("µ¶,µ¼,µº,µ¹,µ·,µ»,µ¸,µ½,µ¿,µÁ,µÀ,µ¾, , , ");
 
-	ChineseLanMap[QStringLiteral("dao")] = QStringLiteral("åˆ€,å¯¼,å²›,å€’,æ£,ç¥·,è¹ˆ,åˆ°,æ‚¼,ç›—,é“,ç¨», , , ");
 
+	ChineseLanMap[QStringLiteral("de")] = QStringLiteral("µÃ,µÂ,µÄ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("de")] = QStringLiteral("å¾—,å¾·,çš„, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("deng")] = QStringLiteral("µÆ,µÇ,µÅ,µÈ,µË,µÊ,µÉ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("deng")] = QStringLiteral("ç¯,ç™»,è¹¬,ç­‰,é‚“,å‡³,çª, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("di")] = QStringLiteral("µÍ,µÌ,µÎ,µÒ,µÏ,µĞ,µÓ,µÑ,µÕ,µ×,µÖ,µØ,µÜ,µÛ,µİ,µÚ,µŞ,µÙ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("di")] = QStringLiteral("ä½,å ¤,æ»´,ç‹„,è¿ª,æ•Œ,æ¶¤,ç¬›,å«¡,åº•,æŠµ,åœ°,å¼Ÿ,å¸,é€’,ç¬¬,ç¼”,è’‚, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dian")] = QStringLiteral("µà,µá,µß,µä,µã,µâ,µç,µè,µé,µê,µæ,µë,µí,µì,µî,µå, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("dian")] = QStringLiteral("æ‚,æ»‡,é¢ ,å…¸,ç‚¹,ç¢˜,ç”µ,ä½ƒ,ç”¸,åº—,å«,æƒ¦,æ·€,å¥ ,æ®¿,é›, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("diao")] = QStringLiteral("µó,µğ,µò,µï,µñ,µõ,µö,µô, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("diao")] = QStringLiteral("åˆ,å¼,å‡‹,ç¢‰,é›•,åŠ,é’“,æ‰, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("die")] = QStringLiteral("µù,µø,µü,µı,µş,µú,µû, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("die")] = QStringLiteral("çˆ¹,è·Œ,è¿­,è°,å ,ç¢Ÿ,è¶, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ding")] = QStringLiteral("¶¡,¶£,¶¢,¶¤,¶¥,¶¦,¶©,¶¨,¶§, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ding")] = QStringLiteral("ä¸,å®,ç›¯,é’‰,é¡¶,é¼,è®¢,å®š,é”­, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("diu")] = QStringLiteral("¶ª, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("diu")] = QStringLiteral("ä¸¢, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dong")] = QStringLiteral("¶«,¶¬,¶­,¶®,¶¯,¶³,¶±,¶²,¶°,¶´, , , , , ");
 
-	ChineseLanMap[QStringLiteral("dong")] = QStringLiteral("ä¸œ,å†¬,è‘£,æ‡‚,åŠ¨,å†»,ä¾—,æ«,æ ‹,æ´, , , , , ");
 
+	ChineseLanMap[QStringLiteral("dou")] = QStringLiteral("¶¼,¶µ ,¶·,¶¶,¶¸,¶¹,¶º,¶», , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("dou")] = QStringLiteral("éƒ½,å…œ ,æ–—,æŠ–,é™¡,è±†,é€—,ç—˜, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("du")] = QStringLiteral("¶½,¶¾,¶Á,¶¿,¶À,¶Â,¶Ä,¶Ã,¶Ê,¶Å,¶Ç,¶È,¶É,¶Æ, ");
 
-	ChineseLanMap[QStringLiteral("du")] = QStringLiteral("ç£,æ¯’,è¯»,çŠŠ,ç‹¬,å µ,èµŒ,ç¹,å¦’,æœ,è‚š,åº¦,æ¸¡,é•€, ");
 
+	ChineseLanMap[QStringLiteral("duan")] = QStringLiteral("¶Ë,¶Ì,¶Î,¶Ï,¶Ğ,¶Í, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("duan")] = QStringLiteral("ç«¯,çŸ­,æ®µ,æ–­,ç¼,é”», , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dui")] = QStringLiteral("¶Ñ,¶Ó,¶Ô,¶Ò, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("dui")] = QStringLiteral("å †,é˜Ÿ,å¯¹,å…‘, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("dun")] = QStringLiteral("¶Ö,¶Ø,¶Õ,¶×,¶Ü,¶Û,¶Ù,¶İ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("dun")] = QStringLiteral("å¨,æ•¦,å¢©,è¹²,ç›¾,é’,é¡¿,é, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("duo")] = QStringLiteral("¶à,¶ß,¶á,¶Ş,¶ä,¶â,¶ã,¶ç,¶é,¶æ,¶è,¶å, , , ");
 
-	ChineseLanMap[QStringLiteral("duo")] = QStringLiteral("å¤š,å“†,å¤º,æ‡,æœµ,å›,èº²,å‰,å •,èˆµ,æƒ°,è·º, , , ");
 
+	ChineseLanMap[QStringLiteral("e")] = QStringLiteral("¶ï,¶í,¶ğ,¶ë,¶ì,¶ê,¶î,¶ò,¶ó,¶ñ,¶ö,¶õ,¶ô, , ");
 
-	ChineseLanMap[QStringLiteral("e")] = QStringLiteral("è®¹,ä¿„,å¨¥,å³¨,é¹…,è›¾,é¢,å„,æ‰¼,æ¶,é¥¿,é„‚,é, , ");
 
+	ChineseLanMap[QStringLiteral("en")] = QStringLiteral("¶÷, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("en")] = QStringLiteral("æ©, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("er")] = QStringLiteral("¶ù,¶ø,¶û,¶ú,¶ı,¶ü,¶ş,·¡, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("er")] = QStringLiteral("å„¿,è€Œ,å°”,è€³,æ´±,é¥µ,äºŒ,è´°, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("fa")] = QStringLiteral("·¢,·¦,·¥,·£,·§,·¤,·¨,·©, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("fa")] = QStringLiteral("å‘,ä¹,ä¼,ç½š,é˜€,ç­,æ³•,ç, , , , , , , ");
 
 
+	ChineseLanMap[QStringLiteral("fan")] = QStringLiteral("·«,·¬,·­,·ª,·²,·¯,·°,·³,·®,·±,·´,·µ,·¸,·º,·¹,·¶,··, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("fan")] = QStringLiteral("å¸†,ç•ª,ç¿»,è—©,å‡¡,çŸ¾,é’’,çƒ¦,æ¨Š,ç¹,å,è¿”,çŠ¯,æ³›,é¥­,èŒƒ,è´©, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("fang")] = QStringLiteral("·½,·»,·¼,·À,·Á,·¿,·¾,·Â,·Ã,·Ä,·Å, , , , ");
 
-	ChineseLanMap[QStringLiteral("fang")] = QStringLiteral("æ–¹,åŠ,èŠ³,é˜²,å¦¨,æˆ¿,è‚ª,ä»¿,è®¿,çºº,æ”¾, , , , ");
 
+	ChineseLanMap[QStringLiteral("fei")] = QStringLiteral("·É,·Ç,·È,·Æ,·Ê,·Ë,·Ì,·Í,·Ï,·Ğ,·Î,·Ñ, , , ");
 
-	ChineseLanMap[QStringLiteral("fei")] = QStringLiteral("é£,é,å•¡,è²,è‚¥,åŒª,è¯½,å ,åºŸ,æ²¸,è‚º,è´¹, , , ");
 
+	ChineseLanMap[QStringLiteral("fen")] = QStringLiteral("·Ö,·Ô,·×,·Ò,·Õ,·Ó,·Ø,·Ú,·Ù,·Û,·İ,·Ü,·Ş,·ß,·à");
 
-	ChineseLanMap[QStringLiteral("fen")] = QStringLiteral("åˆ†,å©,çº·,èŠ¬,æ°›,é…š,åŸ,æ±¾,ç„š,ç²‰,ä»½,å¥‹,å¿¿,æ„¤,ç²ª");
 
+	ChineseLanMap[QStringLiteral("feng")] = QStringLiteral("·á,·ç,·ã,·â,·è,·å,·é,·æ,·ä,·ë,·ê,·ì,·í,·ï,·î");
 
-	ChineseLanMap[QStringLiteral("feng")] = QStringLiteral("ä¸°,é£,æ«,å°,ç–¯,å³°,çƒ½,é”‹,èœ‚,å†¯,é€¢,ç¼,è®½,å‡¤,å¥‰");
 
+	ChineseLanMap[QStringLiteral("fo")] = QStringLiteral("·ğ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("fo")] = QStringLiteral("ä½›, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("fou")] = QStringLiteral("·ñ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("fou")] = QStringLiteral("å¦, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("fu")] = QStringLiteral("·ò,·ô,·õ,·ó,¸¥,·ü,·ö,·÷,·ş,·ı,·ú,¸¡,¸¢,·û,¸¤,·ù,¸£,·ø,¸§,¸¦,¸®,¸«,¸©,¸ª,¸¨,¸­,¸¯,¸¸,¸¼,¸¶,¸¾,¸º,¸½,¸À,¸·,¸´,¸°,¸±,¸µ,¸»,¸³,¸¿,¸¹,¸², ");
 
-	ChineseLanMap[QStringLiteral("fu")] = QStringLiteral("å¤«,è‚¤,å­µ,æ•·,å¼—,ä¼,æ‰¶,æ‹‚,æœ,ä¿˜,æ°Ÿ,æµ®,æ¶ª,ç¬¦,è¢±,å¹…,ç¦,è¾,æŠš,ç”«,åºœ,æ–§,ä¿¯,é‡œ,è¾…,è…‘,è…,çˆ¶,è®£,ä»˜,å¦‡,è´Ÿ,é™„,å’,é˜œ,å¤,èµ´,å‰¯,å‚…,å¯Œ,èµ‹,ç¼š,è…¹,è¦†, ");
 
+	ChineseLanMap[QStringLiteral("ga")] = QStringLiteral("¸Â,¸Á, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ga")] = QStringLiteral("å˜,å™¶, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gai")] = QStringLiteral("¸Ã,¸Ä,¸Æ,¸Ç,¸È,¸Å, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gai")] = QStringLiteral("è¯¥,æ”¹,é’™,ç›–,æº‰,æ¦‚, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gan")] = QStringLiteral("¸É,¸Ê,¸Ë,¸Î,¸Ì,¸Í,¸Ñ,¸Ï,¸Ò,¸Ğ,¸Ó, , , , ");
 
-	ChineseLanMap[QStringLiteral("gan")] = QStringLiteral("å¹²,ç”˜,æ†,è‚,æŸ‘,ç«¿,ç§†,èµ¶,æ•¢,æ„Ÿ,èµ£, , , , ");
 
+	ChineseLanMap[QStringLiteral("gang")] = QStringLiteral("¸Ô,¸Õ,¸Ú,¸Ù,¸Ø,¸×,¸Ö,¸Û,¸Ü, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gang")] = QStringLiteral("å†ˆ,åˆš,å²—,çº²,è‚›,ç¼¸,é’¢,æ¸¯,æ , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gao")] = QStringLiteral("¸Ş,¸á,¸ß,¸à,¸İ,¸â,¸ã,¸å,¸ä,¸æ, , , , , ");
 
-	ChineseLanMap[QStringLiteral("gao")] = QStringLiteral("çš‹,ç¾”,é«˜,è†,ç¯™,ç³•,æ,ç¨¿,é•,å‘Š, , , , , ");
 
+	ChineseLanMap[QStringLiteral("ge")] = QStringLiteral("¸ê,¸í,¸ç,¸ì,¸ë,¸î,¸é,¸è,¸ó,¸ï,¸ñ,¸ğ,¸ô,¸ö,¸÷,¸õ,¿©, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ge")] = QStringLiteral("æˆˆ,ç–™,å“¥,èƒ³,é¸½,å‰²,æ,æ­Œ,é˜,é©,æ ¼,è‘›,éš”,ä¸ª,å„,é“¬,å’¯, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gei")] = QStringLiteral("¸ø, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gei")] = QStringLiteral("ç»™, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gen")] = QStringLiteral("¸ù,¸ú, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gen")] = QStringLiteral("æ ¹,è·Ÿ, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("geng")] = QStringLiteral("¸ü,¸ı,¸û,¸ş,¹¡,¹¢,¹£, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("geng")] = QStringLiteral("æ›´,åºš,è€•,ç¾¹,åŸ‚,è€¿,æ¢—, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gong")] = QStringLiteral("¹¤,¹­,¹«,¹¦,¹¥,¹©,¹¬,¹§,¹ª,¹¨,¹®,¹¯,¹°,¹²,¹±");
 
-	ChineseLanMap[QStringLiteral("gong")] = QStringLiteral("å·¥,å¼“,å…¬,åŠŸ,æ”»,ä¾›,å®«,æ­,èº¬,é¾š,å·©,æ±,æ‹±,å…±,è´¡");
 
+	ChineseLanMap[QStringLiteral("gou")] = QStringLiteral("¹´,¹µ,¹³,¹·,¹¶,¹¹,¹º,¹¸,¹», , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gou")] = QStringLiteral("å‹¾,æ²Ÿ,é’©,ç‹—,è‹Ÿ,æ„,è´­,å¢,å¤Ÿ, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gu")] = QStringLiteral("¹À,¹¾,¹Ã,¹Â,¹Á,¹½,¹¼,¹¿,¹Å,¹È,¹É,¹Ç,¹Æ,¹Ä,¹Ì,¹Ê,¹Ë,¹Í, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gu")] = QStringLiteral("ä¼°,å’•,å§‘,å­¤,æ²½,è‡,è¾œ,ç®,å¤,è°·,è‚¡,éª¨,è›Š,é¼“,å›º,æ•…,é¡¾,é›‡, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gua")] = QStringLiteral("¹Ï,¹Î,¹Ğ,¹Ñ,¹Ò,¹Ó, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gua")] = QStringLiteral("ç“œ,åˆ®,å‰,å¯¡,æŒ‚,è¤‚, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("guai")] = QStringLiteral("¹Ô,¹Õ,¹Ö, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("guai")] = QStringLiteral("ä¹–,æ‹,æ€ª, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("guan")] = QStringLiteral("¹Ø,¹Û,¹Ù,¹Ú,¹×,¹İ,¹Ü,¹á,¹ß,¹à,¹Ş, , , , ");
 
-	ChineseLanMap[QStringLiteral("guan")] = QStringLiteral("å…³,è§‚,å®˜,å† ,æ£º,é¦†,ç®¡,è´¯,æƒ¯,çŒ,ç½, , , , ");
 
+	ChineseLanMap[QStringLiteral("guang")] = QStringLiteral("¹â,¹ã,¹ä, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("guang")] = QStringLiteral("å…‰,å¹¿,é€›, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gui")] = QStringLiteral("¹é,¹ç,¹ê,¹æ,¹ë,¹è,¹å,¹ì,¹î,¹ï,¹í,¹ô,¹ñ,¹ó,¹ğ,¹ò, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gui")] = QStringLiteral("å½’,åœ­,é¾Ÿ,è§„,é—º,ç¡…,ç‘°,è½¨,è¯¡,ç™¸,é¬¼,åˆ½,æŸœ,è´µ,æ¡‚,è·ª, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("gun")] = QStringLiteral("¹õ,¹ö,¹÷, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("gun")] = QStringLiteral("è¾Š,æ»š,æ£, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("guo")] = QStringLiteral("¹ù,¹ø,¹ú,¹û,¹ü,¹ı, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("guo")] = QStringLiteral("éƒ­,é”…,å›½,æœ,è£¹,è¿‡, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ha")] = QStringLiteral("¸ò,¹ş, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ha")] = QStringLiteral("è›¤,å“ˆ, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hai")] = QStringLiteral("º¢,º¡,º£,º¥,º§,º¦,º¤, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hai")] = QStringLiteral("å­©,éª¸,æµ·,äº¥,éª‡,å®³,æ°¦, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("han")] = QStringLiteral("º¨,º©,º¬,ºª,º¯,º­,º®,º«,º±,º°,ºº,º¹,ºµ,º·,º´,º¸,º¶,º³,º², , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("han")] = QStringLiteral("é…£,æ†¨,å«,é‚¯,å‡½,æ¶µ,å¯’,éŸ©,ç½•,å–Š,æ±‰,æ±—,æ—±,æ‚,æ,ç„Š,æ†¾,æ’¼,ç¿°, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hang")] = QStringLiteral("º¼,º½,ĞĞ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hang")] = QStringLiteral("æ­,èˆª,è¡Œ, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hao")] = QStringLiteral("ºÁ,ºÀ,º¿,º¾,ºÃ,ºÂ,ºÅ,ºÆ,ºÄ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hao")] = QStringLiteral("æ¯«,è±ª,åš,å£•,å¥½,éƒ,å·,æµ©,è€—, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("he")] = QStringLiteral("ºÇ,ºÈ,ºÌ,ºÏ,ºÎ,ºÍ,ºÓ,ºÒ,ºË,ºÉ,ºÔ,ºĞ,ºÊ,ºØ,ºÖ,ºÕ,º×, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("he")] = QStringLiteral("å‘µ,å–,ç¦¾,åˆ,ä½•,å’Œ,æ²³,é˜‚,æ ¸,è·,æ¶¸,ç›’,è,è´º,è¤,èµ«,é¹¤, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hei")] = QStringLiteral("ºÚ,ºÙ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hei")] = QStringLiteral("é»‘,å˜¿, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hen")] = QStringLiteral("ºÛ,ºÜ,ºİ,ºŞ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hen")] = QStringLiteral("ç—•,å¾ˆ,ç‹ ,æ¨, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("heng")] = QStringLiteral("ºà,ºß,ºã,ºá,ºâ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("heng")] = QStringLiteral("äº¨,å“¼,æ’,æ¨ª,è¡¡, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hong")] = QStringLiteral("ºä,ºå,ºæ,ºë,ºì,ºê,ºé,ºç,ºè, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hong")] = QStringLiteral("è½°,å“„,çƒ˜,å¼˜,çº¢,å®,æ´ª,è™¹,é¸¿, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hou")] = QStringLiteral("ºî,ºí,ºï,ºğ,ºó,ºñ,ºò, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hou")] = QStringLiteral("ä¾¯,å–‰,çŒ´,å¼,å,åš,å€™, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hu")] = QStringLiteral("ºõ,ºô,ºö,»¡,ºü,ºú,ºø,ºş,ºù,º÷,ºı,ºû,»¢,»£,»¥,»§,»¤,»¦, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hu")] = QStringLiteral("ä¹,å‘¼,å¿½,å¼§,ç‹,èƒ¡,å£¶,æ¹–,è‘«,ç‘š,ç³Š,è´,è™,å”¬,äº’,æˆ·,æŠ¤,æ²ª, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hua")] = QStringLiteral("»¨,»ª,»©,»¬,»«,»¯,»®,»­,»°, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hua")] = QStringLiteral("èŠ±,å,å“—,æ»‘,çŒ¾,åŒ–,åˆ’,ç”»,è¯, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("huai")] = QStringLiteral("»³,»²,»´,»±,»µ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("huai")] = QStringLiteral("æ€€,å¾Š,æ·®,æ§,å, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("huan")] = QStringLiteral("»¶,»¹,»·,»¸,»º,»Ã,»Â,»½,»»,»Á,»¼,»À,»¾,»¿, ");
 
-	ChineseLanMap[QStringLiteral("huan")] = QStringLiteral("æ¬¢,è¿˜,ç¯,æ¡“,ç¼“,å¹»,å®¦,å”¤,æ¢,æ¶£,æ‚£,ç„•,ç—ª,è±¢, ");
 
+	ChineseLanMap[QStringLiteral("huang")] = QStringLiteral("»Ä,»Å,»Ê,»Ë,»Æ,»Ì,»Í,»È,»Ç,»É,»Ğ,»Î,»Ñ,»Ï, ");
 
-	ChineseLanMap[QStringLiteral("huang")] = QStringLiteral("è’,æ…Œ,çš‡,å‡°,é»„,æƒ¶,ç…Œ,è—,ç£º,ç°§,æ,æ™ƒ,è°,å¹Œ, ");
 
+	ChineseLanMap[QStringLiteral("hui")] = QStringLiteral("»Ò,»Ö,»Ó,»Ô,»Õ,»Ø,»×,»Ú,»Ü,»ã,»á,»ä,»æ,»å,»â,»ß,»Ş,»à,»İ,»Ù,»Û, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hui")] = QStringLiteral("ç°,æ¢,æŒ¥,è¾‰,å¾½,å›,è›”,æ‚”,å‰,æ±‡,ä¼š,è®³,ç»˜,è¯²,çƒ©,è´¿,æ™¦,ç§½,æƒ ,æ¯,æ…§, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("hun")] = QStringLiteral("»è,»ç,»é,»ë,»ê,»ì, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("hun")] = QStringLiteral("æ˜,è¤,å©š,æµ‘,é­‚,æ··, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("huo")] = QStringLiteral("»í,»î,»ğ,»ï,»ò,»õ,»ñ,»ö,»ó,»ô, , , , , ");
 
-	ChineseLanMap[QStringLiteral("huo")] = QStringLiteral("è±,æ´»,ç«,ä¼™,æˆ–,è´§,è·,ç¥¸,æƒ‘,éœ, , , , , ");
 
+	ChineseLanMap[QStringLiteral("ji")] = QStringLiteral("¼¥,»÷,¼¢,»ø,»ú,¼¡,¼¦,¼£,¼§,»ı,»ù,¼¨,¼©,»û,»ş,»ü,¼¤,¼°,¼ª,¼³,¼¶,¼´,¼«,¼±,¼²,¼¬,¼¯,¼µ,¼­,¼®,¼¸,¼º,¼·,¼¹,¼Æ,¼Ç,¼¿,¼Í,¼Ë,¼É,¼¼,¼Ê,¼Á,¼¾,¼È,¼Ã,¼Ì,¼Å,¼Ä,¼Â,¼À,¼»,¼½,½å, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ji")] = QStringLiteral("è®¥,å‡»,é¥¥,åœ¾,æœº,è‚Œ,é¸¡,è¿¹,å§¬,ç§¯,åŸº,ç»©,ç¼‰,ç•¸,ç®•,ç¨½,æ¿€,åŠ,å‰,æ±²,çº§,å³,æ,æ€¥,ç–¾,æ£˜,é›†,å«‰,è¾‘,ç±,å‡ ,å·±,æŒ¤,è„Š,è®¡,è®°,ä¼,çºª,å¦“,å¿Œ,æŠ€,é™…,å‰‚,å­£,æ—¢,æµ,ç»§,å¯‚,å¯„,æ‚¸,ç¥­,è“Ÿ,å†€,è—‰, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jia")] = QStringLiteral("¼Ó,¼Ğ,¼Ñ,¼Ï,¼Ò,¼Î,¼Ô,¼Õ,¼×,¼Ö,¼Ø,¼Û,¼İ,¼Ü,¼Ù,¼Ş,¼Ú,Ğ®, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jia")] = QStringLiteral("åŠ ,å¤¹,ä½³,æ·,å®¶,å˜‰,èš,é¢Š,ç”²,è´¾,é’¾,ä»·,é©¾,æ¶,å‡,å«,ç¨¼,æŒŸ, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jian")] = QStringLiteral("¼é,¼â,¼á,¼ß,¼ä,¼ç,¼è,¼æ,¼à,¼ã,¼ê,¼å,¼ğ,¼ó,¼í,¼ë,¼ñ,¼õ,¼ô,¼ì,¼ï,¼ò,¼î,¼û,¼ş,½¨,½¤,½£,¼ö,¼ú,½¡,½§,½¢,½¥,½¦,¼ù,¼ø,¼ü,¼ı, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jian")] = QStringLiteral("å¥¸,å°–,åš,æ­¼,é—´,è‚©,è‰°,å…¼,ç›‘,ç¬º,ç¼„,ç…,æ‹£,ä¿­,æŸ¬,èŒ§,æ¡,å‡,å‰ª,æ£€,ç¡·,ç®€,ç¢±,è§,ä»¶,å»º,é¥¯,å‰‘,è,è´±,å¥,æ¶§,èˆ°,æ¸,æº…,è·µ,é‰´,é”®,ç®­, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jiang")] = QStringLiteral("½­,½ª,½«,½¬,½©,½®,½²,½±,½°,½¯,½³,½µ,½´, , ");
 
-	ChineseLanMap[QStringLiteral("jiang")] = QStringLiteral("æ±Ÿ,å§œ,å°†,æµ†,åƒµ,ç–†,è®²,å¥–,æ¡¨,è’‹,åŒ ,é™,é…±, , ");
 
+	ChineseLanMap[QStringLiteral("jiao")] = QStringLiteral("½»,½¼,½¿,½½,½¾,½º,½·,½¹,½¶,½¸,½Ç,½Æ,½Ê,½È,½Ã,½Å,½Â,½Á,½Ë,½É,½Ğ,½Î,½Ï,½Ì,½Ñ,½Í,¾õ,½À, , ");
 
-	ChineseLanMap[QStringLiteral("jiao")] = QStringLiteral("äº¤,éƒŠ,å¨‡,æµ‡,éª„,èƒ¶,æ¤’,ç„¦,è•‰,ç¤,è§’,ç‹¡,ç»,é¥º,çŸ«,è„š,é“°,æ…,å‰¿,ç¼´,å«,è½¿,è¾ƒ,æ•™,çª–,é…µ,è§‰,åš¼, , ");
 
+	ChineseLanMap[QStringLiteral("jie")] = QStringLiteral("½×,½Ô,½Ó,½Õ,½Ò,½Ö,½Ú,½Ù,½Ü,½à,½á,½İ,½Ş,½Ø,½ß,½ã,½â,½é,½ä,½æ,½ì,½ç,½ê,½ë,½è, , , , , ");
 
-	ChineseLanMap[QStringLiteral("jie")] = QStringLiteral("é˜¶,çš†,æ¥,ç§¸,æ­,è¡—,èŠ‚,åŠ«,æ°,æ´,ç»“,æ·,ç«,æˆª,ç«­,å§,è§£,ä»‹,æˆ’,èŠ¥,å±Š,ç•Œ,ç–¥,è¯«,å€Ÿ, , , , , ");
 
+	ChineseLanMap[QStringLiteral("jin")] = QStringLiteral("½í,½ñ,½ï,½ğ,½ò,½î,½ó,½ö,½ô,½÷,½õ,¾¡,¾¢,½ü,½ø,½ú,½ş,½ı,½û,½ù, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jin")] = QStringLiteral("å·¾,ä»Š,æ–¤,é‡‘,æ´¥,ç­‹,è¥Ÿ,ä»…,ç´§,è°¨,é”¦,å°½,åŠ²,è¿‘,è¿›,æ™‹,æµ¸,çƒ¬,ç¦,é³, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jing")] = QStringLiteral("¾©,¾­,¾¥,¾£,¾ª,¾§,¾¦,¾¬,¾¤,¾«,¾¨,¾®,¾±,¾°,¾¯,¾»,¾¶,¾·,¾º,¾¹,¾´,¾¸,¾³,¾²,¾µ, , , , , ");
 
-	ChineseLanMap[QStringLiteral("jing")] = QStringLiteral("äº¬,ç»,èŒ,è†,æƒŠ,æ™¶,ç›,ç²³,å…¢,ç²¾,é²¸,äº•,é¢ˆ,æ™¯,è­¦,å‡€,å¾„,ç—‰,ç«,ç«Ÿ,æ•¬,é–,å¢ƒ,é™,é•œ, , , , , ");
 
+	ChineseLanMap[QStringLiteral("jiong")] = QStringLiteral("¾¼,¾½, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jiong")] = QStringLiteral("ç‚¯,çª˜, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jiu")] = QStringLiteral("¾À,¾¿,¾¾,¾Å,¾Ã,¾Ä,¾Á,¾Â,¾Æ,¾É,¾Ê,¾Ì,¾Î,¾Ç,¾È,¾Í,¾Ë, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jiu")] = QStringLiteral("çº ,ç©¶,æª,ä¹,ä¹…,ç¸,ç–,éŸ­,é…’,æ—§,è‡¼,å’,ç–š,å©,æ•‘,å°±,èˆ…, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ju")] = QStringLiteral("¾Ó,¾Ğ,¾Ñ,¾Ô,¾Ò,¾Ï,¾Ö,½Û,¾Õ,¾×,¾Ú,¾Ù,¾Ø,¾ä,¾Ş,¾Ü,¾ß,¾æ,¾ã,¾ç,¾å,¾İ,¾à,¾â,¾Û,¾á, , , , ");
 
-	ChineseLanMap[QStringLiteral("ju")] = QStringLiteral("å±…,æ‹˜,ç‹™,é©¹,ç–½,é ,å±€,æ¡”,èŠ,å’€,æ²®,ä¸¾,çŸ©,å¥,å·¨,æ‹’,å…·,ç‚¬,ä¿±,å‰§,æƒ§,æ®,è·,é”¯,èš,è¸, , , , ");
 
+	ChineseLanMap[QStringLiteral("juan")] = QStringLiteral("¾ê,¾è,¾é,¾í,¾ë,¾î,¾ì, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("juan")] = QStringLiteral("å¨Ÿ,æ,é¹ƒ,å·,å€¦,ç»¢,çœ·, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jue")] = QStringLiteral("¾ï,¾ö,¾÷,¾ñ,¾ø,¾ó,¾ò,¾ô,¾ğ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("jue")] = QStringLiteral("æ’…,å†³,è¯€,æŠ‰,ç»,å€”,æ˜,çˆµ,æ”«, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("jun")] = QStringLiteral("¾ü,¾ı,¾ù,¾û,¾ú,¿¡,¿¤,¾ş,¿£,¿¥,¿¢, , , , ");
 
-	ChineseLanMap[QStringLiteral("jun")] = QStringLiteral("å†›,å›,å‡,é’§,èŒ,ä¿Š,éƒ¡,å³»,æµš,éª,ç«£, , , , ");
 
+	ChineseLanMap[QStringLiteral("ka")] = QStringLiteral("¿§,¿¦,¿¨, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ka")] = QStringLiteral("å’–,å–€,å¡, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kai")] = QStringLiteral("¿ª,¿«,¿­,¿®,¿¬, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kai")] = QStringLiteral("å¼€,æ©,å‡¯,æ…¨,æ¥·, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kan")] = QStringLiteral("¼÷,¿¯,¿±,¿°,¿²,¿³,¿´, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kan")] = QStringLiteral("æ§›,åˆŠ,å‹˜,å ª,å,ç ,çœ‹, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kang")] = QStringLiteral("¿µ,¿¶,¿·,¿¸,¿º,¿¹,¿», , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kang")] = QStringLiteral("åº·,æ…·,ç³ ,æ‰›,äº¢,æŠ—,ç‚•, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kao")] = QStringLiteral("¿¼,¿½,¿¾,¿¿, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kao")] = QStringLiteral("è€ƒ,æ‹·,çƒ¤,é , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ke")] = QStringLiteral("¿À,¿Á,¿Â,¿Æ,¿Ã,¿Å,¿Ä,¿Ç,¿È,¿É,¿Ê,¿Ë,¿Ì,¿Í,¿Î");
 
-	ChineseLanMap[QStringLiteral("ke")] = QStringLiteral("å·,è‹›,æŸ¯,ç§‘,æ£µ,é¢—,ç£•,å£³,å’³,å¯,æ¸´,å…‹,åˆ»,å®¢,è¯¾");
 
+	ChineseLanMap[QStringLiteral("ken")] = QStringLiteral("¿Ï,¿Ñ,¿Ò,¿Ğ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ken")] = QStringLiteral("è‚¯,å¦,æ³,å•ƒ, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("keng")] = QStringLiteral("¿Ô,¿Ó, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("keng")] = QStringLiteral("å­,å‘, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kong")] = QStringLiteral("¿Õ,¿×,¿Ö,¿Ø, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kong")] = QStringLiteral("ç©º,å­”,æ,æ§, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kou")] = QStringLiteral("¿Ù,¿Ú,¿Û,¿Ü, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kou")] = QStringLiteral("æŠ ,å£,æ‰£,å¯‡, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ku")] = QStringLiteral("¿İ,¿Ş,¿ß,¿à,¿â,¿ã,¿á, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ku")] = QStringLiteral("æ¯,å“­,çªŸ,è‹¦,åº“,è£¤,é…·, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kua")] = QStringLiteral("¿ä,¿å,¿æ,¿è,¿ç, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kua")] = QStringLiteral("å¤¸,å®,æŒ,èƒ¯,è·¨, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kuai")] = QStringLiteral("¿é,¿ì,¿ë,¿ê, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kuai")] = QStringLiteral("å—,å¿«,ä¾©,ç­·, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kuan")] = QStringLiteral("¿í,¿î, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kuan")] = QStringLiteral("å®½,æ¬¾, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kuang")] = QStringLiteral("¿ï,¿ğ,¿ñ,¿ö,¿õ,¿ó,¿ò,¿ô, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kuang")] = QStringLiteral("åŒ¡,ç­,ç‹‚,å†µ,æ—·,çŸ¿,æ¡†,çœ¶, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kui")] = QStringLiteral("¿÷,¿ù,¿ø,¿ú,¿ü,¿û,¿ı,¿ş,À¢,À£,À¡, , , , ");
 
-	ChineseLanMap[QStringLiteral("kui")] = QStringLiteral("äº,å²¿,ç›”,çª¥,å¥,è‘µ,é­,å‚€,æ„§,æºƒ,é¦ˆ, , , , ");
 
+	ChineseLanMap[QStringLiteral("kun")] = QStringLiteral("À¤,À¥,À¦,À§, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kun")] = QStringLiteral("å¤,æ˜†,æ†,å›°, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("kuo")] = QStringLiteral("À©,À¨,À«,Àª, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("kuo")] = QStringLiteral("æ‰©,æ‹¬,é˜”,å»“, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("la")] = QStringLiteral("À¬,À­,À²,À®,À°,À¯,À±, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("la")] = QStringLiteral("åƒ,æ‹‰,å•¦,å–‡,è…Š,èœ¡,è¾£, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lai")] = QStringLiteral("À´,À³,Àµ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lai")] = QStringLiteral("æ¥,è±,èµ–, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lan")] = QStringLiteral("À¼,À¹,À¸,À·,À»,À¶,À¾,À½,Àº,ÀÀ,À¿,ÀÂ,ÀÁ,ÀÃ,ÀÄ");
 
-	ChineseLanMap[QStringLiteral("lan")] = QStringLiteral("å…°,æ‹¦,æ ,å©ª,é˜‘,è“,è°°,æ¾œ,ç¯®,è§ˆ,æ½,ç¼†,æ‡’,çƒ‚,æ»¥");
 
+	ChineseLanMap[QStringLiteral("lang")] = QStringLiteral("ÀÉ,ÀÇ,ÀÈ,ÀÅ,ÀÆ,ÀÊ,ÀË, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lang")] = QStringLiteral("éƒ,ç‹¼,å»Š,ç…,æ¦”,æœ—,æµª, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lao")] = QStringLiteral("ÀÌ,ÀÍ,ÀÎ,ÀÏ,ÀĞ,ÀÑ,ÀÔ,ÀÓ,ÀÒ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lao")] = QStringLiteral("æ,åŠ³,ç‰¢,è€,ä½¬,å§¥,æ¶,çƒ™,é…ª, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("le")] = QStringLiteral("ÀÖ,ÀÕ,ÁË, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("le")] = QStringLiteral("ä¹,å‹’,äº†, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lei")] = QStringLiteral("À×,ÀØ,Àİ,ÀÚ,ÀÙ,ÀÜ,Àß,Àá,Àà,ÀÛ,ÀŞ, , , , ");
 
-	ChineseLanMap[QStringLiteral("lei")] = QStringLiteral("é›·,é•­,å’,ç£Š,è•¾,å„¡,è‚‹,æ³ª,ç±»,ç´¯,æ“‚, , , , ");
 
+	ChineseLanMap[QStringLiteral("leng")] = QStringLiteral("Àâ,Àã,Àä, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("leng")] = QStringLiteral("æ£±,æ¥,å†·, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("li")] = QStringLiteral("Àå,Àæ,Àê,Àë,Àò,Àç,Àì,Á§,Àè,Àé,Àñ,Àî,Àï,Á¨,Àí,Àğ,Á¦,Àú,À÷,Á¢,Àô,Àö,Àû,Àø,Á¤,Àı,Á¥,Àş,Àó,Àõ,Àù,Á£,Àü,Á¡, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("li")] = QStringLiteral("å˜,æ¢¨,ç‹¸,ç¦»,è‰,çŠ,æ¼“,ç’ƒ,é»,ç¯±,ç¤¼,æ,é‡Œ,å“©,ç†,é²¤,åŠ›,å†,å‰,ç«‹,å,ä¸½,åˆ©,åŠ±,æ²¥,ä¾‹,éš¶,ä¿,è”,æ —,ç ¾,ç²’,å‚ˆ,ç—¢, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lian")] = QStringLiteral("Á¬,Á±,Á¯,Á°,Á«,Áª,Á®,Á­,Á²,Á³,Á·,Á¶,Áµ,Á´, ");
 
-	ChineseLanMap[QStringLiteral("lian")] = QStringLiteral("è¿,å¸˜,æ€œ,æ¶Ÿ,è²,è”,å»‰,é•°,æ•›,è„¸,ç»ƒ,ç‚¼,æ‹,é“¾, ");
 
+	ChineseLanMap[QStringLiteral("liang")] = QStringLiteral("Á©,Á¼,Á¹,Áº,Á¸,Á»,Á½,ÁÁ,ÁÂ,Á¾,ÁÀ,Á¿, , , ");
 
-	ChineseLanMap[QStringLiteral("liang")] = QStringLiteral("ä¿©,è‰¯,å‡‰,æ¢,ç²®,ç²±,ä¸¤,äº®,è°…,è¾†,æ™¾,é‡, , , ");
 
+	ChineseLanMap[QStringLiteral("liao")] = QStringLiteral("ÁÊ,ÁÉ,ÁÆ,ÁÄ,ÁÅ,ÁÈ,ÁÎ,ÁÃ,ÁÇ,ÁÍ,ÁÏ,ÁÌ, , , ");
 
-	ChineseLanMap[QStringLiteral("liao")] = QStringLiteral("æ½¦,è¾½,ç–—,èŠ,åƒš,å¯¥,å»–,æ’©,ç‡,é•£,æ–™,æ’‚, , , ");
 
+	ChineseLanMap[QStringLiteral("lie")] = QStringLiteral("ÁĞ,ÁÓ,ÁÒ,ÁÔ,ÁÑ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lie")] = QStringLiteral("åˆ—,åŠ£,çƒˆ,çŒ,è£‚, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lin")] = QStringLiteral("ÁÚ,ÁÖ,ÁÙ,ÁÜ,ÁÕ,ÁØ,Á×,ÁÛ,Áİ,Áß,ÁŞ,Áà, , , ");
 
-	ChineseLanMap[QStringLiteral("lin")] = QStringLiteral("é‚»,æ—,ä¸´,æ·‹,ç³,éœ–,ç£·,é³,å‡›,å,èµ,æ‹, , , ");
 
+	ChineseLanMap[QStringLiteral("ling")] = QStringLiteral("Áæ,Áé,Áë,Áá,Áè,Áå,Áê,Áç,Áâ,Áã,Áä,Áì,Áî,Áí, ");
 
-	ChineseLanMap[QStringLiteral("ling")] = QStringLiteral("ä¼¶,çµ,å²­,ç²,å‡Œ,é“ƒ,é™µ,ç¾š,è±,é›¶,é¾„,é¢†,ä»¤,å¦, ");
 
+	ChineseLanMap[QStringLiteral("liu")] = QStringLiteral("Áï,Áõ,Á÷,Áô,Áğ,Áò,Áó,Áñ,Áö,Áø,Áù, , , , ");
 
-	ChineseLanMap[QStringLiteral("liu")] = QStringLiteral("æºœ,åˆ˜,æµ,ç•™,ç‰,ç¡«,é¦,æ¦´,ç˜¤,æŸ³,å…­, , , , ");
 
+	ChineseLanMap[QStringLiteral("long")] = QStringLiteral("Áú,Áü,Áı,Áû,Â¡,Áş,Â¤,Â¢,Â£, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("long")] = QStringLiteral("é¾™,å’™,ç¬¼,è‹,éš†,çª¿,é™‡,å„,æ‹¢, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lou")] = QStringLiteral("Â¦,Â¥,Â§,Â¨,Âª,Â©, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lou")] = QStringLiteral("å¨„,æ¥¼,æ‚,ç¯“,é™‹,æ¼, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lu")] = QStringLiteral("Â¶,Â¬,Â®,Â«,Â¯,Â­,Â±,Â²,Â°,Â³,Â½,Â¼,Â¸,Â¹,Â»,Âµ,Â·,Â¾,Âº,Â´, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lu")] = QStringLiteral("éœ²,å¢,åº,èŠ¦,ç‚‰,é¢…,å¤,è™,æ³,é²,é™†,å½•,èµ‚,é¹¿,ç¦„,ç¢Œ,è·¯,æˆ®,æ½,éº“, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("luan")] = QStringLiteral("ÂÏ,ÂÍ,ÂÎ,ÂĞ,ÂÑ,ÂÒ, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("luan")] = QStringLiteral("å­ª,å³¦,æŒ›,æ»¦,åµ,ä¹±, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lue")] = QStringLiteral("ÂÓ,ÂÔ , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lue")] = QStringLiteral("æ ,ç•¥ , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("lun")] = QStringLiteral("ÂÕ,ÂØ,Â×,ÂÙ,ÂÚ,ÂÖ,ÂÛ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("lun")] = QStringLiteral("æŠ¡,ä»‘,ä¼¦,æ²¦,çº¶,è½®,è®º, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("luo")] = QStringLiteral("ÂŞ,ÂÜ,Âß,Âà,Âá,Ââ,Âİ,Âã,Âå,Âç,Âæ,Âä, , , ");
 
-	ChineseLanMap[QStringLiteral("luo")] = QStringLiteral("ç½—,è,é€»,é”£,ç®©,éª¡,èº,è£¸,æ´›,ç»œ,éª†,è½, , , ");
 
+	ChineseLanMap[QStringLiteral("lv")] = QStringLiteral("ÂË,Â¿,ÂÀ,ÂÂ,ÂÃ,ÂÁ,ÂÅ,ÂÆ,ÂÄ,ÂÉ,ÂÇ,ÂÊ,ÂÌ,ÂÈ, ");
 
-	ChineseLanMap[QStringLiteral("lv")] = QStringLiteral("æ»¤,é©´,å•,ä¾£,æ—…,é“,å±¡,ç¼•,å±¥,å¾‹,è™‘,ç‡,ç»¿,æ°¯, ");
 
+	ChineseLanMap[QStringLiteral("ma")] = QStringLiteral("Âè,Âé,Âí,Âê,Âë,Âì,Âî,Âğ,Âï, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ma")] = QStringLiteral("å¦ˆ,éº»,é©¬,ç›,ç ,èš‚,éª‚,å—,å˜›, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mai")] = QStringLiteral("Âñ,Âò,Âõ,Âó,Âô,Âö, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mai")] = QStringLiteral("åŸ‹,ä¹°,è¿ˆ,éº¦,å–,è„‰, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("man")] = QStringLiteral("Âù,Âø,Â÷,Âú,Âü,Ã¡,Âı,Âş,Âû, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("man")] = QStringLiteral("è›®,é¦’,ç’,æ»¡,æ›¼,è°©,æ…¢,æ¼«,è”“, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mang")] = QStringLiteral("Ã¦,Ã¢,Ã¤,Ã£,Ã§,Ã¥, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mang")] = QStringLiteral("å¿™,èŠ’,ç›²,èŒ«,è½,æ°“, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mao")] = QStringLiteral("Ã¨,Ã«,Ã¬,Ã©,Ãª,Ã®,Ã­,Ã¯,Ã°,Ã³,Ã±,Ã², , , ");
 
-	ChineseLanMap[QStringLiteral("mao")] = QStringLiteral("çŒ«,æ¯›,çŸ›,èŒ…,é”š,å¯,é“†,èŒ‚,å†’,è´¸,å¸½,è²Œ, , , ");
 
+	ChineseLanMap[QStringLiteral("me")] = QStringLiteral("Ã´, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("me")] = QStringLiteral("ä¹ˆ, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mei")] = QStringLiteral("Ã»,Ã¶,Ãµ,Ã¼,Ã·,Ã½,Ãº,Ã¸,Ã¹,Ã¿,ÃÀ,Ã¾,ÃÃ,ÃÁ,ÃÄ,ÃÂ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mei")] = QStringLiteral("æ²¡,æš,ç«,çœ‰,æ¢…,åª’,ç…¤,é…¶,éœ‰,æ¯,ç¾,é•,å¦¹,æ˜§,åªš,å¯, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("men")] = QStringLiteral("ÃÅ,ÃÆ,ÃÇ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("men")] = QStringLiteral("é—¨,é—·,ä»¬, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("meng")] = QStringLiteral("ÃÈ,ÃË,ÃÊ,ÃÍ,ÃÉ,ÃÌ,ÃÏ,ÃÎ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("meng")] = QStringLiteral("èŒ,ç›Ÿ,æª¬,çŒ›,è’™,é”°,å­Ÿ,æ¢¦, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mi")] = QStringLiteral("ÃÖ,ÃÔ,ÃÕ,ÃÑ,ÃÓ,ÃÒ,Ã×,ÃĞ,ÃÚ,ÃÙ,ÃØ,ÃÜ,Ãİ,ÃÛ, ");
 
-	ChineseLanMap[QStringLiteral("mi")] = QStringLiteral("å¼¥,è¿·,è°œ,é†š,ç³œ,é¡,ç±³,çœ¯,æ³Œ,è§…,ç§˜,å¯†,å¹‚,èœœ, ");
 
+	ChineseLanMap[QStringLiteral("mian")] = QStringLiteral("Ãß,Ãà,ÃŞ,Ãâ,Ãã,Ãä,Ãá,Ãå,Ãæ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mian")] = QStringLiteral("çœ ,ç»µ,æ£‰,å…,å‹‰,å¨©,å†•,ç¼…,é¢, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("miao")] = QStringLiteral("Ãç,Ãé,Ãë,Ãì,Ãê,Ãî,Ãí, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("miao")] = QStringLiteral("è‹—,ç„,ç§’,æ¸º,è—,å¦™,åº™, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mie")] = QStringLiteral("Ãğ,Ãï, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mie")] = QStringLiteral("ç­,è”‘, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("min")] = QStringLiteral("Ãñ,Ãó,Ãò,Ãö,Ãõ,Ãô, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("min")] = QStringLiteral("æ°‘,çš¿,æŠ¿,é—½,æ‚¯,æ•, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ming")] = QStringLiteral("Ãû,Ã÷,Ãù,Ãú,Ãø,Ãü, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ming")] = QStringLiteral("å,æ˜,é¸£,é“­,èŸ,å‘½, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("miu")] = QStringLiteral("Ãı, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("miu")] = QStringLiteral("è°¬, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mo")] = QStringLiteral("ºÑ,Ãş,Ä¡,Ä£,Ä¤,Ä¦,Ä¥,Ä¢,Ä§,Ä¨,Ä©,Ä­,Ä°,Äª,Ä¯,Ä®,Ä«,Ä¬, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mo")] = QStringLiteral("è²‰,æ‘¸,æ‘¹,æ¨¡,è†œ,æ‘©,ç£¨,è˜‘,é­”,æŠ¹,æœ«,æ²«,é™Œ,è«,å¯,æ¼ ,å¢¨,é»˜, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mou")] = QStringLiteral("Ä²,Ä±,Ä³, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("mou")] = QStringLiteral("ç‰Ÿ,è°‹,æŸ, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("mu")] = QStringLiteral("Ä¸,Ä¶,Äµ,Ä·,Ä´,Ä¾,Ä¿,ÄÁ,Ä¼,Ä¹,Ä»,ÄÀ,Ä½,Äº,ÄÂ");
 
-	ChineseLanMap[QStringLiteral("mu")] = QStringLiteral("æ¯,äº©,ç‰¡,å§†,æ‹‡,æœ¨,ç›®,ç‰§,å‹Ÿ,å¢“,å¹•,ç¦,æ…•,æš®,ç©†");
 
+	ChineseLanMap[QStringLiteral("na")] = QStringLiteral("ÄÃ,ÄÄ,ÄÇ,ÄÉ,ÄÈ,ÄÆ,ÄÅ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("na")] = QStringLiteral("æ‹¿,å“ª,é‚£,çº³,å¨œ,é’ ,å‘, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nai")] = QStringLiteral("ÄË,ÄÌ,ÄÊ,ÄÎ,ÄÍ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nai")] = QStringLiteral("ä¹ƒ,å¥¶,æ°–,å¥ˆ,è€, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nan")] = QStringLiteral("ÄĞ,ÄÑ,ÄÏ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nan")] = QStringLiteral("ç”·,éš¾,å—, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nang")] = QStringLiteral("ÄÒ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nang")] = QStringLiteral("å›Š, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ne")] = QStringLiteral("ÄØ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ne")] = QStringLiteral("å‘¢, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nao")] = QStringLiteral("ÄÓ,ÄÕ,ÄÔ,ÄÖ,Ä×, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nao")] = QStringLiteral("æŒ ,æ¼,è„‘,é—¹,æ·–, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nei")] = QStringLiteral("ÄÚ,ÄÙ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nei")] = QStringLiteral("å†…,é¦, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nen")] = QStringLiteral("ÄÛ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nen")] = QStringLiteral("å«©, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("neng")] = QStringLiteral("ÄÜ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("neng")] = QStringLiteral("èƒ½, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ni")] = QStringLiteral("Äİ,Äá,Äà,Äß,ÄŞ,Äã,Äâ,Äæ,Ää,Äç,Äå, , , , ");
 
-	ChineseLanMap[QStringLiteral("ni")] = QStringLiteral("å¦®,å°¼,æ³¥,å€ª,éœ“,ä½ ,æ‹Ÿ,é€†,åŒ¿,æºº,è…», , , , ");
 
+	ChineseLanMap[QStringLiteral("nian")] = QStringLiteral("Äé,Äê,Äí,Äì,Äë,Äî,Äè, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nian")] = QStringLiteral("æ‹ˆ,å¹´,æ»,æ’µ,ç¢¾,å¿µ,è”«, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("niang")] = QStringLiteral("Äï,Äğ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("niang")] = QStringLiteral("å¨˜,é…¿, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("niao")] = QStringLiteral("Äñ,Äò, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("niao")] = QStringLiteral("é¸Ÿ,å°¿, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nie")] = QStringLiteral("Äó,Äù,Äô,Äö,Ä÷,Äø,Äõ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nie")] = QStringLiteral("æ,æ¶…,è‚,å•®,é•Š,é•,å­½, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nin")] = QStringLiteral("Äú, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nin")] = QStringLiteral("æ‚¨, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nuan")] = QStringLiteral("Å¯, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nuan")] = QStringLiteral("æš–, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ning")] = QStringLiteral("Äş,Å¡,Äü,Äû,Äı,Å¢, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ning")] = QStringLiteral("å®,æ‹§,ç‹,æŸ ,å‡,æ³, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("niu")] = QStringLiteral("Å£,Å¤,Å¦,Å¥, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("niu")] = QStringLiteral("ç‰›,æ‰­,çº½,é’®, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nong")] = QStringLiteral("Å©,Å¨,Å§,Åª, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nong")] = QStringLiteral("å†œ,æµ“,è„“,å¼„, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nu")] = QStringLiteral("Å«,Å¬,Å­, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nu")] = QStringLiteral("å¥´,åŠª,æ€’, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nue")] = QStringLiteral("Å±,Å°, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nue")] = QStringLiteral("ç–Ÿ,è™, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nuo")] = QStringLiteral("Å²,Åµ,Å³,Å´, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nuo")] = QStringLiteral("æŒª,è¯º,æ‡¦,ç³¯, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("nv")] = QStringLiteral("Å®, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("nv")] = QStringLiteral("å¥³, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("o")] = QStringLiteral("Å¶, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("o")] = QStringLiteral("å“¦, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ou")] = QStringLiteral("Å·,Å¹,Å¸,Å»,Å¼,Åº,Å½, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ou")] = QStringLiteral("æ¬§,æ®´,é¸¥,å‘•,å¶,è—•,æ²¤, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pa")] = QStringLiteral("Å¿,Å¾,ÅÀ,°Ò,ÅÃ,ÅÁ,ÅÂ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pa")] = QStringLiteral("è¶´,å•ª,çˆ¬,è€™,ç¶,å¸•,æ€•, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pai")] = QStringLiteral("ÅÄ,ÅÇ,ÅÅ,ÅÆ,ÅÉ,ÅÈ, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pai")] = QStringLiteral("æ‹,å¾˜,æ’,ç‰Œ,æ´¾,æ¹ƒ, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pan")] = QStringLiteral("ÅË,ÅÊ,ÅÌ,ÅÍ,ÅĞ,ÅÑ,ÅÎ,ÅÏ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pan")] = QStringLiteral("æ½˜,æ”€,ç›˜,ç£,åˆ¤,å›,ç›¼,ç•”, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pang")] = QStringLiteral("ÅÒ,ÅÓ,ÅÔ,ÅÕ,ÅÖ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pang")] = QStringLiteral("ä¹“,åº,æ—,è€ª,èƒ–, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pao")] = QStringLiteral("Å×,ÅÙ,ÅØ,ÅÚ,ÅÛ,ÅÜ,Åİ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pao")] = QStringLiteral("æŠ›,åˆ¨,å’†,ç‚®,è¢,è·‘,æ³¡, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pei")] = QStringLiteral("ÅŞ,Åã,Åà,Åâ,Åá,Åæ,Åå,Åä, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pei")] = QStringLiteral("å‘¸,é™ª,åŸ¹,èµ”,è£´,æ²›,ä½©,é…, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pen")] = QStringLiteral("Åç,Åè, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pen")] = QStringLiteral("å–·,ç›†, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("peng")] = QStringLiteral("Åê,Åé,Åë,Åó,Åí,Åï,Åğ,Åî,Åô,Åì,Åñ,Åò,Åõ,Åö, ");
 
-	ChineseLanMap[QStringLiteral("peng")] = QStringLiteral("æŠ¨,ç °,çƒ¹,æœ‹,å½­,æ£š,ç¡¼,è“¬,é¹,æ¾,ç¯·,è†¨,æ§,ç¢°, ");
 
+	ChineseLanMap[QStringLiteral("pi")] = QStringLiteral("±Ù,Åú,Å÷,Åû,Åø,Åü,Åù,Æ¤,Åş,Æ£,Æ¡,Åı,Æ¢,Æ¥,Æ¦,Æ¨,Æ§,Æ©, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pi")] = QStringLiteral("è¾Ÿ,æ‰¹,å¯,æŠ«,ç ’,åŠˆ,éœ¹,çš®,æ¯—,ç–²,å•¤,çµ,è„¾,åŒ¹,ç—,å±,åƒ»,è­¬, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pian")] = QStringLiteral("Æ¬,Æ«,Æª,Æ­, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pian")] = QStringLiteral("ç‰‡,å,ç¯‡,éª—, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("piao")] = QStringLiteral("Æ¯,Æ®,Æ°,Æ±, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("piao")] = QStringLiteral("æ¼‚,é£˜,ç“¢,ç¥¨, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pie")] = QStringLiteral("Æ²,Æ³, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pie")] = QStringLiteral("æ’‡,ç¥, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pin")] = QStringLiteral("Æ´,Æ¶,Æµ,Æ·,Æ¸, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pin")] = QStringLiteral("æ‹¼,è´«,é¢‘,å“,è˜, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ping")] = QStringLiteral("Æ¹,Æ½,ÆÀ,Æ¾,Æº,Æ»,ÆÁ,Æ¿,Æ¼, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ping")] = QStringLiteral("ä¹’,å¹³,è¯„,å‡­,åª,è‹¹,å±,ç“¶,è, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("po")] = QStringLiteral("ÆÂ,ÆÃ,ÆÄ,ÆÅ,ÆÈ,ÆÆ,ÆÉ,ÆÇ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("po")] = QStringLiteral("å¡,æ³¼,é¢‡,å©†,è¿«,ç ´,ç²•,é­„, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pou")] = QStringLiteral("ÆÊ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("pou")] = QStringLiteral("å‰–, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("pu")] = QStringLiteral("¸¬,ÆÍ,ÆË,ÆÌ,ÆÎ,ÆĞ,ÆÏ,ÆÑ,ÆÓ,ÆÔ,ÆÒ,ÆÖ,ÆÕ,Æ×,ÆØ");
 
-	ChineseLanMap[QStringLiteral("pu")] = QStringLiteral("è„¯,ä»†,æ‰‘,é“º,è†,è©,è‘¡,è’²,æœ´,åœƒ,åŸ”,æµ¦,æ™®,è°±,æ›");
 
+	ChineseLanMap[QStringLiteral("qi")] = QStringLiteral("Æß,Æã,ÆŞ,Æâ,Æà,ÆÜ,Æİ,ÆÚ,ÆÛ,Æá,Æî,Æë,Æä,Ææ,Æç,Æí,Æê,Æé,Æè,Æï,Æå,Æì,Æò,Æó,Æñ,Æô,Æğ,Æø,Æı,Æù,Æú,Æû,Æü,Æõ,Æö,Æ÷, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qi")] = QStringLiteral("ä¸ƒ,æ²,å¦»,æŸ’,å‡„,æ –,æˆš,æœŸ,æ¬º,æ¼†,ç¥,é½,å…¶,å¥‡,æ­§,ç¥ˆ,è„,å´,ç•¦,éª‘,æ£‹,æ——,ä¹,ä¼,å²‚,å¯,èµ·,æ°”,è®«,è¿„,å¼ƒ,æ±½,æ³£,å¥‘,ç Œ,å™¨, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qia")] = QStringLiteral("Æş,Ç¡,Ç¢, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qia")] = QStringLiteral("æ,æ°,æ´½, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qian")] = QStringLiteral("Ç§,Çª,Ç¤,Ç¨,Ç¥,Ç£,Ç¦,Ç«,Ç©,Ç°,Ç®,Ç¯,Ç¬,Ç±,Ç­,Ç³,Ç²,Ç´,Ç·,Çµ,Ç¶,Ç¸, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qian")] = QStringLiteral("åƒ,ä»Ÿ,æ‰¦,è¿,é’,ç‰µ,é“…,è°¦,ç­¾,å‰,é’±,é’³,ä¹¾,æ½œ,é»”,æµ…,é£,è°´,æ¬ ,å ‘,åµŒ,æ­‰, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qiang")] = QStringLiteral("Çº,Ç¼,Ç¹,Ç»,Ç¿,Ç½,Ç¾,ÇÀ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qiang")] = QStringLiteral("å‘›,ç¾Œ,æª,è…”,å¼º,å¢™,è”·,æŠ¢, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qiao")] = QStringLiteral("ÇÄ,ÇÃ,ÇÂ,ÇÁ,ÇÇ,ÇÈ,ÇÅ,ÇÆ,ÇÉ,ÇÎ,ÇÍ,ÇÏ,ÇÌ,ÇË,ÇÊ");
 
-	ChineseLanMap[QStringLiteral("qiao")] = QStringLiteral("æ‚„,æ•²,é”¹,æ©‡,ä¹”,ä¾¨,æ¡¥,ç§,å·§,ä¿,å³­,çª,ç¿˜,æ’¬,é˜");
 
+	ChineseLanMap[QStringLiteral("qie")] = QStringLiteral("ÇĞ,ÇÑ,ÇÒ,ÇÓ,ÇÔ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qie")] = QStringLiteral("åˆ‡,èŒ„,ä¸”,æ€¯,çªƒ, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qin")] = QStringLiteral("Ç×,ÇÖ,ÇÕ,ÇÛ,ÇØ,ÇÙ,Çİ,ÇÚ,ÇÜ,ÇŞ,Çß, , , , ");
 
-	ChineseLanMap[QStringLiteral("qin")] = QStringLiteral("äº²,ä¾µ,é’¦,èŠ¹,ç§¦,ç´,ç¦½,å‹¤,æ“’,å¯,æ², , , , ");
 
+	ChineseLanMap[QStringLiteral("qing")] = QStringLiteral("Çà,Çâ,Çá,Çã,Çä,Çå,Çé,Çç,Çè,Çæ,Çê,Çë,Çì, , ");
 
-	ChineseLanMap[QStringLiteral("qing")] = QStringLiteral("é’,æ°¢,è½»,å€¾,å¿,æ¸…,æƒ…,æ™´,æ°°,æ“,é¡·,è¯·,åº†, , ");
 
+	ChineseLanMap[QStringLiteral("qiong")] = QStringLiteral("Çî,Çí, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qiong")] = QStringLiteral("ç©·,ç¼, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qiu")] = QStringLiteral("Çğ,Çñ,Çï,Çô,Çó,Çö,Çõ,Çò, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qiu")] = QStringLiteral("ä¸˜,é‚±,ç§‹,å›š,æ±‚,æ³…,é…‹,çƒ, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qu")] = QStringLiteral("Çø,Çú,Çı,Çü,Çù,Çû,Ç÷,Çş,È¡,È¢,È£,È¥,È¤, , ");
 
-	ChineseLanMap[QStringLiteral("qu")] = QStringLiteral("åŒº,æ›²,é©±,å±ˆ,è›†,èº¯,è¶‹,æ¸ ,å–,å¨¶,é¾‹,å»,è¶£, , ");
 
+	ChineseLanMap[QStringLiteral("quan")] = QStringLiteral("È¦,È«,È¨,Èª,È­,È¬,È©,È§,È®,È°,È¯, , , , ");
 
-	ChineseLanMap[QStringLiteral("quan")] = QStringLiteral("åœˆ,å…¨,æƒ,æ³‰,æ‹³,ç—Š,é†›,é¢§,çŠ¬,åŠ,åˆ¸, , , , ");
 
+	ChineseLanMap[QStringLiteral("que")] = QStringLiteral("È²,È±,È³,È´,È¸,È·,Èµ,È¶, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("que")] = QStringLiteral("ç‚”,ç¼º,ç˜¸,å´,é›€,ç¡®,é¹Š,æ¦·, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("qun")] = QStringLiteral("È¹,Èº, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("qun")] = QStringLiteral("è£™,ç¾¤, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ran")] = QStringLiteral("È»,È¼,È½,È¾, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ran")] = QStringLiteral("ç„¶,ç‡ƒ,å†‰,æŸ“, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("rang")] = QStringLiteral("È¿,ÈÂ,ÈÀ,ÈÁ,ÈÃ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("rang")] = QStringLiteral("ç“¤,åš·,å£¤,æ”˜,è®©, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("rao")] = QStringLiteral("ÈÄ,ÈÅ,ÈÆ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("rao")] = QStringLiteral("é¥¶,æ‰°,ç»•, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("re")] = QStringLiteral("ÈÇ,ÈÈ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("re")] = QStringLiteral("æƒ¹,çƒ­, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ren")] = QStringLiteral("ÈË,ÈÊ,ÈÉ,ÈÌ,ÈĞ,ÈÏ,ÈÎ,ÈÒ,ÈÑ,ÈÍ, , , , , ");
 
-	ChineseLanMap[QStringLiteral("ren")] = QStringLiteral("äºº,ä»,å£¬,å¿,åˆƒ,è®¤,ä»»,çº«,å¦Š,éŸ§, , , , , ");
 
+	ChineseLanMap[QStringLiteral("reng")] = QStringLiteral("ÈÓ,ÈÔ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("reng")] = QStringLiteral("æ‰”,ä», , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ri")] = QStringLiteral("ÈÕ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ri")] = QStringLiteral("æ—¥, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("rong")] = QStringLiteral("ÈÖ,ÈŞ,È×,ÈÙ,Èİ,ÈÜ,ÈØ,ÈÛ,ÈÚ,Èß, , , , , ");
 
-	ChineseLanMap[QStringLiteral("rong")] = QStringLiteral("æˆ,ç»’,èŒ¸,è£,å®¹,æº¶,è“‰,ç†”,è,å†—, , , , , ");
 
+	ChineseLanMap[QStringLiteral("rou")] = QStringLiteral("Èá,Èà,Èâ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("rou")] = QStringLiteral("æŸ”,æ‰,è‚‰, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ru")] = QStringLiteral("Èç,Èã,Èå,Èæ,Èä,Èê,Èé,Èè,Èë,Èì, , , , , ");
 
-	ChineseLanMap[QStringLiteral("ru")] = QStringLiteral("å¦‚,èŒ¹,å„’,å­º,è •,æ±,ä¹³,è¾±,å…¥,è¤¥, , , , , ");
 
+	ChineseLanMap[QStringLiteral("ruan")] = QStringLiteral("Èî,Èí, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ruan")] = QStringLiteral("é˜®,è½¯, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("rui")] = QStringLiteral("Èï,Èñ,Èğ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("rui")] = QStringLiteral("è•Š,é”,ç‘, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("run")] = QStringLiteral("Èò,Èó, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("run")] = QStringLiteral("é—°,æ¶¦, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ruo")] = QStringLiteral("Èô,Èõ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ruo")] = QStringLiteral("è‹¥,å¼±, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sa")] = QStringLiteral("Èö,È÷,Èø, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sa")] = QStringLiteral("æ’’,æ´’,è¨, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sai")] = QStringLiteral("Èû,Èù,Èú,Èü, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sai")] = QStringLiteral("å¡,è…®,é³ƒ,èµ›, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("san")] = QStringLiteral("Èı,Èş,É¡,É¢, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("san")] = QStringLiteral("ä¸‰,å,ä¼,æ•£, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sang")] = QStringLiteral("É£,É¤,É¥, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sang")] = QStringLiteral("æ¡‘,å—“,ä¸§, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sao")] = QStringLiteral("É¦,É§,É¨,É©, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sao")] = QStringLiteral("æ”,éªš,æ‰«,å«‚, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("se")] = QStringLiteral("É«,É¬,Éª, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("se")] = QStringLiteral("è‰²,æ¶©,ç‘Ÿ, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sen")] = QStringLiteral("É­, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sen")] = QStringLiteral("æ£®, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("seng")] = QStringLiteral("É®, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("seng")] = QStringLiteral("åƒ§, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sha")] = QStringLiteral("É±,É³,É´,É°,É¯,Éµ,É¶,É·,ÏÃ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sha")] = QStringLiteral("æ€,æ²™,çº±,ç ‚,è,å‚»,å•¥,ç…,å¦, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shai")] = QStringLiteral("É¸,É¹, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shai")] = QStringLiteral("ç­›,æ™’, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shan")] = QStringLiteral("É½,É¾,É¼,ÉÀ,Éº,É¿,ÉÁ,ÉÂ,ÉÇ,É»,ÉÈ,ÉÆ,ÉÉ,ÉÃ,ÉÅ,ÉÄ,Õ¤, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shan")] = QStringLiteral("å±±,åˆ ,æ‰,è¡«,çŠ,ç…½,é—ª,é™•,æ±•,è‹«,æ‰‡,å–„,ç¼®,æ“…,è†³,èµ¡,æ …, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shang")] = QStringLiteral("ÉË,ÉÌ,ÉÊ,ÉÑ,ÉÎ,ÉÍ,ÉÏ,ÉĞ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shang")] = QStringLiteral("ä¼¤,å•†,å¢’,è£³,æ™Œ,èµ,ä¸Š,å°š, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shao")] = QStringLiteral("ÉÓ,ÉÒ,ÉÕ,ÉÔ,É×,ÉÖ,ÉØ,ÉÙ,ÉÛ,ÉÜ,ÉÚ, , , , ");
 
-	ChineseLanMap[QStringLiteral("shao")] = QStringLiteral("æ,æ¢¢,çƒ§,ç¨,å‹º,èŠ,éŸ¶,å°‘,é‚µ,ç»,å“¨, , , , ");
 
+	ChineseLanMap[QStringLiteral("she")] = QStringLiteral("Éİ,ÉŞ,Éà,Éß,Éá,Éè,Éç,Éä,Éæ,Éâ,Éå,Éã, , , ");
 
-	ChineseLanMap[QStringLiteral("she")] = QStringLiteral("å¥¢,èµŠ,èˆŒ,è›‡,èˆ,è®¾,ç¤¾,å°„,æ¶‰,èµ¦,æ…‘,æ‘„, , , ");
 
+	ChineseLanMap[QStringLiteral("shen")] = QStringLiteral("Éê,Éì,Éí,Éë,Éğ,Éï,Éé,Éî,Éñ,Éò,Éó,Éô,Éö,Éõ,Éø,É÷,Ê², , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shen")] = QStringLiteral("ç”³,ä¼¸,èº«,å‘»,ç»…,å¨ ,ç ·,æ·±,ç¥,æ²ˆ,å®¡,å©¶,è‚¾,ç”š,æ¸—,æ…,ä»€, , , , , , , , , , , , , ");
 
 
+	ChineseLanMap[QStringLiteral("sheng")] = QStringLiteral("Éı,Éú,Éù,Éü,Ê¤,Éû,Éş,Ê¡,Ê¥,Ê¢,Ê£, , , , ");
 
-	ChineseLanMap[QStringLiteral("sheng")] = QStringLiteral("å‡,ç”Ÿ,å£°,ç‰²,èƒœ,ç”¥,ç»³,çœ,åœ£,ç››,å‰©, , , , ");
 
+	ChineseLanMap[QStringLiteral("shi")] = QStringLiteral("³×,Ê¬,Ê§,Ê¦,Ê­,Ê«,Ê©,Ê¨,Êª,Ê®,Ê¯,Ê±,Ê¶,Êµ,Ê°,Ê´,Ê³,Ê·,Ê¸,Ê¹,Ê¼,Ê»,Êº,Ê¿,ÊÏ,ÊÀ,ÊË,ÊĞ,Ê¾,Ê½,ÊÂ,ÊÌ,ÊÆ,ÊÓ,ÊÔ,ÊÎ,ÊÒ,ÊÑ,ÊÃ,ÊÇ,ÊÁ,ÊÊ,ÊÅ,ÊÍ,ÊÈ,ÊÄ,ÊÉ,ËÆ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shi")] = QStringLiteral("åŒ™,å°¸,å¤±,å¸ˆ,è™±,è¯—,æ–½,ç‹®,æ¹¿,å,çŸ³,æ—¶,è¯†,å®,æ‹¾,èš€,é£Ÿ,å²,çŸ¢,ä½¿,å§‹,é©¶,å±,å£«,æ°,ä¸–,ä»•,å¸‚,ç¤º,å¼,äº‹,ä¾,åŠ¿,è§†,è¯•,é¥°,å®¤,æƒ,æ‹­,æ˜¯,æŸ¿,é€‚,é€,é‡Š,å—œ,èª“,å™¬,ä¼¼, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shou")] = QStringLiteral("ÊÕ,ÊÖ,ÊØ,Ê×,ÊÙ,ÊÜ,ÊŞ,ÊÛ,ÊÚ,Êİ, , , , , ");
 
-	ChineseLanMap[QStringLiteral("shou")] = QStringLiteral("æ”¶,æ‰‹,å®ˆ,é¦–,å¯¿,å—,å…½,å”®,æˆ,ç˜¦, , , , , ");
 
+	ChineseLanMap[QStringLiteral("shu")] = QStringLiteral("Êé,Êã,Êå,Êà,Êâ,Êá,Êç,Êè,Êæ,Êä,Êß,Êë,Êê,Êì,Êî,Êò,Êğ,Êó,Êñ,Êí,Êï,Êõ,Êù,Êø,Êö,Ê÷,Êú,Ë¡,Êü,Êı,Êû,Êş,Êô, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shu")] = QStringLiteral("ä¹¦,æŠ’,å”,æ¢,æ®Š,æ¢³,æ·‘,ç–,èˆ’,è¾“,è”¬,å­°,èµ,ç†Ÿ,æš‘,é»,ç½²,é¼ ,èœ€,è–¯,æ›™,æœ¯,æˆ,æŸ,è¿°,æ ‘,ç«–,æ•,åº¶,æ•°,å¢…,æ¼±,å±, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shua")] = QStringLiteral("Ë¢,Ë£, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shua")] = QStringLiteral("åˆ·,è€, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shuai")] = QStringLiteral("Ë¥,Ë¤,Ë¦,Ë§, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shuai")] = QStringLiteral("è¡°,æ‘”,ç”©,å¸…, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shuan")] = QStringLiteral("Ë©,Ë¨, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shuan")] = QStringLiteral("æ‹´,æ “, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shuang")] = QStringLiteral("Ë«,Ëª,Ë¬, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shuang")] = QStringLiteral("åŒ,éœœ,çˆ½, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shui")] = QStringLiteral("Ë­,Ë®,Ë°,Ë¯, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shui")] = QStringLiteral("è°,æ°´,ç¨,ç¡, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shun")] = QStringLiteral("Ë±,Ë³,Ë´,Ë², , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shun")] = QStringLiteral("å®,é¡º,èˆœ,ç¬, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("shuo")] = QStringLiteral("Ëµ,Ë¸,Ë·,Ë¶, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("shuo")] = QStringLiteral("è¯´,çƒ,æœ”,ç¡•, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("si")] = QStringLiteral("Ë¿,Ë¾,Ë½,Ë¼,Ë¹,Ë»,Ëº,ËÀ,ËÈ,ËÄ,ËÂ,ËÅ,ËÇ,ËÃ,ËÁ");
 
-	ChineseLanMap[QStringLiteral("si")] = QStringLiteral("ä¸,å¸,ç§,æ€,æ–¯,å˜¶,æ’•,æ­»,å·³,å››,å¯º,ä¼º,é¥²,å—£,è‚†");
 
+	ChineseLanMap[QStringLiteral("song")] = QStringLiteral("ËÉ,ËË,ËÊ,ËÏ,ËÎ,ËĞ,ËÍ,ËÌ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("song")] = QStringLiteral("æ¾,æ€‚,è€¸,è®¼,å®‹,è¯µ,é€,é¢‚, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sou")] = QStringLiteral("ËÔ,ËÑ,ËÒ,ËÓ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sou")] = QStringLiteral("å—½,æœ,è‰˜,æ“, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("su")] = QStringLiteral("ËÕ,ËÖ,Ë×,Ëß,Ëà,ËØ,ËÙ,ËÚ,ËÜ,Ëİ,ËÛ, , , , ");
 
-	ChineseLanMap[QStringLiteral("su")] = QStringLiteral("è‹,é…¥,ä¿—,è¯‰,è‚ƒ,ç´ ,é€Ÿ,ç²Ÿ,å¡‘,æº¯,åƒ³, , , , ");
 
+	ChineseLanMap[QStringLiteral("suan")] = QStringLiteral("Ëá,Ëâ,Ëã, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("suan")] = QStringLiteral("é…¸,è’œ,ç®—, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("sui")] = QStringLiteral("Ëä,Ëç,Ëå,Ëæ,Ëè,Ëê,Ëî,Ëì,Ëé,Ëí,Ëë, , , , ");
 
-	ChineseLanMap[QStringLiteral("sui")] = QStringLiteral("è™½,ç»¥,éš‹,éš,é«“,å²,ç¥Ÿ,é‚,ç¢,éš§,ç©—, , , , ");
 
+	ChineseLanMap[QStringLiteral("sun")] = QStringLiteral("Ëï,Ëğ,Ëñ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("sun")] = QStringLiteral("å­™,æŸ,ç¬‹, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("suo")] = QStringLiteral("Ëô,Ëó,Ëò,Ëõ,Ëù,Ë÷,Ëö,Ëø, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("suo")] = QStringLiteral("å”†,æ¢­,è“‘,ç¼©,æ‰€,ç´¢,ç,é”, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ta")] = QStringLiteral("Ëı,Ëû,Ëü,Ëú,Ëş,Ì¡,Ì¢,Ì¤,Ì£, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ta")] = QStringLiteral("å¥¹,ä»–,å®ƒ,å¡Œ,å¡”,ç­,æŒ,è¸,è¹‹, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tai")] = QStringLiteral("Ì¥,Ì¨,Ì§,Ì¦,Ì«,Ì­,Ì¬,Ì©,Ìª, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tai")] = QStringLiteral("èƒ,å°,æŠ¬,è‹”,å¤ª,æ±°,æ€,æ³°,é…, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tan")] = QStringLiteral("Ì®,Ì°,Ì¯,Ì²,Ì±,Ì³,Ì¸,Ìµ,Ì·,Ì¶,Ì´,Ì¹,Ì»,Ìº,Ì¾,Ì¿,Ì½,Ì¼, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tan")] = QStringLiteral("å,è´ª,æ‘Š,æ»©,ç˜«,å›,è°ˆ,ç—°,è°­,æ½­,æª€,å¦,è¢’,æ¯¯,å¹,ç‚­,æ¢,ç¢³, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tang")] = QStringLiteral("ÌÀ,ÌÆ,ÌÃ,ÌÄ,ÌÁ,ÌÂ,ÌÅ,ÌÇ,ÌÈ,ÌÊ,ÌÉ,ÌÌ,ÌË, , ");
 
-	ChineseLanMap[QStringLiteral("tang")] = QStringLiteral("æ±¤,å”,å ‚,æ£ ,å¡˜,æª,è†›,ç³–,å€˜,æ·Œ,èºº,çƒ«,è¶Ÿ, , ");
 
+	ChineseLanMap[QStringLiteral("tao")] = QStringLiteral("ÌÎ,ÌĞ,ÌÍ,ÌÏ,ÌÓ,ÌÒ,ÌÕ,ÌÔ,ÌÑ,ÌÖ,Ì×, , , , ");
 
-	ChineseLanMap[QStringLiteral("tao")] = QStringLiteral("æ¶›,ç»¦,æ,æ»”,é€ƒ,æ¡ƒ,é™¶,æ·˜,è„,è®¨,å¥—, , , , ");
 
+	ChineseLanMap[QStringLiteral("te")] = QStringLiteral("ÌØ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("te")] = QStringLiteral("ç‰¹, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("teng")] = QStringLiteral("ÌÛ,ÌÚ,ÌÜ,ÌÙ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("teng")] = QStringLiteral("ç–¼,è…¾,èªŠ,è—¤, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ti")] = QStringLiteral("ÌŞ,Ìİ,Ìà,Ìß,Ìä,Ìá,Ìâ,Ìã,Ìå,Ìë,Ìê,Ìé,Ìè,Ìæ,Ìç");
 
-	ChineseLanMap[QStringLiteral("ti")] = QStringLiteral("å‰”,æ¢¯,é”‘,è¸¢,å•¼,æ,é¢˜,è¹„,ä½“,å±‰,å‰ƒ,æ¶•,æƒ•,æ›¿,åš");
 
+	ChineseLanMap[QStringLiteral("tian")] = QStringLiteral("Ìì,Ìí,Ìï,Ìñ,Ìğ,Ìî,Ìó,Ìò, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tian")] = QStringLiteral("å¤©,æ·»,ç”°,æ¬,ç”œ,å¡«,è…†,èˆ”, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tiao")] = QStringLiteral("µ÷,Ìô,Ìõ,Ìö,Ì÷,Ìø, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tiao")] = QStringLiteral("è°ƒ,æŒ‘,æ¡,è¿¢,çœº,è·³, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tie")] = QStringLiteral("Ìù,Ìú,Ìû, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tie")] = QStringLiteral("è´´,é“,å¸–, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ting")] = QStringLiteral("Ìü,Í¡,Ìı,Ìş,Í¢,Í¤,Í¥,Í£,Í¦,Í§, , , , , ");
 
-	ChineseLanMap[QStringLiteral("ting")] = QStringLiteral("å…,æ±€,å¬,çƒƒ,å»·,äº­,åº­,åœ,æŒº,è‰‡, , , , , ");
 
+	ChineseLanMap[QStringLiteral("tong")] = QStringLiteral("Í¨,Í¬,Í®,Í©,Í­,Í¯,Íª,Í«,Í³,Í±,Í°,Í²,Í´, , ");
 
-	ChineseLanMap[QStringLiteral("tong")] = QStringLiteral("é€š,åŒ,å½¤,æ¡,é“œ,ç«¥,é…®,ç³,ç»Ÿ,æ…,æ¡¶,ç­’,ç—›, , ");
 
+	ChineseLanMap[QStringLiteral("tou")] = QStringLiteral("Íµ,Í·,Í¶,Í¸, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tou")] = QStringLiteral("å·,å¤´,æŠ•,é€, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tu")] = QStringLiteral("Í¹,Íº,Í»,Í¼,Í½,Í¿,Í¾,ÍÀ,ÍÁ,ÍÂ,ÍÃ, , , , ");
 
-	ChineseLanMap[QStringLiteral("tu")] = QStringLiteral("å‡¸,ç§ƒ,çª,å›¾,å¾’,æ¶‚,é€”,å± ,åœŸ,å,å…”, , , , ");
 
+	ChineseLanMap[QStringLiteral("tuan")] = QStringLiteral("ÍÄ,ÍÅ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tuan")] = QStringLiteral("æ¹,å›¢, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tui")] = QStringLiteral("ÍÆ,ÍÇ,ÍÈ,ÍË,ÍÉ,ÍÊ, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tui")] = QStringLiteral("æ¨,é¢“,è…¿,é€€,èœ•,è¤ª, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tun")] = QStringLiteral("¶Ú,ÍÌ,ÍÍ,ÍÎ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("tun")] = QStringLiteral("å›¤,å,å±¯,è‡€, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("tuo")] = QStringLiteral("ÍĞ,ÍÏ,ÍÑ,ÍÔ,ÍÓ,ÍÕ,ÍÒ,Í×,ÍÖ,ÍØ,ÍÙ, , , , ");
 
-	ChineseLanMap[QStringLiteral("tuo")] = QStringLiteral("æ‰˜,æ‹–,è„±,é©®,é™€,é©¼,é¸µ,å¦¥,æ¤­,æ‹“,å”¾, , , , ");
 
+	ChineseLanMap[QStringLiteral("wa")] = QStringLiteral("ÍÛ,ÍŞ,ÍÚ,Íİ,ÍÜ,Íß,Íà, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("wa")] = QStringLiteral("å“‡,å¨ƒ,æŒ–,æ´¼,è›™,ç“¦,è¢œ, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("wai")] = QStringLiteral("Íá,Íâ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("wai")] = QStringLiteral("æ­ª,å¤–, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("wan")] = QStringLiteral("Íä,Íå,Íã,Íè,Íê,Íæ,Íç,Íé,Íğ,Íì,Íí,Íñ,Íï,Íî,Íë,Íò,Íó, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("wan")] = QStringLiteral("å¼¯,æ¹¾,è±Œ,ä¸¸,å®Œ,ç©,é¡½,çƒ·,å®›,æŒ½,æ™š,å©‰,æƒ‹,çš–,ç¢—,ä¸‡,è…•, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("wang")] = QStringLiteral("Íô,Íö,Íõ,Íø,Íù,Í÷,Íı,Íü,Íú,Íû, , , , , ");
 
-	ChineseLanMap[QStringLiteral("wang")] = QStringLiteral("æ±ª,äº¡,ç‹,ç½‘,å¾€,æ‰,å¦„,å¿˜,æ—º,æœ›, , , , , ");
 
+	ChineseLanMap[QStringLiteral("wei")] = QStringLiteral("Î£,Íş,Î¢,Î¡,Îª,Î¤,Î§,Î¥,Î¦,Î¨,Î©,Î¬,Î«,Î°,Î±,Î²,Î³,Î­,Î¯,Î®,ÎÀ,Î´,Î»,Î¶,Î·,Î¸,Î¾,Î½,Î¹,Î¼,Îµ,Î¿,Îº, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("wei")] = QStringLiteral("å±,å¨,å¾®,å·,ä¸º,éŸ¦,å›´,è¿,æ¡…,å”¯,æƒŸ,ç»´,æ½,ä¼Ÿ,ä¼ª,å°¾,çº¬,è‹‡,å§”,è,å«,æœª,ä½,å‘³,ç•,èƒƒ,å°‰,è°“,å–‚,æ¸­,è”š,æ…°,é­, , , , , , , , , , , , ");
 
 
+	ChineseLanMap[QStringLiteral("wen")] = QStringLiteral("ÎÂ,ÎÁ,ÎÄ,ÎÆ,ÎÅ,ÎÃ,ÎÇ,ÎÉ,ÎÈ,ÎÊ, , , , , ");
 
-	ChineseLanMap[QStringLiteral("wen")] = QStringLiteral("æ¸©,ç˜Ÿ,æ–‡,çº¹,é—»,èšŠ,å»,ç´Š,ç¨³,é—®, , , , , ");
 
+	ChineseLanMap[QStringLiteral("weng")] = QStringLiteral("ÎÌ,ÎË,ÎÍ, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("weng")] = QStringLiteral("ç¿,å—¡,ç“®, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("wo")] = QStringLiteral("ÎÎ,ÎĞ,ÎÑ,ÎÏ,ÎÒ,ÎÖ,ÎÔ,ÎÕ,ÎÓ, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("wo")] = QStringLiteral("æŒ,æ¶¡,çª,èœ—,æˆ‘,æ²ƒ,å§,æ¡,æ–¡, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("wu")] = QStringLiteral("ÎÚ,ÎÛ,ÎØ,Î×,Îİ,ÎÜ,ÎÙ,ÎŞ,Îã,Îâ,Îá,Îß,Îà,Îå,Îç,Îé,Îë,Îä,Îê,Îæ,Îè,Îğ,Îñ,Îì,Îï,Îó,Îò,Îî,Îí, ");
 
-	ChineseLanMap[QStringLiteral("wu")] = QStringLiteral("ä¹Œ,æ±¡,å‘œ,å·«,å±‹,è¯¬,é’¨,æ— ,æ¯‹,å´,å¾,èŠœ,æ¢§,äº”,åˆ,ä¼,å,æ­¦,ä¾®,æ‚,èˆ,å‹¿,åŠ¡,æˆŠ,ç‰©,è¯¯,æ‚Ÿ,æ™¤,é›¾, ");
 
+	ChineseLanMap[QStringLiteral("xi")] = QStringLiteral("Ï¦,Ï«,Î÷,Îü,Ï£,Îô,Îö,Îù,Ï¢,Îş,Ï¤,Ï§,Ï©,Îø,Îú,Ï¬,Ï¡,Ïª,Îı,Ï¨,Îõ,Îû,Ï¥,Ï°,Ï¯,Ï®,Ï±,Ï­,Ï´,Ï²,Ï·,Ïµ,Ï¸,Ï¶, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xi")] = QStringLiteral("å¤•,æ±,è¥¿,å¸,å¸Œ,æ˜”,æ,çŸ½,æ¯,ç‰º,æ‚‰,æƒœ,çƒ¯,ç¡’,æ™°,çŠ€,ç¨€,æºª,é”¡,ç†„,ç†™,å˜»,è†,ä¹ ,å¸­,è¢­,åª³,æª„,æ´—,å–œ,æˆ,ç³»,ç»†,éš™, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xia")] = QStringLiteral("Ïº,Ï¹,Ï»,ÏÀ,Ï¿,ÏÁ,Ï¾,Ï½,Ï¼,ÏÂ,ÏÅ,ÏÄ, , , ");
 
-	ChineseLanMap[QStringLiteral("xia")] = QStringLiteral("è™¾,ç,åŒ£,ä¾ ,å³¡,ç‹­,æš‡,è¾–,éœ,ä¸‹,å“,å¤, , , ");
 
+	ChineseLanMap[QStringLiteral("xian")] = QStringLiteral("Ï³,ÏÉ,ÏÈ,ÏË,ÏÆ,ÏÇ,ÏÊ,ÏĞ,ÏÒ,ÏÍ,ÏÌ,ÏÑ,ÏÏ,ÏÎ,ÏÓ,ÏÔ,ÏÕ,ÏØ,ÏÖ,Ïß,ÏŞ,ÏÜ,Ïİ,ÏÚ,ÏÛ,Ï×,ÏÙ, , , ");
 
-	ChineseLanMap[QStringLiteral("xian")] = QStringLiteral("é“£,ä»™,å…ˆ,çº¤,æ€,é”¨,é²œ,é—²,å¼¦,è´¤,å’¸,æ¶,èˆ·,è¡”,å«Œ,æ˜¾,é™©,å¿,ç°,çº¿,é™,å®ª,é™·,é¦…,ç¾¡,çŒ®,è…º, , , ");
 
+	ChineseLanMap[QStringLiteral("xiang")] = QStringLiteral("Ïç,Ïà,Ïã,Ïá,Ïæ,Ïä,Ïå,Ïâ,Ïê,Ïé,Ïè,Ïí,Ïì,Ïë,Ïò,Ïï,Ïî,Ïó,Ïñ,Ïğ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xiang")] = QStringLiteral("ä¹¡,ç›¸,é¦™,å¢,æ¹˜,ç®±,è¥„,é•¶,è¯¦,ç¥¥,ç¿”,äº«,å“,æƒ³,å‘,å··,é¡¹,è±¡,åƒ,æ©¡, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xiao")] = QStringLiteral("Ïü,Ïû,Ïô,Ïõ,Ïú,Ïö,Ïù,Ïı,Ğ¡,Ïş,Ğ¢,Ğ¤,Ïø,Ğ§,Ğ£,Ğ¦,Ğ¥, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xiao")] = QStringLiteral("å®µ,æ¶ˆ,è§,ç¡,é”€,éœ„,åš£,æ·†,å°,æ™“,å­,è‚–,å“®,æ•ˆ,æ ¡,ç¬‘,å•¸, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xie")] = QStringLiteral("Ğ©,Ğ¨,Ğª,Ğ«,Ğ­,Ğ°,Ğ²,Ğ±,Ğ³,Ğ¯,Ğ¬,Ğ´,Ğ¹,Ğº,Ğ¶,Ğ¼,Ğµ,Ğ»,Ğ¸,Ğ·, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xie")] = QStringLiteral("äº›,æ¥”,æ­‡,è,å,é‚ª,èƒ,æ–œ,è°,æº,é‹,å†™,æ³„,æ³»,å¸,å±‘,æ¢°,è°¢,æ‡ˆ,èŸ¹, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xin")] = QStringLiteral("ĞÄ,ĞÃ,Ğ¾,ĞÁ,ĞÀ,Ğ¿,ĞÂ,Ğ½,ĞÅ,ĞÆ,öÎ, , , , ");
 
-	ChineseLanMap[QStringLiteral("xin")] = QStringLiteral("å¿ƒ,å¿»,èŠ¯,è¾›,æ¬£,é”Œ,æ–°,è–ª,ä¿¡,è¡…,é‘«, , , , ");
 
+	ChineseLanMap[QStringLiteral("xing")] = QStringLiteral("ĞË,ĞÇ,ĞÊ,ĞÉ,ĞÈ,ĞÌ,ĞÏ,ĞÎ,ĞÍ,ĞÑ,ĞÓ,ĞÕ,ĞÒ,ĞÔ, ");
 
-	ChineseLanMap[QStringLiteral("xing")] = QStringLiteral("å…´,æ˜Ÿ,æƒº,çŒ©,è…¥,åˆ‘,é‚¢,å½¢,å‹,é†’,æ,å§“,å¹¸,æ€§, ");
 
+	ChineseLanMap[QStringLiteral("xiong")] = QStringLiteral("Ğ×,ĞÖ,ĞÙ,ĞÚ,ĞØ,ĞÛ,ĞÜ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xiong")] = QStringLiteral("å‡¶,å…„,åŒˆ,æ±¹,èƒ¸,é›„,ç†Š, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xiu")] = QStringLiteral("ËŞ,Ğİ,ĞŞ,Ğß,Ğà,Ğã,Ğå,Ğä,Ğâ,Ğá, , , , , ");
 
-	ChineseLanMap[QStringLiteral("xiu")] = QStringLiteral("å®¿,ä¼‘,ä¿®,ç¾,æœ½,ç§€,ç»£,è¢–,é”ˆ,å—…, , , , , ");
 
+	ChineseLanMap[QStringLiteral("xu")] = QStringLiteral("Ğç,Ğë,Ğé,Ğê,Ğè,Ğæ,Ğì,Ğí,Ğñ,Ğò,Ğğ,Ğô,Ğ÷,Ğø,Ğï,Ğö,Ğõ,Ğî,Óõ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xu")] = QStringLiteral("æˆŒ,é¡»,è™š,å˜˜,éœ€,å¢Ÿ,å¾,è®¸,æ—­,åº,å™,æ¤,ç»ª,ç»­,é…—,å©¿,çµ®,è“„,å, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xuan")] = QStringLiteral("Ğù,Ğû,Ğú,Ğş,Ğü,Ğı,Ñ¡,Ñ¢,Ñ¤,Ñ£, , , , , ");
 
-	ChineseLanMap[QStringLiteral("xuan")] = QStringLiteral("è½©,å®£,å–§,ç„,æ‚¬,æ—‹,é€‰,ç™£,ç»š,çœ©, , , , , ");
 
+	ChineseLanMap[QStringLiteral("xue")] = QStringLiteral("Ï÷,Ñ¥,Ñ¦,Ñ¨,Ñ§,Ñ©,Ñª, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("xue")] = QStringLiteral("å‰Š,é´,è–›,ç©´,å­¦,é›ª,è¡€, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("xun")] = QStringLiteral("Ñ«,Ñ¬,Ñ°,Ñ²,Ñ®,Ñ±,Ñ¯,Ñ­,Ñµ,Ñ¶,Ñ´,Ñ¸,Ñ·,Ñ³, ");
 
-	ChineseLanMap[QStringLiteral("xun")] = QStringLiteral("å‹‹,ç†,å¯»,å·¡,æ—¬,é©¯,è¯¢,å¾ª,è®­,è®¯,æ±›,è¿…,é€Š,æ®‰, ");
 
+	ChineseLanMap[QStringLiteral("ya")] = QStringLiteral("Ñ¾,Ñ¹,Ñ½,Ñº,Ñ»,Ñ¼,ÑÀ,Ñ¿,ÑÁ,ÑÂ,ÑÄ,ÑÃ,ÑÆ,ÑÅ,ÑÇ,ÑÈ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ya")] = QStringLiteral("ä¸«,å‹,å‘€,æŠ¼,é¸¦,é¸­,ç‰™,èŠ½,èšœ,å´–,æ¶¯,è¡™,å“‘,é›…,äºš,è®¶, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yan")] = QStringLiteral("ÑÊ,ÑÌ,ÑÍ,ÑÉ,ÑË,ÑÓ,ÑÏ,ÑÔ,ÑÒ,ÑØ,Ñ×,ÑĞ,ÑÎ,ÑÖ,ÑÑ,ÑÕ,ÑÙ,ÑÜ,ÑÚ,ÑÛ,Ñİ,Ñá,Ñå,Ñâ,Ñä,Ñç,ÑŞ,Ñé,Ñè,Ñß,Ñæ,Ñã,Ñà, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yan")] = QStringLiteral("å’½,çƒŸ,æ·¹,ç„‰,é˜‰,å»¶,ä¸¥,è¨€,å²©,æ²¿,ç‚,ç ”,ç›,é˜,èœ’,é¢œ,å¥„,è¡,æ©,çœ¼,æ¼”,åŒ,å½¦,ç š,å”,å®´,è‰³,éªŒ,è°š,å °,ç„°,é›,ç‡•, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yang")] = QStringLiteral("Ñë,Ñê,Ñí,Ñì,Ñï,Ñò,Ñô,Ñî,Ñğ,Ññ,Ñó,Ñö,Ñø,Ñõ,Ñ÷,Ñù,Ñú, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yang")] = QStringLiteral("å¤®,æ®ƒ,ç§§,é¸¯,æ‰¬,ç¾Š,é˜³,æ¨,ä½¯,ç–¡,æ´‹,ä»°,å…»,æ°§,ç—’,æ ·,æ¼¾, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yao")] = QStringLiteral("½Ä,Ñı,Ñü,Ñû,Ò¢,Ò¦,Ò¤,Ò¥,Ò¡,Ò£,Ñş,Ò§,Ò¨,Ò©,Òª,Ò«,Ô¿, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yao")] = QStringLiteral("ä¾¥,å¦–,è…°,é‚€,å°§,å§š,çª‘,è°£,æ‘‡,é¥,ç‘¶,å’¬,èˆ€,è¯,è¦,è€€,é’¥, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ye")] = QStringLiteral("Ò¬,Ò­,Ò¯,Ò®,Ò²,Ò±,Ò°,Òµ,Ò¶,Ò·,Ò³,Ò¹,Ò´,Òº,Ò¸, , , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ye")] = QStringLiteral("æ¤°,å™,çˆ·,è€¶,ä¹Ÿ,å†¶,é‡,ä¸š,å¶,æ›³,é¡µ,å¤œ,æ–,æ¶²,è…‹, , , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yin")] = QStringLiteral("Òò,Òõ,Òö,Òğ,Òñ,Òô,Òó,Ò÷,Òú,Òù,Òø,Òü,Òı,Òû,Òş,Ó¡, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yin")] = QStringLiteral("å› ,é˜´,å§»,èŒµ,è«,éŸ³,æ®·,åŸ,å¯…,æ·«,é“¶,å°¹,å¼•,é¥®,éš,å°, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("ying")] = QStringLiteral("Ó¦,Ó¢,Ó¤,Ó§,Ó£,Ó¥,Ó­,Ó¯,Ó«,Ó¨,Ó©,Óª,Ó¬,Ó®,Ó±,Ó°,Ó³,Ó², , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ying")] = QStringLiteral("åº”,è‹±,å©´,ç¼¨,æ¨±,é¹°,è¿,ç›ˆ,è§,è¹,è¤,è¥,è‡,èµ¢,é¢–,å½±,æ˜ ,ç¡¬, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yo")] = QStringLiteral("Ó´, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yo")] = QStringLiteral("å“Ÿ, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yong")] = QStringLiteral("Ó¶,Óµ,Ó¸,Ó¹,Óº,Ó·,ÓÀ,Ó½,Ó¾,ÓÂ,Ó¿,ÓÁ,Ó¼,Ó»,ÓÃ");
 
-	ChineseLanMap[QStringLiteral("yong")] = QStringLiteral("ä½£,æ‹¥,ç—ˆ,åº¸,é›,è‡ƒ,æ°¸,å’,æ³³,å‹‡,æ¶Œ,æ¿,è›¹,è¸Š,ç”¨");
 
+	ChineseLanMap[QStringLiteral("you")] = QStringLiteral("ÓÅ,ÓÇ,ÓÄ,ÓÆ,ÓÈ,ÓÉ,ÓÌ,ÓÊ,ÓÍ,ÓË,ÓÎ,ÓÑ,ÓĞ,ÓÏ,ÓÖ,ÓÒ,Ó×,ÓÓ,ÓÕ,ÓÔ, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("you")] = QStringLiteral("ä¼˜,å¿§,å¹½,æ‚ ,å°¤,ç”±,çŠ¹,é‚®,æ²¹,é“€,æ¸¸,å‹,æœ‰,é…‰,åˆ,å³,å¹¼,ä½‘,è¯±,é‡‰, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yu")] = QStringLiteral("ÓØ,ÓÙ,Óå,ÓÚ,Óè,Óà,ÓÛ,Óã,Óá,Óé,Óæ,Óç,Óä,Óâ,ÓŞ,ÓÜ,Óİ,Óß,Óë,Óî,Óì,Óğ,Óê,Óí,Óï,Óñ,Ô¦,Óó,Óı,Óô,Óü,Óø,Ô¡,Ô¤,Óò,Óû,Ó÷,Ô¢,Óù,Ô£,Óö,Óú,Óş,Ô¥, ");
 
-	ChineseLanMap[QStringLiteral("yu")] = QStringLiteral("è¿‚,æ·¤,æ¸,äº,äºˆ,ä½™,ç›‚,é±¼,ä¿,å¨±,æ¸”,éš…,æ„‰,é€¾,æ„š,æ¦†,è™,èˆ†,ä¸,å®‡,å±¿,ç¾½,é›¨,ç¦¹,è¯­,ç‰,é©­,èŠ‹,è‚²,éƒ,ç‹±,å³ª,æµ´,é¢„,åŸŸ,æ¬²,å–»,å¯“,å¾¡,è£•,é‡,æ„ˆ,èª‰,è±«, ");
 
+	ChineseLanMap[QStringLiteral("yuan")] = QStringLiteral("Ô©,Ô§,Ô¨,Ôª,Ô±,Ô°,Ô«,Ô­,Ô²,Ô¬,Ô®,Ôµ,Ô´,Ô³,Ô¯,Ô¶,Ô·,Ô¹,Ôº,Ô¸, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yuan")] = QStringLiteral("å†¤,é¸³,æ¸Š,å…ƒ,å‘˜,å›­,å£,åŸ,åœ†,è¢,æ´,ç¼˜,æº,çŒ¿,è¾•,è¿œ,è‹‘,æ€¨,é™¢,æ„¿, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yue")] = QStringLiteral("Ô»,Ô¼,ÔÂ,ÔÀ,ÔÃ,ÔÄ,Ô¾,ÔÁ,Ô½, , , , , , ");
 
-	ChineseLanMap[QStringLiteral("yue")] = QStringLiteral("æ›°,çº¦,æœˆ,å²³,æ‚¦,é˜…,è·ƒ,ç²¤,è¶Š, , , , , , ");
 
+	ChineseLanMap[QStringLiteral("yun")] = QStringLiteral("ÔÆ,ÔÈ,ÔÇ,ÔÅ,ÔÊ,ÔÉ,ÔĞ,ÔË,ÔÎ,ÔÍ,ÔÏ,ÔÌ, , , ");
 
-	ChineseLanMap[QStringLiteral("yun")] = QStringLiteral("äº‘,åŒ€,éƒ§,è€˜,å…,é™¨,å­•,è¿,æ™•,é…,éŸµ,è•´, , , ");
 
+	ChineseLanMap[QStringLiteral("za")] = QStringLiteral("ÔÑ,ÔÓ,ÔÒ,Õ¦, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("za")] = QStringLiteral("åŒ,æ‚,ç ¸,å’‹, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zai")] = QStringLiteral("ÔÖ,ÔÕ,ÔÔ,Ô×,ÔØ,ÔÙ,ÔÚ,×Ğ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zai")] = QStringLiteral("ç¾,å“‰,æ ½,å®°,è½½,å†,åœ¨,ä»”, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zan")] = QStringLiteral("ÔÛ,ÔÜ,Ôİ,ÔŞ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zan")] = QStringLiteral("å’±,æ”’,æš‚,èµ, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zang")] = QStringLiteral("Ôß,Ôà,Ôá, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zang")] = QStringLiteral("èµƒ,è„,è‘¬, , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zao")] = QStringLiteral("Ôâ,Ôã,Ôä,Ôç,Ôæ,Ôé,Ôè,Ôå,Ôî,Ôí,Ôì,Ôë,Ôï,Ôê, ");
 
-	ChineseLanMap[QStringLiteral("zao")] = QStringLiteral("é­,ç³Ÿ,å‡¿,æ—©,æ£,èš¤,æ¾¡,è—»,ç¶,çš‚,é€ ,å™ª,ç‡¥,èº, ");
 
+	ChineseLanMap[QStringLiteral("ze")] = QStringLiteral("Ôò,Ôñ,Ôó,Ôğ, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("ze")] = QStringLiteral("åˆ™,æ‹©,æ³½,è´£, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zei")] = QStringLiteral("Ôô, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zei")] = QStringLiteral("è´¼, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zen")] = QStringLiteral("Ôõ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zen")] = QStringLiteral("æ€, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zeng")] = QStringLiteral("Ôö,Ô÷,Ôù, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zeng")] = QStringLiteral("å¢,æ†,èµ , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zha")] = QStringLiteral("Ôû,Ôü,Ôú,Ôı,Ôş,Õ¢,Õ¡,Õ£,Õ§,Õ©,Õ¨,Õ¥,×õ, , ");
 
-	ChineseLanMap[QStringLiteral("zha")] = QStringLiteral("å–³,æ¸£,æ‰,æœ­,è½§,é—¸,é“¡,çœ¨,ä¹,è¯ˆ,ç‚¸,æ¦¨,æŸ, , ");
 
+	ChineseLanMap[QStringLiteral("zhai")] = QStringLiteral("Õ«,Õª,Õ¬,µÔ,Õ­,Õ®,Õ¯, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhai")] = QStringLiteral("æ–‹,æ‘˜,å®…,ç¿Ÿ,çª„,å€º,å¯¨, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhan")] = QStringLiteral("Õ´,Õ±,Õ³,Õ²,Õ°,Õ¶,Õ¹,Õµ,Õ¸,Õ·,Õ¼,Õ½,Õ»,Õ¾,ÕÀ,Õ¿,Õº, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhan")] = QStringLiteral("æ²¾,æ¯¡,ç²˜,è©¹,ç»,æ–©,å±•,ç›,å´­,è¾—,å ,æˆ˜,æ ˆ,ç«™,ç»½,æ¹›,è˜¸, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhang")] = QStringLiteral("³¤,ÕÅ,ÕÂ,ÕÃ,ÕÄ,ÕÁ,ÕÇ,ÕÆ,ÕÉ,ÕÌ,ÕÊ,ÕÈ,ÕÍ,ÕË,ÕÏ,ÕÎ, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhang")] = QStringLiteral("é•¿,å¼ ,ç« ,å½°,æ¼³,æ¨Ÿ,æ¶¨,æŒ,ä¸ˆ,ä»—,å¸,æ–,èƒ€,è´¦,éšœ,ç˜´, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhao")] = QStringLiteral("ÕĞ,ÕÑ,ÕÒ,ÕÓ,ÕÙ,Õ×,ÕÔ,ÕÕ,ÕÖ,ÕØ,×¦, , , , ");
 
-	ChineseLanMap[QStringLiteral("zhao")] = QStringLiteral("æ‹›,æ˜­,æ‰¾,æ²¼,å¬,å…†,èµµ,ç…§,ç½©,è‚‡,çˆª, , , , ");
 
+	ChineseLanMap[QStringLiteral("zhe")] = QStringLiteral("ÕÚ,ÕÛ,ÕÜ,Õİ,ÕŞ,Õß,Õà,Õâ,Õã,Õá,×Å, , , , ");
 
-	ChineseLanMap[QStringLiteral("zhe")] = QStringLiteral("é®,æŠ˜,å“²,è›°,è¾™,è€…,é”—,è¿™,æµ™,è”—,ç€, , , , ");
 
+	ChineseLanMap[QStringLiteral("zhen")] = QStringLiteral("Õê,Õë,Õì,Õä,Õæ,Õè,Õå,Õç,Õé,Õï,Õí,Õî,Õó,Õñ,Õò,Õğ,Ö¡, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhen")] = QStringLiteral("è´,é’ˆ,ä¾¦,ç,çœŸ,ç §,æ–Ÿ,ç”„,è‡»,è¯Š,æ•,ç–¹,é˜µ,æŒ¯,é•‡,éœ‡,å¸§, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zheng")] = QStringLiteral("Õù,Õ÷,Õú,Õõ,Õø,Õö,Õô,Õü,Õû,Õı,Ö¤,Ö£,Õş,Ö¢, ");
 
-	ChineseLanMap[QStringLiteral("zheng")] = QStringLiteral("äº‰,å¾,æ€”,æŒ£,ç‹°,ç,è’¸,æ‹¯,æ•´,æ­£,è¯,éƒ‘,æ”¿,ç—‡, ");
 
+	ChineseLanMap[QStringLiteral("zhi")] = QStringLiteral("Ö®,Ö§,Ö­,Ö¥,Ö¨,Ö¦,Öª,Ö¯,Ö«,Ö¬,Ö©,Ö´,Ö¶,Ö±,Öµ,Ö°,Ö²,Ö³,Ö¹,Ö»,Ö¼,Ö·,Ö½,Ö¸,Öº,ÖÁ,Ö¾,ÖÆ,ÖÄ,ÖÎ,ÖË,ÖÊ,ÖÅ,Ö¿,ÖÈ,ÖÂ,ÖÀ,ÖÌ,ÖÏ,ÖÇ,ÖÍ,ÖÉ,ÖÃ, , ");
 
-	ChineseLanMap[QStringLiteral("zhi")] = QStringLiteral("ä¹‹,æ”¯,æ±,èŠ,å±,æ,çŸ¥,ç»‡,è‚¢,è„‚,èœ˜,æ‰§,ä¾„,ç›´,å€¼,èŒ,æ¤,æ®–,æ­¢,åª,æ—¨,å€,çº¸,æŒ‡,è¶¾,è‡³,å¿—,åˆ¶,å¸œ,æ²»,ç‚™,è´¨,å³™,æŒš,ç§©,è‡´,æ·,ç—”,çª’,æ™º,æ»,ç¨š,ç½®, , ");
 
+	ChineseLanMap[QStringLiteral("zhong")] = QStringLiteral("ÖĞ,ÖÒ,ÖÕ,ÖÑ,ÖÓ,ÖÔ,Ö×,ÖÖ,ÖÙ,ÖÚ,ÖØ, , , , ");
 
-	ChineseLanMap[QStringLiteral("zhong")] = QStringLiteral("ä¸­,å¿ ,ç»ˆ,ç›…,é’Ÿ,è¡·,è‚¿,ç§,ä»²,ä¼—,é‡, , , , ");
 
+	ChineseLanMap[QStringLiteral("zhou")] = QStringLiteral("Öİ,ÖÛ,Öß,ÖÜ,ÖŞ,Öà,Öá,Öâ,Öã,Öä,Öæ,Öç,Öå,Öè, ");
 
-	ChineseLanMap[QStringLiteral("zhou")] = QStringLiteral("å·,èˆŸ,è¯Œ,å‘¨,æ´²,ç²¥,è½´,è‚˜,å¸š,å’’,å®™,æ˜¼,çš±,éª¤, ");
 
+	ChineseLanMap[QStringLiteral("zhu")] = QStringLiteral("Öì,Öï,Öê,Öé,Öî,Öí,Öë,Öñ,Öò,Öğ,Ö÷,Öô,Öó,Öö,Öõ,×¡,Öú,×¢,Öü,×¤,Öù,×£,Öø,Öû,Öş,Öı, , , , ");
 
-	ChineseLanMap[QStringLiteral("zhu")] = QStringLiteral("æœ±,è¯›,æ ª,ç ,è¯¸,çŒª,è››,ç«¹,çƒ›,é€,ä¸»,æ‹„,ç…®,å˜±,ç©,ä½,åŠ©,æ³¨,è´®,é©»,æŸ±,ç¥,è‘—,è›€,ç­‘,é“¸, , , , ");
 
+	ChineseLanMap[QStringLiteral("zhua")] = QStringLiteral("×¥, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhua")] = QStringLiteral("æŠ“, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhuai")] = QStringLiteral("×§, , , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhuai")] = QStringLiteral("æ‹½, , , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhuan")] = QStringLiteral("×¨,×©,×ª,×«,×­, , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhuan")] = QStringLiteral("ä¸“,ç –,è½¬,æ’°,ç¯†, , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhuang")] = QStringLiteral("×±,×¯,×®,×°,×³,×´,´±,×², , , , , , ,");
 
-	ChineseLanMap[QStringLiteral("zhuang")] = QStringLiteral("å¦†,åº„,æ¡©,è£…,å£®,çŠ¶,å¹¢,æ’, , , , , , ,");
 
+	ChineseLanMap[QStringLiteral("zhui")] = QStringLiteral("×·,×µ,×¶,×¹,×º,×¸, , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhui")] = QStringLiteral("è¿½,æ¤,é”¥,å ,ç¼€,èµ˜, , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhun")] = QStringLiteral("×»,×¼, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhun")] = QStringLiteral("è°†,å‡†, , , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zhuo")] = QStringLiteral("×¿,×¾,×½,×À,×Æ,×Â,×Ç,×Ã,×Ä,×Á, , , , , ");
 
-	ChineseLanMap[QStringLiteral("zhuo")] = QStringLiteral("å“,æ‹™,æ‰,æ¡Œ,ç¼,èŒ,æµŠ,é…Œ,å•„,ç¢, , , , , ");
 
+	ChineseLanMap[QStringLiteral("zi")] = QStringLiteral("×Î,×È,×É,×Ë,×Ê,×Í,×Ì,×Ñ,×Ó,×Ï,×Ò,×Ö,×Ô,×Õ, ");
 
-	ChineseLanMap[QStringLiteral("zi")] = QStringLiteral("å­œ,å…¹,å’¨,å§¿,èµ„,æ·„,æ»‹,ç±½,å­,ç´«,æ»“,å­—,è‡ª,æ¸, ");
 
+	ChineseLanMap[QStringLiteral("zong")] = QStringLiteral("×Ú,×Û,×Ø,×Ù,××,×Ü,×İ, , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zong")] = QStringLiteral("å®—,ç»¼,æ£•,è¸ª,é¬ƒ,æ€»,çºµ, , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zou")] = QStringLiteral("×Ş,×ß,×à,×á, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zou")] = QStringLiteral("é‚¹,èµ°,å¥,æ, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zu")] = QStringLiteral("×â,×ã,×ä,×å,×ç,×è,×é,×æ, , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zu")] = QStringLiteral("ç§Ÿ,è¶³,å’,æ—,è¯…,é˜»,ç»„,ç¥–, , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zuan")] = QStringLiteral("×¬,×ë,×ê, , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zuan")] = QStringLiteral("èµš,çº‚,é’», , , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zui")] = QStringLiteral("×ì,×î,×ï,×í, , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zui")] = QStringLiteral("å˜´,æœ€,ç½ª,é†‰, , , , , , , , , , , ");
 
+	ChineseLanMap[QStringLiteral("zun")] = QStringLiteral("×ğ,×ñ, , , , , , , , , , , , , ");
 
-	ChineseLanMap[QStringLiteral("zun")] = QStringLiteral("å°Š,éµ, , , , , , , , , , , , , ");
 
-
-	ChineseLanMap[QStringLiteral("zuo")] = QStringLiteral("æ˜¨,å·¦,ä½,ä½œ,å,åº§,åš, , , , , , , , ");
-}//ä¸­æ–‡å­—åº“
+	ChineseLanMap[QStringLiteral("zuo")] = QStringLiteral("×ò,×ó,×ô,×÷,×ø,×ù,×ö, , , , , , , , ");
+}//ÖĞÎÄ×Ö¿â
 
 void keyboard::CreateJapaneseMapLan()
 {
-	JapaneseLanMap[QStringLiteral("a")] = QStringLiteral("ã‚,ã‚¢, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("a")] = QStringLiteral("¤¢,¥¢, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ka")] = QStringLiteral("ã‹,ã‚«, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ka")] = QStringLiteral("¤«,¥«, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("sa")] = QStringLiteral("ã•,ã‚µ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("sa")] = QStringLiteral("¤µ,¥µ, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ta")] = QStringLiteral("ãŸ,ã‚¿, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ta")] = QStringLiteral("¤¿,¥¿, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("na")] = QStringLiteral("ãª,ãƒŠ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("na")] = QStringLiteral("¤Ê,¥Ê, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ha")] = QStringLiteral("ã¯,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ha")] = QStringLiteral("¤Ï,¥Ï, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ma")] = QStringLiteral("ã¾,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ma")] = QStringLiteral("¤Ş,¥Ş, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ya")] = QStringLiteral("ã‚„,ãƒ¤, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ya")] = QStringLiteral("¤ä,¥ä, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ra")] = QStringLiteral("ã‚‰,ãƒ©, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ra")] = QStringLiteral("¤é,¥é, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("wa")] = QStringLiteral("ã‚,ãƒ¯, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("wa")] = QStringLiteral("¤ï,¥ï, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("n")] = QStringLiteral("ã‚“,ãƒ³, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("n")] = QStringLiteral("¤ó,¥ó, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("i")] = QStringLiteral("ã„,ã‚¤, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("i")] = QStringLiteral("¤¤,¥¤, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ki")] = QStringLiteral("ã,ã‚­, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ki")] = QStringLiteral("¤­,¥­, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("shi")] = QStringLiteral("ã—,ã‚·, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("shi")] = QStringLiteral("¤·,¥·, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("chi")] = QStringLiteral("ã¡,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("chi")] = QStringLiteral("¤Á,¥Á, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ni")] = QStringLiteral("ã«,ãƒ‹, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ni")] = QStringLiteral("¤Ë,¥Ë, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("hi")] = QStringLiteral("ã²,ãƒ’, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("hi")] = QStringLiteral("¤Ò,¥Ò, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("mi")] = QStringLiteral("ã¿,ãƒŸ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("mi")] = QStringLiteral("¤ß,¥ß, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ri")] = QStringLiteral("ã‚Š,ãƒª, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ri")] = QStringLiteral("¤ê,¥ê, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("u")] = QStringLiteral("ã†,ã‚¦, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("u")] = QStringLiteral("¤¦,¥¦, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("ku")] = QStringLiteral("ã,ã‚¯, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ku")] = QStringLiteral("¤¯,¥¯, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("su")] = QStringLiteral("ã™,ã‚¹, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("su")] = QStringLiteral("¤¹,¥¹, , , , , , , , , , , , , ");
 
 
 
-	JapaneseLanMap[QStringLiteral("tsu")] = QStringLiteral("ã¤,ãƒ„, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("tsu")] = QStringLiteral("¤Ä,¥Ä, , , , , , , , , , , , , ");
 
-	JapaneseLanMap[QStringLiteral("nu")] = QStringLiteral("ã¬,ãƒŒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("nu")] = QStringLiteral("¤Ì,¥Ì, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("fu")] = QStringLiteral("ãµ,ãƒ•, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("fu")] = QStringLiteral("¤Õ,¥Õ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("mu")] = QStringLiteral("ã‚€,ãƒ , , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("mu")] = QStringLiteral("¤à,¥à, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("yu")] = QStringLiteral("ã‚†,ãƒ¦, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("yu")] = QStringLiteral("¤æ,¥æ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ru")] = QStringLiteral("ã‚‹,ãƒ«, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ru")] = QStringLiteral("¤ë,¥ë, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("e")] = QStringLiteral("ãˆ,ã‚¨, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("e")] = QStringLiteral("¤¨,¥¨, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ke")] = QStringLiteral("ã‘,ã‚±, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ke")] = QStringLiteral("¤±,¥±, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("se")] = QStringLiteral("ã›,ã‚», , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("se")] = QStringLiteral("¤»,¥», , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("te")] = QStringLiteral("ã¦,ãƒ†, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("te")] = QStringLiteral("¤Æ,¥Æ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ne")] = QStringLiteral("ã­,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ne")] = QStringLiteral("¤Í,¥Í, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("he")] = QStringLiteral("ã¸,ãƒ˜, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("he")] = QStringLiteral("¤Ø,¥Ø, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("me")] = QStringLiteral("ã‚,ãƒ¡, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("me")] = QStringLiteral("¤á,¥á, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("re")] = QStringLiteral("ã‚Œ,ãƒ¬, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("re")] = QStringLiteral("¤ì,¥ì, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("o")] = QStringLiteral("ãŠ,ã‚ª, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("o")] = QStringLiteral("¤ª,¥ª, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ko")] = QStringLiteral("ã“,ã‚³, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ko")] = QStringLiteral("¤³,¥³, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("so")] = QStringLiteral("ã,ã‚½, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("so")] = QStringLiteral("¤½,¥½, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("to")] = QStringLiteral("ã¨,ãƒˆ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("to")] = QStringLiteral("¤È,¥È, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("no")] = QStringLiteral("ã®,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("no")] = QStringLiteral("¤Î,¥Î, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ho")] = QStringLiteral("ã»,ãƒ›, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ho")] = QStringLiteral("¤Û,¥Û, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("mo")] = QStringLiteral("ã‚‚,ãƒ¢, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("mo")] = QStringLiteral("¤â,¥â, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("yo")] = QStringLiteral("ã‚ˆ,ãƒ¨, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("yo")] = QStringLiteral("¤è,¥è, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ro")] = QStringLiteral("ã‚,ãƒ­, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ro")] = QStringLiteral("¤í,¥í, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("wo")] = QStringLiteral("ã‚’,ãƒ², , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("wo")] = QStringLiteral("¤ò,¥ò, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ga")] = QStringLiteral("ãŒ,ã‚¬, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ga")] = QStringLiteral("¤¬,¥¬, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("za")] = QStringLiteral("ã–,ã‚¶, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("za")] = QStringLiteral("¤¶,¥¶, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("da")] = QStringLiteral("ã ,ãƒ€, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("da")] = QStringLiteral("¤À,¥À, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ba")] = QStringLiteral("ã°,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ba")] = QStringLiteral("¤Ğ,¥Ğ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("gi")] = QStringLiteral("ã,ã‚®, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("gi")] = QStringLiteral("¤®,¥®, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ji")] = QStringLiteral("ã˜,ã‚¸, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ji")] = QStringLiteral("¤¸,¥¸, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("zi")] = QStringLiteral("ã˜,ã‚¸, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("zi")] = QStringLiteral("¤¸,¥¸, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("di")] = QStringLiteral("ã¢,ãƒ‚, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("di")] = QStringLiteral("¤Â,¥Â, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("bi")] = QStringLiteral("ã³,ãƒ“, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("bi")] = QStringLiteral("¤Ó,¥Ó, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("gu")] = QStringLiteral("ã,ã‚°, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("gu")] = QStringLiteral("¤°,¥°, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("zu")] = QStringLiteral("ãš,ã‚º, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("zu")] = QStringLiteral("¤º,¥º, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("du")] = QStringLiteral("ã¥,ãƒ…, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("du")] = QStringLiteral("¤Å,¥Å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("bu")] = QStringLiteral("ã¶,ãƒ–, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("bu")] = QStringLiteral("¤Ö,¥Ö, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ge")] = QStringLiteral("ã’,ã‚², , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ge")] = QStringLiteral("¤²,¥², , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ze")] = QStringLiteral("ãœ,ã‚¼, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ze")] = QStringLiteral("¤¼,¥¼, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("de")] = QStringLiteral("ã§,ãƒ‡, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("de")] = QStringLiteral("¤Ç,¥Ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("be")] = QStringLiteral("ã¹,ãƒ™, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("be")] = QStringLiteral("¤Ù,¥Ù, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("go")] = QStringLiteral("ã”,ã‚´, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("go")] = QStringLiteral("¤´,¥´, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("zo")] = QStringLiteral("ã,ã‚¾, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("zo")] = QStringLiteral("¤¾,¥¾, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("do")] = QStringLiteral("ã©,ãƒ‰, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("do")] = QStringLiteral("¤É,¥É, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("bo")] = QStringLiteral("ã¼,ãƒœ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("bo")] = QStringLiteral("¤Ü,¥Ü, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pa")] = QStringLiteral("ã±,ãƒ‘, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pa")] = QStringLiteral("¤Ñ,¥Ñ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pi")] = QStringLiteral("ã´,ãƒ”, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pi")] = QStringLiteral("¤Ô,¥Ô, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pu")] = QStringLiteral("ãƒ—,ãƒ”, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pu")] = QStringLiteral("¥×,¥Ô, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pe")] = QStringLiteral("ãº,ãƒš, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pe")] = QStringLiteral("¤Ú,¥Ú, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("po")] = QStringLiteral("ã½,ãƒ, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("po")] = QStringLiteral("¤İ,¥İ, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("kya")] = QStringLiteral("ãã‚ƒ,ã‚­ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("kya")] = QStringLiteral("¤­¤ã,¥­¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("gya")] = QStringLiteral("ãã‚ƒ,ã‚®ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("gya")] = QStringLiteral("¤®¤ã,¥®¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("sha")] = QStringLiteral("ã—ã‚ƒ,ã‚·ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("sha")] = QStringLiteral("¤·¤ã,¥·¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ja")] = QStringLiteral("ã˜ã‚ƒ,ã‚¸ãƒ£,ãƒ‚ãƒ£, , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ja")] = QStringLiteral("¤¸¤ã,¥¸¥ã,¥Â¥ã, , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("cha")] = QStringLiteral("ã¡ã‚ƒ,ãƒãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("cha")] = QStringLiteral("¤Á¤ã,¥Á¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("nya")] = QStringLiteral("ã«ã‚ƒ,ãƒ‹ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("nya")] = QStringLiteral("¤Ë¤ã,¥Ë¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("dya")] = QStringLiteral("ã¢ã‚ƒ, , , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("dya")] = QStringLiteral("¤Â¤ã, , , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("hya")] = QStringLiteral("ã²ã‚ƒ,ãƒ’ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("hya")] = QStringLiteral("¤Ò¤ã,¥Ò¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("bya")] = QStringLiteral("ã³ã‚ƒ,ãƒ“ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("bya")] = QStringLiteral("¤Ó¤ã,¥Ó¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pya")] = QStringLiteral("ã´ã‚ƒ,ãƒ”ãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pya")] = QStringLiteral("¤Ô¤ã,¥Ô¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("mya")] = QStringLiteral("ã¿ã‚ƒ,ãƒŸãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("mya")] = QStringLiteral("¤ß¤ã,¥ß¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("rya")] = QStringLiteral("ã‚Šã‚ƒ,ãƒªãƒ£, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("rya")] = QStringLiteral("¤ê¤ã,¥ê¥ã, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("kyu")] = QStringLiteral("ã‚­ãƒ¥,ãã‚…, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("kyu")] = QStringLiteral("¥­¥å,¤­¤å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("gyu")] = QStringLiteral("ãã‚…,ã‚®ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("gyu")] = QStringLiteral("¤®¤å,¥®¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("shu")] = QStringLiteral("ã—ã‚…,ã‚·ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("shu")] = QStringLiteral("¤·¤å,¥·¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ju")] = QStringLiteral("ã˜ã‚…,ã‚¸ãƒ¥,ãƒ‚ãƒ¥, , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ju")] = QStringLiteral("¤¸¤å,¥¸¥å,¥Â¥å, , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("chu")] = QStringLiteral("ã¡ã‚…,ãƒãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("chu")] = QStringLiteral("¤Á¤å,¥Á¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("nyu")] = QStringLiteral("ã«ã‚…,ãƒ‹ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("nyu")] = QStringLiteral("¤Ë¤å,¥Ë¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("hyu")] = QStringLiteral("ã²ã‚…,ãƒ’ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("hyu")] = QStringLiteral("¤Ò¤å,¥Ò¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("byu")] = QStringLiteral("ã³ã‚…,ãƒ“ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("byu")] = QStringLiteral("¤Ó¤å,¥Ó¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pyu")] = QStringLiteral("ã´ã‚…,ãƒ”ãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pyu")] = QStringLiteral("¤Ô¤å,¥Ô¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("myu")] = QStringLiteral("ã¿ã‚…,ãƒŸãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("myu")] = QStringLiteral("¤ß¤å,¥ß¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ryu")] = QStringLiteral("ã‚Šã‚…,ãƒªãƒ¥, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ryu")] = QStringLiteral("¤ê¤å,¥ê¥å, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("kyo")] = QStringLiteral("ãã‚‡,ã‚­ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("kyo")] = QStringLiteral("¤­¤ç,¥­¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("gyo")] = QStringLiteral("ãã‚‡,ã‚®ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("gyo")] = QStringLiteral("¤®¤ç,¥®¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("sho")] = QStringLiteral("ã—ã‚‡,ã‚·ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("sho")] = QStringLiteral("¤·¤ç,¥·¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("jo")] = QStringLiteral("ã˜ã‚‡,ã‚¸ãƒ§,ã‚¸ãƒ§, , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("jo")] = QStringLiteral("¤¸¤ç,¥¸¥ç,¥¸¥ç, , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("cho")] = QStringLiteral("ã¡ã‚‡,ã‚·ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("cho")] = QStringLiteral("¤Á¤ç,¥·¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("dyo")] = QStringLiteral("ã¢ã‚‡, , , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("dyo")] = QStringLiteral("¤Â¤ç, , , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("nyo")] = QStringLiteral("ã«ã‚‡,ãƒ‹ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("nyo")] = QStringLiteral("¤Ë¤ç,¥Ë¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("hyo")] = QStringLiteral("ã²ã‚‡,ãƒ’ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("hyo")] = QStringLiteral("¤Ò¤ç,¥Ò¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("byo")] = QStringLiteral("ã³ã‚‡,ãƒ“ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("byo")] = QStringLiteral("¤Ó¤ç,¥Ó¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("pyo")] = QStringLiteral("ã´ã‚‡,ãƒ”ãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("pyo")] = QStringLiteral("¤Ô¤ç,¥Ô¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("myo")] = QStringLiteral("ã¿ã‚‡,ãƒŸãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("myo")] = QStringLiteral("¤ß¤ç,¥ß¥ç, , , , , , , , , , , , , ");
 
 
-	JapaneseLanMap[QStringLiteral("ryo")] = QStringLiteral("ã‚Šã‚‡,ãƒªãƒ§, , , , , , , , , , , , , ");
+	JapaneseLanMap[QStringLiteral("ryo")] = QStringLiteral("¤ê¤ç,¥ê¥ç, , , , , , , , , , , , , ");
 }
 
 void keyboard::CreateKoreanMapLan()
 {
-	KoreanLanMap[QStringLiteral("ã„±"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã„±, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã„´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã„¹, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…‚, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã……, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…‡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Š"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…Š, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…‹, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã„², , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã„¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…ƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…†, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…‰, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‘"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã……, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…“"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…“, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…•"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…•, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…—"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…—, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…›"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…›, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…œ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã… "
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã… , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…¡"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…¡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…£"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…£, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…’"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…’, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…”"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…–"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…–, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…˜"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…™"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…™, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…š"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…š, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Ÿ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…Ÿ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…¢"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ã…¢, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ê°€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ë‚˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ë‹¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ë¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ë§ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ë°”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ì‚¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ì•„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ì, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ì°¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("ì¹´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("íƒ€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒ"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("íŒŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜"
+	KoreanLanMap[QStringLiteral("?"
 
-		)] = QStringLiteral("í•˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê±°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê²¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê³ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("êµ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("êµ¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê·œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê·¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¸°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë…€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë…¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‡¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëˆ„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‰´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŠ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŒœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‘, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë“€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë“œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë””, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŸ¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë ¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¡œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë£Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë£¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¥˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¥´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¦¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¨€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¨¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë©°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëª¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¬˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¬´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë®¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¯€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¯¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë±Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë²„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë²¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë³´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëµ¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¶€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë·°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¸Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¹„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìƒ¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì„œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì…”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì†Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‡¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìˆ˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŠˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŠ¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‹œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì–´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì—¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìš”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìš°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìœ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìœ¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŸˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì €, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì ¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¡°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìµ¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¶”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¸„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¸ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìº¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì»¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¼œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì½”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¿„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¿ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‚¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í„°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í…¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í† , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íˆ¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŠœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŠ¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‹°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‘œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‘¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í“¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í”„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í”¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í–, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í—ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í˜€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í˜¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íš¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í›„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íœ´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¹Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("êº„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("êº¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê»´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¼¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¾œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¾¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë€¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë”°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë•¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë– , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë—˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëš€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëšœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëœŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëœ¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¹ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëº˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë», , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¼ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë½€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¾°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¿Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì€¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‹¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŒ°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‘ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‘¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì“”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì“°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì”¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì§œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…‘"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¨”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…“"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì©Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…•"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìª„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…—"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìª¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…›"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¬¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…œ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì­ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã… "
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì®¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…¡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¯”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…£"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê±”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê²Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê³„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê³¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê´˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê´´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¶ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¶¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê·€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„±ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¸”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëƒ¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë…œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë†”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë†°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‡Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëˆ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëˆ¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‰˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„´ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŠ¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŒ€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŒ¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‘¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë’ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë’¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„·ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë“¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŸ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¡€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¡¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¢”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¢°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¤„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¤ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¤¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¹ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¦, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¨œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë©”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëªŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë«„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë« , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë«¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë­, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë­¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë®ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¯œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë±¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë² , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë³˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë´¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëµˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¶œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¶¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë·”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‚ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¸¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìƒˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì„€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì„¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì…°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì†¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‡„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‡ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìˆ´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‰, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‰¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã……ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‹€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì• , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì–˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì—, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì™€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì™œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì™¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì›Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì›¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìœ„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‡ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŸ¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¡”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¢Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¢¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì£„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¤˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¤´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¥, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ˆã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¦¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì±„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì±¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì²´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì³¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì´¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìµ€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìµœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¶°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì·Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì·¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Šã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¸¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìº, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì»ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¼€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¼¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì½°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¾Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¾¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¿¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í€˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í€´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‹ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‚ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í„”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í…Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í†„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í†¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‡˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‡´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‰ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‰¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŠ€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…Œã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‹”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í‘€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í’”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í’°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í“Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í” , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í–¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í—¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í˜œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í™”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í™°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íšŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í› , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í›¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íœ˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¹¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("êº , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê»˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê½ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê½¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¾€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¿”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê¿°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë€Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„²ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë•Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë–„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë–¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë—´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë˜¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë™ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë™¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëš¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë›”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë›°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã„¸ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¹¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëº´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë»¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¼¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë½œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë½¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¾”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë¿¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì€„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì€ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…ƒã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŒ”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì’€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì’œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì’¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…†ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì”Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì§¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…’"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¨°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…”"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì©¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…–"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìª , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…˜"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì«˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…™"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì«´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…š"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì­¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì®€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…Ÿ"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì®œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ã…‰ã…¢"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¯°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°‡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°‘, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ê°€ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ê°•, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚™, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚Ÿ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚ , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚©, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‚˜ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‚­, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹¥, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹«, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹µ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë‹¤ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‹¹, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë½, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë€, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ëŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë¼ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë‘, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§‰, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§™, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë§ˆã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë§, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°•, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°›, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°¤, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°¥, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ë°”ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ë°©, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚­, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚³, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚´, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‚½, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì‚¬ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•ˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•‹, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•Œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì••, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì•„ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì•™, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì‘, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì—, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì˜, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ìã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¥, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°©, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°¬, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°¯, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°°, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°¹, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì°¨ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì°½, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹µ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹¸, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹», , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ì¹¼, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìº„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìº…, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("ì¹´ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("ìº‰, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ„, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ‡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒˆ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ‘, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íƒ€ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íƒ•, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ“, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ”, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒœ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("íŒŒã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("íŒ¡, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã„±"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•™, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã„´"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•œ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã„·"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•Ÿ, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã„¹"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í• , , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã…"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•¨, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã…‚"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•©, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 
 
-	KoreanLanMap[QStringLiteral("í•˜ã…‡"
+	KoreanLanMap[QStringLiteral("??"
 
-		)] = QStringLiteral("í•­, , , , , , , , , , , , , , ");
+		)] = QStringLiteral("?, , , , , , , , , , , , , , ");
 }
 
 void keyboard::FontSelect()
@@ -4545,7 +4553,7 @@ void keyboard::FontSelect()
 
 void keyboard::caps1_kBBut_clicked()
 {
-	if ( m_Upper == true )//å¦‚æœå½“å‰ä¸ºå°å†™
+	if ( m_Upper == true )//Èç¹ûµ±Ç°ÎªĞ¡Ğ´
 	{
 		switch (m_LanType)
 		{
@@ -4647,7 +4655,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Å®"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4659,7 +4667,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("("));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ãš"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -4670,19 +4678,19 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Ë‡"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("¡¦"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("%"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Ã‰"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Ã"));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Ã"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Ã"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Å½"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Å˜"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ÄŒ"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Å "));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Äš"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â°"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("¡ã"));
 		//		break;
 		//	}
 		//case 9:  //Dutch
@@ -4698,7 +4706,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("`"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Â±"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("¡À"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4733,7 +4741,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â§"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("¡ì"));
 		//		break;
 		//	}
 		//case 10: //German
@@ -4748,8 +4756,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ã„"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã–"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4761,7 +4769,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ãš"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -4781,7 +4789,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Â§"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("¡ì"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
 		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("^"));
@@ -4799,8 +4807,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ã„"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã–"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4811,8 +4819,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Â´"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ã…"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -4831,62 +4839,62 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Â¤"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¡è"));
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â½"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 		//		break;
 		//	}
 		//case 12:  //Hindi
 		//	{
-		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("à¥Ÿ"));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("à¥¤"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("à¤·"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("à¤¶"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("à¤³"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("à¤´"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("à¤©"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("à¤£"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("à¤ "));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("à¤›"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("à¤¥"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("à¤–"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("à¤±"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("à¤«"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("à¤‰"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("à¤‡"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("à¤…"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("à¤“"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("à¤‘"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("à¤¢"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("à¤§"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("à¤˜"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("à¤™"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("à¤­"));
-		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("à¤Š"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("à¤ˆ"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("à¤†"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("à¤”"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("à¤‹"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("à¤ƒ"));
+		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral(")"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
-		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("à¤¶à¥à¤°"));
-		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("à¤•à¥à¤·"));
-		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("à¤¤à¥à¤°"));
-		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("à¤œà¥à¤"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("à¤°à¥"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("à¥à¤°"));
-		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("à¥…"));
-		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("à¤"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("à¤’"));
+		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("???"));
+		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("???"));
+		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("???"));
+		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("???"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("??"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("??"));
+		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 		//		break;
 		//	}
 		//case 13:  //Hungarian
@@ -4901,8 +4909,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ã"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã‰"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4912,9 +4920,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Å°"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Ãš"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Å"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -4925,9 +4933,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Ã“"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("Ãœ"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Ã–"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("("));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("="));
@@ -4937,7 +4945,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("+"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("'"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â§"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("¡ì"));
 		//		break;
 		//	}
 		//case 14:  //Italian
@@ -4952,8 +4960,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Â°"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã§"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("¡ã"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -4963,9 +4971,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Â§"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("¡ì"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ã©"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("¨¦"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -4985,7 +4993,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Â£"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
 		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("|"));
@@ -5004,7 +5012,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
 		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã‡"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -5028,9 +5036,9 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("+"));
-		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("â€”â€”"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ï¼‰"));
-		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("ï¼ˆ"));
+		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("¡ª¡ª"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("£©"));
+		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("£¨"));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("*"));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("&&"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("^"));
@@ -5045,52 +5053,52 @@ void keyboard::caps1_kBBut_clicked()
 		//case 16:  //Russian
 		//	{
 		//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("."));
-		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("Ğ®"));
-		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("Ğ‘"));
-		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("Ğ¬"));
-		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("Ğ¢"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("Ğ˜"));
-		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("Ğœ"));
-		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("Ğ¡"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("Ğ§"));
-		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Ğ¯"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ğ­"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ğ–"));
-		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("Ğ”"));
-		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("Ğ›"));
-		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("Ğ"));
-		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("Ğ "));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ĞŸ"));
-		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("Ğ"));
-		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("Ğ’"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("Ğ«"));
-		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("Ğ¤"));
+		//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("§À"));
+		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("§¢"));
+		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("§¾"));
+		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("§´"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("§ª"));
+		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("§®"));
+		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("§³"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("§¹"));
+		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("§Á"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("§¿"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("§¨"));
+		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("§¥"));
+		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("§­"));
+		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("§°"));
+		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("§²"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("§±"));
+		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("§¡"));
+		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("§£"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("§½"));
+		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("§¶"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("\\"));
-		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Ğª"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ğ¥"));
-		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("Ğ—"));
-		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("Ğ©"));
-		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("Ğ¨"));
-		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("Ğ“"));
-		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("Ğ"));
-		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("Ğ•"));
-		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("Ğš"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("Ğ£"));
-		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("Ğ¦"));
-		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Ğ™"));
+		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("§¼"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("§·"));
+		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("§©"));
+		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("§»"));
+		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("§º"));
+		//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("§¤"));
+		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("§¯"));
+		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("§¦"));
+		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("§¬"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("§µ"));
+		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("§¸"));
+		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("§«"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("+"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("_"));
-		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ï¼‰"));
+		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("£©"));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
 		//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("*"));
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral(":"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral(";"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("â„–"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("¡í"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Ğ"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("§§"));
 		//		break;
 		//	}
 		//case 17:  //Spanish
@@ -5105,8 +5113,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Â¨"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã‘"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("¡§"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -5116,7 +5124,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("D"));
 		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
-		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Ã‡"));
+		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("*"));
 		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("^"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
@@ -5129,7 +5137,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
-		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Â¿"));
+		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("="));
 		//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral(")"));
@@ -5138,10 +5146,10 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
 		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("$"));
-		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Â·"));
+		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("¡¤"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Âª"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 		//		break;
 		//	}
 		//case 18:  //Swedish
@@ -5156,8 +5164,8 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ã„"));
-		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã–"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -5169,7 +5177,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("*"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("^"));
-		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ã…"));
+		//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 		//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -5188,11 +5196,11 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
 		//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&&"));
 		//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
-		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Â¤"));
+		//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¡è"));
 		//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
 		//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 		//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â½"));
+		//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 		//		break;
 		//	}
 		//case 19:  //Thai
@@ -5206,21 +5214,21 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("B"));
 		//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("S"));
 		//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("Z"));
-		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("Ã‡"));
+		//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("C"));
 		//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("V"));
-		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("Ã–"));
+		//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("J"));
-		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Å"));
+		//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Y"));
 		//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 		//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("M"));
 		//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("K"));
 		//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("T"));
-		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("Ãœ"));
+		//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("A"));
 		//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("E"));
-		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("Ä°"));
+		//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("U"));
 		//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("X"));
 		//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("W"));
@@ -5232,7 +5240,7 @@ void keyboard::caps1_kBBut_clicked()
 		//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("D"));
 		//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("O"));
 		//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("I"));
-		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("Ä"));
+		//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
 		//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("G"));
 		//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("F"));
 		//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("_"));
@@ -5300,7 +5308,7 @@ void keyboard::caps1_kBBut_clicked()
 		m_Upper = false;
 		m_symbol = true;
 	}
-	else //å½“å‰ä¸ºå¤§å†™
+	else //µ±Ç°Îª´óĞ´
 	{
 		btnLanguageSel(m_LanType);
 		m_Upper = true;
@@ -5311,7 +5319,7 @@ void keyboard::caps1_kBBut_clicked()
 
 void keyboard::symbol_KBBut_clicked()
 {
-	if ( m_symbol == true )//å¦‚æœå½“å‰ä¸ºå­—æ¯
+	if ( m_symbol == true )//Èç¹ûµ±Ç°Îª×ÖÄ¸
 	{
 		switch (m_LantypeReverse)
 		{
@@ -5326,11 +5334,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5352,21 +5360,21 @@ void keyboard::symbol_KBBut_clicked()
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
-				ui->D_KBBut->setText(QStringLiteral("ï¼š"));
+				ui->D_KBBut->setText(QStringLiteral("£º"));
 				ui->E_KBBut->setText(QStringLiteral("#"));
-				ui->F_KBBut->setText(QStringLiteral("ï¼›"));
-				ui->G_KBBut->setText(QStringLiteral("â€œ"));
-				ui->H_KBBut->setText(QStringLiteral("â€"));
+				ui->F_KBBut->setText(QStringLiteral("£»"));
+				ui->G_KBBut->setText(QStringLiteral("¡°"));
+				ui->H_KBBut->setText(QStringLiteral("¡±"));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
-				ui->Q_KBBut->setText(QStringLiteral("ï¼"));
-				ui->R_KBBut->setText(QStringLiteral("ï¿¥"));
+				ui->Q_KBBut->setText(QStringLiteral("£¡"));
+				ui->R_KBBut->setText(QStringLiteral("£¤"));
 				ui->S_KBBut->setText(QStringLiteral(")"));
 				ui->T_KBBut->setText(QStringLiteral("%"));
 				ui->U_KBBut->setText(QStringLiteral("*"));
@@ -5376,7 +5384,7 @@ void keyboard::symbol_KBBut_clicked()
 				ui->Y_KBBut->setText(QStringLiteral("&&"));
 				ui->Z_KBBut->setText(QStringLiteral("_"));
 				ui->comma_KBBut->setText(QStringLiteral(">"));
-				ui->period_KBBut->setText(QStringLiteral("ï¼Ÿ"));
+				ui->period_KBBut->setText(QStringLiteral("£¿"));
 				break;
 			}
 		case 2://Kore
@@ -5384,21 +5392,21 @@ void keyboard::symbol_KBBut_clicked()
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
-				ui->D_KBBut->setText(QStringLiteral("ï¼š"));
+				ui->D_KBBut->setText(QStringLiteral("£º"));
 				ui->E_KBBut->setText(QStringLiteral("#"));
-				ui->F_KBBut->setText(QStringLiteral("ï¼›"));
-				ui->G_KBBut->setText(QStringLiteral("â€œ"));
-				ui->H_KBBut->setText(QStringLiteral("â€"));
+				ui->F_KBBut->setText(QStringLiteral("£»"));
+				ui->G_KBBut->setText(QStringLiteral("¡°"));
+				ui->H_KBBut->setText(QStringLiteral("¡±"));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
-				ui->Q_KBBut->setText(QStringLiteral("ï¼"));
-				ui->R_KBBut->setText(QStringLiteral("ï¿¥"));
+				ui->Q_KBBut->setText(QStringLiteral("£¡"));
+				ui->R_KBBut->setText(QStringLiteral("£¤"));
 				ui->S_KBBut->setText(QStringLiteral(")"));
 				ui->T_KBBut->setText(QStringLiteral("%"));
 				ui->U_KBBut->setText(QStringLiteral("*"));
@@ -5408,7 +5416,7 @@ void keyboard::symbol_KBBut_clicked()
 				ui->Y_KBBut->setText(QStringLiteral("&&"));
 				ui->Z_KBBut->setText(QStringLiteral("_"));
 				ui->comma_KBBut->setText(QStringLiteral(">"));
-				ui->period_KBBut->setText(QStringLiteral("ï¼Ÿ"));
+				ui->period_KBBut->setText(QStringLiteral("£¿"));
 				break;
 			}
 		case 3://Czech
@@ -5422,11 +5430,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5464,11 +5472,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5496,11 +5504,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5538,11 +5546,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5580,11 +5588,11 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5611,7 +5619,7 @@ void keyboard::symbol_KBBut_clicked()
 				ui->zero_KBBut->setText("0");
 				break;
 			}
-		case 8://Hindi
+		case 8://Arabic
 			{
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
@@ -5622,11 +5630,137 @@ void keyboard::symbol_KBBut_clicked()
 				ui->G_KBBut->setText(QStringLiteral("\""));
 				ui->H_KBBut->setText(QStringLiteral("\""));
 				ui->I_KBBut->setText(QStringLiteral("+"));
-				ui->J_KBBut->setText(QStringLiteral("ã€Š"));
-				ui->K_KBBut->setText(QStringLiteral("ã€‹"));
-				ui->L_KBBut->setText(QStringLiteral("ã€"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
 				ui->M_KBBut->setText(QStringLiteral("<"));
-				ui->N_KBBut->setText(QStringLiteral("â€¦"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 9://Arabic2
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 10://Arabic3
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 11://Arabic4
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("¡¶"));
+				ui->K_KBBut->setText(QStringLiteral("¡·"));
+				ui->L_KBBut->setText(QStringLiteral("¡¢"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("¡­"));
 				ui->O_KBBut->setText(QStringLiteral("-"));
 				ui->P_KBBut->setText(QStringLiteral("="));
 				ui->Q_KBBut->setText(QStringLiteral("!"));
@@ -5657,7 +5791,7 @@ void keyboard::symbol_KBBut_clicked()
 		m_symbol = false;
 		btnhide();
 	}
-	else //å½“å‰ä¸ºç¬¦å·
+	else //µ±Ç°Îª·ûºÅ
 	{
 		btnSymbolSel(m_LantypeReverse);
 		m_symbol = true;
@@ -5886,6 +6020,7 @@ void keyboard::fontBox1_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox2_KBBut_clicked()
@@ -5894,6 +6029,7 @@ void keyboard::fontBox2_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox2_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox3_KBBut_clicked()
@@ -5902,6 +6038,7 @@ void keyboard::fontBox3_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox3_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox4_KBBut_clicked()
@@ -5910,6 +6047,7 @@ void keyboard::fontBox4_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox4_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox5_KBBut_clicked()
@@ -5918,6 +6056,7 @@ void keyboard::fontBox5_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox5_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox6_KBBut_clicked()
@@ -5926,6 +6065,7 @@ void keyboard::fontBox6_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox6_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox7_KBBut_clicked()
@@ -5934,6 +6074,7 @@ void keyboard::fontBox7_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox7_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox8_KBBut_clicked()
@@ -5942,6 +6083,7 @@ void keyboard::fontBox8_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox8_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox9_KBBut_clicked()
@@ -5950,6 +6092,7 @@ void keyboard::fontBox9_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox9_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox10_KBBut_clicked()
@@ -5958,6 +6101,40 @@ void keyboard::fontBox10_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox10_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
+}
+
+void keyboard::fontBoxRedu_KBBut_clicked()
+{
+	if(i1 != 0)
+	{
+		j1 = j1 - 10;
+		if ( j1 >= 0 )
+		{
+			FontSelect();
+		} 
+		else if( j1 < 1 )
+		{
+			j1 = 0;
+	    }
+	}
+}
+
+void keyboard::fontBoxAdd_KBBut_clicked()
+{
+	if(i1 != 0)
+	{
+		j1 = j1 + 10;
+		if ( j1 < i1  )
+		{
+			FontSelect();
+		} 
+		else if( j1 > i1 )
+		{
+			j1 = i1 - 1;
+			j1 = j1 - 10;
+		}
+	}
 }
 
 void keyboard::space_KBBut_clicked()
@@ -5983,21 +6160,25 @@ void keyboard::lanArabicAdd_KBBut_clicked()
 	if (m_LanType == 5)
 	{
 		m_LanType = 23;
+		m_LantypeReverse = 9;
 		LanArabic2();
 	}
 	else if (m_LanType == 23)
 	{
 		m_LanType = 24;
+		m_LantypeReverse = 10;
 		LanArabic3();
 	} 
 	else if (m_LanType == 24)
 	{
 		m_LanType = 25;
+		m_LantypeReverse= 11;
 		LanArabic4();
 	} 
 	else if (m_LanType  == 25)
 	{
 		m_LanType =5;
+		m_LantypeReverse = 8;
 		LanArabic1();
 	} 
 }
@@ -6212,7 +6393,7 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 {
 	switch (m_LantypeReverse)
 	{
-		case 0: //å½“å‰ä¸ºEnglishSymbol
+		case 0: //µ±Ç°ÎªEnglishSymbol
 		{
 			SymbolToEnglish();
 			btnhide();
@@ -6221,21 +6402,21 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 1: //å½“å‰ä¸ºChineseSymbol
+		case 1: //µ±Ç°ÎªChineseSymbol
 		{
 			SymbolToChinese();
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 2: //å½“å‰ä¸ºKoreSymbol
+		case 2: //µ±Ç°ÎªKoreSymbol
 		{
 			SymbolToKore();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 3: //å½“å‰ä¸ºKoreSymbol
+		case 3: //µ±Ç°ÎªKoreSymbol
 		{
 			SymbolToCzech();
 			btnhide();
@@ -6243,7 +6424,7 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 4: //å½“å‰ä¸ºKoreSymbol
+		case 4: //µ±Ç°ÎªKoreSymbol
 		{
 			SymbolToJapanese();
 				//	pWnd->btnShow();
@@ -6268,324 +6449,341 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 			btnhide();
 			break;
 		}
-		case 8:
+		case 8://µ±Ç°ÎªArabicSymbol
 		{
-			SymbolToHindi();
+			SymbolToArabic();
 			btnhide();
 			break;
 		}
-		
+		case 9://µ±Ç°ÎªArabic2Symbol
+			{
+				SymbolToArabic2();
+				btnhide();
+				break;
+			}
+		case 10://µ±Ç°ÎªArabic3Symbol
+			{
+				SymbolToArabic3();
+				btnhide();
+				break;
+			}
+		case 11://µ±Ç°ÎªArabic4Symbol
+			{
+				SymbolToArabic4();
+				btnhide();
+				break;
+			}
 	}
 
 }
 
 void keyboard::LanArabic1()
 {
-	ui->A_KBBut->setText(QStringLiteral("ï®“"));
-	ui->B_KBBut->setText(QStringLiteral("ïºˆ"));
-	ui->C_KBBut->setText(QStringLiteral("ïº†"));
-	ui->D_KBBut->setText(QStringLiteral("ï®•"));
-	ui->E_KBBut->setText(QStringLiteral("ï­º"));
-	ui->F_KBBut->setText(QStringLiteral("ï¯¼"));
-	ui->G_KBBut->setText(QStringLiteral("ï¯½"));
-	ui->H_KBBut->setText(QStringLiteral("ï¯¾"));
-	ui->I_KBBut->setText(QStringLiteral("ï®‹"));
-	ui->J_KBBut->setText(QStringLiteral("ï¯¿"));
-	ui->K_KBBut->setText(QStringLiteral("ïº€"));
-	ui->L_KBBut->setText(QStringLiteral("ïº"));
-	ui->M_KBBut->setText(QStringLiteral("ïºŠ"));
-	ui->N_KBBut->setText(QStringLiteral("ïº‰"));
-	ui->O_KBBut->setText(QStringLiteral("ï®"));
-	ui->P_KBBut->setText(QStringLiteral("ï®"));
-	ui->Q_KBBut->setText(QStringLiteral("ï­˜"));
-	ui->R_KBBut->setText(QStringLiteral("ï­»"));
-	ui->S_KBBut->setText(QStringLiteral("ï®”"));
-	ui->T_KBBut->setText(QStringLiteral("ï­¼"));
-	ui->U_KBBut->setText(QStringLiteral("ï®Š"));
-	ui->V_KBBut->setText(QStringLiteral("ïº‡"));
-	ui->W_KBBut->setText(QStringLiteral("ï­™"));
-	ui->X_KBBut->setText(QStringLiteral("ïº…"));
-	ui->Y_KBBut->setText(QStringLiteral("ïº‹"));
-	ui->Z_KBBut->setText(QStringLiteral("ïº„"));
-	ui->comma_KBBut->setText(QStringLiteral("ïº‹"));
-	ui->period_KBBut->setText(QStringLiteral("ïºŒ"));
-	ui->one_KBBut->setText(QStringLiteral("Û±"));
-	ui->two_KBBut->setText(QStringLiteral("Û²"));
-	ui->three_KBBut->setText(QStringLiteral("Û³"));
-	ui->four_KBBut->setText(QStringLiteral("Û´"));
-	ui->five_KBBut->setText(QStringLiteral("Ûµ"));
-	ui->six_KBBut->setText(QStringLiteral("Û¶"));
-	ui->seven_KBBut->setText(QStringLiteral("Û·"));
-	ui->eight_KBBut->setText(QStringLiteral("Û¸"));
-	ui->nine_KBBut->setText(QStringLiteral("Û¹"));
-	ui->zero_KBBut->setText(QStringLiteral("Û°"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ïºŒ"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ïº‹"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ïºŠ"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ïº‰"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ïºˆ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ïº‡"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ïº†"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ïº…"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ïº„"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ïºƒ"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ïº‚"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ïº€"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ï¯¿"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ï¯¾"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ï¯½"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ï¯¼"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ï®•"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ï®”"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ï®“"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ï®’"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ï®‘"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ï®"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ï®"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ï®"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ï®‹"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ï®Š"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ï­½"));
-	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ï­¼"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ï­»"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ï­º"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ï­™"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ï­˜"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ï­—"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ï­–"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Û°"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Û¹"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Û¸"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Û·"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Û¶"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Ûµ"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Û´"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Û³"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Û²"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("Û±"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ØŸ"));*/
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->comma_KBBut->setText(QStringLiteral("?"));
+	ui->period_KBBut->setText(QStringLiteral("?"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));*/
 }
 
 void keyboard::LanArabic2()
 {
-	ui->A_KBBut->setText(QStringLiteral("ïº"));
-	ui->B_KBBut->setText(QStringLiteral("ïº­"));
-	ui->C_KBBut->setText(QStringLiteral("ïº«"));
-	ui->D_KBBut->setText(QStringLiteral("ïº "));
-	ui->E_KBBut->setText(QStringLiteral("ïº“"));
-	ui->F_KBBut->setText(QStringLiteral("ïº¡"));
-	ui->G_KBBut->setText(QStringLiteral("ïº¢"));
-	ui->H_KBBut->setText(QStringLiteral("ïº£"));
-	ui->I_KBBut->setText(QStringLiteral("ïº˜"));
-	ui->J_KBBut->setText(QStringLiteral("ïº¤"));
-	ui->K_KBBut->setText(QStringLiteral("ïº¥"));
-	ui->L_KBBut->setText(QStringLiteral("ïº¦"));
-	ui->M_KBBut->setText(QStringLiteral("ïº¯"));
-	ui->N_KBBut->setText(QStringLiteral("ïº®"));
-	ui->O_KBBut->setText(QStringLiteral("ïº™"));
-	ui->P_KBBut->setText(QStringLiteral("ïºš"));
-	ui->Q_KBBut->setText(QStringLiteral("ïº‘"));
-	ui->R_KBBut->setText(QStringLiteral("ïº”"));
-	ui->S_KBBut->setText(QStringLiteral("ïºŸ"));
-	ui->T_KBBut->setText(QStringLiteral("ïº•"));
-	ui->U_KBBut->setText(QStringLiteral("ïº—"));
-	ui->V_KBBut->setText(QStringLiteral("ïº¬"));
-	ui->W_KBBut->setText(QStringLiteral("ïº’"));
-	ui->X_KBBut->setText(QStringLiteral("ïºª"));
-	ui->Y_KBBut->setText(QStringLiteral("ïº–"));
-	ui->Z_KBBut->setText(QStringLiteral("ïº©"));
-	ui->comma_KBBut->setText(QStringLiteral("ïº°"));
-	ui->period_KBBut->setText(QStringLiteral("ïº±"));
-	ui->one_KBBut->setText(QStringLiteral("Û±"));
-	ui->two_KBBut->setText(QStringLiteral("Û²"));
-	ui->three_KBBut->setText(QStringLiteral("Û³"));
-	ui->four_KBBut->setText(QStringLiteral("Û´"));
-	ui->five_KBBut->setText(QStringLiteral("Ûµ"));
-	ui->six_KBBut->setText(QStringLiteral("Û¶"));
-	ui->seven_KBBut->setText(QStringLiteral("Û·"));
-	ui->eight_KBBut->setText(QStringLiteral("Û¸"));
-	ui->nine_KBBut->setText(QStringLiteral("Û¹"));
-	ui->zero_KBBut->setText(QStringLiteral("Û°"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ïº²"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ïº±"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ïº°"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ïº¯"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ïº®"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ïº­"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ïº¬"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ïº«"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ïºª"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ïº©"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ïº¨"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ïº§"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ïº¦"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ïº¥"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ïº¤"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ïº£"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ïº¢"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ïº¡"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ïº "));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ïºŸ"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ïºœ"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ïº›"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ïºš"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ïº™"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ïº˜"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ïº—"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ïº–"));
-	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ïº•"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ïº”"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ïº“"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ïº’"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ïº‘"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ïº"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Û°"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Û¹"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Û¸"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Û·"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Û¶"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Ûµ"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Û´"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Û³"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Û²"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("Û±"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ïº"));*/
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->comma_KBBut->setText(QStringLiteral("?"));
+	ui->period_KBBut->setText(QStringLiteral("?"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));*/
 }
 
 void keyboard::LanArabic3()
 {
-	ui->A_KBBut->setText(QStringLiteral("ï»"));
-	ui->B_KBBut->setText(QStringLiteral("ï»œ"));
-	ui->C_KBBut->setText(QStringLiteral("ï»š"));
-	ui->D_KBBut->setText(QStringLiteral("ï»"));
-	ui->E_KBBut->setText(QStringLiteral("ï»‚"));
-	ui->F_KBBut->setText(QStringLiteral("ï»"));
-	ui->G_KBBut->setText(QStringLiteral("ï»‘"));
-	ui->H_KBBut->setText(QStringLiteral("ï»’"));
-	ui->I_KBBut->setText(QStringLiteral("ï»‡"));
-	ui->J_KBBut->setText(QStringLiteral("ï»“"));
-	ui->K_KBBut->setText(QStringLiteral("ï»”"));
-	ui->L_KBBut->setText(QStringLiteral("ï»•"));
-	ui->M_KBBut->setText(QStringLiteral("ï»"));
-	ui->N_KBBut->setText(QStringLiteral("ï»"));
-	ui->O_KBBut->setText(QStringLiteral("ï»ˆ"));
-	ui->P_KBBut->setText(QStringLiteral("ï»‰"));
-	ui->Q_KBBut->setText(QStringLiteral("ï»€"));
-	ui->R_KBBut->setText(QStringLiteral("ï»ƒ"));
-	ui->S_KBBut->setText(QStringLiteral("ï»"));
-	ui->T_KBBut->setText(QStringLiteral("ïº•"));
-	ui->U_KBBut->setText(QStringLiteral("ïº—"));
-	ui->V_KBBut->setText(QStringLiteral("ï»›"));
-	ui->W_KBBut->setText(QStringLiteral("ï»"));
-	ui->X_KBBut->setText(QStringLiteral("ï»™"));
-	ui->Y_KBBut->setText(QStringLiteral("ïº–"));
-	ui->Z_KBBut->setText(QStringLiteral("ï»˜"));
-	ui->comma_KBBut->setText(QStringLiteral("ï»Ÿ"));
-	ui->period_KBBut->setText(QStringLiteral("ï»Ÿ"));
-	ui->one_KBBut->setText(QStringLiteral("ïº´"));
-	ui->two_KBBut->setText(QStringLiteral("ïºµ"));
-	ui->three_KBBut->setText(QStringLiteral("ïº¶"));
-	ui->four_KBBut->setText(QStringLiteral("ïº·"));
-	ui->five_KBBut->setText(QStringLiteral("ïº¸"));
-	ui->six_KBBut->setText(QStringLiteral("ïº¹"));
-	ui->seven_KBBut->setText(QStringLiteral("ïºº"));
-	ui->eight_KBBut->setText(QStringLiteral("ïº»"));
-	ui->nine_KBBut->setText(QStringLiteral("ïº¼"));
-	ui->zero_KBBut->setText(QStringLiteral("ïº½"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("ï»¡"));
-	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("ï»Ÿ"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("ï»Ÿ"));//å·²ç”¨
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ï»œ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ï»›"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ï»š"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ï»™"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ï»˜"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("ï»—"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("ï»–"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ï»•"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ï»”"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ï»“"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ï»’"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ï»‘"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ï»Œ"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ï»‹"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ï»Š"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ï»‰"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ï»ˆ"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ï»‡"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ï»†"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ï»…"));
-	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ï»„"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ï»ƒ"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ï»‚"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ï»"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ï»€"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ïº¿"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ïº¾"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ïº½"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("ïº¼"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("ïº»"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("ïºº"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("ïº¹"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ïº¸"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ïº·"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("ïº¶"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ïºµ"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ïº´"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ïº³"));*/
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
+	ui->comma_KBBut->setText(QStringLiteral("?"));
+	ui->period_KBBut->setText(QStringLiteral("?"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));//ÒÑÓÃ
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));*/
 }
 
 void keyboard::LanArabic4()
 {
-	ui->A_KBBut->setText(QStringLiteral("ï»¼"));
+	ui->A_KBBut->setText(QStringLiteral("?"));
 	ui->B_KBBut->setText(QStringLiteral(""));
 	ui->C_KBBut->setText(QStringLiteral(""));
 	ui->D_KBBut->setText(QStringLiteral(""));
-	ui->E_KBBut->setText(QStringLiteral("ï»±"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
 	ui->F_KBBut->setText(QStringLiteral(""));
 	ui->G_KBBut->setText(QStringLiteral(""));
 	ui->H_KBBut->setText(QStringLiteral(""));
-	ui->I_KBBut->setText(QStringLiteral("ï»¶"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
 	ui->J_KBBut->setText(QStringLiteral(""));
 	ui->K_KBBut->setText(QStringLiteral(""));
 	ui->L_KBBut->setText(QStringLiteral(""));
 	ui->M_KBBut->setText(QStringLiteral(""));
 	ui->N_KBBut->setText(QStringLiteral(""));
-	ui->O_KBBut->setText(QStringLiteral("ï»·"));
-	ui->P_KBBut->setText(QStringLiteral("ï»¸"));
-	ui->Q_KBBut->setText(QStringLiteral("ï»¯"));
-	ui->R_KBBut->setText(QStringLiteral("ï»²"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
 	ui->S_KBBut->setText(QStringLiteral(""));
-	ui->T_KBBut->setText(QStringLiteral("ï»³"));
-	ui->U_KBBut->setText(QStringLiteral("ï»µ"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
 	ui->V_KBBut->setText(QStringLiteral(""));
-	ui->W_KBBut->setText(QStringLiteral("ï»°"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
 	ui->X_KBBut->setText(QStringLiteral(""));
-	ui->Y_KBBut->setText(QStringLiteral("ï»´"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
 	ui->Z_KBBut->setText(QStringLiteral(""));
 	ui->comma_KBBut->setText(QStringLiteral(""));
 	ui->period_KBBut->setText(QStringLiteral(""));
-	ui->one_KBBut->setText(QStringLiteral("ï»£"));
-	ui->two_KBBut->setText(QStringLiteral("ï»¤"));
-	ui->three_KBBut->setText(QStringLiteral("ï»¥"));
-	ui->four_KBBut->setText(QStringLiteral("ï»¦"));
-	ui->five_KBBut->setText(QStringLiteral("ï»§"));
-	ui->six_KBBut->setText(QStringLiteral("ï»¨"));
-	ui->seven_KBBut->setText(QStringLiteral("ï»©"));
-	ui->eight_KBBut->setText(QStringLiteral("ï»ª"));
-	ui->nine_KBBut->setText(QStringLiteral("ï»«"));
-	ui->zero_KBBut->setText(QStringLiteral("ï»¬"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
 	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral(""));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(""));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(""));
@@ -6607,33 +6805,33 @@ void keyboard::LanArabic4()
 	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral(""));
 	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral(""));
 
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ï»¼"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("ï»»"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("ï»º"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("ï»¹"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ï»¸"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ï»·"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ï»¶"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ï»µ"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ï»´"));
-	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ï»³"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ï»²"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ï»±"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ï»°"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ï»¯"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("ï»®"));
-	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("ï»­"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("ï»¬"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("ï»«"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("ï»ª"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("ï»©"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("ï»¨"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("ï»§"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ï»¦"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("ï»¥"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("ï»¤"));
-	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("ï»£"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("ï»¢"));*/
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));*/
 }
 
 
@@ -6855,34 +7053,34 @@ void keyboard::LanChineseBig()
 	ui->zero_KBBut->setText("0");
 }
 
-void keyboard::LanKoreanSmall()//éŸ©è¯­å°å†™
+void keyboard::LanKoreanSmall()//º«ÓïĞ¡Ğ´
 {
-	ui->A_KBBut->setText(QStringLiteral("ã…"));
-	ui->B_KBBut->setText(QStringLiteral("ã… "));
-	ui->C_KBBut->setText(QStringLiteral("ã…Š"));
-	ui->D_KBBut->setText(QStringLiteral("ã…‡"));
-	ui->E_KBBut->setText(QStringLiteral("ã„·"));
-	ui->F_KBBut->setText(QStringLiteral("ã„¹"));
-	ui->G_KBBut->setText(QStringLiteral("ã…"));
-	ui->H_KBBut->setText(QStringLiteral("ã…—"));
-	ui->I_KBBut->setText(QStringLiteral("ã…‘"));
-	ui->J_KBBut->setText(QStringLiteral("ã…“"));
-	ui->K_KBBut->setText(QStringLiteral("ã…"));
-	ui->L_KBBut->setText(QStringLiteral("ã…£"));
-	ui->M_KBBut->setText(QStringLiteral("ã…¡"));
-	ui->N_KBBut->setText(QStringLiteral("ã…œ"));
-	ui->O_KBBut->setText(QStringLiteral("ã…"));
-	ui->P_KBBut->setText(QStringLiteral("ã…”"));
-	ui->Q_KBBut->setText(QStringLiteral("ã…‚"));
-	ui->R_KBBut->setText(QStringLiteral("ã„±"));
-	ui->S_KBBut->setText(QStringLiteral("ã„´"));
-	ui->T_KBBut->setText(QStringLiteral("ã……"));
-	ui->U_KBBut->setText(QStringLiteral("ã…•"));
-	ui->V_KBBut->setText(QStringLiteral("ã…"));
-	ui->W_KBBut->setText(QStringLiteral("ã…ˆ"));
-	ui->X_KBBut->setText(QStringLiteral("ã…Œ"));
-	ui->Y_KBBut->setText(QStringLiteral("ã…›"));
-	ui->Z_KBBut->setText(QStringLiteral("ã…‹"));
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -6901,37 +7099,37 @@ void keyboard::LanKoreanSmall()//éŸ©è¯­å°å†™
 //	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("/"));
 //	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
 //	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
-//	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("ã…¡"));
-//	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("ã…œ"));
-//	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("ã… "));
-//	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("ã…"));
-//	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("ã…Š"));
-//	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("ã…Œ"));
-//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("ã…‹"));
+//	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
 //	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("'"));
 //	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral(";"));
-//	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("ã…£"));
-//	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("ã…"));
-//	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("ã…“"));
-//	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("ã…—"));
-//	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("ã…"));
-//	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("ã„¹"));
-//	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("ã…‡"));
-//	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("ã„´"));
-//	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("ã…"));
+//	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
 //	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("\\"));
 //	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("]"));
 //	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("["));
-//	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("ã…”"));
-//	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("ã…"));
-//	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("ã…‘"));
-//	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("ã…•"));
-//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("ã…›"));
-//	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("ã……"));
-//	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("ã„±"));
-//	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("ã„·"));
-//	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("ã…ˆ"));
-//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("ã…‚"));
+//	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+//	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
 //	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("="));
 //	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("-"));
 //	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("0"));
@@ -6950,32 +7148,32 @@ void keyboard::LanKoreanSmall()//éŸ©è¯­å°å†™
 
 void keyboard::LanKoreanBig()
 {
-	ui->A_KBBut->setText(QStringLiteral("ã…"));
-	ui->B_KBBut->setText(QStringLiteral("íŒŒ"));
-	ui->C_KBBut->setText(QStringLiteral("ì¹´"));
-	ui->D_KBBut->setText(QStringLiteral("ë‚˜"));
-	ui->E_KBBut->setText(QStringLiteral("ã„¸"));
-	ui->F_KBBut->setText(QStringLiteral("ë‹¤"));
-	ui->G_KBBut->setText(QStringLiteral("ë¼"));
-	ui->H_KBBut->setText(QStringLiteral("ë§ˆ"));
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
 	ui->I_KBBut->setText(QStringLiteral(""));
-	ui->J_KBBut->setText(QStringLiteral("ë°”"));
-	ui->K_KBBut->setText(QStringLiteral("ì‚¬"));
-	ui->L_KBBut->setText(QStringLiteral("ì•„"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
 	ui->M_KBBut->setText(QStringLiteral(""));
-	ui->N_KBBut->setText(QStringLiteral("í•˜"));
-	ui->O_KBBut->setText(QStringLiteral("ã…’"));
-	ui->P_KBBut->setText(QStringLiteral("ã…–"));
-	ui->Q_KBBut->setText(QStringLiteral("ã…ƒ"));
-	ui->R_KBBut->setText(QStringLiteral("ã„²"));
-	ui->S_KBBut->setText(QStringLiteral("ê°€"));
-	ui->T_KBBut->setText(QStringLiteral("ã…†"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
 	ui->U_KBBut->setText(QStringLiteral(""));
-	ui->V_KBBut->setText(QStringLiteral("íƒ€"));
-	ui->W_KBBut->setText(QStringLiteral("ã…‰"));
-	ui->X_KBBut->setText(QStringLiteral("ì°¨"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
 	ui->Y_KBBut->setText(QStringLiteral(""));
-	ui->Z_KBBut->setText(QStringLiteral("ì"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -7018,16 +7216,16 @@ void keyboard::LanCzechSmall()
 	ui->Z_KBBut->setText("y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("Å¯"));
-	ui->two_KBBut->setText(QStringLiteral("Ä›"));
-	ui->three_KBBut->setText(QStringLiteral("Å¡"));
-	ui->four_KBBut->setText(QStringLiteral("Ä"));
-	ui->five_KBBut->setText(QStringLiteral("Å™"));
-	ui->six_KBBut->setText(QStringLiteral("Å¾"));
-	ui->seven_KBBut->setText(QStringLiteral("Ã½"));
-	ui->eight_KBBut->setText(QStringLiteral("Ã¡"));
-	ui->nine_KBBut->setText(QStringLiteral("Ã­"));
-	ui->zero_KBBut->setText(QStringLiteral("Ã©"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("¨§"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("¨¢"));
+	ui->nine_KBBut->setText(QStringLiteral("¨ª"));
+	ui->zero_KBBut->setText(QStringLiteral("¨¦"));
 	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("/"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
@@ -7038,8 +7236,8 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("c"));
 	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("x"));
 	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("y"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Â§"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Å¯"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("¡ì"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("l"));
 	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("k"));
 	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("j"));
@@ -7049,9 +7247,9 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("d"));
 	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("s"));
 	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("a"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("Â¨"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("¡§"));
 	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral(")"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ãº"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("¨²"));
 	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("p"));
 	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("o"));
 	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("i"));
@@ -7062,17 +7260,17 @@ void keyboard::LanCzechSmall()
 	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("e"));
 	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("w"));
 	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Â´"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("="));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Ã©"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Ã­"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Ã¡"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Ã½"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Å¾"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Å™"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Ä"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Å¡"));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Ä›"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("¨¦"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("¨ª"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("¨¢"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("¨§"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("+"));
 	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral(";"));*/
 }
@@ -7107,16 +7305,16 @@ void keyboard::LanCzechBig()
 	ui->Z_KBBut->setText("Y");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("Ãš"));
-	ui->two_KBBut->setText(QStringLiteral("Äš"));
-	ui->three_KBBut->setText(QStringLiteral("Å "));
-	ui->four_KBBut->setText(QStringLiteral("ÄŒ"));
-	ui->five_KBBut->setText(QStringLiteral("Å˜"));
-	ui->six_KBBut->setText(QStringLiteral("Å½"));
-	ui->seven_KBBut->setText(QStringLiteral("Ã"));
-	ui->eight_KBBut->setText(QStringLiteral("Ã"));
-	ui->nine_KBBut->setText(QStringLiteral("Ã"));
-	ui->zero_KBBut->setText(QStringLiteral("Ã‰"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("?"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
 	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));
@@ -7128,7 +7326,7 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Y"));
 	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("!"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Å®"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -7140,7 +7338,7 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
 	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("("));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ãš"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -7151,19 +7349,19 @@ void keyboard::LanCzechBig()
 	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("E"));
 	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("W"));
 	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("Q"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("Ë‡"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("¡¦"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("%"));
-	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("Ã‰"));
-	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("Ã"));
-	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("Ã"));
-	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("Ã"));
-	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("Å½"));
-	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("Å˜"));
-	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("ÄŒ"));
-	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("Å "));
-	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("Äš"));
+	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â°"));*/
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("¡ã"));*/
 }
 
 void keyboard::LanJapaneseSmall()
@@ -7344,7 +7542,7 @@ void keyboard::LanDutchBig()
 	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
 	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("`"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Â±"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("¡À"));
 	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -7379,7 +7577,7 @@ void keyboard::LanDutchBig()
 	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
 	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â§"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("¡ì"));
 	//		break;
 }
 
@@ -7411,8 +7609,8 @@ void keyboard::LanGermanSmall()
 	ui->X_KBBut->setText("x");
 	ui->Y_KBBut->setText("z");
 	ui->Z_KBBut->setText("y");
-	ui->comma_KBBut->setText(QStringLiteral("Ã¤"));
-	ui->period_KBBut->setText(QStringLiteral("Ã¶"));
+	ui->comma_KBBut->setText(QStringLiteral("?"));
+	ui->period_KBBut->setText(QStringLiteral("?"));
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -7453,11 +7651,11 @@ void keyboard::LanGermanBig()
 	ui->X_KBBut->setText("X");
 	ui->Y_KBBut->setText("Z");
 	ui->Z_KBBut->setText("Y");
-	ui->comma_KBBut->setText(QStringLiteral("Ã„"));//å¾·è¯­è¿™é‡Œæ²¡æœ‰é€—å·
-	ui->period_KBBut->setText(QStringLiteral("Ã–"));//å¾·è¯­çš„ä¸“å±ç¬¦å·
+	ui->comma_KBBut->setText(QStringLiteral("?"));//µÂÓïÕâÀïÃ»ÓĞ¶ººÅ
+	ui->period_KBBut->setText(QStringLiteral("?"));//µÂÓïµÄ×¨Êô·ûºÅ
 	ui->one_KBBut->setText(QStringLiteral("!"));
 	ui->two_KBBut->setText(QStringLiteral("\\"));
-	ui->three_KBBut->setText(QStringLiteral("Â§"));
+	ui->three_KBBut->setText(QStringLiteral("¡ì"));
 	ui->four_KBBut->setText(QStringLiteral("$"));
 	ui->five_KBBut->setText(QStringLiteral("%"));
 	ui->six_KBBut->setText(QStringLiteral("&&"));
@@ -7497,16 +7695,16 @@ void keyboard::LanFarsiSmall()
 	ui->Z_KBBut->setText("z");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("Â½"));
-	ui->two_KBBut->setText(QStringLiteral("Â¤"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("¡è"));
 	ui->three_KBBut->setText(QStringLiteral("`"));
-	ui->four_KBBut->setText(QStringLiteral("Ã¥"));
-	ui->five_KBBut->setText(QStringLiteral("Â´"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
 	ui->six_KBBut->setText(QStringLiteral("'"));
-	ui->seven_KBBut->setText(QStringLiteral("Ã¤"));
-	ui->eight_KBBut->setText(QStringLiteral("Ã¶"));
-	ui->nine_KBBut->setText(QStringLiteral("Â§"));
-	ui->zero_KBBut->setText(QStringLiteral("Â¨"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("¡ì"));
+	ui->zero_KBBut->setText(QStringLiteral("¡§"));
 }
 
 void keyboard::LanFarsiBig()
@@ -7539,16 +7737,16 @@ void keyboard::LanFarsiBig()
 	ui->Z_KBBut->setText("Z");
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("Â½"));
-	ui->two_KBBut->setText(QStringLiteral("Â¤"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("¡è"));
 	ui->three_KBBut->setText(QStringLiteral("`"));
-	ui->four_KBBut->setText(QStringLiteral("Ã…"));
-	ui->five_KBBut->setText(QStringLiteral("Â´"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
 	ui->six_KBBut->setText(QStringLiteral("'"));
-	ui->seven_KBBut->setText(QStringLiteral("Ã„"));
-	ui->eight_KBBut->setText(QStringLiteral("Ã–"));
-	ui->nine_KBBut->setText(QStringLiteral("Â§"));
-	ui->zero_KBBut->setText(QStringLiteral("Â¨"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("¡ì"));
+	ui->zero_KBBut->setText(QStringLiteral("¡§"));
 	//		GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("_"));
 	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral(":"));
 	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(";"));
@@ -7559,8 +7757,8 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("C"));
 	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("X"));
 	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("Z"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("Ã„"));
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("Ã–"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
 	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("L"));
 	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("K"));
 	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("J"));
@@ -7571,8 +7769,8 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("S"));
 	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("A"));
 	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("'"));
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("Â´"));
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("Ã…"));
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
 	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("P"));
 	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("O"));
 	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("I"));
@@ -7591,90 +7789,90 @@ void keyboard::LanFarsiBig()
 	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("/"));
 	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("&"));
 	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("%"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("Â¤"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("¡è"));
 	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("#"));
 	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("\""));
 	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("!"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("Â½"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 	//		break;
 	//	}
 }
 
 void keyboard::LanHindiSmall()
 {
-	ui->A_KBBut->setText(QStringLiteral("à¥‹"));
-	ui->B_KBBut->setText(QStringLiteral("à¤µ"));
-	ui->C_KBBut->setText(QStringLiteral("à¤®"));
-	ui->D_KBBut->setText(QStringLiteral("à¥"));
-	ui->E_KBBut->setText(QStringLiteral("à¤¾"));
-	ui->F_KBBut->setText(QStringLiteral("à¤¿"));
-	ui->G_KBBut->setText(QStringLiteral("à¥"));
-	ui->H_KBBut->setText(QStringLiteral("à¤ª"));
-	ui->I_KBBut->setText(QStringLiteral("à¤—"));
-	ui->J_KBBut->setText(QStringLiteral("à¤°"));
-	ui->K_KBBut->setText(QStringLiteral("à¤•"));
-	ui->L_KBBut->setText(QStringLiteral("à¤¤"));
-	ui->M_KBBut->setText(QStringLiteral("à¤¸"));
-	ui->N_KBBut->setText(QStringLiteral("à¤²"));
-	ui->O_KBBut->setText(QStringLiteral("à¤¦"));
-	ui->P_KBBut->setText(QStringLiteral("à¤œ"));
-	ui->Q_KBBut->setText(QStringLiteral("à¥Œ"));
-	ui->R_KBBut->setText(QStringLiteral("à¥€"));
-	ui->S_KBBut->setText(QStringLiteral("à¥‡"));
-	ui->T_KBBut->setText(QStringLiteral("à¥‚"));
-	ui->U_KBBut->setText(QStringLiteral("à¤¹"));
-	ui->V_KBBut->setText(QStringLiteral("à¤¨"));
-	ui->W_KBBut->setText(QStringLiteral("à¥ˆ"));
-	ui->X_KBBut->setText(QStringLiteral("à¤‚"));
-	ui->Y_KBBut->setText(QStringLiteral("à¤¬"));
-	ui->Z_KBBut->setText(QStringLiteral("à¥†"));
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("à¤"));
-	ui->two_KBBut->setText(QStringLiteral("à¥…"));
-	ui->three_KBBut->setText(QStringLiteral("à¥à¤¯"));
-	ui->four_KBBut->setText(QStringLiteral("à¤Ÿ"));
-	ui->five_KBBut->setText(QStringLiteral("à¤š"));
-	ui->six_KBBut->setText(QStringLiteral("à¥‰"));
-	ui->seven_KBBut->setText(QStringLiteral("à¤¼"));
-	ui->eight_KBBut->setText(QStringLiteral("à¤¡"));
-	ui->nine_KBBut->setText(QStringLiteral("à¥ƒ"));
-	ui->zero_KBBut->setText(QStringLiteral("à¥Š"));
-	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("à¤¯"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("??"));
+	ui->four_KBBut->setText(QStringLiteral("?"));
+	ui->five_KBBut->setText(QStringLiteral("?"));
+	ui->six_KBBut->setText(QStringLiteral("?"));
+	ui->seven_KBBut->setText(QStringLiteral("?"));
+	ui->eight_KBBut->setText(QStringLiteral("?"));
+	ui->nine_KBBut->setText(QStringLiteral("?"));
+	ui->zero_KBBut->setText(QStringLiteral("?"));
+	/*GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("."));
 	GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral(","));
-	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("à¤¸"));
-	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("à¤²"));
-	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("à¤µ"));
-	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("à¤¨"));
-	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("à¤®"));
-	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("à¤‚"));
-	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("à¥†"));
-	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("à¤Ÿ"));
-	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("à¤š"));
-	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("à¤¤"));
-	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("à¤•"));
-	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("à¤°"));
-	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("à¤ª"));
-	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("à¥"));
-	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("à¤¿"));
-	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("à¥"));
-	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("à¥‡"));
-	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("à¥‹"));
-	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("à¥‰"));
-	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("à¤¼"));
-	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("à¤¡"));
-	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("à¤œ"));
-	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("à¤¦"));
-	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("à¤—"));
-	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("à¤¹"));
-	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("à¤¬"));
-	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("à¥‚"));
-	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("à¥€"));
-	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("à¤¾"));
-	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("à¥ˆ"));
-	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("à¥Œ"));
-	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("à¥ƒ"));
+	GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));
 	GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("-"));
 	GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral("0"));
 	GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("9"));
@@ -7686,96 +7884,96 @@ void keyboard::LanHindiSmall()
 	GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("3"));
 	GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("2"));
 	GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("1"));
-	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("à¥Š"));*/
+	GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));*/
 }
 
 void keyboard::LanHindiBig()
-{                                                //å¾ˆå¤šç¬¦å·æ²¡æœ‰æ”¾ä¸Š
-	ui->A_KBBut->setText(QStringLiteral("à¤“"));
-	ui->B_KBBut->setText(QStringLiteral("à¤´"));
-	ui->C_KBBut->setText(QStringLiteral("à¤£"));
-	ui->D_KBBut->setText(QStringLiteral("à¤…"));
-	ui->E_KBBut->setText(QStringLiteral("à¤†"));
-	ui->F_KBBut->setText(QStringLiteral("à¤‡"));
-	ui->G_KBBut->setText(QStringLiteral("à¤‰"));
-	ui->H_KBBut->setText(QStringLiteral("à¤«"));
-	ui->I_KBBut->setText(QStringLiteral("à¤"));
-	ui->J_KBBut->setText(QStringLiteral("à¤±"));
-	ui->K_KBBut->setText(QStringLiteral("à¤–"));
-	ui->L_KBBut->setText(QStringLiteral("à¤¥"));
-	ui->M_KBBut->setText(QStringLiteral("à¤¶"));
-	ui->N_KBBut->setText(QStringLiteral("à¤³"));
-	ui->O_KBBut->setText(QStringLiteral("à¤§"));
-	ui->P_KBBut->setText(QStringLiteral("à¤"));
-	ui->Q_KBBut->setText(QStringLiteral("à¤”"));
-	ui->R_KBBut->setText(QStringLiteral("à¤ˆ"));
-	ui->S_KBBut->setText(QStringLiteral("à¤"));
-	ui->T_KBBut->setText(QStringLiteral("à¤˜"));
-	ui->U_KBBut->setText(QStringLiteral("à¤™"));
-	ui->V_KBBut->setText(QStringLiteral("à¤©"));
-	ui->W_KBBut->setText(QStringLiteral("à¤"));
-	ui->X_KBBut->setText(QStringLiteral("à¤"));
-	ui->Y_KBBut->setText(QStringLiteral("à¤­"));
-	ui->Z_KBBut->setText(QStringLiteral("à¤"));
+{                                                //ºÜ¶à·ûºÅÃ»ÓĞ·ÅÉÏ
+	ui->A_KBBut->setText(QStringLiteral("?"));
+	ui->B_KBBut->setText(QStringLiteral("?"));
+	ui->C_KBBut->setText(QStringLiteral("?"));
+	ui->D_KBBut->setText(QStringLiteral("?"));
+	ui->E_KBBut->setText(QStringLiteral("?"));
+	ui->F_KBBut->setText(QStringLiteral("?"));
+	ui->G_KBBut->setText(QStringLiteral("?"));
+	ui->H_KBBut->setText(QStringLiteral("?"));
+	ui->I_KBBut->setText(QStringLiteral("?"));
+	ui->J_KBBut->setText(QStringLiteral("?"));
+	ui->K_KBBut->setText(QStringLiteral("?"));
+	ui->L_KBBut->setText(QStringLiteral("?"));
+	ui->M_KBBut->setText(QStringLiteral("?"));
+	ui->N_KBBut->setText(QStringLiteral("?"));
+	ui->O_KBBut->setText(QStringLiteral("?"));
+	ui->P_KBBut->setText(QStringLiteral("?"));
+	ui->Q_KBBut->setText(QStringLiteral("?"));
+	ui->R_KBBut->setText(QStringLiteral("?"));
+	ui->S_KBBut->setText(QStringLiteral("?"));
+	ui->T_KBBut->setText(QStringLiteral("?"));
+	ui->U_KBBut->setText(QStringLiteral("?"));
+	ui->V_KBBut->setText(QStringLiteral("?"));
+	ui->W_KBBut->setText(QStringLiteral("?"));
+	ui->X_KBBut->setText(QStringLiteral("?"));
+	ui->Y_KBBut->setText(QStringLiteral("?"));
+	ui->Z_KBBut->setText(QStringLiteral("?"));
 	ui->comma_KBBut->setText(",");
 	ui->period_KBBut->setText(".");
-	ui->one_KBBut->setText(QStringLiteral("à¤’"));
-	ui->two_KBBut->setText(QStringLiteral("à¤ƒ"));
-	ui->three_KBBut->setText(QStringLiteral("à¥à¤°"));
-	ui->four_KBBut->setText(QStringLiteral("à¤°à¥"));
-	ui->five_KBBut->setText(QStringLiteral("à¤œà¥à¤"));
-	ui->six_KBBut->setText(QStringLiteral("à¤¤à¥à¤°"));
-	ui->seven_KBBut->setText(QStringLiteral("à¤•à¥à¤·"));
-	ui->eight_KBBut->setText(QStringLiteral("à¤¶à¥à¤°"));
+	ui->one_KBBut->setText(QStringLiteral("?"));
+	ui->two_KBBut->setText(QStringLiteral("?"));
+	ui->three_KBBut->setText(QStringLiteral("??"));
+	ui->four_KBBut->setText(QStringLiteral("??"));
+	ui->five_KBBut->setText(QStringLiteral("???"));
+	ui->six_KBBut->setText(QStringLiteral("???"));
+	ui->seven_KBBut->setText(QStringLiteral("???"));
+	ui->eight_KBBut->setText(QStringLiteral("???"));
 	ui->nine_KBBut->setText(QStringLiteral("("));
 	ui->zero_KBBut->setText(QStringLiteral(")"));
-	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("à¥Ÿ"));  æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("à¥¤"));   æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("à¤·"));   æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("à¤¶"));
-	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("à¤³"));
-	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("à¤´"));
-	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("à¤©"));
-	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("à¤£"));
-	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("à¤ "));   æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("à¤›"));    æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("à¤¥"));
-	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("à¤–"));
-	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("à¤±"));
-	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("à¤«"));
-	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("à¤‰"));
-	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("à¤‡"));
-	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("à¤…"));
-	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("à¤“"));
-	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("à¤‘"));   æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("à¤"));    æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("à¤¢"));     æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("à¤§"));
-	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("à¤˜"));
-	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("à¤™"));
-	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("à¤­"));
-	//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("à¤Š"));
-	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("à¤ˆ"));
-	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("à¤†"));
-	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("à¤”"));
-	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("à¤‹"));    æ²¡æ”¾ä¸Š
-	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("à¤ƒ"));
+	//      GetDlgItem(IDC_MIAN_SYM_11)->SetWindowText(QStringLiteral("?"));  Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_10)->SetWindowText(QStringLiteral("?"));   Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_9)->SetWindowText(QStringLiteral("?"));   Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_M)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_N)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_B)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_V)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_C)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_X)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_Z)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_8)->SetWindowText(QStringLiteral("?"));   Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_7)->SetWindowText(QStringLiteral("?"));    Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_L)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_K)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_J)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_H)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_G)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_F)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_D)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_S)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_A)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_6)->SetWindowText(QStringLiteral("?"));   Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_5)->SetWindowText(QStringLiteral("?"));    Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_4)->SetWindowText(QStringLiteral("?"));     Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_P)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_O)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_I)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_U)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_Y)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIANQStringLiteral)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_R)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_E)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_W)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_Q)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_3)->SetWindowText(QStringLiteral("?"));    Ã»·ÅÉÏ
+	//		GetDlgItem(IDC_MIAN_SYM_2)->SetWindowText(QStringLiteral("?"));
 	//		GetDlgItem(IDC_MIAN_0)->SetWindowText(QStringLiteral(")"));
 	//		GetDlgItem(IDC_MIAN_9)->SetWindowText(QStringLiteral("("));
-	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("à¤¶à¥à¤°"));
-	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("à¤•à¥à¤·"));
-	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("à¤¤à¥à¤°"));
-	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("à¤œà¥à¤"));
-	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("à¤°à¥"));
-	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("à¥à¤°"));
-	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("à¥…"));
-	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("à¤"));
-	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("à¤’"));
+	//		GetDlgItem(IDC_MIAN_8)->SetWindowText(QStringLiteral("???"));
+	//		GetDlgItem(IDC_MIAN_7)->SetWindowText(QStringLiteral("???"));
+	//		GetDlgItem(IDC_MIAN_6)->SetWindowText(QStringLiteral("???"));
+	//		GetDlgItem(IDC_MIAN_5)->SetWindowText(QStringLiteral("???"));
+	//		GetDlgItem(IDC_MIAN_4)->SetWindowText(QStringLiteral("??"));
+	//		GetDlgItem(IDC_MIAN_3)->SetWindowText(QStringLiteral("??"));
+	//		GetDlgItem(IDC_MIAN_2)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_1)->SetWindowText(QStringLiteral("?"));
+	//		GetDlgItem(IDC_MIAN_SYM_1)->SetWindowText(QStringLiteral("?"));
 	//		break;
 }
 
@@ -7830,5 +8028,29 @@ void keyboard::SymbolToFarsi()
 void keyboard::SymbolToHindi()
 {
 	LanHindiBig();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic()
+{
+	LanArabic1();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic2()
+{
+	LanArabic2();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic3()
+{
+	LanArabic3();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic4()
+{
+	LanArabic4();
 	m_Upper = false;
 }

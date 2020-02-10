@@ -175,7 +175,7 @@ void language::LanArabic_KBBut_clicked()
 	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 5;
-	pKeyboard->m_LantypeReverse = 9;//Hindi
+	pKeyboard->m_LantypeReverse = 8;////Arabic
 	pKeyboard->caps1_kBBut_clicked();
 	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
 	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
