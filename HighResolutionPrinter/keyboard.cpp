@@ -4,6 +4,8 @@
 #include <QtWidgets/QStackedWidget>
 #include "lineedit_click.h"
 #include "language.h"
+#include "fileeditchild.h"
+#include <QTabWidget>
 #include <QHBoxLayout>
 
 keyboard::keyboard(QWidget *parent)
@@ -56,8 +58,19 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->space_KBBut,SIGNAL(clicked()),this,SLOT(space_KBBut_clicked()));
 	connect(ui->comma_KBBut,SIGNAL(clicked()),this,SLOT(comma_KBBut_clicked()));
 	connect(ui->period_KBBut,SIGNAL(clicked()),this,SLOT(period_KBBut_clicked()));
-	connect(ui->languageAdd_KBBut,SIGNAL(clicked()),this,SLOT(languageAdd_KBBut_clicked()));
-	connect(ui->languageRedu_KBBut,SIGNAL(clicked()),this,SLOT(languageRedu_KBBut_clicked()));
+	connect(ui->languageAdd_KBBut,SIGNAL(clicked()),this,SLOT(lanArabicAdd_KBBut_clicked()));
+	connect(ui->languageRedu_KBBut,SIGNAL(clicked()),this,SLOT(lanArabicRedu_KBBut_clicked()));
+	connect(ui->fontBox1_KBBut,SIGNAL(clicked()),this,SLOT(fontBox1_KBBut_clicked()));
+	connect(ui->fontBox2_KBBut,SIGNAL(clicked()),this,SLOT(fontBox2_KBBut_clicked()));
+	connect(ui->fontBox3_KBBut,SIGNAL(clicked()),this,SLOT(fontBox3_KBBut_clicked()));
+	connect(ui->fontBox4_KBBut,SIGNAL(clicked()),this,SLOT(fontBox4_KBBut_clicked()));
+	connect(ui->fontBox5_KBBut,SIGNAL(clicked()),this,SLOT(fontBox5_KBBut_clicked()));
+	connect(ui->fontBox6_KBBut,SIGNAL(clicked()),this,SLOT(fontBox6_KBBut_clicked()));
+	connect(ui->fontBox7_KBBut,SIGNAL(clicked()),this,SLOT(fontBox7_KBBut_clicked()));
+	connect(ui->fontBox8_KBBut,SIGNAL(clicked()),this,SLOT(fontBox8_KBBut_clicked()));
+	connect(ui->fontBox9_KBBut,SIGNAL(clicked()),this,SLOT(fontBox9_KBBut_clicked()));
+	connect(ui->fontBox10_KBBut,SIGNAL(clicked()),this,SLOT(fontBox10_KBBut_clicked()));
+
 
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
 	connect(ui->Esc_KBBut,SIGNAL(clicked()),this,SLOT(Esc_KBBut_clicked()));
@@ -150,6 +163,13 @@ void keyboard::setText2KBLineedit()
 	m_pInputEdit = ui->wordCombLineEdit;
 }
 
+
+void keyboard::changeCurrentlineedit()
+{
+	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(this->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	pFileEditChild->wordLineEdit_clicked();
+}
 
 void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应的汉字置入备选框中
 {
@@ -2701,6 +2721,86 @@ void keyboard::num0_KBBut_clicked()
 	m_pInputEdit->insert(ui->zero_KBBut->text());
 }
 
+void keyboard::fontBox1_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox2_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox2_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox3_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox3_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox4_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox4_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox5_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox5_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox6_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox6_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox7_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox7_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox8_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox8_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox9_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox9_KBBut->text());
+	setText2KBLineedit();
+}
+
+void keyboard::fontBox10_KBBut_clicked()
+{
+	changeCurrentlineedit();
+	m_pInputEdit->cursorPosition();
+	m_pInputEdit->insert(ui->fontBox10_KBBut->text());
+	setText2KBLineedit();
+}
+
 void keyboard::space_KBBut_clicked()
 {
 	m_pInputEdit->cursorPosition();
@@ -2719,7 +2819,7 @@ void keyboard::period_KBBut_clicked()
 	m_pInputEdit->insert(ui->period_KBBut->text());
 }
 
-void keyboard::languageAdd_KBBut_clicked()
+void keyboard::lanArabicAdd_KBBut_clicked()
 {
 	if (m_LanType == 5)
 	{
@@ -2743,7 +2843,7 @@ void keyboard::languageAdd_KBBut_clicked()
 	} 
 }
 
-void keyboard::languageRedu_KBBut_clicked()
+void keyboard::lanArabicRedu_KBBut_clicked()
 {
 
 	if (m_LanType == 5)

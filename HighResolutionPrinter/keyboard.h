@@ -28,6 +28,7 @@ public:
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
 	void setText2KBLineedit();
+	void changeCurrentlineedit();
 
 	void LanArabic1();
 	void LanArabic2();
@@ -167,12 +168,22 @@ private slots:
 	void num8_KBBut_clicked();
 	void num9_KBBut_clicked();
 	void num0_KBBut_clicked();
+	void fontBox1_KBBut_clicked();
+	void fontBox2_KBBut_clicked();
+	void fontBox3_KBBut_clicked();
+	void fontBox4_KBBut_clicked();
+	void fontBox5_KBBut_clicked();
+	void fontBox6_KBBut_clicked();
+	void fontBox7_KBBut_clicked();
+	void fontBox8_KBBut_clicked();
+	void fontBox9_KBBut_clicked();
+	void fontBox10_KBBut_clicked();
 
 	void space_KBBut_clicked();
 	void comma_KBBut_clicked();
 	void period_KBBut_clicked();
-	void languageAdd_KBBut_clicked();
-	void languageRedu_KBBut_clicked();
+	void lanArabicAdd_KBBut_clicked();
+	void lanArabicRedu_KBBut_clicked();
 	
 public slots:
 	void btnshow();
