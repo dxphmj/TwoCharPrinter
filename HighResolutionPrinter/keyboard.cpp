@@ -70,6 +70,8 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->fontBox8_KBBut,SIGNAL(clicked()),this,SLOT(fontBox8_KBBut_clicked()));
 	connect(ui->fontBox9_KBBut,SIGNAL(clicked()),this,SLOT(fontBox9_KBBut_clicked()));
 	connect(ui->fontBox10_KBBut,SIGNAL(clicked()),this,SLOT(fontBox10_KBBut_clicked()));
+	connect(ui->fontBoxRedu_KBBut,SIGNAL(clicked()),this,SLOT(fontBoxRedu_KBBut_clicked()));
+	connect(ui->fontBoxAdd_KBBut,SIGNAL(clicked()),this,SLOT(fontBoxAdd_KBBut_clicked()));
 
 
 	connect(ui->enter_KBBut,SIGNAL(clicked()),this,SLOT(enter_KBBut_clicked()));
@@ -82,9 +84,7 @@ keyboard::keyboard(QWidget *parent)
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	connect(ui->wordCombLineEdit,SIGNAL(textChanged(QString)),this,SLOT(languagespell()));
-
-	//connect(ui->fontBox1_KBBut,SIGNAL(clicked()),this,SLOT(InsertChineseToLine()));//父窗口执行槽函数
-
+	
 
 	m_LanType = English;
 	m_Upper = false;
@@ -126,8 +126,17 @@ void keyboard::Esc_KBBut_clicked()
 
 void keyboard::backspace_KBBut_clicked()
 {
-	m_pInputEdit->backspace();
-	QString str1 = m_pInputEdit->text();
+	setText2KBLineedit();
+	if (m_pInputEdit->text() != "")
+	{
+		m_pInputEdit->backspace();
+	} 
+	else
+	{
+		changeCurrentlineedit();
+	    m_pInputEdit->backspace();
+	}
+	setText2KBLineedit();
 }
 
 void keyboard::language_KBBut_clicked()
@@ -178,6 +187,8 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 	QString value = ChineseLanMap[key];
 	if ( value == "" )          
 	{	
+		splitOut.clear();
+		i1 = 0;
 		j1 = 0;
 		QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 		QStringList temp = Delstr.split(",");
@@ -219,15 +230,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			i1 = 31;
 		}
 		FontSelect();
-		splitOut.clear();
-		//break;
 	}
-}
-
-void keyboard::InsertChineseToLine()
-{
-	m_pInputEdit->cursorPosition();
-	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
 }
 
 void keyboard::CreateChineseMapLan()
@@ -2452,7 +2455,133 @@ void keyboard::symbol_KBBut_clicked()
 				ui->zero_KBBut->setText("0");
 				break;
 			}
-		case 8://Hindi
+		case 8://Arabic
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 9://Arabic2
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 10://Arabic3
+			{
+				ui->A_KBBut->setText(QStringLiteral("("));
+				ui->B_KBBut->setText(QStringLiteral("~"));
+				ui->C_KBBut->setText(QStringLiteral("\\"));
+				ui->D_KBBut->setText(QStringLiteral(":"));
+				ui->E_KBBut->setText(QStringLiteral("#"));
+				ui->F_KBBut->setText(QStringLiteral(";"));
+				ui->G_KBBut->setText(QStringLiteral("\""));
+				ui->H_KBBut->setText(QStringLiteral("\""));
+				ui->I_KBBut->setText(QStringLiteral("+"));
+				ui->J_KBBut->setText(QStringLiteral("《"));
+				ui->K_KBBut->setText(QStringLiteral("》"));
+				ui->L_KBBut->setText(QStringLiteral("、"));
+				ui->M_KBBut->setText(QStringLiteral("<"));
+				ui->N_KBBut->setText(QStringLiteral("…"));
+				ui->O_KBBut->setText(QStringLiteral("-"));
+				ui->P_KBBut->setText(QStringLiteral("="));
+				ui->Q_KBBut->setText(QStringLiteral("!"));
+				ui->R_KBBut->setText(QStringLiteral("$"));
+				ui->S_KBBut->setText(QStringLiteral(")"));
+				ui->T_KBBut->setText(QStringLiteral("%"));
+				ui->U_KBBut->setText(QStringLiteral("*"));
+				ui->V_KBBut->setText(QStringLiteral("|"));
+				ui->W_KBBut->setText(QStringLiteral("@"));
+				ui->X_KBBut->setText(QStringLiteral("/"));
+				ui->Y_KBBut->setText(QStringLiteral("&&"));
+				ui->Z_KBBut->setText(QStringLiteral("_"));
+				ui->comma_KBBut->setText(QStringLiteral(">"));
+				ui->period_KBBut->setText(QStringLiteral("?"));
+				ui->one_KBBut->setText("1");
+				ui->two_KBBut->setText("2");
+				ui->three_KBBut->setText("3");
+				ui->four_KBBut->setText("4");
+				ui->five_KBBut->setText("5");
+				ui->six_KBBut->setText("6");
+				ui->seven_KBBut->setText("7");
+				ui->eight_KBBut->setText("8");
+				ui->nine_KBBut->setText("9");
+				ui->zero_KBBut->setText("0");
+				break;
+			}
+		case 11://Arabic4
 			{
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
@@ -2727,6 +2856,7 @@ void keyboard::fontBox1_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox1_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox2_KBBut_clicked()
@@ -2735,6 +2865,7 @@ void keyboard::fontBox2_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox2_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox3_KBBut_clicked()
@@ -2743,6 +2874,7 @@ void keyboard::fontBox3_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox3_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox4_KBBut_clicked()
@@ -2751,6 +2883,7 @@ void keyboard::fontBox4_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox4_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox5_KBBut_clicked()
@@ -2759,6 +2892,7 @@ void keyboard::fontBox5_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox5_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox6_KBBut_clicked()
@@ -2767,6 +2901,7 @@ void keyboard::fontBox6_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox6_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox7_KBBut_clicked()
@@ -2775,6 +2910,7 @@ void keyboard::fontBox7_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox7_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox8_KBBut_clicked()
@@ -2783,6 +2919,7 @@ void keyboard::fontBox8_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox8_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox9_KBBut_clicked()
@@ -2791,6 +2928,7 @@ void keyboard::fontBox9_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox9_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
 }
 
 void keyboard::fontBox10_KBBut_clicked()
@@ -2799,6 +2937,40 @@ void keyboard::fontBox10_KBBut_clicked()
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->fontBox10_KBBut->text());
 	setText2KBLineedit();
+	m_pInputEdit->setText("");
+}
+
+void keyboard::fontBoxRedu_KBBut_clicked()
+{
+	if(i1 != 0)
+	{
+		j1 = j1 - 10;
+		if ( j1 >= 0 )
+		{
+			FontSelect();
+		} 
+		else if( j1 < 1 )
+		{
+			j1 = 0;
+	    }
+	}
+}
+
+void keyboard::fontBoxAdd_KBBut_clicked()
+{
+	if(i1 != 0)
+	{
+		j1 = j1 + 10;
+		if ( j1 < i1  )
+		{
+			FontSelect();
+		} 
+		else if( j1 > i1 )
+		{
+			j1 = i1 - 1;
+			j1 = j1 - 10;
+		}
+	}
 }
 
 void keyboard::space_KBBut_clicked()
@@ -2824,21 +2996,25 @@ void keyboard::lanArabicAdd_KBBut_clicked()
 	if (m_LanType == 5)
 	{
 		m_LanType = 23;
+		m_LantypeReverse = 9;
 		LanArabic2();
 	}
 	else if (m_LanType == 23)
 	{
 		m_LanType = 24;
+		m_LantypeReverse = 10;
 		LanArabic3();
 	} 
 	else if (m_LanType == 24)
 	{
 		m_LanType = 25;
+		m_LantypeReverse= 11;
 		LanArabic4();
 	} 
 	else if (m_LanType  == 25)
 	{
 		m_LanType =5;
+		m_LantypeReverse = 8;
 		LanArabic1();
 	} 
 }
@@ -3109,13 +3285,30 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 			btnhide();
 			break;
 		}
-		case 8:
+		case 8://当前为ArabicSymbol
 		{
-			SymbolToHindi();
+			SymbolToArabic();
 			btnhide();
 			break;
 		}
-		
+		case 9://当前为Arabic2Symbol
+			{
+				SymbolToArabic2();
+				btnhide();
+				break;
+			}
+		case 10://当前为Arabic3Symbol
+			{
+				SymbolToArabic3();
+				btnhide();
+				break;
+			}
+		case 11://当前为Arabic4Symbol
+			{
+				SymbolToArabic4();
+				btnhide();
+				break;
+			}
 	}
 
 }
@@ -4671,5 +4864,29 @@ void keyboard::SymbolToFarsi()
 void keyboard::SymbolToHindi()
 {
 	LanHindiBig();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic()
+{
+	LanArabic1();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic2()
+{
+	LanArabic2();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic3()
+{
+	LanArabic3();
+	m_Upper = false;
+}
+
+void keyboard::SymbolToArabic4()
+{
+	LanArabic4();
 	m_Upper = false;
 }
