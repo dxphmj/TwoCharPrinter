@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>791</width>
+    <width>727</width>
     <height>321</height>
    </rect>
   </property>
@@ -18,7 +18,7 @@
     <rect>
      <x>2</x>
      <y>3</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -38,9 +38,9 @@
   <widget class="QPushButton" name="LanChinese">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>147</x>
      <y>3</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -60,9 +60,9 @@
   <widget class="QPushButton" name="LanArabic">
    <property name="geometry">
     <rect>
-     <x>317</x>
+     <x>292</x>
      <y>3</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -82,9 +82,9 @@
   <widget class="QPushButton" name="LanCzech">
    <property name="geometry">
     <rect>
-     <x>474</x>
+     <x>437</x>
      <y>3</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -104,9 +104,9 @@
   <widget class="QPushButton" name="LanDutch">
    <property name="geometry">
     <rect>
-     <x>631</x>
+     <x>582</x>
      <y>3</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -126,9 +126,9 @@
   <widget class="QPushButton" name="LanHindi">
    <property name="geometry">
     <rect>
-     <x>474</x>
+     <x>437</x>
      <y>82</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -150,7 +150,7 @@
     <rect>
      <x>2</x>
      <y>82</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -170,9 +170,9 @@
   <widget class="QPushButton" name="LanGerman">
    <property name="geometry">
     <rect>
-     <x>317</x>
+     <x>292</x>
      <y>82</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -192,9 +192,9 @@
   <widget class="QPushButton" name="LanFinnish">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>147</x>
      <y>82</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -214,9 +214,9 @@
   <widget class="QPushButton" name="LanHungarian">
    <property name="geometry">
     <rect>
-     <x>631</x>
+     <x>582</x>
      <y>82</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -236,16 +236,16 @@
   <widget class="QPushButton" name="LanRussian">
    <property name="geometry">
     <rect>
-     <x>631</x>
+     <x>582</x>
      <y>161</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>Adobe Arabic</family>
-     <pointsize>16</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -258,9 +258,9 @@
   <widget class="QPushButton" name="LanJapanese">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>147</x>
      <y>161</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -280,9 +280,9 @@
   <widget class="QPushButton" name="LanKorean">
    <property name="geometry">
     <rect>
-     <x>317</x>
+     <x>292</x>
      <y>161</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -304,7 +304,7 @@
     <rect>
      <x>2</x>
      <y>161</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -324,9 +324,9 @@
   <widget class="QPushButton" name="LanPortuguese">
    <property name="geometry">
     <rect>
-     <x>474</x>
+     <x>437</x>
      <y>161</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -346,9 +346,9 @@
   <widget class="QPushButton" name="Lan1">
    <property name="geometry">
     <rect>
-     <x>474</x>
+     <x>437</x>
      <y>240</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -368,9 +368,9 @@
   <widget class="QPushButton" name="OKLanBut">
    <property name="geometry">
     <rect>
-     <x>631</x>
+     <x>582</x>
      <y>240</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -391,9 +391,9 @@ color: rgb(0, 0, 0);</string>
   <widget class="QPushButton" name="LanThai">
    <property name="geometry">
     <rect>
-     <x>317</x>
+     <x>292</x>
      <y>240</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -415,7 +415,7 @@ color: rgb(0, 0, 0);</string>
     <rect>
      <x>2</x>
      <y>240</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
@@ -435,16 +435,16 @@ color: rgb(0, 0, 0);</string>
   <widget class="QPushButton" name="LanSwedish">
    <property name="geometry">
     <rect>
-     <x>160</x>
+     <x>147</x>
      <y>240</y>
-     <width>157</width>
+     <width>143</width>
      <height>77</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>黑体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -454,6 +454,43 @@ color: rgb(0, 0, 0);</string>
     <string>Svenskt språk</string>
    </property>
   </widget>
+  <widget class="QLabel" name="backgroundLanLabel">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>727</width>
+     <height>321</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(72,61, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>backgroundLanLabel</zorder>
+  <zorder>LanEnglish</zorder>
+  <zorder>LanChinese</zorder>
+  <zorder>LanArabic</zorder>
+  <zorder>LanCzech</zorder>
+  <zorder>LanDutch</zorder>
+  <zorder>LanHindi</zorder>
+  <zorder>LanFarsi</zorder>
+  <zorder>LanGerman</zorder>
+  <zorder>LanFinnish</zorder>
+  <zorder>LanHungarian</zorder>
+  <zorder>LanRussian</zorder>
+  <zorder>LanJapanese</zorder>
+  <zorder>LanKorean</zorder>
+  <zorder>LanItalian</zorder>
+  <zorder>LanPortuguese</zorder>
+  <zorder>Lan1</zorder>
+  <zorder>OKLanBut</zorder>
+  <zorder>LanThai</zorder>
+  <zorder>LanSpanish</zorder>
+  <zorder>LanSwedish</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
