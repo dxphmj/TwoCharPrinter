@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration_information>
     <printsetting>
-        <m_PrintingSpeed>80</m_PrintingSpeed>
+        <m_PrintingSpeed>85</m_PrintingSpeed>
         <m_PrintDelay>20</m_PrintDelay>
         <m_SynFrequency>1</m_SynFrequency>
         <m_PrintGray>1</m_PrintGray>
-        <m_TriggerMode>1</m_TriggerMode>
+        <m_TriggerMode>0</m_TriggerMode>
         <m_InkjetMode>0</m_InkjetMode>
         <m_PrintingDirection>0</m_PrintingDirection>
-        <m_SynWheelCheck>1</m_SynWheelCheck>
+        <m_SynWheelCheck>0</m_SynWheelCheck>
         <m_VoiceCheck>0</m_VoiceCheck>
-        <DPIradioBGcheckedId>2</DPIradioBGcheckedId>
+        <DPIradioBGcheckedId>1</DPIradioBGcheckedId>
         <m_RepetePrintCheck>0</m_RepetePrintCheck>
         <m_RepeatTimes>1</m_RepeatTimes>
         <m_RepeatDelay>100</m_RepeatDelay>
         <m_AdaptParaCheck>0</m_AdaptParaCheck>
-        <m_InkVoltage>85</m_InkVoltage>
-        <m_InkPulseWidth>18</m_InkPulseWidth>
-        <NozzleradioBGcheckedId>2</NozzleradioBGcheckedId>
+        <m_InkVoltage>8.5</m_InkVoltage>
+        <m_InkPulseWidth>1.8</m_InkPulseWidth>
+        <NozzleradioBGcheckedId>1</NozzleradioBGcheckedId>
         <m_Offset>0</m_Offset>
         <m_FlashSprayCheck>0</m_FlashSprayCheck>
         <m_FlashSprayInterval>5</m_FlashSprayInterval>
