@@ -56,6 +56,9 @@ public:
 	QString SerialNumber_2;
 	int SerialNumber;
 	int SerialNumber_length;
+	int SerialNumber_r[10];//存放序列号数据
+	int SerialNumber_p;//指向序列号数组的指针
+	int drawback;//首次撤回的判定
 	int Barheight;
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下
@@ -127,6 +130,8 @@ private slots:
 	void rimwideRedButt_clicked();
 	void whitespaceAddBut_clicked();
 	void whitespaceRedButt_clicked();
+	void initialSerialBut_clicked();
+	void withdrawSerialBut_clciked();
 
 	void ChangePixel();
 

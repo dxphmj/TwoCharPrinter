@@ -79,6 +79,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
+	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
+	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
 
     ui->wordLineEdit->setFocus();
 
@@ -195,6 +197,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	SerialNumber=-1;
 	SerialNumber_length=0;
 	Barheight=21;
+	SerialNumber_p=0;
+	for (int i=0;i<10;i++)
+	{
+		SerialNumber_r[i]=0;
+	}
+	drawback=1;
 
 	ui->typerimComBox->addItem(QStringLiteral("No border"));
 	ui->typerimComBox->addItem(QStringLiteral("Bind"));
@@ -251,6 +259,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	ui->textpreviewScrollBar->setRange(0,100);
 	ui->editPreviewText->setGeometry(10, 10, 3121, 241);
+
+	//序列号的初始化
+	ui->initialValSerialLineEdit->setText("1");
+	ui->termValSerialLineEdit->setText("100");
+	ui->startValSerialLineEdit->setText("1");
+	ui->stepLenSerialLineEdit->setText("1");
+	ui->reptCountSerialLineEdit->setText("1");
+	ui->digitSerialLineEdit->setText("9");
 }
 
 FileEditChild::~FileEditChild()
@@ -1664,6 +1680,8 @@ void FileEditChild::digitSerialLineEdit_clicked()
 
 void FileEditChild::newSerialNumber_click()
 {
+
+
 	QString a=ui->initialValSerialLineEdit->text();
 	QString b=ui->termValSerialLineEdit->text();	
 	QString c=ui->startValSerialLineEdit->text();	
@@ -1678,6 +1696,8 @@ void FileEditChild::newSerialNumber_click()
 	int time=g.toInt();
 	int n=0;
 	int m=1;
+
+	//若起始值大于终止值，则互换
 	if (start>stop)
 	{
 		int c;
@@ -1686,22 +1706,40 @@ void FileEditChild::newSerialNumber_click()
 		stop=c;
 		 n=1;
 	}
-	if (SerialNumber==-1)
+
+	if (SerialNumber==-1)//将初始值赋值
 	{
 		SerialNumber=new_start;
 	}	
 	
-	if (SerialNumber<start||SerialNumber>stop)
+	if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
 	{
 		ui->serialLineEdit->setText("Out of range");
 		return;
 	}
 
+	if (drawback==0)//撤回后的判定
+	{
+		drawback=1;
+		if (SerialNumber>=start&&SerialNumber<=stop)
+		{
+			if (n==0)
+			{
+				SerialNumber=SerialNumber+step;
+			}
+			else
+			{
+				SerialNumber=SerialNumber-step;
+			}
+		}
+
+
+	}
 
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-	for (int s=1;s<time;s++)
+	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
+	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
+	for (int s=1;s<time;s++)//重复次数
 	{
 		SerialNumber_2=SerialNumber_2+SerialNumber_3;
 		
@@ -1731,7 +1769,17 @@ void FileEditChild::newSerialNumber_click()
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	}
 
-	if (SerialNumber>=start&&SerialNumber<=stop)
+	    //记录所产生的序列号用于撤回
+
+	SerialNumber_r[SerialNumber_p]=SerialNumber;
+	SerialNumber_p++;
+	if (SerialNumber_p>=9)
+	{
+		SerialNumber_p=0;
+	}
+	
+
+	if (SerialNumber>=start&&SerialNumber<=stop)//准备下次的序列号
 	{
 		if (n==0)
 		{
@@ -1744,6 +1792,114 @@ void FileEditChild::newSerialNumber_click()
 	}
 
 
+}
+
+void FileEditChild::initialSerialBut_clicked()
+{
+	ui->initialValSerialLineEdit->setText("1");
+	ui->termValSerialLineEdit->setText("100");
+	ui->startValSerialLineEdit->setText("1");
+	ui->stepLenSerialLineEdit->setText("1");
+	ui->reptCountSerialLineEdit->setText("1");
+	ui->digitSerialLineEdit->setText("9");
+	ui->serialLineEdit->clear();
+	QString a=ui->initialValSerialLineEdit->text();
+	QString b=ui->termValSerialLineEdit->text();	
+	QString c=ui->startValSerialLineEdit->text();	
+	QString d=ui->stepLenSerialLineEdit->text();
+	QString e=ui->digitSerialLineEdit->text();
+	QString g=ui->reptCountSerialLineEdit->text();
+	int start=a.toInt();
+	int new_start=c.toInt();
+	int stop=b.toInt();
+	int step=d.toInt();
+	int f=e.toInt();
+	int time=g.toInt();
+	int n=0;
+	int m=1;
+
+	SerialNumber=new_start;
+
+	if (SerialNumber<start||SerialNumber>stop)
+	{
+		ui->serialLineEdit->setText("Out of range");
+		return;
+	}
+
+
+	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
+
+	//清空打印框
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			string tmpStr = this->ui->serialLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			return;
+		}
+	}
+}
+
+void FileEditChild::withdrawSerialBut_clciked()
+{
+	QString a=ui->initialValSerialLineEdit->text();
+	QString b=ui->termValSerialLineEdit->text();	
+	QString c=ui->startValSerialLineEdit->text();	
+	QString d=ui->stepLenSerialLineEdit->text();
+	QString e=ui->digitSerialLineEdit->text();
+	QString g=ui->reptCountSerialLineEdit->text();
+	int start=a.toInt();
+	int new_start=c.toInt();
+	int stop=b.toInt();
+	int step=d.toInt();
+	int f=e.toInt();
+	int time=g.toInt();
+	int n=0;
+	int m=1;
+
+	if (drawback==1)//新建之后的撤回要多减一
+	{
+		SerialNumber_p--;
+		drawback=0;
+	}
+	SerialNumber_p--;
+	if (SerialNumber_p<0)
+	{
+		SerialNumber_p=9;
+	}
+	SerialNumber=SerialNumber_r[SerialNumber_p];
+	if (SerialNumber_r[SerialNumber_p]==0)
+	{
+		return;
+	}
+
+	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
+	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
+	for (int s=1;s<time;s++)//重复次数
+	{
+		SerialNumber_2=SerialNumber_2+SerialNumber_3;
+
+	}
+
+	ui->serialLineEdit->setText(SerialNumber_2);
+
+
+	//如果当前有obj被选中，则为更改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			string tmpStr = this->ui->serialLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			m=0;
+			break;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
 }
 
 void FileEditChild::rimwideAddBut_clicked()
