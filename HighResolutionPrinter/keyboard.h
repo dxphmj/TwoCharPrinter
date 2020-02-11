@@ -34,6 +34,7 @@ public:
 	void LanArabic2();
 	void LanArabic3();
 	void LanArabic4();
+	void LanArabic5();
 
 	void LanEnglishSmall();
 	void LanEnglishBig();
@@ -68,7 +69,7 @@ public:
 	void SymbolToArabic2();
 	void SymbolToArabic3();
 	void SymbolToArabic4();
-
+	void SymbolToArabic5();
 	//void LanGerman();
 	//void LanCzech();
 	//void LanDutch();
@@ -99,11 +100,11 @@ public:
 		Czech=8,Dutch=9,German=10,Finnish=11,
 		Hindi=12,Hungarian=13,Italian=14,Portuguese=15,
 		Russian=16,Spanish=17,Swedish=18,
-		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Arabic2 = 23,Arabic3 = 24,Arabic4 = 25};
+		Thai=19,Turkish=20,Japanese_others = 21,Korean_others = 22,Arabic2 = 23,Arabic3 = 24,Arabic4 = 25,Arabic5 = 26};
 
 	enum LantypeReverseEnum{ EnglishSymbol = 0,ChineseSymbol = 1,KoreSymbol = 2,CzechSynbol = 3,JapaneseSymbol = 4,
 	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7,ArabicSymbol = 8,Arabic2Symbol = 9,
-	                         Arabic3Symbol = 10,Arabic4Symbol = 11};
+	                         Arabic3Symbol = 10,Arabic4Symbol = 11,Arabic5Symbol = 12};
 	
 	int m_LanType;//当前语言种类
 	int m_LanTurn;//英语与其他语言转换
