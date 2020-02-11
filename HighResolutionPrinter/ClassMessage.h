@@ -71,6 +71,7 @@ public://参数
 	int intQREncodingMode;
 
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
+	bool booBeenDragged;
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型

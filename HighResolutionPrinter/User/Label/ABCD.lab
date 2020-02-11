@@ -8,8 +8,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>43</LineStart>
-        <RowStart>0</RowStart>
+        <LineStart>17</LineStart>
+        <RowStart>136</RowStart>
         <LineSize>5</LineSize>
         <RowSize>48</RowSize>
         <SW>1</SW>
@@ -23,8 +23,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>34</LineStart>
-        <RowStart>0</RowStart>
+        <LineStart>33</LineStart>
+        <RowStart>137</RowStart>
         <LineSize>7</LineSize>
         <RowSize>48</RowSize>
         <SW>1</SW>
@@ -38,8 +38,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>19</LineStart>
-        <RowStart>0</RowStart>
+        <LineStart>9</LineStart>
+        <RowStart>16</RowStart>
         <LineSize>12</LineSize>
         <RowSize>48</RowSize>
         <SW>1</SW>
@@ -53,8 +53,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>0</LineStart>
-        <RowStart>0</RowStart>
+        <LineStart>19</LineStart>
+        <RowStart>78</RowStart>
         <LineSize>16</LineSize>
         <RowSize>48</RowSize>
         <SW>1</SW>

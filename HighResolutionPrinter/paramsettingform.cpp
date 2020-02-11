@@ -87,12 +87,28 @@ QString ParamSettingForm::getNum(QString str)
 	QString str1 = str;
 	QString res;
 	QChar ch;
+	int j = 0;
 
 	for(int i=0;i<str1.size();i++)
 	{
 		ch = str1.at(i);
 		if(ch.toLatin1() <'0'||ch > '9')
-			continue;
+		{
+			if(j == 0)
+			{
+				if(ch.toLatin1() == '.')
+				{
+					res.append(ch);
+					j++;
+					continue;
+				}	
+				else
+					continue;
+			}	
+			else
+				continue;
+		}
+
 		if(((ch.toLatin1()-'0')%2)!=0||((ch.toLatin1()-'0')%2)!=1)
 			res.append(ch);
 
