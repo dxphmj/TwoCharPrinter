@@ -137,7 +137,7 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 			if (nLin>=itr->intLineStart && nLin<=(itr->intLineStart+itr->intLineSize)
 				&& nRow>=itr->intRowStart && nRow<=(itr->intRowStart+itr->intRowSize))
 			{
-				if (itr->booFocus == true)
+				if (itr->booFocus == true && itr->booBeenDragged == false)
 				{
 					itr->booFocus = false;
 				}
@@ -145,6 +145,7 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 				{
 					itr->booFocus = true;
 				}
+				itr->booBeenDragged = false;
 			}
 			else
 			{

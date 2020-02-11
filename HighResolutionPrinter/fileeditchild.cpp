@@ -656,17 +656,64 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-		MouseBeenPressed(mouseEvent);
+		//MouseBeenPressed(mouseEvent);
+		this->boolMousePressed = true;
+	}
+	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonRelease)
+	{
+		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+		MouseBeenReleased(mouseEvent);
+		this->boolMousePressed = false;
+	}
+	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseMove)
+	{
+		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
+		MouseMoved(mouseEvent);
 	}
 	return QWidget::eventFilter(watched, event);
 }
 
-void FileEditChild::MouseBeenPressed(QMouseEvent *event)
+void FileEditChild::MouseBeenReleased(QMouseEvent *event)
 {
+	this->pointMousePressed = event->pos();
 	QPoint p_Relative = event->pos();
 	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
 	GetObjSettingsFromScreen();
 	paintDot();
+}
+
+void FileEditChild::MouseMoved(QMouseEvent *event)
+{
+	if (this->boolMousePressed)
+	{
+		QPoint p_NewMousePoint = event->pos();
+		int nLin,nRow,nNewLin,nNewRow; 
+		nLin = ( 241 - pointMousePressed.y() ) / 5;
+		nRow = pointMousePressed.x() / 5;
+		nNewLin = ( 241 - p_NewMousePoint.y() ) / 5;
+		nNewRow = p_NewMousePoint.x() / 5;
+		for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+		{
+			if (m_PrinterMes.OBJ_Vec[i].booFocus)
+			{
+				/*if (nNewLin>=m_PrinterMes.OBJ_Vec[i].intLineStart && nNewLin<=(m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize)
+				&& nNewRow>=m_PrinterMes.OBJ_Vec[i].intRowStart && nNewRow<=(m_PrinterMes.OBJ_Vec[i].intRowStart+m_PrinterMes.OBJ_Vec[i].intRowSize))
+				{}*/
+				const int DeltaX = nRow - m_PrinterMes.OBJ_Vec[i].intRowStart;
+				const int DeltaY = nLin - m_PrinterMes.OBJ_Vec[i].intLineStart;
+				m_PrinterMes.OBJ_Vec[i].intRowStart = nNewRow - DeltaX;
+				m_PrinterMes.OBJ_Vec[i].intLineStart = nNewLin - DeltaY;
+				m_PrinterMes.OBJ_Vec[i].booBeenDragged = true;
+				break;
+				/*else
+				{
+					m_PrinterMes.OBJ_Vec[i].booBeenDragged = false;
+					return;
+				}*/
+			}
+		}
+		pointMousePressed = event->pos();
+	}
 }
 
 void FileEditChild::GetObjSettingsFromScreen()

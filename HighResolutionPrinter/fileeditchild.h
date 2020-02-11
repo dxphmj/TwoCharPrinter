@@ -29,7 +29,8 @@ public:
 	void lineeditChange();*/
 
 	void DrawBackFrame(QPainter *qFramePainter);
-	void MouseBeenPressed(QMouseEvent *event);
+	void MouseBeenReleased(QMouseEvent *event);
+	void MouseMoved(QMouseEvent *event);
 	void GetObjSettingsFromScreen();
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
@@ -56,6 +57,9 @@ public:
 	int SerialNumber;
 	int SerialNumber_length;
 	int Barheight;
+	QPoint pointMousePressed;//记录鼠标点
+	bool boolMousePressed;//判断鼠标是否被按下
+
 private:
 	Ui::FileEditChild* ui;
 	
