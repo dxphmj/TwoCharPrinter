@@ -149,10 +149,11 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 			}
 			else
 			{
-				if (itr->booFocus == true)
+				if (itr->booFocus == true && itr->booBeenDragged == false)
 				{
 					itr->booFocus = false;
 				}
+				itr->booBeenDragged = false;
 			}
 			++itr;
 		}

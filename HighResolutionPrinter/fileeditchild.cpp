@@ -656,7 +656,7 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-		//MouseBeenPressed(mouseEvent);
+		this->pointMousePressed = mouseEvent->pos();
 		this->boolMousePressed = true;
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonRelease)
@@ -701,8 +701,27 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 				{}*/
 				const int DeltaX = nRow - m_PrinterMes.OBJ_Vec[i].intRowStart;
 				const int DeltaY = nLin - m_PrinterMes.OBJ_Vec[i].intLineStart;
-				m_PrinterMes.OBJ_Vec[i].intRowStart = nNewRow - DeltaX;
-				m_PrinterMes.OBJ_Vec[i].intLineStart = nNewLin - DeltaY;
+				if ( (nNewRow - DeltaX) < 0 )
+				{
+					m_PrinterMes.OBJ_Vec[i].intRowStart = 0;
+				}
+				else if ( (nNewRow - DeltaX) > (624 - m_PrinterMes.OBJ_Vec[i].intRowSize) )
+				{
+					m_PrinterMes.OBJ_Vec[i].intRowStart = 624 - m_PrinterMes.OBJ_Vec[i].intRowSize;
+				}
+				else if ( (nNewLin - DeltaY) < 0 )
+				{
+					m_PrinterMes.OBJ_Vec[i].intLineStart = 0;
+				}
+				else if ( (nNewLin - DeltaY) > (48 - m_PrinterMes.OBJ_Vec[i].intLineSize) )
+				{
+					m_PrinterMes.OBJ_Vec[i].intLineStart = 48 - m_PrinterMes.OBJ_Vec[i].intLineSize;
+				}
+				else
+				{
+					m_PrinterMes.OBJ_Vec[i].intRowStart = nNewRow - DeltaX;
+					m_PrinterMes.OBJ_Vec[i].intLineStart = nNewLin - DeltaY;
+				}
 				m_PrinterMes.OBJ_Vec[i].booBeenDragged = true;
 				break;
 				/*else
