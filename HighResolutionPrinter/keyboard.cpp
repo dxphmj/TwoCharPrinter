@@ -7,7 +7,6 @@
 #include "fileeditchild.h"
 #include <QTabWidget>
 #include <QHBoxLayout>
-#pragma execution_character_set("utf-8")
 
 keyboard::keyboard(QWidget *parent)
 	: QWidget(parent),
@@ -84,7 +83,8 @@ keyboard::keyboard(QWidget *parent)
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	//connect(ui->wordCombLineEdit,SIGNAL(textChanged()),this,SLOT(languagespell()));
 	connect(ui->wordCombLineEdit,SIGNAL(textChanged(QString)),this,SLOT(languagespell()));
-	
+	connect(ui->wordCombLineEdit,SIGNAL(clicked()),this,SLOT(wordComLineEdit_clicked()));
+
 
 	m_LanType = English;
 	m_Upper = false;
@@ -196,10 +196,10 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			QString key = m_pInputEdit->text();
 			CreateChineseMapLan();
 			QString value = ChineseLanMap[key];
+			splitOut.clear();
 			if ( value == "" )          
 			{	
-                        splitOut.clear();
-              		i1 = 0;
+              	i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -250,10 +250,10 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			QString key = m_pInputEdit->text();
 			CreateJapaneseMapLan();
 			QString value = JapaneseLanMap[key];
+		    splitOut.clear();
 			if ( value == "" )          
 			{	
-                        splitOut.clear();
-              		i1 = 0;
+              	i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -304,10 +304,10 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			QString key = m_pInputEdit->text();
 			CreateKoreanMapLan();
 			QString value = KoreanLanMap[key];
+			splitOut.clear();
 			if ( value == "" )          
 			{	
-                        splitOut.clear();
-              		i1 = 0;
+                i1 = 0;
 				j1 = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
@@ -355,6 +355,11 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 		}
 
 	}
+}
+
+void keyboard::wordComLineEdit_clicked()
+{
+	setText2KBLineedit();
 }
 
 void keyboard::CreateChineseMapLan()//中文字库
@@ -4568,6 +4573,7 @@ void keyboard::caps1_kBBut_clicked()
 		case 0:  //chinese
 			{
 				LanChineseSmall();
+				setText2KBLineedit();
 				btnshow();
 				btnArabicARhide();
 				break;
@@ -4575,6 +4581,7 @@ void keyboard::caps1_kBBut_clicked()
 		case 1:  //Japanese
 			{
 				LanJapaneseSmall();
+				setText2KBLineedit();
 				btnshow();
 				btnArabicARhide();
 				break;
@@ -4599,6 +4606,7 @@ void keyboard::caps1_kBBut_clicked()
 		case 22: //Korean_others
 			{
 				LanKoreanSmall();
+				setText2KBLineedit();
 				btnshow();
 				btnArabicARhide();
 				break;
@@ -5631,17 +5639,20 @@ void keyboard::btnLanguageSel(int m_LanType)
 	switch (m_LanType)
 	{
 
-	case 0:  //chinese
+	
 	case 1:  //Japanese
 		{
 			LanJapaneseBig();
+			changeCurrentlineedit();
 			btnhide();
 			break;
 		}
+	case 0:  //chinese
 	case 3:  //Chinese_others
 	case 21: //Japanese_others
 		{
 			LanChineseBig();
+			changeCurrentlineedit();
 			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
@@ -5651,6 +5662,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	case 22: //Korean_others
 		{
 			LanKoreanBig();
+			changeCurrentlineedit();
 			btnhide();
 		//	pWnd->btnShow();
 		//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);

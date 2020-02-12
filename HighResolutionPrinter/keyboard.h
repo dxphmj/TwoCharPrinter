@@ -131,6 +131,7 @@ public:
 public slots:
 	void caps1_kBBut_clicked();
 	void languagespell();//²»ÊÇclicked
+	void wordComLineEdit_clicked();
 
 private slots:
 	void enter_KBBut_clicked();

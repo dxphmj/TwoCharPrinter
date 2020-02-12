@@ -52,10 +52,11 @@ void language::lanEnglish_KBBut_clicked()
 	pKeyboard->caps1_kBBut_clicked();
 	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
 	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	pKeyboard->changeCurrentlineedit();
 	/*pFileEditChild->lineeditChange();*/
 	//if (m_LineeditChange == 0)
 	//{
-			pFileEditChild->wordLineEdit_clicked();
+			//pFileEditChild->wordLineEdit_clicked();
 	//		/*break;
 
 	//		}
