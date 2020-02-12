@@ -197,12 +197,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	SerialNumber=-1;
 	SerialNumber_length=0;
 	Barheight=21;
-	SerialNumber_p=0;
-	for (int i=0;i<10;i++)
-	{
-		SerialNumber_r[i]=0;
-	}
 	drawback=1;
+	drawback_time=0;
 
 	ui->typerimComBox->addItem(QStringLiteral("No border"));
 	ui->typerimComBox->addItem(QStringLiteral("Bind"));
@@ -1694,8 +1690,9 @@ void FileEditChild::newSerialNumber_click()
 	int step=d.toInt();
 	int f=e.toInt();
 	int time=g.toInt();
-	int n=0;
+	int n=0;//用于判定起始值和终止值关系的数据
 	int m=1;
+	drawback_time++;
 
 	//若起始值大于终止值，则互换
 	if (start>stop)
@@ -1732,8 +1729,6 @@ void FileEditChild::newSerialNumber_click()
 				SerialNumber=SerialNumber-step;
 			}
 		}
-
-
 	}
 
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
@@ -1768,16 +1763,6 @@ void FileEditChild::newSerialNumber_click()
 		string textFont = qTextFont.toStdString();
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	}
-
-	    //记录所产生的序列号用于撤回
-
-	SerialNumber_r[SerialNumber_p]=SerialNumber;
-	SerialNumber_p++;
-	if (SerialNumber_p>=9)
-	{
-		SerialNumber_p=0;
-	}
-	
 
 	if (SerialNumber>=start&&SerialNumber<=stop)//准备下次的序列号
 	{
@@ -1817,14 +1802,9 @@ void FileEditChild::initialSerialBut_clicked()
 	int time=g.toInt();
 	int n=0;
 	int m=1;
-
-	SerialNumber=new_start;
-
-	if (SerialNumber<start||SerialNumber>stop)
-	{
-		ui->serialLineEdit->setText("Out of range");
-		return;
-	}
+	drawback=1;
+	drawback_time=0;
+	SerialNumber=-1;
 
 
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
@@ -1859,21 +1839,30 @@ void FileEditChild::withdrawSerialBut_clciked()
 	int time=g.toInt();
 	int n=0;
 	int m=1;
+	drawback_time--;
 
-	if (drawback==1)//新建之后的撤回要多减一
+	if (drawback==1)//新建之后的撤回要多减一次
 	{
-		SerialNumber_p--;
 		drawback=0;
+		if (n==0)
+		{
+			SerialNumber=SerialNumber-step;
+		}
+		else
+		{
+			SerialNumber=SerialNumber+step;
+		}
 	}
-	SerialNumber_p--;
-	if (SerialNumber_p<0)
+	if (SerialNumber>=start&&SerialNumber<=stop&&drawback_time>0)
 	{
-		SerialNumber_p=9;
-	}
-	SerialNumber=SerialNumber_r[SerialNumber_p];
-	if (SerialNumber_r[SerialNumber_p]==0)
-	{
-		return;
+		if (n==0)
+		{
+			SerialNumber=SerialNumber-step;
+		}
+		else
+		{
+			SerialNumber=SerialNumber+step;
+		}
 	}
 
 	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
@@ -1899,7 +1888,7 @@ void FileEditChild::withdrawSerialBut_clciked()
 			break;
 		}
 	}
-	//如果当前没有obj被选中，则为新建
+
 }
 
 void FileEditChild::rimwideAddBut_clicked()
