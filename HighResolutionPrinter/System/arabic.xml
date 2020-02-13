@@ -1,12 +1,16 @@
 <MES>
   <MainWindow>
+    <fontsize>36</fontsize>
     <nameDispLab>طائرة نفاثة ذكية متعددة الوظائف</nameDispLab>
+    <fontsize>18</fontsize>
     <fileManageBut>إدارة الملفات</fileManageBut>
     <paraManageBut>إدارة البارامترات</paraManageBut>
     <startPrintBut>ابدأ الطباعة</startPrintBut>
     <closeBut>أغلق النظام</closeBut>
+    <fontsize>12</fontsize>
     <No1Lab>خراطيش الحبر1</No1Lab>
     <No2Lab>2 خراطيش الحبر</No2Lab>
+    <fontsize>20</fontsize>
     <speedMWLab>السرعة:</speedMWLab>
     <timeDelayMWLab>تأخير الوقت:</timeDelayMWLab>
     <dirMWLab>الاتجاه:</dirMWLab>
@@ -17,11 +21,13 @@
     <countValMWLab>القيمة:</countValMWLab>
   </MainWindow>
   <FilemanageForm>
+    <fontsize>20</fontsize>
     <editFileBut>تحرير الوثائق</editFileBut>
     <exitBut>الانسحاب</exitBut>
     <manageFileBut>وثائق الإدارة</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
+    <fontsize>16</fontsize>
     <fontTypeTextLab>الخط</fontTypeTextLab>
     <fontSizeTextLab>ب -ا -</fontSizeTextLab>
     <variableTextBut>المتغيرة</variableTextBut>
@@ -74,9 +80,11 @@
     <sideLenDMLab>أنواع</sideLenDMLab>
     <variableDMBut>المتغيرة</variableDMBut>
     <newDMBut>الجديدة</newDMBut>
+    <fontsize>12</fontsize>
     <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
   </FileEditChild>
   <FileManageChild>
+    <fontsize>18</fontsize>
     <localFileBut>الوثائق المحلية</localFileBut>
     <UdiskFileBut>ملف قرص U</UdiskFileBut>
     <loadSeleFileBut>تحميل ملفّ مُنتقى</loadSeleFileBut>
@@ -86,15 +94,18 @@
     <OKFileNameBut>تحديد</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
+    <fontsize>18</fontsize>
     <printSettingBut>إعداد الطباعة</printSettingBut>
     <sysSettingBut>إعدادات النظام</sysSettingBut>
     <countSettingBut>إعداد العد</countSettingBut>
     <aboutMacBut>عن الآلة</aboutMacBut>
     <paraExitBut>الانسحاب</paraExitBut>
+    <fontsize>20</fontsize>
     <resetBut>الاستبدال</resetBut>
     <savePrintSetBut>حفظ</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
+    <fontsize>15</fontsize>
      <printSpeedLab>سرعة الطباعة M/MIN.</printSpeedLab>
      <printDelayLab>طباعة تأخير M.</printDelayLab>
      <synFrequencyLab>تردد متزامن</synFrequencyLab>
@@ -125,11 +136,13 @@
      <printSetTabWid>أسلوب الطباعة#إعدادات متقدمة#إعداد المحرك#أضواء UV إعدادات</printSetTabWid>
   </printSetting>
   <sysSetting>
+     <fontsize>18</fontsize>
      <sysTimeSetLab>وقت النظام</sysTimeSetLab>
      <backLightLab>ضوء الظهر</backLightLab>
      <sysLanguageLab>لغة النظام</sysLanguageLab>
   </sysSetting>
   <countSetting>
+      <fontsize>18</fontsize>
       <counterOneLab>العداد 1.</counterOneLab>
       <currentVal1Lab>القيمة الحالية</currentVal1Lab>
       <initialVal1Lab>القيمة الأولية</initialVal1Lab>

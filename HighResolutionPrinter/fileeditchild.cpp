@@ -81,6 +81,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
 	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
 	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
+	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
 
     ui->wordLineEdit->setFocus();
 
@@ -1093,6 +1094,18 @@ void FileEditChild::DMCodeLineEdit_clicked()
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
 }
  
+void FileEditChild::ChangeTabLineEdit()
+{
+	int nIndex = ui->typeTab->currentIndex();
+	switch(nIndex)
+	{
+	case 0:	wordLineEdit_clicked();break;
+	case 4: barCodeLineEdit_clicked();break;
+	case 5:	QRCodeLineEdit_clicked();break;
+	case 6:	DMCodeLineEdit_clicked();break;
+	}
+}
+
 void FileEditChild::newTextBut_clicked()
 {
 	//如果当前有obj被选中，则为更改当选中的obj

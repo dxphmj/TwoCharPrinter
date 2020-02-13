@@ -97,7 +97,6 @@ printSetting::printSetting(QWidget *parent)
 
 printSetting::~printSetting()
 {
-
 }
 
 QString printSetting::getNum(QString str)

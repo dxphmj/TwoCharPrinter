@@ -71,7 +71,7 @@ public slots:
 	void barCodeLineEdit_clicked();
 	void QRCodeLineEdit_clicked();
 	void DMCodeLineEdit_clicked();
-
+	void ChangeTabLineEdit();
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
