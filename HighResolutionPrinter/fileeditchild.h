@@ -64,7 +64,7 @@ public:
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下
 
-private:
+public:
 	Ui::FileEditChild* ui;
 	
 	QString str1;
@@ -73,7 +73,7 @@ public slots:
 	void barCodeLineEdit_clicked();
 	void QRCodeLineEdit_clicked();
 	void DMCodeLineEdit_clicked();
-
+	void ChangeTabLineEdit();
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
@@ -143,6 +143,11 @@ protected:
 
 public:
 	void deleteChar();
+	void setText2wordLineEdit();
+	void setText2barCodeLineEdit();
+	void setText2QRCodeLineEdit();
+	void setText2DMCodeLineEdit();
+
 };
 
 #endif // FILEEDITCHILD_H

@@ -28,6 +28,7 @@ public:
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
 	void setText2KBLineedit();
+	void changeLineEdit(lineedit_click* pInputEdit);
 	void changeCurrentlineedit();
 
 	void LanArabic1();

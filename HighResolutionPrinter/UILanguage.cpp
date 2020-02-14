@@ -115,7 +115,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 	QFont font;
 	switch(m_nLanguage)
 	{
-		case 0:    ;break;
+		case 0: font.setFamily(QStringLiteral("Adobe Arabic"));;break;
 		case 1: font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));;break;
 		case 2:    ;break;
 		case 3:    ;break;

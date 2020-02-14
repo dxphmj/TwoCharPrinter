@@ -179,12 +179,16 @@ void keyboard::setText2KBLineedit()
 	m_pInputEdit = ui->wordCombLineEdit;
 }
 
+void keyboard::changeLineEdit(lineedit_click* pInputEdit)
+{
+	m_pInputEdit = pInputEdit;
+}
 
 void keyboard::changeCurrentlineedit()
 {
 	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(this->parentWidget());
 	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
-	pFileEditChild->wordLineEdit_clicked();
+	pFileEditChild->ChangeTabLineEdit();
 }
 
 void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应的汉字置入备选框中
