@@ -53,11 +53,10 @@ public:
 	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
 	numkeyboard *numkeyboardWidget;
-	QString SerialNumber_2;
-	int SerialNumber;
+	QString SerialNumber_string;
+	int SerialNumber_number;
 	int SerialNumber_length;
-	int drawback;//首次撤回的判定
-	int drawback_time;
+	int Serialfirst;
 	int Barheight;
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下
@@ -86,6 +85,7 @@ private slots:
 	void newQRBut_clicked();
 	void newDMBut_clicked();
 	void newSerialNumber_click();
+	void SerialNumberstartchange();
 	void saveasBut_clicked();
 	void saveBut_clicked();
 	void internalTextAddBut_clicked();
@@ -129,8 +129,6 @@ private slots:
 	void rimwideRedButt_clicked();
 	void whitespaceAddBut_clicked();
 	void whitespaceRedButt_clicked();
-	void initialSerialBut_clicked();
-	void withdrawSerialBut_clciked();
 
 	void ChangePixel();
 

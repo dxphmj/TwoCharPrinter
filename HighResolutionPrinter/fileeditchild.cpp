@@ -79,9 +79,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
-	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
-	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
+	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
 
     ui->wordLineEdit->setFocus();
 
@@ -196,11 +195,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
-	SerialNumber=-1;
-	SerialNumber_length=0;
+
 	Barheight=21;
-	drawback=1;
-	drawback_time=0;
 
 	ui->typerimComBox->addItem(QStringLiteral("No border"));
 	ui->typerimComBox->addItem(QStringLiteral("Bind"));
@@ -265,6 +261,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+	ui->serialLineEdit->setText("000000001");
+	QString c=ui->startValSerialLineEdit->text();
+	int new_start=c.toInt();
+	SerialNumber_number=new_start;
+	SerialNumber_length=0;
+	Serialfirst=1;
 }
 
 FileEditChild::~FileEditChild()
@@ -1770,71 +1772,52 @@ void FileEditChild::newSerialNumber_click()
 
 
 	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
+	QString b=ui->termValSerialLineEdit->text();		
 	QString d=ui->stepLenSerialLineEdit->text();
 	QString e=ui->digitSerialLineEdit->text();
 	QString g=ui->reptCountSerialLineEdit->text();
 	int start=a.toInt();
-	int new_start=c.toInt();
 	int stop=b.toInt();
 	int step=d.toInt();
-	int f=e.toInt();
+	int digit=e.toInt();
 	int time=g.toInt();
-	int n=0;//用于判定起始值和终止值关系的数据
-	int m=1;
-	drawback_time++;
 
-	//若起始值大于终止值，则互换
-	if (start>stop)
+	if (start>=stop)
 	{
-		int c;
-		c=start;
-		start=stop;
-		stop=c;
-		 n=1;
+		return;
 	}
-
-	if (SerialNumber==-1)//将初始值赋值
-	{
-		SerialNumber=new_start;
-	}	
 	
-	if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	if (SerialNumber_number<start)
 	{
-		ui->serialLineEdit->setText("Out of range");
 		return;
 	}
 
-	if (drawback==0)//撤回后的判定
+	if (Serialfirst==1)
+	{	
+		SerialNumber_number=SerialNumber_number;
+		Serialfirst=0;
+	}
+	else
 	{
-		drawback=1;
-		if (SerialNumber>=start&&SerialNumber<=stop)
-		{
-			if (n==0)
-			{
-				SerialNumber=SerialNumber+step;
-			}
-			else
-			{
-				SerialNumber=SerialNumber-step;
-			}
-		}
+		SerialNumber_number=SerialNumber_number+step;
 	}
 
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
+
+	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
+	QString SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
+	for (int s=1;s<time;s++)
 	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-		
+		SerialNumber_string=SerialNumber_string+SerialNumber_basic;
 	}
 
-	ui->serialLineEdit->setText(SerialNumber_2);
+	if (SerialNumber_number>stop)
+	{
+		return;
+	}
 
-
+	ui->serialLineEdit->setText(SerialNumber_string);
 	//如果当前有obj被选中，则为更改当选中的obj
+	int m=1;
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -1855,131 +1838,39 @@ void FileEditChild::newSerialNumber_click()
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	}
 
-	if (SerialNumber>=start&&SerialNumber<=stop)//准备下次的序列号
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber+step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber-step;
-		}
-	}
+
+	//if (SerialNumber==-1)//将初始值赋值
+	//{
+	//	SerialNumber=new_start;
+	//}	
+	//
+	//if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	//{
+	//	ui->serialLineEdit->setText("Out of range");
+	//	return;
+	//}
+
+
+	//QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	//SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
+	//QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
+	//for (int s=1;s<time;s++)//重复次数
+	//{
+	//	SerialNumber_2=SerialNumber_2+SerialNumber_3;
+	//	
+	//}
+
+	//ui->serialLineEdit->setText(SerialNumber_2);
 
 
 }
 
-void FileEditChild::initialSerialBut_clicked()
+void FileEditChild::SerialNumberstartchange()
 {
-	ui->initialValSerialLineEdit->setText("1");
-	ui->termValSerialLineEdit->setText("100");
-	ui->startValSerialLineEdit->setText("1");
-	ui->stepLenSerialLineEdit->setText("1");
-	ui->reptCountSerialLineEdit->setText("1");
-	ui->digitSerialLineEdit->setText("9");
-	ui->serialLineEdit->clear();
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
+	Serialfirst=1;
+	QString c=ui->startValSerialLineEdit->text();
 	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback=1;
-	drawback_time=0;
-	SerialNumber=-1;
-
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-
-	//清空打印框
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			return;
-		}
-	}
-}
-
-void FileEditChild::withdrawSerialBut_clciked()
-{
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
-	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback_time--;
-
-	if (drawback==1)//新建之后的撤回要多减一次
-	{
-		drawback=0;
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-	if (SerialNumber>=start&&SerialNumber<=stop&&drawback_time>0)
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
-	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-
-	}
-
-	ui->serialLineEdit->setText(SerialNumber_2);
-
-
-	//如果当前有obj被选中，则为更改当选中的obj
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			m=0;
-			break;
-		}
-	}
-
+	SerialNumber_number=new_start;
 }
 
 void FileEditChild::rimwideAddBut_clicked()
