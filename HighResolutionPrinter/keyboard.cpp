@@ -179,6 +179,10 @@ void keyboard::setText2KBLineedit()
 	m_pInputEdit = ui->wordCombLineEdit;
 }
 
+void keyboard::changeLineEdit(lineedit_click* pInputEdit)
+{
+	m_pInputEdit = pInputEdit;
+}
 
 void keyboard::changeCurrentlineedit()
 {

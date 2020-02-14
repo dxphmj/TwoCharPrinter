@@ -1093,16 +1093,36 @@ void FileEditChild::DMCodeLineEdit_clicked()
 {
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
 }
- 
+
+void FileEditChild::setText2wordLineEdit()
+{
+	keyboardWidget->changeLineEdit(ui->wordLineEdit);
+}
+
+void FileEditChild::setText2barCodeLineEdit()
+{
+	keyboardWidget->changeLineEdit(ui->barCodeLineEdit);
+}
+
+void FileEditChild::setText2QRCodeLineEdit()
+{
+	keyboardWidget->changeLineEdit(ui->QRCodeLineEdit);
+}
+
+void FileEditChild::setText2DMCodeLineEdit()
+{
+	keyboardWidget->changeLineEdit(ui->DMCodeLineEdit);
+}
+
 void FileEditChild::ChangeTabLineEdit()
 {
 	int nIndex = ui->typeTab->currentIndex();
 	switch(nIndex)
 	{
-	case 0:	wordLineEdit_clicked();break;
-	case 4: barCodeLineEdit_clicked();break;
-	case 5:	QRCodeLineEdit_clicked();break;
-	case 6:	DMCodeLineEdit_clicked();break;
+	case 0:	setText2wordLineEdit();break;
+	case 4: setText2barCodeLineEdit();break;
+	case 5:	setText2QRCodeLineEdit();break;
+	case 6:	setText2DMCodeLineEdit();break;
 	}
 }
 
