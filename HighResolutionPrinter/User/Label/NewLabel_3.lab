@@ -10,8 +10,8 @@
         <TYPE2>2Dcode</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>21</LineSize>
-        <RowSize>154</RowSize>
+        <LineSize>26</LineSize>
+        <RowSize>232</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
@@ -19,6 +19,6 @@
         <BWDy>0</BWDy>
         <setTEXT>User/logo/output.bmp</setTEXT>
         <BarcodeType>8</BarcodeType>
-        <BarcodeContent>2333</BarcodeContent>
+        <BarcodeContent>1234567</BarcodeContent>
     </OBJ>
 </MES>

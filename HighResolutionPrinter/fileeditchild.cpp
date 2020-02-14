@@ -42,25 +42,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->moveLeftBut,SIGNAL(clicked()),this,SLOT(moveLeftBut_clicked()));
 	connect(ui->moveRightBut,SIGNAL(clicked()),this,SLOT(moveRightBut_clicked()));
 	connect(ui->showNumCheckBox,SIGNAL(stateChanged()),this,SLOT(showNumCheckBox_clicked()));
-	//connect(ui->degreeBarCodeAddBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeAddBut_clicked()));
-	//connect(ui->degreeBarCodeRedBut,SIGNAL(clicked()),this,SLOT(degreeBarCodeRedButt_clicked()));
-	//connect(ui->zoomBarCodeAddBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeAddBut,SIGNAL(clicked()),this,SLOT(heightBarCodeAddBut_clicked()));
 	connect(ui->heightBarCodeRedBut,SIGNAL(clicked()),this,SLOT(heightBarCodeRedButt_clicked()));
 	
-	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
-	//connect(ui->zoomBarCodeRedBut,SIGNAL(clicked()),this,SLOT(zoomBarCodeRedBut_clicked()));
-	//connect(ui->zoomQRAddBut,SIGNAL(clicked()),this,SLOT(zoomQRAddBut_clicked()));
-	//connect(ui->zoomQRRedBut,SIGNAL(clicked()),this,SLOT(zoomQRRedBut_clicked()));
-	//connect(ui->zoomDMAddBut,SIGNAL(clicked()),this,SLOT(zoomDMAddBut_clicked()));
-	//connect(ui->zoomDMRedBut,SIGNAL(clicked()),this,SLOT(zoomDMRedBut_clicked()));
-	//connect(ui->degreeQRAddBut,SIGNAL(clicked()),this,SLOT(degreeQRAddBut_clicked()));
-	//connect(ui->degreeQRRedBut,SIGNAL(clicked()),this,SLOT(degreeQRRedButt_clicked()));
-	//connect(ui->degreeDMAddBut,SIGNAL(clicked()),this,SLOT(degreeDMAddBut_clicked()));
-	//connect(ui->degreeDMRedBut,SIGNAL(clicked()),this,SLOT(degreeDMRedButt_clicked()));
 	connect(ui->newTimeBut,SIGNAL(clicked()),this,SLOT(newTimeBut_clicked()));
 
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
@@ -79,10 +63,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
-	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
-	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
+	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
 
     ui->wordLineEdit->setFocus();
 
@@ -197,11 +180,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
-	SerialNumber=-1;
-	SerialNumber_length=0;
+
 	Barheight=21;
-	drawback=1;
-	drawback_time=0;
 
 	ui->typerimComBox->addItem(QStringLiteral("No border"));
 	ui->typerimComBox->addItem(QStringLiteral("Bind"));
@@ -266,6 +246,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+	ui->serialLineEdit->setText("000000001");
+	QString c=ui->startValSerialLineEdit->text();
+	int new_start=c.toInt();
+	SerialNumber_number=new_start;
+	SerialNumber_length=0;
+	Serialfirst=1;
 }
 
 FileEditChild::~FileEditChild()
@@ -339,81 +325,9 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
 {
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	int batch_mode;
-	int mirror_mode;
-	char filetype[4];
-	int i;
-	int longth;
-	int derta;
-	derta=1;
-	longth=0;
-	error_number = 0;
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = nType;
-	QString heightvalue=ui->heightBarCodeShowQRLab->text();
-	int heightvalue1=heightvalue.toInt();
-	if (heightvalue1<28)
-	{	
-		my_symbol->height =5;	 
-	} 
-	else
-	{
-		my_symbol->height=heightvalue1-23;
-	}
-	/*QString zoomvalue=ui->zoomShowBarCodeLab->text();
-	float zoomvalue1=zoomvalue.toFloat();*/
-	my_symbol->scale =1;
-	batch_mode = 0;
-	mirror_mode = 0;
-	QString whitespace=ui->whitespaceLab->text();
-	int whitespace1=whitespace.toInt();
-	my_symbol->whitespace_width=whitespace1;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
-	if (ui->typerimComBox->currentIndex()==0)
-	{
-		my_symbol->output_options= 1;
-	} 
-	else if(ui->typerimComBox->currentIndex()==1)
-	{
-		my_symbol->output_options=2;
-	}
-	else
-	{
-		my_symbol->output_options=4;
-	}
-	//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
-	QString rimwide=ui->rimwideLab->text();
-	int rimwide1=rimwide.toInt();
-	my_symbol->border_width=rimwide1;//改变边框宽度           
-
-	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
-	if (ui->showNumCheckBox->isChecked())
-	{
-		my_symbol->show_hrt=1;
-	} 
-
-	else  {my_symbol->show_hrt=0;}
-
-	strcpy_s(my_symbol->outfile, "User/output.bmp");
-	ZBarcode_Encode(my_symbol, (unsigned char*) strContent.toStdString().c_str(), 0);
-	generated=1;
-	int error_num = ZBarcode_Print(my_symbol, 0);
-
-	if (error_num != 0)
-	{
-		/* some error occurred */
-		//printf("%s\n", my_symbol->errtxt);
-	}
-
-	ZBarcode_Delete(my_symbol);
-		
-	char* strFileName="User/output.bmp";
+	GenerateBarCodeBmp();
+	int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
+	char* strFileName = "User/logo/output.bmp";
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
@@ -426,10 +340,12 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	bmpObj.intLineStart=0;
 	bmpObj.intRowStart=0;
 	bmpObj.strType1="text";
-	bmpObj.strType2="logo";
-	bmpObj.strText = strFileName;
+	bmpObj.strType2="2Dcode";
+	bmpObj.strText=strFileName;
+	bmpObj.strCodeContent=strContent.toStdString();
 	bmpObj.intLineSize=pImage.height();
 	bmpObj.intRowSize=pImage.width();
+	bmpObj.intBarcodeType=nType;
 	bmpObj.intSW=1;
 	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
@@ -846,7 +762,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
 			{
 				this->ui->typeTab->setCurrentIndex(1);
-				this->ui->DateTimeEdit->setText(tmpStr);
+				//this->ui->DateTimeEdit->setText(tmpStr);
 				this->ui->newTimeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
@@ -864,7 +780,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "2Dcode")
 			{
 				this->ui->typeTab->setCurrentIndex(4);
-				this->ui->barCodeLineEdit->setText(tmpStr);
+				this->ui->barCodeLineEdit->setText(QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strCodeContent));
 				this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
@@ -893,6 +809,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 	this->ui->fontTypeTextComBox->setCurrentIndex(-1);
 
 	//设置时间typeTab
+	this->ui->PreviewEdit->setText("");
 	this->ui->DateTimeEdit->setText("");
 	this->ui->newTimeBut->setText(QStringLiteral("新建"));
 
@@ -903,8 +820,8 @@ void FileEditChild::GetObjSettingsFromScreen()
 	//设置图片typeTab
 	this->ui->newBmpBut->setText(QStringLiteral("新建"));
 
-	//设置二维码typeTab
-	this->ui->newBarCodeBut->setText("");
+	//设置条形码typeTab
+	this->ui->barCodeLineEdit->setText("");
 	this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
 
 	//设置QR码typeTab
@@ -1189,55 +1106,162 @@ void FileEditChild::newTextBut_clicked()
 	this->ui->delBut->setText(QStringLiteral("删除"));
 }
 
+void FileEditChild::GenerateBarCodeBmp()
+{
+	QMap <QString , int> BarCodeType;
+	BarCodeType.insert("EANX",13);
+	BarCodeType.insert("CODE39",8);
+	BarCodeType.insert("CODE93",25);
+	BarCodeType.insert("CODE128",20);
+	BarCodeType.insert("UPCA",34);
+	BarCodeType.insert("UPCE",37);
+	BarCodeType.insert("ITF14",89);
+	BarCodeType.insert("PDF417",55);
+	
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	int generated;
+	int batch_mode;
+	int mirror_mode;
+	char filetype[4];
+	int i;
+	int longth;
+	int derta;
+	derta=1;
+	longth=0;
+	error_number = 0;
+	rotate_angle = 0;
+	generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = UNICODE_MODE;
+	my_symbol->symbology = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
+	int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
+	if (heightvalue1<28)
+	{	
+		my_symbol->height =5;	 
+	} 
+	else
+	{
+		my_symbol->height=heightvalue1-23;
+	}
+	my_symbol->scale =1;
+	batch_mode = 0;
+	mirror_mode = 0;
+	my_symbol->whitespace_width = ui->whitespaceLab->text().toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
+	if (ui->typerimComBox->currentIndex()==0)
+	{
+		my_symbol->output_options= 1;
+	} 
+	else if(ui->typerimComBox->currentIndex()==1)
+	{
+		my_symbol->output_options=2;
+	}
+	else
+	{
+		my_symbol->output_options=4;
+	}
+	//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
+	my_symbol->border_width = ui->rimwideLab->text().toInt();//改变边框宽度           
+
+	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
+	if (ui->showNumCheckBox->isChecked())
+	{
+		my_symbol->show_hrt=1;
+	} 
+
+	else  {my_symbol->show_hrt=0;}
+
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			sprintf(my_symbol->outfile,"User/logo/output.bmp"/*m_PrinterMes.OBJ_Vec[i].strText.c_str()*/);
+			//这是个超级坑的函数！！！
+			ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
+			generated=1;
+			int error_num = ZBarcode_Print(my_symbol, 0);
+
+			if (error_num != 0)
+			{
+				/* some error occurred */
+				//printf("%s\n", my_symbol->errtxt);
+			}
+
+			ZBarcode_Delete(my_symbol);
+			return /*const_cast<char*>(m_PrinterMes.OBJ_Vec[i].strText.c_str())*/;
+		}
+	}
+
+	//char* strFileName = m_PrinterMes.Generate2DcodeName("output");
+	sprintf(my_symbol->outfile,"User/logo/output.bmp"/*m_PrinterMes.Generate2DcodeName("output")*/);
+	ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
+	generated=1;
+	int error_num = ZBarcode_Print(my_symbol, 0);
+
+	if (error_num != 0)
+	{
+		/* some error occurred */
+		//printf("%s\n", my_symbol->errtxt);
+	}
+
+	ZBarcode_Delete(my_symbol);
+	//return strFileName;
+}
+
 void FileEditChild::newBarCodeBut_clicked()
 {
+	QMap <QString , int> BarCodeType;
+	BarCodeType.insert("EANX",13);
+	BarCodeType.insert("CODE39",8);
+	BarCodeType.insert("CODE93",25);
+	BarCodeType.insert("CODE128",20);
+	BarCodeType.insert("UPCA",34);
+	BarCodeType.insert("UPCE",37);
+	BarCodeType.insert("ITF14",89);
+	BarCodeType.insert("PDF417",55);
+	
 	//如果当前有obj被选中，则为修改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			GenerateBarCodeBmp();
+			int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
+			char* strFileName = "User/logo/output.bmp";
+			QPixmap pLoad;
+			pLoad.load(strFileName);
+			int nW = pLoad.width();
+			int nH = pLoad.height();
+			QImage pImage;
+			pImage = pLoad.toImage();
+			pImage = pImage.scaled(pImage.width(),heightvalue1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation); 
+
+			m_PrinterMes.OBJ_Vec[i].strCodeContent = this->ui->barCodeLineEdit->text().toStdString();
+			m_PrinterMes.OBJ_Vec[i].intBarcodeType = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
+			m_PrinterMes.OBJ_Vec[i].intLineSize = pImage.height();
+			m_PrinterMes.OBJ_Vec[i].intRowSize = pImage.width();
+
+			for(int y = 0; y< pImage.height(); y++)
+			{  
+				QRgb* line = (QRgb *)pImage.scanLine(y);  
+				for(int x = 0; x< pImage.width(); x++)
+				{  
+					int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+					if(average < 200)
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[m_PrinterMes.OBJ_Vec[i].intRowStart +x][m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = true;
+					else
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[m_PrinterMes.OBJ_Vec[i].intRowStart +x][m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = false;
+				}
+
+			}  
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	int t;
-	QString str;
-	str = ui->barCodeLineEdit->text();
-	if (ui->typeBarCodeComBox->currentIndex()==0)
-	{
-		t=13;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==1)
-	{
-		t=8;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==2)
-	{
-		t=25;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==3)
-	{
-		t=20;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==4)
-	{
-		t=34;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==5)
-	{
-		t=37;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==6)
-	{
-		t=89;
-	}
-	if (ui->typeBarCodeComBox->currentIndex()==7)
-	{
-		t=55;
-	}
-
-	Create2Dcode(t,str);
+	QString str = ui->barCodeLineEdit->text();
+	Create2Dcode(BarCodeType[this->ui->typeBarCodeComBox->currentText()],str);
 }
 
 void FileEditChild::newQRBut_clicked()
@@ -1411,179 +1435,6 @@ void FileEditChild::showNumCheckBox_clicked()
 {
 	
 }
-
-//void FileEditChild::degreeBarCodeAddBut_clicked()//暂时注掉
-//{
-//	
-//	if (degreenum<270)
-//	{
-//		degreenum=degreenum+90;
-//	} 
-//	else
-//	{
-//		degreenum=0;
-//	}
-//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-//}
-
-//void FileEditChild::degreeBarCodeRedButt_clicked()//暂时注掉
-//{
-//
-//	if (degreenum>0)
-//	{
-//		degreenum=degreenum-90;
-//	} 
-//	else
-//	{
-//		degreenum=270;
-//	}
-//	ui->degreeBarCodeShowLab->setText(QString::number(degreenum));
-//}
-
-
-//void FileEditChild::degreeQRAddBut_clicked()//暂时注掉
-//{
-//
-//	if (degreenumQr<270)
-//	{
-//		degreenumQr=degreenumQr+90;
-//	} 
-//	else
-//	{
-//		degreenumQr=0;
-//	}
-//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-//}
-
-//void FileEditChild::degreeQRRedButt_clicked()//暂时注掉
-//{
-//
-//	if (degreenumQr>0)
-//	{
-//		degreenumQr=degreenumQr-90;
-//	} 
-//	else
-//	{
-//		degreenumQr=270;
-//	}
-//	ui->degreeQRShowLab->setText(QString::number(degreenumQr));
-//}
-
-//void FileEditChild::degreeDMAddBut_clicked()//暂时注掉
-//{
-//
-//	if (degreenumDM<270)
-//	{
-//		degreenumDM=degreenumDM+90;
-//	} 
-//	else
-//	{
-//		degreenumDM=0;
-//	}
-//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-//}
-
-//void FileEditChild::degreeDMRedButt_clicked()//暂时注掉
-//{
-//
-//	if (degreenumDM>0)
-//	{
-//		degreenumDM=degreenumDM-90;
-//	} 
-//	else
-//	{
-//		degreenumDM=270;
-//	}
-//	ui->degreeDMShowLab->setText(QString::number(degreenumDM));
-//}
-
- 
-//void FileEditChild::zoomBarCodeAddBut_clicked()
-//{
-//
-//	if (Zoomfactor>=0.5)
-//	{
-//		Zoomfactor=Zoomfactor+0.5;
-//	} 
-//	else
-//	{
-//		Zoomfactor=0.5;
-//	}
-//	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
-//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
-//}
-//
-//void FileEditChild::zoomBarCodeRedBut_clicked()
-//{
-//
-//	if (Zoomfactor>=1)
-//	{
-//		Zoomfactor=Zoomfactor-0.5;
-//	} 
-//	else
-//	{
-//		Zoomfactor=0.5;
-//	}
-//	ui->zoomShowBarCodeLab->setText(QString("%1").arg(Zoomfactor));
-//}
-
-//void FileEditChild::zoomQRAddBut_clicked()//暂时注掉
-//{
-//
-//	if (ZoomfactorQr>=0.5)
-//	{
-//		ZoomfactorQr=ZoomfactorQr+0.5;
-//	} 
-//	else
-//	{
-//		ZoomfactorQr=0.5;
-//	}
-//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
-//}
-
-//void FileEditChild::zoomQRRedBut_clicked()
-//{
-//
-//	if (ZoomfactorQr>=1)
-//	{
-//		ZoomfactorQr=ZoomfactorQr-0.5;
-//	} 
-//	else
-//	{
-//		ZoomfactorQr=0.5;
-//	}
-//	ui->zoomShowQRLab->setText(QString("%1").arg(ZoomfactorQr));
-//}
-
-//void FileEditChild::zoomDMAddBut_clicked()//暂时注掉
-//{
-//
-//	if (ZoomfactorDM>=0.5)
-//	{
-//		ZoomfactorDM=ZoomfactorDM+0.5;
-//	} 
-//	else
-//	{
-//		ZoomfactorDM=0.5;
-//	}
-//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-//	//ui->zoomShowBarCodeLab->setText(QString::number(Zoomfactor,10,1));
-//}
-
-//void FileEditChild::zoomDMRedBut_clicked()//暂时注掉
-//{
-//
-//	if (ZoomfactorDM>=1)
-//	{
-//		ZoomfactorDM=ZoomfactorDM-0.5;
-//	} 
-//	else
-//	{
-//		ZoomfactorDM=0.5;
-//	}
-//	ui->zoomShowDMLab->setText(QString("%1").arg(ZoomfactorDM));
-//}
 
 void FileEditChild::addTimeBut_clicked()
 {
@@ -1795,71 +1646,52 @@ void FileEditChild::newSerialNumber_click()
 
 
 	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
+	QString b=ui->termValSerialLineEdit->text();		
 	QString d=ui->stepLenSerialLineEdit->text();
 	QString e=ui->digitSerialLineEdit->text();
 	QString g=ui->reptCountSerialLineEdit->text();
 	int start=a.toInt();
-	int new_start=c.toInt();
 	int stop=b.toInt();
 	int step=d.toInt();
-	int f=e.toInt();
+	int digit=e.toInt();
 	int time=g.toInt();
-	int n=0;//用于判定起始值和终止值关系的数据
-	int m=1;
-	drawback_time++;
 
-	//若起始值大于终止值，则互换
-	if (start>stop)
+	if (start>=stop)
 	{
-		int c;
-		c=start;
-		start=stop;
-		stop=c;
-		 n=1;
+		return;
 	}
-
-	if (SerialNumber==-1)//将初始值赋值
-	{
-		SerialNumber=new_start;
-	}	
 	
-	if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	if (SerialNumber_number<start)
 	{
-		ui->serialLineEdit->setText("Out of range");
 		return;
 	}
 
-	if (drawback==0)//撤回后的判定
+	if (Serialfirst==1)
+	{	
+		SerialNumber_number=SerialNumber_number;
+		Serialfirst=0;
+	}
+	else
 	{
-		drawback=1;
-		if (SerialNumber>=start&&SerialNumber<=stop)
-		{
-			if (n==0)
-			{
-				SerialNumber=SerialNumber+step;
-			}
-			else
-			{
-				SerialNumber=SerialNumber-step;
-			}
-		}
+		SerialNumber_number=SerialNumber_number+step;
 	}
 
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
+
+	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
+	QString SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
+	for (int s=1;s<time;s++)
 	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-		
+		SerialNumber_string=SerialNumber_string+SerialNumber_basic;
 	}
 
-	ui->serialLineEdit->setText(SerialNumber_2);
+	if (SerialNumber_number>stop)
+	{
+		return;
+	}
 
-
+	ui->serialLineEdit->setText(SerialNumber_string);
 	//如果当前有obj被选中，则为更改当选中的obj
+	int m=1;
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -1880,131 +1712,39 @@ void FileEditChild::newSerialNumber_click()
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	}
 
-	if (SerialNumber>=start&&SerialNumber<=stop)//准备下次的序列号
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber+step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber-step;
-		}
-	}
+
+	//if (SerialNumber==-1)//将初始值赋值
+	//{
+	//	SerialNumber=new_start;
+	//}	
+	//
+	//if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	//{
+	//	ui->serialLineEdit->setText("Out of range");
+	//	return;
+	//}
+
+
+	//QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	//SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
+	//QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
+	//for (int s=1;s<time;s++)//重复次数
+	//{
+	//	SerialNumber_2=SerialNumber_2+SerialNumber_3;
+	//	
+	//}
+
+	//ui->serialLineEdit->setText(SerialNumber_2);
 
 
 }
 
-void FileEditChild::initialSerialBut_clicked()
+void FileEditChild::SerialNumberstartchange()
 {
-	ui->initialValSerialLineEdit->setText("1");
-	ui->termValSerialLineEdit->setText("100");
-	ui->startValSerialLineEdit->setText("1");
-	ui->stepLenSerialLineEdit->setText("1");
-	ui->reptCountSerialLineEdit->setText("1");
-	ui->digitSerialLineEdit->setText("9");
-	ui->serialLineEdit->clear();
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
+	Serialfirst=1;
+	QString c=ui->startValSerialLineEdit->text();
 	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback=1;
-	drawback_time=0;
-	SerialNumber=-1;
-
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-
-	//清空打印框
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			return;
-		}
-	}
-}
-
-void FileEditChild::withdrawSerialBut_clciked()
-{
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
-	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback_time--;
-
-	if (drawback==1)//新建之后的撤回要多减一次
-	{
-		drawback=0;
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-	if (SerialNumber>=start&&SerialNumber<=stop&&drawback_time>0)
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
-	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-
-	}
-
-	ui->serialLineEdit->setText(SerialNumber_2);
-
-
-	//如果当前有obj被选中，则为更改当选中的obj
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			m=0;
-			break;
-		}
-	}
-
+	SerialNumber_number=new_start;
 }
 
 void FileEditChild::rimwideAddBut_clicked()
