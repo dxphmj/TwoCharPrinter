@@ -37,6 +37,8 @@
     <saveasBut>الباقي</saveasBut>
     <rotateTextLab>تدور</rotateTextLab>
     <internalTextLab>بين</internalTextLab>
+    <pixelLab>بكسل</pixelLab>
+    <moveSpeedLab>تتحرك بسرعة ضعف</moveSpeedLab>
 
     <addTimeBut>إضافة</addTimeBut>
     <refreshTimeBut>تحديث</refreshTimeBut>
@@ -64,12 +66,15 @@
     <reverseBmpCheckBox>عكس الألوان</reverseBmpCheckBox>
     <selBmpBut>إختر الرسومات</selBmpBut>
     <newBmpBut>الجديدة</newBmpBut>
+    <proportionBmpCheckBox>الإنتظار</proportionBmpCheckBox>
 
     <typeBarCodeLab>أنواع</typeBarCodeLab>
     <zoomBarCodeLab>التكبير</zoomBarCodeLab>
     <heightBarCodeLab>عالية</heightBarCodeLab>
     <variableBarCodeBut>المتغيرة</variableBarCodeBut>
     <newBarCodeBut>الجديدة</newBarCodeBut>
+    <typeBarCodeLab_2>نوع الإطار</typeBarCodeLab_2>
+    <zoomBarCodeLab_2>عرض فارغ</zoomBarCodeLab_2>
 
     <showNumCheckBox>أرني الأرقام</showNumCheckBox>
     <sideLenQRLab>طول</sideLenQRLab>

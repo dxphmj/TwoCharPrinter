@@ -179,6 +179,17 @@ void keyboard::setText2KBLineedit()
 	m_pInputEdit = ui->wordCombLineEdit;
 }
 
+void keyboard::Symbolinputlineedit()//符号及逗号和句号输入时需判断回不回小编辑框
+{
+	if (m_LanType == 0|| m_LanType == 22 || m_LanType == 1)
+	{
+		if (m_symbol == true)//在中英文但是不在符号界面
+		{
+			setText2KBLineedit();
+		}
+	}
+}
+
 void keyboard::changeLineEdit(lineedit_click* pInputEdit)
 {
 	m_pInputEdit = pInputEdit;
@@ -4667,6 +4678,7 @@ void keyboard::caps1_kBBut_clicked()
 
 void keyboard::symbol_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	if ( m_symbol == true )//如果当前为字母
 	{
 		switch (m_LantypeReverse)
@@ -4737,6 +4749,7 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		case 2://Kore
 			{
+		
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
@@ -4811,6 +4824,7 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		case 4://Japanese
 			{
+
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
@@ -5346,62 +5360,84 @@ void keyboard::Z_KBBut_clicked()
 
 void keyboard::num1_KBBut_clicked()
 {
+	
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->one_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num2_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->two_KBBut->text());
+	Symbolinputlineedit();
+	
 }
 
 void keyboard::num3_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->three_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num4_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->four_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num5_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->five_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num6_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->six_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num7_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->seven_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num8_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->eight_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num9_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->nine_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num0_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->zero_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::fontBox1_KBBut_clicked()
@@ -5529,20 +5565,26 @@ void keyboard::fontBoxAdd_KBBut_clicked()
 
 void keyboard::space_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(" ");
+	Symbolinputlineedit();
 }
 
 void keyboard::comma_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->comma_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::period_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->period_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::lanArabicAdd_KBBut_clicked()
@@ -5793,7 +5835,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	
 	}
 }
-
+	
 void keyboard::btnSymbolSel(int m_LantypeReverse)
 {
 	switch (m_LantypeReverse)
@@ -5810,6 +5852,7 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 1: //当前为ChineseSymbol
 		{
 			SymbolToChinese();
+			setText2KBLineedit();
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -5817,11 +5860,12 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 2: //当前为KoreSymbol
 		{
 			SymbolToKore();
+			setText2KBLineedit();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 3: //当前为KoreSymbol
+		case 3: //当前为CzechSymbol
 		{
 			SymbolToCzech();
 			btnhide();
@@ -5829,9 +5873,10 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 4: //当前为KoreSymbol
+		case 4: //当前为SymbolToJapanese
 		{
 			SymbolToJapanese();
+			setText2KBLineedit();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;

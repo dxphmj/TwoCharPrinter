@@ -82,6 +82,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
 	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
+	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
 
     ui->wordLineEdit->setFocus();
 
@@ -1118,12 +1119,36 @@ void FileEditChild::ChangeTabLineEdit()
 {
 	int nIndex = ui->typeTab->currentIndex();
 	switch(nIndex)
-	{
-	case 0:	setText2wordLineEdit();break;
-	case 4: setText2barCodeLineEdit();break;
-	case 5:	setText2QRCodeLineEdit();break;
-	case 6:	setText2DMCodeLineEdit();break;
-	}
+		{
+		case 0:	setText2wordLineEdit();break;
+		case 4: setText2barCodeLineEdit();break;
+		case 5:	setText2QRCodeLineEdit();break;
+		case 6:	setText2DMCodeLineEdit();break;
+		}
+	
+	
+}
+
+//void FileEditChild::ChineseTabLineEdit()
+//{
+//	int nIndex = ui->typeTab->currentIndex();
+//	switch(nIndex)
+//	{
+//	
+//	case 0:	
+//		{
+//			keyboardWidget->setText2KBLineedit();
+//			break;
+//		}
+//	case 4: setText2barCodeLineEdit();break;
+//	case 5:	setText2QRCodeLineEdit();break;
+//	case 6:	setText2DMCodeLineEdit();break;
+//	}
+//}
+
+void FileEditChild::KeyboardConceal_clicked()
+{
+	keyboardWidget->setVisible(false);
 }
 
 void FileEditChild::newTextBut_clicked()
