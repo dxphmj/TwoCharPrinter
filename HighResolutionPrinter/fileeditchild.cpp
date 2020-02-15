@@ -11,6 +11,7 @@
 #include "keyboard.h"
 #include "numkeyboard.h"
 #include "time.h"
+#include "mainwindow.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
@@ -146,13 +147,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-
-	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
-	ui->fontTypeTextComBox->setCurrentIndex(0);
-
+	
 	//画布宽度item选项（单位：5x5像素）
 	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
@@ -265,6 +260,30 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+
+#ifdef BIG_CHAR
+	ui->fontSizeTextComBox->setVisible(false);
+	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeTextComBox->setCurrentIndex(0); 　
+#else
+
+	ui->fontSizeTextComBox->setVisible(true);
+	ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("宋体简体"));
+	ui->fontTypeTextComBox->setCurrentIndex(0);
+
+	ui->fontSizeTextComBox->addItem(QStringLiteral("5"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("7"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("9"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("11"));
+	ui->fontSizeTextComBox->setCurrentIndex(0);
+
+#endif
 }
 
 FileEditChild::~FileEditChild()
