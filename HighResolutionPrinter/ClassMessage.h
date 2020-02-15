@@ -75,6 +75,9 @@ public://参数
 
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
 	bool booBeenDragged;
+
+	bool m_bVecotrWord;//是否矢量字库
+	string m_WordStockFileName; //字库文件名
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
