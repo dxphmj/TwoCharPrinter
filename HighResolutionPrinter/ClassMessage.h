@@ -65,6 +65,9 @@ public://参数
 	string strqrcodeECCLevel;//二维码的容错率等级
 	int intqrcodeQuietZone;//二维码空白框层数
 
+	int intBarcodeType;//保存条形码的类型
+	string strCodeContent;//保存条形码的内容
+
 	bool boQRBig;
 	int intQRVersion;
 	int intQRErrLevel;
@@ -96,6 +99,7 @@ public://方法
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
 	void CreateQrcode();
+	void Create2Dcode();
 
 private:
 	//ClassMessage objClassMessage;
@@ -201,6 +205,7 @@ public:
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
 	void ReadBmp(char* strFileName);
 	char* GenerateFileName(string tmpFileName);
+	char* Generate2DcodeName(string strFileName);
 	void JudgeIfOBJ_Selected(QPoint p_Relative);
 
 public://XML
