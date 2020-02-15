@@ -101,6 +101,10 @@ public://方法
 	void CreateQrcode();
 	void Create2Dcode();
 
+	vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
+	void GetVectorWordDots();
+	void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
+
 private:
 	//ClassMessage objClassMessage;
 	map<string,int> fntMap;
