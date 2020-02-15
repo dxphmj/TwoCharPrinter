@@ -1003,7 +1003,7 @@ void FileEditChild::delBut_clicked()
 		if(ite->booFocus)
 		{
 			ite = m_PrinterMes.OBJ_Vec.erase(ite);
-			this->ui->delBut->setText(QStringLiteral("Çå¿Õ"));
+	    	this->ui->delBut->setText(QStringLiteral("Çå¿Õ"));
 			return;
 		}
 		else
@@ -1065,23 +1065,6 @@ void FileEditChild::ChangeTabLineEdit()
 	
 	
 }
-
-//void FileEditChild::ChineseTabLineEdit()
-//{
-//	int nIndex = ui->typeTab->currentIndex();
-//	switch(nIndex)
-//	{
-//	
-//	case 0:	
-//		{
-//			keyboardWidget->setText2KBLineedit();
-//			break;
-//		}
-//	case 4: setText2barCodeLineEdit();break;
-//	case 5:	setText2QRCodeLineEdit();break;
-//	case 6:	setText2DMCodeLineEdit();break;
-//	}
-//}
 
 void FileEditChild::KeyboardConceal_clicked()
 {
