@@ -42,7 +42,7 @@
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="printStyleTab">
     <attribute name="title">
@@ -101,13 +101,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;触发方式&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="printSpeedShowLab">
@@ -132,7 +133,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -176,9 +177,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="printSpeedLab">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>20</x>
        <y>110</y>
-       <width>181</width>
+       <width>221</width>
        <height>41</height>
       </rect>
      </property>
@@ -195,13 +196,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;打印速度&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;m/min&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QComboBox" name="trigComBox">
@@ -247,9 +249,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="inkjetLab">
      <property name="geometry">
       <rect>
-       <x>570</x>
+       <x>530</x>
        <y>200</y>
-       <width>111</width>
+       <width>151</width>
        <height>41</height>
       </rect>
      </property>
@@ -266,13 +268,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;喷墨方式&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QComboBox" name="printDirComBox">
@@ -317,21 +320,22 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;打印方向&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="printDelayLab">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>20</x>
        <y>200</y>
-       <width>181</width>
+       <width>221</width>
        <height>41</height>
       </rect>
      </property>
@@ -348,13 +352,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;打印延时&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;ms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="printDelayRedBut">
@@ -410,7 +415,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -473,13 +478,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;同步倍频&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="synFrequencyRedBut">
@@ -535,7 +541,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -629,7 +635,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -642,9 +648,9 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="printGrayLab">
      <property name="geometry">
       <rect>
-       <x>60</x>
+       <x>20</x>
        <y>380</y>
-       <width>181</width>
+       <width>221</width>
        <height>41</height>
       </rect>
      </property>
@@ -661,13 +667,14 @@ color: rgb(255, 255, 255);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;打印灰度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="printGrayRedBut">
@@ -757,6 +764,47 @@ background-color: rgb(0, 0, 230);</string>
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="printStyleBGLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1016</width>
+       <height>571</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>printStyleBGLabel</zorder>
+    <zorder>printSpeedRedBut</zorder>
+    <zorder>trigLab</zorder>
+    <zorder>printSpeedShowLab</zorder>
+    <zorder>printSpeedAddBut</zorder>
+    <zorder>printSpeedLab</zorder>
+    <zorder>trigComBox</zorder>
+    <zorder>inkjetComBox</zorder>
+    <zorder>inkjetLab</zorder>
+    <zorder>printDirComBox</zorder>
+    <zorder>printDirLab</zorder>
+    <zorder>printDelayLab</zorder>
+    <zorder>printDelayRedBut</zorder>
+    <zorder>printDelayShowLab</zorder>
+    <zorder>printDelayAddBut</zorder>
+    <zorder>synFrequencyLab</zorder>
+    <zorder>synFrequencyRedBut</zorder>
+    <zorder>synFrequencyShowLab</zorder>
+    <zorder>synFrequencyAddBut</zorder>
+    <zorder>printGrayAddBut</zorder>
+    <zorder>printGrayShowLab</zorder>
+    <zorder>printGrayLab</zorder>
+    <zorder>printGrayRedBut</zorder>
+    <zorder>synWheelCheckBox</zorder>
+    <zorder>voiceCheckBox</zorder>
    </widget>
    <widget class="QWidget" name="settingTab">
     <attribute name="title">
@@ -766,7 +814,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>460</x>
-       <y>60</y>
+       <y>80</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -784,7 +832,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;DPI&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -797,8 +846,8 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>140</y>
-       <width>131</width>
+       <y>160</y>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
@@ -809,7 +858,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>150</string>
@@ -819,8 +869,8 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>370</x>
-       <y>140</y>
-       <width>131</width>
+       <y>160</y>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
@@ -831,7 +881,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>200</string>
@@ -841,8 +892,8 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>510</x>
-       <y>140</y>
-       <width>131</width>
+       <y>160</y>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
@@ -853,7 +904,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>300</string>
@@ -863,8 +915,8 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>650</x>
-       <y>140</y>
-       <width>131</width>
+       <y>160</y>
+       <width>91</width>
        <height>41</height>
       </rect>
      </property>
@@ -875,7 +927,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>600</string>
@@ -885,7 +938,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>70</x>
-       <y>250</y>
+       <y>240</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -897,7 +950,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>重复打印</string>
@@ -913,7 +967,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>340</y>
+       <y>310</y>
        <width>471</width>
        <height>41</height>
       </rect>
@@ -931,7 +985,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -945,7 +999,7 @@ color: rgb(255, 255, 255);</string>
      <property name="geometry">
       <rect>
        <x>740</x>
-       <y>340</y>
+       <y>310</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -976,7 +1030,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>40</x>
-       <y>340</y>
+       <y>310</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -994,20 +1048,21 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;重复次数&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="repeteNumRedBut">
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>340</y>
+       <y>310</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1038,7 +1093,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>230</x>
-       <y>440</y>
+       <y>400</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1069,7 +1124,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>270</x>
-       <y>440</y>
+       <y>400</y>
        <width>471</width>
        <height>41</height>
       </rect>
@@ -1087,7 +1142,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1101,7 +1156,7 @@ color: rgb(255, 255, 255);</string>
      <property name="geometry">
       <rect>
        <x>740</x>
-       <y>440</y>
+       <y>400</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1131,9 +1186,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="repeteDelayLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>440</y>
-       <width>161</width>
+       <x>40</x>
+       <y>400</y>
+       <width>191</width>
        <height>41</height>
       </rect>
      </property>
@@ -1150,15 +1205,47 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;重复延时&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;ms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="settingBGLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1016</width>
+       <height>571</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>settingBGLabel</zorder>
+    <zorder>DPILab</zorder>
+    <zorder>DPI150RadioBut</zorder>
+    <zorder>DPI200RadioBut</zorder>
+    <zorder>DPI300RadioBut</zorder>
+    <zorder>DPI600RadioBut</zorder>
+    <zorder>repetePrintCheckBox</zorder>
+    <zorder>repeteNumShowLab</zorder>
+    <zorder>repeteNumAddBut</zorder>
+    <zorder>repeteLab</zorder>
+    <zorder>repeteNumRedBut</zorder>
+    <zorder>repeteDelayRedBut</zorder>
+    <zorder>repeteDelayShowLab</zorder>
+    <zorder>repeteDelayAddBut</zorder>
+    <zorder>repeteDelayLab</zorder>
    </widget>
    <widget class="QWidget" name="nozzleSetTab">
     <attribute name="title">
@@ -1168,7 +1255,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>430</x>
-       <y>20</y>
+       <y>60</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -1186,7 +1273,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;墨水类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1198,8 +1286,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="adaptParaCheckBox">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>100</y>
+       <x>80</x>
+       <y>150</y>
        <width>221</width>
        <height>31</height>
       </rect>
@@ -1211,7 +1299,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>自适应参数</string>
@@ -1227,7 +1316,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>100</y>
+       <y>140</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1245,7 +1334,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1259,7 +1348,7 @@ color: rgb(255, 255, 255);</string>
      <property name="geometry">
       <rect>
        <x>570</x>
-       <y>100</y>
+       <y>140</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1290,7 +1379,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>100</y>
+       <y>140</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1308,7 +1397,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;电压&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;V&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1321,7 +1411,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>100</y>
+       <y>140</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1351,8 +1441,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="PWShowLab">
      <property name="geometry">
       <rect>
-       <x>830</x>
-       <y>100</y>
+       <x>790</x>
+       <y>140</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1370,7 +1460,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1383,8 +1473,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="PWAddBut">
      <property name="geometry">
       <rect>
-       <x>960</x>
-       <y>100</y>
+       <x>920</x>
+       <y>140</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1414,8 +1504,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="PWLab">
      <property name="geometry">
       <rect>
-       <x>690</x>
-       <y>100</y>
+       <x>650</x>
+       <y>140</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1433,7 +1523,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;脉宽&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;ms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1445,8 +1536,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="PWRedBut">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>100</y>
+       <x>750</x>
+       <y>140</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1477,7 +1568,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>410</x>
-       <y>210</y>
+       <y>220</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -1495,7 +1586,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;喷头选择&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1507,7 +1599,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="offsetRedBut">
      <property name="geometry">
       <rect>
-       <x>790</x>
+       <x>750</x>
        <y>300</y>
        <width>41</width>
        <height>41</height>
@@ -1538,7 +1630,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="offsetShowLab">
      <property name="geometry">
       <rect>
-       <x>830</x>
+       <x>790</x>
        <y>300</y>
        <width>131</width>
        <height>41</height>
@@ -1557,7 +1649,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1570,7 +1662,7 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="offsetAddBut">
      <property name="geometry">
       <rect>
-       <x>960</x>
+       <x>920</x>
        <y>300</y>
        <width>41</width>
        <height>41</height>
@@ -1601,7 +1693,7 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="offsetLab">
      <property name="geometry">
       <rect>
-       <x>670</x>
+       <x>630</x>
        <y>300</y>
        <width>121</width>
        <height>41</height>
@@ -1620,7 +1712,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移量&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;mm&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1632,9 +1725,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QRadioButton" name="nozzleSel2RadioBut">
      <property name="geometry">
       <rect>
-       <x>440</x>
+       <x>470</x>
        <y>300</y>
-       <width>131</width>
+       <width>81</width>
        <height>41</height>
       </rect>
      </property>
@@ -1645,7 +1738,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>2</string>
@@ -1654,9 +1748,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QRadioButton" name="nozzleSel1RadioBut">
      <property name="geometry">
       <rect>
-       <x>240</x>
+       <x>370</x>
        <y>300</y>
-       <width>131</width>
+       <width>81</width>
        <height>41</height>
       </rect>
      </property>
@@ -1667,7 +1761,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>1</string>
@@ -1677,7 +1772,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>410</x>
-       <y>410</y>
+       <y>380</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -1695,7 +1790,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;闪喷设置&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1707,8 +1803,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="flashSprayCheckBox">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>500</y>
+       <x>120</x>
+       <y>470</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -1720,7 +1816,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>闪喷</string>
@@ -1735,8 +1832,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="flashSprayTimesRedBut">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>500</y>
+       <x>750</x>
+       <y>470</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1766,8 +1863,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="flashSprayTimesShowLab">
      <property name="geometry">
       <rect>
-       <x>830</x>
-       <y>500</y>
+       <x>790</x>
+       <y>470</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1785,7 +1882,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1798,8 +1895,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="flashSprayTimesAddBut">
      <property name="geometry">
       <rect>
-       <x>960</x>
-       <y>500</y>
+       <x>920</x>
+       <y>470</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1830,7 +1927,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>440</x>
-       <y>500</y>
+       <y>470</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1848,7 +1945,7 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);
+      <string notr="true">background-color: rgb(72,61, 139);
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
@@ -1862,7 +1959,7 @@ color: rgb(255, 255, 255);</string>
      <property name="geometry">
       <rect>
        <x>300</x>
-       <y>500</y>
+       <y>470</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1880,7 +1977,8 @@ color: rgb(255, 255, 255);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;间隔&lt;/span&gt;&lt;span style=&quot; font-family:'宋体'; font-size:14pt; color:#ffffff;&quot;&gt;s&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1893,7 +1991,7 @@ color: rgb(255, 255, 255);</string>
      <property name="geometry">
       <rect>
        <x>400</x>
-       <y>500</y>
+       <y>470</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1923,8 +2021,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="flashSprayTimesLab">
      <property name="geometry">
       <rect>
-       <x>690</x>
-       <y>500</y>
+       <x>650</x>
+       <y>470</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1942,7 +2040,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;次数&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1955,7 +2054,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>570</x>
-       <y>500</y>
+       <y>470</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1982,11 +2081,382 @@ background-color: rgb(0, 0, 230);</string>
       <string>＋</string>
      </property>
     </widget>
+    <widget class="QCheckBox" name="isCombineCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>300</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>拼接</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="printSetBGLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1016</width>
+       <height>571</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>printSetBGLabel</zorder>
+    <zorder>inkTypeLab</zorder>
+    <zorder>adaptParaCheckBox</zorder>
+    <zorder>voltShowLab</zorder>
+    <zorder>voltAddBut</zorder>
+    <zorder>inkVoltLab</zorder>
+    <zorder>voltRedBut</zorder>
+    <zorder>PWShowLab</zorder>
+    <zorder>PWAddBut</zorder>
+    <zorder>PWLab</zorder>
+    <zorder>PWRedBut</zorder>
+    <zorder>nozzleSelLab</zorder>
+    <zorder>offsetRedBut</zorder>
+    <zorder>offsetShowLab</zorder>
+    <zorder>offsetAddBut</zorder>
+    <zorder>offsetLab</zorder>
+    <zorder>nozzleSel2RadioBut</zorder>
+    <zorder>nozzleSel1RadioBut</zorder>
+    <zorder>flashSprayLab</zorder>
+    <zorder>flashSprayCheckBox</zorder>
+    <zorder>flashSprayTimesRedBut</zorder>
+    <zorder>flashSprayTimesShowLab</zorder>
+    <zorder>flashSprayTimesAddBut</zorder>
+    <zorder>flashSprayInternalShowLab</zorder>
+    <zorder>flashSprayInternalLab</zorder>
+    <zorder>flashSprayInternalRedBut</zorder>
+    <zorder>flashSprayTimesLab</zorder>
+    <zorder>flashSprayInternalAddBut</zorder>
+    <zorder>isCombineCheckBox</zorder>
    </widget>
    <widget class="QWidget" name="UVSettingTab">
     <attribute name="title">
      <string>UV灯设置</string>
     </attribute>
+    <widget class="QLabel" name="UVSetBGLabel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>1016</width>
+       <height>571</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <widget class="QCheckBox" name="isUVCheckBox">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>170</y>
+       <width>181</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>启用UV灯</string>
+     </property>
+     <property name="checked">
+      <bool>false</bool>
+     </property>
+     <property name="autoRepeat">
+      <bool>false</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="startTimeAddBut">
+     <property name="geometry">
+      <rect>
+       <x>860</x>
+       <y>330</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>＋</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="delayTimeRedBut">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>240</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>－</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="startTimeRedBut">
+     <property name="geometry">
+      <rect>
+       <x>490</x>
+       <y>330</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>－</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="delayTimeShowLab">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>240</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;500&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="delayTimeAddBut">
+     <property name="geometry">
+      <rect>
+       <x>860</x>
+       <y>240</y>
+       <width>41</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>41</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>黑体</family>
+       <pointsize>14</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+     <property name="text">
+      <string>＋</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="delayTimeLab">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>240</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;延长时间/ms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="startTimeShowLab">
+     <property name="geometry">
+      <rect>
+       <x>530</x>
+       <y>330</y>
+       <width>331</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>0</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;500&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QLabel" name="startTimeLab">
+     <property name="geometry">
+      <rect>
+       <x>300</x>
+       <y>330</y>
+       <width>191</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始时长/ms&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+     </property>
+    </widget>
    </widget>
   </widget>
  </widget>

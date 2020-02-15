@@ -11,14 +11,14 @@
     <No1Lab>خراطيش الحبر1</No1Lab>
     <No2Lab>2 خراطيش الحبر</No2Lab>
     <fontsize>20</fontsize>
-    <speedMWLab>السرعة:</speedMWLab>
-    <timeDelayMWLab>تأخير الوقت:</timeDelayMWLab>
-    <dirMWLab>الاتجاه:</dirMWLab>
-    <voltMWLab>الفولطية:</voltMWLab>
-    <PWMWLab>النبض:</PWMWLab>
-    <grayMWLab>الرمادي:</grayMWLab>
-    <fileNmaeLab>اسم الملف:</fileNmaeLab>
-    <countValMWLab>القيمة:</countValMWLab>
+    <speedMWLab>السرعة</speedMWLab>
+    <timeDelayMWLab>تأخير الوقت</timeDelayMWLab>
+    <dirMWLab>الاتجاه</dirMWLab>
+    <voltMWLab>الفولطية</voltMWLab>
+    <PWMWLab>النبض</PWMWLab>
+    <grayMWLab>الرمادي</grayMWLab>
+    <fileNmaeLab>اسم الملف</fileNmaeLab>
+    <countValMWLab>القيمة</countValMWLab>
   </MainWindow>
   <FilemanageForm>
     <fontsize>20</fontsize>
@@ -38,8 +38,9 @@
     <rotateTextLab>تدور</rotateTextLab>
     <internalTextLab>بين</internalTextLab>
     <pixelLab>بكسل</pixelLab>
+    <fontsize>11</fontsize>
     <moveSpeedLab>تتحرك بسرعة ضعف</moveSpeedLab>
-
+    <fontsize>16</fontsize>
     <addTimeBut>إضافة</addTimeBut>
     <refreshTimeBut>تحديث</refreshTimeBut>
     <newTimeBut>الجديدة</newTimeBut>
@@ -85,7 +86,7 @@
     <sideLenDMLab>أنواع</sideLenDMLab>
     <variableDMBut>المتغيرة</variableDMBut>
     <newDMBut>الجديدة</newDMBut>
-    <fontsize>12</fontsize>
+    <fontsize>8</fontsize>
     <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
   </FileEditChild>
   <FileManageChild>

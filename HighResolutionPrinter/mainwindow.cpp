@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include <QPushButton>
 #include <QTime>
+#include <QProgressBar>
 #include "filemanageform.h"
 #include "paramsettingform.h"
 #include "ClassMessage.h"
@@ -54,6 +55,12 @@ MainWindow::MainWindow(QWidget *parent) :
  
 	ui->previewLab->setStyleSheet("background-color: rgb(255,255,255);"); 
 
+	ui->print1Prog->setStyleSheet("QProgressBar{""text-align:center;color: rgb(255, 255, 255);""}"
+			                      "QProgressBar::chunk{""margin:2px;""}");
+	ui->print2Prog->setStyleSheet("QProgressBar{""text-align:center;color: rgb(255, 255, 255);""}"
+		                          "QProgressBar::chunk{""margin:2px;""}");
+
+		
 //	m_PrinterMes->ReadBmp("D:\\1.bmp");
 	myTimer = new QTimer(this);
 	myTimer->start(0);

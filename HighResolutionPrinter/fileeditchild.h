@@ -7,6 +7,7 @@
 
 class keyboard;
 class numkeyboard;
+class language;
 class FileManageChild;
 #include "ModuleMain.h"
 namespace Ui {
@@ -54,6 +55,7 @@ public:
 	float ZoomfactorDM;
 	//bool boolObjBnSel;
  	keyboard  *keyboardWidget;
+	language *languageWidget;
 	numkeyboard *numkeyboardWidget;
 	QString SerialNumber_string;
 	int SerialNumber_number;

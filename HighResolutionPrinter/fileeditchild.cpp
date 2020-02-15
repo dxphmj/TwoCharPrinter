@@ -9,6 +9,7 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
+#include "language.h"
 #include "numkeyboard.h"
 #include "time.h"
 
@@ -72,7 +73,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	keyboardWidget = new keyboard(ui->typeTab);
 	keyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
-	
+
+	languageWidget = new language(keyboardWidget);
+	keyboardWidget->setVisible(false);
+
 	numkeyboardWidget = new numkeyboard(ui->typeTab);
 	numkeyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
@@ -87,16 +91,16 @@ FileEditChild::FileEditChild(QWidget *parent)
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
 	ui->showNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									  QCheckBox{color:rgb(255, 255, 255);}\
+									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
 	ui->reverseCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									  QCheckBox{color:rgb(255, 255, 255);}\
+									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
 	ui->reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-		                                  QCheckBox{color:rgb(255, 255, 255);}\
+		                                  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
 	ui->proportionBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-										  QCheckBox{color:rgb(255, 255, 255);}\
+										  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										  ");
 	ui->moveUpBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/moveup.bmp);border: 1px solid rgb(12 , 138 , 235);\
@@ -114,18 +118,18 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
-	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->internalShowTextLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	ui->internalShowTextLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
     //ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
@@ -995,21 +999,29 @@ void FileEditChild::delBut_clicked()
 void FileEditChild::wordLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->wordLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->barCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::QRCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->QRCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::DMCodeLineEdit_clicked()
 {
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::setText2wordLineEdit()
