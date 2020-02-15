@@ -64,6 +64,9 @@
     <Filter Include="qrcode">
       <UniqueIdentifier>{2283f21e-7e82-4d9a-8293-f017817cd00d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="wordStock">
+      <UniqueIdentifier>{fad84459-e55a-4042-8174-e50c46bafdd1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ClassMessage.cpp">
@@ -480,6 +483,12 @@
     <ClCompile Include="Debug\moc_numkeyboard.cpp">
       <Filter>Generated Files\Debug</Filter>
     </ClCompile>
+    <ClCompile Include="wordStock\Dom.cpp">
+      <Filter>wordStock</Filter>
+    </ClCompile>
+    <ClCompile Include="wordStock\GetHZinfo.cpp">
+      <Filter>wordStock</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -706,6 +715,12 @@
     </ClInclude>
     <ClInclude Include="GeneratedFiles\ui_numkeyboard.h">
       <Filter>Generated Files</Filter>
+    </ClInclude>
+    <ClInclude Include="wordStock\Dom.h">
+      <Filter>wordStock</Filter>
+    </ClInclude>
+    <ClInclude Include="wordStock\GetHZinfo.h">
+      <Filter>wordStock</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
