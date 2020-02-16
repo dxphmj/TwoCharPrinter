@@ -245,6 +245,18 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeSerialComBox->setCurrentIndex(0);
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
+	ui->fontTypeSerialComBox->setCurrentIndex(0);
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白补0"));
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
+	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
+	ui->formatSerialComBox->setCurrentIndex(0);
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -271,9 +283,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 #endif
  
 	ui->serialLineEdit->setText("000000001");
-	QString c=ui->startValSerialLineEdit->text();
-	int new_start=c.toInt();
-	SerialNumber_number=new_start;
 	SerialNumber_length=0;
 	Serialfirst=1; 
 }
@@ -1665,6 +1674,7 @@ void FileEditChild::newSerialNumber_click()
 	QString d=ui->stepLenSerialLineEdit->text();
 	QString e=ui->digitSerialLineEdit->text();
 	QString g=ui->reptCountSerialLineEdit->text();
+	QString SerialNumber_basic;
 	int start=a.toInt();
 	int stop=b.toInt();
 	int step=d.toInt();
@@ -1676,27 +1686,47 @@ void FileEditChild::newSerialNumber_click()
 		return;
 	}
 	
-	if (SerialNumber_number<start)
-	{
-		return;
-	}
-
 	if (Serialfirst==1)
 	{	
-		SerialNumber_number=SerialNumber_number;
+		QString c=ui->startValSerialLineEdit->text();
+		int new_start=c.toInt();
+		SerialNumber_number=new_start;
 		Serialfirst=0;
+		if (SerialNumber_number<start)
+		{
+			return;
+		}
 	}
 	else
 	{
+		if (SerialNumber_number<start)
+		{
+			return;
+		}
 		SerialNumber_number=SerialNumber_number+step;
 	}
 
-
+	//判断格式
+	if (ui->formatSerialComBox->currentIndex()==0)
+	{
 	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
-	QString SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
+	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
+	}
+	if (ui->formatSerialComBox->currentIndex()==1)
+	{
+		SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//重复的基本单位
+	}
+	if (ui->formatSerialComBox->currentIndex()==2)
+	{
+		SerialNumber_string=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//重复的基本单位
+	}
+
+
 	for (int s=1;s<time;s++)
 	{
-		SerialNumber_string=SerialNumber_string+SerialNumber_basic;
+		SerialNumber_string=SerialNumber_string+" "+SerialNumber_basic;
 	}
 
 	if (SerialNumber_number>stop)
@@ -1757,9 +1787,6 @@ void FileEditChild::newSerialNumber_click()
 void FileEditChild::SerialNumberstartchange()
 {
 	Serialfirst=1;
-	QString c=ui->startValSerialLineEdit->text();
-	int new_start=c.toInt();
-	SerialNumber_number=new_start;
 }
 
 void FileEditChild::rimwideAddBut_clicked()
