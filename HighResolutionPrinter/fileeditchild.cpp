@@ -11,6 +11,10 @@
 #include "keyboard.h"
 #include "numkeyboard.h"
 #include "time.h"
+#include "syssetting.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
+#include "paramsettingform.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
@@ -732,7 +736,20 @@ void FileEditChild::GetObjSettingsFromScreen()
 			{
 				this->ui->typeTab->setCurrentIndex(0);
 				this->ui->wordLineEdit->setText(tmpStr);
-				this->ui->newTextBut->setText(QStringLiteral("ÐÞ¸Ä"));
+				
+				QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+				FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+				MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
+				sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
+
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 1:
+					this->ui->newTextBut->setText(QStringLiteral("ÐÞ¸Ä"));
+				case 5:
+					this->ui->newTextBut->setText(QStringLiteral("change"));
+				}
+				
 				map<string,int> gfntMap;
 				gfntMap.clear();
 				gfntMap.insert(make_pair("5x5",0));

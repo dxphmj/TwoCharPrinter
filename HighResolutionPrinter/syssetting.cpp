@@ -1,6 +1,7 @@
 #include "syssetting.h"
 #include "UILanguage.h"
 #include "mainwindow.h"
+#include "roll.h"
 
 sysSetting::sysSetting(QWidget *parent)
 	: QWidget(parent)
@@ -90,6 +91,15 @@ void sysSetting::seleSysLanguage()
 {
  	CUILanguage languageTool(m_pMainWindow);
 	languageTool.ChangeLanguage(ui.sysLanguageListWid->currentRow());
+	m_SelLanguage = ui.sysLanguageListWid->currentRow();
+	//m_pMainWindow->m_roll->LanguageChanged(m_SelLanguage);
+	switch(m_SelLanguage)
+	{
+	case 1:
+		m_pMainWindow->m_roll->m_showText = QStringLiteral("ÎÂÜ°ÌáÊ¾£ºÇë²»ÒªÔÚ´òÓ¡¹ý³ÌÖÐ°ÎµôÄ«ºÐ£¬·ÀÖ¹Åç×ì¶ÂÈû¡£");
+	case 5:
+		m_pMainWindow->m_roll->m_showText = QStringLiteral("balabalabalabala");
+	}
 }
 
 

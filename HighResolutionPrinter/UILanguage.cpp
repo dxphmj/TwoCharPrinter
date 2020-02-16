@@ -17,8 +17,7 @@ CUILanguage::CUILanguage(QObject* pMainwindow)
 
 
 CUILanguage::~CUILanguage(void)
-{
-} 
+{}
 
 void CUILanguage::ChangeLanguage(int nLanguageType)
 {

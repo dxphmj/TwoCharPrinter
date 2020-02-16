@@ -21,6 +21,7 @@ public:
 	Ui::sysSetting ui;
 
 	MainWindow* m_pMainWindow;
+	int m_SelLanguage;
 
 private slots:
 	void seleSysLanguage();

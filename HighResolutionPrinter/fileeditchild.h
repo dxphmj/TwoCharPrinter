@@ -8,6 +8,7 @@
 class keyboard;
 class numkeyboard;
 class FileManageChild;
+
 #include "ModuleMain.h"
 namespace Ui {
 	class FileEditChild;

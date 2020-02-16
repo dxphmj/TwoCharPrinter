@@ -11,12 +11,14 @@ class roll : public QLabel
 public:
 	roll(QWidget *parent);
 	~roll();
+	//bool eventFilter(QObject *watched, QEvent *event);
+	void LanguageChanged(int languageType);
 
 protected:
 	void paintEvent(QPaintEvent *);
 	void updateIndex();
-
-private:
+	
+public:
 	int m_charWidth; //字符串宽度
 	int m_curIndex;
     QString m_showText; //需要显示的字符串
