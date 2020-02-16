@@ -138,12 +138,15 @@ public:
         print1Prog = new QProgressBar(centralWidget);
         print1Prog->setObjectName(QStringLiteral("print1Prog"));
         print1Prog->setGeometry(QRect(905, 450, 51, 211));
-        print1Prog->setValue(24);
+        print1Prog->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        print1Prog->setValue(69);
+        print1Prog->setTextVisible(true);
         print1Prog->setOrientation(Qt::Vertical);
         print2Prog = new QProgressBar(centralWidget);
         print2Prog->setObjectName(QStringLiteral("print2Prog"));
         print2Prog->setGeometry(QRect(1022, 450, 51, 211));
-        print2Prog->setValue(24);
+        print2Prog->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
+        print2Prog->setValue(50);
         print2Prog->setOrientation(Qt::Vertical);
         No1Lab = new QLabel(centralWidget);
         No1Lab->setObjectName(QStringLiteral("No1Lab"));
@@ -168,7 +171,7 @@ public:
 "color: rgb(255, 255, 255);"));
         voltMWLab = new QLabel(centralWidget);
         voltMWLab->setObjectName(QStringLiteral("voltMWLab"));
-        voltMWLab->setGeometry(QRect(290, 420, 101, 103));
+        voltMWLab->setGeometry(QRect(290, 420, 141, 103));
         voltMWLab->setFont(font2);
         voltMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
@@ -179,7 +182,7 @@ public:
         progCtrlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         countValMWLab = new QLabel(centralWidget);
         countValMWLab->setObjectName(QStringLiteral("countValMWLab"));
-        countValMWLab->setGeometry(QRect(10, 576, 111, 155));
+        countValMWLab->setGeometry(QRect(10, 576, 121, 155));
         countValMWLab->setFont(font2);
         countValMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
@@ -193,7 +196,7 @@ public:
         PWMWLab->setMargin(0);
         grayMWLab = new QLabel(centralWidget);
         grayMWLab->setObjectName(QStringLiteral("grayMWLab"));
-        grayMWLab->setGeometry(QRect(290, 628, 121, 103));
+        grayMWLab->setGeometry(QRect(290, 628, 141, 103));
         grayMWLab->setFont(font2);
         grayMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
@@ -207,14 +210,14 @@ public:
         dirMWLab->setMargin(0);
         speedMWLab = new QLabel(centralWidget);
         speedMWLab->setObjectName(QStringLiteral("speedMWLab"));
-        speedMWLab->setGeometry(QRect(570, 420, 111, 103));
+        speedMWLab->setGeometry(QRect(570, 420, 121, 103));
         speedMWLab->setFont(font2);
         speedMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
         speedMWLab->setMargin(0);
         timeDelayMWLab = new QLabel(centralWidget);
         timeDelayMWLab->setObjectName(QStringLiteral("timeDelayMWLab"));
-        timeDelayMWLab->setGeometry(QRect(570, 524, 111, 103));
+        timeDelayMWLab->setGeometry(QRect(570, 524, 121, 103));
         timeDelayMWLab->setFont(font2);
         timeDelayMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
@@ -223,63 +226,63 @@ public:
         fileNameShowLab->setObjectName(QStringLiteral("fileNameShowLab"));
         fileNameShowLab->setGeometry(QRect(129, 420, 161, 155));
         fileNameShowLab->setFont(font2);
-        fileNameShowLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        fileNameShowLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         fileNameShowLab->setMargin(0);
         countValShowMWLab = new QLabel(centralWidget);
         countValShowMWLab->setObjectName(QStringLiteral("countValShowMWLab"));
-        countValShowMWLab->setGeometry(QRect(119, 576, 171, 155));
+        countValShowMWLab->setGeometry(QRect(129, 576, 161, 155));
         countValShowMWLab->setFont(font2);
-        countValShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        countValShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         countValShowMWLab->setMargin(0);
         voltShowMWLab = new QLabel(centralWidget);
         voltShowMWLab->setObjectName(QStringLiteral("voltShowMWLab"));
-        voltShowMWLab->setGeometry(QRect(390, 420, 61, 103));
+        voltShowMWLab->setGeometry(QRect(430, 420, 61, 103));
         voltShowMWLab->setFont(font2);
-        voltShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        voltShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         voltShowMWLab->setMargin(0);
         voltUnitMWLab = new QLabel(centralWidget);
         voltUnitMWLab->setObjectName(QStringLiteral("voltUnitMWLab"));
-        voltUnitMWLab->setGeometry(QRect(450, 420, 121, 103));
+        voltUnitMWLab->setGeometry(QRect(490, 420, 81, 103));
         voltUnitMWLab->setFont(font2);
-        voltUnitMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        voltUnitMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         voltUnitMWLab->setMargin(0);
         PWShowMWLab = new QLabel(centralWidget);
         PWShowMWLab->setObjectName(QStringLiteral("PWShowMWLab"));
         PWShowMWLab->setGeometry(QRect(429, 524, 141, 103));
         PWShowMWLab->setFont(font2);
-        PWShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        PWShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         PWShowMWLab->setMargin(0);
         grayShowMWLab = new QLabel(centralWidget);
         grayShowMWLab->setObjectName(QStringLiteral("grayShowMWLab"));
-        grayShowMWLab->setGeometry(QRect(409, 628, 161, 103));
+        grayShowMWLab->setGeometry(QRect(429, 628, 141, 103));
         grayShowMWLab->setFont(font2);
-        grayShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        grayShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         grayShowMWLab->setMargin(0);
         speedShowMWLab = new QLabel(centralWidget);
         speedShowMWLab->setObjectName(QStringLiteral("speedShowMWLab"));
-        speedShowMWLab->setGeometry(QRect(670, 420, 180, 103));
+        speedShowMWLab->setGeometry(QRect(689, 420, 161, 103));
         speedShowMWLab->setFont(font2);
-        speedShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        speedShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         speedShowMWLab->setMargin(0);
         timeDelayShowMWLab = new QLabel(centralWidget);
         timeDelayShowMWLab->setObjectName(QStringLiteral("timeDelayShowMWLab"));
-        timeDelayShowMWLab->setGeometry(QRect(670, 524, 180, 103));
+        timeDelayShowMWLab->setGeometry(QRect(689, 524, 161, 103));
         timeDelayShowMWLab->setFont(font2);
-        timeDelayShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        timeDelayShowMWLab->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         timeDelayShowMWLab->setMargin(0);
         dirMWLab_2 = new QLabel(centralWidget);
         dirMWLab_2->setObjectName(QStringLiteral("dirMWLab_2"));
         dirMWLab_2->setGeometry(QRect(689, 628, 161, 103));
         dirMWLab_2->setFont(font2);
-        dirMWLab_2->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        dirMWLab_2->setStyleSheet(QLatin1String("background-color: rgb(77,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         dirMWLab_2->setMargin(0);
         MainWindow->setCentralWidget(centralWidget);

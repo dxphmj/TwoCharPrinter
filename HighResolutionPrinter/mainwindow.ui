@@ -230,8 +230,14 @@ color: rgb(255, 255, 255);</string>
       <height>211</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="value">
-     <number>24</number>
+     <number>69</number>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
@@ -246,8 +252,11 @@ color: rgb(255, 255, 255);</string>
       <height>211</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);</string>
+    </property>
     <property name="value">
-     <number>24</number>
+     <number>50</number>
     </property>
     <property name="orientation">
      <enum>Qt::Vertical</enum>
@@ -331,7 +340,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>420</y>
-      <width>101</width>
+      <width>141</width>
       <height>103</height>
      </rect>
     </property>
@@ -373,7 +382,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>10</x>
       <y>576</y>
-      <width>111</width>
+      <width>121</width>
       <height>155</height>
      </rect>
     </property>
@@ -425,7 +434,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>290</x>
       <y>628</y>
-      <width>121</width>
+      <width>141</width>
       <height>103</height>
      </rect>
     </property>
@@ -477,7 +486,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>570</x>
       <y>420</y>
-      <width>111</width>
+      <width>121</width>
       <height>103</height>
      </rect>
     </property>
@@ -503,7 +512,7 @@ color: rgb(255, 255, 255);</string>
      <rect>
       <x>570</x>
       <y>524</y>
-      <width>111</width>
+      <width>121</width>
       <height>103</height>
      </rect>
     </property>
@@ -540,7 +549,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -553,9 +562,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="countValShowMWLab">
     <property name="geometry">
      <rect>
-      <x>119</x>
+      <x>129</x>
       <y>576</y>
-      <width>171</width>
+      <width>161</width>
       <height>155</height>
      </rect>
     </property>
@@ -566,7 +575,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -579,7 +588,7 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="voltShowMWLab">
     <property name="geometry">
      <rect>
-      <x>390</x>
+      <x>430</x>
       <y>420</y>
       <width>61</width>
       <height>103</height>
@@ -592,7 +601,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -605,9 +614,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="voltUnitMWLab">
     <property name="geometry">
      <rect>
-      <x>450</x>
+      <x>490</x>
       <y>420</y>
-      <width>121</width>
+      <width>81</width>
       <height>103</height>
      </rect>
     </property>
@@ -618,7 +627,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -644,7 +653,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -657,9 +666,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="grayShowMWLab">
     <property name="geometry">
      <rect>
-      <x>409</x>
+      <x>429</x>
       <y>628</y>
-      <width>161</width>
+      <width>141</width>
       <height>103</height>
      </rect>
     </property>
@@ -670,7 +679,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -683,9 +692,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="speedShowMWLab">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>689</x>
       <y>420</y>
-      <width>180</width>
+      <width>161</width>
       <height>103</height>
      </rect>
     </property>
@@ -696,7 +705,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -709,9 +718,9 @@ color: rgb(255, 255, 255);</string>
    <widget class="QLabel" name="timeDelayShowMWLab">
     <property name="geometry">
      <rect>
-      <x>670</x>
+      <x>689</x>
       <y>524</y>
-      <width>180</width>
+      <width>161</width>
       <height>103</height>
      </rect>
     </property>
@@ -722,7 +731,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">
@@ -748,7 +757,7 @@ color: rgb(255, 255, 255);</string>
      </font>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
+     <string notr="true">background-color: rgb(77,61, 139);
 color: rgb(255, 255, 255);</string>
     </property>
     <property name="text">

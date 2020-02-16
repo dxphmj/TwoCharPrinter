@@ -179,6 +179,17 @@ void keyboard::setText2KBLineedit()
 	m_pInputEdit = ui->wordCombLineEdit;
 }
 
+void keyboard::Symbolinputlineedit()//符号及逗号和句号输入时需判断回不回小编辑框
+{
+	if (m_LanType == 0|| m_LanType == 22 || m_LanType == 1)
+	{
+		if (m_symbol == true)//在中英文但是不在符号界面
+		{
+			setText2KBLineedit();
+		}
+	}
+}
+
 void keyboard::changeLineEdit(lineedit_click* pInputEdit)
 {
 	m_pInputEdit = pInputEdit;
@@ -193,6 +204,7 @@ void keyboard::changeCurrentlineedit()
 
 void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应的汉字置入备选框中
 {
+
 	switch (m_LanType)
 	{
 	case 0: //chinese
@@ -203,8 +215,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			splitOut.clear();
 			if ( value == "" )          
 			{	
-              	i1 = 0;
-				j1 = 0;
+				m_CharacterPosition = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
 				int length = temp.length();
@@ -218,7 +229,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			}
 			else
 			{
-				j1 = 0;
+				 
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
 				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
@@ -228,24 +239,8 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 				{
 					splitOut.push_back(temp.at(i));
 				} 
-				if ( splitOut.size() < 11 )
-				{
-					i1 = 1;
-				} 
-				else if( splitOut.size() <21)
-				{
-					i1 = 11;
-				}
-				else if( splitOut.size() < 31)
-				{
-					i1 = 21;
-				}
-				else
-				{
-					i1 = 31;
-				}
+				m_CharacterPosition = 0;
 				FontSelect();
-				//break;
 			}
 			break;
 		}
@@ -257,8 +252,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 		    splitOut.clear();
 			if ( value == "" )          
 			{	
-              	i1 = 0;
-				j1 = 0;
+				m_CharacterPosition = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
 				int length = temp.length();
@@ -267,12 +261,13 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 				{
 					splitOut.push_back(temp.at(i));
 				} 
+
 				FontSelect();
 				splitOut.clear();
 			}
 			else
 			{
-				j1 = 0;
+			
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
 				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
@@ -282,24 +277,9 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 				{
 					splitOut.push_back(temp.at(i));
 				} 
-				if ( splitOut.size() < 11 )
-				{
-					i1 = 1;
-				} 
-				else if( splitOut.size() <21)
-				{
-					i1 = 11;
-				}
-				else if( splitOut.size() < 31)
-				{
-					i1 = 21;
-				}
-				else
-				{
-					i1 = 31;
-				}
+				m_CharacterPosition = 0;
 				FontSelect();
-				//break;
+
 			}
 			break;
 		}
@@ -311,8 +291,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			splitOut.clear();
 			if ( value == "" )          
 			{	
-                i1 = 0;
-				j1 = 0;
+				m_CharacterPosition = 0;
 				QString Delstr = (QStringLiteral(" , , , , , , , , , , , , , , ,"));
 				QStringList temp = Delstr.split(",");
 				int length = temp.length();
@@ -326,7 +305,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 			}
 			else
 			{
-				j1 = 0;
+				
 				//value +=QStringLiteral(",");
 				//splitOut = split(value);
 				QStringList temp = value.split(",");//以逗号分割字符串，将备选的每个汉字单独分割成一个字符串
@@ -336,22 +315,7 @@ void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应�
 				{
 					splitOut.push_back(temp.at(i));
 				} 
-				if ( splitOut.size() < 11 )
-				{
-					i1 = 1;
-				} 
-				else if( splitOut.size() <21)
-				{
-					i1 = 11;
-				}
-				else if( splitOut.size() < 31)
-				{
-					i1 = 21;
-				}
-				else
-				{
-					i1 = 31;
-				}
+				m_CharacterPosition = 0;
 				FontSelect();
 				//break;
 			}
@@ -371,7 +335,7 @@ void keyboard::CreateChineseMapLan()//中文字库
 {
 	ChineseLanMap[QStringLiteral("an")] = QStringLiteral("安,氨,鞍,俺,岸,按,案,胺,暗, , , , , , ");
 	ChineseLanMap[QStringLiteral("ai")] = QStringLiteral("哎,哀,唉,埃,挨,皑,癌,矮,蔼,艾,爱,隘,碍, , ");
-	ChineseLanMap[QStringLiteral("a")] = QStringLiteral("阿,啊, , , , , , , , , , , , , ");
+	ChineseLanMap[QStringLiteral("a")] = QStringLiteral("阿,啊, , , , , , , , ");
 	ChineseLanMap[QStringLiteral("yi")] = QStringLiteral("一,伊,衣,医,依,铱,壹,揖,仪,夷,沂,宜,姨,胰,移,遗,颐,疑,彝,乙,已,以,矣,蚁,倚,椅,义,亿,忆,艺,议,亦,屹,异,役,抑,译,邑,易,绎,诣,疫,益,谊,翌,逸,意,溢,肄,裔,毅,翼,臆, , , , , , , , , ");
 	ChineseLanMap[QStringLiteral("ang")] = QStringLiteral("肮,昂,盎, , , , , , , , , , , , ");
 	ChineseLanMap[QStringLiteral("ao")] = QStringLiteral("凹,敖,熬,翱,袄,傲,奥,澳,懊, , , , , , ");
@@ -4554,16 +4518,87 @@ void keyboard::CreateKoreanMapLan()
 
 void keyboard::FontSelect()
 {
-	ui->fontBox1_KBBut->setText(splitOut[j1]);
-	ui->fontBox2_KBBut->setText(splitOut[j1+1]);
-	ui->fontBox3_KBBut->setText(splitOut[j1+2]);
-	ui->fontBox4_KBBut->setText(splitOut[j1+3]);
-	ui->fontBox5_KBBut->setText(splitOut[j1+4]);
-	ui->fontBox6_KBBut->setText(splitOut[j1+5]);
-	ui->fontBox7_KBBut->setText(splitOut[j1+6]);
-	ui->fontBox8_KBBut->setText(splitOut[j1+7]);
-	ui->fontBox9_KBBut->setText(splitOut[j1+8]);
-	ui->fontBox10_KBBut->setText(splitOut[j1+9]);
+	if(m_CharacterPosition < splitOut.size())
+	{
+		ui->fontBox1_KBBut->setText(splitOut[m_CharacterPosition]);
+	}
+	else
+	{
+		ui->fontBox1_KBBut->setText("");
+	}
+	if(m_CharacterPosition+1 < splitOut.size())
+	{
+		ui->fontBox2_KBBut->setText(splitOut[m_CharacterPosition+1]);
+	}
+	else
+	{
+		ui->fontBox2_KBBut->setText("");
+	}
+	if(m_CharacterPosition+2 < splitOut.size())
+	{
+		ui->fontBox3_KBBut->setText(splitOut[m_CharacterPosition+2]);
+	}
+	else
+	{
+		ui->fontBox3_KBBut->setText("");
+	}
+	if(m_CharacterPosition+3 < splitOut.size())
+	{
+		ui->fontBox4_KBBut->setText(splitOut[m_CharacterPosition+3]);
+	}
+	else
+	{
+		ui->fontBox4_KBBut->setText("");
+	}
+	if(m_CharacterPosition+4 < splitOut.size())
+	{
+		ui->fontBox5_KBBut->setText(splitOut[m_CharacterPosition+4]);
+	}
+	else
+	{
+		ui->fontBox5_KBBut->setText("");
+	}
+	if(m_CharacterPosition+5 < splitOut.size())
+	{
+		ui->fontBox6_KBBut->setText(splitOut[m_CharacterPosition+5]);
+	}
+	else
+	{
+		ui->fontBox6_KBBut->setText("");
+	}
+	if(m_CharacterPosition+6 < splitOut.size())
+	{
+		ui->fontBox7_KBBut->setText(splitOut[m_CharacterPosition+6]);
+	}
+	else
+	{
+		ui->fontBox7_KBBut->setText("");
+	}
+
+	if(m_CharacterPosition+7 < splitOut.size())
+	{
+		ui->fontBox8_KBBut->setText(splitOut[m_CharacterPosition+7]);
+	}
+	else
+	{
+		ui->fontBox8_KBBut->setText("");
+	}
+	if(m_CharacterPosition+8 < splitOut.size())
+	{
+		ui->fontBox9_KBBut->setText(splitOut[m_CharacterPosition+8]);
+	}
+	else
+	{
+		ui->fontBox9_KBBut->setText("");
+	}
+	if(m_CharacterPosition +9< splitOut.size())
+	{
+		ui->fontBox10_KBBut->setText(splitOut[m_CharacterPosition+9]);
+	}
+	else
+	{
+		ui->fontBox10_KBBut->setText("");
+	}
 }
 
 
@@ -4667,6 +4702,7 @@ void keyboard::caps1_kBBut_clicked()
 
 void keyboard::symbol_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	if ( m_symbol == true )//如果当前为字母
 	{
 		switch (m_LantypeReverse)
@@ -4737,6 +4773,7 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		case 2://Kore
 			{
+		
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
@@ -4811,6 +4848,7 @@ void keyboard::symbol_KBBut_clicked()
 			}
 		case 4://Japanese
 			{
+
 				ui->A_KBBut->setText(QStringLiteral("("));
 				ui->B_KBBut->setText(QStringLiteral("~"));
 				ui->C_KBBut->setText(QStringLiteral("\\"));
@@ -5346,62 +5384,84 @@ void keyboard::Z_KBBut_clicked()
 
 void keyboard::num1_KBBut_clicked()
 {
+	
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->one_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num2_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->two_KBBut->text());
+	Symbolinputlineedit();
+	
 }
 
 void keyboard::num3_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->three_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num4_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->four_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num5_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->five_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num6_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->six_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num7_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->seven_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num8_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->eight_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num9_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->nine_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::num0_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->zero_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::fontBox1_KBBut_clicked()
@@ -5496,53 +5556,41 @@ void keyboard::fontBox10_KBBut_clicked()
 
 void keyboard::fontBoxRedu_KBBut_clicked()
 {
-	if(i1 != 0)
-	{
-		j1 = j1 - 10;
-		if ( j1 >= 0 )
-		{
-			FontSelect();
-		} 
-		else if( j1 < 1 )
-		{
-			j1 = 0;
-	    }
-	}
+	if(m_CharacterPosition == 0) return;
+	m_CharacterPosition = m_CharacterPosition-10;
+	
+	FontSelect();
 }
 
 void keyboard::fontBoxAdd_KBBut_clicked()
 {
-	if(i1 != 0)
-	{
-		j1 = j1 + 10;
-		if ( j1 < i1  )
-		{
-			FontSelect();
-		} 
-		else if( j1 > i1 )
-		{
-			j1 = i1 - 1;
-			j1 = j1 - 10;
-		}
-	}
+	if(m_CharacterPosition+10 >= splitOut.size()) return;	
+	m_CharacterPosition = m_CharacterPosition+10;	
+	FontSelect();		
 }
 
 void keyboard::space_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(" ");
+	Symbolinputlineedit();
 }
 
 void keyboard::comma_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->comma_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::period_KBBut_clicked()
 {
+	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->period_KBBut->text());
+	Symbolinputlineedit();
 }
 
 void keyboard::lanArabicAdd_KBBut_clicked()
@@ -5793,7 +5841,7 @@ void keyboard::btnLanguageSel(int m_LanType)
 	
 	}
 }
-
+	
 void keyboard::btnSymbolSel(int m_LantypeReverse)
 {
 	switch (m_LantypeReverse)
@@ -5810,6 +5858,7 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 1: //当前为ChineseSymbol
 		{
 			SymbolToChinese();
+			setText2KBLineedit();
 			//	pWnd->btnShow();
 			//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
@@ -5817,11 +5866,12 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 		case 2: //当前为KoreSymbol
 		{
 			SymbolToKore();
+			setText2KBLineedit();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 3: //当前为KoreSymbol
+		case 3: //当前为CzechSymbol
 		{
 			SymbolToCzech();
 			btnhide();
@@ -5829,9 +5879,10 @@ void keyboard::btnSymbolSel(int m_LantypeReverse)
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;
 		}
-		case 4: //当前为KoreSymbol
+		case 4: //当前为SymbolToJapanese
 		{
 			SymbolToJapanese();
+			setText2KBLineedit();
 				//	pWnd->btnShow();
 				//	pWnd->m_zrh_edit.ShowWindow(SW_SHOW);
 			break;

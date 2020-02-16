@@ -38,6 +38,9 @@
     <saveasBut>另存为</saveasBut>
     <rotateTextLab>旋转</rotateTextLab>
     <internalTextLab>间距</internalTextLab>
+    <pixelLab>像素</pixelLab>
+    <moveSpeedLab>移动倍速</moveSpeedLab>
+
 
     <addTimeBut>添加</addTimeBut>
     <refreshTimeBut>刷新</refreshTimeBut>
@@ -65,12 +68,16 @@
     <reverseBmpCheckBox>反色</reverseBmpCheckBox>
     <selBmpBut>选择图形</selBmpBut>
     <newBmpBut>新建</newBmpBut>
+    <proportionBmpCheckBox>等比例</proportionBmpCheckBox>
+
 
     <typeBarCodeLab>类型</typeBarCodeLab>
     <zoomBarCodeLab>缩放</zoomBarCodeLab>
     <heightBarCodeLab>高度</heightBarCodeLab>
     <variableBarCodeBut>可变</variableBarCodeBut>
     <newBarCodeBut>新建</newBarCodeBut>
+    <typeBarCodeLab_2>边框类型</typeBarCodeLab_2>
+    <zoomBarCodeLab_2>空白宽度</zoomBarCodeLab_2>
 
     <showNumCheckBox>显示数字</showNumCheckBox>
     <sideLenQRLab>边长</sideLenQRLab>

@@ -75,6 +75,9 @@ public://参数
 
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
 	bool booBeenDragged;
+
+	bool m_bVecotrWord;//是否矢量字库
+	string m_WordStockFileName; //字库文件名
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
@@ -97,6 +100,10 @@ public://方法
     void ReadBmp(char* strFileName);
 	void CreateQrcode();
 	void Create2Dcode();
+
+	vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
+	void GetVectorWordDots();
+	void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
 private:
 	//ClassMessage objClassMessage;

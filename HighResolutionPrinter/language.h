@@ -22,7 +22,7 @@ public:
 private:
 	Ui::language *ui;
 
-private slots:
+public slots:
 	void OKLanBut_clicked();
 	void lanEnglish_KBBut_clicked();
 	void LanChinese_KBBut_clicked();

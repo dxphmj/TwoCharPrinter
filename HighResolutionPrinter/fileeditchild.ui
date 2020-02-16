@@ -131,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -178,7 +178,8 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字体&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -209,7 +210,8 @@ QTabBar::tab{height:50}</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字号&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -304,6 +306,30 @@ background-color: rgb(0, 0, 230);</string>
       <string>新建</string>
      </property>
     </widget>
+    <widget class="QLabel" name="fontBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>fontBGlLbel</zorder>
+    <zorder>wordLineEdit</zorder>
+    <zorder>fontTypeTextLab</zorder>
+    <zorder>fontSizeTextLab</zorder>
+    <zorder>fontTypeTextComBox</zorder>
+    <zorder>fontSizeTextComBox</zorder>
+    <zorder>variableTextBut</zorder>
+    <zorder>newTextBut</zorder>
    </widget>
    <widget class="QWidget" name="timeTab">
     <attribute name="title">
@@ -344,7 +370,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;日期/时间&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -439,7 +466,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;预览&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -573,13 +601,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移单位&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeTimeLab_3">
@@ -604,13 +633,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeTimeLab">
@@ -635,13 +665,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字体&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeTimeLab_4">
@@ -666,13 +697,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;偏移值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="SkewSkewValueEdit">
@@ -694,6 +726,39 @@ background-color: rgb(0, 0, 230);</string>
       <string notr="true">background-color: rgb(255, 255, 255);</string>
      </property>
     </widget>
+    <widget class="QLabel" name="timeBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>timeBGlLbel</zorder>
+    <zorder>SkewUUnitlistWidget</zorder>
+    <zorder>fontTypeTimeLab_7</zorder>
+    <zorder>DateTimeEdit</zorder>
+    <zorder>refreshTimeBut</zorder>
+    <zorder>SkewComBox</zorder>
+    <zorder>fontTypeTimeLab_6</zorder>
+    <zorder>addTimeBut</zorder>
+    <zorder>PreviewEdit</zorder>
+    <zorder>newTimeBut</zorder>
+    <zorder>fontTypeTimeComBox</zorder>
+    <zorder>FormatlistWidget</zorder>
+    <zorder>fontTypeTimeLab_5</zorder>
+    <zorder>fontTypeTimeLab_3</zorder>
+    <zorder>fontTypeTimeLab</zorder>
+    <zorder>fontTypeTimeLab_4</zorder>
+    <zorder>SkewSkewValueEdit</zorder>
    </widget>
    <widget class="QWidget" name="serialTab">
     <attribute name="title">
@@ -721,13 +786,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;格式&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QLabel" name="fontTypeSerialLab">
@@ -752,13 +818,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字体&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QComboBox" name="fontTypeSerialComBox">
@@ -823,13 +890,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;计数器&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QComboBox" name="counterSerialComBox">
@@ -916,13 +984,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;起始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="initialValSerialLineEdit">
@@ -966,13 +1035,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;终止值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="termValSerialLineEdit">
@@ -1035,13 +1105,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;开始值&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="stepLenSerialLineEdit">
@@ -1085,13 +1156,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;步长&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="reptCountSerialLineEdit">
@@ -1135,13 +1207,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;重复计数&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="lineedit_click" name="digitSerialLineEdit">
@@ -1185,13 +1258,14 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;位数&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
-      <set>Qt::AlignCenter</set>
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
      </property>
     </widget>
     <widget class="QPushButton" name="withdrawSerialBut">
@@ -1240,6 +1314,45 @@ background-color: rgb(0, 0, 230);</string>
       <string>初始化</string>
      </property>
     </widget>
+    <widget class="QLabel" name="serialBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>serialBGlLbel</zorder>
+    <zorder>formatSerialLab</zorder>
+    <zorder>fontTypeSerialLab</zorder>
+    <zorder>fontTypeSerialComBox</zorder>
+    <zorder>formatSerialComBox</zorder>
+    <zorder>counterSerialLab</zorder>
+    <zorder>counterSerialComBox</zorder>
+    <zorder>newSerialBut</zorder>
+    <zorder>serialLineEdit</zorder>
+    <zorder>initialValSerialLab</zorder>
+    <zorder>initialValSerialLineEdit</zorder>
+    <zorder>termValSerialLab</zorder>
+    <zorder>termValSerialLineEdit</zorder>
+    <zorder>startValSerialLineEdit</zorder>
+    <zorder>startValSerialLab</zorder>
+    <zorder>stepLenSerialLineEdit</zorder>
+    <zorder>stepLenSerialLab</zorder>
+    <zorder>reptCountSerialLineEdit</zorder>
+    <zorder>reptCountSerialLab</zorder>
+    <zorder>digitSerialLineEdit</zorder>
+    <zorder>digitSerialLab</zorder>
+    <zorder>withdrawSerialBut</zorder>
+    <zorder>initialSerialBut</zorder>
    </widget>
    <widget class="QWidget" name="bmpTab">
     <attribute name="title">
@@ -1267,7 +1380,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);</string>
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1360,7 +1474,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;高度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1391,7 +1506,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;宽度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1422,7 +1538,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);</string>
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1533,7 +1650,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-</string>
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>反色</string>
@@ -1601,7 +1718,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-</string>
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>等比例</string>
@@ -1613,6 +1730,36 @@ background-color: rgb(0, 0, 230);</string>
       <bool>false</bool>
      </property>
     </widget>
+    <widget class="QLabel" name="bmpBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>bmpBGlLbel</zorder>
+    <zorder>heightBmpShowBmpLab</zorder>
+    <zorder>heightBmpAddBut</zorder>
+    <zorder>heightBmpRedBut</zorder>
+    <zorder>heightBmpLab</zorder>
+    <zorder>widthBmpLab</zorder>
+    <zorder>widthShowBmpLab</zorder>
+    <zorder>widthBmpAddBut</zorder>
+    <zorder>widthBmpRedBut</zorder>
+    <zorder>selBmpBut</zorder>
+    <zorder>reverseBmpCheckBox</zorder>
+    <zorder>newBmpBut</zorder>
+    <zorder>bmpPreviewLab</zorder>
+    <zorder>proportionBmpCheckBox</zorder>
    </widget>
    <widget class="QWidget" name="barCodeTab">
     <attribute name="title">
@@ -1659,7 +1806,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);</string>
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;9&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1690,7 +1838,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;空白宽度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1764,7 +1913,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);</string>
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;1&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1857,7 +2007,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;边框类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1888,7 +2039,9 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);
+</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1981,7 +2134,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">background-color: rgb(67,51, 139);</string>
+      <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;21&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2069,7 +2223,7 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="styleSheet">
       <string notr="true">color: rgb(255, 255, 255);
-</string>
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>显示数字</string>
@@ -2103,7 +2257,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;高度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2157,7 +2312,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;边框宽度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2186,6 +2342,43 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
+    <widget class="QLabel" name="BarCodeBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>BarCodeBGlLbel</zorder>
+    <zorder>barCodeLineEdit</zorder>
+    <zorder>whitespaceLab</zorder>
+    <zorder>zoomBarCodeLab_2</zorder>
+    <zorder>variableBarCodeBut</zorder>
+    <zorder>typerimComBox</zorder>
+    <zorder>rimwideLab</zorder>
+    <zorder>heightBarCodeAddBut</zorder>
+    <zorder>heightBarCodeRedBut</zorder>
+    <zorder>typeBarCodeLab_2</zorder>
+    <zorder>typeBarCodeLab</zorder>
+    <zorder>whitespaceRedBut</zorder>
+    <zorder>rimwideAddBut</zorder>
+    <zorder>heightBarCodeShowQRLab</zorder>
+    <zorder>whitespaceAddBut</zorder>
+    <zorder>rimwideRedBut</zorder>
+    <zorder>showNumCheckBox</zorder>
+    <zorder>heightBarCodeLab</zorder>
+    <zorder>newBarCodeBut</zorder>
+    <zorder>zoomBarCodeLab</zorder>
+    <zorder>typeBarCodeComBox</zorder>
    </widget>
    <widget class="QWidget" name="QRCodeTab">
     <attribute name="title">
@@ -2251,7 +2444,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>反色</string>
@@ -2328,7 +2522,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;边长&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2337,6 +2532,29 @@ background-color: rgb(0, 0, 230);</string>
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="QRBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>QRBGlLbel</zorder>
+    <zorder>QRCodeLineEdit</zorder>
+    <zorder>variableQRBut</zorder>
+    <zorder>reverseCheckBox</zorder>
+    <zorder>newQRBut</zorder>
+    <zorder>sideLenQRComBox</zorder>
+    <zorder>sideLenQRLab</zorder>
    </widget>
    <widget class="QWidget" name="tab_2">
     <attribute name="title">
@@ -2387,7 +2605,8 @@ background-color: rgb(0, 0, 230);</string>
       </font>
      </property>
      <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);</string>
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;类型&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2458,6 +2677,28 @@ background-color: rgb(0, 0, 230);</string>
       <string>新建</string>
      </property>
     </widget>
+    <widget class="QLabel" name="DMBGlLbel">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>745</width>
+       <height>411</height>
+      </rect>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>DMBGlLbel</zorder>
+    <zorder>variableDMBut</zorder>
+    <zorder>sideLenDMLab</zorder>
+    <zorder>sideLenDMComBox</zorder>
+    <zorder>DMCodeLineEdit</zorder>
+    <zorder>newDMBut</zorder>
    </widget>
   </widget>
   <widget class="QPushButton" name="moveUpBut">
@@ -2637,7 +2878,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2699,7 +2941,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;旋转&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2792,7 +3035,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;0&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2823,7 +3067,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;间距&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2874,7 +3119,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;像素&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -2925,7 +3171,8 @@ background-color: rgb(0, 0, 230);</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;移动倍速&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>

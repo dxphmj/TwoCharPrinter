@@ -28,6 +28,7 @@ public:
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
 	void setText2KBLineedit();
+	void Symbolinputlineedit();
 	void changeLineEdit(lineedit_click* pInputEdit);
 	void changeCurrentlineedit();
 
@@ -90,7 +91,7 @@ public:
 	bool m_symbol;
 	lineedit_click* m_pInputEdit;
 	language  *languageWidget;
-	int i1,j1;
+	int m_CharacterPosition;//字符位置
 	QMap< QString,QString >ChineseLanMap;//定义map对象
 	QMap< QString,QString >JapaneseLanMap;
 	QMap< QString,QString >KoreanLanMap;
@@ -127,7 +128,7 @@ public:
 	void CreateJapaneseMapLan();
 	void CreateKoreanMapLan();
 	void FontSelect();
-	QVector<QString>splitOut;
+	QVector<QString>splitOut;//字符串分割
 
 public slots:
 	void caps1_kBBut_clicked();

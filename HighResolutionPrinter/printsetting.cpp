@@ -35,37 +35,45 @@ printSetting::printSetting(QWidget *parent)
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
 	ui.synWheelCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									  QCheckBox{color:rgb(255, 255, 255);}\
+									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
 	ui.voiceCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									   QCheckBox{color:rgb(255, 255, 255);}\
+									   QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									   ");
 	ui.repetePrintCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									QCheckBox{color:rgb(255, 255, 255);}\
+									QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									");
+	ui.isCombineCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+										  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
+										  ");
+
 	ui.flashSprayCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									QCheckBox{color:rgb(255, 255, 255);}\
+									QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									");
 	ui.adaptParaCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-										 QCheckBox{color:rgb(255, 255, 255);}\
+										 QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
+	ui.isUVCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
+										 QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
+										 ");
+
 	ui.DPI150RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									  QRadioButton{color:rgb(255, 255, 255);}\
+									  QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
 	ui.DPI200RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									 QRadioButton{color:rgb(255, 255, 255);}\
+									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 	ui.DPI300RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									 QRadioButton{color:rgb(255, 255, 255);}\
+									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 	ui.DPI600RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									 QRadioButton{color:rgb(255, 255, 255);}\
+									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 	ui.nozzleSel1RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									 QRadioButton{color:rgb(255, 255, 255);}\
+									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 	ui.nozzleSel2RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
-									 QRadioButton{color:rgb(255, 255, 255);}\
+									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 
 	ui.trigComBox->addItem(QStringLiteral("Õ‚÷√µÁ—€"),0);

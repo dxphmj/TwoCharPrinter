@@ -9,6 +9,7 @@
 #include "filemanagechild.h"
 #include "ui_filemanagechild.h"
 #include "keyboard.h"
+#include "language.h"
 #include "numkeyboard.h"
 #include "time.h"
 #include "syssetting.h"
@@ -67,16 +68,19 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
-	connect(ui->initialSerialBut,SIGNAL(clicked()),this,SLOT(initialSerialBut_clicked()));
-	connect(ui->withdrawSerialBut,SIGNAL(clicked()),this,SLOT(withdrawSerialBut_clciked()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
+	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
+	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
 
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
 	keyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
-	
+
+	languageWidget = new language(keyboardWidget);
+	keyboardWidget->setVisible(false);
+
 	numkeyboardWidget = new numkeyboard(ui->typeTab);
 	numkeyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
@@ -91,16 +95,16 @@ FileEditChild::FileEditChild(QWidget *parent)
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
 	ui->showNumCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									  QCheckBox{color:rgb(255, 255, 255);}\
+									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
 	ui->reverseCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-									  QCheckBox{color:rgb(255, 255, 255);}\
+									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
 	ui->reverseBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-		                                  QCheckBox{color:rgb(255, 255, 255);}\
+		                                  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
 	ui->proportionBmpCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
-										  QCheckBox{color:rgb(255, 255, 255);}\
+										  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										  ");
 	ui->moveUpBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/moveup.bmp);border: 1px solid rgb(12 , 138 , 235);\
@@ -118,29 +122,23 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
-	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->internalShowTextLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	ui->internalShowTextLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->currentValShowTimeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
+	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
     //ui->degreeQRShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowQRLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-
-	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
-	ui->fontTypeTextComBox->setCurrentIndex(0);
-
+	
 	//画布宽度item选项（单位：5x5像素）
 	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
@@ -184,11 +182,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	Zoomfactor=1;
 	ZoomfactorQr=1;
 	ZoomfactorDM=1;
-	SerialNumber=-1;
-	SerialNumber_length=0;
+
 	Barheight=21;
-	drawback=1;
-	drawback_time=0;
 
 	ui->typerimComBox->addItem(QStringLiteral("No border"));
 	ui->typerimComBox->addItem(QStringLiteral("Bind"));
@@ -253,6 +248,46 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeSerialComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeSerialComBox->setCurrentIndex(0);
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
+	ui->fontTypeSerialComBox->setCurrentIndex(0);
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白补0"));
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
+	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
+	ui->formatSerialComBox->setCurrentIndex(0);
+ 
+#ifdef BIG_CHAR
+	ui->fontSizeTextComBox->setVisible(false);
+	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeTextComBox->setCurrentIndex(0); 　
+#else
+
+	ui->fontSizeTextComBox->setVisible(true);
+	ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("宋体简体"));
+	ui->fontTypeTextComBox->setCurrentIndex(0);
+
+	ui->fontSizeTextComBox->addItem(QStringLiteral("5"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("7"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("9"));
+	ui->fontSizeTextComBox->addItem(QStringLiteral("11"));
+	ui->fontSizeTextComBox->setCurrentIndex(0);
+
+#endif
+ 
+	ui->serialLineEdit->setText("000000001");
+	SerialNumber_length=0;
+	Serialfirst=1; 
 }
 
 FileEditChild::~FileEditChild()
@@ -997,7 +1032,7 @@ void FileEditChild::delBut_clicked()
 		if(ite->booFocus)
 		{
 			ite = m_PrinterMes.OBJ_Vec.erase(ite);
-			this->ui->delBut->setText(QStringLiteral("清空"));
+	    	this->ui->delBut->setText(QStringLiteral("清空"));
 			return;
 		}
 		else
@@ -1009,21 +1044,29 @@ void FileEditChild::delBut_clicked()
 void FileEditChild::wordLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->wordLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->barCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::QRCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->QRCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::DMCodeLineEdit_clicked()
 {
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
+	languageWidget->lanEnglish_KBBut_clicked();
+
 }
 
 void FileEditChild::setText2wordLineEdit()
@@ -1050,12 +1093,19 @@ void FileEditChild::ChangeTabLineEdit()
 {
 	int nIndex = ui->typeTab->currentIndex();
 	switch(nIndex)
-	{
-	case 0:	setText2wordLineEdit();break;
-	case 4: setText2barCodeLineEdit();break;
-	case 5:	setText2QRCodeLineEdit();break;
-	case 6:	setText2DMCodeLineEdit();break;
-	}
+		{
+		case 0:	setText2wordLineEdit();break;
+		case 4: setText2barCodeLineEdit();break;
+		case 5:	setText2QRCodeLineEdit();break;
+		case 6:	setText2DMCodeLineEdit();break;
+		}
+	
+	
+}
+
+void FileEditChild::KeyboardConceal_clicked()
+{
+	keyboardWidget->setVisible(false);
 }
 
 void FileEditChild::newTextBut_clicked()
@@ -1636,71 +1686,73 @@ void FileEditChild::newSerialNumber_click()
 
 
 	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
+	QString b=ui->termValSerialLineEdit->text();		
 	QString d=ui->stepLenSerialLineEdit->text();
 	QString e=ui->digitSerialLineEdit->text();
 	QString g=ui->reptCountSerialLineEdit->text();
+	QString SerialNumber_basic;
 	int start=a.toInt();
-	int new_start=c.toInt();
 	int stop=b.toInt();
 	int step=d.toInt();
-	int f=e.toInt();
+	int digit=e.toInt();
 	int time=g.toInt();
-	int n=0;//用于判定起始值和终止值关系的数据
-	int m=1;
-	drawback_time++;
 
-	//若起始值大于终止值，则互换
-	if (start>stop)
+	if (start>=stop)
 	{
-		int c;
-		c=start;
-		start=stop;
-		stop=c;
-		 n=1;
+		return;
+	}
+	
+	if (Serialfirst==1)
+	{	
+		QString c=ui->startValSerialLineEdit->text();
+		int new_start=c.toInt();
+		SerialNumber_number=new_start;
+		Serialfirst=0;
+		if (SerialNumber_number<start)
+		{
+			return;
+		}
+	}
+	else
+	{
+		if (SerialNumber_number<start)
+		{
+			return;
+		}
+		SerialNumber_number=SerialNumber_number+step;
 	}
 
-	if (SerialNumber==-1)//将初始值赋值
+	//判断格式
+	if (ui->formatSerialComBox->currentIndex()==0)
 	{
-		SerialNumber=new_start;
-	}	
-	
-	if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
+	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
+	}
+	if (ui->formatSerialComBox->currentIndex()==1)
 	{
-		ui->serialLineEdit->setText("Out of range");
+		SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//重复的基本单位
+	}
+	if (ui->formatSerialComBox->currentIndex()==2)
+	{
+		SerialNumber_string=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//重复的基本单位
+	}
+
+
+	for (int s=1;s<time;s++)
+	{
+		SerialNumber_string=SerialNumber_string+" "+SerialNumber_basic;
+	}
+
+	if (SerialNumber_number>stop)
+	{
 		return;
 	}
 
-	if (drawback==0)//撤回后的判定
-	{
-		drawback=1;
-		if (SerialNumber>=start&&SerialNumber<=stop)
-		{
-			if (n==0)
-			{
-				SerialNumber=SerialNumber+step;
-			}
-			else
-			{
-				SerialNumber=SerialNumber-step;
-			}
-		}
-	}
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
-	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-		
-	}
-
-	ui->serialLineEdit->setText(SerialNumber_2);
-
-
+	ui->serialLineEdit->setText(SerialNumber_string);
 	//如果当前有obj被选中，则为更改当选中的obj
+	int m=1;
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -1721,131 +1773,36 @@ void FileEditChild::newSerialNumber_click()
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	}
 
-	if (SerialNumber>=start&&SerialNumber<=stop)//准备下次的序列号
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber+step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber-step;
-		}
-	}
+
+	//if (SerialNumber==-1)//将初始值赋值
+	//{
+	//	SerialNumber=new_start;
+	//}	
+	//
+	//if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
+	//{
+	//	ui->serialLineEdit->setText("Out of range");
+	//	return;
+	//}
+
+
+	//QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
+	//SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
+	//QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
+	//for (int s=1;s<time;s++)//重复次数
+	//{
+	//	SerialNumber_2=SerialNumber_2+SerialNumber_3;
+	//	
+	//}
+
+	//ui->serialLineEdit->setText(SerialNumber_2);
 
 
 }
 
-void FileEditChild::initialSerialBut_clicked()
+void FileEditChild::SerialNumberstartchange()
 {
-	ui->initialValSerialLineEdit->setText("1");
-	ui->termValSerialLineEdit->setText("100");
-	ui->startValSerialLineEdit->setText("1");
-	ui->stepLenSerialLineEdit->setText("1");
-	ui->reptCountSerialLineEdit->setText("1");
-	ui->digitSerialLineEdit->setText("9");
-	ui->serialLineEdit->clear();
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
-	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback=1;
-	drawback_time=0;
-	SerialNumber=-1;
-
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));
-
-	//清空打印框
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			return;
-		}
-	}
-}
-
-void FileEditChild::withdrawSerialBut_clciked()
-{
-	QString a=ui->initialValSerialLineEdit->text();
-	QString b=ui->termValSerialLineEdit->text();	
-	QString c=ui->startValSerialLineEdit->text();	
-	QString d=ui->stepLenSerialLineEdit->text();
-	QString e=ui->digitSerialLineEdit->text();
-	QString g=ui->reptCountSerialLineEdit->text();
-	int start=a.toInt();
-	int new_start=c.toInt();
-	int stop=b.toInt();
-	int step=d.toInt();
-	int f=e.toInt();
-	int time=g.toInt();
-	int n=0;
-	int m=1;
-	drawback_time--;
-
-	if (drawback==1)//新建之后的撤回要多减一次
-	{
-		drawback=0;
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-	if (SerialNumber>=start&&SerialNumber<=stop&&drawback_time>0)
-	{
-		if (n==0)
-		{
-			SerialNumber=SerialNumber-step;
-		}
-		else
-		{
-			SerialNumber=SerialNumber+step;
-		}
-	}
-
-	QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	for (int s=1;s<time;s++)//重复次数
-	{
-		SerialNumber_2=SerialNumber_2+SerialNumber_3;
-
-	}
-
-	ui->serialLineEdit->setText(SerialNumber_2);
-
-
-	//如果当前有obj被选中，则为更改当选中的obj
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
-		{
-			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
-			m=0;
-			break;
-		}
-	}
-
+	Serialfirst=1;
 }
 
 void FileEditChild::rimwideAddBut_clicked()

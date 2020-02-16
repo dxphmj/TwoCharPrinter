@@ -11,14 +11,14 @@
     <No1Lab>خراطيش الحبر1</No1Lab>
     <No2Lab>2 خراطيش الحبر</No2Lab>
     <fontsize>20</fontsize>
-    <speedMWLab>السرعة:</speedMWLab>
-    <timeDelayMWLab>تأخير الوقت:</timeDelayMWLab>
-    <dirMWLab>الاتجاه:</dirMWLab>
-    <voltMWLab>الفولطية:</voltMWLab>
-    <PWMWLab>النبض:</PWMWLab>
-    <grayMWLab>الرمادي:</grayMWLab>
-    <fileNmaeLab>اسم الملف:</fileNmaeLab>
-    <countValMWLab>القيمة:</countValMWLab>
+    <speedMWLab>السرعة</speedMWLab>
+    <timeDelayMWLab>تأخير الوقت</timeDelayMWLab>
+    <dirMWLab>الاتجاه</dirMWLab>
+    <voltMWLab>الفولطية</voltMWLab>
+    <PWMWLab>النبض</PWMWLab>
+    <grayMWLab>الرمادي</grayMWLab>
+    <fileNmaeLab>اسم الملف</fileNmaeLab>
+    <countValMWLab>القيمة</countValMWLab>
   </MainWindow>
   <FilemanageForm>
     <fontsize>20</fontsize>
@@ -37,7 +37,10 @@
     <saveasBut>الباقي</saveasBut>
     <rotateTextLab>تدور</rotateTextLab>
     <internalTextLab>بين</internalTextLab>
-
+    <pixelLab>بكسل</pixelLab>
+    <fontsize>11</fontsize>
+    <moveSpeedLab>تتحرك بسرعة ضعف</moveSpeedLab>
+    <fontsize>16</fontsize>
     <addTimeBut>إضافة</addTimeBut>
     <refreshTimeBut>تحديث</refreshTimeBut>
     <newTimeBut>الجديدة</newTimeBut>
@@ -64,12 +67,15 @@
     <reverseBmpCheckBox>عكس الألوان</reverseBmpCheckBox>
     <selBmpBut>إختر الرسومات</selBmpBut>
     <newBmpBut>الجديدة</newBmpBut>
+    <proportionBmpCheckBox>الإنتظار</proportionBmpCheckBox>
 
     <typeBarCodeLab>أنواع</typeBarCodeLab>
     <zoomBarCodeLab>التكبير</zoomBarCodeLab>
     <heightBarCodeLab>عالية</heightBarCodeLab>
     <variableBarCodeBut>المتغيرة</variableBarCodeBut>
     <newBarCodeBut>الجديدة</newBarCodeBut>
+    <typeBarCodeLab_2>نوع الإطار</typeBarCodeLab_2>
+    <zoomBarCodeLab_2>عرض فارغ</zoomBarCodeLab_2>
 
     <showNumCheckBox>أرني الأرقام</showNumCheckBox>
     <sideLenQRLab>طول</sideLenQRLab>
@@ -80,7 +86,7 @@
     <sideLenDMLab>أنواع</sideLenDMLab>
     <variableDMBut>المتغيرة</variableDMBut>
     <newDMBut>الجديدة</newDMBut>
-    <fontsize>12</fontsize>
+    <fontsize>8</fontsize>
     <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
   </FileEditChild>
   <FileManageChild>
