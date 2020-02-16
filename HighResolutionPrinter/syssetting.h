@@ -22,6 +22,10 @@ public:
 
 	MainWindow* m_pMainWindow;
 	int m_SelLanguage;
+	int returnIi()
+	{
+		return m_SelLanguage;
+	}
 
 private slots:
 	void seleSysLanguage();
