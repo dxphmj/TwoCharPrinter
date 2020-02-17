@@ -62,6 +62,7 @@ public:
 	int SerialNumber_number;
 	int SerialNumber_length;
 	int Serialfirst;
+	int serialcount;
 	int Barheight;
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下

@@ -255,11 +255,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeSerialComBox->setCurrentIndex(0);
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
-	ui->fontTypeSerialComBox->setCurrentIndex(0);
-	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白补0"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器3"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器4"));
+	ui->counterSerialComBox->setEnabled(0);
+	ui->counterSerialComBox->setCurrentIndex(0);
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧补0"));
 	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
 	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
 	ui->formatSerialComBox->setCurrentIndex(0);
+	serialcount=1;
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -1707,7 +1711,6 @@ void FileEditChild::newSerialNumber_click()
 		QString c=ui->startValSerialLineEdit->text();
 		int new_start=c.toInt();
 		SerialNumber_number=new_start;
-		Serialfirst=0;
 		if (SerialNumber_number<start)
 		{
 			return;
@@ -1766,36 +1769,41 @@ void FileEditChild::newSerialNumber_click()
 	//如果当前没有obj被选中，则为新建
 	if (m)
 	{
+		if (serialcount!=1)
+		{
+			ui->serialLineEdit->clear();
+			return;
+		}
+		if (ui->counterSerialComBox->currentIndex()==2)
+		{
+			serialcount=0;//关闭计数器
+		}
 		QString txtQString = ui->serialLineEdit->text();
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeTextComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+
+		//新建图像时改动计数器
+		int i=ui->counterSerialComBox->currentIndex();
+		if (Serialfirst==1)
+		{
+			Serialfirst=0;
+		}
+		else
+		{
+			i++;
+		}
+
+		if (i>4)
+		{
+		ui->counterSerialComBox->setCurrentIndex(4);
+		}	
+
+		ui->counterSerialComBox->setCurrentIndex(i);
+
 	}
 
-
-	//if (SerialNumber==-1)//将初始值赋值
-	//{
-	//	SerialNumber=new_start;
-	//}	
-	//
-	//if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
-	//{
-	//	ui->serialLineEdit->setText("Out of range");
-	//	return;
-	//}
-
-
-	//QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	//SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	//QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	//for (int s=1;s<time;s++)//重复次数
-	//{
-	//	SerialNumber_2=SerialNumber_2+SerialNumber_3;
-	//	
-	//}
-
-	//ui->serialLineEdit->setText(SerialNumber_2);
 
 
 }
