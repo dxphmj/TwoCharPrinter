@@ -86,7 +86,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	numkeyboardWidget = new numkeyboard(ui->typeTab);
 	numkeyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
-
+	ui->rimwideLab->setText(QString::number(0));
 	ui->editPreviewText->installEventFilter(this);
 	ui->editPreviewText->viewport()->installEventFilter(this);
 
@@ -257,11 +257,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeSerialComBox->setCurrentIndex(0);
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
-	ui->fontTypeSerialComBox->setCurrentIndex(0);
-	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白补0"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器3"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器4"));
+	ui->counterSerialComBox->setEnabled(0);
+	ui->counterSerialComBox->setCurrentIndex(0);
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧补0"));
 	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
 	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
 	ui->formatSerialComBox->setCurrentIndex(0);
+	serialcount=1;
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -364,7 +368,8 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 void FileEditChild::Create2Dcode(int nType,QString strContent)
 {
 	GenerateBarCodeBmp();
-	int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
+	QString str = getNum(ui->heightBarCodeShowQRLab->text());
+	int heightvalue1 = str.toInt();
 	char* strFileName = "User/logo/output.bmp";
 	QPixmap pLoad;
 	pLoad.load(strFileName);
@@ -813,7 +818,33 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
 			{
 				this->ui->typeTab->setCurrentIndex(1);
-				//this->ui->DateTimeEdit->setText(tmpStr);
+				this->ui->DateTimeEdit->setText(QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strTime));
+				this->ui->SkewSkewValueEdit->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intTimeOffSet));
+				this->ui->SkewComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].booETimeOffSet);
+				this->ui->SkewUUnitlistWidget->setCurrentRow(m_PrinterMes.OBJ_Vec[i].strTimeOffSet);
+				map<string,int> gfntMap;
+				gfntMap.clear();
+				gfntMap.insert(make_pair("5x5",0));
+				gfntMap.insert(make_pair("7x5",1));
+				gfntMap.insert(make_pair("12x12",2));
+				gfntMap.insert(make_pair("16x12",3));
+				switch(gfntMap[m_PrinterMes.OBJ_Vec[i].strFont])
+				{
+				case 0:
+					this->ui->fontTypeTimeComBox->setCurrentIndex(0);
+					break;
+				case 1:
+					this->ui->fontTypeTimeComBox->setCurrentIndex(1);
+					break;
+				case 2:
+					this->ui->fontTypeTimeComBox->setCurrentIndex(2);
+					break;
+				case 3:
+					this->ui->fontTypeTimeComBox->setCurrentIndex(3);
+					break;
+				}
+
+				this->ui->PreviewEdit->setText(tmpStr);
 				this->ui->newTimeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
@@ -1159,7 +1190,7 @@ void FileEditChild::GenerateBarCodeBmp()
 	BarCodeType.insert("UPCE",37);
 	BarCodeType.insert("ITF14",89);
 	BarCodeType.insert("PDF417",55);
-	
+
 	struct zint_symbol *my_symbol;
 	int error_number;
 	int rotate_angle;
@@ -1178,19 +1209,21 @@ void FileEditChild::GenerateBarCodeBmp()
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
-	int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
+	QString str = getNum(ui->heightBarCodeShowQRLab->text());
+	int heightvalue1 = str.toInt();
 	if (heightvalue1<28)
 	{	
 		my_symbol->height =5;	 
 	} 
 	else
 	{
-		my_symbol->height=heightvalue1-23;
+		my_symbol->height=heightvalue1/2-9;
 	}
 	my_symbol->scale =1;
 	batch_mode = 0;
 	mirror_mode = 0;
-	my_symbol->whitespace_width = ui->whitespaceLab->text().toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
+	QString str1 = getNum(ui->whitespaceLab->text());
+	my_symbol->whitespace_width = str1.toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
 	if (ui->typerimComBox->currentIndex()==0)
 	{
 		my_symbol->output_options= 1;
@@ -1204,7 +1237,8 @@ void FileEditChild::GenerateBarCodeBmp()
 		my_symbol->output_options=4;
 	}
 	//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
-	my_symbol->border_width = ui->rimwideLab->text().toInt();//改变边框宽度           
+	QString str2 = getNum(ui->rimwideLab->text());
+	my_symbol->border_width = str2.toInt();//改变边框宽度           
 
 	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
 	if (ui->showNumCheckBox->isChecked())
@@ -1486,55 +1520,72 @@ void FileEditChild::addTimeBut_clicked()
 	switch(nSelect)
 	{
 	case 0:
-		timeFormatStr+=("%Y");
+		if ((timeFormatStr.indexOf("%Y")==-1)&&(timeFormatStr.indexOf("%y")==-1))
+			timeFormatStr+=("%Y");
 		break;
 	case 1:
-		timeFormatStr+=("%y");
+		if ((timeFormatStr.indexOf("%Y")==-1)&&(timeFormatStr.indexOf("%y")==-1))
+			timeFormatStr+=("%y");
 		break;
 	case 2:
-		timeFormatStr+=("%m");
+		if (timeFormatStr.indexOf("%m")==-1)
+			timeFormatStr+=("%m");
 		break;
 	case 3:
-		timeFormatStr+=("%d");
+		if (timeFormatStr.indexOf("%d")==-1)
+			timeFormatStr+=("%d");
 		break;
 	case 4:
-		timeFormatStr+=("%H");
+		if ((timeFormatStr.indexOf("%H")==-1)&&(timeFormatStr.indexOf("%I")==-1))
+			timeFormatStr+=("%H");
 		break;
 	case 5:
-		timeFormatStr+=("%I");
+		if ((timeFormatStr.indexOf("%H")==-1)&&(timeFormatStr.indexOf("%I")==-1))
+			timeFormatStr+=("%I");
 		break;
 	case 6:
-		timeFormatStr+=("%M");
+		if (timeFormatStr.indexOf("%M")==-1)
+			timeFormatStr+=("%M");
 		break;
 	case 7:
-		timeFormatStr+=("%S");
+		if (timeFormatStr.indexOf("%S")==-1)
+			timeFormatStr+=("%S");
 		break;
 	case 8:
-		timeFormatStr+= ("%U");
+		if ((timeFormatStr.indexOf("%U")==-1)&&(timeFormatStr.indexOf("%W")==-1))
+			timeFormatStr+= ("%U");
 		break;
 	case 9:
-		timeFormatStr+= ("%W");
+		if ((timeFormatStr.indexOf("%U")==-1)&&(timeFormatStr.indexOf("%W")==-1))
+			timeFormatStr+= ("%W");
 		break;
 	case 10:
-		timeFormatStr+= ("%w");
+		if (timeFormatStr.indexOf("%w")==-1)
+			timeFormatStr+= ("%w");
 		break;
 	case 11:
-		timeFormatStr+= ("%j");
+		if (timeFormatStr.indexOf("%j")==-1)
+			timeFormatStr+= ("%j");
 		break;
 	case 12:
-		timeFormatStr+= ("%a");
+		if ((timeFormatStr.indexOf("%a")==-1)&&(timeFormatStr.indexOf("%A")==-1))
+			timeFormatStr+= ("%a");
 		break;
 	case 13:
-		timeFormatStr+= ("%A");
+		if ((timeFormatStr.indexOf("%a")==-1)&&(timeFormatStr.indexOf("%A")==-1))
+			timeFormatStr+= ("%A");
 		break;
 	case 14:
-		timeFormatStr+= ("%b");
+		if ((timeFormatStr.indexOf("%b")==-1)&&(timeFormatStr.indexOf("%B")==-1))
+			timeFormatStr+= ("%b");
 		break;
 	case 15:
-		timeFormatStr+= ("%B");
+		if ((timeFormatStr.indexOf("%b")==-1)&&(timeFormatStr.indexOf("%B")==-1))
+			timeFormatStr+= ("%B");
 		break;
 	case 16:
-		timeFormatStr+= ("%p");
+		if (timeFormatStr.indexOf("%p")==-1)
+			timeFormatStr+= ("%p");
 		break;
 	default:
 		break;
@@ -1543,7 +1594,6 @@ void FileEditChild::addTimeBut_clicked()
 	QString skewvalue1;
 	skewvalue1=ui->SkewSkewValueEdit->text();
 	int skewvalue2=skewvalue1.toInt();
-	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
 
@@ -1575,6 +1625,77 @@ void FileEditChild::newTimeBut_clicked()
 {
 	int xPos=0;
 	int yPos=0;
+	//如果当前有obj被选中，则为修改当选中的obj
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			for(int j=0;j<m_PrinterMes.OBJ_Vec.size();j++)
+			{
+				if (m_PrinterMes.OBJ_Vec.at(j).booFocus)
+				{
+					m_PrinterMes.OBJ_Vec.at(j).booFocus=false;
+					yPos=m_PrinterMes.OBJ_Vec[j].intLineStart;
+					xPos=m_PrinterMes.OBJ_Vec[j].intRowStart;
+				}
+			}
+			m_PrinterMes.OBJ_Vec[i].intLineStart=yPos;
+			m_PrinterMes.OBJ_Vec[i].intRowStart=xPos;
+
+
+			//CEdit* pEdit = (CEdit*)GetDlgItem(IDC_DATE_PREVIEW_EDIT);
+			CString strText;
+			//pEdit-> GetWindowText(strText);
+			strText=ui->PreviewEdit->text();
+			m_PrinterMes.OBJ_Vec[i].strText=strText.toStdString();
+			//tempObj.strText=theApp.myModuleMain.UnicodeToUtf8_CSTR(strText);
+
+			CString formatText;
+			formatText=ui->DateTimeEdit->text();
+			//GetDlgItem(IDC_DATE_DATE_TIME_EDIT)->GetWindowText(formatText);
+			m_PrinterMes.OBJ_Vec[i].strTime=m_TimeShow.CString2string(formatText);
+
+			CString  fontText;
+			int nIndex = ui->fontTypeTimeComBox->currentIndex();
+			//int nIndex = m_dateFontCombo.GetCurSel();  //当前选中的项
+			switch(nIndex)
+			{
+			case 0:
+				m_PrinterMes.OBJ_Vec[i].intLineSize=5;
+				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				break;
+			case 1:
+				m_PrinterMes.OBJ_Vec[i].intLineSize=7;
+				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				break;
+			case 2:
+				m_PrinterMes.OBJ_Vec[i].intLineSize=12;
+				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				break;
+			case 3:
+				m_PrinterMes.OBJ_Vec[i].intLineSize=16;
+				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				break;
+			}
+			fontText=ui->fontTypeTimeComBox->currentText();
+			//m_dateFontCombo.GetLBText(nIndex,fontText);
+			m_PrinterMes.OBJ_Vec[i].strFont=m_TimeShow.CString2string(fontText);
+
+			m_PrinterMes.OBJ_Vec[i].booETimeOffSet=ui->SkewComBox->currentIndex();
+			CString timeOffText;
+			timeOffText=ui->SkewSkewValueEdit->text();
+			//GetDlgItem(IDC_DATE_SKEW_VALUE_EDIT)->GetWindowText(timeOffText);
+			int timeOffText1=timeOffText.toInt();
+			m_PrinterMes.OBJ_Vec[i].intTimeOffSet=timeOffText1;
+			m_PrinterMes.OBJ_Vec[i].strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
+
+			//m_PrinterMes.OBJ_Vec[i].booFocus=true;
+			return;
+		}
+	}
+	//如果当前没有obj被选中，则为新建
+
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
 	{
 		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
@@ -1645,7 +1766,7 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj.booFocus=true;
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
- 
+
 }
 
 void FileEditChild::SkewSkewValueEdit_clicked()
@@ -1719,7 +1840,6 @@ void FileEditChild::newSerialNumber_click()
 		QString c=ui->startValSerialLineEdit->text();
 		int new_start=c.toInt();
 		SerialNumber_number=new_start;
-		Serialfirst=0;
 		if (SerialNumber_number<start)
 		{
 			return;
@@ -1778,36 +1898,41 @@ void FileEditChild::newSerialNumber_click()
 	//如果当前没有obj被选中，则为新建
 	if (m)
 	{
+		if (serialcount!=1)
+		{
+			ui->serialLineEdit->clear();
+			return;
+		}
+		if (ui->counterSerialComBox->currentIndex()==2)
+		{
+			serialcount=0;//关闭计数器
+		}
 		QString txtQString = ui->serialLineEdit->text();
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeTextComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+
+		//新建图像时改动计数器
+		int i=ui->counterSerialComBox->currentIndex();
+		if (Serialfirst==1)
+		{
+			Serialfirst=0;
+		}
+		else
+		{
+			i++;
+		}
+
+		if (i>4)
+		{
+		ui->counterSerialComBox->setCurrentIndex(4);
+		}	
+
+		ui->counterSerialComBox->setCurrentIndex(i);
+
 	}
 
-
-	//if (SerialNumber==-1)//将初始值赋值
-	//{
-	//	SerialNumber=new_start;
-	//}	
-	//
-	//if (SerialNumber<start||SerialNumber>stop)//超出设置的范围则报警
-	//{
-	//	ui->serialLineEdit->setText("Out of range");
-	//	return;
-	//}
-
-
-	//QString SerialNumber_1=QString::number(SerialNumber);//数字转字符串
-	//SerialNumber_2=QString("%1").arg(SerialNumber,f,10,QChar('0'));//补0，显示用的字符串
-	//QString SerialNumber_3=QString("%1").arg(SerialNumber,f,10,QChar('0'));//重复的基本单位
-	//for (int s=1;s<time;s++)//重复次数
-	//{
-	//	SerialNumber_2=SerialNumber_2+SerialNumber_3;
-	//	
-	//}
-
-	//ui->serialLineEdit->setText(SerialNumber_2);
 
 
 }
@@ -1897,4 +2022,40 @@ void FileEditChild::whitespaceRedButt_clicked()
 		degreenumQr=0;
 	}
 	ui->whitespaceLab->setText(QString::number(degreenumQr));
+}
+
+QString FileEditChild::getNum(QString str)
+{
+	//获取数字
+	QString str1 = str;
+	QString res;
+	QChar ch;
+	int j = 0;
+
+	for(int i=0;i<str1.size();i++)
+	{
+		ch = str1.at(i);
+		if(ch.toLatin1() <'0'||ch > '9')
+		{
+			if(j == 0)
+			{
+				if(ch.toLatin1() == '.')
+				{
+					res.append(ch);
+					j++;
+					continue;
+				}	
+				else
+					continue;
+			}	
+			else
+				continue;
+		}
+
+		if(((ch.toLatin1()-'0')%2)!=0||((ch.toLatin1()-'0')%2)!=1)
+			res.append(ch);
+
+	}
+
+	return res;
 }

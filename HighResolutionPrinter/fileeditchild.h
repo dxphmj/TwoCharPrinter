@@ -46,6 +46,9 @@ public:
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
 	
 	void GenerateBarCodeBmp();
+	
+	QString getNum(QString str);//获取label控件数字
+
 
 	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
@@ -62,6 +65,7 @@ public:
 	int SerialNumber_number;
 	int SerialNumber_length;
 	int Serialfirst;
+	int serialcount;
 	int Barheight;
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下

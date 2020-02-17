@@ -13,49 +13,43 @@ public:
 	CParamSetting(void);
 	virtual ~CParamSetting(void);
 
-	//pcf控制0X00
-	//BYTE pcf0X00bit1_bit0 ;// 列触发方式：0为编码器1相，1为编码器2相，2为内部一列点数（即等于64K/划速率）
-	//BYTE pcf0X00bit2 ; //同步器反相，0：A->B，1:B->A
-	//BYTE pcf0X00bit4 ; //故障运行，正在打印遇到故障时的处理，0打印停止，1 打印继续，但墨点没有喷出来
-	//BYTE pcf0X00bit5; //产品计数器重置，0 不重置，1 重置到设定值
-	//BYTE pcf0X00bit6 ; //打印计数器重置，0 不重置，1 重置到设定值
 
-	////pcf控制0X01
-	//BYTE pcf0X01bit0 ; //是否启用电眼，0为关闭，1为启用
-	//BYTE pcf0X01bit2 ; //电眼有效电平，0为低电平，1为高电平
-	//BYTE pcf0X01bit3 ; //喷印模式为单次还是连续，0为单次，1为连续
+	QString m_PrintingSpeed;//打印速度
+	QString m_PrintDelay;//打印延时
+	QString m_SynFrequency;//同步倍频
+	QString m_PrintGray;//打印灰度
+	QString m_TriggerMode;//触发方式
+	QString m_InkjetMode;//喷墨方式
+	QString m_PrintingDirection;//打印方向
+	bool m_SynWheelCheck;//启用同步轮
+	bool m_VoiceCheck;//声音
 
-	QString m_PrintingSpeed;
-	QString m_PrintDelay;
-	QString m_SynFrequency;
-	QString m_PrintGray;
-	QString m_TriggerMode;
-	QString m_InkjetMode;
-	QString m_PrintingDirection;
-	bool m_SynWheelCheck;
-	bool m_VoiceCheck;
+	int DPIradioBGcheckedId;//DPI按钮
+	bool m_RepetePrintCheck;//重复打印
+	QString m_RepeatTimes;//重复次数
+	QString m_RepeatDelay;//重复延时
 
-	int DPIradioBGcheckedId;
-	bool m_RepetePrintCheck;
-	QString m_RepeatTimes;
-	QString m_RepeatDelay;
+	bool m_AdaptParaCheck;//自适应参数
+	QString m_InkVoltage;//电压
+	QString m_InkPulseWidth;//脉宽
+	bool m_SplicingCheck;//拼接
+	int NozzleradioBGcheckedId;//喷头选择按钮
+	QString m_Offset;//偏移量
+	bool m_FlashSprayCheck;//闪喷
+	QString m_FlashSprayInterval;//间隔
+	QString m_FlashSprayFrequency;//次数
 
-	bool m_AdaptParaCheck;
-	QString m_InkVoltage;
-	QString m_InkPulseWidth;
-	int NozzleradioBGcheckedId;
-	QString m_Offset;
-	bool m_FlashSprayCheck;
-	QString m_FlashSprayInterval;
-	QString m_FlashSprayFrequency;
-
-	QString m_YearShow;
-	QString m_MonthShow;
-	QString m_DayShow;
-	QString m_HourShow;
-	QString m_MinShow;
-	QString m_SecondShow;
-	QString m_SysLanguage;
+	bool m_UsingUVLightCheck;//启用UV灯
+	QString m_TimeExpand;//延长时间
+	QString m_StartTime;//开始时长
+		 
+	QString m_YearShow;//年
+	QString m_MonthShow;//月
+	QString m_DayShow;//日
+	QString m_HourShow;//时
+	QString m_MinShow;//分
+	QString m_SecondShow;//秒
+	QString m_SysLanguage;//系统语言
 
 public:
 	QXmlStreamReader xmlReader;

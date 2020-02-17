@@ -122,6 +122,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	//先给m_ParamSetting中的参数赋值，然后调用CParamSetting中的函数SaveParam2Xml进行保存
 	MainWindow* theApp = (MainWindow*)(this->parent());
 	
+	//打印风格参数
 	theApp->m_ParamSetting.m_PrintingSpeed = getNum(m_printSetting->ui.printSpeedShowLab->text());
 	theApp->m_ParamSetting.m_PrintDelay = getNum(m_printSetting->ui.printDelayShowLab->text());
 	theApp->m_ParamSetting.m_SynFrequency = getNum(m_printSetting->ui.synFrequencyShowLab->text());
@@ -133,29 +134,32 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_VoiceCheck = m_printSetting->ui.voiceCheckBox->isChecked();
 
 
-
-
+	//高级设置参数
 	theApp->m_ParamSetting.DPIradioBGcheckedId = m_printSetting->DPIradioBG->checkedId();
 	theApp->m_ParamSetting.m_RepetePrintCheck = m_printSetting->ui.repetePrintCheckBox->isChecked();
-
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
 	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());
 	 
-	theApp->m_ParamSetting.m_AdaptParaCheck = m_printSetting->ui.adaptParaCheckBox->isChecked();	 
 
+	//喷头设置参数
+	theApp->m_ParamSetting.m_AdaptParaCheck = m_printSetting->ui.adaptParaCheckBox->isChecked();	 
 	theApp->m_ParamSetting.m_InkVoltage = getNum(m_printSetting->ui.voltShowLab->text());
 	theApp->m_ParamSetting.m_InkPulseWidth = getNum(m_printSetting->ui.PWShowLab->text());
-	
+	theApp->m_ParamSetting.m_SplicingCheck = m_printSetting->ui.isCombineCheckBox->isChecked();
 	theApp->m_ParamSetting.NozzleradioBGcheckedId = m_printSetting->NozzleradioBG->checkedId();
 	theApp->m_ParamSetting.m_Offset = getNum(m_printSetting->ui.offsetShowLab->text());
-	 
 	theApp->m_ParamSetting.m_FlashSprayCheck = m_printSetting->ui.flashSprayCheckBox->isChecked();
-	 
-
 	theApp->m_ParamSetting.m_FlashSprayInterval = getNum(m_printSetting->ui.flashSprayInternalShowLab->text());
 	theApp->m_ParamSetting.m_FlashSprayFrequency = getNum(m_printSetting->ui.flashSprayTimesShowLab->text());
 
 
+	//UV灯设置参数
+	theApp->m_ParamSetting.m_UsingUVLightCheck = m_printSetting->ui.isUVCheckBox->isChecked();
+	theApp->m_ParamSetting.m_TimeExpand = getNum(m_printSetting->ui.delayTimeShowLab->text());
+	theApp->m_ParamSetting.m_StartTime = getNum(m_printSetting->ui.startTimeShowLab->text());
+
+
+	//系统设置参数
 	theApp->m_ParamSetting.m_YearShow = getNum(m_sysSetting->ui.yearShowLab->text());
 	theApp->m_ParamSetting.m_MonthShow = getNum(m_sysSetting->ui.monthShowLab->text());
 	theApp->m_ParamSetting.m_DayShow = getNum(m_sysSetting->ui.dayShowLab->text());
