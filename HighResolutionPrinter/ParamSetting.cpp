@@ -30,7 +30,7 @@ void CParamSetting::SaveParam2Xml()
 
 	xmlWriter.writeStartElement("printsetting"); //一级节点
 
-	//xmlWriter.writeStartElement("Print_style"); //二级节点
+	//打印风格参数
 	xmlWriter.writeTextElement("m_PrintingSpeed",m_PrintingSpeed); //输出一个仅包含文本内容的标签
 	xmlWriter.writeTextElement("m_PrintDelay", m_PrintDelay);
 	xmlWriter.writeTextElement("m_SynFrequency", m_SynFrequency);
@@ -40,34 +40,32 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_PrintingDirection", m_PrintingDirection);
 	xmlWriter.writeTextElement("m_SynWheelCheck",QString::number(m_SynWheelCheck));
 	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
-	//xmlWriter.writeEndElement(); //关闭标签
-	//xmlWriter.writeStartElement("advanced_setting"); //二级节点
 
+	//高级设置参数
 	xmlWriter.writeTextElement("DPIradioBGcheckedId",QVariant(DPIradioBGcheckedId).toString());
 	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
-	//xmlWriter.writeEndElement();
 
-	//xmlWriter.writeStartElement("Sprinklerhead_setting"); //二级节点
+	//喷头设置参数
 	xmlWriter.writeTextElement("m_AdaptParaCheck",QString::number(m_AdaptParaCheck));
 	xmlWriter.writeTextElement("m_InkVoltage", m_InkVoltage);
 	xmlWriter.writeTextElement("m_InkPulseWidth", m_InkPulseWidth);
+	xmlWriter.writeTextElement("m_SplicingCheck",QString::number(m_SplicingCheck));
 	xmlWriter.writeTextElement("NozzleradioBGcheckedId",QVariant(NozzleradioBGcheckedId).toString());	
 	xmlWriter.writeTextElement("m_Offset", m_Offset);
 	xmlWriter.writeTextElement("m_FlashSprayCheck",QString::number(m_FlashSprayCheck));
 	xmlWriter.writeTextElement("m_FlashSprayInterval", m_FlashSprayInterval);
 	xmlWriter.writeTextElement("m_FlashSprayFrequency", m_FlashSprayFrequency);
+
+	//UV灯设置参数
+	xmlWriter.writeTextElement("m_UsingUVLightCheck",QString::number(m_UsingUVLightCheck));
+	xmlWriter.writeTextElement("m_TimeExpand", m_TimeExpand);
+	xmlWriter.writeTextElement("m_StartTime", m_StartTime);
 	xmlWriter.writeEndElement();
 
-	//xmlWriter.writeStartElement("UVlamp_setting"); //二级节点
-	////xmlWriter.writeTextElement("page", "9");
-	//xmlWriter.writeEndElement();
 
-	//xmlWriter.writeEndElement();
-
-
-
+	//系统设置参数
 	xmlWriter.writeStartElement("system_setting"); //一级节点
 	xmlWriter.writeTextElement("m_YearShow",m_YearShow);
 	xmlWriter.writeTextElement("m_MonthShow",m_MonthShow);
@@ -78,11 +76,6 @@ void CParamSetting::SaveParam2Xml()
 
 	xmlWriter.writeTextElement("m_SysLanguage",m_SysLanguage);
 	xmlWriter.writeEndElement();
-
-
-	//xmlWriter.writeStartElement("count_setting"); //一级节点
-	//xmlWriter.writeTextElement("page","111");
-	//xmlWriter.writeEndElement();
 
 	xmlWriter.writeEndElement();
 
@@ -197,6 +190,11 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 				m_InkPulseWidth = ItemValue;
 				pPrintSetting->ui.PWShowLab->setText(m_InkPulseWidth);
 			}
+			else if(xmlReader.name().toString() == "m_SplicingCheck")
+			{
+				m_SplicingCheck = QVariant(ItemValue).toBool();
+				pPrintSetting->ui.isCombineCheckBox->setChecked(m_SplicingCheck);
+			}
 			else if(xmlReader.name().toString() == "NozzleradioBGcheckedId")
 			{
 				NozzleradioBGcheckedId = QVariant(ItemValue).toInt();
@@ -221,6 +219,21 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 			{
 				m_FlashSprayFrequency = ItemValue;
 				pPrintSetting->ui.flashSprayTimesShowLab->setText(m_FlashSprayFrequency);
+			}
+			else if(xmlReader.name().toString() == "m_UsingUVLightCheck")
+			{
+				m_UsingUVLightCheck = QVariant(ItemValue).toBool();
+				pPrintSetting->ui.isUVCheckBox->setChecked(m_UsingUVLightCheck);
+			}
+			else if(xmlReader.name().toString() == "m_TimeExpand")
+			{
+				m_TimeExpand = ItemValue;
+				pPrintSetting->ui.delayTimeShowLab->setText(m_TimeExpand);
+			}
+			else if(xmlReader.name().toString() == "m_StartTime")
+			{
+				m_StartTime = ItemValue;
+				pPrintSetting->ui.startTimeShowLab->setText(m_StartTime);
 			}
 		}
 		else if(pSysSetting)//system_setting

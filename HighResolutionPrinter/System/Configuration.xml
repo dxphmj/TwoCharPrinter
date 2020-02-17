@@ -17,11 +17,15 @@
         <m_AdaptParaCheck>0</m_AdaptParaCheck>
         <m_InkVoltage>8.5</m_InkVoltage>
         <m_InkPulseWidth>1.8</m_InkPulseWidth>
+        <m_SplicingCheck>1</m_SplicingCheck>
         <NozzleradioBGcheckedId>1</NozzleradioBGcheckedId>
         <m_Offset>0</m_Offset>
         <m_FlashSprayCheck>0</m_FlashSprayCheck>
         <m_FlashSprayInterval>5</m_FlashSprayInterval>
         <m_FlashSprayFrequency>1</m_FlashSprayFrequency>
+        <m_UsingUVLightCheck>1</m_UsingUVLightCheck>
+        <m_TimeExpand>500</m_TimeExpand>
+        <m_StartTime>500</m_StartTime>
     </printsetting>
     <system_setting>
         <m_YearShow>2020</m_YearShow>
