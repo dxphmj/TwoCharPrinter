@@ -66,6 +66,8 @@ FileEditChild::FileEditChild(QWidget *parent)
     connect(ui->stepLenSerialLineEdit,SIGNAL(clicked()),this,SLOT(stepLenSerialLineEdit_clicked()));
 	connect(ui->reptCountSerialLineEdit,SIGNAL(clicked()),this,SLOT(reptCountSerialLineEdit_clicked()));
 	connect(ui->digitSerialLineEdit,SIGNAL(clicked()),this,SLOT(digitSerialLineEdit_clicked()));
+	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(heightBmpShowBmpLineEdit_clicked()));
+	connect(ui->widthShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(widthShowBmpLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
@@ -129,8 +131,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->degreeSerialShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->currentValShowSerialLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBmpShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
-	ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
-	ui->widthShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	//ui->heightBmpShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
+	//ui->widthShowBmpLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeBarCodeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowBarCodeLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	ui->heightBarCodeShowQRLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
@@ -1679,6 +1681,16 @@ void FileEditChild::reptCountSerialLineEdit_clicked()
 void FileEditChild::digitSerialLineEdit_clicked()
 {
 	numkeyboardWidget->SetLineEdit(ui->digitSerialLineEdit);
+}
+
+void FileEditChild::heightBmpShowBmpLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->heightBmpShowBmpLineEdit);
+}
+
+void FileEditChild::widthShowBmpLineEdit_clicked()
+{
+	numkeyboardWidget->SetLineEdit(ui->widthShowBmpLineEdit);
 }
 
 void FileEditChild::newSerialNumber_click()

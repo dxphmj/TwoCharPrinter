@@ -131,6 +131,8 @@ private slots:
 	void stepLenSerialLineEdit_clicked();
 	void reptCountSerialLineEdit_clicked();
 	void digitSerialLineEdit_clicked();
+	void heightBmpShowBmpLineEdit_clicked();
+	void widthShowBmpLineEdit_clicked();
 	void ScrollBarChanged(int);
 	void rimwideAddBut_clicked();
 	void rimwideRedButt_clicked();

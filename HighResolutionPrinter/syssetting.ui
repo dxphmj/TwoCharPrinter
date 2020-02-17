@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>110</x>
-     <y>600</y>
+     <y>570</y>
      <width>141</width>
      <height>41</height>
     </rect>
@@ -35,7 +35,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>背光亮度</string>
@@ -48,13 +49,13 @@
    <property name="geometry">
     <rect>
      <x>250</x>
-     <y>600</y>
+     <y>570</y>
      <width>391</width>
      <height>41</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true"/>
+    <string notr="true">background-color: rgb(67,51, 139);</string>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -82,7 +83,8 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;系统时间&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -136,8 +138,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>13</string>
@@ -214,8 +216,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>27</string>
@@ -292,8 +294,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>30</string>
@@ -370,8 +372,8 @@ border-radius:5px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string>color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;2020&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -448,8 +450,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>1</string>
@@ -526,8 +528,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
+    <string notr="true">background-color: rgb(72,61, 139);
+color: rgb(255, 255, 255);</string>
    </property>
    <property name="text">
     <string>8</string>
@@ -581,7 +583,8 @@ border-radius:10px;</string>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);</string>
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
     <string>系统语言</string>
@@ -609,6 +612,23 @@ border-radius:10px;</string>
     <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
   </widget>
+  <widget class="QLabel" name="sysSettingBGLab">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1061</width>
+     <height>651</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <zorder>sysSettingBGLab</zorder>
   <zorder>addHourBut</zorder>
   <zorder>hourShowLab</zorder>
   <zorder>reduceHourBut</zorder>
