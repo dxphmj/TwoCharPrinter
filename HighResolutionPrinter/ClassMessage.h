@@ -68,6 +68,10 @@ public://参数
 	int intBarcodeType;//保存条形码的类型
 	string strCodeContent;//保存条形码的内容
 
+	int intDMsize;//保存DM码大小
+	string strDMContent;//保存DM码的内容
+
+
 	bool boQRBig;
 	int intQRVersion;
 	int intQRErrLevel;
@@ -100,6 +104,7 @@ public://方法
     void ReadBmp(char* strFileName);
 	void CreateQrcode();
 	void Create2Dcode();
+	void CreateDMcode();
 
 	vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
 	void GetVectorWordDots();

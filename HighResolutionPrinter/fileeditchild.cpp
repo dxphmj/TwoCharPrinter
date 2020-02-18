@@ -55,6 +55,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->saveasBut,SIGNAL(clicked()),this,SLOT(saveasBut_clicked()));
 	connect(ui->saveBut,SIGNAL(clicked()),this,SLOT(saveBut_clicked()));
 	connect(ui->addTimeBut,SIGNAL(clicked()),this,SLOT(addTimeBut_clicked()));
+	connect(ui->concelTimeBut,SIGNAL(clicked()),this,SLOT(concelTimeBut_clicked()));
+
 	connect(ui->SkewComBox,SIGNAL(currentIndexChanged()),this,SLOT(SkewComBox_clicked()));
 	connect(ui->refreshTimeBut,SIGNAL(clicked()),this,SLOT(refreshTimeBut_clicked()));
 	connect(ui->newSerialBut,SIGNAL(clicked()),this,SLOT(newSerialNumber_click()));
@@ -175,8 +177,20 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->sideLenQRComBox->addItem(QStringLiteral("37 px"));
 	ui->sideLenQRComBox->setCurrentIndex(1);
 	
-	ui->sideLenDMComBox->addItem(QStringLiteral("Standard"));
-	ui->sideLenDMComBox->addItem(QStringLiteral("GS1"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("Automatic"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("18x18"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("20x20"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("22x22"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("24x24"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("32x32"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("36x36"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("40x40"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("8x18"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("8x32"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("12x26"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("12x36"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("16x36"));
+	ui->sideLenDMComBox->addItem(QStringLiteral("16x48"));
 	ui->sideLenDMComBox->setCurrentIndex(0);
 	degreenum=0;
 	degreenumQr=0;
@@ -207,10 +221,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->SkewUUnitlistWidget->addItem("Day");
 	ui->SkewUUnitlistWidget->addItem("Hour");
 	ui->SkewUUnitlistWidget->addItem("Minute");
-	ui->fontTypeTimeComBox->addItem("5x5");
-	ui->fontTypeTimeComBox->addItem("7x5");
-	ui->fontTypeTimeComBox->addItem("12x12");
-	ui->fontTypeTimeComBox->addItem("16x12");
+	ui->fontSizeTimeComBox->addItem("5x5");
+	ui->fontSizeTimeComBox->addItem("7x5");
+	ui->fontSizeTimeComBox->addItem("12x12");
+	ui->fontSizeTimeComBox->addItem("16x12");
+	ui->fontSizeTimeComBox->setCurrentIndex(0);
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("仿宋简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("楷体简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("黑体简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("宋体简体"));
 	ui->fontTypeTimeComBox->setCurrentIndex(0);
 	ui->SkewComBox->addItem("OFF");
 	ui->SkewComBox->addItem("ON");
@@ -466,6 +485,8 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj.strType2="qrcode";
 	bmpObj.intLineSize=my_symbol->bitmap_height;
 	bmpObj.intRowSize=my_symbol->bitmap_width;
+	bmpObj.intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
+
 	//以下先写死
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
@@ -513,33 +534,24 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	int i;
 
 	error_number = 0;
-	//QString angle1=ui->degreeDMShowLab->text();//暂时注掉
-	//int angle2=angle1.toInt();
-	//rotate_angle = angle2;
-
+	
 	rotate_angle = 0;
 	generated = 0;
 	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = ui->sideLenDMComBox->currentIndex()+1;
-	my_symbol->symbology = nType;
-	my_symbol->scale =1;
+	my_symbol->input_mode = 1;
+	my_symbol->symbology = 71;
+	my_symbol->scale =0.5;
 
-	
-
+	my_symbol->option_2 = nType;
+	if (ui->reverseDMCheckBox->isChecked())
+	{
+		strcpy_s(my_symbol->fgcolour, "ffffff");
+		strcpy_s(my_symbol->bgcolour, "000000");
+	}
 	batch_mode = 0;
 	mirror_mode = 0;
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-	
-	
-/*	float barlongth;
-	barlongth=my_symbol->bitmap_height;
-	float barwidth;
-	barwidth=my_symbol->bitmap_width;
-	float p;
-	p=25/barlongth;
-	my_symbol->scale =1;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-	*/
+
 	generated = 1;
 
 	int xPos=0;
@@ -558,10 +570,12 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	bmpObj.intLineStart=yPos;
 	bmpObj.intRowStart=xPos;
 	bmpObj.strType1="text";
-	bmpObj.strType2="qrcode";
+	bmpObj.strType2="datamatrix";
 	bmpObj.intLineSize=my_symbol->bitmap_height;
 	bmpObj.intRowSize=my_symbol->bitmap_width;
-
+	bmpObj.intDMsize = nType;
+	bmpObj.strDMContent = strContent.toStdString();
+	bmpObj.strText = strContent.toStdString();
 	//以下先写死
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
@@ -831,16 +845,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch(gfntMap[m_PrinterMes.OBJ_Vec[i].strFont])
 				{
 				case 0:
-					this->ui->fontTypeTimeComBox->setCurrentIndex(0);
+					this->ui->fontSizeTimeComBox->setCurrentIndex(0);
 					break;
 				case 1:
-					this->ui->fontTypeTimeComBox->setCurrentIndex(1);
+					this->ui->fontSizeTimeComBox->setCurrentIndex(1);
 					break;
 				case 2:
-					this->ui->fontTypeTimeComBox->setCurrentIndex(2);
+					this->ui->fontSizeTimeComBox->setCurrentIndex(2);
 					break;
 				case 3:
-					this->ui->fontTypeTimeComBox->setCurrentIndex(3);
+					this->ui->fontSizeTimeComBox->setCurrentIndex(3);
 					break;
 				}
 
@@ -871,7 +885,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				this->ui->QRCodeLineEdit->setText(tmpStr);
 				this->ui->newQRBut->setText(QStringLiteral("修改"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "DMcode")
+			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "datamatrix")
 			{
 				this->ui->typeTab->setCurrentIndex(6);
 				this->ui->DMCodeLineEdit->setText(tmpStr);
@@ -1342,36 +1356,197 @@ void FileEditChild::newBarCodeBut_clicked()
 
 void FileEditChild::newQRBut_clicked()
 {
+	QString str;
+	str = ui->QRCodeLineEdit->text();
 	//如果当前有obj被选中，则为修改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			struct zint_symbol *my_symbol;
+			int error_number;
+			int rotate_angle;
+			int generated;
+			int batch_mode;
+			int mirror_mode;
+			char filetype[4];
+			int i;
+			int v;
+
+			rotate_angle = 0;
+			generated = 0;
+			my_symbol = ZBarcode_Create();
+			my_symbol->input_mode = UNICODE_MODE;
+			my_symbol->symbology = 58; 
+			my_symbol->scale =0.5;
+
+			v=ui->sideLenQRComBox->currentIndex();
+			my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+			if (ui->reverseCheckBox->isChecked())
+			{
+				strcpy_s(my_symbol->fgcolour, "ffffff");
+				strcpy_s(my_symbol->bgcolour, "000000");
+			}
+			batch_mode = 0;
+			mirror_mode = 0;
+			error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) str.toStdString().c_str(),str.toStdString().length(),rotate_angle);
+
+			generated = 1;
+			int xPos=0;
+			int yPos=0;
+			/*for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
+			{
+				if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+				{
+					m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+					yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
+					xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+				}
+			}
+*/
+			
+			m_PrinterMes.OBJ_Vec[i].intLineStart=yPos;
+			m_PrinterMes.OBJ_Vec[i].intRowStart=xPos;
+			m_PrinterMes.OBJ_Vec[i].strType1="text";
+			m_PrinterMes.OBJ_Vec[i].strType2="qrcode";
+			m_PrinterMes.OBJ_Vec[i].intLineSize=my_symbol->bitmap_height;
+			m_PrinterMes.OBJ_Vec[i].intRowSize=my_symbol->bitmap_width;
+			m_PrinterMes.OBJ_Vec[i].intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
+
+			i = 0;
+			int r, g, b;
+
+			for (int row = 0; row < my_symbol->bitmap_height; row++)
+			{
+				for (int col = 0;col < my_symbol->bitmap_width; col++)
+				{
+					r = my_symbol->bitmap[i];
+					g = my_symbol->bitmap[i + 1];
+					b = my_symbol->bitmap[i + 2];
+					i += 3;
+					if (r == 0 && g == 0 && b == 0)
+					{
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+					}
+					else
+					{
+						//		bmpObj.boDotBmp[col][row-proportion] = false;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+					}
+				}
+			}
+			
+		//	m_PrinterMes.OBJ_Vec[i].booFocus = true;
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	QString str;
-	str = ui->QRCodeLineEdit->text();
+	
 	CreateQrcode(58,str);
 }
 
 void FileEditChild::newDMBut_clicked()
-{
+{	
+	QString str;
+	str = ui->DMCodeLineEdit->text();
+	QMap <QString , int> DMsize;
+	DMsize.insert("18x18",5);
+	DMsize.insert("20x20",6);
+	DMsize.insert("22x22",7);
+	DMsize.insert("24x24",8);
+	DMsize.insert("32x32",10);
+	DMsize.insert("36x36",11);
+	DMsize.insert("40x40",12);
+	DMsize.insert("8x18",25);
+	DMsize.insert("8x32",26);
+	DMsize.insert("12x26",27);
+	DMsize.insert("12x36",28);
+	DMsize.insert("16x36",29);
+	DMsize.insert("16x48",30);
 	//如果当前有obj被选中，则为修改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
+		//m_PrinterMes.OBJ_Vec.clear();
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			struct zint_symbol *my_symbol;
+			int error_number;
+			int rotate_angle;
+			int generated;
+			int batch_mode;
+			int mirror_mode;
+			char filetype[4];
+			int i;
+
+			error_number = 0;
+
+			rotate_angle = 0;
+			generated = 0;
+			my_symbol = ZBarcode_Create();
+			my_symbol->input_mode = 1;
+			my_symbol->symbology = 71;
+			my_symbol->scale =0.5;
+
+			my_symbol->option_2 = DMsize[this->ui->sideLenDMComBox->currentText()];
+			if (ui->reverseDMCheckBox->isChecked())
+			{
+				strcpy_s(my_symbol->fgcolour, "ffffff");
+				strcpy_s(my_symbol->bgcolour, "000000");
+			}
+			batch_mode = 0;
+			mirror_mode = 0;
+			error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) str.toStdString().c_str(),str.toStdString().length(),rotate_angle);
+
+			generated = 1;
+
+			/*int xPos=0;
+			int yPos=0;
+			for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
+			{
+				if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+				{
+					m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+					yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
+					xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+				}
+			}*/
+
+			m_PrinterMes.OBJ_Vec[i].intLineSize=my_symbol->bitmap_height;
+			m_PrinterMes.OBJ_Vec[i].intRowSize=my_symbol->bitmap_width;
+			m_PrinterMes.OBJ_Vec[i].strDMContent = str.toStdString();
+			m_PrinterMes.OBJ_Vec[i].intDMsize = DMsize[this->ui->sideLenDMComBox->currentText()];
+			i = 0;
+			int r, g, b;
+
+			for (int row = 0; row < my_symbol->bitmap_height; row++)
+			{
+				for (int col = 0;col < my_symbol->bitmap_width; col++)
+				{
+					r = my_symbol->bitmap[i];
+					g = my_symbol->bitmap[i + 1];
+					b = my_symbol->bitmap[i + 2];
+					i += 3;
+					if (r == 0 && g == 0 && b == 0)
+					{
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+					}
+					else
+					{
+						//		bmpObj.boDotBmp[col][row-proportion] = false;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+					}
+				}
+			}
+			
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	QString str;
-	str = ui->DMCodeLineEdit->text();
-	CreateDMcode(71,str);
+	CreateDMcode(DMsize[this->ui->sideLenDMComBox->currentText()],str);
 }
 
 void FileEditChild::newBmpBut_clicked()
@@ -1599,6 +1774,16 @@ void FileEditChild::addTimeBut_clicked()
 
 }
 
+void FileEditChild::concelTimeBut_clicked()
+{
+	if (ui->DateTimeEdit->text() != "")
+	{
+		ui->DateTimeEdit->backspace();
+		ui->DateTimeEdit->backspace();
+	} 
+	ChangeTime();
+}
+
 void FileEditChild::SkewComBox_clicked()
 {	if (ui->SkewComBox->currentIndex()==1)
 {ChangeTime();}
@@ -1657,7 +1842,7 @@ void FileEditChild::newTimeBut_clicked()
 			m_PrinterMes.OBJ_Vec[i].strTime=m_TimeShow.CString2string(formatText);
 
 			CString  fontText;
-			int nIndex = ui->fontTypeTimeComBox->currentIndex();
+			int nIndex = ui->fontSizeTimeComBox->currentIndex();
 			//int nIndex = m_dateFontCombo.GetCurSel();  //当前选中的项
 			switch(nIndex)
 			{
@@ -1678,7 +1863,7 @@ void FileEditChild::newTimeBut_clicked()
 				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			}
-			fontText=ui->fontTypeTimeComBox->currentText();
+			fontText=ui->fontSizeTimeComBox->currentText();
 			//m_dateFontCombo.GetLBText(nIndex,fontText);
 			m_PrinterMes.OBJ_Vec[i].strFont=m_TimeShow.CString2string(fontText);
 
@@ -1730,7 +1915,7 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj.strTime=m_TimeShow.CString2string(formatText);
 
 	CString  fontText;
-	int nIndex = ui->fontTypeTimeComBox->currentIndex();
+	int nIndex = ui->fontSizeTimeComBox->currentIndex();
 	//int nIndex = m_dateFontCombo.GetCurSel();  //当前选中的项
 	switch(nIndex)
 	{
@@ -1751,7 +1936,7 @@ void FileEditChild::newTimeBut_clicked()
 		tempObj.intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 		break;
 	}
-	fontText=ui->fontTypeTimeComBox->currentText();
+	fontText=ui->fontSizeTimeComBox->currentText();
 	//m_dateFontCombo.GetLBText(nIndex,fontText);
 	tempObj.strFont=m_TimeShow.CString2string(fontText);
 

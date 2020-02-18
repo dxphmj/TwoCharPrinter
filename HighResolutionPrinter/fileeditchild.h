@@ -124,6 +124,7 @@ private slots:
 	//void zoomDMAddBut_clicked();
 	//void zoomDMRedBut_clicked();
 	void addTimeBut_clicked();
+	void concelTimeBut_clicked();
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();

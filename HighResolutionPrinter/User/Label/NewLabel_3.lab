@@ -7,18 +7,17 @@
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>2Dcode</TYPE2>
+        <TYPE2>qrcode</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>26</LineSize>
-        <RowSize>232</RowSize>
+        <LineSize>25</LineSize>
+        <RowSize>25</RowSize>
         <SW>1</SW>
-        <SS>0</SS>
+        <SS>1</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>User/logo/output.bmp</setTEXT>
-        <BarcodeType>8</BarcodeType>
-        <BarcodeContent>1234567</BarcodeContent>
+        <setTEXT>6UJIKK</setTEXT>
+        <qrcodeVersion>2</qrcodeVersion>
     </OBJ>
 </MES>

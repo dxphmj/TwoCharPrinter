@@ -413,34 +413,41 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		{
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "qrcodeVersion" );
-			TiXmlElement itemECCLevel( "qrcodeECCLevel" );
-			TiXmlElement itemQuietZone( "qrcodeQuietZone" );
+			//TiXmlElement itemECCLevel( "qrcodeECCLevel" );
+			//TiXmlElement itemQuietZone( "qrcodeQuietZone" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
 			TiXmlText textVersion(to_String(OBJ_Vec[i].intQRVersion).c_str());
-			TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
-			TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
+			//TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
+			//TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
-			itemECCLevel.InsertEndChild(textECCLevel);
-			itemQuietZone.InsertEndChild(textQuietZone);
+			//itemECCLevel.InsertEndChild(textECCLevel);
+			//itemQuietZone.InsertEndChild(textQuietZone);
 
 			itemObj.InsertEndChild( itemSetTEXT );
 			itemObj.InsertEndChild( itemVersion );
-			itemObj.InsertEndChild( itemECCLevel );
-			itemObj.InsertEndChild( itemQuietZone );
+			//itemObj.InsertEndChild( itemECCLevel );
+			//itemObj.InsertEndChild( itemQuietZone );
 		}
 		else if (OBJ_Vec[i].strType2=="datamatrix")
 		{
 			TiXmlElement itemSetTEXT( "setTEXT" );
-			TiXmlElement itemVersion( "qrcodeVersion" );
+			TiXmlElement itemVersion( "DMsize" );
+			TiXmlElement itemDMContent("DMContent");
+
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textVersion(OBJ_Vec[i].strqrcodeVersion.c_str());
+			TiXmlText textVersion(to_String(OBJ_Vec[i].intDMsize).c_str());
+			TiXmlText textDMContent(OBJ_Vec[i].strDMContent.c_str());
+
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
+			itemDMContent.InsertEndChild(textDMContent);
+
 			itemObj.InsertEndChild( itemSetTEXT );
 			itemObj.InsertEndChild( itemVersion );
+			itemObj.InsertEndChild( itemDMContent);
 		}
 		itemMes.InsertEndChild( itemObj );
 	}	 
@@ -841,25 +848,56 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						strText = nodeText->ValueTStr().c_str();
 						obj.strqrcodeVersion.assign(strText);
 						obj.intQRVersion = atoi(strText);
-					}
-					if(strcmp(strItem,"qrcodeECCLevel") == 0)
-					{
-						//读入信息
-						const char* strText; 
-						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-						strText = nodeText->ValueTStr().c_str();
-						obj.strqrcodeECCLevel.assign(strText);
-					}
-					if(strcmp(strItem,"qrcodeQuietZone") == 0)
-					{
-						//读入信息
-						const char* strText; 
-						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-						strText = nodeText->ValueTStr().c_str();
-						obj.intqrcodeQuietZone = atoi(strText);
+					//}
+					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
+					//{
+					//	//读入信息
+					//	const char* strText; 
+					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+					//	strText = nodeText->ValueTStr().c_str();
+					//	obj.strqrcodeECCLevel.assign(strText);
+					//}
+					//if(strcmp(strItem,"qrcodeQuietZone") == 0)
+					//{
+					//	//读入信息
+					//	const char* strText; 
+					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+					//	strText = nodeText->ValueTStr().c_str();
+					//	obj.intqrcodeQuietZone = atoi(strText);
 
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
 						obj.CreateQrcode();
+					}
+				}
+				else if (obj.strType1=="text"&&obj.strType2=="datamatrix")
+				{
+					if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}	
+					if(strcmp(strItem,"DMsize") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						//obj.strDMContent.assign(strText);
+						obj.intDMsize = atoi(strText);
+					}
+					if(strcmp(strItem,"DMContent") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strDMContent.assign(strText);
+					
+						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
+						obj.CreateDMcode();
 					}
 				}
 			}
@@ -2666,40 +2704,30 @@ void OBJ_Control::CreateQrcode()
 	struct zint_symbol *my_symbol;
 	int error_number;
 	int rotate_angle;
-	//int generated;
+	int generated;
 	//int batch_mode;
 	//int mirror_mode;
 	//char filetype[4];
 	int i;
 	int v;
 
-	//error_number = 0;
-	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
-	//int angle2=angle1.toInt();
-	//rotate_angle = angle2;
+	error_number = 0;
+	
 	rotate_angle = 0;
-	//generated = 0;
+	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = intQRVersion; //临时用一下变量intQRVersion
+	my_symbol->symbology = 58; //临时用一下变量intQRVersion
 	my_symbol->scale = 0.5;
 
 //	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = 1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 
 	//batch_mode = 0;
 	//mirror_mode = 0;
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strText.c_str(),strText.size(),rotate_angle);
-	/*float barlongth;
-	barlongth=my_symbol->bitmap_height;
-	float barwidth;
-	barwidth=my_symbol->bitmap_width;
-	float p;
-	p=25/barlongth;
-	my_symbol->scale =1;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
-*/
-	//generated = 1;
+	
+	generated = 1;
 	strType1="text";
 	strType2="qrcode";		
 	intLineSize=my_symbol->bitmap_height;
@@ -2791,18 +2819,18 @@ void OBJ_Control::Create2Dcode()
 
 	//else  {my_symbol->show_hrt=0;}
 
-	//strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
-	//ZBarcode_Encode(my_symbol, (unsigned char*) strContent.toStdString().c_str(), 0);
-	//generated=1;
-	//int error_num = ZBarcode_Print(my_symbol, 0);
+	strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
+	ZBarcode_Encode(my_symbol, (unsigned char*) strCodeContent.c_str(), 0);
+	generated=1;
+	int error_num = ZBarcode_Print(my_symbol, 0);
 
-	//if (error_num != 0)
+	if (error_num != 0)
 	//{
 	//	/* some error occurred */
 	//	//printf("%s\n", my_symbol->errtxt);
 	//}
 
-	//ZBarcode_Delete(my_symbol);
+	ZBarcode_Delete(my_symbol);
 		
 	char* strFileName = "User/logo/output.bmp";
 	QPixmap pLoad;
@@ -2839,6 +2867,88 @@ void OBJ_Control::Create2Dcode()
 		}  
 
 	}  
+	booFocus = true;
+}
+
+void OBJ_Control::CreateDMcode()
+{
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	int generated;
+	int batch_mode;
+	int mirror_mode;
+	char filetype[4];
+	int i;
+
+	error_number = 0;
+
+	rotate_angle = 0;
+	generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = 1;
+	my_symbol->symbology = 71;
+	my_symbol->scale =0.5;
+
+	my_symbol->option_2 = intDMsize;
+
+	batch_mode = 0;
+	mirror_mode = 0;
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strDMContent.c_str(),strDMContent.length(),rotate_angle);
+
+	generated = 1;
+
+	int xPos=0;
+	int yPos=0;
+	/*for(int i=0;i<OBJ_Vec.size();i++)
+	{
+		if (booFocus)
+		{
+			booFocus=false;
+			yPos = intLineStart;
+			xPos = intRowSize+intRowStart;
+		}
+	}*/
+
+	
+	intLineStart=yPos;
+	intRowStart=xPos;
+	strType1="text";
+	strType2="datamatrix";
+	intLineSize=my_symbol->bitmap_height;
+	intRowSize=my_symbol->bitmap_width;
+	//intDMsize = nType;
+	//bmpObj.strDMContent = strContent.toStdString();
+	//bmpObj.strText = strContent.toStdString();
+	//以下先写死
+	/*bmpObj.intSW=1;
+	bmpObj.intSS=1;
+	bmpObj.booNEG=false;
+	bmpObj.booBWDx=false;
+	bmpObj.booBWDy=false;*/
+	i = 0;
+	int r, g, b;
+
+	for (int row = 0; row < my_symbol->bitmap_height; row++)
+	{
+		for (int col = 0;col < my_symbol->bitmap_width; col++)
+		{
+			r = my_symbol->bitmap[i];
+			g = my_symbol->bitmap[i + 1];
+			b = my_symbol->bitmap[i + 2];
+			i += 3;
+			if (r == 0 && g == 0 && b == 0)
+			{
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+			}
+			else
+			{
+				//		bmpObj.boDotBmp[col][row-proportion] = false;
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+			}
+		}
+	}
 	booFocus = true;
 }
 
