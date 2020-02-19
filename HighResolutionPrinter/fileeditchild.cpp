@@ -2100,24 +2100,20 @@ void FileEditChild::newSerialNumber_click()
 
 		//新建图像时改动计数器
 		int i=ui->counterSerialComBox->currentIndex();
-		if (Serialfirst==1)
-		{
-			Serialfirst=0;
-		}
-		else
+		if (Serialfirst!=1)
 		{
 			i++;
 		}
 
-		if (i>4)
+		if (i>3)
 		{
-		ui->counterSerialComBox->setCurrentIndex(4);
+		ui->counterSerialComBox->setCurrentIndex(3);
 		}	
 
 		ui->counterSerialComBox->setCurrentIndex(i);
 
 	}
-
+	Serialfirst=0;
 
 
 }
