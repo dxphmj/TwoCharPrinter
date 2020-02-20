@@ -71,6 +71,8 @@ public://参数
 	int intDMsize;//保存DM码大小
 	string strDMContent;//保存DM码的内容
 
+	int counter;//序列号的计数器
+
 
 	bool boQRBig;
 	int intQRVersion;

@@ -1078,6 +1078,17 @@ void FileEditChild::delBut_clicked()
 	{
 		if(ite->booFocus)
 		{
+			if (m_PrinterMes.OBJ_Vec.back().counter>=0)//如果为序列号，则计数器-1
+			{
+				int i;
+				i=ui->counterSerialComBox->currentIndex();
+				i--;
+				if (i>=0)
+				{		
+					ui->counterSerialComBox->setCurrentIndex(i);
+				}
+			}
+			
 			ite = m_PrinterMes.OBJ_Vec.erase(ite);
 	    	this->ui->delBut->setText(QStringLiteral("清空"));
 			return;
@@ -1085,6 +1096,24 @@ void FileEditChild::delBut_clicked()
 		else
 			++ite;
 	}
+
+
+
+
+
+
+	//if (m_PrinterMes.OBJ_Vec._Myend.counter>=0&&m_PrinterMes.OBJ_Vec._Myend.counter<=3)//如果为序列号，则计数器-1
+	//{
+	//	int i;
+	//	i=ui->counterSerialComBox->currentIndex();
+	//	i--;
+	//	if (i>=0)
+	//	{		
+	//		ui->counterSerialComBox->setCurrentIndex(i);
+	//	}
+	//}
+
+
 	m_PrinterMes.OBJ_Vec.clear();
 }
 
@@ -2096,7 +2125,7 @@ void FileEditChild::newSerialNumber_click()
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeTextComBox->currentText();
 		string textFont = qTextFont.toStdString();
-		PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
+		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
 
 		//新建图像时改动计数器
 		int i=ui->counterSerialComBox->currentIndex();
@@ -2121,6 +2150,30 @@ void FileEditChild::newSerialNumber_click()
 void FileEditChild::SerialNumberstartchange()
 {
 	Serialfirst=1;
+}
+
+void FileEditChild::PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber)
+{
+	OBJ_Control SerialNumber;
+	SerialNumber.strType1 = "text";
+	SerialNumber.strType2 = "text";
+	SerialNumber.strFont = txtFont;
+	SerialNumber.strText = txtContent;
+	int txtLength = txtContent.length();
+	SerialNumber.intLineSize = GetCharLenFromFont(txtFont,false);
+	SerialNumber.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	SerialNumber.intLineStart = txtLineStart;
+	SerialNumber.intRowStart = txtRowStart;
+	SerialNumber.intSW = txtSW;
+	SerialNumber.intSS = txtSS;
+	SerialNumber.booNEG = txtNEG;
+	SerialNumber.booBWDx = txtBWDx;
+	SerialNumber.booBWDy = txtBWDy;
+	SerialNumber.counter=countnumber;
+
+
+	SerialNumber.booFocus = true;
+	m_PrinterMes.OBJ_Vec.push_back(SerialNumber); 
 }
 
 void FileEditChild::rimwideAddBut_clicked()
