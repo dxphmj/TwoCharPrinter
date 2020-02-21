@@ -1098,23 +1098,14 @@ void FileEditChild::delBut_clicked()
 	}
 
 
-
-
-
-
-	//if (m_PrinterMes.OBJ_Vec._Myend.counter>=0&&m_PrinterMes.OBJ_Vec._Myend.counter<=3)//如果为序列号，则计数器-1
-	//{
-	//	int i;
-	//	i=ui->counterSerialComBox->currentIndex();
-	//	i--;
-	//	if (i>=0)
-	//	{		
-	//		ui->counterSerialComBox->setCurrentIndex(i);
-	//	}
-	//}
-
-
 	m_PrinterMes.OBJ_Vec.clear();
+
+	ui->counterSerialComBox->setCurrentIndex(0);//计数器重置
+	serialcount=1;
+	QString c=ui->startValSerialLineEdit->text();
+	int new_start=c.toInt();
+	SerialNumber_number=new_start;
+	Serialfirst=1;
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -2155,8 +2146,7 @@ void FileEditChild::SerialNumberstartchange()
 void FileEditChild::PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber)
 {
 	OBJ_Control SerialNumber;
-	SerialNumber.strType1 = "text";
-	SerialNumber.strType2 = "text";
+	SerialNumber.strType1 = "SerialNumber";
 	SerialNumber.strFont = txtFont;
 	SerialNumber.strText = txtContent;
 	int txtLength = txtContent.length();
