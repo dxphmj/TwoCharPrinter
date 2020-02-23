@@ -2114,7 +2114,7 @@ void FileEditChild::newSerialNumber_click()
 		}
 		QString txtQString = ui->serialLineEdit->text();
 		string txtString = txtQString.toStdString();
-		QString qTextFont = ui->fontTypeTextComBox->currentText();
+		QString qTextFont = ui->fontTypeSerialComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
 
