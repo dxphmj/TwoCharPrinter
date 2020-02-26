@@ -16,6 +16,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "paramsettingform.h"
+#include "automessagebox.h"
 
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
@@ -408,6 +409,8 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	bmpObj.intLineSize=pImage.height();
 	bmpObj.intRowSize=pImage.width();
 	bmpObj.intBarcodeType=nType;
+	bmpObj.intBarType= ui->typeBarCodeComBox->currentIndex();
+	bmpObj.intBarWhite = ui->whitespaceLab->text().toInt();
 	bmpObj.intSW=1;
 	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
@@ -429,6 +432,13 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	}  
 	bmpObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
+	if (nW ==0 && nH ==0)
+	{
+		delBut_clicked();
+	}
+	QString get = QString(QLatin1String(strFileName)).toUtf8();
+	//删除文件
+	QFile::remove(get);
 }
 
 void FileEditChild::CreateQrcode(int nType,QString strContent)
@@ -463,8 +473,14 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
+	 error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 	
+	if (error_number != 0)
+	{
+		/* some error occurred */
+		string errortext = my_symbol->errtxt;
+		informationMessage(errortext);
+	}
 	generated = 1;
 	int xPos=0;
 	int yPos=0;
@@ -519,6 +535,10 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj.strText = strContent.toStdString();
 	bmpObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
+	if (my_symbol->bitmap_height ==0 && my_symbol->bitmap_width ==0)
+	{
+		delBut_clicked();
+	}
 
 }
 
@@ -552,6 +572,12 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	mirror_mode = 0;
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strContent.toStdString().c_str(),strContent.toStdString().length(),rotate_angle);
 
+	if (error_number != 0)
+	{
+		/* some error occurred */
+		string errortext = my_symbol->errtxt;
+		informationMessage(errortext);
+	}
 	generated = 1;
 
 	int xPos=0;
@@ -574,6 +600,7 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	bmpObj.intLineSize=my_symbol->bitmap_height;
 	bmpObj.intRowSize=my_symbol->bitmap_width;
 	bmpObj.intDMsize = nType;
+	bmpObj.intDMrow = ui->sideLenDMComBox->currentIndex();
 	bmpObj.strDMContent = strContent.toStdString();
 	bmpObj.strText = strContent.toStdString();
 	//以下先写死
@@ -877,18 +904,23 @@ void FileEditChild::GetObjSettingsFromScreen()
 			{
 				this->ui->typeTab->setCurrentIndex(4);
 				this->ui->barCodeLineEdit->setText(QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strCodeContent));
+				this->ui->typeBarCodeComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intBarType);
+				this->ui->heightBarCodeShowQRLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intLineSize));
+				this->ui->whitespaceLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intBarWhite));
 				this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
 			{
 				this->ui->typeTab->setCurrentIndex(5);
 				this->ui->QRCodeLineEdit->setText(tmpStr);
+				this->ui->sideLenQRComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intQRVersion-1);
 				this->ui->newQRBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "datamatrix")
 			{
 				this->ui->typeTab->setCurrentIndex(6);
 				this->ui->DMCodeLineEdit->setText(tmpStr);
+				this->ui->sideLenDMComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intDMrow);
 				this->ui->newDMBut->setText(QStringLiteral("修改"));
 			}
 			this->ui->delBut->setText(QStringLiteral("删除"));
@@ -918,6 +950,9 @@ void FileEditChild::GetObjSettingsFromScreen()
 
 	//设置条形码typeTab
 	this->ui->barCodeLineEdit->setText("");
+	this->ui->typeBarCodeComBox->setCurrentIndex(1);
+	this->ui->heightBarCodeShowQRLab->setText("21");
+	this->ui->showNumCheckBox ->setChecked(1);
 	this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
 
 	//设置QR码typeTab
@@ -1215,108 +1250,87 @@ void FileEditChild::newTextBut_clicked()
 
 void FileEditChild::GenerateBarCodeBmp()
 {
-	QMap <QString , int> BarCodeType;
-	BarCodeType.insert("EANX",13);
-	BarCodeType.insert("CODE39",8);
-	BarCodeType.insert("CODE93",25);
-	BarCodeType.insert("CODE128",20);
-	BarCodeType.insert("UPCA",34);
-	BarCodeType.insert("UPCE",37);
-	BarCodeType.insert("ITF14",89);
-	BarCodeType.insert("PDF417",55);
-
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	int batch_mode;
-	int mirror_mode;
-	char filetype[4];
-	int i;
-	int longth;
-	int derta;
-	derta=1;
-	longth=0;
-	error_number = 0;
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
-	QString str = getNum(ui->heightBarCodeShowQRLab->text());
-	int heightvalue1 = str.toInt();
-	if (heightvalue1<28)
-	{	
-		my_symbol->height =5;	 
-	} 
-	else
-	{
-		my_symbol->height=heightvalue1/2-9;
-	}
-	my_symbol->scale =1;
-	batch_mode = 0;
-	mirror_mode = 0;
-	QString str1 = getNum(ui->whitespaceLab->text());
-	my_symbol->whitespace_width = str1.toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
-	if (ui->typerimComBox->currentIndex()==0)
-	{
-		my_symbol->output_options= 1;
-	} 
-	else if(ui->typerimComBox->currentIndex()==1)
-	{
-		my_symbol->output_options=2;
-	}
-	else
-	{
-		my_symbol->output_options=4;
-	}
-	//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
-	QString str2 = getNum(ui->rimwideLab->text());
-	my_symbol->border_width = str2.toInt();//改变边框宽度           
-
-	int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
-	if (ui->showNumCheckBox->isChecked())
-	{
-		my_symbol->show_hrt=1;
-	} 
-
-	else  {my_symbol->show_hrt=0;}
-
-	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
-	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		QMap <QString , int> BarCodeType;
+		BarCodeType.insert("EANX",13);
+		BarCodeType.insert("CODE39",8);
+		BarCodeType.insert("CODE93",25);
+		BarCodeType.insert("CODE128",20);
+		BarCodeType.insert("UPCA",34);
+		BarCodeType.insert("UPCE",37);
+		BarCodeType.insert("ITF14",89);
+		BarCodeType.insert("PDF417",55);
+	
+		struct zint_symbol *my_symbol;
+		int error_number;
+		int rotate_angle;
+		int generated;
+		int batch_mode;
+		int mirror_mode;
+		char filetype[4];
+		//int i;
+		int longth;
+		int derta;
+		derta=1;
+		longth=0;
+		error_number = 0;
+		rotate_angle = 0;
+		generated = 0;
+		my_symbol = ZBarcode_Create();
+		my_symbol->input_mode = UNICODE_MODE;
+		my_symbol->symbology = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
+		QString str = getNum(ui->heightBarCodeShowQRLab->text());
+		int heightvalue1 = str.toInt();
+		if (heightvalue1<28)
+		{	
+			my_symbol->height =5;	 
+		} 
+		else
 		{
-			sprintf(my_symbol->outfile,"User/logo/output.bmp"/*m_PrinterMes.OBJ_Vec[i].strText.c_str()*/);
-			//这是个超级坑的函数！！！
-			ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
-			generated=1;
-			int error_num = ZBarcode_Print(my_symbol, 0);
-
-			if (error_num != 0)
+			my_symbol->height=heightvalue1/2-9;
+		}
+		my_symbol->scale =1;
+		batch_mode = 0;
+		mirror_mode = 0;
+		QString str1 = getNum(ui->whitespaceLab->text());
+		my_symbol->whitespace_width = str1.toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
+		if (ui->typerimComBox->currentIndex()==0)
+		{
+			my_symbol->output_options= 1;
+		} 
+		else if(ui->typerimComBox->currentIndex()==1)
+		{
+			my_symbol->output_options=2;
+		}
+		else
+		{
+			my_symbol->output_options=4;
+		}
+		//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
+		QString str2 = getNum(ui->rimwideLab->text());
+		my_symbol->border_width = str2.toInt();//改变边框宽度           
+	
+		int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
+		if (ui->showNumCheckBox->isChecked())
+		{
+			my_symbol->show_hrt=1;
+		} 
+	
+		else  {my_symbol->show_hrt=0;}
+		strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
+		error_number = ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
+		generated=1;
+		
+		if (error_number != 0)
 			{
 				/* some error occurred */
-				//printf("%s\n", my_symbol->errtxt);
+				string errortext = my_symbol->errtxt;
+				informationMessage(errortext);
 			}
-
-			ZBarcode_Delete(my_symbol);
-			return /*const_cast<char*>(m_PrinterMes.OBJ_Vec[i].strText.c_str())*/;
+		else
+		{
+		ZBarcode_Print(my_symbol, 0);
 		}
-	}
-
-	//char* strFileName = m_PrinterMes.Generate2DcodeName("output");
-	sprintf(my_symbol->outfile,"User/logo/output.bmp"/*m_PrinterMes.Generate2DcodeName("output")*/);
-	ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
-	generated=1;
-	int error_num = ZBarcode_Print(my_symbol, 0);
-
-	if (error_num != 0)
-	{
-		/* some error occurred */
-		//printf("%s\n", my_symbol->errtxt);
-	}
-
-	ZBarcode_Delete(my_symbol);
-	//return strFileName;
+		ZBarcode_Delete(my_symbol);
 }
 
 void FileEditChild::newBarCodeBut_clicked()
@@ -1350,6 +1364,8 @@ void FileEditChild::newBarCodeBut_clicked()
 
 			m_PrinterMes.OBJ_Vec[i].strCodeContent = this->ui->barCodeLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].intBarcodeType = BarCodeType[this->ui->typeBarCodeComBox->currentText()];
+			m_PrinterMes.OBJ_Vec[i].intBarType = this->ui->typeBarCodeComBox->currentIndex();
+			m_PrinterMes.OBJ_Vec[i].intBarWhite = this->ui->whitespaceLab->text().toInt();
 			m_PrinterMes.OBJ_Vec[i].intLineSize = pImage.height();
 			m_PrinterMes.OBJ_Vec[i].intRowSize = pImage.width();
 
@@ -1360,12 +1376,19 @@ void FileEditChild::newBarCodeBut_clicked()
 				{  
 					int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 					if(average < 200)
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[m_PrinterMes.OBJ_Vec[i].intRowStart +x][m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = true;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[x][m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = true;
 					else
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[m_PrinterMes.OBJ_Vec[i].intRowStart +x][m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = false;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[x][m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = false;
 				}
 
-			}  
+			} 
+			if (nW ==0 && nH ==0)
+			{
+				delBut_clicked();
+			}
+			QString get = QString(QLatin1String(strFileName)).toUtf8();
+			//删除文件
+			QFile::remove(get);
 			return;
 		}
 	}
@@ -1383,81 +1406,38 @@ void FileEditChild::newQRBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
-			struct zint_symbol *my_symbol;
-			int error_number;
-			int rotate_angle;
-			int generated;
-			int batch_mode;
-			int mirror_mode;
-			char filetype[4];
-			int i;
-			int v;
-
-			rotate_angle = 0;
-			generated = 0;
-			my_symbol = ZBarcode_Create();
-			my_symbol->input_mode = UNICODE_MODE;
-			my_symbol->symbology = 58; 
-			my_symbol->scale =0.5;
-
-			v=ui->sideLenQRComBox->currentIndex();
-			my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
-			if (ui->reverseCheckBox->isChecked())
-			{
-				strcpy_s(my_symbol->fgcolour, "ffffff");
-				strcpy_s(my_symbol->bgcolour, "000000");
-			}
-			batch_mode = 0;
-			mirror_mode = 0;
-			error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) str.toStdString().c_str(),str.toStdString().length(),rotate_angle);
-
-			generated = 1;
-			int xPos=0;
-			int yPos=0;
-			/*for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
-			{
-				if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
-				{
-					m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
-					yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
-					xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
-				}
-			}
-*/
-			
-			m_PrinterMes.OBJ_Vec[i].intLineStart=yPos;
-			m_PrinterMes.OBJ_Vec[i].intRowStart=xPos;
 			m_PrinterMes.OBJ_Vec[i].strType1="text";
 			m_PrinterMes.OBJ_Vec[i].strType2="qrcode";
-			m_PrinterMes.OBJ_Vec[i].intLineSize=my_symbol->bitmap_height;
-			m_PrinterMes.OBJ_Vec[i].intRowSize=my_symbol->bitmap_width;
+			m_PrinterMes.OBJ_Vec[i].intLineSize = resetQRCode().bitmap_height;
+			m_PrinterMes.OBJ_Vec[i].intRowSize = resetQRCode().bitmap_width;
 			m_PrinterMes.OBJ_Vec[i].intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
 
-			i = 0;
 			int r, g, b;
-
-			for (int row = 0; row < my_symbol->bitmap_height; row++)
+			int intQRbitmap = 0;
+			for (int row = 0; row < resetQRCode().bitmap_height; row++)
 			{
-				for (int col = 0;col < my_symbol->bitmap_width; col++)
+				for (int col = 0;col < resetQRCode().bitmap_width; col++)
 				{
-					r = my_symbol->bitmap[i];
-					g = my_symbol->bitmap[i + 1];
-					b = my_symbol->bitmap[i + 2];
-					i += 3;
+					r = resetQRCode().bitmap[intQRbitmap];
+					g = resetQRCode().bitmap[intQRbitmap + 1];
+					b = resetQRCode().bitmap[intQRbitmap + 2];
+					intQRbitmap += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][m_PrinterMes.OBJ_Vec[i].intLineSize-row-1] = true;
 					}
 					else
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = false;
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][m_PrinterMes.OBJ_Vec[i].intLineSize-row-1] = false;
 					}
 				}
 			}
-			
+			if (m_PrinterMes.OBJ_Vec[i].intLineSize ==0 && m_PrinterMes.OBJ_Vec[i].intRowSize ==0)
+			{
+				delBut_clicked();
+			}
 		//	m_PrinterMes.OBJ_Vec[i].booFocus = true;
 			return;
 		}
@@ -1465,6 +1445,51 @@ void FileEditChild::newQRBut_clicked()
 	//如果当前没有obj被选中，则为新建
 	
 	CreateQrcode(58,str);
+}
+
+zint_symbol FileEditChild::resetQRCode()
+{
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	int generated;
+	int batch_mode;
+	int mirror_mode;
+	char filetype[4];
+	//int i;
+	int v;
+
+	rotate_angle = 0;
+	generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = UNICODE_MODE;
+	my_symbol->symbology = 58; 
+	my_symbol->scale =0.5;
+
+	v=ui->sideLenQRComBox->currentIndex();
+	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+	if (ui->reverseCheckBox->isChecked())
+	{
+		strcpy_s(my_symbol->fgcolour, "ffffff");
+		strcpy_s(my_symbol->bgcolour, "000000");
+	}
+	batch_mode = 0;
+	mirror_mode = 0;
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) ui->QRCodeLineEdit->text().toStdString().c_str(),ui->QRCodeLineEdit->text().toStdString().length(),rotate_angle);
+
+	if (error_number != 0)
+	{
+		/* some error occurred */
+		string errortext = my_symbol->errtxt;
+		informationMessage(errortext);
+	}
+	else
+	{
+
+	
+	generated = 1;
+
+	return *my_symbol;}
 }
 
 void FileEditChild::newDMBut_clicked()
@@ -1492,72 +1517,31 @@ void FileEditChild::newDMBut_clicked()
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
-			struct zint_symbol *my_symbol;
-			int error_number;
-			int rotate_angle;
-			int generated;
-			int batch_mode;
-			int mirror_mode;
-			char filetype[4];
-			int i;
-
-			error_number = 0;
-
-			rotate_angle = 0;
-			generated = 0;
-			my_symbol = ZBarcode_Create();
-			my_symbol->input_mode = 1;
-			my_symbol->symbology = 71;
-			my_symbol->scale =0.5;
-
-			my_symbol->option_2 = DMsize[this->ui->sideLenDMComBox->currentText()];
-			if (ui->reverseDMCheckBox->isChecked())
-			{
-				strcpy_s(my_symbol->fgcolour, "ffffff");
-				strcpy_s(my_symbol->bgcolour, "000000");
-			}
-			batch_mode = 0;
-			mirror_mode = 0;
-			error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) str.toStdString().c_str(),str.toStdString().length(),rotate_angle);
-
-			generated = 1;
-
-			/*int xPos=0;
-			int yPos=0;
-			for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
-			{
-				if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
-				{
-					m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
-					yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
-					xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
-				}
-			}*/
-
-			m_PrinterMes.OBJ_Vec[i].intLineSize=my_symbol->bitmap_height;
-			m_PrinterMes.OBJ_Vec[i].intRowSize=my_symbol->bitmap_width;
+			m_PrinterMes.OBJ_Vec[i].intLineSize=resetDMCode().bitmap_height;
+			m_PrinterMes.OBJ_Vec[i].intRowSize=resetDMCode().bitmap_width;
 			m_PrinterMes.OBJ_Vec[i].strDMContent = str.toStdString();
 			m_PrinterMes.OBJ_Vec[i].intDMsize = DMsize[this->ui->sideLenDMComBox->currentText()];
-			i = 0;
+			m_PrinterMes.OBJ_Vec[i].intDMrow = this->ui->sideLenDMComBox->currentIndex();
+			int j = 0;
 			int r, g, b;
 
-			for (int row = 0; row < my_symbol->bitmap_height; row++)
+			for (int row = 0; row < resetDMCode().bitmap_height; row++)
 			{
-				for (int col = 0;col < my_symbol->bitmap_width; col++)
+				for (int col = 0;col < resetDMCode().bitmap_width; col++)
 				{
-					r = my_symbol->bitmap[i];
-					g = my_symbol->bitmap[i + 1];
-					b = my_symbol->bitmap[i + 2];
-					i += 3;
+					r = resetDMCode().bitmap[j];
+					g = resetDMCode().bitmap[j + 1];
+					b = resetDMCode().bitmap[j + 2];
+					j += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][resetDMCode().bitmap_height-row-1] = true;
 					}
 					else
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = false;
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][resetDMCode().bitmap_height-row-1] = false;
 					}
 				}
 			}
@@ -1567,6 +1551,62 @@ void FileEditChild::newDMBut_clicked()
 	}
 	//如果当前没有obj被选中，则为新建
 	CreateDMcode(DMsize[this->ui->sideLenDMComBox->currentText()],str);
+}
+
+zint_symbol FileEditChild::resetDMCode()
+{
+	QMap <QString , int> DMsize;
+	DMsize.insert("18x18",5);
+	DMsize.insert("20x20",6);
+	DMsize.insert("22x22",7);
+	DMsize.insert("24x24",8);
+	DMsize.insert("32x32",10);
+	DMsize.insert("36x36",11);
+	DMsize.insert("40x40",12);
+	DMsize.insert("8x18",25);
+	DMsize.insert("8x32",26);
+	DMsize.insert("12x26",27);
+	DMsize.insert("12x36",28);
+	DMsize.insert("16x36",29);
+	DMsize.insert("16x48",30);
+
+	struct zint_symbol *my_symbol;
+	int error_number;
+	int rotate_angle;
+	int generated;
+	int batch_mode;
+	int mirror_mode;
+	char filetype[4];
+	int i;
+
+	error_number = 0;
+
+	rotate_angle = 0;
+	generated = 0;
+	my_symbol = ZBarcode_Create();
+	my_symbol->input_mode = 1;
+	my_symbol->symbology = 71;
+	my_symbol->scale =0.5;
+
+	my_symbol->option_2 = DMsize[this->ui->sideLenDMComBox->currentText()];
+	if (ui->reverseDMCheckBox->isChecked())
+	{
+		strcpy_s(my_symbol->fgcolour, "ffffff");
+		strcpy_s(my_symbol->bgcolour, "000000");
+	}
+	batch_mode = 0;
+	mirror_mode = 0;
+	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) ui->DMCodeLineEdit->text().toStdString().c_str(),ui->DMCodeLineEdit->text().toStdString().length(),rotate_angle);
+
+	if (error_number != 0)
+	{
+		/* some error occurred */
+		string errortext = my_symbol->errtxt;
+		informationMessage(errortext);
+	}
+	generated = 1;
+
+	return *my_symbol;
 }
 
 void FileEditChild::newBmpBut_clicked()
@@ -2196,14 +2236,14 @@ void FileEditChild::rimwideRedButt_clicked()
 
 void FileEditChild::heightBarCodeAddBut_clicked()
 {
-	if (Barheight<32)
-	{
+	/*if (Barheight<32)
+	{*/
 		Barheight = Barheight+1;
-	}
+	/*}
 	else
 	{
 		Barheight=32;
-	}
+	}*/
 	ui->heightBarCodeShowQRLab->setText(QString::number(Barheight));
 }
 
@@ -2213,10 +2253,10 @@ void FileEditChild::heightBarCodeRedButt_clicked()
 	{
 		Barheight = Barheight-1;
 	}
-	else
+	/*else
 	{
 		Barheight=21;
-	}
+	}*/
 	ui->heightBarCodeShowQRLab->setText(QString::number(Barheight));
 }
 
@@ -2282,4 +2322,24 @@ QString FileEditChild::getNum(QString str)
 	}
 
 	return res;
+}
+
+void FileEditChild::informationMessage(string errortext)
+{
+	CAutoMessageBox msg;
+	msg.AutoSetSize(440,250);
+	//msg.setText( QApplication::translate("Error", errortext.c_str(), 0));
+	char ctmp[128] = {0};
+	sprintf(ctmp,  "<h1><i>Error</i><p align='center'> </font>%s</font></p></h1>",errortext.c_str());
+	//msg.setText(tr("<h1><i>Error</i><p align='center'> </font>errortext</font></p></h1>"));
+	msg.setText(ctmp);
+
+	msg.setWindowTitle(tr("Warning"));
+	msg.setIcon(QMessageBox::Critical);
+	msg.addButton(tr("OK"),QMessageBox::ActionRole);
+	msg.setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);\
+					  QPushButton {background-color: rgb(0,0,0);color: rgb(255, 255, 255);font: bold;font-size:40px;color:rgb(255,255,255)};\
+					  ");
+	msg.exec();
+
 }

@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLineEdit>
 #include "ClassMessage.h"
+#include "backend\zint.h"
 
 class keyboard;
 class numkeyboard;
@@ -46,10 +47,12 @@ public:
 	void ChangeTime();
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
 	
+	zint_symbol resetQRCode();
+	zint_symbol resetDMCode();
 	void GenerateBarCodeBmp();
 	
 	QString getNum(QString str);//获取label控件数字
-
+	void informationMessage(string errortext);//zint错误弹窗
 
 	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;

@@ -395,19 +395,27 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		{
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemBarcodeType( "BarcodeType" );
+			TiXmlElement itemBarType( "BarType" );
 			TiXmlElement itemBarcodeContent( "BarcodeContent" );
+			TiXmlElement itemBarWhite( "BarWhite" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
 			TiXmlText textBarcodeType(to_String(OBJ_Vec[i].intBarcodeType).c_str());
+			TiXmlText textBarType(to_String(OBJ_Vec[i].intBarType).c_str());
 			TiXmlText textBarcodeContent(OBJ_Vec[i].strCodeContent.c_str());
+			TiXmlText textBarWhite(to_String(OBJ_Vec[i].intBarWhite).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemBarcodeType.InsertEndChild(textBarcodeType);
+			itemBarType.InsertEndChild(textBarType);
 			itemBarcodeContent.InsertEndChild(textBarcodeContent);
+			itemBarWhite.InsertEndChild(textBarWhite);
 
 			itemObj.InsertEndChild( itemSetTEXT );
 			itemObj.InsertEndChild( itemBarcodeType );
+			itemObj.InsertEndChild( itemBarType );
 			itemObj.InsertEndChild( itemBarcodeContent );
+			itemObj.InsertEndChild( itemBarWhite );
 		}
 		else if (OBJ_Vec[i].strType2=="qrcode")
 		{
@@ -436,18 +444,22 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "DMsize" );
 			TiXmlElement itemDMContent("DMContent");
+			TiXmlElement itemDMrow( "DMrow" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
 			TiXmlText textVersion(to_String(OBJ_Vec[i].intDMsize).c_str());
 			TiXmlText textDMContent(OBJ_Vec[i].strDMContent.c_str());
+			TiXmlText textDMrow(to_String(OBJ_Vec[i].intDMrow).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
 			itemDMContent.InsertEndChild(textDMContent);
+			itemDMrow.InsertEndChild(textDMrow);
 
 			itemObj.InsertEndChild( itemSetTEXT );
 			itemObj.InsertEndChild( itemVersion );
 			itemObj.InsertEndChild( itemDMContent);
+			itemObj.InsertEndChild( itemDMrow );
 		}
 		itemMes.InsertEndChild( itemObj );
 	}	 
@@ -819,6 +831,23 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						strText = nodeText->ValueTStr().c_str();
 						obj.intBarcodeType = atoi(strText);
 					}
+					if (strcmp(strItem,"BarType") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intBarType = atoi(strText);
+					}
+					//if(strcmp(strItem, "BarWhite" ) == 0)
+					//{
+					//	//读入信息
+					//	const char* strText; 
+					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+					//	strText = nodeText->ValueTStr().c_str();
+					//	//obj.strDMContent.assign(strText);
+					//	obj.intBarWhite = atoi(strText);
+					//}
 					if(strcmp(strItem,"BarcodeContent") == 0)
 					{
 						//读入信息
@@ -887,6 +916,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
 						obj.intDMsize = atoi(strText);
+					}
+					if(strcmp(strItem,"DMrow") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						//obj.strDMContent.assign(strText);
+						obj.intDMrow = atoi(strText);
 					}
 					if(strcmp(strItem,"DMContent") == 0)
 					{
@@ -2791,9 +2829,8 @@ void OBJ_Control::Create2Dcode()
 	my_symbol->scale =1;
 	batch_mode = 0;
 	mirror_mode = 0;
-	//QString whitespace=ui->whitespaceLab->text();
-	//int whitespace1=whitespace.toInt();
-	//my_symbol->whitespace_width=whitespace1;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
+	
+	my_symbol->whitespace_width = 9;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
 	//if (ui->typerimComBox->currentIndex()==0)
 	//{
 	//	my_symbol->output_options= 1;
@@ -2868,6 +2905,9 @@ void OBJ_Control::Create2Dcode()
 
 	}  
 	booFocus = true;
+	QString get = QString(QLatin1String(strFileName)).toUtf8();
+	//删除文件
+	QFile::remove(get);
 }
 
 void OBJ_Control::CreateDMcode()

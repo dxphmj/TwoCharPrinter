@@ -63,12 +63,15 @@ public://参数
       
 	string strqrcodeVersion;//二维码的版本类型
 	string strqrcodeECCLevel;//二维码的容错率等级
-	int intqrcodeQuietZone;//二维码空白框层数
+	int intqrcodeQuietZone;//二维码空白
 
 	int intBarcodeType;//保存条形码的类型
+	int intBarType;//保存条码类型
 	string strCodeContent;//保存条形码的内容
+	int intBarWhite;//保存条形码空白宽度
 
 	int intDMsize;//保存DM码大小
+	int intDMrow;//保存DM码大小当前行
 	string strDMContent;//保存DM码的内容
 
 	int counter;//序列号的计数器
@@ -93,7 +96,7 @@ public://参数，待定
     //vector<vector<bool>> LogoDot;//logo点阵
 
 
-	bool boDotBmp[255][32];//加载bmp用，255是位图的宽度，32是位图的高度
+	bool boDotBmp[255][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 
 public://方法
