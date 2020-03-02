@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLineEdit>
 #include "ClassMessage.h"
+#include "backend\zint.h"
 
 class keyboard;
 class numkeyboard;
@@ -41,15 +42,22 @@ public:
 	void LoadLocalFile();
 	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //根据字体，计算得到每个字符的显示长度
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	void PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber);
 	void ShowText();
 	void ChangeTime();
 	string TimeFormatToText(QString InPutTimeFormat,int tempstrETimeOffSet, int tempintTimeOffSet, int tempstrTimeOffSetUint);
 	
+	zint_symbol resetQRCode();
+	zint_symbol resetDMCode();
 	void GenerateBarCodeBmp();
 	
 	QString getNum(QString str);//获取label控件数字
+
 	void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
-	void PreviewBmpChange();//更改预览图片的长度和宽度
+	
+
+	void informationMessage(string errortext);//zint错误弹窗
+
 
 	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
@@ -132,6 +140,7 @@ private slots:
 	//void zoomDMAddBut_clicked();
 	//void zoomDMRedBut_clicked();
 	void addTimeBut_clicked();
+	void concelTimeBut_clicked();
 	void SkewComBox_clicked();
 	void refreshTimeBut_clicked();
 	void newTimeBut_clicked();
