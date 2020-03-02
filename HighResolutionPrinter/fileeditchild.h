@@ -97,6 +97,8 @@ public slots:
 	/*void ChineseTabLineEdit();*/
 	void KeyboardConceal_clicked();
 
+	//void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
+	void PreviewBmpChange();
 
 private slots:
 	void variableTextBut_clicked();

@@ -77,6 +77,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
 	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
 	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(textChanged(QString)),this,SLOT(PreviewBmpChange()));
+	connect(ui->widthShowBmpLineEdit,SIGNAL(textChanged(QString)),this,SLOT(PreviewBmpChange()));
 
     ui->wordLineEdit->setFocus();
 
@@ -1137,7 +1138,6 @@ void FileEditChild::ReadBmp(char* strFileName)
 
 }
 
-
 //PreviewBmp(bmpFileRelativePath,nW,nH)
 void  FileEditChild::PreviewBmp(QString fileName,int pW,int pH)
 {
@@ -1173,15 +1173,16 @@ void FileEditChild::selBmpBut_clicked()
 	int pH = image.height();	 
 	PreviewBmp(fileName,pW,pH);	
 }
+
 void FileEditChild::PreviewBmpChange()
 {
-	fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
-	QImage image,result;
-	image.load(fileName);
-	int pW=nW;
-	int pH=nH;
-	PreviewBmp(fileName,pW,pH);	
+	ui->bmpPreviewLab->clear();
+	QImage image1;
+	image1.load(fileName);
+	ChangeBmpWH(image1,1);//nS暂时设为1
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(image1));//在Label控件上显示图片
 }
+
 void FileEditChild::delBut_clicked()
 {
 	vector<OBJ_Control>::iterator ite;
