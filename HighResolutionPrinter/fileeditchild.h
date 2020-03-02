@@ -48,7 +48,8 @@ public:
 	void GenerateBarCodeBmp();
 	
 	QString getNum(QString str);//获取label控件数字
-
+	void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
+	void PreviewBmpChange();//更改预览图片的长度和宽度
 
 	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
@@ -67,8 +68,13 @@ public:
 	int Serialfirst;
 	int serialcount;
 	int Barheight;
+	int nW;
+	int nH;
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下
+	bool boolHWchange;//判断改变的是高度还是宽度
+
+	QString fileName;
 
 public:
 	Ui::FileEditChild* ui;
@@ -82,6 +88,8 @@ public slots:
 	void ChangeTabLineEdit();
 	/*void ChineseTabLineEdit();*/
 	void KeyboardConceal_clicked();
+
+
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
@@ -143,6 +151,7 @@ private slots:
 	void whitespaceAddBut_clicked();
 	void whitespaceRedButt_clicked();
 
+
 	void ChangePixel();
 
 protected:
@@ -156,6 +165,8 @@ public:
 	void setText2barCodeLineEdit();
 	void setText2QRCodeLineEdit();
 	void setText2DMCodeLineEdit();
+
+	void PreviewBmp(QString fileNameAAA,int nW,int nH);
 
 };
 

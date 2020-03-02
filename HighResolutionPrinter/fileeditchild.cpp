@@ -73,6 +73,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
 	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
+	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(textChanged(QString)),this,SLOT(PreviewBmpChange()));
 
     ui->wordLineEdit->setFocus();
 
@@ -1007,13 +1008,44 @@ void FileEditChild::customTimeBut_clicked()
 	pFilemanageForm->timeCustomCall();
 }
 
+void FileEditChild::ChangeBmpWH(QImage& pImage,double nS)
+{
+	int nH,nW;
+	if (ui->proportionBmpCheckBox->isChecked())
+	{
+	    if(boolHWchange)
+		{
+			nH = ui->heightBmpShowBmpLineEdit->text().toInt();
+			nW = nH/nS;
+			ui->widthShowBmpLineEdit->setText(QString::number(nW));	 
+		}
+		else
+	    {
+			nW = ui->widthShowBmpLineEdit->text().toInt();
+		    nH = nS*nW;
+			ui->heightBmpShowBmpLineEdit->setText(QString::number(nH));	 
+		}
+	}
+    else
+	{
+       nH = ui->heightBmpShowBmpLineEdit->text().toInt();
+	   nW = ui->widthShowBmpLineEdit->text().toInt();
+	}
+ 	pImage = pImage.scaled(nW,nH);  
+}
+
 void FileEditChild::ReadBmp(char* strFileName)
 {
 	QPixmap pLoad;
 	pLoad.load(strFileName);
-	int nW = pLoad.width();
+	//int nW = pLoad.width();
+	//int nH = pLoad.height();
 	QImage pImage;
 	pImage = pLoad.toImage();
+	int h=pImage.height();
+	int	w=pImage.width();
+	double nS=(double)h/w;
+	ChangeBmpWH(pImage,nS);
 
 	OBJ_Control bmpObj;
 	bmpObj.intLineStart=0;
@@ -1021,8 +1053,8 @@ void FileEditChild::ReadBmp(char* strFileName)
 	bmpObj.strType1="text";
 	bmpObj.strType2="logo";
 	bmpObj.strText = strFileName;
-	bmpObj.intLineSize=pImage.width();
-	bmpObj.intRowSize=pImage.height();
+	bmpObj.intLineSize=pImage.height();
+	bmpObj.intRowSize=pImage.width();
 	bmpObj.intSW=1;
 	bmpObj.intSS=0;
 	bmpObj.booNEG=false;
@@ -1034,29 +1066,73 @@ void FileEditChild::ReadBmp(char* strFileName)
 		QRgb* line = (QRgb *)pImage.scanLine(y);  
 		for(int x = 0; x< pImage.width(); x++)
 		{  
-			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intRowStart + bmpObj.intLineSize-x-1][bmpObj.intLineStart + y] = true;
+			if (ui->reverseBmpCheckBox->isChecked())
+           { int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			 if(average < 200)
+				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = false;
+			 else
+				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = true;
+           }
 			else
-				bmpObj.boDotBmp[bmpObj.intRowStart + bmpObj.intLineSize-x-1][bmpObj.intLineStart + y] = false;
+			{ int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			  if(average < 200)
+				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = true;
+			 else
+				 bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = false;
+		     }
 		}  
 
 	}  
 	bmpObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
+
+}
+
+
+//PreviewBmp(bmpFileRelativePath,nW,nH)
+void  FileEditChild::PreviewBmp(QString fileName,int pW,int pH)
+{
+	QImage image,result;
+	image.load(fileName); 
+	if(pW == 0 || pH == 0) return;
+	double pS = pH*1.0/pW;
+	if (pS > 291.0/471)
+	{ 
+		pH = 291;
+		pW = 291/pS;
+	}
+	else
+	{
+		pW = 471;
+		pH = 471*pS;  
+	}
+	result = image.scaled(pW,pH,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
+	QFileInfo bmpInfo(fileName);
+	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
+	 
+	ui->heightBmpShowBmpLineEdit->setText(QString::number(image.height()));
+	ui->widthShowBmpLineEdit->setText(QString::number(image.width()));	 
 }
 
 void FileEditChild::selBmpBut_clicked()
 {
-	QString fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
+	fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
 	QImage image,result;
 	image.load(fileName); 
-	result = image.scaled(ui->bmpPreviewLab->width(), ui->bmpPreviewLab->height(),Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
-	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
-	QFileInfo bmpInfo(fileName);
-	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
+	int pW = image.width();
+	int pH = image.height();	 
+	PreviewBmp(fileName,pW,pH);	
 }
-
+void FileEditChild::PreviewBmpChange()
+{
+	fileName = QFileDialog::getOpenFileName(this,tr("Open Image"), "User/logo/", tr("Image Files (*.png *.jpg *.bmp)"));
+	QImage image,result;
+	image.load(fileName);
+	int pW=nW;
+	int pH=nH;
+	PreviewBmp(fileName,pW,pH);	
+}
 void FileEditChild::delBut_clicked()
 {
 	vector<OBJ_Control>::iterator ite;
@@ -1376,6 +1452,8 @@ void FileEditChild::newDMBut_clicked()
 
 void FileEditChild::newBmpBut_clicked()
 {
+	//PreviewBmp(bmpFileRelativePath,320,20); return;
+
 	//如果当前有obj被选中，则为修改当选中的obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
@@ -1807,11 +1885,13 @@ void FileEditChild::digitSerialLineEdit_clicked()
 void FileEditChild::heightBmpShowBmpLineEdit_clicked()
 {
 	numkeyboardWidget->SetLineEdit(ui->heightBmpShowBmpLineEdit);
+	boolHWchange=true;
 }
 
 void FileEditChild::widthShowBmpLineEdit_clicked()
 {
 	numkeyboardWidget->SetLineEdit(ui->widthShowBmpLineEdit);
+	boolHWchange=false;
 }
 
 void FileEditChild::newSerialNumber_click()

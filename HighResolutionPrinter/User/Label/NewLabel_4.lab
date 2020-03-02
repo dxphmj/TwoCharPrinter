@@ -1,0 +1,24 @@
+<MES>
+    <PRO>
+        <Matrix>1L7M</Matrix>
+        <Pixel>8</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>datamatrix</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>24</LineSize>
+        <RowSize>24</RowSize>
+        <SW>1</SW>
+        <SS>1</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setTEXT>5YYYHU</setTEXT>
+        <DMsize>0</DMsize>
+        <DMContent>5YYYHU</DMContent>
+    </OBJ>
+</MES>
