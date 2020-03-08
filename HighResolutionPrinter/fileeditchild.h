@@ -32,6 +32,7 @@ public:
 	void lineeditChange();*/
 
 	void DrawBackFrame(QPainter *qFramePainter);
+	void MouseBeenPressed(QMouseEvent *event);
 	void MouseBeenReleased(QMouseEvent *event);
 	void MouseMoved(QMouseEvent *event);
 	void GetObjSettingsFromScreen();

@@ -195,7 +195,7 @@ void FileManageChild::paintDot()
 
 void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 {
-	QPen qGrayPen(Qt::gray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 	int i,j;
 	for (i=0; i<=3121; i+=5)

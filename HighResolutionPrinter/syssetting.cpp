@@ -32,8 +32,8 @@ sysSetting::sysSetting(QWidget *parent)
 	ui.sysLanguageListWid->addItem(QStringLiteral("ESTONIAN"));  
 	ui.sysLanguageListWid->addItem(QStringLiteral("FARSI")); 
 	ui.sysLanguageListWid->addItem(QStringLiteral("FINNISH"));  
-	 
-	
+	ui.sysLanguageListWid->setCurrentRow(1);
+	m_SelLanguage = 1;
 
 	ui.addYearBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/moveup.bmp);border: 1px solid rgb(12 , 138 , 235);\

@@ -1117,7 +1117,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(1);
+        typeTab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
