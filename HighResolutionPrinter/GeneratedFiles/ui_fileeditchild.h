@@ -155,12 +155,12 @@ public:
     QLabel *rotateTextLab;
     QPushButton *internalTextAddBut;
     QPushButton *internalTextRedBut;
-    QLabel *internalShowTextLab;
     QLabel *internalTextLab;
     QComboBox *pixelComBox;
     QLabel *pixelLab;
     QComboBox *moveSpeedComBox;
     QLabel *moveSpeedLab;
+    QLabel *internalShowTextLab;
 
     void setupUi(QWidget *FileEditChild)
     {
@@ -312,7 +312,7 @@ public:
         fontTypeTimeLab_6->setAlignment(Qt::AlignCenter);
         addTimeBut = new QPushButton(timeTab);
         addTimeBut->setObjectName(QStringLiteral("addTimeBut"));
-        addTimeBut->setGeometry(QRect(370, 250, 81, 61));
+        addTimeBut->setGeometry(QRect(370, 280, 63, 63));
         addTimeBut->setFont(font);
         addTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
@@ -395,10 +395,12 @@ public:
         fontSizeTimeLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         concelTimeBut = new QPushButton(timeTab);
         concelTimeBut->setObjectName(QStringLiteral("concelTimeBut"));
-        concelTimeBut->setGeometry(QRect(370, 170, 81, 61));
+        concelTimeBut->setGeometry(QRect(370, 200, 63, 63));
         concelTimeBut->setFont(font);
         concelTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 230);"));
+"background-image: url(:/Images/repeal.bmp);\n"
+"background-color: rgb(0, 0, 230);\n"
+"border-radius:10px;"));
         typeTab->addTab(timeTab, QString());
         timeBGlLbel->raise();
         SkewUUnitlistWidget->raise();
@@ -1046,14 +1048,6 @@ public:
         internalTextRedBut->setFont(font4);
         internalTextRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        internalShowTextLab = new QLabel(FileEditChild);
-        internalShowTextLab->setObjectName(QStringLiteral("internalShowTextLab"));
-        internalShowTextLab->setGeometry(QRect(890, 520, 111, 41));
-        internalShowTextLab->setMinimumSize(QSize(0, 41));
-        internalShowTextLab->setFont(font3);
-        internalShowTextLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
-"color: rgb(255, 255, 255);"));
-        internalShowTextLab->setAlignment(Qt::AlignCenter);
         internalTextLab = new QLabel(FileEditChild);
         internalTextLab->setObjectName(QStringLiteral("internalTextLab"));
         internalTextLab->setGeometry(QRect(770, 520, 71, 41));
@@ -1090,6 +1084,14 @@ public:
         moveSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         moveSpeedLab->setAlignment(Qt::AlignCenter);
+        internalShowTextLab = new QLabel(FileEditChild);
+        internalShowTextLab->setObjectName(QStringLiteral("internalShowTextLab"));
+        internalShowTextLab->setGeometry(QRect(890, 520, 111, 41));
+        internalShowTextLab->setMinimumSize(QSize(0, 41));
+        internalShowTextLab->setFont(font3);
+        internalShowTextLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
+"color: rgb(255, 255, 255);"));
+        internalShowTextLab->setAlignment(Qt::AlignCenter);
         keyboardStackWid->raise();
         controlLab->raise();
         saveBut->raise();
@@ -1108,16 +1110,16 @@ public:
         rotateTextLab->raise();
         internalTextAddBut->raise();
         internalTextRedBut->raise();
-        internalShowTextLab->raise();
         internalTextLab->raise();
         pixelComBox->raise();
         pixelLab->raise();
         moveSpeedComBox->raise();
         moveSpeedLab->raise();
+        internalShowTextLab->raise();
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(1);
+        typeTab->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -1138,7 +1140,7 @@ public:
         fontTypeTimeLab_7->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\245\346\234\237/\346\227\266\351\227\264</span></p></body></html>", 0));
         refreshTimeBut->setText(QApplication::translate("FileEditChild", "\345\210\267\346\226\260", 0));
         fontTypeTimeLab_6->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\242\204\350\247\210</span></p></body></html>", 0));
-        addTimeBut->setText(QApplication::translate("FileEditChild", "\346\267\273\345\212\240", 0));
+        addTimeBut->setText(QApplication::translate("FileEditChild", "ADD", 0));
         newTimeBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
         fontTypeTimeLab_5->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273\345\215\225\344\275\215</span></p></body></html>", 0));
         fontTypeTimeLab_3->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273</span></p></body></html>", 0));
@@ -1146,20 +1148,20 @@ public:
         fontTypeTimeLab_4->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\201\217\347\247\273\345\200\274</span></p></body></html>", 0));
         timeBGlLbel->setText(QString());
         fontSizeTimeLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
-        concelTimeBut->setText(QApplication::translate("FileEditChild", "\346\222\244\351\224\200", 0));
+        concelTimeBut->setText(QString());
         typeTab->setTabText(typeTab->indexOf(timeTab), QApplication::translate("FileEditChild", "\346\227\266\351\227\264", 0));
-        formatSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\274\345\274\217</span></p></body></html>", 0));
-        fontTypeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\344\275\223</span></p></body></html>", 0));
-        counterSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\350\256\241\346\225\260\345\231\250</span></p></body></html>", 0));
+        formatSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\346\240\274 \345\274\217</span></p></body></html>", 0));
+        fontTypeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\345\255\227       \344\275\223</span></p></body></html>", 0));
+        counterSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\350\256\241\346\225\260\345\231\250</span></p></body></html>", 0));
         newSerialBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
-        initialValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\350\265\267\345\247\213\345\200\274</span></p></body></html>", 0));
-        termValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\273\210\346\255\242\345\200\274</span></p></body></html>", 0));
-        startValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\274\200\345\247\213\345\200\274</span></p></body></html>", 0));
-        stepLenSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\255\245\351\225\277</span></p></body></html>", 0));
-        reptCountSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\207\215\345\244\215\350\256\241\346\225\260</span></p></body></html>", 0));
-        digitSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\344\275\215\346\225\260</span></p></body></html>", 0));
+        initialValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\350\265\267\345\247\213\345\200\274</span></p></body></html>", 0));
+        termValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\347\273\210\346\255\242\345\200\274</span></p></body></html>", 0));
+        startValSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\345\274\200\345\247\213\345\200\274</span></p></body></html>", 0));
+        stepLenSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\346\255\245     \351\225\277</span></p></body></html>", 0));
+        reptCountSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\351\207\215\345\244\215\350\256\241\346\225\260</span></p></body></html>", 0));
+        digitSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\344\275\215 \346\225\260</span></p></body></html>", 0));
         serialBGlLbel->setText(QString());
-        fontSizeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\255\227\345\217\267</span></p></body></html>", 0));
+        fontSizeSerialLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p align=\"center\"><span style=\" color:#ffffff;\">\345\255\227 \345\217\267</span></p></body></html>", 0));
         typeTab->setTabText(typeTab->indexOf(serialTab), QApplication::translate("FileEditChild", "\345\272\217\345\210\227\345\217\267", 0));
         heightBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\253\230\345\272\246</span></p></body></html>", 0));
         widthBmpLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\256\275\345\272\246</span></p></body></html>", 0));
@@ -1212,10 +1214,10 @@ public:
         rotateTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\227\213\350\275\254</span></p></body></html>", 0));
         internalTextAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         internalTextRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
-        internalShowTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
         internalTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\227\264\350\267\235</span></p></body></html>", 0));
         pixelLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\203\217\347\264\240</span></p></body></html>", 0));
         moveSpeedLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\247\273\345\212\250\345\200\215\351\200\237</span></p></body></html>", 0));
+        internalShowTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
     } // retranslateUi
 
 };

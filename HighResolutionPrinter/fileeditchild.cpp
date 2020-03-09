@@ -79,6 +79,11 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(textChanged(QString)),this,SLOT(PreviewBmpChange()));
 	connect(ui->widthShowBmpLineEdit,SIGNAL(textChanged(QString)),this,SLOT(PreviewBmpChange()));
 
+	connect(ui->degreeTextRedBut,SIGNAL(clicked()),this,SLOT(degreeTextRedBut()));
+	connect(ui->degreeTextAddBut,SIGNAL(clicked()),this,SLOT(degreeTextAddBut()));
+	connect(ui->internalTextRedBut,SIGNAL(clicked()),this,SLOT(internalTextRedBut()));
+	connect(ui->internalTextAddBut,SIGNAL(clicked()),this,SLOT(internalTextAddBut()));
+
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
@@ -129,6 +134,11 @@ FileEditChild::FileEditChild(QWidget *parent)
 								QPushButton:pressed{border-image: url(:/Images/moveright.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\
 								"); 
+	ui->concelTimeBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/repeal.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
+									QPushButton:pressed{border-image: url(:/Images/repeal.bmp);border: 1px solid rgb(12 , 138 , 235);\
+									padding-left:7px;padding-top:7px;}\
+									"); 
+
 	ui->degreeTextShowLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	ui->internalShowTextLab->setStyleSheet("background-color: rgb(72,61, 139);color: rgb(255, 255, 255);"); 
 	//ui->degreeTimeShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
@@ -2346,6 +2356,7 @@ void FileEditChild::whitespaceAddBut_clicked()
 
 	if (degreenumQr<20)
 	{
+
 		degreenumQr=degreenumQr+1;
 	} 
 	else
