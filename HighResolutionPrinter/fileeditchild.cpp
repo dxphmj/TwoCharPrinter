@@ -298,6 +298,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
 	ui->formatSerialComBox->setCurrentIndex(0);
 	serialcount=1;
+	ui->serialLineEdit->setText("000000001");
+	SerialNumber_length=0;
+	Serialfirst=1; 
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -305,9 +308,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
-	ui->fontTypeTextComBox->setCurrentIndex(0); 　
-#else
+	ui->fontTypeTextComBox->setCurrentIndex(0); 
 
+#else
 	ui->fontSizeTextComBox->setVisible(true);
 	ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
@@ -322,10 +325,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontSizeTextComBox->setCurrentIndex(0);
 
 #endif
- 
-	ui->serialLineEdit->setText("000000001");
-	SerialNumber_length=0;
-	Serialfirst=1; 
+
 }
 
 FileEditChild::~FileEditChild()
@@ -364,7 +364,7 @@ void FileEditChild::ChangePixel()
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
-	QPen qGrayPen(Qt::gray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 	QMap <QString,int> PixelMap;
@@ -384,7 +384,7 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
 	}
-	for (j=241; j>=241-PixelMap[CurPixelItem]-1; j-=5)
+	for (j=240; j>=240-PixelMap[CurPixelItem]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
@@ -725,8 +725,6 @@ void FileEditChild::paintDot()
 {
 	QPainter painter(ui->editPreviewText);
 	m_PrinterMes.DrawDot(&painter);
-	QWidget *pQWidget(this);
-	pQWidget->update();
 }
 
 bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
@@ -740,21 +738,29 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
-		this->pointMousePressed = mouseEvent->pos();
+		MouseBeenPressed(mouseEvent);
 		this->boolMousePressed = true;
+		this->update();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonRelease)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 		MouseBeenReleased(mouseEvent);
 		this->boolMousePressed = false;
+		this->update();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseMove)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 		MouseMoved(mouseEvent);
+		this->update();
 	}
 	return QWidget::eventFilter(watched, event);
+}
+
+void FileEditChild::MouseBeenPressed(QMouseEvent *event)
+{
+	this->pointMousePressed = event->pos();
 }
 
 void FileEditChild::MouseBeenReleased(QMouseEvent *event)
@@ -763,7 +769,6 @@ void FileEditChild::MouseBeenReleased(QMouseEvent *event)
 	QPoint p_Relative = event->pos();
 	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
 	GetObjSettingsFromScreen();
-	paintDot();
 }
 
 void FileEditChild::MouseMoved(QMouseEvent *event)
@@ -841,8 +846,10 @@ void FileEditChild::GetObjSettingsFromScreen()
 				{
 				case 1:
 					this->ui->newTextBut->setText(QStringLiteral("修改"));
+					break;
 				case 5:
 					this->ui->newTextBut->setText(QStringLiteral("change"));
+					break;
 				}
 				
 				map<string,int> gfntMap;
@@ -946,7 +953,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 	//设置文本typeTab
 	this->ui->wordLineEdit->setText("");
 	this->ui->newTextBut->setText(QStringLiteral("新建"));
-	this->ui->fontTypeTextComBox->setCurrentIndex(-1);
+	this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
 	//设置时间typeTab
 	this->ui->PreviewEdit->setText("");
@@ -1213,12 +1220,13 @@ void FileEditChild::delBut_clicked()
 			
 			ite = m_PrinterMes.OBJ_Vec.erase(ite);
 	    	this->ui->delBut->setText(QStringLiteral("清空"));
+			GetObjSettingsFromScreen();
+			this->update();
 			return;
 		}
 		else
 			++ite;
 	}
-
 
 	m_PrinterMes.OBJ_Vec.clear();
 
@@ -1228,6 +1236,8 @@ void FileEditChild::delBut_clicked()
 	int new_start=c.toInt();
 	SerialNumber_number=new_start;
 	Serialfirst=1;
+	GetObjSettingsFromScreen();
+	this->update();
 }
 
 void FileEditChild::wordLineEdit_clicked()
@@ -1323,6 +1333,7 @@ void FileEditChild::newTextBut_clicked()
 				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
 				break;
 			}
+			this->update();
 			return;
 		}
 	}
@@ -1333,6 +1344,7 @@ void FileEditChild::newTextBut_clicked()
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
 	this->ui->newTextBut->setText(QStringLiteral("修改"));
 	this->ui->delBut->setText(QStringLiteral("删除"));
+	this->update();
 }
 
 void FileEditChild::GenerateBarCodeBmp()
@@ -1476,12 +1488,15 @@ void FileEditChild::newBarCodeBut_clicked()
 			QString get = QString(QLatin1String(strFileName)).toUtf8();
 			//删除文件
 			QFile::remove(get);
+			this->update();
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
 	QString str = ui->barCodeLineEdit->text();
 	Create2Dcode(BarCodeType[this->ui->typeBarCodeComBox->currentText()],str);
+	this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
+	this->update();
 }
 
 void FileEditChild::newQRBut_clicked()
@@ -1526,12 +1541,14 @@ void FileEditChild::newQRBut_clicked()
 				delBut_clicked();
 			}
 		//	m_PrinterMes.OBJ_Vec[i].booFocus = true;
+			this->update();
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	
 	CreateQrcode(58,str);
+	this->ui->newQRBut->setText(QStringLiteral("修改"));
+	this->update();
 }
 
 zint_symbol FileEditChild::resetQRCode()
@@ -1572,11 +1589,9 @@ zint_symbol FileEditChild::resetQRCode()
 	}
 	else
 	{
-
-	
-	generated = 1;
-
-	return *my_symbol;}
+		generated = 1;
+		return *my_symbol;
+	}
 }
 
 void FileEditChild::newDMBut_clicked()
@@ -1632,12 +1647,14 @@ void FileEditChild::newDMBut_clicked()
 					}
 				}
 			}
-			
+			this->update();
 			return;
 		}
 	}
 	//如果当前没有obj被选中，则为新建
 	CreateDMcode(DMsize[this->ui->sideLenDMComBox->currentText()],str);
+	this->ui->newDMBut->setText(QStringLiteral("修改"));
+	this->update();
 }
 
 zint_symbol FileEditChild::resetDMCode()
@@ -1706,6 +1723,7 @@ void FileEditChild::newBmpBut_clicked()
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
 			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
+			this->update();
 			return;
 		}
 	}
@@ -1714,7 +1732,8 @@ void FileEditChild::newBmpBut_clicked()
 	QByteArray ba = bmpFileRelativePath.toLatin1();
 	pic=ba.data();
 	ReadBmp(pic);
-
+	this->ui->newBmpBut->setText(QStringLiteral("修改"));
+	this->update();
 }
 
 void FileEditChild::internalTextAddBut_clicked()
@@ -1736,7 +1755,7 @@ void FileEditChild::internalTextRedBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i].booFocus && m_PrinterMes.OBJ_Vec[i].intSS != 0)
 		{
 			m_PrinterMes.OBJ_Vec[i].intSS -= 1;
 			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i].intSS);
@@ -1765,6 +1784,7 @@ void FileEditChild::moveUpBut_clicked()
 			}
 		}
 	}
+	this->update();
 }
 
 void FileEditChild::moveDownBut_clicked()
@@ -1784,6 +1804,7 @@ void FileEditChild::moveDownBut_clicked()
 			}
 		}
 	}
+	this->update();
 }
 
 void FileEditChild::moveLeftBut_clicked()
@@ -1803,6 +1824,7 @@ void FileEditChild::moveLeftBut_clicked()
 			}
 		}
 	}
+	this->update();
 }
 
 void FileEditChild::moveRightBut_clicked()
@@ -1823,6 +1845,7 @@ void FileEditChild::moveRightBut_clicked()
 			}
 		}
 	}
+	this->update();
 }
 
 void FileEditChild::deleteChar()
@@ -1969,7 +1992,7 @@ void FileEditChild::newTimeBut_clicked()
 			{
 				if (m_PrinterMes.OBJ_Vec.at(j).booFocus)
 				{
-					m_PrinterMes.OBJ_Vec.at(j).booFocus=false;
+					m_PrinterMes.OBJ_Vec.at(j).booFocus = true;
 					yPos=m_PrinterMes.OBJ_Vec[j].intLineStart;
 					xPos=m_PrinterMes.OBJ_Vec[j].intRowStart;
 				}
@@ -1996,35 +2019,36 @@ void FileEditChild::newTimeBut_clicked()
 			switch(nIndex)
 			{
 			case 0:
-				m_PrinterMes.OBJ_Vec[i].intLineSize=5;
-				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 5;
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 1:
-				m_PrinterMes.OBJ_Vec[i].intLineSize=7;
-				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 7;
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 2:
-				m_PrinterMes.OBJ_Vec[i].intLineSize=12;
-				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 12;
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 3:
-				m_PrinterMes.OBJ_Vec[i].intLineSize=16;
-				m_PrinterMes.OBJ_Vec[i].intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			}
-			fontText=ui->fontSizeTimeComBox->currentText();
+			fontText = ui->fontSizeTimeComBox->currentText();
 			//m_dateFontCombo.GetLBText(nIndex,fontText);
-			m_PrinterMes.OBJ_Vec[i].strFont=m_TimeShow.CString2string(fontText);
+			m_PrinterMes.OBJ_Vec[i].strFont = m_TimeShow.CString2string(fontText);
 
-			m_PrinterMes.OBJ_Vec[i].booETimeOffSet=ui->SkewComBox->currentIndex();
+			m_PrinterMes.OBJ_Vec[i].booETimeOffSet = ui->SkewComBox->currentIndex();
 			CString timeOffText;
-			timeOffText=ui->SkewSkewValueEdit->text();
+			timeOffText = ui->SkewSkewValueEdit->text();
 			//GetDlgItem(IDC_DATE_SKEW_VALUE_EDIT)->GetWindowText(timeOffText);
-			int timeOffText1=timeOffText.toInt();
-			m_PrinterMes.OBJ_Vec[i].intTimeOffSet=timeOffText1;
-			m_PrinterMes.OBJ_Vec[i].strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
+			int timeOffText1 = timeOffText.toInt();
+			m_PrinterMes.OBJ_Vec[i].intTimeOffSet = timeOffText1;
+			m_PrinterMes.OBJ_Vec[i].strTimeOffSet = ui->SkewUUnitlistWidget->currentRow();
 
 			//m_PrinterMes.OBJ_Vec[i].booFocus=true;
+			this->update();
 			return;
 		}
 	}
@@ -2097,10 +2121,11 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj.intTimeOffSet=timeOffText1;
 	tempObj.strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
 
-	tempObj.booFocus=true;
+	tempObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
-
+	this->ui->newTimeBut->setText(QStringLiteral("修改"));
+	this->update();
 }
 
 void FileEditChild::SkewSkewValueEdit_clicked()
@@ -2152,8 +2177,6 @@ void FileEditChild::widthShowBmpLineEdit_clicked()
 
 void FileEditChild::newSerialNumber_click()
 {
-
-
 	QString a=ui->initialValSerialLineEdit->text();
 	QString b=ui->termValSerialLineEdit->text();		
 	QString d=ui->stepLenSerialLineEdit->text();
@@ -2228,6 +2251,7 @@ void FileEditChild::newSerialNumber_click()
 			string tmpStr = this->ui->serialLineEdit->text().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			m=0;
+			this->update();
 			break;
 		}
 	}
@@ -2248,6 +2272,8 @@ void FileEditChild::newSerialNumber_click()
 		QString qTextFont = ui->fontTypeSerialComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
+		this->ui->newSerialBut->setText(QStringLiteral("修改"));
+		this->update();
 
 		//新建图像时改动计数器
 		int i=ui->counterSerialComBox->currentIndex();

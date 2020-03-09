@@ -12,7 +12,7 @@
 
 #include "ParamSetting.h"
 
-//#define   BIG_CHAR
+#define BIG_CHAR
 
 using namespace std;
 typedef unsigned char BYTE;
