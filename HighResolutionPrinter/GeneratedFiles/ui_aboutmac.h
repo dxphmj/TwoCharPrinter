@@ -220,12 +220,12 @@ public:
         sysSoftUpdateLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\233\264\346\226\260\346\227\266\351\227\264</span></p></body></html>", 0));
         jetCodeShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">C200</span></p></body></html>", 0));
         jetCodeLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\226\267\347\240\201\346\234\272\345\236\213\345\217\267</span></p></body></html>", 0));
-        boardHardUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">202002020</span></p></body></html>", 0));
+        boardHardUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">20200202</span></p></body></html>", 0));
         boardHardVersionShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">1.0.1</span></p></body></html>", 0));
         boardSoftVersionShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">1.0.1</span></p></body></html>", 0));
-        boardSoftUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">202002020</span></p></body></html>", 0));
+        boardSoftUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">20200202</span></p></body></html>", 0));
         sysSoftVersionShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">2.0.1</span></p></body></html>", 0));
-        sysSoftUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">202002020</span></p></body></html>", 0));
+        sysSoftUpdateShowLab->setText(QApplication::translate("aboutMac", "<html><head/><body><p><span style=\" color:#ffffff;\">20200202</span></p></body></html>", 0));
     } // retranslateUi
 
 };

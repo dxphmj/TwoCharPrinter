@@ -1,5 +1,6 @@
 <RCC>
   <qresource prefix="/">
+    <file>Images/repeal.bmp</file>
     <file>Images/aboutMac.bmp</file>
     <file>Images/movedown.bmp</file>
     <file>Images/moveleft.bmp</file>
