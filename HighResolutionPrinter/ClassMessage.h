@@ -220,7 +220,8 @@ public:
 	void ReadBmp(char* strFileName);
 	char* GenerateFileName(string tmpFileName);
 	char* Generate2DcodeName(string strFileName);
-	void JudgeIfOBJ_Selected(QPoint p_Relative);
+	//bool JudgeIfOBJ_Selected(QPoint p_Relative);
+	void CtrlCurObjChoice(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);

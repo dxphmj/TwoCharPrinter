@@ -8,31 +8,31 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>14</LineStart>
-        <RowStart>0</RowStart>
-        <LineSize>7</LineSize>
-        <RowSize>18</RowSize>
+        <LineStart>17</LineStart>
+        <RowStart>69</RowStart>
+        <LineSize>16</LineSize>
+        <RowSize>60</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>BBB</setTEXT>
+        <setFONT>16x12</setFONT>
+        <setTEXT>演示顿号、</setTEXT>
     </OBJ>
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>4</LineStart>
-        <RowStart>7</RowStart>
-        <LineSize>5</LineSize>
-        <RowSize>30</RowSize>
+        <LineStart>17</LineStart>
+        <RowStart>11</RowStart>
+        <LineSize>12</LineSize>
+        <RowSize>48</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>5x5</setFONT>
-        <setTEXT>aaaaa</setTEXT>
+        <setFONT>12x12</setFONT>
+        <setTEXT>演示中文</setTEXT>
     </OBJ>
 </MES>

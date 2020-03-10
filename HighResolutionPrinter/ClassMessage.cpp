@@ -115,8 +115,8 @@ void ClassMessage::DrawDot(CDC* pDC)
 	}
 }
 
-//判断是否有OBJ被选中
-void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
+//控制当前OBJ_Vec[i]中哪一个obj被选中
+void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 {
 	//计算鼠标相对于FileManageChild窗口的坐标位置
 	int x_pos = p_Relative.x();
@@ -124,17 +124,11 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 	//判断该位置是否在控件editPreviewText范围内
 	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
 	{
-		int nLin;
-		int nRow;	 
-		nLin = ( 241 - y_pos ) / 5;
-		nRow = x_pos / 5;
+		int nLin = ( 241 - y_pos ) / 5;
+		int nRow = x_pos / 5;
 		vector<OBJ_Control>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
 		{		
-			int x = itr->intLineStart;
-			int x0 = itr->intLineSize;
-			int y = itr->intRowStart;
-			int y0 = itr->intRowSize;
 			if (nLin>=itr->intLineStart && nLin<=(itr->intLineStart+itr->intLineSize)
 				&& nRow>=itr->intRowStart && nRow<=(itr->intRowStart+itr->intRowSize))
 			{
@@ -150,7 +144,7 @@ void ClassMessage::JudgeIfOBJ_Selected(QPoint p_Relative)
 			}
 			else
 			{
-				if (itr->booFocus == true)
+				if (itr->booFocus == true && itr->booBeenDragged == false)
 				{
 					itr->booFocus = false;
 				}

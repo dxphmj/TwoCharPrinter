@@ -1,23 +1,23 @@
 <MES>
     <PRO>
         <Matrix>1L7M</Matrix>
-        <Pixel>7</Pixel>
+        <Pixel>8</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>text</TYPE2>
-        <LineStart>4</LineStart>
-        <RowStart>5</RowStart>
-        <LineSize>7</LineSize>
-        <RowSize>108</RowSize>
+        <LineStart>17</LineStart>
+        <RowStart>54</RowStart>
+        <LineSize>12</LineSize>
+        <RowSize>72</RowSize>
         <SW>1</SW>
-        <SS>3</SS>
+        <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>Hello,World!</setTEXT>
+        <setFONT>12x12</setFONT>
+        <setTEXT>込込込込込込</setTEXT>
     </OBJ>
 </MES>

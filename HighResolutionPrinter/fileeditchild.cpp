@@ -729,7 +729,6 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	{
 		QMouseEvent *mouseEvent = static_cast<QMouseEvent*>(event);
 		MouseBeenPressed(mouseEvent);
-		this->boolMousePressed = true;
 		this->update();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonRelease)
@@ -751,13 +750,34 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 {
 	this->pointMousePressed = event->pos();
+	int nLin = (241-pointMousePressed.y())/5;
+	int nRow = pointMousePressed.x()/5;
+	
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			int x1 = m_PrinterMes.OBJ_Vec[i].intRowStart;
+			int y1 = m_PrinterMes.OBJ_Vec[i].intLineStart;
+			int deltX = m_PrinterMes.OBJ_Vec[i].intRowSize;
+			int deltY = m_PrinterMes.OBJ_Vec[i].intLineSize;
+			
+			if (nLin>=y1 && nLin<=(y1+deltY) && nRow>=x1 && nRow<=(x1+deltX))
+			{
+				m_PrinterMes.OBJ_Vec[i].booBeenDragged = false;
+				this->boolMousePressed = true;
+				return;
+			}
+		}
+	}
+	this->boolMousePressed = false;
 }
 
 void FileEditChild::MouseBeenReleased(QMouseEvent *event)
 {
 	this->pointMousePressed = event->pos();
 	QPoint p_Relative = event->pos();
-	m_PrinterMes.JudgeIfOBJ_Selected(p_Relative);
+	m_PrinterMes.CtrlCurObjChoice(p_Relative);
 	GetObjSettingsFromScreen();
 }
 
@@ -814,13 +834,18 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 	}
 }
 
+QString str2qstr(const string str)  
+{  
+	return QString::fromLocal8Bit(str.data());  
+} 
+
 void FileEditChild::GetObjSettingsFromScreen()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			QString tmpStr = QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strText);
+			QString tmpStr = str2qstr(m_PrinterMes.OBJ_Vec[i].strText);
 			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intSS));
 			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
 			{
@@ -1297,6 +1322,12 @@ void FileEditChild::KeyboardConceal_clicked()
 	keyboardWidget->setVisible(false);
 }
 
+string qstr2str(const QString qstr)  
+{  
+	QByteArray cdata = qstr.toLocal8Bit();  
+	return string(cdata);  
+} 
+
 void FileEditChild::newTextBut_clicked()
 {
 	//如果当前有obj被选中，则为更改当选中的obj
@@ -1304,7 +1335,7 @@ void FileEditChild::newTextBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			string tmpStr = this->ui->wordLineEdit->text().toStdString();
+			string tmpStr = qstr2str(this->ui->wordLineEdit->text());
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
 			m_PrinterMes.OBJ_Vec[i].strFont = tmpFont;
@@ -1328,7 +1359,8 @@ void FileEditChild::newTextBut_clicked()
 		}
 	}
 	//如果当前没有obj被选中，则为新建
-	string txtString = ui->wordLineEdit->text().toStdString();
+	//wstring txtString = stringToWstring(ui->wordLineEdit->text().toStdString());
+	string txtString = qstr2str(ui->wordLineEdit->text());
 	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
 	//int intTmpSS = ui->internalShowTextLab->text().toInt();
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
@@ -2048,7 +2080,7 @@ void FileEditChild::newTimeBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
 		{
-			m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
+			m_PrinterMes.OBJ_Vec.at(i).booFocus = true;
 			yPos=m_PrinterMes.OBJ_Vec.at(i).intLineStart;
 			xPos=m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
 		}

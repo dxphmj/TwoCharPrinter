@@ -43,6 +43,7 @@ public:
 	void LoadLocalFile();
 	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //根据字体，计算得到每个字符的显示长度
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	QString getChinese(QString &str);
 	void PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber);
 	void ShowText();
 	void ChangeTime();
@@ -56,9 +57,7 @@ public:
 
 	void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
 	
-
 	void informationMessage(string errortext);//zint错误弹窗
-
 
 	QString bmpFileRelativePath;//读取bmp图片的相对路径
 	int degreenum;
