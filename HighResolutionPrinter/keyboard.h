@@ -128,6 +128,7 @@ public:
 	void CreateJapaneseMapLan();
 	void CreateKoreanMapLan();
 	void FontSelect();
+	//void OnEnChangeEditInput();//arabic
 	QVector<QString>splitOut;//×Ö·û´®·Ö¸î
 
 public slots:

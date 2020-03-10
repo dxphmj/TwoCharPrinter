@@ -51,6 +51,7 @@
     <fontTypeTimeLab_5>Offset Unit</fontTypeTimeLab_5>
     <fontTypeTimeLab_6>Preview</fontTypeTimeLab_6>
     <fontTypeTimeLab_7>Date/Time</fontTypeTimeLab_7>
+    <fontSizeTimeLab>Font Size</fontSizeTimeLab>
     
     <initialValSerialLab>Initial Value </initialValSerialLab>
     <termValSerialLab>End Value</termValSerialLab>
@@ -62,6 +63,7 @@
     <fontTypeSerialLab>Font Type</fontTypeSerialLab>
     <formatSerialLab>Format</formatSerialLab>
     <newSerialBut>New</newSerialBut>
+    <fontSizeSerialLab>Font Size</fontSizeSerialLab>
     
     <heightBmpLab>Height</heightBmpLab>
     <widthBmpLab>Width</widthBmpLab>
@@ -81,13 +83,14 @@
 
     <showNumCheckBox>Show Num</showNumCheckBox>
     <sideLenQRLab>Side Length</sideLenQRLab>
-    <reverseCheckBox>Reverse Colors</reverseCheckBox>
+    <reverseCheckBox>Reverse Color</reverseCheckBox>
     <variableQRBut>Variable</variableQRBut>
     <newQRBut>New</newQRBut>
 
     <sideLenDMLab>Type</sideLenDMLab>
     <variableDMBut>Variable</variableDMBut>
     <newDMBut>New</newDMBut>
+    <reverseDMCheckBox>Reverse Color</reverseDMCheckBox>
     <typeTab>Text#Time#Serial#Picture#BarCode#QRCode#DMCode</typeTab>
   </FileEditChild>
   <FileManageChild>

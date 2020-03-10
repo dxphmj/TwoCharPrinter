@@ -51,6 +51,7 @@
     <fontTypeTimeLab_5>偏移单位</fontTypeTimeLab_5>
     <fontTypeTimeLab_6>预览</fontTypeTimeLab_6>
     <fontTypeTimeLab_7>日期/时间</fontTypeTimeLab_7>
+    <fontSizeTimeLab>字号</fontSizeTimeLab>
     
     <initialValSerialLab>起始值</initialValSerialLab>
     <termValSerialLab>终止值</termValSerialLab>
@@ -62,6 +63,7 @@
     <fontTypeSerialLab>字体</fontTypeSerialLab>
     <formatSerialLab>格式</formatSerialLab>
     <newSerialBut>新建</newSerialBut>
+    <fontSizeSerialLab>字号</fontSizeSerialLab>
     
     <heightBmpLab>高度</heightBmpLab>
     <widthBmpLab>宽度</widthBmpLab>
@@ -88,6 +90,7 @@
     <sideLenDMLab>类型</sideLenDMLab>
     <variableDMBut>可变</variableDMBut>
     <newDMBut>新建</newDMBut>
+    <reverseDMCheckBox>反色</reverseDMCheckBox>
     <typeTab>文本#时间#序列号#图片#条形码#QR码#DM码</typeTab>
   </FileEditChild>
   <FileManageChild>

@@ -50,6 +50,7 @@
     <fontTypeTimeLab_5>وحدة تحويل مسار</fontTypeTimeLab_5>
     <fontTypeTimeLab_6>معاينة</fontTypeTimeLab_6>
     <fontTypeTimeLab_7>التاريخ/الوقت</fontTypeTimeLab_7>
+    <fontSizeTimeLab>حجم الخط</fontSizeTimeLab>
     
     <initialValSerialLab>العتبة </initialValSerialLab>
     <termValSerialLab>قيمة الإنهاء</termValSerialLab>
@@ -61,6 +62,7 @@
     <fontTypeSerialLab>الخط</fontTypeSerialLab>
     <formatSerialLab>شكل</formatSerialLab>
     <newSerialBut>الجديدة</newSerialBut>
+    <fontSizeSerialLab>حجم الخط</fontSizeSerialLab>
     
     <heightBmpLab>عالية</heightBmpLab>
     <widthBmpLab>عرض</widthBmpLab>
@@ -86,6 +88,7 @@
     <sideLenDMLab>أنواع</sideLenDMLab>
     <variableDMBut>المتغيرة</variableDMBut>
     <newDMBut>الجديدة</newDMBut>
+    <reverseDMCheckBox>ألوان مختلفة</reverseDMCheckBox>
     <fontsize>8</fontsize>
     <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
   </FileEditChild>

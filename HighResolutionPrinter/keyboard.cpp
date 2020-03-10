@@ -4602,6 +4602,21 @@ void keyboard::FontSelect()
 }
 
 
+//void keyboard::OnEnChangeEditInput()
+//{
+//	QString inputtext = m_pInputEdit->text();
+//	//if ( LanType == Arabic ||LantypeReverse == Arabic)
+//	//{
+//	//	QString outputtext = disposeinputtext(inputtext);
+//	//	if ( outputtext != inputtext )
+//	//	{
+//	//		m_pInputEdit.SetWindowText(outputtext);
+//	//	}
+//	//}
+//	//int a;
+//	//a += 1;
+//}
+
 void keyboard::caps1_kBBut_clicked()
 {
 	if ( m_Upper == true )//如果当前为小写

@@ -84,6 +84,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->internalTextRedBut,SIGNAL(clicked()),this,SLOT(internalTextRedBut()));
 	connect(ui->internalTextAddBut,SIGNAL(clicked()),this,SLOT(internalTextAddBut()));
 
+	connect(ui->wordLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	boolArabic = true;
+
     ui->wordLineEdit->setFocus();
 
 	keyboardWidget = new keyboard(ui->typeTab);
@@ -361,6 +364,22 @@ void FileEditChild::ChangePixel()
 	DrawBackFrame(&qFramePainter);
 }
 
+
+void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
+{
+	QString inputtext = ui->wordLineEdit->text();//获取主编辑框文本
+	/*m_edit_input.GetWindowText(inputtext);*/
+	if ( boolArabic == false)//临时判断当前是否是阿拉伯文本
+	{
+		QString outputtext = disposeinputtext(inputtext);
+		/*if ( outputtext != inputtext )
+		{
+		m_edit_input.SetWindowText(outputtext);
+		}*/
+	}
+	int a;
+	a += 1;
+}
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
@@ -2492,4 +2511,13 @@ void FileEditChild::informationMessage(string errortext)
 					  ");
 	msg.exec();
 
+}
+
+QString FileEditChild::disposeinputtext(QString inputtext)
+{
+	if ( inputtext == "" )
+	{
+		return inputtext;
+	}
+	return 0;
 }

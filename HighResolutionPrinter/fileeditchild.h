@@ -81,6 +81,8 @@ public:
 	QPoint pointMousePressed;//记录鼠标点
 	bool boolMousePressed;//判断鼠标是否被按下
 	bool boolHWchange;//判断改变的是高度还是宽度
+	bool boolArabic;//判断是不是阿拉伯输入
+	QString disposeinputtext( QString inputtext );//阿拉伯连体
 
 	QString fileName;
 
@@ -99,7 +101,7 @@ public slots:
 
 	//void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
 	void PreviewBmpChange();
-
+	void OnEnChangeEditInput_clicked();//arabic连笔
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
