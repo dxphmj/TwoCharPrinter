@@ -209,7 +209,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->sideLenDMComBox->addItem(QStringLiteral("16x48"));
 	ui->sideLenDMComBox->setCurrentIndex(0);
 	degreenum=0;
-	degreenumQr=0;
+	degreenumQr=9;
 	degreenumDM=0;
 	Zoomfactor=1;
 	ZoomfactorQr=1;
@@ -1015,6 +1015,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 	this->ui->barCodeLineEdit->setText("");
 	this->ui->typeBarCodeComBox->setCurrentIndex(1);
 	this->ui->heightBarCodeShowQRLab->setText("21");
+	this->ui->whitespaceLab->setText("9");
 	this->ui->showNumCheckBox ->setChecked(1);
 	this->ui->newBarCodeBut->setText(QStringLiteral("ÐÂ½¨"));
 

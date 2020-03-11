@@ -96,7 +96,7 @@ public://参数，待定
     //vector<vector<bool>> LogoDot;//logo点阵
 
 
-	bool boDotBmp[255][100];//加载bmp用，255是位图的宽度，32是位图的高度
+	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 
 public://方法
