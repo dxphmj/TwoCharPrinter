@@ -1719,7 +1719,7 @@ string ModuleMain::TimeFormatToText(CString InPutTimeFormat,int tempstrETimeOffS
 			NowTime2=NowTime1.addMonths(addMonth);
 			NowTime3=NowTime2.addDays(addDay);
 			NowTime4=NowTime3.addSecs(addHour*3600);
-			lt=NowTime3.addSecs(addMinute*60).toTime_t();
+			lt=NowTime4.addSecs(addMinute*60).toTime_t();//因为没有直接对hour和minute进行偏移的函数，只能通过偏移秒数来完成对hour和minute的偏移
 			ptr=localtime(&lt);
 			/*NowTime.addYears(addYear);
 			NowTime.addMonths(addMonth);
