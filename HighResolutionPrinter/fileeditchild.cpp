@@ -86,6 +86,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->internalTextAddBut,SIGNAL(clicked()),this,SLOT(internalTextAddBut()));
 
 	connect(ui->wordLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->barCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->QRCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->DMCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 
     ui->wordLineEdit->setFocus();
 
@@ -350,7 +353,31 @@ void FileEditChild::ChangePixel()
 
 void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 {
-	QString inputtext = ui->wordLineEdit->text();//获取主编辑框文本
+	QString inputtext;
+	int nIndex = ui->typeTab->currentIndex();
+	switch(nIndex)//获取主编辑框文本
+	{
+		case 0:	//wordLineEdit文本框
+			{
+				inputtext = ui->wordLineEdit->text();
+				break;
+			}
+		case 4:	//wordLineEdit文本框
+			{
+				inputtext = ui->barCodeLineEdit->text();
+				break;
+			}
+		case 5:	//wordLineEdit文本框
+			{
+				inputtext = ui->QRCodeLineEdit->text();
+				break;
+			}
+		case 6:	//wordLineEdit文本框
+			{
+				inputtext = ui->DMCodeLineEdit->text();
+				break;
+			}
+	}
 	/*m_edit_input.GetWindowText(inputtext);*/
 	if (keyboardWidget->m_LanType == 5 ||keyboardWidget->m_LanType == 23 ||keyboardWidget->m_LanType == 24 
 		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)//判断当前是否是阿拉伯文本
@@ -359,11 +386,31 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 		if ( outputtext != inputtext )
 		{
 		//m_edit_input.SetWindowText(outputtext);
-		ui->wordLineEdit->setText(outputtext);
-		}
+			switch(nIndex)//获取主编辑框文本
+			{
+			case 0:	//wordLineEdit文本框
+				{
+					ui->wordLineEdit->setText(outputtext);
+					break;
+				}
+			case 4:	//wordLineEdit文本框
+				{
+					ui->barCodeLineEdit->setText(outputtext);
+					break;
+				}
+			case 5:	//wordLineEdit文本框
+				{
+					ui->QRCodeLineEdit->setText(outputtext);
+					break;
+				}
+			case 6:	//wordLineEdit文本框
+				{
+					ui->DMCodeLineEdit->setText(outputtext);
+					break;
+				}
+		     }
+	      }
 	}
-	/*int a;
-	a += 1;*/
 }
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
@@ -1273,28 +1320,29 @@ void FileEditChild::delBut_clicked()
 void FileEditChild::wordLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->wordLineEdit);
-	languageWidget->lanEnglish_KBBut_clicked();
+	ClickChooseLanguage();
+	
 
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->barCodeLineEdit);
-	languageWidget->lanEnglish_KBBut_clicked();
+	ClickChooseLanguage();
 
 }
 
 void FileEditChild::QRCodeLineEdit_clicked()
 {
  	keyboardWidget->SetLineEdit(ui->QRCodeLineEdit);
-	languageWidget->lanEnglish_KBBut_clicked();
+	ClickChooseLanguage();
 
 }
 
 void FileEditChild::DMCodeLineEdit_clicked()
 {
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
-	languageWidget->lanEnglish_KBBut_clicked();
+	ClickChooseLanguage();
 
 }
 
@@ -2592,7 +2640,7 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 		} 
 		else//在变形列表
 		{
-			textunicodearray = split(textstring1[n]);
+			textunicodearray = Arabicsplit(textstring1[n]);
 			if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )
 			{
 				arleft.push_back(textunicodearray.at(2));
@@ -2645,19 +2693,26 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 	{
 		tempVec.push_back(textarray.at(k-1));//倒置
 	}
-	/*for ( int m = 0; m < tempVec.size();m++)
+	for ( int m = 0; m < tempVec.size();m++)
 	{
 		outputtext = outputtext + HexStrToCString(tempVec[m]);
-	}*/
+	}
 	return outputtext;	
 }
 
 QString FileEditChild::ConvertWCHARToHex(QString Data, long nDataLength)
 {
 	QString sResult("");
-	for (long nLoop=0; nLoop<nDataLength; nLoop++)
+
+	/*int bufSize = MultiByteToWideChar(CP_ACP,0,Data.toStdString().c_str(),-1,NULL,0);  	    
+	wchar_t *pwstr = new wchar_t[bufSize];  
+	MultiByteToWideChar(CP_ACP,0,Data.toStdString().c_str(),-1,pwstr,bufSize); */
+
+	const wchar_t* wstr = reinterpret_cast<const wchar_t *>(Data.utf16());
+
+	for (long nLoop=0; nLoop<Data.length(); nLoop++)
 	{
-		wchar_t ch = reinterpret_cast<wchar_t>((Data.mid(QVariant(nLoop).toInt(),1)).utf16());//将wchar_t转换为char[2]
+		wchar_t ch = wstr[nLoop]; 
 		char c_cn[2]={'0'};
 		W2C(ch,c_cn);
 		static const char *hex = "0123456789ABCDEF";
@@ -2678,7 +2733,7 @@ void FileEditChild::W2C(wchar_t w_cn , char c_cn[])
 	c_cn[1] = (char)w_cn ;
 }
 
-QVector<QString> FileEditChild::split(QString str)
+QVector<QString> FileEditChild::Arabicsplit(QString str)
 {
 	int length = str.length();
 	QVector< QString >SplitOut;
@@ -2718,27 +2773,60 @@ QVector<QString> FileEditChild::split(QString str)
 	return SplitOut;
 }
 
-//QString FileEditChild::HexStrToCString(QString HexStr)
-//{
-//	HexStr = " " + HexStr;
-//	wchar_t* buf = new wchar_t[2];
-//	memset(buf, 0, sizeof(wchar_t)*(2));//memset初始化数组
-//
-//	TCHAR seps[] = _T(" ");
-//	TCHAR* token = _tcstok(HexStr.GetBuffer(HexStr.length()), seps);//字符串缓存区长度锁定
-//	while(NULL != token)
-//	{
-//		buf[0] = _tcstoul(token, NULL, 16);
-//		token = _tcstok(NULL, seps);
-//	}
-//	HexStr.ReleaseBuffer();//解除字符串长度锁定
-//	QString outstr(buf);
-//	delete[] buf;
-//	buf = NULL;
-//	return outstr;
-//}
+void FileEditChild::ClickChooseLanguage()
+{
+	if (keyboardWidget->m_LanType == 0 ||keyboardWidget->m_LantypeReverse == 1)
+	{
+		languageWidget->LanChinese_KBBut_clicked();
+	}
+	else if (keyboardWidget->m_LanType == 7 ||keyboardWidget->m_LantypeReverse == 0)
+	{
+		languageWidget->lanEnglish_KBBut_clicked();
+	} 
+	else if(keyboardWidget->m_LanType == 5 ||keyboardWidget->m_LanType == 23 ||keyboardWidget->m_LanType == 24 
+		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)
+	{
+		languageWidget->LanArabic_KBBut_clicked();
+	}
+	else if (keyboardWidget->m_LanType == 22 ||keyboardWidget->m_LantypeReverse == 2)
+	{
+		languageWidget->LanKorean_KBBut_clicked();
+	
+	}
+	else if (keyboardWidget->m_LanType == 1 ||keyboardWidget->m_LantypeReverse == 4)
+	{
+		languageWidget->LanJapanese_KBBut_clicked();
+	}
+}
 
-QString FileEditChild::ArabicLan(QString inputstring)
+QString FileEditChild::HexStrToCString(QString HexStr) 
+{
+	//HexStr = "0xFEB9";
+	HexStr = " " + HexStr;
+	wchar_t* buf = new wchar_t[2];
+	memset(buf, 0, sizeof(wchar_t)*(2));//memset初始化数组
+	
+	TCHAR seps[] = _T(" ");
+
+	int bufSize = MultiByteToWideChar(CP_ACP,0,HexStr.toStdString().c_str(),-1,NULL,0);  	    
+	wchar_t *pwstr = new wchar_t[bufSize];  
+	MultiByteToWideChar(CP_ACP,0,HexStr.toStdString().c_str(),-1,pwstr,bufSize); 
+
+	TCHAR* token = _tcstok(pwstr, seps);
+	while(NULL != token)
+	{
+		buf[0] = _tcstoul(token, NULL, 16);
+		token = _tcstok(NULL, seps);
+	}	 
+	QString outstr = QString::fromWCharArray(buf);
+
+	delete[] buf;
+	delete[] pwstr;
+	buf = NULL;
+	return outstr;
+}
+
+QString FileEditChild::ArabicLan(QString inputstring)//Arabic组合规则
 {
 	QString outputstring = "";
 	if (QString::compare(inputstring,"0621") == 0|| QString::compare(inputstring,"FE80") == 0 

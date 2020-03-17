@@ -82,12 +82,14 @@ public:
 	bool boolMousePressed;//判断鼠标是否被按下
 	bool boolHWchange;//判断改变的是高度还是宽度
 
+	//Arabic系列
 	QString disposeinputtext( QString inputtext );//阿拉伯连体
 	QString ConvertWCHARToHex(QString Data, long nDataLength);//QString转16进制
 	void W2C(wchar_t w_cn , char c_cn[]);
-	QString HexStrToCString(QString HexStr);
+	QString HexStrToCString(QString HexStr);//16进制转QString
 	QString ArabicLan(QString inputstring);
-	QVector<QString> split(QString str);
+	QVector<QString> Arabicsplit(QString str);
+	void ClickChooseLanguage();
 
 	QString fileName;
 

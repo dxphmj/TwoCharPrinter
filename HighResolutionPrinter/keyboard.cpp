@@ -5634,21 +5634,21 @@ void keyboard::lanArabicAdd_KBBut_clicked()
 		m_LantypeReverse = 12;
 		LanArabic5();
 	} 
-	else if (m_LanType  == 26)
+	/*else if (m_LanType  == 26)
 	{
 		m_LanType =5;
 		m_LantypeReverse = 8;
-		LanArabic1();
-	} 
+		LanArabic1();*/
+	/*}*/ 
 }
 
 void keyboard::lanArabicRedu_KBBut_clicked()
 {
-	if (m_LanType == 5)
-	{
-		m_LanType = 26;
-		LanArabic5();
-	}
+	//if (m_LanType == 5)
+	//{
+	//	m_LanType = 26;
+	//	LanArabic5();
+	//}
 
 	if (m_LanType == 26)
 	{
