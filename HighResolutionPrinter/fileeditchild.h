@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLineEdit>
 #include "ClassMessage.h"
+#include "TextOBJ.h"
 #include "backend\zint.h"
 
 class keyboard;
@@ -24,6 +25,7 @@ public:
 	FileEditChild(QWidget *parent = 0);
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
+	CTextOBJ m_TextObj;
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 

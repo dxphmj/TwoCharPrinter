@@ -350,7 +350,6 @@ void FileEditChild::ChangePixel()
 	DrawBackFrame(&qFramePainter);
 }
 
-
 void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 {
 	QString inputtext;
@@ -709,10 +708,10 @@ int FileEditChild::GetCharLenFromFont(string txtFont, bool LineOrRow)
 	fntMap2.insert(make_pair("7x5",1));
 	fntMap2.insert(make_pair("12x12",2));
 	fntMap2.insert(make_pair("16x12",3));
-	
+
 	int RowLength;
 	int LineLength;
-	
+
 	switch(fntMap2[txtFont])
 	{
 	case 0:
@@ -732,7 +731,7 @@ int FileEditChild::GetCharLenFromFont(string txtFont, bool LineOrRow)
 		RowLength = 13;
 		break;
 	}
-	
+
 	if (LineOrRow == false)
 	{
 		return LineLength;
@@ -745,7 +744,7 @@ int FileEditChild::GetCharLenFromFont(string txtFont, bool LineOrRow)
 
 void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
 {
-	OBJ_Control textObj;
+	CTextOBJ textObj;
 	textObj.strType1 = "text";
 	textObj.strType2 = "text";
 	textObj.strFont = txtFont;
@@ -760,7 +759,7 @@ void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, 
 	textObj.booNEG = txtNEG;
 	textObj.booBWDx = txtBWDx;
 	textObj.booBWDy = txtBWDy;
-	
+
 	textObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }

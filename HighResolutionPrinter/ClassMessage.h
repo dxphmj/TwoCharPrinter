@@ -28,7 +28,7 @@ public://参数
 	~OBJ_Control(void);
 	string strDuan;//信息段的标识位
 	string strType1;//字段类型
-	string strType2;	//字段实际类型
+	string strType2;//字段实际类型
 	int intX;//字段原点X坐标（默认为0）
 	int intY;//字段原点Y坐标（默认为0）
 	int intSW;//字段的加粗属性（默认为0）
@@ -56,6 +56,7 @@ public://参数
     BYTE intSerialDigits;//字段的Digital属性，即序列号位数值
 	int intSerialCounter;//第几个序列号
 	BYTE bytSerialFormat;//字段的SerialFormat属性，即序列号格式
+
 	int intLineSize;//字段的行数
 	int intRowSize;//字段的列数
 	int intLineStart;//字段的开始行
@@ -82,11 +83,11 @@ public://参数
 	int intQRErrLevel;
 	int intQREncodingMode;
 
-	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示红框
-	bool booBeenDragged;
+	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示绿框
+	bool booBeenDragged;//对象是否被拖动
 
-	bool m_bVecotrWord;//是否矢量字库
-	string m_WordStockFileName; //字库文件名
+	//bool m_bVecotrWord;//是否矢量字库
+	//string m_WordStockFileName; //字库文件名
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
@@ -111,9 +112,9 @@ public://方法
 	void Create2Dcode();
 	void CreateDMcode();
 
-	vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
-	void GetVectorWordDots();
-	void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
+	//vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
+	//void GetVectorWordDots();
+	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
 private:
 	//ClassMessage objClassMessage;

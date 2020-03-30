@@ -489,6 +489,9 @@
     <ClCompile Include="wordStock\GetHZinfo.cpp">
       <Filter>wordStock</Filter>
     </ClCompile>
+    <ClCompile Include="TextOBJ.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -721,6 +724,9 @@
     </ClInclude>
     <ClInclude Include="wordStock\GetHZinfo.h">
       <Filter>wordStock</Filter>
+    </ClInclude>
+    <ClInclude Include="TextOBJ.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
