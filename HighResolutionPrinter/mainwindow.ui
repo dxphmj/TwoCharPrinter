@@ -49,35 +49,6 @@ color: rgb(255, 255, 255);</string>
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="nameDispLab">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>641</width>
-      <height>71</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <family>楷体</family>
-      <pointsize>16</pointsize>
-     </font>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">background-color: rgb(67,51, 139);
-color: rgb(255, 255, 255);</string>
-    </property>
-    <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;  多功能智能喷码机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-    </property>
-    <property name="textFormat">
-     <enum>Qt::AutoText</enum>
-    </property>
-    <property name="margin">
-     <number>1</number>
-    </property>
-   </widget>
    <widget class="QLabel" name="previewLab">
     <property name="geometry">
      <rect>
@@ -94,7 +65,7 @@ color: rgb(255, 255, 255);</string>
      <string notr="true">background-color: rgb(77,61, 139);</string>
     </property>
     <property name="text">
-     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;TextLabel&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
     </property>
    </widget>
    <widget class="QLabel" name="fileNmaeLab">
@@ -741,7 +712,7 @@ color: rgb(255, 255, 255);</string>
      <number>0</number>
     </property>
    </widget>
-   <widget class="QLabel" name="dirMWLab_2">
+   <widget class="QLabel" name="dirShowMWLab">
     <property name="geometry">
      <rect>
       <x>689</x>
@@ -767,9 +738,31 @@ color: rgb(255, 255, 255);</string>
      <number>0</number>
     </property>
    </widget>
+   <widget class="QLabel" name="nameDispLab">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>641</width>
+      <height>71</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>楷体</family>
+      <pointsize>16</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(67,51, 139);
+color: rgb(255, 255, 255);</string>
+    </property>
+    <property name="text">
+     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:26pt; color:#ffffff;&quot;&gt;  多功能智能喷码机&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    </property>
+   </widget>
    <zorder>progCtrlLab</zorder>
    <zorder>fileManageBut</zorder>
-   <zorder>nameDispLab</zorder>
    <zorder>previewLab</zorder>
    <zorder>fileNmaeLab</zorder>
    <zorder>paraManageBut</zorder>
@@ -796,7 +789,8 @@ color: rgb(255, 255, 255);</string>
    <zorder>grayShowMWLab</zorder>
    <zorder>speedShowMWLab</zorder>
    <zorder>timeDelayShowMWLab</zorder>
-   <zorder>dirMWLab_2</zorder>
+   <zorder>dirShowMWLab</zorder>
+   <zorder>nameDispLab</zorder>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

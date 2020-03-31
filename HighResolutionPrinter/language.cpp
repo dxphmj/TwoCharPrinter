@@ -50,8 +50,8 @@ void language::lanEnglish_KBBut_clicked()
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 7;
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -63,8 +63,8 @@ void language::LanChinese_KBBut_clicked()
 	pKeyboard->m_LanType = 0;
 	pKeyboard->m_LantypeReverse = 1;//Chinese
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
     pFileEditChild->ChangeTabLineEdit();
 	pKeyboard->setText2KBLineedit();//×ßÖÐÎÄ±à¼­¿ò
 
@@ -79,8 +79,8 @@ void language::LanKorean_KBBut_clicked()
 	pKeyboard->m_LantypeReverse = 2;//Kore 
 	pKeyboard->caps1_kBBut_clicked();
 	pKeyboard->setText2KBLineedit();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false);   
 }
@@ -93,8 +93,8 @@ void language::LanJapanese_KBBut_clicked()
 	pKeyboard->m_LantypeReverse = 4;//Japanese 
 	pKeyboard->caps1_kBBut_clicked();
 	pKeyboard->setText2KBLineedit();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -106,8 +106,8 @@ void language::LanCzech_KBBut_clicked()
 	pKeyboard->m_LanType = 8;
 	pKeyboard->m_LantypeReverse = 3;//Czech 
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -119,8 +119,8 @@ void language::LanDutch_KBBut_clicked()
 	pKeyboard->m_LanType = 9;
 	pKeyboard->m_LantypeReverse = 5;//Dutch
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -132,8 +132,8 @@ void language::LanGerman_KBBut_clicked()
 	pKeyboard->m_LanType = 10;
 	pKeyboard->m_LantypeReverse = 6;//German
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -145,8 +145,8 @@ void language::LanFarsi_KBBut_clicked()
 	pKeyboard->m_LanType = 11;
 	pKeyboard->m_LantypeReverse = 7;//Farsi
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -158,8 +158,8 @@ void language::LanHindi_KBBut_clicked()
 	pKeyboard->m_LanType = 12;
 	pKeyboard->m_LantypeReverse = 8;//Hindi
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false); 
 }
@@ -171,8 +171,8 @@ void language::LanArabic_KBBut_clicked()
 	pKeyboard->m_LanType = 5;
 	pKeyboard->m_LantypeReverse = 8;////Arabic
 	pKeyboard->caps1_kBBut_clicked();
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 	setVisible(false);
 }

@@ -256,7 +256,7 @@ void FileManageChild::ShowLocalFilePath()
 
 void FileManageChild::fileNmaeLineEdit_click()
 {
-	keyboardWidget->SetLineEdit(ui->fileNmaeLineEdit);
+	keyboardWidget->SetLineEditFM(ui->fileNmaeLineEdit);
 }
 
 void FileManageChild::OKFileNameBut_clicked()

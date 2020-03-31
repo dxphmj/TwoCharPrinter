@@ -90,14 +90,29 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->QRCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 	connect(ui->DMCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 
+	connect(ui->shiftNumShowLineEdit,SIGNAL(clicked()),this,SLOT(shiftNumShowLineEdit_clicked()));
+	connect(ui->textLenShowLineEdit,SIGNAL(clicked()),this,SLOT(textLenShowLineEdit_clicked()));
+	connect(ui->startTimeShowSft1LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft1LineEdit_clicked()));
+	connect(ui->textIDShowSft1LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft1LineEdit_clicked()));
+	connect(ui->startTimeShowSft2LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft2LineEdit_clicked()));
+	connect(ui->textIDShowSft2LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft2LineEdit_clicked()));
+	connect(ui->startTimeShowSft3LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft3LineEdit_clicked()));
+	connect(ui->textIDShowSft3LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft3LineEdit_clicked()));
+	connect(ui->startTimeShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft4LineEdit_clicked()));
+	connect(ui->textIDShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft4LineEdit_clicked()));
+	
     ui->wordLineEdit->setFocus();
 
-	keyboardWidget = new keyboard(ui->typeTab);
+	ui->shiftNumShowLineEdit->setFocus();
+	ui->textLenShowLineEdit->setFocus();
+	ui->startTimeShowSft1LineEdit->setFocus();
+
+	keyboardWidget = new keyboard(this);
 	keyboardWidget->setVisible(false);
 	ui->typeTab->setCurrentIndex(0);
 
 	languageWidget = new language(keyboardWidget);
-	keyboardWidget->setVisible(false);
+	languageWidget->setVisible(false);
 
 	numkeyboardWidget = new numkeyboard(ui->typeTab);
 	numkeyboardWidget->setVisible(false);
@@ -108,7 +123,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	ui->typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
-							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:105px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:92px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
@@ -348,6 +363,66 @@ void FileEditChild::ChangePixel()
 {
 	QPainter qFramePainter(this->ui->editPreviewText);
 	DrawBackFrame(&qFramePainter);
+}
+
+void FileEditChild::shiftNumShowLineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->shiftNumShowLineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::textLenShowLineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->textLenShowLineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::startTimeShowSft1LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->startTimeShowSft1LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::textIDShowSft1LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->textIDShowSft1LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::startTimeShowSft2LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->startTimeShowSft2LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::textIDShowSft2LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->textIDShowSft2LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::startTimeShowSft3LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->startTimeShowSft3LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::textIDShowSft3LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->textIDShowSft3LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::startTimeShowSft4LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->startTimeShowSft4LineEdit);
+	ClickChooseLanguage();
+}
+
+void FileEditChild::textIDShowSft4LineEdit_clicked()
+{
+	keyboardWidget->SetLineEdit(ui->textIDShowSft4LineEdit);
+	ClickChooseLanguage();
 }
 
 void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
@@ -1350,6 +1425,50 @@ void FileEditChild::setText2wordLineEdit()
 	keyboardWidget->changeLineEdit(ui->wordLineEdit);
 }
 
+void FileEditChild::setText2shiftNumShowLineEdit()
+{
+	if (ui->shiftNumShowLineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->shiftNumShowLineEdit);
+	}
+	else if (ui->textLenShowLineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->textLenShowLineEdit);
+	}
+	else if (ui->startTimeShowSft1LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft1LineEdit);
+	}
+	else if (ui->startTimeShowSft2LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft2LineEdit);
+	}
+	else if (ui->textIDShowSft1LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->textIDShowSft1LineEdit);
+	}
+	else if (ui->textIDShowSft2LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->textIDShowSft2LineEdit);
+	}
+	else if (ui->startTimeShowSft3LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft3LineEdit);
+	}
+	else if (ui->startTimeShowSft4LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft4LineEdit);
+	}
+	else if (ui->textIDShowSft3LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->textIDShowSft3LineEdit);
+	}
+	else if (ui->textIDShowSft4LineEdit->hasFocus())
+	{
+		keyboardWidget->changeLineEdit(ui->textIDShowSft4LineEdit);
+	}
+}
+
 void FileEditChild::setText2barCodeLineEdit()
 {
 	keyboardWidget->changeLineEdit(ui->barCodeLineEdit);
@@ -1371,9 +1490,10 @@ void FileEditChild::ChangeTabLineEdit()
 	switch(nIndex)
 		{
 		case 0:	setText2wordLineEdit();break;
-		case 4: setText2barCodeLineEdit();break;
-		case 5:	setText2QRCodeLineEdit();break;
-		case 6:	setText2DMCodeLineEdit();break;
+		case 4:	setText2shiftNumShowLineEdit();break;
+		case 5: setText2barCodeLineEdit();break;
+		case 6:	setText2QRCodeLineEdit();break;
+		case 7:	setText2DMCodeLineEdit();break;
 		}
 	
 	

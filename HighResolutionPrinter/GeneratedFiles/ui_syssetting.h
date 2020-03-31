@@ -82,7 +82,7 @@ public:
         addHourBut = new QPushButton(sysSetting);
         addHourBut->setObjectName(QStringLiteral("addHourBut"));
         addHourBut->setGeometry(QRect(132, 345, 63, 63));
-        addHourBut->setMinimumSize(QSize(63, 51));
+        addHourBut->setMinimumSize(QSize(51, 51));
         addHourBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         hourShowLab = new QLabel(sysSetting);
@@ -99,13 +99,13 @@ public:
         reduceHourBut = new QPushButton(sysSetting);
         reduceHourBut->setObjectName(QStringLiteral("reduceHourBut"));
         reduceHourBut->setGeometry(QRect(132, 472, 63, 63));
-        reduceHourBut->setMinimumSize(QSize(63, 51));
+        reduceHourBut->setMinimumSize(QSize(51, 51));
         reduceHourBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         addMinBut = new QPushButton(sysSetting);
         addMinBut->setObjectName(QStringLiteral("addMinBut"));
         addMinBut->setGeometry(QRect(339, 345, 63, 63));
-        addMinBut->setMinimumSize(QSize(63, 51));
+        addMinBut->setMinimumSize(QSize(51, 51));
         addMinBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         minShowLab = new QLabel(sysSetting);
@@ -119,13 +119,13 @@ public:
         reduceMinBut = new QPushButton(sysSetting);
         reduceMinBut->setObjectName(QStringLiteral("reduceMinBut"));
         reduceMinBut->setGeometry(QRect(339, 472, 63, 63));
-        reduceMinBut->setMinimumSize(QSize(63, 51));
+        reduceMinBut->setMinimumSize(QSize(51, 51));
         reduceMinBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         addSecondBut = new QPushButton(sysSetting);
         addSecondBut->setObjectName(QStringLiteral("addSecondBut"));
         addSecondBut->setGeometry(QRect(546, 345, 63, 63));
-        addSecondBut->setMinimumSize(QSize(63, 51));
+        addSecondBut->setMinimumSize(QSize(51, 51));
         addSecondBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         secondShowLab = new QLabel(sysSetting);
@@ -139,13 +139,13 @@ public:
         reduceSecondBut = new QPushButton(sysSetting);
         reduceSecondBut->setObjectName(QStringLiteral("reduceSecondBut"));
         reduceSecondBut->setGeometry(QRect(546, 472, 63, 63));
-        reduceSecondBut->setMinimumSize(QSize(63, 51));
+        reduceSecondBut->setMinimumSize(QSize(51, 51));
         reduceSecondBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         addYearBut = new QPushButton(sysSetting);
         addYearBut->setObjectName(QStringLiteral("addYearBut"));
-        addYearBut->setGeometry(QRect(132, 103, 63, 63));
-        addYearBut->setMinimumSize(QSize(63, 51));
+        addYearBut->setGeometry(QRect(132, 103, 61, 61));
+        addYearBut->setMinimumSize(QSize(51, 51));
         addYearBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:5px;"));
         yearShowLab = new QLabel(sysSetting);
@@ -159,13 +159,13 @@ public:
         reduceYearBut = new QPushButton(sysSetting);
         reduceYearBut->setObjectName(QStringLiteral("reduceYearBut"));
         reduceYearBut->setGeometry(QRect(132, 230, 63, 63));
-        reduceYearBut->setMinimumSize(QSize(63, 51));
+        reduceYearBut->setMinimumSize(QSize(51, 51));
         reduceYearBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         addMonthBut = new QPushButton(sysSetting);
         addMonthBut->setObjectName(QStringLiteral("addMonthBut"));
         addMonthBut->setGeometry(QRect(339, 103, 63, 63));
-        addMonthBut->setMinimumSize(QSize(63, 51));
+        addMonthBut->setMinimumSize(QSize(51, 51));
         addMonthBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         monthShowLab = new QLabel(sysSetting);
@@ -179,13 +179,13 @@ public:
         reduceMonthBut = new QPushButton(sysSetting);
         reduceMonthBut->setObjectName(QStringLiteral("reduceMonthBut"));
         reduceMonthBut->setGeometry(QRect(339, 230, 63, 63));
-        reduceMonthBut->setMinimumSize(QSize(63, 51));
+        reduceMonthBut->setMinimumSize(QSize(51, 51));
         reduceMonthBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         addDayBut = new QPushButton(sysSetting);
         addDayBut->setObjectName(QStringLiteral("addDayBut"));
         addDayBut->setGeometry(QRect(546, 103, 63, 63));
-        addDayBut->setMinimumSize(QSize(63, 51));
+        addDayBut->setMinimumSize(QSize(51, 51));
         addDayBut->setStyleSheet(QLatin1String("background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         dayShowLab = new QLabel(sysSetting);
@@ -199,7 +199,7 @@ public:
         reduceDayBut = new QPushButton(sysSetting);
         reduceDayBut->setObjectName(QStringLiteral("reduceDayBut"));
         reduceDayBut->setGeometry(QRect(546, 230, 63, 63));
-        reduceDayBut->setMinimumSize(QSize(63, 51));
+        reduceDayBut->setMinimumSize(QSize(51, 51));
         reduceDayBut->setStyleSheet(QLatin1String("background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         sysLanguageLab = new QLabel(sysSetting);

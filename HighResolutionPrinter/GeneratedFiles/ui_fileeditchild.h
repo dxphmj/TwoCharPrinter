@@ -103,6 +103,33 @@ public:
     QLabel *bmpBGlLbel;
     lineedit_click *heightBmpShowBmpLineEdit;
     lineedit_click *widthShowBmpLineEdit;
+    QWidget *tab;
+    QLabel *shiftBGlLbel;
+    QLabel *shiftNumLab;
+    lineedit_click *shiftNumShowLineEdit;
+    lineedit_click *textLenShowLineEdit;
+    QLabel *textLenLab;
+    QLabel *shift1Lab;
+    lineedit_click *startTimeShowSft1LineEdit;
+    QLabel *startTimeSft1Lab;
+    lineedit_click *textIDShowSft1LineEdit;
+    QLabel *textIDSft1Lab;
+    QLabel *startTimeSft2Lab;
+    lineedit_click *startTimeShowSft2LineEdit;
+    lineedit_click *textIDShowSft2LineEdit;
+    QLabel *textIDSft2Lab;
+    QLabel *shift2Lab;
+    QLabel *startTimeSft3Lab;
+    lineedit_click *startTimeShowSft3LineEdit;
+    lineedit_click *textIDShowSft3LineEdit;
+    QLabel *textIDSft3Lab;
+    QLabel *shift3Lab;
+    QLabel *startTimeSft4Lab;
+    lineedit_click *startTimeShowSft4LineEdit;
+    lineedit_click *textIDShowSft4LineEdit;
+    QLabel *textIDSft4Lab;
+    QLabel *shift4Lab;
+    QPushButton *newShiftBut;
     QWidget *barCodeTab;
     lineedit_click *barCodeLineEdit;
     QLabel *whitespaceLab;
@@ -199,9 +226,9 @@ public:
         textpreviewScrollBar->setOrientation(Qt::Horizontal);
         typeTab = new QTabWidget(FileEditChild);
         typeTab->setObjectName(QStringLiteral("typeTab"));
-        typeTab->setGeometry(QRect(10, 290, 751, 461));
+        typeTab->setGeometry(QRect(2, 290, 760, 461));
         typeTab->setFont(font);
-        typeTab->setStyleSheet(QLatin1String("QTabBar::tab{width:107}\n"
+        typeTab->setStyleSheet(QLatin1String("QTabBar::tab{width:95}\n"
 "QTabBar::tab{height:50}"));
         textTab = new QWidget();
         textTab->setObjectName(QStringLiteral("textTab"));
@@ -255,7 +282,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         fontBGlLbel = new QLabel(textTab);
         fontBGlLbel->setObjectName(QStringLiteral("fontBGlLbel"));
-        fontBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        fontBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         fontBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         typeTab->addTab(textTab, QString());
         fontBGlLbel->raise();
@@ -274,7 +301,7 @@ public:
         SkewUUnitlistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         fontTypeTimeLab_7 = new QLabel(timeTab);
         fontTypeTimeLab_7->setObjectName(QStringLiteral("fontTypeTimeLab_7"));
-        fontTypeTimeLab_7->setGeometry(QRect(0, 60, 121, 41));
+        fontTypeTimeLab_7->setGeometry(QRect(1, 60, 121, 41));
         fontTypeTimeLab_7->setMinimumSize(QSize(101, 41));
         fontTypeTimeLab_7->setFont(font);
         fontTypeTimeLab_7->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -287,7 +314,7 @@ public:
         DateTimeEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         refreshTimeBut = new QPushButton(timeTab);
         refreshTimeBut->setObjectName(QStringLiteral("refreshTimeBut"));
-        refreshTimeBut->setGeometry(QRect(0, 360, 181, 41));
+        refreshTimeBut->setGeometry(QRect(1, 360, 181, 41));
         refreshTimeBut->setFont(font);
         refreshTimeBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
@@ -377,7 +404,7 @@ public:
         SkewSkewValueEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         timeBGlLbel = new QLabel(timeTab);
         timeBGlLbel->setObjectName(QStringLiteral("timeBGlLbel"));
-        timeBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        timeBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         timeBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         fontSizeTimeComBox = new QComboBox(timeTab);
         fontSizeTimeComBox->setObjectName(QStringLiteral("fontSizeTimeComBox"));
@@ -557,7 +584,7 @@ public:
         digitSerialLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         serialBGlLbel = new QLabel(serialTab);
         serialBGlLbel->setObjectName(QStringLiteral("serialBGlLbel"));
-        serialBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        serialBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         serialBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         fontSizeSerialComBox = new QComboBox(serialTab);
         fontSizeSerialComBox->setObjectName(QStringLiteral("fontSizeSerialComBox"));
@@ -649,7 +676,7 @@ public:
         proportionBmpCheckBox->setAutoRepeat(false);
         bmpBGlLbel = new QLabel(bmpTab);
         bmpBGlLbel->setObjectName(QStringLiteral("bmpBGlLbel"));
-        bmpBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        bmpBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         bmpBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         heightBmpShowBmpLineEdit = new lineedit_click(bmpTab);
         heightBmpShowBmpLineEdit->setObjectName(QStringLiteral("heightBmpShowBmpLineEdit"));
@@ -672,6 +699,181 @@ public:
         proportionBmpCheckBox->raise();
         heightBmpShowBmpLineEdit->raise();
         widthShowBmpLineEdit->raise();
+        tab = new QWidget();
+        tab->setObjectName(QStringLiteral("tab"));
+        shiftBGlLbel = new QLabel(tab);
+        shiftBGlLbel->setObjectName(QStringLiteral("shiftBGlLbel"));
+        shiftBGlLbel->setGeometry(QRect(0, 0, 755, 411));
+        shiftBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        shiftNumLab = new QLabel(tab);
+        shiftNumLab->setObjectName(QStringLiteral("shiftNumLab"));
+        shiftNumLab->setGeometry(QRect(50, 20, 171, 41));
+        shiftNumLab->setMinimumSize(QSize(101, 41));
+        shiftNumLab->setFont(font);
+        shiftNumLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        shiftNumLab->setAlignment(Qt::AlignCenter);
+        shiftNumShowLineEdit = new lineedit_click(tab);
+        shiftNumShowLineEdit->setObjectName(QStringLiteral("shiftNumShowLineEdit"));
+        shiftNumShowLineEdit->setGeometry(QRect(220, 20, 131, 41));
+        shiftNumShowLineEdit->setFont(font);
+        shiftNumShowLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textLenShowLineEdit = new lineedit_click(tab);
+        textLenShowLineEdit->setObjectName(QStringLiteral("textLenShowLineEdit"));
+        textLenShowLineEdit->setGeometry(QRect(550, 20, 131, 41));
+        textLenShowLineEdit->setFont(font);
+        textLenShowLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textLenLab = new QLabel(tab);
+        textLenLab->setObjectName(QStringLiteral("textLenLab"));
+        textLenLab->setGeometry(QRect(350, 20, 201, 41));
+        textLenLab->setMinimumSize(QSize(101, 41));
+        textLenLab->setFont(font);
+        textLenLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        textLenLab->setAlignment(Qt::AlignCenter);
+        shift1Lab = new QLabel(tab);
+        shift1Lab->setObjectName(QStringLiteral("shift1Lab"));
+        shift1Lab->setGeometry(QRect(150, 60, 141, 41));
+        shift1Lab->setMinimumSize(QSize(101, 41));
+        shift1Lab->setFont(font);
+        shift1Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        shift1Lab->setAlignment(Qt::AlignCenter);
+        startTimeShowSft1LineEdit = new lineedit_click(tab);
+        startTimeShowSft1LineEdit->setObjectName(QStringLiteral("startTimeShowSft1LineEdit"));
+        startTimeShowSft1LineEdit->setGeometry(QRect(220, 110, 131, 41));
+        startTimeShowSft1LineEdit->setFont(font);
+        startTimeShowSft1LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        startTimeSft1Lab = new QLabel(tab);
+        startTimeSft1Lab->setObjectName(QStringLiteral("startTimeSft1Lab"));
+        startTimeSft1Lab->setGeometry(QRect(80, 110, 141, 41));
+        startTimeSft1Lab->setMinimumSize(QSize(101, 41));
+        startTimeSft1Lab->setFont(font);
+        startTimeSft1Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        startTimeSft1Lab->setAlignment(Qt::AlignCenter);
+        textIDShowSft1LineEdit = new lineedit_click(tab);
+        textIDShowSft1LineEdit->setObjectName(QStringLiteral("textIDShowSft1LineEdit"));
+        textIDShowSft1LineEdit->setGeometry(QRect(220, 160, 131, 41));
+        textIDShowSft1LineEdit->setFont(font);
+        textIDShowSft1LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDSft1Lab = new QLabel(tab);
+        textIDSft1Lab->setObjectName(QStringLiteral("textIDSft1Lab"));
+        textIDSft1Lab->setGeometry(QRect(80, 160, 141, 41));
+        textIDSft1Lab->setMinimumSize(QSize(101, 41));
+        textIDSft1Lab->setFont(font);
+        textIDSft1Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        textIDSft1Lab->setAlignment(Qt::AlignCenter);
+        startTimeSft2Lab = new QLabel(tab);
+        startTimeSft2Lab->setObjectName(QStringLiteral("startTimeSft2Lab"));
+        startTimeSft2Lab->setGeometry(QRect(410, 110, 141, 41));
+        startTimeSft2Lab->setMinimumSize(QSize(101, 41));
+        startTimeSft2Lab->setFont(font);
+        startTimeSft2Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        startTimeSft2Lab->setAlignment(Qt::AlignCenter);
+        startTimeShowSft2LineEdit = new lineedit_click(tab);
+        startTimeShowSft2LineEdit->setObjectName(QStringLiteral("startTimeShowSft2LineEdit"));
+        startTimeShowSft2LineEdit->setGeometry(QRect(550, 110, 131, 41));
+        startTimeShowSft2LineEdit->setFont(font);
+        startTimeShowSft2LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDShowSft2LineEdit = new lineedit_click(tab);
+        textIDShowSft2LineEdit->setObjectName(QStringLiteral("textIDShowSft2LineEdit"));
+        textIDShowSft2LineEdit->setGeometry(QRect(550, 160, 131, 41));
+        textIDShowSft2LineEdit->setFont(font);
+        textIDShowSft2LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDSft2Lab = new QLabel(tab);
+        textIDSft2Lab->setObjectName(QStringLiteral("textIDSft2Lab"));
+        textIDSft2Lab->setGeometry(QRect(410, 160, 141, 41));
+        textIDSft2Lab->setMinimumSize(QSize(101, 41));
+        textIDSft2Lab->setFont(font);
+        textIDSft2Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        textIDSft2Lab->setAlignment(Qt::AlignCenter);
+        shift2Lab = new QLabel(tab);
+        shift2Lab->setObjectName(QStringLiteral("shift2Lab"));
+        shift2Lab->setGeometry(QRect(480, 60, 141, 41));
+        shift2Lab->setMinimumSize(QSize(101, 41));
+        shift2Lab->setFont(font);
+        shift2Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        shift2Lab->setAlignment(Qt::AlignCenter);
+        startTimeSft3Lab = new QLabel(tab);
+        startTimeSft3Lab->setObjectName(QStringLiteral("startTimeSft3Lab"));
+        startTimeSft3Lab->setGeometry(QRect(80, 260, 141, 41));
+        startTimeSft3Lab->setMinimumSize(QSize(101, 41));
+        startTimeSft3Lab->setFont(font);
+        startTimeSft3Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        startTimeSft3Lab->setAlignment(Qt::AlignCenter);
+        startTimeShowSft3LineEdit = new lineedit_click(tab);
+        startTimeShowSft3LineEdit->setObjectName(QStringLiteral("startTimeShowSft3LineEdit"));
+        startTimeShowSft3LineEdit->setGeometry(QRect(220, 260, 131, 41));
+        startTimeShowSft3LineEdit->setFont(font);
+        startTimeShowSft3LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDShowSft3LineEdit = new lineedit_click(tab);
+        textIDShowSft3LineEdit->setObjectName(QStringLiteral("textIDShowSft3LineEdit"));
+        textIDShowSft3LineEdit->setGeometry(QRect(220, 310, 131, 41));
+        textIDShowSft3LineEdit->setFont(font);
+        textIDShowSft3LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDSft3Lab = new QLabel(tab);
+        textIDSft3Lab->setObjectName(QStringLiteral("textIDSft3Lab"));
+        textIDSft3Lab->setGeometry(QRect(80, 310, 141, 41));
+        textIDSft3Lab->setMinimumSize(QSize(101, 41));
+        textIDSft3Lab->setFont(font);
+        textIDSft3Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        textIDSft3Lab->setAlignment(Qt::AlignCenter);
+        shift3Lab = new QLabel(tab);
+        shift3Lab->setObjectName(QStringLiteral("shift3Lab"));
+        shift3Lab->setGeometry(QRect(150, 210, 141, 41));
+        shift3Lab->setMinimumSize(QSize(101, 41));
+        shift3Lab->setFont(font);
+        shift3Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        shift3Lab->setAlignment(Qt::AlignCenter);
+        startTimeSft4Lab = new QLabel(tab);
+        startTimeSft4Lab->setObjectName(QStringLiteral("startTimeSft4Lab"));
+        startTimeSft4Lab->setGeometry(QRect(410, 260, 141, 41));
+        startTimeSft4Lab->setMinimumSize(QSize(101, 41));
+        startTimeSft4Lab->setFont(font);
+        startTimeSft4Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        startTimeSft4Lab->setAlignment(Qt::AlignCenter);
+        startTimeShowSft4LineEdit = new lineedit_click(tab);
+        startTimeShowSft4LineEdit->setObjectName(QStringLiteral("startTimeShowSft4LineEdit"));
+        startTimeShowSft4LineEdit->setGeometry(QRect(550, 260, 131, 41));
+        startTimeShowSft4LineEdit->setFont(font);
+        startTimeShowSft4LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDShowSft4LineEdit = new lineedit_click(tab);
+        textIDShowSft4LineEdit->setObjectName(QStringLiteral("textIDShowSft4LineEdit"));
+        textIDShowSft4LineEdit->setGeometry(QRect(550, 310, 131, 41));
+        textIDShowSft4LineEdit->setFont(font);
+        textIDShowSft4LineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        textIDSft4Lab = new QLabel(tab);
+        textIDSft4Lab->setObjectName(QStringLiteral("textIDSft4Lab"));
+        textIDSft4Lab->setGeometry(QRect(410, 310, 141, 41));
+        textIDSft4Lab->setMinimumSize(QSize(101, 41));
+        textIDSft4Lab->setFont(font);
+        textIDSft4Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        textIDSft4Lab->setAlignment(Qt::AlignCenter);
+        shift4Lab = new QLabel(tab);
+        shift4Lab->setObjectName(QStringLiteral("shift4Lab"));
+        shift4Lab->setGeometry(QRect(480, 210, 141, 41));
+        shift4Lab->setMinimumSize(QSize(101, 41));
+        shift4Lab->setFont(font);
+        shift4Lab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        shift4Lab->setAlignment(Qt::AlignCenter);
+        newShiftBut = new QPushButton(tab);
+        newShiftBut->setObjectName(QStringLiteral("newShiftBut"));
+        newShiftBut->setGeometry(QRect(550, 360, 141, 41));
+        newShiftBut->setFont(font);
+        newShiftBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        typeTab->addTab(tab, QString());
         barCodeTab = new QWidget();
         barCodeTab->setObjectName(QStringLiteral("barCodeTab"));
         barCodeLineEdit = new lineedit_click(barCodeTab);
@@ -828,7 +1030,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         BarCodeBGlLbel = new QLabel(barCodeTab);
         BarCodeBGlLbel->setObjectName(QStringLiteral("BarCodeBGlLbel"));
-        BarCodeBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        BarCodeBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         BarCodeBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         typeTab->addTab(barCodeTab, QString());
         BarCodeBGlLbel->raise();
@@ -860,8 +1062,8 @@ public:
         QFont font5;
         font5.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font5.setPointSize(16);
-        font5.setBold(true);
-        font5.setWeight(75);
+        font5.setBold(false);
+        font5.setWeight(50);
         QRCodeLineEdit->setFont(font5);
         QRCodeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         variableQRBut = new QPushButton(QRCodeTab);
@@ -900,7 +1102,7 @@ public:
         sideLenQRLab->setAlignment(Qt::AlignCenter);
         QRBGlLbel = new QLabel(QRCodeTab);
         QRBGlLbel->setObjectName(QStringLiteral("QRBGlLbel"));
-        QRBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        QRBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         QRBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         typeTab->addTab(QRCodeTab, QString());
         QRBGlLbel->raise();
@@ -945,7 +1147,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         DMBGlLbel = new QLabel(tab_2);
         DMBGlLbel->setObjectName(QStringLiteral("DMBGlLbel"));
-        DMBGlLbel->setGeometry(QRect(0, 0, 745, 411));
+        DMBGlLbel->setGeometry(QRect(0, 0, 755, 411));
         DMBGlLbel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         reverseDMCheckBox = new QCheckBox(tab_2);
         reverseDMCheckBox->setObjectName(QStringLiteral("reverseDMCheckBox"));
@@ -1078,7 +1280,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         moveSpeedLab = new QLabel(FileEditChild);
         moveSpeedLab->setObjectName(QStringLiteral("moveSpeedLab"));
-        moveSpeedLab->setGeometry(QRect(760, 400, 111, 41));
+        moveSpeedLab->setGeometry(QRect(762, 400, 111, 41));
         moveSpeedLab->setMinimumSize(QSize(101, 41));
         moveSpeedLab->setFont(font);
         moveSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -1119,7 +1321,7 @@ public:
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(0);
+        typeTab->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -1172,6 +1374,23 @@ public:
         proportionBmpCheckBox->setText(QApplication::translate("FileEditChild", "\347\255\211\346\257\224\344\276\213", 0));
         bmpBGlLbel->setText(QString());
         typeTab->setTabText(typeTab->indexOf(bmpTab), QApplication::translate("FileEditChild", "\345\233\276\347\211\207", 0));
+        shiftBGlLbel->setText(QString());
+        shiftNumLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\217\255\346\254\241\346\225\260\347\233\256</span></p></body></html>", 0));
+        textLenLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\207\350\257\206\346\226\207\346\234\254\351\225\277\345\272\246</span></p></body></html>", 0));
+        shift1Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\217\255\346\254\2411</span></p></body></html>", 0));
+        startTimeSft1Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\274\200\345\247\213\346\227\266\351\227\264</span></p></body></html>", 0));
+        textIDSft1Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\207\350\257\206\346\226\207\346\234\254</span></p></body></html>", 0));
+        startTimeSft2Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\274\200\345\247\213\346\227\266\351\227\264</span></p></body></html>", 0));
+        textIDSft2Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\207\350\257\206\346\226\207\346\234\254</span></p></body></html>", 0));
+        shift2Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\217\255\346\254\2412</span></p></body></html>", 0));
+        startTimeSft3Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\274\200\345\247\213\346\227\266\351\227\264</span></p></body></html>", 0));
+        textIDSft3Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\207\350\257\206\346\226\207\346\234\254</span></p></body></html>", 0));
+        shift3Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\217\255\346\254\2413</span></p></body></html>", 0));
+        startTimeSft4Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\274\200\345\247\213\346\227\266\351\227\264</span></p></body></html>", 0));
+        textIDSft4Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\346\240\207\350\257\206\346\226\207\346\234\254</span></p></body></html>", 0));
+        shift4Lab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\217\255\346\254\2414</span></p></body></html>", 0));
+        newShiftBut->setText(QApplication::translate("FileEditChild", "\346\226\260\345\273\272", 0));
+        typeTab->setTabText(typeTab->indexOf(tab), QApplication::translate("FileEditChild", "\347\217\255\346\254\241", 0));
         whitespaceLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">9</span></p></body></html>", 0));
         zoomBarCodeLab_2->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\251\272\347\231\275\345\256\275\345\272\246</span></p></body></html>", 0));
         variableBarCodeBut->setText(QApplication::translate("FileEditChild", "\345\217\257\345\217\230", 0));

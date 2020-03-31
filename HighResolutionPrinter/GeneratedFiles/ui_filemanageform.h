@@ -71,7 +71,7 @@ public:
         stackedWidget->addWidget(page_2);
         fileControlLab = new QLabel(FilemanageForm);
         fileControlLab->setObjectName(QStringLiteral("fileControlLab"));
-        fileControlLab->setGeometry(QRect(10, 19, 181, 761));
+        fileControlLab->setGeometry(QRect(10, 19, 181, 751));
         fileControlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         fileManageBackLabel = new QLabel(FilemanageForm);
         fileManageBackLabel->setObjectName(QStringLiteral("fileManageBackLabel"));

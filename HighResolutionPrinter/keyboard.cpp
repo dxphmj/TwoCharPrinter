@@ -5,6 +5,8 @@
 #include "lineedit_click.h"
 #include "language.h"
 #include "fileeditchild.h"
+#include "filemanageform.h"
+#include "filemanagechild.h"
 #include <QTabWidget>
 #include <QHBoxLayout>
 
@@ -85,11 +87,11 @@ keyboard::keyboard(QWidget *parent)
 	connect(ui->wordCombLineEdit,SIGNAL(textChanged(QString)),this,SLOT(languagespell()));
 	connect(ui->wordCombLineEdit,SIGNAL(clicked()),this,SLOT(wordComLineEdit_clicked()));
 
-
 	m_LanType = English;
 	m_Upper = false;
 	m_LantypeReverse = EnglishSymbol;
 	m_symbol = true;
+
 }
 
 keyboard::~keyboard()
@@ -100,8 +102,25 @@ keyboard::~keyboard()
 void keyboard::SetLineEdit(lineedit_click* pInputEdit)
 {
 	m_pInputEdit = pInputEdit;
+	SetKBPosition();
+	setVisible(true);
+}
+
+void keyboard::SetLineEditFM(lineedit_click* pInputEdit)
+{
+	m_pInputEdit = pInputEdit;
 	SetPosition();
 	setVisible(true);
+}
+
+void keyboard::SetKBPosition()
+{
+	QRect rectLineEdit;
+	rectLineEdit = m_pInputEdit->geometry();
+	QRect rectKeyboard;
+	rectKeyboard = geometry();
+	QRect rect(10,rectLineEdit.bottom()-100,rectKeyboard.width(),rectKeyboard.height());
+	setGeometry(rect);
 }
 
 void keyboard::SetPosition()
@@ -197,8 +216,8 @@ void keyboard::changeLineEdit(lineedit_click* pInputEdit)
 
 void keyboard::changeCurrentlineedit()
 {
-	QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(this->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(qtabwidget->parentWidget());
+	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(this->parentWidget());
+	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(this->parentWidget());
 	pFileEditChild->ChangeTabLineEdit();
 }
 

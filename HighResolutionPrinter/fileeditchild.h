@@ -161,6 +161,18 @@ private slots:
 
 	void ChangePixel();
 
+	void shiftNumShowLineEdit_clicked();
+	void textLenShowLineEdit_clicked();
+	void startTimeShowSft1LineEdit_clicked();
+	void textIDShowSft1LineEdit_clicked();
+	void startTimeShowSft2LineEdit_clicked();
+	void textIDShowSft2LineEdit_clicked();
+	void startTimeShowSft3LineEdit_clicked();
+	void textIDShowSft3LineEdit_clicked();
+	void startTimeShowSft4LineEdit_clicked();
+	void textIDShowSft4LineEdit_clicked();
+
+
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
@@ -169,6 +181,7 @@ protected:
 public:
 	void deleteChar();
 	void setText2wordLineEdit();
+	void setText2shiftNumShowLineEdit();
 	void setText2barCodeLineEdit();
 	void setText2QRCodeLineEdit();
 	void setText2DMCodeLineEdit();

@@ -25,8 +25,11 @@ public:
 public:
 	void btnLanguageSel(int m_LanType);
 	void btnSymbolSel(int m_LantypeReverse);
+	void SetKBPosition();
 	void SetPosition();
 	void SetLineEdit(lineedit_click* pInputEdit);
+	void SetLineEditFM(lineedit_click* pInputEdit);
+
 	void setText2KBLineedit();
 	void Symbolinputlineedit();
 	void changeLineEdit(lineedit_click* pInputEdit);
