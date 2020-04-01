@@ -93,6 +93,9 @@ public:
 	QVector<QString> Arabicsplit(QString str);
 	void ClickChooseLanguage();
 
+	//班次系列
+	int m_ShiftLineEditType;//当前班次的编辑框选择
+
 	QString fileName;
 
 public:

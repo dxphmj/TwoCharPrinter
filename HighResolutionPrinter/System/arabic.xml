@@ -89,8 +89,26 @@
     <variableDMBut>المتغيرة</variableDMBut>
     <newDMBut>الجديدة</newDMBut>
     <reverseDMCheckBox>ألوان مختلفة</reverseDMCheckBox>
+   
+
+    <shiftNumLab>عدد النوبات</shiftNumLab>
+    <textLenLab>طول النص</textLenLab>
+    <shift1Lab>المناوبة1</shift1Lab>
+    <shift2Lab>المناوبة2</shift2Lab>
+    <startTimeSft1Lab>وقت البدء</startTimeSft1Lab>
+    <textIDSft1Lab>نص الشعار</textIDSft1Lab>
+    <startTimeSft2Lab>وقت البدء</startTimeSft2Lab>
+    <textIDSft2Lab>نص الشعار</textIDSft2Lab>
+    <shift3Lab>المناوبة3</shift3Lab>
+    <shift4Lab>المناوبة4</shift4Lab>
+    <startTimeSft3Lab>وقت البدء</startTimeSft3Lab>
+    <textIDSft3Lab>نص الشعار</textIDSft3Lab>
+    <startTimeSft4Lab>وقت البدء</startTimeSft4Lab>
+    <textIDSft4Lab>نص الشعار</textIDSft4Lab>
+    <newShiftBut>الجديدة</newShiftBut>
     <fontsize>8</fontsize>
-    <typeTab>الوثائق#الوقت#رقم تسلسلي#الصورة#شفرة الخطوط المتوازية#رمز الاستجابة السريعة#dm، ياردة</typeTab>
+    <typeTab>النص#الوقت#الرقم التسلسلي#الصورة#المناوبة#شفرة الخطوط المتوازية#QR، ياردة#DM، ياردة</typeTab>
+
   </FileEditChild>
   <FileManageChild>
     <fontsize>18</fontsize>
@@ -114,7 +132,7 @@
     <savePrintSetBut>حفظ</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
-    <fontsize>15</fontsize>
+    <fontsize>18</fontsize>
      <printSpeedLab>سرعة الطباعة M/MIN.</printSpeedLab>
      <printDelayLab>طباعة تأخير M.</printDelayLab>
      <synFrequencyLab>تردد متزامن</synFrequencyLab>
@@ -137,12 +155,17 @@
      <inkVoltLab>الفولطية</inkVoltLab>
      <PWLab>عرض النبض</PWLab>
      <nozzleSelLab>اختيار فوهة</nozzleSelLab>
+     <isCombineCheckBox>, ولكن</isCombineCheckBox>
      <offsetLab>تحويل مسار</offsetLab>
      <flashSprayLab>فلاش إعدادات</flashSprayLab>
      <flashSprayCheckBox>شيم رش</flashSprayCheckBox>
      <flashSprayInternalLab>المباعدة س</flashSprayInternalLab>
      <flashSprayTimesLab>عدد</flashSprayTimesLab>
      <printSetTabWid>أسلوب الطباعة#إعدادات متقدمة#إعداد المحرك#أضواء UV إعدادات</printSetTabWid>
+     
+      <isUVCheckBox>مكّن الضوء UV</isUVCheckBox>
+     <delayTimeLab>تمديد الوقت/MS</delayTimeLab>
+     <startTimeLab>وقت البداية/MS</startTimeLab>
   </printSetting>
   <sysSetting>
      <fontsize>18</fontsize>
@@ -166,6 +189,18 @@
       <maxVal2Lab>الأقصى</maxVal2Lab>
       <printTimeLab>عدد الطباعة</printTimeLab>
   </countSetting>
+  <aboutMac>
+      <fontsize>18</fontsize>
+      <jetCodeLab>نوع الطائرة النفاثة</jetCodeLab>
+      <jetCodeIDLab>هوية طائرة نفاثة</jetCodeIDLab>
+      <mainBoardIDLab>معرف اللوحة الرئيسية</mainBoardIDLab>
+      <boardHardVersionLab>نسخة من الجهاز الرئيسي</boardHardVersionLab> 
+      <boardHardUpdateLab>تحديث الوقت</boardHardUpdateLab>
+      <boardSoftVersionLab>نسخة من برمجيات اللوحة الرئيسية</boardSoftVersionLab>
+      <boardSoftUpdateLab>تحديث الوقت</boardSoftUpdateLab>
+      <sysSoftVersionLab>إصدار برامجيات النظام</sysSoftVersionLab>
+      <sysSoftUpdateLab>تحديث الوقت</sysSoftUpdateLab>
+  </aboutMac>
 </MES>
 
 

@@ -32,7 +32,7 @@
     <fontSizeTextLab>Font Size</fontSizeTextLab>
     <variableTextBut>Variable</variableTextBut>
     <newTextBut>New</newTextBut>
-    <delBut>Del</delBut>
+    <delBut>Empty</delBut>
     <pixelLab>Pixel</pixelLab>
     <moveSpeedLab>Movement Speed</moveSpeedLab>
     
@@ -91,7 +91,24 @@
     <variableDMBut>Variable</variableDMBut>
     <newDMBut>New</newDMBut>
     <reverseDMCheckBox>Reverse Color</reverseDMCheckBox>
-    <typeTab>Text#Time#Serial#Picture#BarCode#QRCode#DMCode</typeTab>
+    <typeTab>Text#Time#Serial#Picture#Shift#BarCode#QRCode#DMCode</typeTab>
+
+    <shiftNumLab>Shift Num</shiftNumLab>
+    <textLenLab>Text Len</textLenLab>
+    <shift1Lab>Shift1</shift1Lab>
+    <shift2Lab>Shift2</shift2Lab>
+    <startTimeSft1Lab>Start Time</startTimeSft1Lab>
+    <textIDSft1Lab>Tag Text</textIDSft1Lab>
+    <startTimeSft2Lab>Start Time</startTimeSft2Lab>
+    <textIDSft2Lab>Tag Text</textIDSft2Lab>
+    <shift3Lab>Shift3</shift3Lab>
+    <shift4Lab>Shift4</shift4Lab>
+    <startTimeSft3Lab>Start Time</startTimeSft3Lab>
+    <textIDSft3Lab>Tag Text</textIDSft3Lab>
+    <startTimeSft4Lab>Start Time</startTimeSft4Lab>
+    <textIDSft4Lab>Tag Text</textIDSft4Lab>
+    <newShiftBut>New</newShiftBut>
+
   </FileEditChild>
   <FileManageChild>
     <fontsize>12</fontsize>
@@ -136,6 +153,7 @@
      <adaptParaCheckBox>Adaptive Parameter</adaptParaCheckBox> 
      <inkVoltLab>Voltage V</inkVoltLab>
      <PWLab>Pulse Width ms</PWLab>
+     <isCombineCheckBox>Splice</isCombineCheckBox>
      <nozzleSelLab>Nozzle Selection</nozzleSelLab>
      <offsetLab>Offset mm</offsetLab>
      <flashSprayLab>Flash Spray Setup</flashSprayLab>
@@ -143,6 +161,10 @@
      <flashSprayInternalLab>Interval s</flashSprayInternalLab>
      <flashSprayTimesLab>Count</flashSprayTimesLab>
      <printSetTabWid>PrintConfige#Advance#PrintHead#UV Lamp</printSetTabWid>
+
+     <isUVCheckBox>Starting  UV</isUVCheckBox>
+     <delayTimeLab>Extended Time /ms</delayTimeLab>
+     <startTimeLab>Start Time /ms</startTimeLab>
   </printSetting>
   <sysSetting>
     <fontsize>14</fontsize>
@@ -166,6 +188,18 @@
       <maxVal2Lab>Max Value</maxVal2Lab>
       <printTimeLab>Print The Number</printTimeLab>
   </countSetting>
+  <aboutMac>
+      <fontsize>14</fontsize>
+      <jetCodeLab>Printer Type</jetCodeLab>
+      <jetCodeIDLab>Printer ID</jetCodeIDLab>
+      <mainBoardIDLab>Mainboard ID</mainBoardIDLab>
+      <boardHardVersionLab>Motherboard Hardware Version</boardHardVersionLab> 
+      <boardHardUpdateLab>UpdateTime</boardHardUpdateLab>
+      <boardSoftVersionLab>Motherboard Software Version</boardSoftVersionLab>
+      <boardSoftUpdateLab>UpdateTime</boardSoftUpdateLab>
+      <sysSoftVersionLab>System Software Version</sysSoftVersionLab>
+      <sysSoftUpdateLab>UpdateTime</sysSoftUpdateLab>      
+  </aboutMac>
 </MES>
 
 

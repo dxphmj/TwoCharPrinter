@@ -94,6 +94,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->textIDShowSft3LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 	connect(ui->textIDShowSft4LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 
+	m_ShiftLineEditType = NULL;
 	connect(ui->shiftNumShowLineEdit,SIGNAL(clicked()),this,SLOT(shiftNumShowLineEdit_clicked()));
 	connect(ui->textLenShowLineEdit,SIGNAL(clicked()),this,SLOT(textLenShowLineEdit_clicked()));
 	connect(ui->startTimeShowSft1LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft1LineEdit_clicked()));
@@ -372,60 +373,70 @@ void FileEditChild::ChangePixel()
 void FileEditChild::shiftNumShowLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->shiftNumShowLineEdit);
+	m_ShiftLineEditType = 1;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::textLenShowLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->textLenShowLineEdit);
+	m_ShiftLineEditType = 2;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::startTimeShowSft1LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->startTimeShowSft1LineEdit);
+	m_ShiftLineEditType = 3;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::textIDShowSft1LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->textIDShowSft1LineEdit);
+	m_ShiftLineEditType = 4;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::startTimeShowSft2LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->startTimeShowSft2LineEdit);
+	m_ShiftLineEditType = 5;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::textIDShowSft2LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->textIDShowSft2LineEdit);
+	m_ShiftLineEditType = 6;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::startTimeShowSft3LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->startTimeShowSft3LineEdit);
+	m_ShiftLineEditType = 7;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::textIDShowSft3LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->textIDShowSft3LineEdit);
+	m_ShiftLineEditType = 8;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::startTimeShowSft4LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->startTimeShowSft4LineEdit);
+	m_ShiftLineEditType = 9;
 	ClickChooseLanguage();
 }
 
 void FileEditChild::textIDShowSft4LineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->textIDShowSft4LineEdit);
+	m_ShiftLineEditType = 10;
 	ClickChooseLanguage();
 }
 
@@ -442,19 +453,19 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 			}
 		case 4:
 			{
-				if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
+				if (m_ShiftLineEditType == 4)
 				{
 					inputtext = ui->textIDShowSft1LineEdit->text();
 				}
-				else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
+				else if (m_ShiftLineEditType == 6)
 				{
 					inputtext = ui->textIDShowSft2LineEdit->text();
 				}
-				else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
+				else if (m_ShiftLineEditType == 8)
 				{
 					inputtext = ui->textIDShowSft3LineEdit->text();
 				}
-				else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
+				else if (m_ShiftLineEditType == 10)
 				{
 					inputtext = ui->textIDShowSft4LineEdit->text();
 				}
@@ -493,19 +504,19 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 				}
 			case 4:
 				{
-					if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
+					if (m_ShiftLineEditType == 4)
 					{
 						ui->textIDShowSft1LineEdit->setText(outputtext);
 					}
-					else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
+					else if (m_ShiftLineEditType == 6)
 					{
 						ui->textIDShowSft2LineEdit->setText(outputtext);
 					}
-					else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
+					else if (m_ShiftLineEditType == 8)
 					{
 						ui->textIDShowSft3LineEdit->setText(outputtext);
 					}
-					else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
+					else if (m_ShiftLineEditType == 10)
 					{
 						ui->textIDShowSft4LineEdit->setText(outputtext);
 					}
@@ -1020,6 +1031,11 @@ QString str2qstr(const string str)
 
 void FileEditChild::GetObjSettingsFromScreen()
 {
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
+	sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
+
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -1031,18 +1047,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				this->ui->typeTab->setCurrentIndex(0);
 				this->ui->wordLineEdit->setText(tmpStr);
 				
-				QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
-				FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
-				MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
-				sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
-
 				switch (psysSetting->m_SelLanguage)
 				{
+				case 0:
+					this->ui->newTextBut->setText(QStringLiteral("تعديل"));
+					break;
 				case 1:
 					this->ui->newTextBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
-					this->ui->newTextBut->setText(QStringLiteral("change"));
+					this->ui->newTextBut->setText(QStringLiteral("Modify"));
 					break;
 				}
 				
@@ -1099,19 +1113,55 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 
 				this->ui->PreviewEdit->setText(tmpStr);
-				this->ui->newTimeBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newTimeBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newTimeBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newTimeBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+				//this->ui->newTimeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
 			{
 				this->ui->typeTab->setCurrentIndex(2);
 				this->ui->serialLineEdit->setText(tmpStr);
-				this->ui->newSerialBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newSerialBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newSerialBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newSerialBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+				//this->ui->newSerialBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "logo")
 			{
 				this->ui->typeTab->setCurrentIndex(3);
 				//this->ui->serialLineEdit->setText(tmpStr);
-				this->ui->newBmpBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newBmpBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newBmpBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newBmpBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+				//this->ui->newBmpBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "2Dcode")
 			{
@@ -1120,62 +1170,192 @@ void FileEditChild::GetObjSettingsFromScreen()
 				this->ui->typeBarCodeComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intBarType);
 				this->ui->heightBarCodeShowQRLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intLineSize));
 				this->ui->whitespaceLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intBarWhite));
-				this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newBarCodeBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newBarCodeBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+				//this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
 			{
 				this->ui->typeTab->setCurrentIndex(5);
 				this->ui->QRCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenQRComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intQRVersion-1);
-				this->ui->newQRBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newQRBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newQRBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newQRBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+				//this->ui->newQRBut->setText(QStringLiteral("修改"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "datamatrix")
 			{
 				this->ui->typeTab->setCurrentIndex(6);
 				this->ui->DMCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenDMComBox->setCurrentIndex(m_PrinterMes.OBJ_Vec[i].intDMrow);
-				this->ui->newDMBut->setText(QStringLiteral("修改"));
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newDMBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newDMBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newDMBut->setText(QStringLiteral("Modify"));
+					break;
+				}
+			
+				//this->ui->newDMBut->setText(QStringLiteral("修改"));
 			}
-			this->ui->delBut->setText(QStringLiteral("删除"));
+			switch (psysSetting->m_SelLanguage)
+			{
+			case 0:
+				this->ui->delBut->setText(QStringLiteral("حذف"));
+				break;
+			case 1:
+				this->ui->delBut->setText(QStringLiteral("删除"));
+				break;
+			case 5:
+				this->ui->delBut->setText(QStringLiteral("Del"));
+				break;
+			}
+			
+			
 			return;
 		}
 	}
 	//设置右侧框基础参数
-	this->ui->delBut->setText(QStringLiteral("清空"));
-	this->ui->internalShowTextLab->setText("0");
+	switch (psysSetting->m_SelLanguage)
+	{
+	case 0:
+		this->ui->delBut->setText(QStringLiteral("تعديل"));
+		this->ui->internalShowTextLab->setText("0");
 
-	//设置文本typeTab
-	this->ui->wordLineEdit->setText("");
-	this->ui->newTextBut->setText(QStringLiteral("新建"));
-	this->ui->fontTypeTextComBox->setCurrentIndex(0);
+		//设置文本typeTab
+		this->ui->wordLineEdit->setText("");
+		this->ui->newTextBut->setText(QStringLiteral("الجديدة"));
+		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-	//设置时间typeTab
-	this->ui->PreviewEdit->setText("");
-	this->ui->DateTimeEdit->setText("");
-	this->ui->newTimeBut->setText(QStringLiteral("新建"));
+		//设置时间typeTab
+		this->ui->PreviewEdit->setText("");
+		this->ui->DateTimeEdit->setText("");
+		this->ui->newTimeBut->setText(QStringLiteral("الجديدة"));
 
-	//设置序列号typeTab
-	this->ui->serialLineEdit->setText("");
-	this->ui->newSerialBut->setText(QStringLiteral("新建"));
+		//设置序列号typeTab
+		this->ui->serialLineEdit->setText("");
+		this->ui->newSerialBut->setText(QStringLiteral("الجديدة"));
 
-	//设置图片typeTab
-	this->ui->newBmpBut->setText(QStringLiteral("新建"));
+		//设置图片typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("الجديدة"));
 
-	//设置条形码typeTab
-	this->ui->barCodeLineEdit->setText("");
-	this->ui->typeBarCodeComBox->setCurrentIndex(1);
-	this->ui->heightBarCodeShowQRLab->setText("21");
-	this->ui->whitespaceLab->setText("9");
-	this->ui->showNumCheckBox ->setChecked(1);
-	this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
+		//设置条形码typeTab
+		this->ui->barCodeLineEdit->setText("");
+		this->ui->typeBarCodeComBox->setCurrentIndex(1);
+		this->ui->heightBarCodeShowQRLab->setText("21");
+		this->ui->whitespaceLab->setText("9");
+		this->ui->showNumCheckBox ->setChecked(1);
+		this->ui->newBarCodeBut->setText(QStringLiteral("الجديدة"));
 
-	//设置QR码typeTab
-	this->ui->QRCodeLineEdit->setText("");
-	this->ui->newQRBut->setText(QStringLiteral("新建"));
+		//设置QR码typeTab
+		this->ui->QRCodeLineEdit->setText("");
+		this->ui->newQRBut->setText(QStringLiteral("الجديدة"));
+
+		//设置DM码typeTab
+		this->ui->DMCodeLineEdit->setText("");
+		this->ui->newDMBut->setText(QStringLiteral("الجديدة"));
+		break;
+	case 1:
+		this->ui->delBut->setText(QStringLiteral("清空"));
+		this->ui->internalShowTextLab->setText("0");
+
+		//设置文本typeTab
+		this->ui->wordLineEdit->setText("");
+		this->ui->newTextBut->setText(QStringLiteral("新建"));
+		this->ui->fontTypeTextComBox->setCurrentIndex(0);
+
+		//设置时间typeTab
+		this->ui->PreviewEdit->setText("");
+		this->ui->DateTimeEdit->setText("");
+		this->ui->newTimeBut->setText(QStringLiteral("新建"));
+
+		//设置序列号typeTab
+		this->ui->serialLineEdit->setText("");
+		this->ui->newSerialBut->setText(QStringLiteral("新建"));
+
+		//设置图片typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("新建"));
+
+		//设置条形码typeTab
+		this->ui->barCodeLineEdit->setText("");
+		this->ui->typeBarCodeComBox->setCurrentIndex(1);
+		this->ui->heightBarCodeShowQRLab->setText("21");
+		this->ui->whitespaceLab->setText("9");
+		this->ui->showNumCheckBox ->setChecked(1);
+		this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
+
+		//设置QR码typeTab
+		this->ui->QRCodeLineEdit->setText("");
+		this->ui->newQRBut->setText(QStringLiteral("新建"));
+
+		//设置DM码typeTab
+		this->ui->DMCodeLineEdit->setText("");
+		this->ui->newDMBut->setText(QStringLiteral("新建"));
+		break;
+	case 5:
+		this->ui->delBut->setText(QStringLiteral("Empty"));
+		this->ui->internalShowTextLab->setText("0");
+
+		//设置文本typeTab
+		this->ui->wordLineEdit->setText("");
+		this->ui->newTextBut->setText(QStringLiteral("New"));
+		this->ui->fontTypeTextComBox->setCurrentIndex(0);
+
+		//设置时间typeTab
+		this->ui->PreviewEdit->setText("");
+		this->ui->DateTimeEdit->setText("");
+		this->ui->newTimeBut->setText(QStringLiteral("New"));
+
+		//设置序列号typeTab
+		this->ui->serialLineEdit->setText("");
+		this->ui->newSerialBut->setText(QStringLiteral("New"));
+
+		//设置图片typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("New"));
+
+		//设置条形码typeTab
+		this->ui->barCodeLineEdit->setText("");
+		this->ui->typeBarCodeComBox->setCurrentIndex(1);
+		this->ui->heightBarCodeShowQRLab->setText("21");
+		this->ui->whitespaceLab->setText("9");
+		this->ui->showNumCheckBox ->setChecked(1);
+		this->ui->newBarCodeBut->setText(QStringLiteral("New"));
+
+		//设置QR码typeTab
+		this->ui->QRCodeLineEdit->setText("");
+		this->ui->newQRBut->setText(QStringLiteral("New"));
+
+		//设置DM码typeTab
+		this->ui->DMCodeLineEdit->setText("");
+		this->ui->newDMBut->setText(QStringLiteral("New"));
+		break;
+	}
 	
-	//设置DM码typeTab
-	this->ui->DMCodeLineEdit->setText("");
-	this->ui->newDMBut->setText(QStringLiteral("新建"));
 }
 
 void FileEditChild::saveasBut_clicked()
@@ -1414,6 +1594,22 @@ void FileEditChild::delBut_clicked()
 			}
 			
 			ite = m_PrinterMes.OBJ_Vec.erase(ite);
+			/*QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+			FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+			MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
+			sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
+
+			switch (psysSetting->m_SelLanguage)
+			{
+			case 1:
+				this->ui->newTextBut->setText(QStringLiteral("修改"));
+				this->ui->delBut->setText(QStringLiteral("清空"));
+				break;
+			case 5:
+				this->ui->newTextBut->setText(QStringLiteral("New"));
+				this->ui->delBut->setText(QStringLiteral("Empty"));
+				break;
+			}*/
 	    	this->ui->delBut->setText(QStringLiteral("清空"));
 			GetObjSettingsFromScreen();
 			this->update();
@@ -1471,43 +1667,45 @@ void FileEditChild::setText2wordLineEdit()
 
 void FileEditChild::setText2shiftNumShowLineEdit()
 {
-	if (ui->shiftNumShowLineEdit->hasAcceptableInput())
+	if (m_ShiftLineEditType == 1)
 	{
 		keyboardWidget->changeLineEdit(ui->shiftNumShowLineEdit);
 	}
-	else if (ui->textLenShowLineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 2)
 	{
 		keyboardWidget->changeLineEdit(ui->textLenShowLineEdit);
 	}
-	else if (ui->startTimeShowSft1LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 3)
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft1LineEdit);
 	}
-	else if (ui->startTimeShowSft2LineEdit->hasAcceptableInput())
-	{
-		keyboardWidget->changeLineEdit(ui->startTimeShowSft2LineEdit);
-	}
-	else if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 4)
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft1LineEdit);
 	}
-	else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 5)
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft2LineEdit);
+	}
+	
+	else if (m_ShiftLineEditType == 6)
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft2LineEdit);
 	}
-	else if (ui->startTimeShowSft3LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 7)
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft3LineEdit);
 	}
-	else if (ui->startTimeShowSft4LineEdit->hasAcceptableInput())
-	{
-		keyboardWidget->changeLineEdit(ui->startTimeShowSft4LineEdit);
-	}
-	else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 8)
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft3LineEdit);
 	}
-	else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
+	else if (m_ShiftLineEditType == 9)
+	{
+		keyboardWidget->changeLineEdit(ui->startTimeShowSft4LineEdit);
+	}
+	
+	else if (m_ShiftLineEditType == 10)
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft4LineEdit);
 	}
@@ -1590,8 +1788,30 @@ void FileEditChild::newTextBut_clicked()
 	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
 	//int intTmpSS = ui->internalShowTextLab->text().toInt();
 	PushBackTextOBJ(textFont,false,false,false,txtString,0,0,0,1);
-	this->ui->newTextBut->setText(QStringLiteral("修改"));
-	this->ui->delBut->setText(QStringLiteral("删除"));
+
+	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget()); 
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
+	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
+	sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
+
+	switch (psysSetting->m_SelLanguage)
+	{
+	case 0:
+		this->ui->newTextBut->setText(QStringLiteral("تعديل"));
+		this->ui->delBut->setText(QStringLiteral("حذف"));
+		break;
+
+	case 1:
+		this->ui->newTextBut->setText(QStringLiteral("修改"));
+		this->ui->delBut->setText(QStringLiteral("删除"));
+		break;
+	case 5:
+		this->ui->newTextBut->setText(QStringLiteral("Modify"));
+		this->ui->delBut->setText(QStringLiteral("Del"));
+		break;
+	}
+	//this->ui->newTextBut->setText(QStringLiteral("修改"));
+	
 	this->update();
 }
 

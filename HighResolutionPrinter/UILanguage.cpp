@@ -104,6 +104,10 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 		{
 			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting->m_countSetting),node);			 
 		}
+		else if(strcmp(str,"aboutMac") == 0)
+		{
+			ChangeLanguageForItem((QObject*)(pMainwindow->m_paramsetting->m_aboutMac),node);			 
+		}
 	} 
 }
 
@@ -144,22 +148,22 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 		QComboBox *tempQComboBox = pWidge->findChild<QComboBox *>(strItem); 
  		
 	  //中文编码和多语言不一样 fromLocal8Bit适用于中文转换，fromUtf8适用于其他种类语言。
-		if (m_codemode)  //中文进入的编码函数fromLocal8Bit 
+		if (m_codemode)  //中文进入的编码函数fromLocal8Bit 先暂时和多语言一样的编码函数 待在qt4上试验后删除
 			{
 				if(tempButton	)
 				{
 					tempButton->setFont(font);
-                    tempButton->setText(QString::fromLocal8Bit(strText));
+                    tempButton->setText(QString::fromUtf8(strText));
 				}        
 				else if(tempLabel)
 				{
 				tempLabel->setFont(font);
-                tempLabel->setText(QString::fromLocal8Bit(strText));
+                tempLabel->setText(QString::fromUtf8(strText));
 				}
 				else if(tempCheck)
                 {
 				tempCheck->setFont(font);
-                tempCheck->setText(QString::fromLocal8Bit(strText));
+                tempCheck->setText(QString::fromUtf8(strText));
 				}
 				else if(tempQTabWidget)
 				{
@@ -169,7 +173,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 				char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
     
 				while (substr != NULL) {    
-						tempQTabWidget->setTabText(i,QString::fromLocal8Bit(substr));
+						tempQTabWidget->setTabText(i,QString::fromUtf8(substr));
                         tempQTabWidget->setFont(font);
 						i++;  
 						substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 
@@ -184,7 +188,7 @@ void CUILanguage::ChangeLanguageForItem(QObject* pWidge,TiXmlNode* node)
 				char *substr= strtok((char*)strText, seg);/*利用现成的分割函数,substr为分割出来的子字符串*/  
     
 				while (substr != NULL) {    
-						tempQComboBox->setItemText(i,QString::fromLocal8Bit(substr));
+						tempQComboBox->setItemText(i,QString::fromUtf8(substr));
                         tempQComboBox->setFont(font);
 						i++;  
 						substr = strtok(NULL,seg);/*在第一次调用时，strtok()必需给予参数str字符串， 

@@ -1,172 +1,206 @@
 <MES>
   <MainWindow>
     <fontsize>24</fontsize>
-    <nameDispLab>�๦�����������</nameDispLab>
+    <nameDispLab>多功能智能喷码机</nameDispLab>
     <fontsize>18</fontsize>
-    <fileManageBut>�ļ�����</fileManageBut>
-    <paraManageBut>��������</paraManageBut>
-    <startPrintBut>��ʼ��ӡ</startPrintBut>
-    <closeBut>�ر�ϵͳ</closeBut>
+    <fileManageBut>文件管理</fileManageBut>
+    <paraManageBut>参数管理</paraManageBut>
+    <startPrintBut>开始打印</startPrintBut>
+    <closeBut>关闭系统</closeBut>
     <fontsize>10</fontsize>
-    <No1Lab>ī��1</No1Lab>
-    <No2Lab>ī��2</No2Lab>
+    <No1Lab>墨盒1</No1Lab>
+    <No2Lab>墨盒2</No2Lab>
     <fontsize>18</fontsize>
-    <speedMWLab>�ٶȣ�</speedMWLab>
-    <timeDelayMWLab>��ʱ��</timeDelayMWLab>
-    <dirMWLab>����</dirMWLab>
-    <voltMWLab>��ѹ��</voltMWLab>
+    <speedMWLab>速度：</speedMWLab>
+    <timeDelayMWLab>延时：</timeDelayMWLab>
+    <dirMWLab>方向：</dirMWLab>
+    <voltMWLab>电压：</voltMWLab>
     <voltUnitMWLab>V</voltUnitMWLab>
-    <PWMWLab>������</PWMWLab>
-    <grayMWLab>�Ҷȣ�</grayMWLab>
-    <fileNmaeLab>�ļ�����</fileNmaeLab>
-    <countValMWLab>����ֵ��</countValMWLab>
+    <PWMWLab>脉宽：</PWMWLab>
+    <grayMWLab>灰度：</grayMWLab>
+    <fileNmaeLab>文件名：</fileNmaeLab>
+    <countValMWLab>计数值：</countValMWLab>
   </MainWindow>
   <FilemanageForm>
     <fontsize>18</fontsize>
-    <editFileBut>�༭�ļ�</editFileBut>
-    <exitBut>�˳�</exitBut>
-    <manageFileBut>�����ļ�</manageFileBut>
+    <editFileBut>编辑文件</editFileBut>
+    <exitBut>退出</exitBut>
+    <manageFileBut>管理文件</manageFileBut>
   </FilemanageForm>
   <FileEditChild>
     <fontsize>16</fontsize>
-    <fontTypeTextLab>����</fontTypeTextLab>
-    <fontSizeTextLab>�ֺ�</fontSizeTextLab>
-    <variableTextBut>�ɱ�</variableTextBut>
-    <newTextBut>�½�</newTextBut>
-    <delBut>ɾ��</delBut>
-    <saveBut>����</saveBut>
-    <saveasBut>����Ϊ</saveasBut>
-    <rotateTextLab>��ת</rotateTextLab>
-    <internalTextLab>���</internalTextLab>
-    <pixelLab>����</pixelLab>
-    <moveSpeedLab>�ƶ�����</moveSpeedLab>
+    <fontTypeTextLab>字体</fontTypeTextLab>
+    <fontSizeTextLab>字号</fontSizeTextLab>
+    <variableTextBut>可变</variableTextBut>
+    <newTextBut>新建</newTextBut>
+    <delBut>删除</delBut>
+    <saveBut>保存</saveBut>
+    <saveasBut>另存为</saveasBut>
+    <rotateTextLab>旋转</rotateTextLab>
+    <internalTextLab>间距</internalTextLab>
+    <pixelLab>像素</pixelLab>
+    <moveSpeedLab>移动倍速</moveSpeedLab>
 
 
-    <addTimeBut>����</addTimeBut>
-    <refreshTimeBut>ˢ��</refreshTimeBut>
-    <newTimeBut>�½�</newTimeBut>
-    <fontTypeTimeLab>����</fontTypeTimeLab>
-    <fontTypeTimeLab_3>ƫ��</fontTypeTimeLab_3>
-    <fontTypeTimeLab_4>ƫ����</fontTypeTimeLab_4>
-    <fontTypeTimeLab_5>ƫ�Ƶ�λ</fontTypeTimeLab_5>
-    <fontTypeTimeLab_6>Ԥ��</fontTypeTimeLab_6>
-    <fontTypeTimeLab_7>����/ʱ��</fontTypeTimeLab_7>
-    <fontSizeTimeLab>�ֺ�</fontSizeTimeLab>
+    <addTimeBut>添加</addTimeBut>
+    <refreshTimeBut>刷新</refreshTimeBut>
+    <newTimeBut>新建</newTimeBut>
+    <fontTypeTimeLab>字体</fontTypeTimeLab>
+    <fontTypeTimeLab_3>偏移</fontTypeTimeLab_3>
+    <fontTypeTimeLab_4>偏移量</fontTypeTimeLab_4>
+    <fontTypeTimeLab_5>偏移单位</fontTypeTimeLab_5>
+    <fontTypeTimeLab_6>预览</fontTypeTimeLab_6>
+    <fontTypeTimeLab_7>日期/时间</fontTypeTimeLab_7>
+    <fontSizeTimeLab>字号</fontSizeTimeLab>
     
-    <initialValSerialLab>��ʼֵ</initialValSerialLab>
-    <termValSerialLab>��ֵֹ</termValSerialLab>
-    <startValSerialLab>��ʼֵ</startValSerialLab>
-    <stepLenSerialLab>����</stepLenSerialLab>
-    <reptCountSerialLab>�ظ�����</reptCountSerialLab>
-    <digitSerialLab>λ��</digitSerialLab>
-    <counterSerialLab>������</counterSerialLab>
-    <fontTypeSerialLab>����</fontTypeSerialLab>
-    <formatSerialLab>��ʽ</formatSerialLab>
-    <newSerialBut>�½�</newSerialBut>
-    <fontSizeSerialLab>�ֺ�</fontSizeSerialLab>
+    <initialValSerialLab>起始值</initialValSerialLab>
+    <termValSerialLab>终止值</termValSerialLab>
+    <startValSerialLab>开始值</startValSerialLab>
+    <stepLenSerialLab>步长</stepLenSerialLab>
+    <reptCountSerialLab>重复计数</reptCountSerialLab>
+    <digitSerialLab>位数</digitSerialLab>
+    <counterSerialLab>计数器</counterSerialLab>
+    <fontTypeSerialLab>字体</fontTypeSerialLab>
+    <formatSerialLab>格式</formatSerialLab>
+    <newSerialBut>新建</newSerialBut>
+    <fontSizeSerialLab>字号</fontSizeSerialLab>
     
-    <heightBmpLab>�߶�</heightBmpLab>
-    <widthBmpLab>����</widthBmpLab>
-    <reverseBmpCheckBox>��ɫ</reverseBmpCheckBox>
-    <selBmpBut>ѡ��ͼ��</selBmpBut>
-    <newBmpBut>�½�</newBmpBut>
-    <proportionBmpCheckBox>�ȱ���</proportionBmpCheckBox>
+    <heightBmpLab>高度</heightBmpLab>
+    <widthBmpLab>宽度</widthBmpLab>
+    <reverseBmpCheckBox>反色</reverseBmpCheckBox>
+    <selBmpBut>选择图形</selBmpBut>
+    <newBmpBut>新建</newBmpBut>
+    <proportionBmpCheckBox>等比例</proportionBmpCheckBox>
 
 
-    <typeBarCodeLab>����</typeBarCodeLab>
-    <zoomBarCodeLab>����</zoomBarCodeLab>
-    <heightBarCodeLab>�߶�</heightBarCodeLab>
-    <variableBarCodeBut>�ɱ�</variableBarCodeBut>
-    <newBarCodeBut>�½�</newBarCodeBut>
-    <typeBarCodeLab_2>�߿�����</typeBarCodeLab_2>
-    <zoomBarCodeLab_2>�հ׿���</zoomBarCodeLab_2>
+    <typeBarCodeLab>类型</typeBarCodeLab>
+    <zoomBarCodeLab>缩放</zoomBarCodeLab>
+    <heightBarCodeLab>高度</heightBarCodeLab>
+    <variableBarCodeBut>可变</variableBarCodeBut>
+    <newBarCodeBut>新建</newBarCodeBut>
+    <typeBarCodeLab_2>边框类型</typeBarCodeLab_2>
+    <zoomBarCodeLab_2>空白宽度</zoomBarCodeLab_2>
 
-    <showNumCheckBox>��ʾ����</showNumCheckBox>
-    <sideLenQRLab>�߳�</sideLenQRLab>
-    <reverseCheckBox>��ɫ</reverseCheckBox>
-    <variableQRBut>�ɱ�</variableQRBut>
-    <newQRBut>�½�</newQRBut>
+    <showNumCheckBox>显示数字</showNumCheckBox>
+    <sideLenQRLab>边长</sideLenQRLab>
+    <reverseCheckBox>反色</reverseCheckBox>
+    <variableQRBut>可变</variableQRBut>
+    <newQRBut>新建</newQRBut>
 
-    <sideLenDMLab>����</sideLenDMLab>
-    <variableDMBut>�ɱ�</variableDMBut>
-    <newDMBut>�½�</newDMBut>
-    <reverseDMCheckBox>��ɫ</reverseDMCheckBox>
-    <typeTab>�ı�#ʱ��#���к�#ͼƬ#������#QR��#DM��</typeTab>
+    <sideLenDMLab>类型</sideLenDMLab>
+    <variableDMBut>可变</variableDMBut>
+    <newDMBut>新建</newDMBut>
+    <reverseDMCheckBox>反色</reverseDMCheckBox>
+    <typeTab>文本#时间#序列号#图片#班次#条形码#QR码#DM码</typeTab>
+    
+    <shiftNumLab>班次数目</shiftNumLab>
+    <textLenLab>标识文本长度</textLenLab>
+    <shift1Lab>班次1</shift1Lab>
+    <shift2Lab>班次2</shift2Lab>
+    <startTimeSft1Lab>开始时间</startTimeSft1Lab>
+    <textIDSft1Lab>标识文本</textIDSft1Lab>
+    <startTimeSft2Lab>开始时间</startTimeSft2Lab>
+    <textIDSft2Lab>标识文本</textIDSft2Lab>
+    <shift3Lab>班次3</shift3Lab>
+    <shift4Lab>班次4</shift4Lab>
+    <startTimeSft3Lab>开始时间</startTimeSft3Lab>
+    <textIDSft3Lab>标识文本</textIDSft3Lab>
+    <startTimeSft4Lab>开始时间</startTimeSft4Lab>
+    <textIDSft4Lab>标识文本</textIDSft4Lab>
+    <newShiftBut>新建</newShiftBut>
+
   </FileEditChild>
   <FileManageChild>
     <fontsize>16</fontsize>
-    <localFileBut>�����ļ�</localFileBut>
-    <UdiskFileBut>U���ļ�</UdiskFileBut>
-    <loadSeleFileBut>����ѡ���ļ�</loadSeleFileBut>
-    <editSeleFileBut>�༭ѡ���ļ�</editSeleFileBut>
-    <delSeleFileBut>ɾ��ѡ���ļ�</delSeleFileBut>
-    <copyFile2localBut>���Ƶ�����</copyFile2localBut>
-    <OKFileNameBut>ȷ��</OKFileNameBut>
+    <localFileBut>本地文件</localFileBut>
+    <UdiskFileBut>U盘文件</UdiskFileBut>
+    <loadSeleFileBut>加载选中文件</loadSeleFileBut>
+    <editSeleFileBut>编辑选中文件</editSeleFileBut>
+    <delSeleFileBut>删除选中文件</delSeleFileBut>
+    <copyFile2localBut>复制到本地</copyFile2localBut>
+    <OKFileNameBut>确定</OKFileNameBut>
   </FileManageChild>
   <ParamSettingForm>
     <fontsize>18</fontsize>
-    <printSettingBut>��ӡ����</printSettingBut>
-    <sysSettingBut>ϵͳ����</sysSettingBut>
-    <countSettingBut>��������</countSettingBut>
-    <aboutMacBut>���ڱ���</aboutMacBut>
-    <paraExitBut>�˳�</paraExitBut>
+    <printSettingBut>打印设置</printSettingBut>
+    <sysSettingBut>系统设置</sysSettingBut>
+    <countSettingBut>计数设置</countSettingBut>
+    <aboutMacBut>关于本机</aboutMacBut>
+    <paraExitBut>退出</paraExitBut>
     <fontsize>16</fontsize>
-    <resetBut>����</resetBut>
-    <savePrintSetBut>����</savePrintSetBut>
+    <resetBut>重置</resetBut>
+    <savePrintSetBut>保存</savePrintSetBut>
   </ParamSettingForm>
   <printSetting>
     <fontsize>16</fontsize>
-     <printSpeedLab>��ӡ�ٶ�m/min</printSpeedLab>
-     <printDelayLab>��ӡ��ʱms</printDelayLab>
-     <synFrequencyLab>ͬ����Ƶ</synFrequencyLab>
-     <printGrayLab>��ӡ�Ҷ�</printGrayLab>
-     <trigLab>������ʽ</trigLab>
-     <inkjetLab>��ī��ʽ</inkjetLab>
-     <printDirLab>��ӡ����</printDirLab>
-     <synWheelCheckBox>����ͬ����</synWheelCheckBox>
-     <voiceCheckBox>����</voiceCheckBox>
-     <trigComBox>���õ���#�Զ�#���#������#������#���Զ�</trigComBox>
-     <inkjetComBox>����#����</inkjetComBox>
-     <printDirComBox>����#����</printDirComBox>
+     <printSpeedLab>打印速度m/min</printSpeedLab>
+     <printDelayLab>打印延时ms</printDelayLab>
+     <synFrequencyLab>同步倍频</synFrequencyLab>
+     <printGrayLab>打印灰度</printGrayLab>
+     <trigLab>触发方式</trigLab>
+     <inkjetLab>喷墨方式</inkjetLab>
+     <printDirLab>打印方向</printDirLab>
+     <synWheelCheckBox>启用同步轮</synWheelCheckBox>
+     <voiceCheckBox>声音</voiceCheckBox>
+     <trigComBox>外置电眼#自动#光电#编码器#光电编码#光自动</trigComBox>
+     <inkjetComBox>左喷#右喷</inkjetComBox>
+     <printDirComBox>正向#逆向</printDirComBox>
 
-     <repetePrintCheckBox>�ظ���ӡ</repetePrintCheckBox>
-     <repeteLab>�ظ�����</repeteLab>
-     <repeteDelayLab>�ظ���ʱms</repeteDelayLab>
+     <repetePrintCheckBox>重复打印</repetePrintCheckBox>
+     <repeteLab>重复次数</repeteLab>
+     <repeteDelayLab>重复延时ms</repeteDelayLab>
 
-     <inkTypeLab>īˮ����</inkTypeLab>
-     <adaptParaCheckBox>����Ӧ����</adaptParaCheckBox> 
-     <inkVoltLab>��ѹV</inkVoltLab>
-     <PWLab>����ms</PWLab>
-     <nozzleSelLab>��ͷѡ��</nozzleSelLab>
-     <offsetLab>ƫ����mm</offsetLab>
-     <flashSprayLab>��������</flashSprayLab>
-     <flashSprayCheckBox>����</flashSprayCheckBox>
-     <flashSprayInternalLab>���s</flashSprayInternalLab>
-     <flashSprayTimesLab>����</flashSprayTimesLab>
-     <printSetTabWid>��ӡ���#�߼�����#��ͷ����#UV������</printSetTabWid>
+     <inkTypeLab>墨水类型</inkTypeLab>
+     <adaptParaCheckBox>自适应参数</adaptParaCheckBox> 
+     <inkVoltLab>电压V</inkVoltLab>
+     <PWLab>脉宽ms</PWLab>
+     <isCombineCheckBox>拼接</isCombineCheckBox>
+     <nozzleSelLab>喷头选择</nozzleSelLab>
+     <offsetLab>偏移量mm</offsetLab>
+     <flashSprayLab>闪喷设置</flashSprayLab>
+     <flashSprayCheckBox>闪喷</flashSprayCheckBox>
+     <flashSprayInternalLab>间隔s</flashSprayInternalLab>
+     <flashSprayTimesLab>次数</flashSprayTimesLab>
+     <printSetTabWid>打印风格#高级设置#喷头设置#UV灯设置</printSetTabWid>
+     
+     <isUVCheckBox>启用UV灯</isUVCheckBox>
+     <delayTimeLab>延长时间/ms</delayTimeLab>
+     <startTimeLab>开始时长/ms</startTimeLab>
   </printSetting>
   <sysSetting>
     <fontsize>16</fontsize>
-     <sysTimeSetLab>ϵͳʱ��</sysTimeSetLab>
-     <backLightLab>��������</backLightLab>
-     <sysLanguageLab>ϵͳ����</sysLanguageLab>
+     <sysTimeSetLab>系统时间</sysTimeSetLab>
+     <backLightLab>背光亮度</backLightLab>
+     <sysLanguageLab>系统语言</sysLanguageLab>
   </sysSetting>
   <countSetting>
     <fontsize>16</fontsize>
-      <counterOneLab>������1</counterOneLab>
-      <currentVal1Lab>��ǰֵ</currentVal1Lab>
-      <initialVal1Lab>��ʼֵ</initialVal1Lab>
-      <repeteTime1Lab>�ظ�����</repeteTime1Lab>
-      <stepVal1Lab>����ֵ</stepVal1Lab>
-      <maxVal1Lab>���ֵ</maxVal1Lab>
-      <counterTwoLab>������2</counterTwoLab>
-      <currentVal2Lab>��ǰֵ</currentVal2Lab>
-      <initialVal2Lab>��ʼֵ</initialVal2Lab>
-      <repeteTime2Lab>�ظ�����</repeteTime2Lab>
-      <stepVal2Lab>����ֵ</stepVal2Lab>
-      <maxVal2Lab>���ֵ</maxVal2Lab>
-      <printTimeLab>��ӡ����</printTimeLab>
+      <counterOneLab>计数器1</counterOneLab>
+      <currentVal1Lab>当前值</currentVal1Lab>
+      <initialVal1Lab>初始值</initialVal1Lab>
+      <repeteTime1Lab>重复次数</repeteTime1Lab>
+      <stepVal1Lab>步进值</stepVal1Lab>
+      <maxVal1Lab>最大值</maxVal1Lab>
+      <counterTwoLab>计数器2</counterTwoLab>
+      <currentVal2Lab>当前值</currentVal2Lab>
+      <initialVal2Lab>初始值</initialVal2Lab>
+      <repeteTime2Lab>重复次数</repeteTime2Lab>
+      <stepVal2Lab>步进值</stepVal2Lab>
+      <maxVal2Lab>最大值</maxVal2Lab>
+      <printTimeLab>打印次数</printTimeLab>
   </countSetting>
+  <aboutMac>
+      <fontsize>16</fontsize>
+      <jetCodeLab>喷码机类型</jetCodeLab>
+      <jetCodeIDLab>喷码机ID</jetCodeIDLab>
+      <mainBoardIDLab>主板ID</mainBoardIDLab>
+      <boardHardVersionLab>主板硬件版本</boardHardVersionLab> 
+      <boardHardUpdateLab>更新时间</boardHardUpdateLab>
+      <boardSoftVersionLab>主板软件版本</boardSoftVersionLab>
+      <boardSoftUpdateLab>更新时间</boardSoftUpdateLab>
+      <sysSoftVersionLab>系统软件版本</sysSoftVersionLab>
+      <sysSoftUpdateLab>更新时间</sysSoftUpdateLab>
+  </aboutMac>
 </MES>
 
 
