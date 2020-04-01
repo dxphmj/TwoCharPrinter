@@ -91,7 +91,7 @@ public:
     {
         if (keyboard->objectName().isEmpty())
             keyboard->setObjectName(QStringLiteral("keyboard"));
-        keyboard->resize(751, 391);
+        keyboard->resize(751, 351);
         QFont font;
         font.setFamily(QStringLiteral("Adobe Arabic"));
         font.setPointSize(7);
@@ -357,7 +357,7 @@ public:
         Esc_KBBut->setStyleSheet(QStringLiteral("background-color: rgb(182,181,186);"));
         backgroundKBLabel = new QLabel(keyboard);
         backgroundKBLabel->setObjectName(QStringLiteral("backgroundKBLabel"));
-        backgroundKBLabel->setGeometry(QRect(0, 0, 751, 391));
+        backgroundKBLabel->setGeometry(QRect(0, 0, 751, 351));
         backgroundKBLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         fontBoxRedu_KBBut = new QPushButton(keyboard);
         fontBoxRedu_KBBut->setObjectName(QStringLiteral("fontBoxRedu_KBBut"));

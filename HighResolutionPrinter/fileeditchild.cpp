@@ -89,6 +89,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->barCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 	connect(ui->QRCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 	connect(ui->DMCodeLineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->textIDShowSft1LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->textIDShowSft2LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->textIDShowSft3LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
+	connect(ui->textIDShowSft4LineEdit,SIGNAL(textChanged(QString)),this,SLOT(OnEnChangeEditInput_clicked()));
 
 	connect(ui->shiftNumShowLineEdit,SIGNAL(clicked()),this,SLOT(shiftNumShowLineEdit_clicked()));
 	connect(ui->textLenShowLineEdit,SIGNAL(clicked()),this,SLOT(textLenShowLineEdit_clicked()));
@@ -436,17 +440,37 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 				inputtext = ui->wordLineEdit->text();
 				break;
 			}
-		case 4:	//wordLineEdit文本框
+		case 4:
 			{
-				inputtext = ui->barCodeLineEdit->text();
+				if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
+				{
+					inputtext = ui->textIDShowSft1LineEdit->text();
+				}
+				else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
+				{
+					inputtext = ui->textIDShowSft2LineEdit->text();
+				}
+				else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
+				{
+					inputtext = ui->textIDShowSft3LineEdit->text();
+				}
+				else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
+				{
+					inputtext = ui->textIDShowSft4LineEdit->text();
+				}
 				break;
 			}
 		case 5:	//wordLineEdit文本框
 			{
-				inputtext = ui->QRCodeLineEdit->text();
+				inputtext = ui->barCodeLineEdit->text();
 				break;
 			}
 		case 6:	//wordLineEdit文本框
+			{
+				inputtext = ui->QRCodeLineEdit->text();
+				break;
+			}
+		case 7:	//wordLineEdit文本框
 			{
 				inputtext = ui->DMCodeLineEdit->text();
 				break;
@@ -467,17 +491,37 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 					ui->wordLineEdit->setText(outputtext);
 					break;
 				}
-			case 4:	//wordLineEdit文本框
+			case 4:
 				{
-					ui->barCodeLineEdit->setText(outputtext);
+					if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
+					{
+						ui->textIDShowSft1LineEdit->setText(outputtext);
+					}
+					else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
+					{
+						ui->textIDShowSft2LineEdit->setText(outputtext);
+					}
+					else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
+					{
+						ui->textIDShowSft3LineEdit->setText(outputtext);
+					}
+					else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
+					{
+						ui->textIDShowSft4LineEdit->setText(outputtext);
+					}
 					break;
 				}
 			case 5:	//wordLineEdit文本框
 				{
-					ui->QRCodeLineEdit->setText(outputtext);
+					ui->barCodeLineEdit->setText(outputtext);
 					break;
 				}
 			case 6:	//wordLineEdit文本框
+				{
+					ui->QRCodeLineEdit->setText(outputtext);
+					break;
+				}
+			case 7:	//wordLineEdit文本框
 				{
 					ui->DMCodeLineEdit->setText(outputtext);
 					break;
@@ -1427,43 +1471,43 @@ void FileEditChild::setText2wordLineEdit()
 
 void FileEditChild::setText2shiftNumShowLineEdit()
 {
-	if (ui->shiftNumShowLineEdit->hasFocus())
+	if (ui->shiftNumShowLineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->shiftNumShowLineEdit);
 	}
-	else if (ui->textLenShowLineEdit->hasFocus())
+	else if (ui->textLenShowLineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->textLenShowLineEdit);
 	}
-	else if (ui->startTimeShowSft1LineEdit->hasFocus())
+	else if (ui->startTimeShowSft1LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft1LineEdit);
 	}
-	else if (ui->startTimeShowSft2LineEdit->hasFocus())
+	else if (ui->startTimeShowSft2LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft2LineEdit);
 	}
-	else if (ui->textIDShowSft1LineEdit->hasFocus())
+	else if (ui->textIDShowSft1LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft1LineEdit);
 	}
-	else if (ui->textIDShowSft2LineEdit->hasFocus())
+	else if (ui->textIDShowSft2LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft2LineEdit);
 	}
-	else if (ui->startTimeShowSft3LineEdit->hasFocus())
+	else if (ui->startTimeShowSft3LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft3LineEdit);
 	}
-	else if (ui->startTimeShowSft4LineEdit->hasFocus())
+	else if (ui->startTimeShowSft4LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->startTimeShowSft4LineEdit);
 	}
-	else if (ui->textIDShowSft3LineEdit->hasFocus())
+	else if (ui->textIDShowSft3LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft3LineEdit);
 	}
-	else if (ui->textIDShowSft4LineEdit->hasFocus())
+	else if (ui->textIDShowSft4LineEdit->hasAcceptableInput())
 	{
 		keyboardWidget->changeLineEdit(ui->textIDShowSft4LineEdit);
 	}

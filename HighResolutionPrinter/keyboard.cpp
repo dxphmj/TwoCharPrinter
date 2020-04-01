@@ -119,7 +119,7 @@ void keyboard::SetKBPosition()
 	rectLineEdit = m_pInputEdit->geometry();
 	QRect rectKeyboard;
 	rectKeyboard = geometry();
-	QRect rect(10,rectLineEdit.bottom()-100,rectKeyboard.width(),rectKeyboard.height());
+	QRect rect(10,rectLineEdit.bottom()-60,rectKeyboard.width(),rectKeyboard.height());
 	setGeometry(rect);
 }
 
