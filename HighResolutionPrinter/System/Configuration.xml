@@ -8,8 +8,8 @@
         <m_TriggerMode>0</m_TriggerMode>
         <m_InkjetMode>0</m_InkjetMode>
         <m_PrintingDirection>0</m_PrintingDirection>
-        <m_SynWheelCheck>0</m_SynWheelCheck>
-        <m_VoiceCheck>0</m_VoiceCheck>
+        <m_SynWheelCheck>1</m_SynWheelCheck>
+        <m_VoiceCheck>1</m_VoiceCheck>
         <DPIradioBGcheckedId>1</DPIradioBGcheckedId>
         <m_RepetePrintCheck>0</m_RepetePrintCheck>
         <m_RepeatTimes>1</m_RepeatTimes>
@@ -17,13 +17,13 @@
         <m_AdaptParaCheck>0</m_AdaptParaCheck>
         <m_InkVoltage>8.5</m_InkVoltage>
         <m_InkPulseWidth>1.8</m_InkPulseWidth>
-        <m_SplicingCheck>1</m_SplicingCheck>
+        <m_SplicingCheck>0</m_SplicingCheck>
         <NozzleradioBGcheckedId>1</NozzleradioBGcheckedId>
         <m_Offset>0</m_Offset>
         <m_FlashSprayCheck>0</m_FlashSprayCheck>
         <m_FlashSprayInterval>5</m_FlashSprayInterval>
         <m_FlashSprayFrequency>1</m_FlashSprayFrequency>
-        <m_UsingUVLightCheck>1</m_UsingUVLightCheck>
+        <m_UsingUVLightCheck>0</m_UsingUVLightCheck>
         <m_TimeExpand>500</m_TimeExpand>
         <m_StartTime>500</m_StartTime>
     </printsetting>
@@ -34,6 +34,6 @@
         <m_HourShow>13</m_HourShow>
         <m_MinShow>27</m_MinShow>
         <m_SecondShow>30</m_SecondShow>
-        <m_SysLanguage></m_SysLanguage>
+        <m_SysLanguage>CHINESE_SIMPLIFIED</m_SysLanguage>
     </system_setting>
 </configuration_information>

@@ -53,7 +53,6 @@ public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;
-	roll *m_roll;
 
 private slots:
 	void fileManageBut_clicked();

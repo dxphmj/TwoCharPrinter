@@ -1,4 +1,5 @@
 ﻿#include "ParamSetting.h"
+#include <QDir>
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
@@ -16,7 +17,10 @@ CParamSetting::~CParamSetting(void)
 
 void CParamSetting::SaveParam2Xml()
 {
-	QFile file("System\\Configuration.xml"); //以只写方式创建一个文件
+	QDir configurationDir;
+	QString currentDir = configurationDir.currentPath();
+	QString configurationPath = currentDir + "/System/Configuration.xml";
+	QFile file(configurationPath); //以只写方式创建一个文件
 	if (!file.open(QFile::WriteOnly | QFile::Text)) {
 		qDebug() << "Error: Cannot write file: "
 			<< qPrintable(file.errorString());
@@ -278,7 +282,10 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 
 void CParamSetting::OpenParamFromXml(ParamSettingForm* pParamSettingForm)
 {
-	QFile file("System\\Configuration.xml");
+	QDir configurationDir;
+	QString currentDir = configurationDir.currentPath();
+	QString configurationPath = currentDir + "/System/Configuration.xml";
+	QFile file(configurationPath);
 	if(!file.open(QFile::ReadOnly | QFile::Text)) return;
 	 
 	//构建QXmlStreamReader对象

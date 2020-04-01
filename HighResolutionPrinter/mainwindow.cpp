@@ -24,7 +24,6 @@ MainWindow::MainWindow(QWidget *parent) :
  
 	m_fileManage = new FilemanageForm(this);
 	m_paramsetting = new ParamSettingForm(this);
-	m_roll = new roll(this);
 	m_paramsetting->hide();
 	m_fileManage->hide();
 
