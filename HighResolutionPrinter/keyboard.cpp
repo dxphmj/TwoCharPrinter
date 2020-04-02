@@ -6624,6 +6624,8 @@ void keyboard::LanKoreanSmall()//韩语小写
 	ui->X_KBBut->setText(QStringLiteral("ㅌ"));
 	ui->Y_KBBut->setText(QStringLiteral("ㅛ"));
 	ui->Z_KBBut->setText(QStringLiteral("ㅋ"));
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");
@@ -6718,6 +6720,8 @@ void keyboard::LanKoreanBig()
 	ui->X_KBBut->setText(QStringLiteral("차"));
 	ui->Y_KBBut->setText(QStringLiteral(""));
 	ui->Z_KBBut->setText(QStringLiteral("자"));
+	ui->comma_KBBut->setText(",");
+	ui->period_KBBut->setText(".");
 	ui->one_KBBut->setText("1");
 	ui->two_KBBut->setText("2");
 	ui->three_KBBut->setText("3");

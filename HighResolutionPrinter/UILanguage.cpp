@@ -7,6 +7,8 @@
 #include "ui_filemanageform.h"
 #include "paramsettingform.h"
 #include "ui_paramsettingform.h"
+#include <QDir>
+
 
 CUILanguage::CUILanguage(QObject* pMainwindow)
 {
@@ -23,23 +25,29 @@ void CUILanguage::ChangeLanguage(int nLanguageType)
 {
 	MainWindow* pMainwindow = (MainWindow*)(m_pMainwindow);
 	char strFileName[100];
-
+	QDir MultiLanguage;
+	QString MultiLanguageDir = MultiLanguage.currentPath();
+	
 	m_codemode = false;//定义变量用于判断编码方式 初始为false
 	//根据nLanguageType 读取相应的xml文件
+
 	if(nLanguageType == 1)
 	{	
-	   sprintf(strFileName,"%s","System\\chinese.xml");
+	   QString MultiLanguagePath = MultiLanguageDir + "/System/chinese.xml";
+	   sprintf(strFileName,"%s",MultiLanguagePath.toLatin1().data());
 	    m_codemode = true;   //中文时变量为true
-          m_nLanguage = 1;
+        m_nLanguage = 1;
 	 }
 	if(nLanguageType == 0)
 	{
-        sprintf(strFileName,"%s","System\\arabic.xml");
+		QString MultiLanguagePath = MultiLanguageDir + "/System/arabic.xml";
+        sprintf(strFileName,"%s",MultiLanguagePath.toLatin1().data());
          m_nLanguage = 0;
       }
 	if(nLanguageType == 5)
 	{
-	    sprintf(strFileName,"%s","System\\english.xml");
+		QString MultiLanguagePath = MultiLanguageDir + "/System/english.xml";
+	    sprintf(strFileName,"%s",MultiLanguagePath.toLatin1().data());
 	/*m_chinesetype = nLanguageType;*/
 	//先读取窗体的名称，根据窗体的名称获得窗体指针，然后再给窗体的各控件赋值 
 		m_nLanguage = 5;
