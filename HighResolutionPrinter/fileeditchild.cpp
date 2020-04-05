@@ -19,6 +19,8 @@
 #include "automessagebox.h"
 #include <tchar.h>
 
+
+
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::FileEditChild)
@@ -106,6 +108,13 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->startTimeShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft4LineEdit_clicked()));
 	connect(ui->textIDShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft4LineEdit_clicked()));
 	
+
+	//m_time = new QTimer;
+	//m_time->start(0);
+	//connect(m_time,SIGNAL(timeout()),this,SLOT(getCurTime()));
+	connect(ui->newShiftBut ,SIGNAL(clicked()),this,SLOT(newShiftBut()));
+
+
     ui->wordLineEdit->setFocus();
 
 	ui->shiftNumShowLineEdit->setFocus();
@@ -3420,5 +3429,409 @@ QString FileEditChild::ArabicLan(QString inputstring)//Arabic组合规则
 	return outputstring;
 }
 
+bool FileEditChild::newShiftBut()
+{
+	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
+	{
+		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		{
+			//班次1
+			QString curText1 = ui->startTimeShowSft1LineEdit->text();
+			QString leftText1 = curText1.left(2);
+			leftInt1 = atoi(leftText1.toStdString().c_str());
+			//QString rightText1 = curText1.mid(2,2);
+			//rightInt1 = atoi(rightText1.toStdString().c_str());
+			showText1 = ui->textIDShowSft1LineEdit->text();
+			int showTextLen1 = showText1.length();
+
+			//班次2
+			QString curText2 = ui->startTimeShowSft2LineEdit->text();
+			QString leftText2 = curText2.left(2);
+			leftInt2 = atoi(leftText2.toStdString().c_str());
+			//QString rightText1 = curText1.mid(2,2);
+			//rightInt1 = atoi(rightText1.toStdString().c_str());
+			showText2 = ui->textIDShowSft2LineEdit->text();
+			int showTextLen2 = showText2.length();
+
+			//班次3
+			QString curText3 = ui->startTimeShowSft3LineEdit->text();
+			QString leftText3 = curText3.left(2);
+			leftInt3 = atoi(leftText3.toStdString().c_str());
+			//QString rightText1 = curText1.mid(2,2);
+			//rightInt1 = atoi(rightText1.toStdString().c_str());
+			showText3 = ui->textIDShowSft3LineEdit->text();
+			int showTextLen3 = showText3.length();
+
+			//班次4
+			QString curText4 = ui->startTimeShowSft4LineEdit->text();
+			QString leftText4 = curText4.left(2);
+			leftInt4 = atoi(leftText4.toStdString().c_str());
+			//QString rightText1 = curText1.mid(2,2);
+			//rightInt1 = atoi(rightText1.toStdString().c_str());
+			showText4 = ui->textIDShowSft4LineEdit->text();
+			int showTextLen4 = showText4.length();
+
+			//班次数目
+			QString m_num = ui->shiftNumShowLineEdit->text();
+			int numInt = atoi(m_num.toStdString().c_str());
+			switch(numInt)
+			{
+			case 0:
+				ui->startTimeShowSft2LineEdit->setText("");
+				ui->textIDShowSft2LineEdit->setText("");
+				ui->startTimeShowSft3LineEdit->setText("");
+				ui->textIDShowSft3LineEdit->setText("");
+				ui->startTimeShowSft4LineEdit->setText("");
+				ui->textIDShowSft4LineEdit->setText("");
+				ui->startTimeShowSft2LineEdit->setEnabled(false);
+				ui->textIDShowSft2LineEdit->setEnabled(false);
+				ui->startTimeShowSft3LineEdit->setEnabled(false);
+				ui->textIDShowSft3LineEdit->setEnabled(false);
+				ui->startTimeShowSft4LineEdit->setEnabled(false);
+				ui->textIDShowSft4LineEdit->setEnabled(false);
+				break;
+
+			case 1:
+				ui->startTimeShowSft2LineEdit->setText("");
+				ui->textIDShowSft2LineEdit->setText("");
+				ui->startTimeShowSft3LineEdit->setText("");
+				ui->textIDShowSft3LineEdit->setText("");
+				ui->startTimeShowSft4LineEdit->setText("");
+				ui->textIDShowSft4LineEdit->setText("");
+				ui->startTimeShowSft2LineEdit->setEnabled(false);
+				ui->textIDShowSft2LineEdit->setEnabled(false);
+				ui->startTimeShowSft3LineEdit->setEnabled(false);
+				ui->textIDShowSft3LineEdit->setEnabled(false);
+				ui->startTimeShowSft4LineEdit->setEnabled(false);
+				ui->textIDShowSft4LineEdit->setEnabled(false);
+				break;
+			case 2:
+				ui->startTimeShowSft3LineEdit->setText("");
+				ui->textIDShowSft3LineEdit->setText("");
+				ui->startTimeShowSft4LineEdit->setText("");
+				ui->textIDShowSft4LineEdit->setText("");
+				ui->startTimeShowSft3LineEdit->setEnabled(false);
+				ui->textIDShowSft3LineEdit->setEnabled(false);
+				ui->startTimeShowSft4LineEdit->setEnabled(false);
+				ui->textIDShowSft4LineEdit->setEnabled(false);
+				break;
+			case 3:
+				ui->startTimeShowSft4LineEdit->setText("");
+				ui->textIDShowSft4LineEdit->setText("");
+				ui->startTimeShowSft4LineEdit->setEnabled(false);
+				ui->textIDShowSft4LineEdit->setEnabled(false);
+				break;
+			}
+
+			//文本长度
+			QString textLen = ui->textLenShowLineEdit->text();
+			int textLenInt = atoi(textLen.toStdString().c_str());
+			//ui.textlineEdit1->setMaxLength(textLenInt);
+			if (showTextLen1 > textLenInt)
+			{
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext1 = QString::fromLocal8Bit("班次1超出输入范围");
+				informationMessage(warningtext1.toStdString());
+				ui->textIDShowSft1LineEdit->setText(""); 
+				return false;
+			}
+			if (showTextLen2 > textLenInt)
+			{
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext2 = QString::fromLocal8Bit("班次2超出输入范围");
+				informationMessage(warningtext2.toStdString());
+				ui->textIDShowSft2LineEdit->setText(""); 
+				return false;
+			}
+			if (showTextLen3 > textLenInt)
+			{
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext3 = QString::fromLocal8Bit("班次3超出输入范围");
+				informationMessage(warningtext3.toStdString());
+				ui->textIDShowSft3LineEdit->setText(""); 
+				return false;
+			}
+			if (showTextLen4 > textLenInt)
+			{
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext4 = QString::fromLocal8Bit("班次4超出输入范围");
+				informationMessage(warningtext4.toStdString());
+				ui->textIDShowSft4LineEdit->setText(""); 
+				return false;
+			}
+			QTime timeNow = QTime::currentTime();
+			//ui.textlineEdit4->setText(timeNow.toString());
+			m_hour = timeNow.hour();
+			//m_mint = timeNow.minute();
+			string textFont = QString::fromLocal8Bit("5x5").toStdString();
+			QString m_num1 = ui->shiftNumShowLineEdit->text();
+			int numInt1 = atoi(m_num1.toStdString().c_str());
+			switch(numInt1-1)
+			{
+			case 0:
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+				break;
+			case 1:
+				if ( m_hour>= leftInt1 && m_hour< leftInt2)
+				{   
+					//string txtString = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+				}
+				if ( m_hour>= leftInt2 || m_hour< leftInt1)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+				}
+				break;
+			case 2:
+				if ( m_hour>= leftInt1 && m_hour< leftInt2)
+				{   
+					//string txtString = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+				}
+				if ( m_hour>= leftInt2 && m_hour< leftInt3)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+				}
+				if ( m_hour>= leftInt3 || m_hour< leftInt1)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText3);
+				}
+				break;
+			case 3:
+				if ( m_hour>= leftInt1 && m_hour< leftInt2)
+				{   
+					//string txtString = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+				}
+				if ( m_hour>= leftInt2 && m_hour< leftInt3)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+				}
+				if ( m_hour>= leftInt3 || m_hour< leftInt1)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText3);
+				}
+				if ( m_hour< leftInt1 || m_hour>= leftInt4)
+				{
+					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText4);
+				}
+				break;
+			}
+			this->update();
+			return true;
+			//return;
+		}
+	}
+	//班次1
+	QString curText1 = ui->startTimeShowSft1LineEdit->text();
+	QString leftText1 = curText1.left(2);
+	leftInt1 = atoi(leftText1.toStdString().c_str());
+	//QString rightText1 = curText1.mid(2,2);
+	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	showText1 = ui->textIDShowSft1LineEdit->text();
+	int showTextLen1 = showText1.length();
+
+	//班次2
+	QString curText2 = ui->startTimeShowSft2LineEdit->text();
+	QString leftText2 = curText2.left(2);
+	leftInt2 = atoi(leftText2.toStdString().c_str());
+	//QString rightText1 = curText1.mid(2,2);
+	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	showText2 = ui->textIDShowSft2LineEdit->text();
+	int showTextLen2 = showText2.length();
+
+	//班次3
+	QString curText3 = ui->startTimeShowSft3LineEdit->text();
+	QString leftText3 = curText3.left(2);
+	leftInt3 = atoi(leftText3.toStdString().c_str());
+	//QString rightText1 = curText1.mid(2,2);
+	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	showText3 = ui->textIDShowSft3LineEdit->text();
+	int showTextLen3 = showText3.length();
+
+	//班次4
+	QString curText4 = ui->startTimeShowSft4LineEdit->text();
+	QString leftText4 = curText4.left(2);
+	leftInt4 = atoi(leftText4.toStdString().c_str());
+	//QString rightText1 = curText1.mid(2,2);
+	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	showText4 = ui->textIDShowSft4LineEdit->text();
+	int showTextLen4 = showText4.length();
+
+	//班次数目
+	QString m_num = ui->shiftNumShowLineEdit->text();
+	int numInt = atoi(m_num.toStdString().c_str());
+	switch(numInt)
+	{
+	case 0:
+		ui->startTimeShowSft2LineEdit->setText("");
+		ui->textIDShowSft2LineEdit->setText("");
+		ui->startTimeShowSft3LineEdit->setText("");
+		ui->textIDShowSft3LineEdit->setText("");
+		ui->startTimeShowSft4LineEdit->setText("");
+		ui->textIDShowSft4LineEdit->setText("");
+		ui->startTimeShowSft2LineEdit->setEnabled(false);
+		ui->textIDShowSft2LineEdit->setEnabled(false);
+		ui->startTimeShowSft3LineEdit->setEnabled(false);
+		ui->textIDShowSft3LineEdit->setEnabled(false);
+		ui->startTimeShowSft4LineEdit->setEnabled(false);
+		ui->textIDShowSft4LineEdit->setEnabled(false);
+		break;
+
+	case 1:
+		ui->startTimeShowSft2LineEdit->setText("");
+		ui->textIDShowSft2LineEdit->setText("");
+		ui->startTimeShowSft3LineEdit->setText("");
+		ui->textIDShowSft3LineEdit->setText("");
+		ui->startTimeShowSft4LineEdit->setText("");
+		ui->textIDShowSft4LineEdit->setText("");
+		ui->startTimeShowSft2LineEdit->setEnabled(false);
+		ui->textIDShowSft2LineEdit->setEnabled(false);
+		ui->startTimeShowSft3LineEdit->setEnabled(false);
+		ui->textIDShowSft3LineEdit->setEnabled(false);
+		ui->startTimeShowSft4LineEdit->setEnabled(false);
+		ui->textIDShowSft4LineEdit->setEnabled(false);
+		break;
+	case 2:
+		ui->startTimeShowSft3LineEdit->setText("");
+		ui->textIDShowSft3LineEdit->setText("");
+		ui->startTimeShowSft4LineEdit->setText("");
+		ui->textIDShowSft4LineEdit->setText("");
+		ui->startTimeShowSft3LineEdit->setEnabled(false);
+		ui->textIDShowSft3LineEdit->setEnabled(false);
+		ui->startTimeShowSft4LineEdit->setEnabled(false);
+		ui->textIDShowSft4LineEdit->setEnabled(false);
+		break;
+	case 3:
+		ui->startTimeShowSft4LineEdit->setText("");
+		ui->textIDShowSft4LineEdit->setText("");
+		ui->startTimeShowSft4LineEdit->setEnabled(false);
+		ui->textIDShowSft4LineEdit->setEnabled(false);
+		break;
+	}
+
+	//文本长度
+	QString textLen = ui->textLenShowLineEdit->text();
+	int textLenInt = atoi(textLen.toStdString().c_str());
+	//ui.textlineEdit1->setMaxLength(textLenInt);
+	if (showTextLen1 > textLenInt)
+	{
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext1 = QString::fromLocal8Bit("班次1超出输入范围");
+		informationMessage(warningtext1.toStdString());
+		ui->textIDShowSft1LineEdit->setText(""); 
+		return false;
+	}
+	if (showTextLen2 > textLenInt)
+	{
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext2 = QString::fromLocal8Bit("班次2超出输入范围");
+		informationMessage(warningtext2.toStdString());
+		ui->textIDShowSft2LineEdit->setText(""); 
+		return false;
+	}
+	if (showTextLen3 > textLenInt)
+	{
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext3 = QString::fromLocal8Bit("班次3超出输入范围");
+		informationMessage(warningtext3.toStdString());
+		ui->textIDShowSft3LineEdit->setText(""); 
+		return false;
+	}
+	if (showTextLen4 > textLenInt)
+	{
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext4 = QString::fromLocal8Bit("班次4超出输入范围");
+		informationMessage(warningtext4.toStdString());
+		ui->textIDShowSft4LineEdit->setText(""); 
+		return false;
+	}
+	getCurTime(leftInt1,leftInt2,leftInt3,leftInt4);
+	return true;
+}
+
+void FileEditChild::getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftInt4)
+{
+	QTime timeNow = QTime::currentTime();
+	//ui.textlineEdit4->setText(timeNow.toString());
+	m_hour = timeNow.hour();
+	//m_mint = timeNow.minute();
+	string textFont = QString::fromLocal8Bit("5x5").toStdString();
+	QString m_num = ui->shiftNumShowLineEdit->text();
+	int numInt = atoi(m_num.toStdString().c_str());
+	switch(numInt-1)
+	{
+	case 0:
+		PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+		break;
+	case 1:
+		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		{   
+			//string txtString = qstr2str(showText1);
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+		}
+		if ( m_hour>= leftInt2 || m_hour< leftInt1)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+		}
+		break;
+	case 2:
+		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		{   
+			//string txtString = qstr2str(showText1);
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+		}
+		if ( m_hour>= leftInt2 && m_hour< leftInt3)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+		}
+		if ( m_hour>= leftInt3 || m_hour< leftInt1)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+		}
+		break;
+	case 3:
+		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		{   
+			//string txtString = qstr2str(showText1);
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+		}
+		if ( m_hour>= leftInt2 && m_hour< leftInt3)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+		}
+		if ( m_hour>= leftInt3 && m_hour< leftInt4)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+		}
+		if ( m_hour< leftInt1 || m_hour>= leftInt4)
+		{
+			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText4),0,0,0,1);
+		}
+		break;
+	}
 
 
+}
+
+void FileEditChild::PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
+{
+	OBJ_Control BanCiObj;
+	BanCiObj.strType1 = "text";
+	BanCiObj.strType2 = "banci";
+	BanCiObj.strFont = txtFont;
+	BanCiObj.strText = txtContent;
+	int txtLength = txtContent.length();
+	BanCiObj.intLineSize = GetCharLenFromFont(txtFont,false);
+	BanCiObj.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	BanCiObj.intLineStart = txtLineStart;
+	BanCiObj.intRowStart = txtRowStart;
+	BanCiObj.intSW = txtSW;
+	BanCiObj.intSS = txtSS;
+	BanCiObj.booNEG = txtNEG;
+	BanCiObj.booBWDx = txtBWDx;
+	BanCiObj.booBWDy = txtBWDy;
+
+	BanCiObj.booFocus = true;
+	m_PrinterMes.OBJ_Vec.push_back(BanCiObj); 
+}

@@ -6,7 +6,6 @@
 #include "ClassMessage.h"
 #include "TextOBJ.h"
 #include "backend\zint.h"
-
 class keyboard;
 class numkeyboard;
 class language;
@@ -28,7 +27,6 @@ public:
 	CTextOBJ m_TextObj;
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
-
 	/*enum LineeditChangeEnum{ WordLineedit = 0,barLineEdit = 1,QRLineEdit = 2,DMLineEdit = 3};
 	int m_LineeditChange;
 	void lineeditChange();*/
@@ -45,6 +43,8 @@ public:
 	void LoadLocalFile();
 	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //根据字体，计算得到每个字符的显示长度
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	void PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+
 	QString getChinese(QString &str);
 	void PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber);
 	void ShowText();
@@ -175,6 +175,8 @@ private slots:
 	void startTimeShowSft4LineEdit_clicked();
 	void textIDShowSft4LineEdit_clicked();
 
+	void getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftInt4);
+	bool newShiftBut();
 
 protected:
 	//void paintEvent(QPaintEvent *event);
@@ -190,6 +192,19 @@ public:
 	void setText2DMCodeLineEdit();
 
 	void PreviewBmp(QString fileNameAAA,int nW,int nH);
+
+	//QTimer *m_time;
+	int m_hour;
+	int m_mint;
+	int leftInt1;
+	int leftInt2;
+	int leftInt3;
+	int leftInt4;
+	//int rightInt1;
+	QString showText1;
+	QString showText2;
+	QString showText3;
+	QString showText4;
 
 };
 
