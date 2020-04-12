@@ -69,6 +69,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	 
 	m_pPrintThread = new PrintThead(this);//启动打印线程
 	m_pPrintThread->start();
+
+
+	
 }
 
 MainWindow::~MainWindow()
@@ -92,6 +95,11 @@ void MainWindow::RefreshWindow()
 	QWidget *pQWidget(this);
 	pQWidget->update();
 }
+
+//void MainWindow::changedFont(const QFont& f)
+//{
+//	 label->setFont(f);
+//}
 
 void MainWindow::fileManageBut_clicked()
 {

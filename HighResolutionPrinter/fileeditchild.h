@@ -3,9 +3,13 @@
 
 #include <QWidget>
 #include <QLineEdit>
+#include <QFontComboBox>
 #include "ClassMessage.h"
 #include "TextOBJ.h"
 #include "backend\zint.h"
+
+
+
 class keyboard;
 class numkeyboard;
 class language;
@@ -97,6 +101,11 @@ public:
 	int m_ShiftLineEditType;//当前班次的编辑框选择
 
 	QString fileName;
+
+	QFontComboBox* FontComboBoxChoose;//字体选择框
+	//QLabel* label ;
+//public slots:
+	//void changedFont(const QFont& f);
 
 public:
 	Ui::FileEditChild* ui;

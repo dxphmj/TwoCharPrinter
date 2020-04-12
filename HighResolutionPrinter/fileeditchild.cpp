@@ -336,6 +336,28 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->serialLineEdit->setText("000000001");
 	SerialNumber_length=0;
 	Serialfirst=1; 
+
+
+	/*for(int i=0 ; i<1;i++)
+	{*/
+	//fcb = new QFontComboBox(this->ui->fontSizeTextComBox);
+	/*}
+    */
+	//fcb->setFontFilters(QFontComboBox::AllFonts);
+	///*fc[1]->setFontFilters(QFontComboBox::ScalableFonts);
+	//fc[2]->setFontFilters(QFontComboBox::NonScalableFonts);
+	//fc[3]->setFontFilters(QFontComboBox::MonospacedFonts);
+	//fc[4]->setFontFilters(QFontComboBox::ProportionalFonts);*/
+
+	/*int ypos = 30 ;*/
+	/*for(int i=0;i<1;i++)
+	{*/
+	//fcb->setGeometry(100,470,300,41);
+	//	ypos += 40 ;
+	/*}*/
+	/*label = new QLabel("用此标签查看字体效果",this);
+	label->setGeometry(10,230,200,30);
+	connect(fc[0],SIGNAL(currentFontChanged(QFont)),this,SLOT(changedFont(QFont)));*/
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -346,13 +368,17 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeTextComBox->setCurrentIndex(0); 
 
 #else
-	ui->fontSizeTextComBox->setVisible(true);
-	ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
+	FontComboBoxChoose = new QFontComboBox(this->ui->fontTypeTextComBox);
+	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
+	FontComboBoxChoose->setGeometry(0,0,181,41);
+	
+	/*ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("宋体简体"));
-	ui->fontTypeTextComBox->setCurrentIndex(0);
+	ui->fontTypeTextComBox->setCurrentIndex(0);*/
 
+	ui->fontSizeTextComBox->setVisible(true);
 	ui->fontSizeTextComBox->addItem(QStringLiteral("5"));
 	ui->fontSizeTextComBox->addItem(QStringLiteral("7"));
 	ui->fontSizeTextComBox->addItem(QStringLiteral("9"));
