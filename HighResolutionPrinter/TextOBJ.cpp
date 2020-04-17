@@ -5,6 +5,30 @@ CTextOBJ::CTextOBJ(void)
 {
 }
 
+CTextOBJ::CTextOBJ(OBJ_Control obj,CTextOBJ TextObj)
+{
+	strType1 = obj.strType1;
+	strType2 = obj.strType2;
+	intX = obj.intX;
+	intY = obj.intY;
+	intSW = obj.intSW;
+	intSS = obj.intSS;
+
+	booNEG = obj.booNEG;
+	booBWDx = obj.booBWDx;
+	booBWDy = obj.booBWDy;
+	strFont = obj.strFont;
+	strText = obj.strText;
+	intLineSize = obj.intLineSize;
+	intRowSize = obj.intRowSize;
+	intLineStart = obj.intLineStart;
+	intRowStart = obj.intRowStart;
+	booFocus = obj.booFocus;
+
+	m_bVecotrWord = TextObj.m_bVecotrWord;
+	m_WordStockFileName = TextObj.m_WordStockFileName;
+}
+
 CTextOBJ::~CTextOBJ(void)
 {
 }

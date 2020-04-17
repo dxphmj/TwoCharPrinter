@@ -145,9 +145,9 @@ void FileManageChild::PreviewSaveFile()
 	//取消选中状态
 	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
 	{
-		if (m_pPrinterMes->OBJ_Vec[i].booFocus)
+		if (m_pPrinterMes->OBJ_Vec[i]->booFocus)
 		{
-			m_pPrinterMes->OBJ_Vec[i].booFocus = false;
+			m_pPrinterMes->OBJ_Vec[i]->booFocus = false;
 		}
 	}
 	QString qfileName = this->ui->filelistWidget->currentItem()->text();

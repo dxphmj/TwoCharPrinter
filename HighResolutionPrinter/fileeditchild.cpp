@@ -623,25 +623,25 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	int nH = pLoad.height();
 	QImage pImage;
 	pImage = pLoad.toImage();
-	pImage=pImage.scaled(pImage.width(),heightvalue1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation); 
+	pImage = pImage.scaled(pImage.width(),heightvalue1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation); 
 
-	CBarcodeOBJ bmpObj;
-	bmpObj.intLineStart=0;
-	bmpObj.intRowStart=0;
-	bmpObj.strType1="text";
-	bmpObj.strType2="2Dcode";
-	bmpObj.strText=strFileName;
-	bmpObj.strCodeContent=strContent.toStdString();
-	bmpObj.intLineSize=pImage.height();
-	bmpObj.intRowSize=pImage.width();
-	bmpObj.intBarcodeType=nType;
-	bmpObj.intBarType= ui->typeBarCodeComBox->currentIndex();
-	bmpObj.intBarWhite = ui->whitespaceLab->text().toInt();
-	bmpObj.intSW=1;
-	bmpObj.intSS=0;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;
+	CBarcodeOBJ* bmpObj = new CBarcodeOBJ;
+	bmpObj->intLineStart=0;
+	bmpObj->intRowStart=0;
+	bmpObj->strType1="text";
+	bmpObj->strType2="2Dcode";
+	bmpObj->strText=strFileName;
+	bmpObj->strCodeContent=strContent.toStdString();
+	bmpObj->intLineSize=pImage.height();
+	bmpObj->intRowSize=pImage.width();
+	bmpObj->intBarcodeType=nType;
+	bmpObj->intBarType= ui->typeBarCodeComBox->currentIndex();
+	bmpObj->intBarWhite = ui->whitespaceLab->text().toInt();
+	bmpObj->intSW=1;
+	bmpObj->intSS=0;
+	bmpObj->booNEG=false;
+	bmpObj->booBWDx=false;
+	bmpObj->booBWDy=false;
 
 	for(int y = 0; y< pImage.height(); y++)
 	{  
@@ -650,13 +650,13 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 			if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intRowStart +x][bmpObj.intLineStart+bmpObj.intLineSize -y-1] = true;
+				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = true;
 			else
-				bmpObj.boDotBmp[bmpObj.intRowStart +x][bmpObj.intLineStart+bmpObj.intLineSize -y-1] = false;
+				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = false;
 		}  
 
 	}  
-	bmpObj.booFocus = true;
+	bmpObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 	if (nW ==0 && nH ==0)
 	{
@@ -712,29 +712,29 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int yPos=0;
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
 	{
-		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+		if (m_PrinterMes.OBJ_Vec.at(i)->booFocus)
 		{
-			m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
-			yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
-			xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+			m_PrinterMes.OBJ_Vec.at(i)->booFocus=false;
+			yPos = m_PrinterMes.OBJ_Vec.at(i)->intLineStart;
+			xPos = m_PrinterMes.OBJ_Vec.at(i)->intRowSize+m_PrinterMes.OBJ_Vec.at(i)->intRowStart;
 		}
 	}
 
-	CQRcodeOBJ bmpObj;
-	bmpObj.intLineStart=yPos;
-	bmpObj.intRowStart=xPos;
-	bmpObj.strType1="text";
-	bmpObj.strType2="qrcode";
-	bmpObj.intLineSize=my_symbol->bitmap_height;
-	bmpObj.intRowSize=my_symbol->bitmap_width;
-	bmpObj.intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
+	CQRcodeOBJ* bmpObj = new CQRcodeOBJ;
+	bmpObj->intLineStart=yPos;
+	bmpObj->intRowStart=xPos;
+	bmpObj->strType1="text";
+	bmpObj->strType2="qrcode";
+	bmpObj->intLineSize=my_symbol->bitmap_height;
+	bmpObj->intRowSize=my_symbol->bitmap_width;
+	bmpObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
 
 	//������д��
-	bmpObj.intSW=1;
-	bmpObj.intSS=1;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;
+	bmpObj->intSW=1;
+	bmpObj->intSS=1;
+	bmpObj->booNEG=false;
+	bmpObj->booBWDx=false;
+	bmpObj->booBWDy=false;
 	i = 0;
 	int r, g, b;
 
@@ -749,17 +749,17 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 			if (r == 0 && g == 0 && b == 0)
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = false;
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
 			}
 		}
 	}
-	bmpObj.strText = strContent.toStdString();
-	bmpObj.booFocus = true;
+	bmpObj->strText = strContent.toStdString();
+	bmpObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 	if (my_symbol->bitmap_height ==0 && my_symbol->bitmap_width ==0)
 	{
@@ -810,31 +810,31 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	int yPos=0;
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
 	{
-		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+		if (m_PrinterMes.OBJ_Vec.at(i)->booFocus)
 		{
-			m_PrinterMes.OBJ_Vec.at(i).booFocus=false;
-			yPos = m_PrinterMes.OBJ_Vec.at(i).intLineStart;
-			xPos = m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+			m_PrinterMes.OBJ_Vec.at(i)->booFocus=false;
+			yPos = m_PrinterMes.OBJ_Vec.at(i)->intLineStart;
+			xPos = m_PrinterMes.OBJ_Vec.at(i)->intRowSize+m_PrinterMes.OBJ_Vec.at(i)->intRowStart;
 		}
 	}
 
-	CDMcodeOBJ bmpObj;
-	bmpObj.intLineStart=yPos;
-	bmpObj.intRowStart=xPos;
-	bmpObj.strType1="text";
-	bmpObj.strType2="datamatrix";
-	bmpObj.intLineSize=my_symbol->bitmap_height;
-	bmpObj.intRowSize=my_symbol->bitmap_width;
-	bmpObj.intDMsize = nType;
-	bmpObj.intDMrow = ui->sideLenDMComBox->currentIndex();
-	bmpObj.strDMContent = strContent.toStdString();
-	bmpObj.strText = strContent.toStdString();
+	CDMcodeOBJ* bmpObj = new CDMcodeOBJ;
+	bmpObj->intLineStart=yPos;
+	bmpObj->intRowStart=xPos;
+	bmpObj->strType1="text";
+	bmpObj->strType2="datamatrix";
+	bmpObj->intLineSize=my_symbol->bitmap_height;
+	bmpObj->intRowSize=my_symbol->bitmap_width;
+	bmpObj->intDMsize = nType;
+	bmpObj->intDMrow = ui->sideLenDMComBox->currentIndex();
+	bmpObj->strDMContent = strContent.toStdString();
+	bmpObj->strText = strContent.toStdString();
 	//������д��
-	bmpObj.intSW=1;
-	bmpObj.intSS=1;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;
+	bmpObj->intSW=1;
+	bmpObj->intSS=1;
+	bmpObj->booNEG=false;
+	bmpObj->booBWDx=false;
+	bmpObj->booBWDy=false;
 	i = 0;
 	int r, g, b;
 
@@ -849,17 +849,17 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 			if (r == 0 && g == 0 && b == 0)
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = false;
-				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
 			}
 		}
 	}
-	bmpObj.strText = strContent.toStdString();
-	bmpObj.booFocus = true;
+	bmpObj->strText = strContent.toStdString();
+	bmpObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 
 }
@@ -908,23 +908,23 @@ int FileEditChild::GetCharLenFromFont(string txtFont, bool LineOrRow)
 
 void FileEditChild::PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
 {
-	CTextOBJ textObj;
-	textObj.strType1 = "text";
-	textObj.strType2 = "text";
-	textObj.strFont = txtFont;
-	textObj.strText = txtContent;
+	CTextOBJ* textObj = new CTextOBJ;
+	textObj->strType1 = "text";
+	textObj->strType2 = "text";
+	textObj->strFont = txtFont;
+	textObj->strText = txtContent;
 	int txtLength = txtContent.length();
-	textObj.intLineSize = GetCharLenFromFont(txtFont,false);
-	textObj.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
-	textObj.intLineStart = txtLineStart;
-	textObj.intRowStart = txtRowStart;
-	textObj.intSW = txtSW;
-	textObj.intSS = txtSS;
-	textObj.booNEG = txtNEG;
-	textObj.booBWDx = txtBWDx;
-	textObj.booBWDy = txtBWDy;
+	textObj->intLineSize = GetCharLenFromFont(txtFont,false);
+	textObj->intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	textObj->intLineStart = txtLineStart;
+	textObj->intRowStart = txtRowStart;
+	textObj->intSW = txtSW;
+	textObj->intSS = txtSS;
+	textObj->booNEG = txtNEG;
+	textObj->booBWDx = txtBWDx;
+	textObj->booBWDy = txtBWDy;
 
-	textObj.booFocus = true;
+	textObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(textObj); 
 }
 
@@ -979,16 +979,16 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 	
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
-			int x1 = m_PrinterMes.OBJ_Vec[i].intRowStart;
-			int y1 = m_PrinterMes.OBJ_Vec[i].intLineStart;
-			int deltX = m_PrinterMes.OBJ_Vec[i].intRowSize;
-			int deltY = m_PrinterMes.OBJ_Vec[i].intLineSize;
+			int x1 = m_PrinterMes.OBJ_Vec[i]->intRowStart;
+			int y1 = m_PrinterMes.OBJ_Vec[i]->intLineStart;
+			int deltX = m_PrinterMes.OBJ_Vec[i]->intRowSize;
+			int deltY = m_PrinterMes.OBJ_Vec[i]->intLineSize;
 			
 			if (nLin>=y1 && nLin<=(y1+deltY) && nRow>=x1 && nRow<=(x1+deltX))
 			{
-				m_PrinterMes.OBJ_Vec[i].booBeenDragged = false;
+				m_PrinterMes.OBJ_Vec[i]->booBeenDragged = false;
 				this->boolMousePressed = true;
 				return;
 			}
@@ -1017,35 +1017,35 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 		nNewRow = p_NewMousePoint.x() / 5;
 		for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 		{
-			if (m_PrinterMes.OBJ_Vec[i].booFocus)
+			if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 			{
 				/*if (nNewLin>=m_PrinterMes.OBJ_Vec[i].intLineStart && nNewLin<=(m_PrinterMes.OBJ_Vec[i].intLineStart+m_PrinterMes.OBJ_Vec[i].intLineSize)
 				&& nNewRow>=m_PrinterMes.OBJ_Vec[i].intRowStart && nNewRow<=(m_PrinterMes.OBJ_Vec[i].intRowStart+m_PrinterMes.OBJ_Vec[i].intRowSize))
 				{}*/
-				const int DeltaX = nRow - m_PrinterMes.OBJ_Vec[i].intRowStart;
-				const int DeltaY = nLin - m_PrinterMes.OBJ_Vec[i].intLineStart;
+				const int DeltaX = nRow - m_PrinterMes.OBJ_Vec[i]->intRowStart;
+				const int DeltaY = nLin - m_PrinterMes.OBJ_Vec[i]->intLineStart;
 				if ( (nNewRow - DeltaX) < 0 )
 				{
-					m_PrinterMes.OBJ_Vec[i].intRowStart = 0;
+					m_PrinterMes.OBJ_Vec[i]->intRowStart = 0;
 				}
-				else if ( (nNewRow - DeltaX) > (624 - m_PrinterMes.OBJ_Vec[i].intRowSize) )
+				else if ( (nNewRow - DeltaX) > (624 - m_PrinterMes.OBJ_Vec[i]->intRowSize) )
 				{
-					m_PrinterMes.OBJ_Vec[i].intRowStart = 624 - m_PrinterMes.OBJ_Vec[i].intRowSize;
+					m_PrinterMes.OBJ_Vec[i]->intRowStart = 624 - m_PrinterMes.OBJ_Vec[i]->intRowSize;
 				}
 				else if ( (nNewLin - DeltaY) < 0 )
 				{
-					m_PrinterMes.OBJ_Vec[i].intLineStart = 0;
+					m_PrinterMes.OBJ_Vec[i]->intLineStart = 0;
 				}
-				else if ( (nNewLin - DeltaY) > (48 - m_PrinterMes.OBJ_Vec[i].intLineSize) )
+				else if ( (nNewLin - DeltaY) > (48 - m_PrinterMes.OBJ_Vec[i]->intLineSize) )
 				{
-					m_PrinterMes.OBJ_Vec[i].intLineStart = 48 - m_PrinterMes.OBJ_Vec[i].intLineSize;
+					m_PrinterMes.OBJ_Vec[i]->intLineStart = 48 - m_PrinterMes.OBJ_Vec[i]->intLineSize;
 				}
 				else
 				{
-					m_PrinterMes.OBJ_Vec[i].intRowStart = nNewRow - DeltaX;
-					m_PrinterMes.OBJ_Vec[i].intLineStart = nNewLin - DeltaY;
+					m_PrinterMes.OBJ_Vec[i]->intRowStart = nNewRow - DeltaX;
+					m_PrinterMes.OBJ_Vec[i]->intLineStart = nNewLin - DeltaY;
 				}
-				m_PrinterMes.OBJ_Vec[i].booBeenDragged = true;
+				m_PrinterMes.OBJ_Vec[i]->booBeenDragged = true;
 				break;
 				/*else
 				{
@@ -1072,13 +1072,13 @@ void FileEditChild::GetObjSettingsFromScreen()
 
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CTextOBJ* pTextObj = (CTextOBJ*)(&m_PrinterMes.OBJ_Vec[i]); ;
 
-			QString tmpStr = str2qstr(m_PrinterMes.OBJ_Vec[i].strText);
-			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intSS));
-			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
+			QString tmpStr = str2qstr(m_PrinterMes.OBJ_Vec[i]->strText);
+			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i]->intSS));
+			if (m_PrinterMes.OBJ_Vec[i]->strType2 == "text")
 			{
 				this->ui->typeTab->setCurrentIndex(0);
 				this->ui->wordLineEdit->setText(tmpStr);
@@ -1102,7 +1102,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				gfntMap.insert(make_pair("7x5",1));
 				gfntMap.insert(make_pair("12x12",2));
 				gfntMap.insert(make_pair("16x12",3));
-				switch(gfntMap[m_PrinterMes.OBJ_Vec[i].strFont])
+				switch(gfntMap[m_PrinterMes.OBJ_Vec[i]->strFont])
 				{
 				case 0:
 					this->ui->fontTypeTextComBox->setCurrentIndex(0);
@@ -1119,7 +1119,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "time")
 			{
 				CTimeOBJ *pTimeObj = (CTimeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(1);
@@ -1133,7 +1133,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				gfntMap.insert(make_pair("7x5",1));
 				gfntMap.insert(make_pair("12x12",2));
 				gfntMap.insert(make_pair("16x12",3));
-				switch(gfntMap[m_PrinterMes.OBJ_Vec[i].strFont])
+				switch(gfntMap[m_PrinterMes.OBJ_Vec[i]->strFont])
 				{
 				case 0:
 					this->ui->fontSizeTimeComBox->setCurrentIndex(0);
@@ -1164,7 +1164,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				//this->ui->newTimeBut->setText(QStringLiteral("�޸�"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "serial")
 			{
 				this->ui->typeTab->setCurrentIndex(2);
 				this->ui->serialLineEdit->setText(tmpStr);
@@ -1182,7 +1182,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				//this->ui->newSerialBut->setText(QStringLiteral("�޸�"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "logo")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "logo")
 			{
 				this->ui->typeTab->setCurrentIndex(3);
 				//this->ui->serialLineEdit->setText(tmpStr);
@@ -1200,9 +1200,9 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				//this->ui->newBmpBut->setText(QStringLiteral("�޸�"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "2Dcode")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "2Dcode")
 			{
-				CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
+				CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(m_PrinterMes.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(4);
 				this->ui->barCodeLineEdit->setText(QString::fromStdString(pBarcodeObj->strCodeContent));
 				this->ui->typeBarCodeComBox->setCurrentIndex(pBarcodeObj->intBarType);
@@ -1222,9 +1222,9 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				//this->ui->newBarCodeBut->setText(QStringLiteral("�޸�"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "qrcode")
 			{
-				CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
+				CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(m_PrinterMes.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(5);
 				this->ui->QRCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenQRComBox->setCurrentIndex(pQRcodeObj->intQRVersion-1);
@@ -1242,9 +1242,9 @@ void FileEditChild::GetObjSettingsFromScreen()
 				}
 				//this->ui->newQRBut->setText(QStringLiteral("�޸�"));
 			}
-			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "datamatrix")
+			else if (m_PrinterMes.OBJ_Vec[i]->strType2 == "datamatrix")
 			{
-				CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
+				CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(m_PrinterMes.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(6);
 				this->ui->DMCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenDMComBox->setCurrentIndex(pDMcodeObj->intDMrow);
@@ -1529,19 +1529,19 @@ void FileEditChild::ReadBmp(char* strFileName)
 	double nS=(double)h/w;
 	ChangeBmpWH(pImage,nS);
 
-	OBJ_Control bmpObj;
-	bmpObj.intLineStart=0;
-	bmpObj.intRowStart=0;
-	bmpObj.strType1="text";
-	bmpObj.strType2="logo";
-	bmpObj.strText = strFileName;
-	bmpObj.intLineSize=pImage.height();
-	bmpObj.intRowSize=pImage.width();
-	bmpObj.intSW=1;
-	bmpObj.intSS=0;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;
+	OBJ_Control* bmpObj = new OBJ_Control;
+	bmpObj->intLineStart=0;
+	bmpObj->intRowStart=0;
+	bmpObj->strType1="text";
+	bmpObj->strType2="logo";
+	bmpObj->strText = strFileName;
+	bmpObj->intLineSize=pImage.height();
+	bmpObj->intRowSize=pImage.width();
+	bmpObj->intSW=1;
+	bmpObj->intSS=0;
+	bmpObj->booNEG=false;
+	bmpObj->booBWDx=false;
+	bmpObj->booBWDy=false;
 
 	for(int y = 0; y< pImage.height(); y++)
 	{  
@@ -1551,21 +1551,21 @@ void FileEditChild::ReadBmp(char* strFileName)
 			if (ui->reverseBmpCheckBox->isChecked())
            { int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
 			 if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = false;
+				bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = false;
 			 else
-				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = true;
+				bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = true;
            }
 			else
 			{ int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
 			  if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = true;
+				bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = true;
 			 else
-				 bmpObj.boDotBmp[bmpObj.intRowStart+x][bmpObj.intLineStart+y] = false;
+				 bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = false;
 		     }
 		}  
 
 	}  
-	bmpObj.booFocus = true;
+	bmpObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(bmpObj); 
 
 }
@@ -1617,12 +1617,12 @@ void FileEditChild::PreviewBmpChange()
 
 void FileEditChild::delBut_clicked()
 {
-	vector<OBJ_Control>::iterator ite;
+	vector<OBJ_Control*>::iterator ite;
 	for(ite = m_PrinterMes.OBJ_Vec.begin(); ite != m_PrinterMes.OBJ_Vec.end();)
 	{
-		if(ite->booFocus)
+		if((*ite)->booFocus)
 		{
-			if (m_PrinterMes.OBJ_Vec.back().counter>=0)//���Ϊ���кţ��������-1
+			if (m_PrinterMes.OBJ_Vec.back()->counter>=0)//���Ϊ���кţ��������-1
 			{
 				int i;
 				i=ui->counterSerialComBox->currentIndex();
@@ -1675,8 +1675,6 @@ void FileEditChild::wordLineEdit_clicked()
 {
 	keyboardWidget->SetLineEdit(ui->wordLineEdit);
 	ClickChooseLanguage();
-	
-
 }
 
 void FileEditChild::barCodeLineEdit_clicked()
@@ -1697,7 +1695,6 @@ void FileEditChild::DMCodeLineEdit_clicked()
 {
   	keyboardWidget->SetLineEdit(ui->DMCodeLineEdit);
 	ClickChooseLanguage();
-
 }
 
 void FileEditChild::setText2wordLineEdit()
@@ -1770,15 +1767,13 @@ void FileEditChild::ChangeTabLineEdit()
 {
 	int nIndex = ui->typeTab->currentIndex();
 	switch(nIndex)
-		{
+	{
 		case 0:	setText2wordLineEdit();break;
 		case 4:	setText2shiftNumShowLineEdit();break;
 		case 5: setText2barCodeLineEdit();break;
 		case 6:	setText2QRCodeLineEdit();break;
 		case 7:	setText2DMCodeLineEdit();break;
-		}
-	
-	
+	}	
 }
 
 void FileEditChild::KeyboardConceal_clicked()
@@ -1797,26 +1792,26 @@ void FileEditChild::newTextBut_clicked()
 	//�����ǰ��obj��ѡ�У���Ϊ���ĵ�ѡ�е�obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CTextOBJ* pTextObj = (CTextOBJ*)(&m_PrinterMes.OBJ_Vec[i]);
 			string tmpStr = qstr2str(this->ui->wordLineEdit->text());
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			m_PrinterMes.OBJ_Vec[i]->strText = tmpStr;
 			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strFont = tmpFont;
+			m_PrinterMes.OBJ_Vec[i]->strFont = tmpFont;
 			switch(this->ui->fontTypeTextComBox->currentIndex())
 			{
 			case 0:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 5;
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 5;
 				break;
 			case 1:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 7;
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 7;
 				break;
 			case 2:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 12;
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 12;
 				break;
 			case 3:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 16;
 				break;
 			}
 			this->update();
@@ -1956,7 +1951,7 @@ void FileEditChild::newBarCodeBut_clicked()
 	//修改当前obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
 			GenerateBarCodeBmp();
@@ -1984,9 +1979,9 @@ void FileEditChild::newBarCodeBut_clicked()
 				{  
 					int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 					if(average < 200)
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[x][m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = true;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[x][m_PrinterMes.OBJ_Vec[i]->intLineSize -y-1] = true;
 					else
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[x][m_PrinterMes.OBJ_Vec[i].intLineSize -y-1] = false;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[x][m_PrinterMes.OBJ_Vec[i]->intLineSize -y-1] = false;
 				}
 
 			} 
@@ -2015,13 +2010,13 @@ void FileEditChild::newQRBut_clicked()
 	//修改当前obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(&m_PrinterMes.OBJ_Vec[i]);
-			m_PrinterMes.OBJ_Vec[i].strType1="text";
-			m_PrinterMes.OBJ_Vec[i].strType2="qrcode";
-			m_PrinterMes.OBJ_Vec[i].intLineSize = resetQRCode().bitmap_height;
-			m_PrinterMes.OBJ_Vec[i].intRowSize = resetQRCode().bitmap_width;
+			m_PrinterMes.OBJ_Vec[i]->strType1="text";
+			m_PrinterMes.OBJ_Vec[i]->strType2="qrcode";
+			m_PrinterMes.OBJ_Vec[i]->intLineSize = resetQRCode().bitmap_height;
+			m_PrinterMes.OBJ_Vec[i]->intRowSize = resetQRCode().bitmap_width;
 			pQRcodeObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
 
 			int r, g, b;
@@ -2037,16 +2032,16 @@ void FileEditChild::newQRBut_clicked()
 					if (r == 0 && g == 0 && b == 0)
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][m_PrinterMes.OBJ_Vec[i].intLineSize-row-1] = true;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[col][m_PrinterMes.OBJ_Vec[i]->intLineSize-row-1] = true;
 					}
 					else
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = false;
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][m_PrinterMes.OBJ_Vec[i].intLineSize-row-1] = false;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[col][m_PrinterMes.OBJ_Vec[i]->intLineSize-row-1] = false;
 					}
 				}
 			}
-			if (m_PrinterMes.OBJ_Vec[i].intLineSize ==0 && m_PrinterMes.OBJ_Vec[i].intRowSize ==0)
+			if (m_PrinterMes.OBJ_Vec[i]->intLineSize ==0 && m_PrinterMes.OBJ_Vec[i]->intRowSize ==0)
 			{
 				delBut_clicked();
 			}
@@ -2126,11 +2121,11 @@ void FileEditChild::newDMBut_clicked()
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		//m_PrinterMes.OBJ_Vec.clear();
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ*)(&m_PrinterMes.OBJ_Vec[i]);
-			m_PrinterMes.OBJ_Vec[i].intLineSize=resetDMCode().bitmap_height;
-			m_PrinterMes.OBJ_Vec[i].intRowSize=resetDMCode().bitmap_width;
+			m_PrinterMes.OBJ_Vec[i]->intLineSize=resetDMCode().bitmap_height;
+			m_PrinterMes.OBJ_Vec[i]->intRowSize=resetDMCode().bitmap_width;
 			pDMcodeObj->strDMContent = str.toStdString();
 			pDMcodeObj->intDMsize = DMsize[this->ui->sideLenDMComBox->currentText()];
 			pDMcodeObj->intDMrow = this->ui->sideLenDMComBox->currentIndex();
@@ -2148,12 +2143,12 @@ void FileEditChild::newDMBut_clicked()
 					if (r == 0 && g == 0 && b == 0)
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][resetDMCode().bitmap_height-row-1] = true;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[col][resetDMCode().bitmap_height-row-1] = true;
 					}
 					else
 					{
 						//		bmpObj.boDotBmp[col][row-proportion] = false;
-						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][resetDMCode().bitmap_height-row-1] = false;
+						m_PrinterMes.OBJ_Vec[i]->boDotBmp[col][resetDMCode().bitmap_height-row-1] = false;
 					}
 				}
 			}
@@ -2230,7 +2225,7 @@ void FileEditChild::newBmpBut_clicked()
 	//�����ǰ��obj��ѡ�У���Ϊ�޸ĵ�ѡ�е�obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			//�ڴ˴����ݿؼ�ѡ����������OBJ_Vec[i]����Ӧ��������,�мǴ˴�����pushback
 			this->update();
@@ -2250,10 +2245,10 @@ void FileEditChild::internalTextAddBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
-			m_PrinterMes.OBJ_Vec[i].intSS += 1;
-			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i].intSS);
+			m_PrinterMes.OBJ_Vec[i]->intSS += 1;
+			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i]->intSS);
 			this->ui->internalShowTextLab->setText(tmpStr);
 			return;
 		}
@@ -2265,10 +2260,10 @@ void FileEditChild::internalTextRedBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus && m_PrinterMes.OBJ_Vec[i].intSS != 0)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus && m_PrinterMes.OBJ_Vec[i]->intSS != 0)
 		{
-			m_PrinterMes.OBJ_Vec[i].intSS -= 1;
-			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i].intSS);
+			m_PrinterMes.OBJ_Vec[i]->intSS -= 1;
+			QString tmpStr = QString::number(m_PrinterMes.OBJ_Vec[i]->intSS);
 			this->ui->internalShowTextLab->setText(tmpStr);
 			return;
 		}
@@ -2280,17 +2275,17 @@ void FileEditChild::moveUpBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
-			int EndPos = m_PrinterMes.OBJ_Vec[i].intLineStart + m_PrinterMes.OBJ_Vec[i].intLineSize;
+			int EndPos = m_PrinterMes.OBJ_Vec[i]->intLineStart + m_PrinterMes.OBJ_Vec[i]->intLineSize;
 			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
 			if( (EndPos + MoveSpeed) < 48 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart += MoveSpeed;
+				m_PrinterMes.OBJ_Vec[i]->intLineStart += MoveSpeed;
 			}
 			else
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart = 48 - m_PrinterMes.OBJ_Vec[i].intLineSize;
+				m_PrinterMes.OBJ_Vec[i]->intLineStart = 48 - m_PrinterMes.OBJ_Vec[i]->intLineSize;
 			}
 		}
 	}
@@ -2301,16 +2296,16 @@ void FileEditChild::moveDownBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
-			if( m_PrinterMes.OBJ_Vec[i].intLineStart - MoveSpeed > 0 )
+			if( m_PrinterMes.OBJ_Vec[i]->intLineStart - MoveSpeed > 0 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart -= MoveSpeed;
+				m_PrinterMes.OBJ_Vec[i]->intLineStart -= MoveSpeed;
 			}
 			else
 			{
-				m_PrinterMes.OBJ_Vec[i].intLineStart = 0 ;
+				m_PrinterMes.OBJ_Vec[i]->intLineStart = 0 ;
 			}
 		}
 	}
@@ -2321,16 +2316,16 @@ void FileEditChild::moveLeftBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
-			if( m_PrinterMes.OBJ_Vec[i].intRowStart - MoveSpeed > 0 )
+			if( m_PrinterMes.OBJ_Vec[i]->intRowStart - MoveSpeed > 0 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart -= MoveSpeed;
+				m_PrinterMes.OBJ_Vec[i]->intRowStart -= MoveSpeed;
 			}
 			else
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart = 0;
+				m_PrinterMes.OBJ_Vec[i]->intRowStart = 0;
 			}
 		}
 	}
@@ -2341,17 +2336,17 @@ void FileEditChild::moveRightBut_clicked()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
-			int EndPos = m_PrinterMes.OBJ_Vec[i].intRowStart + m_PrinterMes.OBJ_Vec[i].intRowSize;
+			int EndPos = m_PrinterMes.OBJ_Vec[i]->intRowStart + m_PrinterMes.OBJ_Vec[i]->intRowSize;
 			int MoveSpeed = this->ui->moveSpeedComBox->currentText().toInt();
 			if( EndPos + MoveSpeed < 624 )
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart += MoveSpeed;
+				m_PrinterMes.OBJ_Vec[i]->intRowStart += MoveSpeed;
 			}
 			else
 			{
-				m_PrinterMes.OBJ_Vec[i].intRowStart = 624 - m_PrinterMes.OBJ_Vec[i].intRowSize;
+				m_PrinterMes.OBJ_Vec[i]->intRowStart = 624 - m_PrinterMes.OBJ_Vec[i]->intRowSize;
 			}
 		}
 	}
@@ -2495,27 +2490,27 @@ void FileEditChild::newTimeBut_clicked()
 	//修改当前obj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			CTimeOBJ *pTimeObj = (CTimeOBJ*) (&m_PrinterMes.OBJ_Vec[i]);
 			for(int j=0;j<m_PrinterMes.OBJ_Vec.size();j++)
 			{
-				if (m_PrinterMes.OBJ_Vec.at(j).booFocus)
+				if (m_PrinterMes.OBJ_Vec.at(j)->booFocus)
 				{
-					m_PrinterMes.OBJ_Vec.at(j).booFocus = true;
-					yPos=m_PrinterMes.OBJ_Vec[j].intLineStart;
-					xPos=m_PrinterMes.OBJ_Vec[j].intRowStart;
+					m_PrinterMes.OBJ_Vec.at(j)->booFocus = true;
+					yPos=m_PrinterMes.OBJ_Vec[j]->intLineStart;
+					xPos=m_PrinterMes.OBJ_Vec[j]->intRowStart;
 				}
 			}
-			m_PrinterMes.OBJ_Vec[i].intLineStart=yPos;
-			m_PrinterMes.OBJ_Vec[i].intRowStart=xPos;
+			m_PrinterMes.OBJ_Vec[i]->intLineStart=yPos;
+			m_PrinterMes.OBJ_Vec[i]->intRowStart=xPos;
 
 
 			//CEdit* pEdit = (CEdit*)GetDlgItem(IDC_DATE_PREVIEW_EDIT);
 			CString strText;
 			//pEdit-> GetWindowText(strText);
 			strText=ui->PreviewEdit->text();
-			m_PrinterMes.OBJ_Vec[i].strText=strText.toStdString();
+			m_PrinterMes.OBJ_Vec[i]->strText=strText.toStdString();
 			//tempObj.strText=theApp.myModuleMain.UnicodeToUtf8_CSTR(strText);
 
 			CString formatText;
@@ -2529,25 +2524,25 @@ void FileEditChild::newTimeBut_clicked()
 			switch(nIndex)
 			{
 			case 0:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 5;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 5;
+				m_PrinterMes.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
 				break;
 			case 1:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 7;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 7;
+				m_PrinterMes.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
 				break;
 			case 2:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 12;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 12;
+				m_PrinterMes.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
 				break;
 			case 3:
-				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_PrinterMes.OBJ_Vec[i]->intLineSize = 16;
+				m_PrinterMes.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
 				break;
 			}
 			fontText = ui->fontSizeTimeComBox->currentText();
 			//m_dateFontCombo.GetLBText(nIndex,fontText);
-			m_PrinterMes.OBJ_Vec[i].strFont = m_TimeShow.CString2string(fontText);
+			m_PrinterMes.OBJ_Vec[i]->strFont = m_TimeShow.CString2string(fontText);
 
 			pTimeObj->booETimeOffSet = ui->SkewComBox->currentIndex();
 			CString timeOffText;
@@ -2567,35 +2562,35 @@ void FileEditChild::newTimeBut_clicked()
 	//新建TimeObj对象
 	for(int i=0; i!=m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec.at(i).booFocus)
+		if (m_PrinterMes.OBJ_Vec.at(i)->booFocus)
 		{
-			m_PrinterMes.OBJ_Vec.at(i).booFocus = true;
-			yPos=m_PrinterMes.OBJ_Vec.at(i).intLineStart;
-			xPos=m_PrinterMes.OBJ_Vec.at(i).intRowSize+m_PrinterMes.OBJ_Vec.at(i).intRowStart;
+			m_PrinterMes.OBJ_Vec.at(i)->booFocus = true;
+			yPos=m_PrinterMes.OBJ_Vec.at(i)->intLineStart;
+			xPos=m_PrinterMes.OBJ_Vec.at(i)->intRowSize+m_PrinterMes.OBJ_Vec.at(i)->intRowStart;
 		}
 	}
-	CTimeOBJ tempObj;
-	tempObj.intLineStart=yPos;
-	tempObj.intRowStart=xPos;
-	tempObj.strType1="text";
-	tempObj.strType2="time";
-	tempObj.intSW=1;
-	tempObj.intSS=0;
-	tempObj.booNEG=false;
-	tempObj.booBWDx=false;
-	tempObj.booBWDy=false;
+	CTimeOBJ* tempObj = new CTimeOBJ;
+	tempObj->intLineStart=yPos;
+	tempObj->intRowStart=xPos;
+	tempObj->strType1="text";
+	tempObj->strType2="time";
+	tempObj->intSW=1;
+	tempObj->intSS=0;
+	tempObj->booNEG=false;
+	tempObj->booBWDx=false;
+	tempObj->booBWDy=false;
 
 	//CEdit* pEdit = (CEdit*)GetDlgItem(IDC_DATE_PREVIEW_EDIT);
 	CString strText;
 	//pEdit-> GetWindowText(strText);
 	strText=ui->PreviewEdit->text();
-	tempObj.strText=strText.toStdString();
+	tempObj->strText=strText.toStdString();
 	//tempObj.strText=theApp.myModuleMain.UnicodeToUtf8_CSTR(strText);
 
 	CString formatText;
 	formatText=ui->DateTimeEdit->text();
 	//GetDlgItem(IDC_DATE_DATE_TIME_EDIT)->GetWindowText(formatText);
-	tempObj.strTime=m_TimeShow.CString2string(formatText);
+	tempObj->strTime=m_TimeShow.CString2string(formatText);
 
 	CString  fontText;
 	int nIndex = ui->fontSizeTimeComBox->currentIndex();
@@ -2603,35 +2598,35 @@ void FileEditChild::newTimeBut_clicked()
 	switch(nIndex)
 	{
 	case 0:
-		tempObj.intLineSize=5;
-		tempObj.intRowSize=strText.length()*6; 
+		tempObj->intLineSize=5;
+		tempObj->intRowSize=strText.length()*6; 
 		break;
 	case 1:
-		tempObj.intLineSize=7;
-		tempObj.intRowSize=strText.length()*6; 
+		tempObj->intLineSize=7;
+		tempObj->intRowSize=strText.length()*6; 
 		break;
 	case 2:
-		tempObj.intLineSize=12;
-		tempObj.intRowSize=strText.length()*13; 
+		tempObj->intLineSize=12;
+		tempObj->intRowSize=strText.length()*13; 
 		break;
 	case 3:
-		tempObj.intLineSize=16;
-		tempObj.intRowSize=strText.length()*13; 
+		tempObj->intLineSize=16;
+		tempObj->intRowSize=strText.length()*13; 
 		break;
 	}
 	fontText=ui->fontSizeTimeComBox->currentText();
 	//m_dateFontCombo.GetLBText(nIndex,fontText);
-	tempObj.strFont=m_TimeShow.CString2string(fontText);
+	tempObj->strFont=m_TimeShow.CString2string(fontText);
 
-	tempObj.booETimeOffSet=ui->SkewComBox->currentIndex();
+	tempObj->booETimeOffSet=ui->SkewComBox->currentIndex();
 	CString timeOffText;
 	timeOffText=ui->SkewSkewValueEdit->text();
 	//GetDlgItem(IDC_DATE_SKEW_VALUE_EDIT)->GetWindowText(timeOffText);
 	int timeOffText1=timeOffText.toInt();
-	tempObj.intTimeOffSet=timeOffText1;
-	tempObj.strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
+	tempObj->intTimeOffSet=timeOffText1;
+	tempObj->strTimeOffSet=ui->SkewUUnitlistWidget->currentRow();
 
-	tempObj.booFocus = true;
+	tempObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
 	this->ui->newTimeBut->setText(QStringLiteral("�޸�"));
@@ -2756,10 +2751,10 @@ void FileEditChild::newSerialNumber_click()
 	int m=1;
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			string tmpStr = this->ui->serialLineEdit->text().toStdString();
-			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
+			m_PrinterMes.OBJ_Vec[i]->strText = tmpStr;
 			m=0;
 			this->update();
 			break;
@@ -2812,24 +2807,24 @@ void FileEditChild::SerialNumberstartchange()
 
 void FileEditChild::PushBackSerialNumberOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW,int countnumber)
 {
-	OBJ_Control SerialNumber;
-	SerialNumber.strType1 = "SerialNumber";
-	SerialNumber.strFont = txtFont;
-	SerialNumber.strText = txtContent;
+	CSerialOBJ* SerialNumber = new CSerialOBJ;
+	SerialNumber->strType1 = "text";
+	SerialNumber->strType2 = "serial";
+	SerialNumber->strFont = txtFont;
+	SerialNumber->strText = txtContent;
 	int txtLength = txtContent.length();
-	SerialNumber.intLineSize = GetCharLenFromFont(txtFont,false);
-	SerialNumber.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
-	SerialNumber.intLineStart = txtLineStart;
-	SerialNumber.intRowStart = txtRowStart;
-	SerialNumber.intSW = txtSW;
-	SerialNumber.intSS = txtSS;
-	SerialNumber.booNEG = txtNEG;
-	SerialNumber.booBWDx = txtBWDx;
-	SerialNumber.booBWDy = txtBWDy;
-	SerialNumber.counter=countnumber;
+	SerialNumber->intLineSize = GetCharLenFromFont(txtFont,false);
+	SerialNumber->intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	SerialNumber->intLineStart = txtLineStart;
+	SerialNumber->intRowStart = txtRowStart;
+	SerialNumber->intSW = txtSW;
+	SerialNumber->intSS = txtSS;
+	SerialNumber->booNEG = txtNEG;
+	SerialNumber->booBWDx = txtBWDx;
+	SerialNumber->booBWDy = txtBWDy;
+	SerialNumber->counter = countnumber;
 
-
-	SerialNumber.booFocus = true;
+	SerialNumber->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(SerialNumber); 
 }
 
@@ -3466,7 +3461,7 @@ bool FileEditChild::newShiftBut()
 {
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
-		if (m_PrinterMes.OBJ_Vec[i].booFocus)
+		if (m_PrinterMes.OBJ_Vec[i]->booFocus)
 		{
 			//���1
 			QString curText1 = ui->startTimeShowSft1LineEdit->text();
@@ -3608,45 +3603,45 @@ bool FileEditChild::newShiftBut()
 				if ( m_hour>= leftInt1 && m_hour< leftInt2)
 				{   
 					//string txtString = qstr2str(showText1);
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText1);
 				}
 				if ( m_hour>= leftInt2 || m_hour< leftInt1)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText2);
 				}
 				break;
 			case 2:
 				if ( m_hour>= leftInt1 && m_hour< leftInt2)
 				{   
 					//string txtString = qstr2str(showText1);
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText1);
 				}
 				if ( m_hour>= leftInt2 && m_hour< leftInt3)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText2);
 				}
 				if ( m_hour>= leftInt3 || m_hour< leftInt1)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText3);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText3);
 				}
 				break;
 			case 3:
 				if ( m_hour>= leftInt1 && m_hour< leftInt2)
 				{   
 					//string txtString = qstr2str(showText1);
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText1);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText1);
 				}
 				if ( m_hour>= leftInt2 && m_hour< leftInt3)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText2);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText2);
 				}
 				if ( m_hour>= leftInt3 || m_hour< leftInt1)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText3);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText3);
 				}
 				if ( m_hour< leftInt1 || m_hour>= leftInt4)
 				{
-					m_PrinterMes.OBJ_Vec[i].strText = qstr2str(showText4);
+					m_PrinterMes.OBJ_Vec[i]->strText = qstr2str(showText4);
 				}
 				break;
 			}
@@ -3843,28 +3838,26 @@ void FileEditChild::getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftIn
 		}
 		break;
 	}
-
-
 }
 
 void FileEditChild::PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW)
 {
-	OBJ_Control BanCiObj;
-	BanCiObj.strType1 = "text";
-	BanCiObj.strType2 = "banci";
-	BanCiObj.strFont = txtFont;
-	BanCiObj.strText = txtContent;
+	OBJ_Control* BanCiObj = new OBJ_Control;
+	BanCiObj->strType1 = "text";
+	BanCiObj->strType2 = "banci";
+	BanCiObj->strFont = txtFont;
+	BanCiObj->strText = txtContent;
 	int txtLength = txtContent.length();
-	BanCiObj.intLineSize = GetCharLenFromFont(txtFont,false);
-	BanCiObj.intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
-	BanCiObj.intLineStart = txtLineStart;
-	BanCiObj.intRowStart = txtRowStart;
-	BanCiObj.intSW = txtSW;
-	BanCiObj.intSS = txtSS;
-	BanCiObj.booNEG = txtNEG;
-	BanCiObj.booBWDx = txtBWDx;
-	BanCiObj.booBWDy = txtBWDy;
+	BanCiObj->intLineSize = GetCharLenFromFont(txtFont,false);
+	BanCiObj->intRowSize = GetCharLenFromFont(txtFont,true) * txtLength;
+	BanCiObj->intLineStart = txtLineStart;
+	BanCiObj->intRowStart = txtRowStart;
+	BanCiObj->intSW = txtSW;
+	BanCiObj->intSS = txtSS;
+	BanCiObj->booNEG = txtNEG;
+	BanCiObj->booBWDx = txtBWDx;
+	BanCiObj->booBWDy = txtBWDy;
 
-	BanCiObj.booFocus = true;
+	BanCiObj->booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(BanCiObj); 
 }

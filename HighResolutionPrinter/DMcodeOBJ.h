@@ -1,10 +1,11 @@
 #pragma once
 #include "classmessage.h"
-class CDMcodeOBJ :
-	public OBJ_Control
+
+class CDMcodeOBJ :	public OBJ_Control
 {
 public:
 	CDMcodeOBJ(void);
+	CDMcodeOBJ(OBJ_Control obj,CDMcodeOBJ DMcodeObj);
 	~CDMcodeOBJ(void);
 
 public://Parameters

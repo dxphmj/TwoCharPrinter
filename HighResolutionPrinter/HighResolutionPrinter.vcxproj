@@ -275,6 +275,7 @@
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="ModuleMain.cpp" />
     <ClCompile Include="numkeyboard.cpp" />
+    <ClCompile Include="OBJ_Control.cpp" />
     <ClCompile Include="ParamSetting.cpp" />
     <ClCompile Include="paramsettingform.cpp" />
     <ClCompile Include="PrintCreatThread.cpp" />
@@ -1075,8 +1076,7 @@ endlocal
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
-      <UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
-    </VisualStudio>
+      <UserProperties Qt5Version_x0020_Win32="msvc2010" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+		<UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" /></VisualStudio>
   </ProjectExtensions>
 </Project>

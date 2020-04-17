@@ -5,9 +5,10 @@ class CSerialOBJ : public OBJ_Control
 {
 public:
 	CSerialOBJ(void);
+	CSerialOBJ(OBJ_Control obj,CSerialOBJ SerialObj);
 	~CSerialOBJ(void);
 
-public://Parameters
+public: 
 	int intSerialFirstLimit;//字段的FirstLimit属性，即序列号第一象限
 	int intSerialSecondLimit;//字段的SecondLimit属性，即序列号第二象限
 	int intSerialStartValue;//字段的StartValue属性，即序列号起始值

@@ -5,6 +5,7 @@ class CBarcodeOBJ : public OBJ_Control
 {
 public:
 	CBarcodeOBJ(void);
+	CBarcodeOBJ(OBJ_Control obj,CBarcodeOBJ barcodeObj);
 	~CBarcodeOBJ(void);
 
 public://Parameters

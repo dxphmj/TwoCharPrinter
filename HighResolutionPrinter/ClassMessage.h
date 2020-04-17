@@ -35,7 +35,7 @@ public:
     OBJ_Control(void);
 	~OBJ_Control(void);
 
-public://Parameters
+public: 
 	string strDuan;//信息段的标识位
 	string strType1;//字段类型
 	string strType2;//字段实际类型
@@ -76,8 +76,6 @@ public://方法
 	
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
-    void ReadBmp(char* strFileName);
-
 	//vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
 	//void GetVectorWordDots();
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
@@ -105,7 +103,7 @@ public:
 		ClassMessage(void);
 		~ClassMessage(void);
 public:
-	vector<OBJ_Control> OBJ_Vec;
+	vector<OBJ_Control*> OBJ_Vec;
 	int Matrix;
 	string strMatrix;
 	int Pixel;
@@ -194,8 +192,7 @@ public:
 	void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
-	void ReadBmp(char* strFileName);
-	char* GenerateFileName(string tmpFileName);
+ 	char* GenerateFileName(string tmpFileName);
 	char* Generate2DcodeName(string strFileName);
 	//bool JudgeIfOBJ_Selected(QPoint p_Relative);
 	void CtrlCurObjChoice(QPoint p_Relative);

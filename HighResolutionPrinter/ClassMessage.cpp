@@ -8,6 +8,7 @@
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
+#include "BmpObj.h"
 
 #include "wordStock\\GetHZinfo.h"
  
@@ -97,7 +98,7 @@ long long ClassMessage::BIN_to_DEC(string Bin)
 void ClassMessage::DrawDot(CDC* pDC)
 {
 	for (int i = 0; i < OBJ_Vec.size(); i++)
-		OBJ_Vec[i].DrawDot(pDC);
+		OBJ_Vec[i]->DrawDot(pDC);
 }
 
 //控制当前OBJ_Vec[i]中哪一个obj被选中
@@ -111,29 +112,29 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 	{
 		int nLin = ( 241 - y_pos ) / 5;
 		int nRow = x_pos / 5;
-		vector<OBJ_Control>::iterator itr = this->OBJ_Vec.begin();
+		vector<OBJ_Control*>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
 		{		
-			if (nLin>=itr->intLineStart && nLin<=(itr->intLineStart+itr->intLineSize)
-				&& nRow>=itr->intRowStart && nRow<=(itr->intRowStart+itr->intRowSize))
+			if (nLin>=(*itr)->intLineStart && nLin<=((*itr)->intLineStart+(*itr)->intLineSize)
+				&& nRow>=(*itr)->intRowStart && nRow<=((*itr)->intRowStart+(*itr)->intRowSize))
 			{
-				if (itr->booFocus == true && itr->booBeenDragged == false)
+				if ((*itr)->booFocus == true && (*itr)->booBeenDragged == false)
 				{
-					itr->booFocus = false;
+					(*itr)->booFocus = false;
 				}
-				else if (itr->booFocus == false)
+				else if ((*itr)->booFocus == false)
 				{
-					itr->booFocus = true;
+					(*itr)->booFocus = true;
 				}
-				itr->booBeenDragged = false;
+				(*itr)->booBeenDragged = false;
 			}
 			else
 			{
-				if (itr->booFocus == true && itr->booBeenDragged == false)
+				if ((*itr)->booFocus == true && (*itr)->booBeenDragged == false)
 				{
-					itr->booFocus = false;
+					(*itr)->booFocus = false;
 				}
-				itr->booBeenDragged = false;
+				(*itr)->booBeenDragged = false;
 			}
 			++itr;
 		}
@@ -230,17 +231,17 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		TiXmlElement itemBWDy("BWDy");
 
 
-		TiXmlText textType1(OBJ_Vec[i].strType1.c_str());
-		TiXmlText textType2(OBJ_Vec[i].strType2.c_str());
-		TiXmlText textLinestart(to_String(OBJ_Vec[i].intLineStart).c_str());
-		TiXmlText textRowstart(to_String(OBJ_Vec[i].intRowStart).c_str());
-		TiXmlText textLinesize(to_String(OBJ_Vec[i].intLineSize).c_str());
-		TiXmlText textRowsize(to_String(OBJ_Vec[i].intRowSize).c_str());
-		TiXmlText textSW(to_String(OBJ_Vec[i].intSW).c_str());
-		TiXmlText textSS(to_String(OBJ_Vec[i].intSS).c_str());
-		TiXmlText textNEG(to_String(OBJ_Vec[i].booNEG).c_str());///这几个bool是个坑
-		TiXmlText textBWDx(to_String(OBJ_Vec[i].booBWDx).c_str());
-		TiXmlText textBWDy(to_String(OBJ_Vec[i].booBWDy).c_str());
+		TiXmlText textType1(OBJ_Vec[i]->strType1.c_str());
+		TiXmlText textType2(OBJ_Vec[i]->strType2.c_str());
+		TiXmlText textLinestart(to_String(OBJ_Vec[i]->intLineStart).c_str());
+		TiXmlText textRowstart(to_String(OBJ_Vec[i]->intRowStart).c_str());
+		TiXmlText textLinesize(to_String(OBJ_Vec[i]->intLineSize).c_str());
+		TiXmlText textRowsize(to_String(OBJ_Vec[i]->intRowSize).c_str());
+		TiXmlText textSW(to_String(OBJ_Vec[i]->intSW).c_str());
+		TiXmlText textSS(to_String(OBJ_Vec[i]->intSS).c_str());
+		TiXmlText textNEG(to_String(OBJ_Vec[i]->booNEG).c_str());///这几个bool是个坑
+		TiXmlText textBWDx(to_String(OBJ_Vec[i]->booBWDx).c_str());
+		TiXmlText textBWDy(to_String(OBJ_Vec[i]->booBWDy).c_str());
 
 
 		itemTYPE1.InsertEndChild(textType1);
@@ -268,13 +269,13 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		itemObj.InsertEndChild( itemBWDy );
 
 
-		if (OBJ_Vec[i].strType2=="text")
+		if (OBJ_Vec[i]->strType2=="text")
 		{
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
 
-			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetFont(OBJ_Vec[i]->strFont.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 
 			itemsetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
@@ -282,9 +283,9 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			itemObj.InsertEndChild( itemsetFONT );
 			itemObj.InsertEndChild( itemSetTEXT );
 		}
-		else if (OBJ_Vec[i].strType2=="serial")
+		else if (OBJ_Vec[i]->strType2=="serial")
 		{
-			CSerialOBJ *pSerialObj = (CSerialOBJ *)(&OBJ_Vec[i]);
+			CSerialOBJ *pSerialObj = (CSerialOBJ*)(OBJ_Vec[i]);
 
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
@@ -297,8 +298,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemFormat( "Format" );
 			TiXmlElement itemCounter( "Counter" );
 
-			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetFont(pSerialObj->strFont.c_str());
+			TiXmlText textSetTEXT(pSerialObj->strText.c_str());
 			TiXmlText textFirstLimit(to_String(pSerialObj->intSerialFirstLimit).c_str());
 			TiXmlText textSecondLimit(to_String(pSerialObj->intSerialSecondLimit).c_str());
 			TiXmlText textStartValue(to_String(pSerialObj->intSerialStartValue).c_str());
@@ -332,9 +333,9 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			itemObj.InsertEndChild( itemFormat );
 			itemObj.InsertEndChild( itemCounter );
 		} 
-		else if(OBJ_Vec[i].strType2=="time")
+		else if(OBJ_Vec[i]->strType2=="time")
 		{
-			CTimeOBJ *pTimeObj = (CTimeOBJ *)(&OBJ_Vec[i]);
+			CTimeOBJ *pTimeObj = (CTimeOBJ*)(OBJ_Vec[i]);
 			
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
@@ -343,8 +344,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemTimeOffSet( "TimeOffSet" );
 			TiXmlElement itemTimeOffSetUint( "TimeOffSetUint" );
 
-			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetFont(OBJ_Vec[i]->strFont.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 			TiXmlText textSetTIME(pTimeObj->strTime.c_str());
 			TiXmlText textETimeOffSet(to_String(pTimeObj->booETimeOffSet).c_str());
 			TiXmlText textTimeOffSet(to_String(pTimeObj->intTimeOffSet).c_str());
@@ -364,19 +365,19 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			itemObj.InsertEndChild( itemTimeOffSet );
 			itemObj.InsertEndChild( itemTimeOffSetUint );
 		}
-		else if (OBJ_Vec[i].strType2=="logo")
+		else if (OBJ_Vec[i]->strType2=="logo")
 		{
 			TiXmlElement itemSetTEXT( "setTEXT" );
 
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 
 			itemObj.InsertEndChild( itemSetTEXT );
 		}
-		else if (OBJ_Vec[i].strType2=="2Dcode")
+		else if (OBJ_Vec[i]->strType2=="2Dcode")
 		{
-		    CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&OBJ_Vec[i]);
+		    CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ*)(OBJ_Vec[i]);
 			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemBarcodeType( "BarcodeType" );
@@ -384,7 +385,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemBarcodeContent( "BarcodeContent" );
 			TiXmlElement itemBarWhite( "BarWhite" );
 
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 			TiXmlText textBarcodeType(to_String(pBarcodeObj->intBarcodeType).c_str());
 			TiXmlText textBarType(to_String(pBarcodeObj->intBarType).c_str());
 			TiXmlText textBarcodeContent(pBarcodeObj->strCodeContent.c_str());
@@ -402,16 +403,16 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			itemObj.InsertEndChild( itemBarcodeContent );
 			itemObj.InsertEndChild( itemBarWhite );
 		}
-		else if (OBJ_Vec[i].strType2=="qrcode")
+		else if (OBJ_Vec[i]->strType2=="qrcode")
 		{
-			CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(&OBJ_Vec[i]);
+			CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ*)(OBJ_Vec[i]);
 			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "qrcodeVersion" );
 			//TiXmlElement itemECCLevel( "qrcodeECCLevel" );
 			//TiXmlElement itemQuietZone( "qrcodeQuietZone" );
 
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 			TiXmlText textVersion(to_String(pQRcodeObj->intQRVersion).c_str());
 			//TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
 			//TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
@@ -426,16 +427,16 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			//itemObj.InsertEndChild( itemECCLevel );
 			//itemObj.InsertEndChild( itemQuietZone );
 		}
-		else if (OBJ_Vec[i].strType2=="datamatrix")
+		else if (OBJ_Vec[i]->strType2=="datamatrix")
 		{
-			CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(&OBJ_Vec[i]);
+			CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ*)(OBJ_Vec[i]);
 			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "DMsize" );
 			TiXmlElement itemDMContent("DMContent");
 			TiXmlElement itemDMrow( "DMrow" );
 
-			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
+			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 			TiXmlText textVersion(to_String(pDMcodeObj->intDMsize).c_str());
 			TiXmlText textDMContent(pDMcodeObj->strDMContent.c_str());
 			TiXmlText textDMrow(to_String(pDMcodeObj->intDMrow).c_str());
@@ -452,50 +453,9 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		itemMes.InsertEndChild( itemObj );
 	}	 
-
 	doc.InsertEndChild(itemMes);
-
 	doc.SaveFile(strFileName);
-
-}
-
-void ClassMessage::ReadBmp(char* strFileName)
-{
-	QPixmap pLoad;
-	pLoad.load(strFileName);
-	int nW = pLoad.width();
-	QImage pImage;
-	pImage = pLoad.toImage();
-
-	OBJ_Control bmpObj;
-	bmpObj.intLineStart=0;
-	bmpObj.intRowStart=0;
-	bmpObj.strType1="text";
-	bmpObj.strType2="logo";
-	bmpObj.strText = strFileName;
-	bmpObj.intLineSize=pImage.width();
-	bmpObj.intRowSize=pImage.height();
-	bmpObj.intSW=1;
-	bmpObj.intSS=0;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;
-
-	for(int y = 0; y< pImage.height(); y++)
-	{  
-		QRgb* line = (QRgb *)pImage.scanLine(y);  
-		for(int x = 0; x< pImage.width(); x++)
-		{  
-			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 200)
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = true;
-			else
-				bmpObj.boDotBmp[bmpObj.intLineSize-x-1][y] = false;
-		}  
-	}  
-	bmpObj.booFocus = true;
-	this->OBJ_Vec.push_back(bmpObj); 
-}
+} 
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
@@ -576,7 +536,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 		{
 			//读入属性信息
 			OBJ_Control obj;
-			obj.booFocus=false;
+			CTextOBJ TextObj;
+			CSerialOBJ SerialObj;
+			CTimeOBJ   TimeObj;
+			CBmpObj bmpObj;
+			CBarcodeOBJ barcodeObj;
+			CQRcodeOBJ QRcodeObj;
+			CDMcodeOBJ  DMcodeObj; 
+
+			obj.booFocus = false;
 			TiXmlNode* nodeTmp = 0;
 			for( nodeTmp = node->IterateChildren(0);nodeTmp;nodeTmp = node->IterateChildren( nodeTmp ) )
 			{
@@ -690,17 +658,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						obj.strText.assign(strText);
 					}
 				}
-
 				else if (obj.strType1=="text"&&obj.strType2=="serial")
-				{
-					CSerialOBJ *pSerialObj = (CSerialOBJ*)(&obj);
+				{					 
 					if(strcmp(strItem,"FirstLimit") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialFirstLimit=atoi(strText);
+						SerialObj.intSerialFirstLimit = atoi(strText);
 					}
 					else if(strcmp(strItem,"SecondLimit") == 0)
 					{
@@ -708,7 +674,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialSecondLimit=atoi(strText);
+						SerialObj.intSerialSecondLimit=atoi(strText);
 					}
 					else if(strcmp(strItem,"StartValue") == 0)
 					{
@@ -716,7 +682,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialStartValue=atoi(strText);
+						SerialObj.intSerialStartValue=atoi(strText);
 					}
 					else if(strcmp(strItem,"Step") == 0)
 					{
@@ -724,7 +690,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialStep=atoi(strText);
+						SerialObj.intSerialStep=atoi(strText);
 					}
 					else if(strcmp(strItem,"Repeat") == 0)
 					{
@@ -732,7 +698,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialRepeat=atoi(strText);
+						SerialObj.intSerialRepeat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Digits") == 0)
 					{
@@ -740,7 +706,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialDigits=atoi(strText);
+						SerialObj.intSerialDigits=atoi(strText);
 					}
 					else if(strcmp(strItem,"Format") == 0)
 					{
@@ -748,7 +714,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->bytSerialFormat=atoi(strText);
+						SerialObj.bytSerialFormat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Counter") == 0)
 					{
@@ -756,8 +722,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pSerialObj->intSerialCounter=atoi(strText);
-						CounterEditMes[pSerialObj->intSerialCounter]=true;
+						SerialObj.intSerialCounter=atoi(strText);
+						CounterEditMes[SerialObj.intSerialCounter]=true;
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -766,20 +732,17 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
-
 					}						
 				}
-
 				else if (obj.strType1=="text"&&obj.strType2=="time")
 				{
-					CTimeOBJ *pTimeObj = (CTimeOBJ*)(&obj);
 					if(strcmp(strItem,"setTIME") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pTimeObj->strTime.assign(strText);
+						TimeObj.strTime.assign(strText);
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -790,7 +753,6 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						obj.strText.assign(strText);
 					}	
 				}
-
 				else if (obj.strType1=="text"&&obj.strType2=="logo")
 				{
 					if(strcmp(strItem,"setTEXT") == 0)
@@ -799,15 +761,12 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strText.assign(strText);
-						obj.ReadBmp(const_cast<char*>(obj.strText.c_str()));
+						obj.strText.assign(strText);						 
+						bmpObj.ReadBmp(const_cast<char*>(obj.strText.c_str()));
 					}	
 				}
-
 				else if (obj.strType1=="text"&&obj.strType2=="2Dcode")
-				{
-					CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ*)(&obj);
-
+				{ 
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -822,7 +781,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pBarcodeObj->intBarcodeType = atoi(strText);
+						barcodeObj.intBarcodeType = atoi(strText);
 					}
 					if (strcmp(strItem,"BarType") == 0)
 					{
@@ -830,7 +789,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pBarcodeObj->intBarType = atoi(strText);
+						barcodeObj.intBarType = atoi(strText);
 					}
 					//if(strcmp(strItem, "BarWhite" ) == 0)
 					//{
@@ -847,15 +806,12 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pBarcodeObj->strCodeContent.assign(strText);
-						pBarcodeObj->Create2Dcode();
+						barcodeObj.strCodeContent.assign(strText);
+						barcodeObj.Create2Dcode();
 					}
-				}
-				
+				}				
 				else if (obj.strType1=="text"&&obj.strType2=="qrcode")
-				{
-					CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ*)(&obj);
-
+				{					
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -870,8 +826,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pQRcodeObj->strqrcodeVersion.assign(strText);
-						pQRcodeObj->intQRVersion = atoi(strText);
+						QRcodeObj.strqrcodeVersion.assign(strText);
+						QRcodeObj.intQRVersion = atoi(strText);
 					//}
 					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
 					//{
@@ -890,13 +846,11 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//	obj.intqrcodeQuietZone = atoi(strText);
 
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						pQRcodeObj->CreateQrcode();
+						QRcodeObj.CreateQrcode();
 					}
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="datamatrix")
-				{
-					CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ*)(&obj);
-
+				{ 
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -912,7 +866,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						pDMcodeObj->intDMsize = atoi(strText);
+						DMcodeObj.intDMsize = atoi(strText);
 					}
 					if(strcmp(strItem,"DMrow") == 0)
 					{
@@ -921,7 +875,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						pDMcodeObj->intDMrow = atoi(strText);
+						DMcodeObj.intDMrow = atoi(strText);
 					}
 					if(strcmp(strItem,"DMContent") == 0)
 					{
@@ -929,18 +883,52 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						pDMcodeObj->strDMContent.assign(strText);
+						DMcodeObj.strDMContent.assign(strText);
 					
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						pDMcodeObj->CreateDMcode();
+						DMcodeObj.CreateDMcode();
 					}
 				}
 			}
 			obj.booFocus = false;
-			OBJ_Vec.push_back(obj);
+
+			if(obj.strType2 == "text")
+			{
+				CTextOBJ* pTextObj = new CTextOBJ(obj,TextObj);
+				OBJ_Vec.push_back(pTextObj);
+			}
+			else if(obj.strType2 == "serial")
+			{
+				CSerialOBJ* pSerialObj = new CSerialOBJ(obj,SerialObj);
+				OBJ_Vec.push_back(pSerialObj);
+			}
+			else if(obj.strType2 == "time")
+			{
+				CTimeOBJ* pTimeObj = new CTimeOBJ(obj,TimeObj);
+				OBJ_Vec.push_back(pTimeObj);
+			}
+			else if(obj.strType2 == "logo")
+			{
+				CBmpObj* pbmpObj = new CBmpObj(obj,bmpObj);
+				OBJ_Vec.push_back(pbmpObj);
+			}
+			else if(obj.strType2 == "2Dcode")
+			{
+				CBarcodeOBJ* pbarcodeObj = new CBarcodeOBJ(obj,barcodeObj);
+				OBJ_Vec.push_back(pbarcodeObj);
+			}
+			else if(obj.strType2 == "qrcode")
+			{
+				CQRcodeOBJ* pQRcodeObj = new CQRcodeOBJ(obj,QRcodeObj);
+				OBJ_Vec.push_back(pQRcodeObj);
+			}
+			else if(obj.strType2 == "datamatrix")
+			{
+				CDMcodeOBJ* pDMcodeObj = new CDMcodeOBJ(obj,DMcodeObj);
+				OBJ_Vec.push_back(pDMcodeObj);
+			}			 
 		}
 	}
-
 	string strPathName=strFileName;
 	int lastN=strPathName.find_last_of('\\');
 	labName = strPathName.substr(lastN + 1);

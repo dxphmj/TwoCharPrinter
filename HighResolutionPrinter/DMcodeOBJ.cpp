@@ -5,6 +5,34 @@ CDMcodeOBJ::CDMcodeOBJ(void)
 {
 }
 
+CDMcodeOBJ::CDMcodeOBJ(OBJ_Control obj,CDMcodeOBJ DMcodeObj)
+{
+	strType1 = obj.strType1;
+	strType2 = obj.strType2;
+	intX = obj.intX;
+	intY = obj.intY;
+	intSW = obj.intSW;
+	intSS = obj.intSS;
+
+	booNEG = obj.booNEG;
+	booBWDx = obj.booBWDx;
+	booBWDy = obj.booBWDy;
+	strFont = obj.strFont;
+	strText = obj.strText;
+	intLineSize = obj.intLineSize;
+	intRowSize = obj.intRowSize;
+	intLineStart = obj.intLineStart;
+	intRowStart = obj.intRowStart;
+	booFocus = obj.booFocus;
+
+	intDMsize = DMcodeObj.intDMsize;
+	intDMrow = DMcodeObj.intDMrow;
+	strDMContent = DMcodeObj.strDMContent;
+
+	memcpy(boDotBmp,DMcodeObj.boDotBmp,sizeof(bool)*500*100);
+}
+
+
 CDMcodeOBJ::~CDMcodeOBJ(void)
 {
 }

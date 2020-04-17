@@ -5,6 +5,7 @@ class CQRcodeOBJ : public OBJ_Control
 {
 public:
 	CQRcodeOBJ(void);
+	CQRcodeOBJ(OBJ_Control obj,CQRcodeOBJ QRcodeObj);
 	~CQRcodeOBJ(void);
 
 public://Parameters
