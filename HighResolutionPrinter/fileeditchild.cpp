@@ -1075,6 +1075,8 @@ void FileEditChild::GetObjSettingsFromScreen()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
+			CTextOBJ* pTextObj = (CTextOBJ*)(&m_PrinterMes.OBJ_Vec[i]); ;
+
 			QString tmpStr = str2qstr(m_PrinterMes.OBJ_Vec[i].strText);
 			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intSS));
 			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
@@ -1120,6 +1122,8 @@ void FileEditChild::GetObjSettingsFromScreen()
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
 			{
+
+
 				this->ui->typeTab->setCurrentIndex(1);
 				this->ui->DateTimeEdit->setText(QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strTime));
 				this->ui->SkewSkewValueEdit->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intTimeOffSet));
@@ -1794,6 +1798,7 @@ void FileEditChild::newTextBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
+			CTextOBJ* pTextObj = (CTextOBJ*)(&m_PrinterMes.OBJ_Vec[i]);
 			string tmpStr = qstr2str(this->ui->wordLineEdit->text());
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
@@ -2597,19 +2602,19 @@ void FileEditChild::newTimeBut_clicked()
 	{
 	case 0:
 		tempObj.intLineSize=5;
-		tempObj.intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+		tempObj.intRowSize=strText.length()*6; 
 		break;
 	case 1:
 		tempObj.intLineSize=7;
-		tempObj.intRowSize=strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+		tempObj.intRowSize=strText.length()*6; 
 		break;
 	case 2:
 		tempObj.intLineSize=12;
-		tempObj.intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+		tempObj.intRowSize=strText.length()*13; 
 		break;
 	case 3:
 		tempObj.intLineSize=16;
-		tempObj.intRowSize=strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+		tempObj.intRowSize=strText.length()*13; 
 		break;
 	}
 	fontText=ui->fontSizeTimeComBox->currentText();

@@ -26,9 +26,11 @@ class OBJ_Control
 public://参数
     OBJ_Control(void);
 	~OBJ_Control(void);
+
 	string strDuan;//信息段的标识位
 	string strType1;//字段类型
 	string strType2;//字段实际类型
+
 	int intX;//字段原点X坐标（默认为0）
 	int intY;//字段原点Y坐标（默认为0）
 	int intSW;//字段的加粗属性（默认为0）
@@ -38,15 +40,17 @@ public://参数
 	bool booBWDy;//字段沿Y轴镜像（faulse为关闭，true为开启）
 	string strFont;//字段的字体（有的类型有，有的类型没有）
 	string strText;//字段的text属性，即内容
-	string strTime;//字段的time属性，即时间格式
-	
-	int booETimeOffSet;//字段的时间偏移开关（faulse为关闭，true为开启）
+
+	int intLineSize;//字段的行数
+	int intRowSize;//字段的列数
+	int intLineStart;//字段的开始行
+	int intRowStart;//字段的开始列
+
+	string strTime;//字段的time属性，即时间格式	
+	int booETimeOffSet;//字段的时间偏移开关（false为关闭，true为开启）
 	int intTimeOffSet;//字段的时间偏移值
 	int strTimeOffSet;//字段的时间偏移类型
 
-	//string strETimeOffSet;//字段的时间偏移开关（faulse为关闭，true为开启）
-	//int intTimeOffSet;//字段的时间偏移值
-	//string strTimeOffSet;//字段的时间偏移类型
 	
 	int intSerialFirstLimit;//字段的FirstLimit属性，即序列号第一象限
 	int intSerialSecondLimit;//字段的SecondLimit属性，即序列号第二象限
@@ -56,12 +60,8 @@ public://参数
     BYTE intSerialDigits;//字段的Digital属性，即序列号位数值
 	int intSerialCounter;//第几个序列号
 	BYTE bytSerialFormat;//字段的SerialFormat属性，即序列号格式
-
-	int intLineSize;//字段的行数
-	int intRowSize;//字段的列数
-	int intLineStart;//字段的开始行
-	int intRowStart;//字段的开始列
-      
+ 	int counter;//序列号的计数器
+     
 	string strqrcodeVersion;//二维码的版本类型
 	string strqrcodeECCLevel;//二维码的容错率等级
 	int intqrcodeQuietZone;//二维码空白
@@ -74,9 +74,6 @@ public://参数
 	int intDMsize;//保存DM码大小
 	int intDMrow;//保存DM码大小当前行
 	string strDMContent;//保存DM码的内容
-
-	int counter;//序列号的计数器
-
 
 	bool boQRBig;
 	int intQRVersion;
@@ -101,10 +98,7 @@ public://参数，待定
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 
 public://方法
-	char objbytTex5x5Line[7];
-	char objbytTex7x5Line[8];
-	char objbytTex12x12Line[25];
-	char objbytTex16x12Line[29];
+	
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
@@ -117,12 +111,12 @@ public://方法
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
 private:
-	//ClassMessage objClassMessage;
+	 
 	map<string,int> fntMap;
  
 };
 
-class ClassMessage : private OBJ_Control
+class ClassMessage
 {
 public:
 		ClassMessage(void);
@@ -137,7 +131,7 @@ public:
 	bool boReverse;//翻转，颠倒，由喷印设置中更改
 	bool boInverse;
     bool boDotMes[32][255];
-	int intRowMax;//intDotMesRow
+	int intRowMax; 
 	int bytRowByteMul;//一列由几个byte表示
 	bool boDynamic;//是否动态打印
 	bool boPrintNow;//是否即时打印
@@ -230,8 +224,7 @@ public://XML
 	string labPath;
 	string labName;
 	void createLABXML();
-	void getLabFromXml();
-	
+	void getLabFromXml();	
 };
 
 #endif
