@@ -110,10 +110,21 @@ public://方法
 	//void GetVectorWordDots();
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
+	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
+	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+	bool readBin(string FontName,int offset,char *arr, int DataLen);
+
+	string to_String(int n);
+	long long BIN_to_DEC(string Bin);
+	string DEC_to_BIN(long long Dec);
+
 private:
 	 
 	map<string,int> fntMap;
- 
+    int m_nPicWidth; //绘制控件的宽度 
 };
 
 class ClassMessage
@@ -204,11 +215,10 @@ public:
 public:
 	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//查
 	BYTE getByteFromDot(bool boDot,int moveNum); 
-	string DEC_to_BIN(long long Dec);
 	string to_String(int n);
 	long long BIN_to_DEC(string Bin);
-	bool readBin(string FontName,int offset,char *arr, int DataLen );//此处先用char来代替BYTE
-	void DrawDot(CDC* pDC);//
+	string DEC_to_BIN(long long Dec);
+ 	void DrawDot(CDC* pDC);//
 	void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
 				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
