@@ -5,10 +5,8 @@
 #include <QLineEdit>
 #include <QFontComboBox>
 #include "ClassMessage.h"
-#include "TextOBJ.h"
+#include "OBJ_Type.h"
 #include "backend\zint.h"
-
-
 
 class keyboard;
 class numkeyboard;

@@ -13,5 +13,7 @@ public://Parameters
 	string strDMContent;//±£´æDMÂëµÄÄÚÈİ
 
 public://Functions
+	void CreateDMcode();
+
 };
 

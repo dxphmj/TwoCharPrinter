@@ -14,5 +14,7 @@ public://Parameters
 	int intBarWhite;//保存条形码空白宽度
 
 public://Functions
+	void Create2Dcode();
+
 };
 

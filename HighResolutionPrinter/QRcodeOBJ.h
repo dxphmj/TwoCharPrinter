@@ -18,6 +18,7 @@ public://Parameters
 	int intQREncodingMode;
 
 public://Functions
+	void CreateQrcode();
 
 };
 

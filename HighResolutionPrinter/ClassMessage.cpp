@@ -1,4 +1,5 @@
 #include "ClassMessage.h"
+#include "OBJ_Type.h"
 #include "sstream"
 #include <fstream>
 #include <stdio.h>
@@ -7,7 +8,7 @@
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
-#include "backend\zint.h"
+
 #include "wordStock\\GetHZinfo.h"
 
 //#include <qwidget.h>
@@ -299,6 +300,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="serial")
 		{
+			CSerialOBJ *pSerialObj = (CSerialOBJ *)(&OBJ_Vec[i]);
+
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemFirstLimit( "FirstLimit" );
@@ -312,14 +315,14 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 
 			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textFirstLimit(to_String(OBJ_Vec[i].intSerialFirstLimit).c_str());
-			TiXmlText textSecondLimit(to_String(OBJ_Vec[i].intSerialSecondLimit).c_str());
-			TiXmlText textStartValue(to_String(OBJ_Vec[i].intSerialStartValue).c_str());
-			TiXmlText textStep(to_String(OBJ_Vec[i].intSerialStep).c_str());
-			TiXmlText textRepeat(to_String(OBJ_Vec[i].intSerialRepeat).c_str());
-			TiXmlText textDigits(to_String(OBJ_Vec[i].intSerialDigits).c_str());
-			TiXmlText textFormat(to_String(OBJ_Vec[i].bytSerialFormat).c_str());
-			TiXmlText textCounter(to_String(OBJ_Vec[i].intSerialCounter).c_str());
+			TiXmlText textFirstLimit(to_String(pSerialObj->intSerialFirstLimit).c_str());
+			TiXmlText textSecondLimit(to_String(pSerialObj->intSerialSecondLimit).c_str());
+			TiXmlText textStartValue(to_String(pSerialObj->intSerialStartValue).c_str());
+			TiXmlText textStep(to_String(pSerialObj->intSerialStep).c_str());
+			TiXmlText textRepeat(to_String(pSerialObj->intSerialRepeat).c_str());
+			TiXmlText textDigits(to_String(pSerialObj->intSerialDigits).c_str());
+			TiXmlText textFormat(to_String(pSerialObj->bytSerialFormat).c_str());
+			TiXmlText textCounter(to_String(pSerialObj->intSerialCounter).c_str());
 
 
 			itemsetFONT.InsertEndChild(textSetFont);
@@ -347,6 +350,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		} 
 		else if(OBJ_Vec[i].strType2=="time")
 		{
+			CTimeOBJ *pTimeObj = (CTimeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemSetTIME( "setTIME" );
@@ -356,10 +361,10 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 
 			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textSetTIME(OBJ_Vec[i].strTime.c_str());
-			TiXmlText textETimeOffSet(to_String(OBJ_Vec[i].booETimeOffSet).c_str());
-			TiXmlText textTimeOffSet(to_String(OBJ_Vec[i].intTimeOffSet).c_str());
-			TiXmlText textTimeOffSetUint(to_String(OBJ_Vec[i].strTimeOffSet).c_str());
+			TiXmlText textSetTIME(pTimeObj->strTime.c_str());
+			TiXmlText textETimeOffSet(to_String(pTimeObj->booETimeOffSet).c_str());
+			TiXmlText textTimeOffSet(to_String(pTimeObj->intTimeOffSet).c_str());
+			TiXmlText textTimeOffSetUint(to_String(pTimeObj->strTimeOffSet).c_str());
 
 			itemsetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
@@ -387,6 +392,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="2Dcode")
 		{
+		    CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemBarcodeType( "BarcodeType" );
 			TiXmlElement itemBarType( "BarType" );
@@ -394,10 +401,10 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemBarWhite( "BarWhite" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textBarcodeType(to_String(OBJ_Vec[i].intBarcodeType).c_str());
-			TiXmlText textBarType(to_String(OBJ_Vec[i].intBarType).c_str());
-			TiXmlText textBarcodeContent(OBJ_Vec[i].strCodeContent.c_str());
-			TiXmlText textBarWhite(to_String(OBJ_Vec[i].intBarWhite).c_str());
+			TiXmlText textBarcodeType(to_String(pBarcodeObj->intBarcodeType).c_str());
+			TiXmlText textBarType(to_String(pBarcodeObj->intBarType).c_str());
+			TiXmlText textBarcodeContent(pBarcodeObj->strCodeContent.c_str());
+			TiXmlText textBarWhite(to_String(pBarcodeObj->intBarWhite).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemBarcodeType.InsertEndChild(textBarcodeType);
@@ -413,13 +420,15 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="qrcode")
 		{
+			CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "qrcodeVersion" );
 			//TiXmlElement itemECCLevel( "qrcodeECCLevel" );
 			//TiXmlElement itemQuietZone( "qrcodeQuietZone" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textVersion(to_String(OBJ_Vec[i].intQRVersion).c_str());
+			TiXmlText textVersion(to_String(pQRcodeObj->intQRVersion).c_str());
 			//TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
 			//TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
 
@@ -435,15 +444,17 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="datamatrix")
 		{
+			CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "DMsize" );
 			TiXmlElement itemDMContent("DMContent");
 			TiXmlElement itemDMrow( "DMrow" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textVersion(to_String(OBJ_Vec[i].intDMsize).c_str());
-			TiXmlText textDMContent(OBJ_Vec[i].strDMContent.c_str());
-			TiXmlText textDMrow(to_String(OBJ_Vec[i].intDMrow).c_str());
+			TiXmlText textVersion(to_String(pDMcodeObj->intDMsize).c_str());
+			TiXmlText textDMContent(pDMcodeObj->strDMContent.c_str());
+			TiXmlText textDMrow(to_String(pDMcodeObj->intDMrow).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
@@ -698,13 +709,14 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 
 				else if (obj.strType1=="text"&&obj.strType2=="serial")
 				{
+					CSerialOBJ *pSerialObj = (CSerialOBJ*)(&obj);
 					if(strcmp(strItem,"FirstLimit") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialFirstLimit=atoi(strText);
+						pSerialObj->intSerialFirstLimit=atoi(strText);
 					}
 					else if(strcmp(strItem,"SecondLimit") == 0)
 					{
@@ -712,7 +724,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialSecondLimit=atoi(strText);
+						pSerialObj->intSerialSecondLimit=atoi(strText);
 					}
 					else if(strcmp(strItem,"StartValue") == 0)
 					{
@@ -720,7 +732,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialStartValue=atoi(strText);
+						pSerialObj->intSerialStartValue=atoi(strText);
 					}
 					else if(strcmp(strItem,"Step") == 0)
 					{
@@ -728,7 +740,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialStep=atoi(strText);
+						pSerialObj->intSerialStep=atoi(strText);
 					}
 					else if(strcmp(strItem,"Repeat") == 0)
 					{
@@ -736,7 +748,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialRepeat=atoi(strText);
+						pSerialObj->intSerialRepeat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Digits") == 0)
 					{
@@ -744,7 +756,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialDigits=atoi(strText);
+						pSerialObj->intSerialDigits=atoi(strText);
 					}
 					else if(strcmp(strItem,"Format") == 0)
 					{
@@ -752,7 +764,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.bytSerialFormat=atoi(strText);
+						pSerialObj->bytSerialFormat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Counter") == 0)
 					{
@@ -760,8 +772,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialCounter=atoi(strText);
-						CounterEditMes[obj.intSerialCounter]=true;
+						pSerialObj->intSerialCounter=atoi(strText);
+						CounterEditMes[pSerialObj->intSerialCounter]=true;
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -774,15 +786,16 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}						
 				}
 
-				else if (obj.strType1=="text"&&obj.strType2=="time")/////这个以后再写
+				else if (obj.strType1=="text"&&obj.strType2=="time")
 				{
+					CTimeOBJ *pTimeObj = (CTimeOBJ*)(&obj);
 					if(strcmp(strItem,"setTIME") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strTime.assign(strText);
+						pTimeObj->strTime.assign(strText);
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -809,6 +822,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 
 				else if (obj.strType1=="text"&&obj.strType2=="2Dcode")
 				{
+					CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -823,7 +838,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intBarcodeType = atoi(strText);
+						pBarcodeObj->intBarcodeType = atoi(strText);
 					}
 					if (strcmp(strItem,"BarType") == 0)
 					{
@@ -831,7 +846,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intBarType = atoi(strText);
+						pBarcodeObj->intBarType = atoi(strText);
 					}
 					//if(strcmp(strItem, "BarWhite" ) == 0)
 					//{
@@ -848,13 +863,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strCodeContent.assign(strText);
-						obj.Create2Dcode();
+						pBarcodeObj->strCodeContent.assign(strText);
+						pBarcodeObj->Create2Dcode();
 					}
 				}
 				
 				else if (obj.strType1=="text"&&obj.strType2=="qrcode")
 				{
+					CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -869,8 +886,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strqrcodeVersion.assign(strText);
-						obj.intQRVersion = atoi(strText);
+						pQRcodeObj->strqrcodeVersion.assign(strText);
+						pQRcodeObj->intQRVersion = atoi(strText);
 					//}
 					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
 					//{
@@ -889,11 +906,13 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//	obj.intqrcodeQuietZone = atoi(strText);
 
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						obj.CreateQrcode();
+						pQRcodeObj->CreateQrcode();
 					}
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="datamatrix")
 				{
+					CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -909,7 +928,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						obj.intDMsize = atoi(strText);
+						pDMcodeObj->intDMsize = atoi(strText);
 					}
 					if(strcmp(strItem,"DMrow") == 0)
 					{
@@ -918,7 +937,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						obj.intDMrow = atoi(strText);
+						pDMcodeObj->intDMrow = atoi(strText);
 					}
 					if(strcmp(strItem,"DMContent") == 0)
 					{
@@ -926,10 +945,10 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strDMContent.assign(strText);
+						pDMcodeObj->strDMContent.assign(strText);
 					
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						obj.CreateDMcode();
+						pDMcodeObj->CreateDMcode();
 					}
 				}
 			}
@@ -1456,21 +1475,21 @@ OBJ_Control::OBJ_Control(void)
 	this->booBWDy=false;
 	this->strFont="7x5";
 	this->strText="Text";
-	this->booETimeOffSet=0;
+	/*this->booETimeOffSet=0;
 	this->intTimeOffSet=1;
 	this->intSerialFirstLimit=1;
 	this->intSerialSecondLimit=999999999;
-    this->intSerialStartValue=1;
+	this->intSerialStartValue=1;
 	this->intSerialStep=1;
 	this->intSerialRepeat=1;
 	this->intSerialDigits=9;
 	this->intSerialCounter=0;
-	this->bytSerialFormat=0;
+	this->bytSerialFormat=0;*/
 	this->intLineSize=0;
 	this->intRowSize=0;
 	this->intLineStart=0;
     this->intRowStart=0;
-	this->intqrcodeQuietZone=0;
+	//this->intqrcodeQuietZone=0;
 	this->booFocus = true;
 }
 
@@ -2742,258 +2761,5 @@ void OBJ_Control::ReadBmp(char* strFileName)
 	}  
 }
 
-void OBJ_Control::CreateQrcode()
-{
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	//int batch_mode;
-	//int mirror_mode;
-	//char filetype[4];
-	int i;
-	int v;
 
-	error_number = 0;
-	
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = 58; //临时用一下变量intQRVersion
-	my_symbol->scale = 0.5;
-
-//	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
-
-	//batch_mode = 0;
-	//mirror_mode = 0;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strText.c_str(),strText.size(),rotate_angle);
-	
-	generated = 1;
-	strType1="text";
-	strType2="qrcode";		
-	intLineSize=my_symbol->bitmap_height;
-	intRowSize=my_symbol->bitmap_width;
-
-	i = 0;
-	int r, g, b;
-
-	for (int row = 0; row < my_symbol->bitmap_height; row++)
-	{
-		for (int col = 0;col < my_symbol->bitmap_width; col++)
-		{
-			r = my_symbol->bitmap[i];
-			g = my_symbol->bitmap[i + 1];
-			b = my_symbol->bitmap[i + 2];
-			i += 3;
-			if (r == 0 && g == 0 && b == 0)
-			{
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//由于坐标系的原因，上下必须颠倒
-			}
-			else
-			{
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
-			}
-		}
-	}
-	booFocus = true;
-}
-
-void OBJ_Control::Create2Dcode()
-{
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	int batch_mode;
-	int mirror_mode;
-	char filetype[4];
-	int i;
-	int longth;
-	int derta;
-	derta=1;
-	longth=0;
-	error_number = 0;
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = intBarcodeType;
-	int heightvalue1 = intLineSize;
-	if (heightvalue1<28)
-	{	
-		my_symbol->height =5;	 
-	} 
-	else
-	{
-		my_symbol->height=heightvalue1-23;
-	}
-	/*QString zoomvalue=ui->zoomShowBarCodeLab->text();
-	float zoomvalue1=zoomvalue.toFloat();*/
-	my_symbol->scale =1;
-	batch_mode = 0;
-	mirror_mode = 0;
-	
-	my_symbol->whitespace_width = 9;//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
-	//if (ui->typerimComBox->currentIndex()==0)
-	//{
-	//	my_symbol->output_options= 1;
-	//} 
-	//else if(ui->typerimComBox->currentIndex()==1)
-	//{
-	//	my_symbol->output_options=2;
-	//}
-	//else
-	//{
-	//	my_symbol->output_options=4;
-	//}
-	//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
-	//QString rimwide=ui->rimwideLab->text();
-	//int rimwide1=rimwide.toInt();
-	//my_symbol->border_width=rimwide1;//改变边框宽度           
-
-	//int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
-	//if (ui->showNumCheckBox->isChecked())
-	//{
-	//	my_symbol->show_hrt=1;
-	//} 
-
-	//else  {my_symbol->show_hrt=0;}
-
-	strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
-	ZBarcode_Encode(my_symbol, (unsigned char*) strCodeContent.c_str(), 0);
-	generated=1;
-	int error_num = ZBarcode_Print(my_symbol, 0);
-
-	if (error_num != 0)
-	//{
-	//	/* some error occurred */
-	//	//printf("%s\n", my_symbol->errtxt);
-	//}
-
-	ZBarcode_Delete(my_symbol);
-		
-	char* strFileName = "User/logo/output.bmp";
-	QPixmap pLoad;
-	pLoad.load(strFileName);
-	int nW = pLoad.width();
-	int nH = pLoad.height();
-	QImage pImage;
-	pImage = pLoad.toImage();
-	pImage = pImage.scaled(pImage.width(),heightvalue1, Qt::IgnoreAspectRatio, Qt::SmoothTransformation); 
-
-	//intLineStart = 0;
-	//intRowStart = 0;
-	strType1 = "text";
-	strType2 = "2Dcode";
-	//strText = strFileName;
-	intLineSize = pImage.height();
-	intRowSize = pImage.width(); 
-	//intSW=1;
-	//intSS=0;
-	//booNEG=false;
-	//booBWDx=false;
-	//booBWDy=false;
-
-	for(int y = 0; y< pImage.height(); y++)
-	{  
-		QRgb* line = (QRgb *)pImage.scanLine(y);  
-		for(int x = 0; x< pImage.width(); x++)
-		{  
-			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
-			if(average < 200)
-				boDotBmp[intRowStart +x][intLineStart+intLineSize -y-1] = true;
-			else
-				boDotBmp[intRowStart +x][intLineStart+intLineSize -y-1] = false;
-		}  
-
-	}  
-	booFocus = true;
-	QString get = QString(QLatin1String(strFileName)).toUtf8();
-	//删除文件
-	QFile::remove(get);
-}
-
-void OBJ_Control::CreateDMcode()
-{
-	struct zint_symbol *my_symbol;
-	int error_number;
-	int rotate_angle;
-	int generated;
-	int batch_mode;
-	int mirror_mode;
-	char filetype[4];
-	int i;
-
-	error_number = 0;
-
-	rotate_angle = 0;
-	generated = 0;
-	my_symbol = ZBarcode_Create();
-	my_symbol->input_mode = 1;
-	my_symbol->symbology = 71;
-	my_symbol->scale =0.5;
-
-	my_symbol->option_2 = intDMsize;
-
-	batch_mode = 0;
-	mirror_mode = 0;
-	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strDMContent.c_str(),strDMContent.length(),rotate_angle);
-
-	generated = 1;
-
-	int xPos=0;
-	int yPos=0;
-	/*for(int i=0;i<OBJ_Vec.size();i++)
-	{
-		if (booFocus)
-		{
-			booFocus=false;
-			yPos = intLineStart;
-			xPos = intRowSize+intRowStart;
-		}
-	}*/
-
-	
-	intLineStart=yPos;
-	intRowStart=xPos;
-	strType1="text";
-	strType2="datamatrix";
-	intLineSize=my_symbol->bitmap_height;
-	intRowSize=my_symbol->bitmap_width;
-	//intDMsize = nType;
-	//bmpObj.strDMContent = strContent.toStdString();
-	//bmpObj.strText = strContent.toStdString();
-	//以下先写死
-	/*bmpObj.intSW=1;
-	bmpObj.intSS=1;
-	bmpObj.booNEG=false;
-	bmpObj.booBWDx=false;
-	bmpObj.booBWDy=false;*/
-	i = 0;
-	int r, g, b;
-
-	for (int row = 0; row < my_symbol->bitmap_height; row++)
-	{
-		for (int col = 0;col < my_symbol->bitmap_width; col++)
-		{
-			r = my_symbol->bitmap[i];
-			g = my_symbol->bitmap[i + 1];
-			b = my_symbol->bitmap[i + 2];
-			i += 3;
-			if (r == 0 && g == 0 && b == 0)
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
-			}
-			else
-			{
-				//		bmpObj.boDotBmp[col][row-proportion] = false;
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
-			}
-		}
-	}
-	booFocus = true;
-}
 

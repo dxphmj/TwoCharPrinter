@@ -9,6 +9,14 @@
 #include <queue>
 #include <QPainter>
 
+class CTextOBJ;
+class CTimeOBJ;
+class CSerialOBJ;
+class CBmpObj;
+class CBarcodeOBJ;
+class CQRcodeOBJ;
+class CDMcodeOBJ;
+
 using namespace std;
 typedef unsigned char BYTE;
 #define max 100
@@ -51,7 +59,8 @@ public://Parameters
 
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示绿框
 	bool booBeenDragged;//对象是否被拖动
-		
+	
+	int counter;//序列号的计数器
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
@@ -68,9 +77,6 @@ public://方法
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
-	void CreateQrcode();
-	void Create2Dcode();
-	void CreateDMcode();
 
 	//vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
 	//void GetVectorWordDots();

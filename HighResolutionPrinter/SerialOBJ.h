@@ -16,7 +16,7 @@ public://Parameters
 	BYTE intSerialDigits;//字段的Digital属性，即序列号位数值
 	int intSerialCounter;//第几个序列号
 	BYTE bytSerialFormat;//字段的SerialFormat属性，即序列号格式
-	int counter;//序列号的计数器
+	
 
 public://Functions
 
