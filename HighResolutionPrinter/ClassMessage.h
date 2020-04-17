@@ -23,71 +23,35 @@ typedef unsigned char BYTE;
 
 class OBJ_Control
 {
-public://参数
+public:
     OBJ_Control(void);
 	~OBJ_Control(void);
+
+public://Parameters
 	string strDuan;//信息段的标识位
 	string strType1;//字段类型
 	string strType2;//字段实际类型
+
 	int intX;//字段原点X坐标（默认为0）
 	int intY;//字段原点Y坐标（默认为0）
 	int intSW;//字段的加粗属性（默认为0）
 	int intSS;//字段的字距（默认为0）
+
 	bool booNEG;//字段的反色（faulse为不反，true为反）
 	bool booBWDx;//字段沿X轴镜像（faulse为关闭，true为开启）
 	bool booBWDy;//字段沿Y轴镜像（faulse为关闭，true为开启）
+
 	string strFont;//字段的字体（有的类型有，有的类型没有）
 	string strText;//字段的text属性，即内容
-	string strTime;//字段的time属性，即时间格式
-	
-	int booETimeOffSet;//字段的时间偏移开关（faulse为关闭，true为开启）
-	int intTimeOffSet;//字段的时间偏移值
-	int strTimeOffSet;//字段的时间偏移类型
-
-	//string strETimeOffSet;//字段的时间偏移开关（faulse为关闭，true为开启）
-	//int intTimeOffSet;//字段的时间偏移值
-	//string strTimeOffSet;//字段的时间偏移类型
-	
-	int intSerialFirstLimit;//字段的FirstLimit属性，即序列号第一象限
-	int intSerialSecondLimit;//字段的SecondLimit属性，即序列号第二象限
-	int intSerialStartValue;//字段的StartValue属性，即序列号起始值
-	int intSerialStep;//字段的StepSize属性，即序列号步长值
-	int intSerialRepeat;//字段的RepeatCount属性，即序列号重复值
-    BYTE intSerialDigits;//字段的Digital属性，即序列号位数值
-	int intSerialCounter;//第几个序列号
-	BYTE bytSerialFormat;//字段的SerialFormat属性，即序列号格式
 
 	int intLineSize;//字段的行数
 	int intRowSize;//字段的列数
 	int intLineStart;//字段的开始行
 	int intRowStart;//字段的开始列
-      
-	string strqrcodeVersion;//二维码的版本类型
-	string strqrcodeECCLevel;//二维码的容错率等级
-	int intqrcodeQuietZone;//二维码空白
-
-	int intBarcodeType;//保存条形码的类型
-	int intBarType;//保存条码类型
-	string strCodeContent;//保存条形码的内容
-	int intBarWhite;//保存条形码空白宽度
-
-	int intDMsize;//保存DM码大小
-	int intDMrow;//保存DM码大小当前行
-	string strDMContent;//保存DM码的内容
-
-	int counter;//序列号的计数器
-
-
-	bool boQRBig;
-	int intQRVersion;
-	int intQRErrLevel;
-	int intQREncodingMode;
 
 	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示绿框
 	bool booBeenDragged;//对象是否被拖动
-
-	//bool m_bVecotrWord;//是否矢量字库
-	//string m_WordStockFileName; //字库文件名
+		
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
@@ -95,7 +59,6 @@ public://参数，待定
 
     //vector<vector<bool>> LogoDotToMes;//改变后的Logo图片点阵用于下发数据用
     //vector<vector<bool>> LogoDot;//logo点阵
-
 
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小

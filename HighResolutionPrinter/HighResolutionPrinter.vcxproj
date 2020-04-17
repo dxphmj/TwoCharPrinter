@@ -181,6 +181,8 @@
     <ClCompile Include="backend\ultra.c" />
     <ClCompile Include="backend\upcean.c" />
     <ClCompile Include="backend\vector.c" />
+    <ClCompile Include="BarcodeOBJ.cpp" />
+    <ClCompile Include="BmpObj.cpp" />
     <ClCompile Include="ClassMessage.cpp" />
     <ClCompile Include="aboutmac.cpp" />
     <ClCompile Include="countsetting.cpp" />
@@ -256,6 +258,7 @@
     <ClCompile Include="Debug\moc_variblewidget.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="DMcodeOBJ.cpp" />
     <ClCompile Include="fileeditchild.cpp" />
     <ClCompile Include="filemanagechild.cpp" />
     <ClCompile Include="filemanageform.cpp" />
@@ -278,6 +281,7 @@
     <ClCompile Include="printsetting.cpp" />
     <ClCompile Include="PrintShowThread.cpp" />
     <ClCompile Include="PrintThead.cpp" />
+    <ClCompile Include="QRcodeOBJ.cpp" />
     <ClCompile Include="qrcode\bitstream.c" />
     <ClCompile Include="qrcode\mask.c" />
     <ClCompile Include="qrcode\mmask.c" />
@@ -360,10 +364,12 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="roll.cpp" />
+    <ClCompile Include="SerialOBJ.cpp" />
     <ClCompile Include="symbolwidget.cpp" />
     <ClCompile Include="syssetting.cpp" />
     <ClCompile Include="TextOBJ.cpp" />
     <ClCompile Include="timecustom.cpp" />
+    <ClCompile Include="TimeOBJ.cpp" />
     <ClCompile Include="UILanguage.cpp" />
     <ClCompile Include="variablebarcode.cpp" />
     <ClCompile Include="variabledm.cpp" />
@@ -415,6 +421,8 @@
     <ClInclude Include="backend\stdint_msvc.h" />
     <ClInclude Include="backend\tif.h" />
     <ClInclude Include="backend\zint.h" />
+    <ClInclude Include="BarcodeOBJ.h" />
+    <ClInclude Include="BmpObj.h" />
     <ClInclude Include="ClassMessage.h" />
     <CustomBuild Include="keyboard.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -426,6 +434,7 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNO_PNG -DQT_DLL  "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
+    <ClInclude Include="DMcodeOBJ.h" />
     <ClInclude Include="GeneratedFiles\ui_keyboard.h" />
     <CustomBuild Include="timecustom.h">
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(QTDIR)\bin\moc.exe;%(FullPath)</AdditionalInputs>
@@ -506,6 +515,7 @@
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNO_PNG -DQT_DLL "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
     <ClInclude Include="ParamSetting.h" />
+    <ClInclude Include="QRcodeOBJ.h" />
     <ClInclude Include="qrcode\bitstream.h" />
     <ClInclude Include="qrcode\config.h" />
     <ClInclude Include="qrcode\mask.h" />
@@ -573,7 +583,9 @@
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ConfigurationName)\moc_%(Filename).cpp</Outputs>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">"$(QTDIR)\bin\moc.exe"  "%(FullPath)" -o "$(ConfigurationName)\moc_%(Filename).cpp"  -D_WINDOWS -DUNICODE -DWIN32 -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB -DNO_PNG -DQT_DLL "-I." "-I$(QTDIR)\include" "-I$(QTDIR)\include\QtWidgets" "-I$(QTDIR)\include\QtGui" "-I$(QTDIR)\include\QtANGLE" "-I$(QTDIR)\include\QtCore" "-I.\debug" "-I$(QTDIR)\mkspecs\win32-msvc2010" "-I.\GeneratedFiles"</Command>
     </CustomBuild>
+    <ClInclude Include="SerialOBJ.h" />
     <ClInclude Include="TextOBJ.h" />
+    <ClInclude Include="TimeOBJ.h" />
     <ClInclude Include="wordStock\Dom.h" />
     <ClInclude Include="wordStock\GetHZinfo.h" />
     <ClInclude Include="xml\tinystr.h" />
@@ -1062,7 +1074,8 @@ endlocal
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Qt5Version_x0020_Win32="msvc2010" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
-		<UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" /></VisualStudio>
+      <UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+      <UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+    </VisualStudio>
   </ProjectExtensions>
 </Project>

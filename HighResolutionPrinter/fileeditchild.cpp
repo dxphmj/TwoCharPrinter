@@ -1794,6 +1794,7 @@ void FileEditChild::newTextBut_clicked()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
+			
 			string tmpStr = qstr2str(this->ui->wordLineEdit->text());
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
