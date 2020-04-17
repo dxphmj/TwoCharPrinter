@@ -5,10 +5,8 @@
 #include <QLineEdit>
 #include <QFontComboBox>
 #include "ClassMessage.h"
-#include "TextOBJ.h"
+#include "OBJ_Type.h"
 #include "backend\zint.h"
-
-
 
 class keyboard;
 class numkeyboard;
@@ -28,7 +26,7 @@ public:
 	FileEditChild(QWidget *parent = 0);
 	~FileEditChild();
 	ClassMessage m_PrinterMes;
-	CTextOBJ m_TextObj;
+	
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
 	/*enum LineeditChangeEnum{ WordLineedit = 0,barLineEdit = 1,QRLineEdit = 2,DMLineEdit = 3};

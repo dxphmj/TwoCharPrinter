@@ -1,4 +1,5 @@
 #include "ClassMessage.h"
+#include "OBJ_Type.h"
 #include "sstream"
 #include <fstream>
 #include <stdio.h>
@@ -7,7 +8,7 @@
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
-#include "backend\zint.h"
+
 #include "wordStock\\GetHZinfo.h"
  
 ClassMessage::ClassMessage(void)
@@ -283,6 +284,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="serial")
 		{
+			CSerialOBJ *pSerialObj = (CSerialOBJ *)(&OBJ_Vec[i]);
+
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemFirstLimit( "FirstLimit" );
@@ -296,14 +299,14 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 
 			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textFirstLimit(to_String(OBJ_Vec[i].intSerialFirstLimit).c_str());
-			TiXmlText textSecondLimit(to_String(OBJ_Vec[i].intSerialSecondLimit).c_str());
-			TiXmlText textStartValue(to_String(OBJ_Vec[i].intSerialStartValue).c_str());
-			TiXmlText textStep(to_String(OBJ_Vec[i].intSerialStep).c_str());
-			TiXmlText textRepeat(to_String(OBJ_Vec[i].intSerialRepeat).c_str());
-			TiXmlText textDigits(to_String(OBJ_Vec[i].intSerialDigits).c_str());
-			TiXmlText textFormat(to_String(OBJ_Vec[i].bytSerialFormat).c_str());
-			TiXmlText textCounter(to_String(OBJ_Vec[i].intSerialCounter).c_str());
+			TiXmlText textFirstLimit(to_String(pSerialObj->intSerialFirstLimit).c_str());
+			TiXmlText textSecondLimit(to_String(pSerialObj->intSerialSecondLimit).c_str());
+			TiXmlText textStartValue(to_String(pSerialObj->intSerialStartValue).c_str());
+			TiXmlText textStep(to_String(pSerialObj->intSerialStep).c_str());
+			TiXmlText textRepeat(to_String(pSerialObj->intSerialRepeat).c_str());
+			TiXmlText textDigits(to_String(pSerialObj->intSerialDigits).c_str());
+			TiXmlText textFormat(to_String(pSerialObj->bytSerialFormat).c_str());
+			TiXmlText textCounter(to_String(pSerialObj->intSerialCounter).c_str());
 
 
 			itemsetFONT.InsertEndChild(textSetFont);
@@ -331,6 +334,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		} 
 		else if(OBJ_Vec[i].strType2=="time")
 		{
+			CTimeOBJ *pTimeObj = (CTimeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemsetFONT("setFONT");
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemSetTIME( "setTIME" );
@@ -340,10 +345,10 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 
 			TiXmlText textSetFont(OBJ_Vec[i].strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textSetTIME(OBJ_Vec[i].strTime.c_str());
-			TiXmlText textETimeOffSet(to_String(OBJ_Vec[i].booETimeOffSet).c_str());
-			TiXmlText textTimeOffSet(to_String(OBJ_Vec[i].intTimeOffSet).c_str());
-			TiXmlText textTimeOffSetUint(to_String(OBJ_Vec[i].strTimeOffSet).c_str());
+			TiXmlText textSetTIME(pTimeObj->strTime.c_str());
+			TiXmlText textETimeOffSet(to_String(pTimeObj->booETimeOffSet).c_str());
+			TiXmlText textTimeOffSet(to_String(pTimeObj->intTimeOffSet).c_str());
+			TiXmlText textTimeOffSetUint(to_String(pTimeObj->strTimeOffSet).c_str());
 
 			itemsetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
@@ -371,6 +376,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="2Dcode")
 		{
+		    CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemBarcodeType( "BarcodeType" );
 			TiXmlElement itemBarType( "BarType" );
@@ -378,10 +385,10 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 			TiXmlElement itemBarWhite( "BarWhite" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textBarcodeType(to_String(OBJ_Vec[i].intBarcodeType).c_str());
-			TiXmlText textBarType(to_String(OBJ_Vec[i].intBarType).c_str());
-			TiXmlText textBarcodeContent(OBJ_Vec[i].strCodeContent.c_str());
-			TiXmlText textBarWhite(to_String(OBJ_Vec[i].intBarWhite).c_str());
+			TiXmlText textBarcodeType(to_String(pBarcodeObj->intBarcodeType).c_str());
+			TiXmlText textBarType(to_String(pBarcodeObj->intBarType).c_str());
+			TiXmlText textBarcodeContent(pBarcodeObj->strCodeContent.c_str());
+			TiXmlText textBarWhite(to_String(pBarcodeObj->intBarWhite).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemBarcodeType.InsertEndChild(textBarcodeType);
@@ -397,13 +404,15 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="qrcode")
 		{
+			CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "qrcodeVersion" );
 			//TiXmlElement itemECCLevel( "qrcodeECCLevel" );
 			//TiXmlElement itemQuietZone( "qrcodeQuietZone" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textVersion(to_String(OBJ_Vec[i].intQRVersion).c_str());
+			TiXmlText textVersion(to_String(pQRcodeObj->intQRVersion).c_str());
 			//TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
 			//TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
 
@@ -419,15 +428,17 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		}
 		else if (OBJ_Vec[i].strType2=="datamatrix")
 		{
+			CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(&OBJ_Vec[i]);
+			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "DMsize" );
 			TiXmlElement itemDMContent("DMContent");
 			TiXmlElement itemDMrow( "DMrow" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i].strText.c_str());
-			TiXmlText textVersion(to_String(OBJ_Vec[i].intDMsize).c_str());
-			TiXmlText textDMContent(OBJ_Vec[i].strDMContent.c_str());
-			TiXmlText textDMrow(to_String(OBJ_Vec[i].intDMrow).c_str());
+			TiXmlText textVersion(to_String(pDMcodeObj->intDMsize).c_str());
+			TiXmlText textDMContent(pDMcodeObj->strDMContent.c_str());
+			TiXmlText textDMrow(to_String(pDMcodeObj->intDMrow).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
@@ -682,13 +693,14 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 
 				else if (obj.strType1=="text"&&obj.strType2=="serial")
 				{
+					CSerialOBJ *pSerialObj = (CSerialOBJ*)(&obj);
 					if(strcmp(strItem,"FirstLimit") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialFirstLimit=atoi(strText);
+						pSerialObj->intSerialFirstLimit=atoi(strText);
 					}
 					else if(strcmp(strItem,"SecondLimit") == 0)
 					{
@@ -696,7 +708,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialSecondLimit=atoi(strText);
+						pSerialObj->intSerialSecondLimit=atoi(strText);
 					}
 					else if(strcmp(strItem,"StartValue") == 0)
 					{
@@ -704,7 +716,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialStartValue=atoi(strText);
+						pSerialObj->intSerialStartValue=atoi(strText);
 					}
 					else if(strcmp(strItem,"Step") == 0)
 					{
@@ -712,7 +724,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialStep=atoi(strText);
+						pSerialObj->intSerialStep=atoi(strText);
 					}
 					else if(strcmp(strItem,"Repeat") == 0)
 					{
@@ -720,7 +732,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialRepeat=atoi(strText);
+						pSerialObj->intSerialRepeat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Digits") == 0)
 					{
@@ -728,7 +740,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialDigits=atoi(strText);
+						pSerialObj->intSerialDigits=atoi(strText);
 					}
 					else if(strcmp(strItem,"Format") == 0)
 					{
@@ -736,7 +748,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.bytSerialFormat=atoi(strText);
+						pSerialObj->bytSerialFormat=atoi(strText);
 					}
 					else if(strcmp(strItem,"Counter") == 0)
 					{
@@ -744,8 +756,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intSerialCounter=atoi(strText);
-						CounterEditMes[obj.intSerialCounter]=true;
+						pSerialObj->intSerialCounter=atoi(strText);
+						CounterEditMes[pSerialObj->intSerialCounter]=true;
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -758,15 +770,16 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}						
 				}
 
-				else if (obj.strType1=="text"&&obj.strType2=="time")/////这个以后再写
+				else if (obj.strType1=="text"&&obj.strType2=="time")
 				{
+					CTimeOBJ *pTimeObj = (CTimeOBJ*)(&obj);
 					if(strcmp(strItem,"setTIME") == 0)
 					{
 						//读入信息
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strTime.assign(strText);
+						pTimeObj->strTime.assign(strText);
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
@@ -793,6 +806,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 
 				else if (obj.strType1=="text"&&obj.strType2=="2Dcode")
 				{
+					CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -807,7 +822,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intBarcodeType = atoi(strText);
+						pBarcodeObj->intBarcodeType = atoi(strText);
 					}
 					if (strcmp(strItem,"BarType") == 0)
 					{
@@ -815,7 +830,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.intBarType = atoi(strText);
+						pBarcodeObj->intBarType = atoi(strText);
 					}
 					//if(strcmp(strItem, "BarWhite" ) == 0)
 					//{
@@ -832,13 +847,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strCodeContent.assign(strText);
-						obj.Create2Dcode();
+						pBarcodeObj->strCodeContent.assign(strText);
+						pBarcodeObj->Create2Dcode();
 					}
 				}
 				
 				else if (obj.strType1=="text"&&obj.strType2=="qrcode")
 				{
+					CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -853,8 +870,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strqrcodeVersion.assign(strText);
-						obj.intQRVersion = atoi(strText);
+						pQRcodeObj->strqrcodeVersion.assign(strText);
+						pQRcodeObj->intQRVersion = atoi(strText);
 					//}
 					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
 					//{
@@ -873,11 +890,13 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//	obj.intqrcodeQuietZone = atoi(strText);
 
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						obj.CreateQrcode();
+						pQRcodeObj->CreateQrcode();
 					}
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="datamatrix")
 				{
+					CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ*)(&obj);
+
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
 						//读入信息
@@ -893,7 +912,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						obj.intDMsize = atoi(strText);
+						pDMcodeObj->intDMsize = atoi(strText);
 					}
 					if(strcmp(strItem,"DMrow") == 0)
 					{
@@ -902,7 +921,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						//obj.strDMContent.assign(strText);
-						obj.intDMrow = atoi(strText);
+						pDMcodeObj->intDMrow = atoi(strText);
 					}
 					if(strcmp(strItem,"DMContent") == 0)
 					{
@@ -910,10 +929,10 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						obj.strDMContent.assign(strText);
+						pDMcodeObj->strDMContent.assign(strText);
 					
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
-						obj.CreateDMcode();
+						pDMcodeObj->CreateDMcode();
 					}
 				}
 			}
@@ -1427,6 +1446,3 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 	}
 	return bytTempVec;
 }
-///////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
