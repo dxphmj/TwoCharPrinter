@@ -948,6 +948,12 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT ,
 	int tempRowSize, int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW )
 {
+	/*
+	char objbytTex5x5Line[7];
+	char objbytTex7x5Line[8];
+	char objbytTex12x12Line[25];
+	char objbytTex16x12Line[29];
+
 	//memset(boDotMes,false,sizeof(boDotMes));
 	map<string,int> gfntMap;
 	gfntMap.clear();
@@ -1203,6 +1209,7 @@ void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool t
 			}
 			break;
 	}
+	*/
 }
 
 vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEnd)
@@ -1464,8 +1471,7 @@ OBJ_Control::OBJ_Control(void)
 	this->intLineStart=0;
     this->intRowStart=0;
 	this->intqrcodeQuietZone=0;
-	this->booFocus=true;
-
+	this->booFocus = true;
 }
 
 OBJ_Control::~OBJ_Control(void){}
@@ -1520,6 +1526,11 @@ wstring stringToWstring(const string& str)
 
 void OBJ_Control::DrawDot(CDC* pDC)
 {
+	char objbytTex5x5Line[7];
+	char objbytTex7x5Line[8];
+	char objbytTex12x12Line[25];
+	char objbytTex16x12Line[29];
+
  	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
 	cbrushB.setStyle(Qt::SolidPattern);
 	CBrush cbrushW(QColor(255,255,255));//°×±Ê

@@ -64,10 +64,7 @@ public://参数，待定
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 
 public://方法
-	char objbytTex5x5Line[7];
-	char objbytTex7x5Line[8];
-	char objbytTex12x12Line[25];
-	char objbytTex16x12Line[29];
+	
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
     void ReadBmp(char* strFileName);
@@ -80,12 +77,12 @@ public://方法
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
 private:
-	//ClassMessage objClassMessage;
+	 
 	map<string,int> fntMap;
  
 };
 
-class ClassMessage : private OBJ_Control
+class ClassMessage
 {
 public:
 		ClassMessage(void);
@@ -100,7 +97,7 @@ public:
 	bool boReverse;//翻转，颠倒，由喷印设置中更改
 	bool boInverse;
     bool boDotMes[32][255];
-	int intRowMax;//intDotMesRow
+	int intRowMax; 
 	int bytRowByteMul;//一列由几个byte表示
 	bool boDynamic;//是否动态打印
 	bool boPrintNow;//是否即时打印
@@ -193,8 +190,7 @@ public://XML
 	string labPath;
 	string labName;
 	void createLABXML();
-	void getLabFromXml();
-	
+	void getLabFromXml();	
 };
 
 #endif

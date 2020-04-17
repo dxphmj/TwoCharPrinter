@@ -1,4 +1,4 @@
-ï»¿#include "ui_fileeditchild.h"
+#include "ui_fileeditchild.h"
 #include "lineedit_click.h"
 #include "fileeditchild.h"
 #include <QTableWidget>
@@ -137,7 +137,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	ui->typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
-							  QTabBar::tab{font:'æ¥·ä½“' 16pt;color: white;height:50px; width:92px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab{font:'¿¬Ìå' 16pt;color: white;height:50px; width:92px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
@@ -191,7 +191,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	
-	//ç”»å¸ƒå®½åº¦itemé€‰é¡¹ï¼ˆå•ä½ï¼š5x5åƒç´ ï¼‰
+	//»­²¼¿í¶ÈitemÑ¡Ïî£¨µ¥Î»£º5x5ÏñËØ£©
 	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
 	ui->pixelComBox->addItem(QStringLiteral("12px"));//2
@@ -201,7 +201,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
 	ui->pixelComBox->setCurrentIndex(6);
 
-	//ç§»åŠ¨é€Ÿåº¦itemé€‰é¡¹ï¼ˆå•ä½ï¼š5x5åƒç´ ç‚¹ï¼‰
+	//ÒÆ¶¯ËÙ¶ÈitemÑ¡Ïî£¨µ¥Î»£º5x5ÏñËØµã£©
 	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
 	ui->moveSpeedComBox->addItem(QStringLiteral("2"));//1
 	ui->moveSpeedComBox->addItem(QStringLiteral("5"));//2
@@ -274,10 +274,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontSizeTimeComBox->addItem("12x12");
 	ui->fontSizeTimeComBox->addItem("16x12");
 	ui->fontSizeTimeComBox->setCurrentIndex(0);
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("ä»¿å®‹ç®€ä½“"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("æ¥·ä½“ç®€ä½“"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("é»‘ä½“ç®€ä½“"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("å®‹ä½“ç®€ä½“"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("·ÂËÎ¼òÌå"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("¿¬Ìå¼òÌå"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("ºÚÌå¼òÌå"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("ËÎÌå¼òÌå"));
 	ui->fontTypeTimeComBox->setCurrentIndex(0);
 	ui->SkewComBox->addItem("OFF");
 	ui->SkewComBox->addItem("ON");
@@ -305,12 +305,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->FormatlistWidget->addItem("%B - Full month name");
 	ui->FormatlistWidget->addItem("%p - am / pm");
 
-	ui->delBut->setText(QStringLiteral("æ¸…ç©º"));
+	ui->delBut->setText(QStringLiteral("Çå¿Õ"));
 
 	ui->textpreviewScrollBar->setRange(0,100);
 	ui->editPreviewText->setGeometry(10, 10, 3121, 241);
 
-	//åºåˆ—å·çš„åˆå§‹åŒ–
+	//ĞòÁĞºÅµÄ³õÊ¼»¯
 	ui->initialValSerialLineEdit->setText("1");
 	ui->termValSerialLineEdit->setText("100");
 	ui->startValSerialLineEdit->setText("1");
@@ -322,15 +322,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("16x12"));
 	ui->fontTypeSerialComBox->setCurrentIndex(0);
-	ui->counterSerialComBox->addItem(QStringLiteral("è®¡æ•°å™¨1"));
-	ui->counterSerialComBox->addItem(QStringLiteral("è®¡æ•°å™¨2"));
-	ui->counterSerialComBox->addItem(QStringLiteral("è®¡æ•°å™¨3"));
-	ui->counterSerialComBox->addItem(QStringLiteral("è®¡æ•°å™¨4"));
+	ui->counterSerialComBox->addItem(QStringLiteral("¼ÆÊıÆ÷1"));
+	ui->counterSerialComBox->addItem(QStringLiteral("¼ÆÊıÆ÷2"));
+	ui->counterSerialComBox->addItem(QStringLiteral("¼ÆÊıÆ÷3"));
+	ui->counterSerialComBox->addItem(QStringLiteral("¼ÆÊıÆ÷4"));
 	ui->counterSerialComBox->setEnabled(0);
 	ui->counterSerialComBox->setCurrentIndex(0);
-	ui->formatSerialComBox->addItem(QStringLiteral("å·¦ä¾§è¡¥0"));
-	ui->formatSerialComBox->addItem(QStringLiteral("å·¦ä¾§ç©ºç™½"));
-	ui->formatSerialComBox->addItem(QStringLiteral("å³ä¾§ç©ºç™½"));
+	ui->formatSerialComBox->addItem(QStringLiteral("×ó²à²¹0"));
+	ui->formatSerialComBox->addItem(QStringLiteral("×ó²à¿Õ°×"));
+	ui->formatSerialComBox->addItem(QStringLiteral("ÓÒ²à¿Õ°×"));
 	ui->formatSerialComBox->setCurrentIndex(0);
 	serialcount=1;
 	ui->serialLineEdit->setText("000000001");
@@ -355,7 +355,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//fcb->setGeometry(100,470,300,41);
 	//	ypos += 40 ;
 	/*}*/
-	/*label = new QLabel("ç”¨æ­¤æ ‡ç­¾æŸ¥çœ‹å­—ä½“æ•ˆæœ",this);
+	/*label = new QLabel("ÓÃ´Ë±êÇ©²é¿´×ÖÌåĞ§¹û",this);
 	label->setGeometry(10,230,200,30);
 	connect(fc[0],SIGNAL(currentFontChanged(QFont)),this,SLOT(changedFont(QFont)));*/
  
@@ -372,10 +372,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
 	
-	/*ui->fontTypeTextComBox->addItem(QStringLiteral("ä»¿å®‹ç®€ä½“"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("æ¥·ä½“ç®€ä½“"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("é»‘ä½“ç®€ä½“"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("å®‹ä½“ç®€ä½“"));
+	/*ui->fontTypeTextComBox->addItem(QStringLiteral("·ÂËÎ¼òÌå"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("¿¬Ìå¼òÌå"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("ºÚÌå¼òÌå"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("ËÎÌå¼òÌå"));
 	ui->fontTypeTextComBox->setCurrentIndex(0);*/
 
 	ui->fontSizeTextComBox->setVisible(true);
@@ -475,13 +475,13 @@ void FileEditChild::textIDShowSft4LineEdit_clicked()
 	ClickChooseLanguage();
 }
 
-void FileEditChild::OnEnChangeEditInput_clicked()//é˜¿æ‹‰ä¼¯è¿ç¬”
+void FileEditChild::OnEnChangeEditInput_clicked()//°¢À­²®Á¬±Ê
 {
 	QString inputtext;
 	int nIndex = ui->typeTab->currentIndex();
-	switch(nIndex)//è·å–ä¸»ç¼–è¾‘æ¡†æ–‡æœ¬
+	switch(nIndex)//»ñÈ¡Ö÷±à¼­¿òÎÄ±¾
 	{
-		case 0:	//wordLineEditæ–‡æœ¬æ¡†
+		case 0:	//wordLineEditÎÄ±¾¿ò
 			{
 				inputtext = ui->wordLineEdit->text();
 				break;
@@ -506,17 +506,17 @@ void FileEditChild::OnEnChangeEditInput_clicked()//é˜¿æ‹‰ä¼¯è¿ç¬”
 				}
 				break;
 			}
-		case 5:	//wordLineEditæ–‡æœ¬æ¡†
+		case 5:	//wordLineEditÎÄ±¾¿ò
 			{
 				inputtext = ui->barCodeLineEdit->text();
 				break;
 			}
-		case 6:	//wordLineEditæ–‡æœ¬æ¡†
+		case 6:	//wordLineEditÎÄ±¾¿ò
 			{
 				inputtext = ui->QRCodeLineEdit->text();
 				break;
 			}
-		case 7:	//wordLineEditæ–‡æœ¬æ¡†
+		case 7:	//wordLineEditÎÄ±¾¿ò
 			{
 				inputtext = ui->DMCodeLineEdit->text();
 				break;
@@ -524,15 +524,15 @@ void FileEditChild::OnEnChangeEditInput_clicked()//é˜¿æ‹‰ä¼¯è¿ç¬”
 	}
 	/*m_edit_input.GetWindowText(inputtext);*/
 	if (keyboardWidget->m_LanType == 5 ||keyboardWidget->m_LanType == 23 ||keyboardWidget->m_LanType == 24 
-		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)//åˆ¤æ–­å½“å‰æ˜¯å¦æ˜¯é˜¿æ‹‰ä¼¯æ–‡æœ¬
+		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)//ÅĞ¶Ïµ±Ç°ÊÇ·ñÊÇ°¢À­²®ÎÄ±¾
 	{
 		QString outputtext = disposeinputtext(inputtext);
 		if ( outputtext != inputtext )
 		{
 		//m_edit_input.SetWindowText(outputtext);
-			switch(nIndex)//è·å–ä¸»ç¼–è¾‘æ¡†æ–‡æœ¬
+			switch(nIndex)//»ñÈ¡Ö÷±à¼­¿òÎÄ±¾
 			{
-			case 0:	//wordLineEditæ–‡æœ¬æ¡†
+			case 0:	//wordLineEditÎÄ±¾¿ò
 				{
 					ui->wordLineEdit->setText(outputtext);
 					break;
@@ -557,17 +557,17 @@ void FileEditChild::OnEnChangeEditInput_clicked()//é˜¿æ‹‰ä¼¯è¿ç¬”
 					}
 					break;
 				}
-			case 5:	//wordLineEditæ–‡æœ¬æ¡†
+			case 5:	//wordLineEditÎÄ±¾¿ò
 				{
 					ui->barCodeLineEdit->setText(outputtext);
 					break;
 				}
-			case 6:	//wordLineEditæ–‡æœ¬æ¡†
+			case 6:	//wordLineEditÎÄ±¾¿ò
 				{
 					ui->QRCodeLineEdit->setText(outputtext);
 					break;
 				}
-			case 7:	//wordLineEditæ–‡æœ¬æ¡†
+			case 7:	//wordLineEditÎÄ±¾¿ò
 				{
 					ui->DMCodeLineEdit->setText(outputtext);
 					break;
@@ -595,13 +595,13 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	int i,j;
 	for (i=0; i<=3121; i+=5)
 	{
-		//ç”»åˆ—
+		//»­ÁĞ
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
 	}
 	for (j=240; j>=240-PixelMap[CurPixelItem]; j-=5)
 	{
-		//ç”»è¡Œ
+		//»­ĞĞ
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
@@ -664,7 +664,7 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 		delBut_clicked();
 	}
 	QString get = QString(QLatin1String(strFileName)).toUtf8();
-	//åˆ é™¤æ–‡ä»¶
+	//É¾³ıÎÄ¼ş
 	QFile::remove(get);
 }
 
@@ -681,7 +681,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int v;
 
 	//error_number = 0;
-	//QString angle1=ui->degreeQRShowLab->text();//æš‚æ—¶æ³¨æ‰
+	//QString angle1=ui->degreeQRShowLab->text();//ÔİÊ±×¢µô
 	//int angle2=angle1.toInt();
 	//rotate_angle = angle2;
 	rotate_angle = 0;
@@ -692,7 +692,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	my_symbol->scale =0.5;
 
 	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = v+1;//option_1ä¸ºå®¹é”™ç­‰çº§ï¼Œoption_2ä¸ºç‰ˆæœ¬å¤§å°å…¬å¼ä¸º:(V - 1) * 4 + 21ï¼›
+	my_symbol->option_2 = v+1;//option_1ÎªÈİ´íµÈ¼¶£¬option_2Îª°æ±¾´óĞ¡¹«Ê½Îª:(V - 1) * 4 + 21£»
 	if (ui->reverseCheckBox->isChecked())
 	{
 	strcpy_s(my_symbol->fgcolour, "ffffff");
@@ -730,7 +730,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj.intRowSize=my_symbol->bitmap_width;
 	bmpObj.intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
 
-	//ä»¥ä¸‹å…ˆå†™æ­»
+	//ÒÔÏÂÏÈĞ´ËÀ
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
@@ -749,7 +749,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //ç”±äºåæ ‡ç³»çš„åŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØĞëµßµ¹
 				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
@@ -830,7 +830,7 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	bmpObj.intDMrow = ui->sideLenDMComBox->currentIndex();
 	bmpObj.strDMContent = strContent.toStdString();
 	bmpObj.strText = strContent.toStdString();
-	//ä»¥ä¸‹å…ˆå†™æ­»
+	//ÒÔÏÂÏÈĞ´ËÀ
 	bmpObj.intSW=1;
 	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
@@ -849,7 +849,7 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //ç”±äºåæ ‡ç³»çš„åŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØĞëµßµ¹
 				bmpObj.boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
@@ -1075,6 +1075,8 @@ void FileEditChild::GetObjSettingsFromScreen()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
+			CTextOBJ* pTextObj = (CTextOBJ*)(&m_PrinterMes.OBJ_Vec[i]); ;
+
 			QString tmpStr = str2qstr(m_PrinterMes.OBJ_Vec[i].strText);
 			this->ui->internalShowTextLab->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intSS));
 			if (m_PrinterMes.OBJ_Vec[i].strType2 == "text")
@@ -1085,10 +1087,10 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newTextBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newTextBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newTextBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newTextBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newTextBut->setText(QStringLiteral("Modify"));
@@ -1120,6 +1122,8 @@ void FileEditChild::GetObjSettingsFromScreen()
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "time")
 			{
+
+
 				this->ui->typeTab->setCurrentIndex(1);
 				this->ui->DateTimeEdit->setText(QString::fromStdString(m_PrinterMes.OBJ_Vec[i].strTime));
 				this->ui->SkewSkewValueEdit->setText(QString::number(m_PrinterMes.OBJ_Vec[i].intTimeOffSet));
@@ -1151,16 +1155,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newTimeBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newTimeBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newTimeBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newTimeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newTimeBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newTimeBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newTimeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "serial")
 			{
@@ -1169,16 +1173,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newSerialBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newSerialBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newSerialBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newSerialBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newSerialBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newSerialBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newSerialBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "logo")
 			{
@@ -1187,16 +1191,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newBmpBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newBmpBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newBmpBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newBmpBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newBmpBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newBmpBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newBmpBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "2Dcode")
 			{
@@ -1208,16 +1212,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newBarCodeBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newBarCodeBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newBarCodeBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newBarCodeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newBarCodeBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newBarCodeBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newBarCodeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "qrcode")
 			{
@@ -1227,16 +1231,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newQRBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newQRBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newQRBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newQRBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newQRBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newQRBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newQRBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			else if (m_PrinterMes.OBJ_Vec[i].strType2 == "datamatrix")
 			{
@@ -1246,25 +1250,25 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newDMBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+					this->ui->newDMBut->setText(QStringLiteral("?????"));
 					break;
 				case 1:
-					this->ui->newDMBut->setText(QStringLiteral("ä¿®æ”¹"));
+					this->ui->newDMBut->setText(QStringLiteral("ĞŞ¸Ä"));
 					break;
 				case 5:
 					this->ui->newDMBut->setText(QStringLiteral("Modify"));
 					break;
 				}
 			
-				//this->ui->newDMBut->setText(QStringLiteral("ä¿®æ”¹"));
+				//this->ui->newDMBut->setText(QStringLiteral("ĞŞ¸Ä"));
 			}
 			switch (psysSetting->m_SelLanguage)
 			{
 			case 0:
-				this->ui->delBut->setText(QStringLiteral("Ø­Ø°Ù"));
+				this->ui->delBut->setText(QStringLiteral("???"));
 				break;
 			case 1:
-				this->ui->delBut->setText(QStringLiteral("åˆ é™¤"));
+				this->ui->delBut->setText(QStringLiteral("É¾³ı"));
 				break;
 			case 5:
 				this->ui->delBut->setText(QStringLiteral("Del"));
@@ -1275,105 +1279,105 @@ void FileEditChild::GetObjSettingsFromScreen()
 			return;
 		}
 	}
-	//è®¾ç½®å³ä¾§æ¡†åŸºç¡€å‚æ•°
+	//ÉèÖÃÓÒ²à¿ò»ù´¡²ÎÊı
 	switch (psysSetting->m_SelLanguage)
 	{
 	case 0:
-		this->ui->delBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
+		this->ui->delBut->setText(QStringLiteral("?????"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//è®¾ç½®æ–‡æœ¬typeTab
+		//ÉèÖÃÎÄ±¾typeTab
 		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newTextBut->setText(QStringLiteral("???????"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//è®¾ç½®æ—¶é—´typeTab
+		//ÉèÖÃÊ±¼ätypeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newTimeBut->setText(QStringLiteral("???????"));
 
-		//è®¾ç½®åºåˆ—å·typeTab
+		//ÉèÖÃĞòÁĞºÅtypeTab
 		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newSerialBut->setText(QStringLiteral("???????"));
 
-		//è®¾ç½®å›¾ç‰‡typeTab
-		this->ui->newBmpBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		//ÉèÖÃÍ¼Æ¬typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("???????"));
 
-		//è®¾ç½®æ¡å½¢ç typeTab
+		//ÉèÖÃÌõĞÎÂëtypeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
 		this->ui->whitespaceLab->setText("9");
 		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newBarCodeBut->setText(QStringLiteral("???????"));
 
-		//è®¾ç½®QRç typeTab
+		//ÉèÖÃQRÂëtypeTab
 		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newQRBut->setText(QStringLiteral("???????"));
 
-		//è®¾ç½®DMç typeTab
+		//ÉèÖÃDMÂëtypeTab
 		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("Ø§Ù„Ø¬Ø¯ÙŠØ¯Ø©"));
+		this->ui->newDMBut->setText(QStringLiteral("???????"));
 		break;
 	case 1:
-		this->ui->delBut->setText(QStringLiteral("æ¸…ç©º"));
+		this->ui->delBut->setText(QStringLiteral("Çå¿Õ"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//è®¾ç½®æ–‡æœ¬typeTab
+		//ÉèÖÃÎÄ±¾typeTab
 		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newTextBut->setText(QStringLiteral("ĞÂ½¨"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//è®¾ç½®æ—¶é—´typeTab
+		//ÉèÖÃÊ±¼ätypeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newTimeBut->setText(QStringLiteral("ĞÂ½¨"));
 
-		//è®¾ç½®åºåˆ—å·typeTab
+		//ÉèÖÃĞòÁĞºÅtypeTab
 		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newSerialBut->setText(QStringLiteral("ĞÂ½¨"));
 
-		//è®¾ç½®å›¾ç‰‡typeTab
-		this->ui->newBmpBut->setText(QStringLiteral("æ–°å»º"));
+		//ÉèÖÃÍ¼Æ¬typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("ĞÂ½¨"));
 
-		//è®¾ç½®æ¡å½¢ç typeTab
+		//ÉèÖÃÌõĞÎÂëtypeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
 		this->ui->whitespaceLab->setText("9");
 		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newBarCodeBut->setText(QStringLiteral("ĞÂ½¨"));
 
-		//è®¾ç½®QRç typeTab
+		//ÉèÖÃQRÂëtypeTab
 		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newQRBut->setText(QStringLiteral("ĞÂ½¨"));
 
-		//è®¾ç½®DMç typeTab
+		//ÉèÖÃDMÂëtypeTab
 		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("æ–°å»º"));
+		this->ui->newDMBut->setText(QStringLiteral("ĞÂ½¨"));
 		break;
 	case 5:
 		this->ui->delBut->setText(QStringLiteral("Empty"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//è®¾ç½®æ–‡æœ¬typeTab
+		//ÉèÖÃÎÄ±¾typeTab
 		this->ui->wordLineEdit->setText("");
 		this->ui->newTextBut->setText(QStringLiteral("New"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//è®¾ç½®æ—¶é—´typeTab
+		//ÉèÖÃÊ±¼ätypeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
 		this->ui->newTimeBut->setText(QStringLiteral("New"));
 
-		//è®¾ç½®åºåˆ—å·typeTab
+		//ÉèÖÃĞòÁĞºÅtypeTab
 		this->ui->serialLineEdit->setText("");
 		this->ui->newSerialBut->setText(QStringLiteral("New"));
 
-		//è®¾ç½®å›¾ç‰‡typeTab
+		//ÉèÖÃÍ¼Æ¬typeTab
 		this->ui->newBmpBut->setText(QStringLiteral("New"));
 
-		//è®¾ç½®æ¡å½¢ç typeTab
+		//ÉèÖÃÌõĞÎÂëtypeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
@@ -1381,11 +1385,11 @@ void FileEditChild::GetObjSettingsFromScreen()
 		this->ui->showNumCheckBox ->setChecked(1);
 		this->ui->newBarCodeBut->setText(QStringLiteral("New"));
 
-		//è®¾ç½®QRç typeTab
+		//ÉèÖÃQRÂëtypeTab
 		this->ui->QRCodeLineEdit->setText("");
 		this->ui->newQRBut->setText(QStringLiteral("New"));
 
-		//è®¾ç½®DMç typeTab
+		//ÉèÖÃDMÂëtypeTab
 		this->ui->DMCodeLineEdit->setText("");
 		this->ui->newDMBut->setText(QStringLiteral("New"));
 		break;
@@ -1398,15 +1402,15 @@ void FileEditChild::saveasBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 	string tmpFileName;
-	//åˆ¤æ–­å½“å‰ç¼–è¾‘çš„æ–‡ä»¶æ˜¯å¦ä¸ºæœ¬åœ°æ–‡ä»¶
-	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //æ¥æºäºæœ¬åœ°
+	//ÅĞ¶Ïµ±Ç°±à¼­µÄÎÄ¼şÊÇ·ñÎª±¾µØÎÄ¼ş
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //À´Ô´ÓÚ±¾µØ
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		QFileInfo fi(qfileName);
 		qfileName = fi.baseName();
 		tmpFileName = qfileName.toStdString();
 	}
-	else //æ–°å»ºæ–‡ä»¶
+	else //ĞÂ½¨ÎÄ¼ş
 	{
 		tmpFileName = "NewLabel_";
 		m_PrinterMes.strMatrix = "1L7M";
@@ -1433,8 +1437,8 @@ void FileEditChild::saveBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
-	//åˆ¤æ–­æ–‡ä»¶æ˜¯æ–°å»ºçš„ï¼Œè¿˜æ˜¯æ¥æºäºæœ¬åœ°
-	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //æ¥æºäºæœ¬åœ°
+	//ÅĞ¶ÏÎÄ¼şÊÇĞÂ½¨µÄ£¬»¹ÊÇÀ´Ô´ÓÚ±¾µØ
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //À´Ô´ÓÚ±¾µØ
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		string tmpStr = qfileName.toStdString();
@@ -1442,9 +1446,9 @@ void FileEditChild::saveBut_clicked()
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
 		m_PrinterMes.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
-		//æ­¤å¤„åº”å½“å¼¹å‡º"ä¿å­˜æˆåŠŸï¼"å¯¹è¯æ¡†ï¼ŒæŒç»­ä¸€ç§’
+		//´Ë´¦Ó¦µ±µ¯³ö"±£´æ³É¹¦£¡"¶Ô»°¿ò£¬³ÖĞøÒ»Ãë
 	}
-	else //æ–°å»ºæ–‡ä»¶ï¼Œä¸"å¦å­˜ä¸º"ç›¸åŒ
+	else //ĞÂ½¨ÎÄ¼ş£¬Óë"Áí´æÎª"ÏàÍ¬
 	{
 		saveasBut_clicked();
 	}
@@ -1582,8 +1586,8 @@ void  FileEditChild::PreviewBmp(QString fileName,int pW,int pH)
 		pW = 471;
 		pH = 471*pS;  
 	}
-	result = image.scaled(pW,pH,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//æ”¾ç¼©å›¾ç‰‡ï¼Œä»¥å›ºå®šå¤§å°æ˜¾ç¤º
-	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//åœ¨Labelæ§ä»¶ä¸Šæ˜¾ç¤ºå›¾ç‰‡
+	result = image.scaled(pW,pH,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//·ÅËõÍ¼Æ¬£¬ÒÔ¹Ì¶¨´óĞ¡ÏÔÊ¾
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//ÔÚLabel¿Ø¼şÉÏÏÔÊ¾Í¼Æ¬
 	QFileInfo bmpInfo(fileName);
 	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
 	 
@@ -1606,8 +1610,8 @@ void FileEditChild::PreviewBmpChange()
 	ui->bmpPreviewLab->clear();
 	QImage image1;
 	image1.load(fileName);
-	ChangeBmpWH(image1,1);//nSæš‚æ—¶è®¾ä¸º1
-	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(image1));//åœ¨Labelæ§ä»¶ä¸Šæ˜¾ç¤ºå›¾ç‰‡
+	ChangeBmpWH(image1,1);//nSÔİÊ±ÉèÎª1
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(image1));//ÔÚLabel¿Ø¼şÉÏÏÔÊ¾Í¼Æ¬
 }
 
 void FileEditChild::delBut_clicked()
@@ -1617,7 +1621,7 @@ void FileEditChild::delBut_clicked()
 	{
 		if(ite->booFocus)
 		{
-			if (m_PrinterMes.OBJ_Vec.back().counter>=0)//å¦‚æœä¸ºåºåˆ—å·ï¼Œåˆ™è®¡æ•°å™¨-1
+			if (m_PrinterMes.OBJ_Vec.back().counter>=0)//Èç¹ûÎªĞòÁĞºÅ£¬Ôò¼ÆÊıÆ÷-1
 			{
 				int i;
 				i=ui->counterSerialComBox->currentIndex();
@@ -1637,15 +1641,15 @@ void FileEditChild::delBut_clicked()
 			switch (psysSetting->m_SelLanguage)
 			{
 			case 1:
-				this->ui->newTextBut->setText(QStringLiteral("ä¿®æ”¹"));
-				this->ui->delBut->setText(QStringLiteral("æ¸…ç©º"));
+				this->ui->newTextBut->setText(QStringLiteral("ĞŞ¸Ä"));
+				this->ui->delBut->setText(QStringLiteral("Çå¿Õ"));
 				break;
 			case 5:
 				this->ui->newTextBut->setText(QStringLiteral("New"));
 				this->ui->delBut->setText(QStringLiteral("Empty"));
 				break;
 			}*/
-	    	this->ui->delBut->setText(QStringLiteral("æ¸…ç©º"));
+	    	this->ui->delBut->setText(QStringLiteral("Çå¿Õ"));
 			GetObjSettingsFromScreen();
 			this->update();
 			return;
@@ -1656,7 +1660,7 @@ void FileEditChild::delBut_clicked()
 
 	m_PrinterMes.OBJ_Vec.clear();
 
-	ui->counterSerialComBox->setCurrentIndex(0);//è®¡æ•°å™¨é‡ç½®
+	ui->counterSerialComBox->setCurrentIndex(0);//¼ÆÊıÆ÷ÖØÖÃ
 	serialcount=1;
 	QString c=ui->startValSerialLineEdit->text();
 	int new_start=c.toInt();
@@ -1789,12 +1793,12 @@ string qstr2str(const QString qstr)
 
 void FileEditChild::newTextBut_clicked()
 {
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ›´æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎª¸ü¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			
+			CTextOBJ* pTextObj = (CTextOBJ* (&m_PrinterMes.OBJ_Vec[i]);
 			string tmpStr = qstr2str(this->ui->wordLineEdit->text());
 			m_PrinterMes.OBJ_Vec[i].strText = tmpStr;
 			string tmpFont = this->ui->fontTypeTextComBox->currentText().toStdString();
@@ -1818,7 +1822,7 @@ void FileEditChild::newTextBut_clicked()
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	//wstring txtString = stringToWstring(ui->wordLineEdit->text().toStdString());
 	string txtString = qstr2str(ui->wordLineEdit->text());
 	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
@@ -1833,20 +1837,20 @@ void FileEditChild::newTextBut_clicked()
 	switch (psysSetting->m_SelLanguage)
 	{
 	case 0:
-		this->ui->newTextBut->setText(QStringLiteral("ØªØ¹Ø¯ÙŠÙ„"));
-		this->ui->delBut->setText(QStringLiteral("Ø­Ø°Ù"));
+		this->ui->newTextBut->setText(QStringLiteral("?????"));
+		this->ui->delBut->setText(QStringLiteral("???"));
 		break;
 
 	case 1:
-		this->ui->newTextBut->setText(QStringLiteral("ä¿®æ”¹"));
-		this->ui->delBut->setText(QStringLiteral("åˆ é™¤"));
+		this->ui->newTextBut->setText(QStringLiteral("ĞŞ¸Ä"));
+		this->ui->delBut->setText(QStringLiteral("É¾³ı"));
 		break;
 	case 5:
 		this->ui->newTextBut->setText(QStringLiteral("Modify"));
 		this->ui->delBut->setText(QStringLiteral("Del"));
 		break;
 	}
-	//this->ui->newTextBut->setText(QStringLiteral("ä¿®æ”¹"));
+	//this->ui->newTextBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	
 	this->update();
 }
@@ -1895,7 +1899,7 @@ void FileEditChild::GenerateBarCodeBmp()
 		batch_mode = 0;
 		mirror_mode = 0;
 		QString str1 = getNum(ui->whitespaceLab->text());
-		my_symbol->whitespace_width = str1.toInt();//æ”¹å˜æ¡å½¢ç ä¸¤è¾¹ç©ºç™½åŒºåŸŸå®½åº¦,ç©ºç™½åŒºåŸŸå®½åº¦ä¼šå½±å“æ¡å½¢ç çš„å®½åº¦ï¼Œåªä¼šå¢åŠ æ¡ç å·¦å³ä¸¤ä¾§çš„ç©ºç™½
+		my_symbol->whitespace_width = str1.toInt();//¸Ä±äÌõĞÎÂëÁ½±ß¿Õ°×ÇøÓò¿í¶È,¿Õ°×ÇøÓò¿í¶È»áÓ°ÏìÌõĞÎÂëµÄ¿í¶È£¬Ö»»áÔö¼ÓÌõÂë×óÓÒÁ½²àµÄ¿Õ°×
 		if (ui->typerimComBox->currentIndex()==0)
 		{
 			my_symbol->output_options= 1;
@@ -1908,11 +1912,11 @@ void FileEditChild::GenerateBarCodeBmp()
 		{
 			my_symbol->output_options=4;
 		}
-		//æœ‰æ— è¾¹æ¡†ä¹‹ç±»çš„æ§åˆ¶;1:æ— è¾¹æ¡†ï¼Œ2ï¼šä¸Šä¸‹ä¸¤æ¡è¾¹ç•Œçº¿ï¼Œ4ï¼šå››æ¡è¾¹æ¡†
+		//ÓĞÎŞ±ß¿òÖ®ÀàµÄ¿ØÖÆ;1:ÎŞ±ß¿ò£¬2£ºÉÏÏÂÁ½Ìõ±ß½çÏß£¬4£ºËÄÌõ±ß¿ò
 		QString str2 = getNum(ui->rimwideLab->text());
-		my_symbol->border_width = str2.toInt();//æ”¹å˜è¾¹æ¡†å®½åº¦           
+		my_symbol->border_width = str2.toInt();//¸Ä±ä±ß¿ò¿í¶È           
 	
-		int show_hrt;            //è®¾ç½®ä¸º1 æ˜¾ç¤ºæ–‡æœ¬åœ¨æ¡ç å›¾ç‰‡ä¸‹é¢ è®¾ç½®ä¸º0 åˆ™ä¸æ˜¾ç¤º
+		int show_hrt;            //ÉèÖÃÎª1 ÏÔÊ¾ÎÄ±¾ÔÚÌõÂëÍ¼Æ¬ÏÂÃæ ÉèÖÃÎª0 Ôò²»ÏÔÊ¾
 		if (ui->showNumCheckBox->isChecked())
 		{
 			my_symbol->show_hrt=1;
@@ -1948,12 +1952,12 @@ void FileEditChild::newBarCodeBut_clicked()
 	BarCodeType.insert("ITF14",89);
 	BarCodeType.insert("PDF417",55);
 	
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºä¿®æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞŞ¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//åœ¨æ­¤å¤„æ ¹æ®æ§ä»¶é€‰é¡¹é‡æ–°è®¾ç½®OBJ_Vec[i]çš„ç›¸åº”å‚æ•°å³å¯,åˆ‡è®°æ­¤å¤„ä¸æ˜¯pushback
+			//ÔÚ´Ë´¦¸ù¾İ¿Ø¼şÑ¡ÏîÖØĞÂÉèÖÃOBJ_Vec[i]µÄÏàÓ¦²ÎÊı¼´¿É,ÇĞ¼Ç´Ë´¦²»ÊÇpushback
 			GenerateBarCodeBmp();
 			int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
 			char* strFileName = "User/logo/output.bmp";
@@ -1990,16 +1994,16 @@ void FileEditChild::newBarCodeBut_clicked()
 				delBut_clicked();
 			}
 			QString get = QString(QLatin1String(strFileName)).toUtf8();
-			//åˆ é™¤æ–‡ä»¶
+			//É¾³ıÎÄ¼ş
 			QFile::remove(get);
 			this->update();
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	QString str = ui->barCodeLineEdit->text();
 	Create2Dcode(BarCodeType[this->ui->typeBarCodeComBox->currentText()],str);
-	this->ui->newBarCodeBut->setText(QStringLiteral("ä¿®æ”¹"));
+	this->ui->newBarCodeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	this->update();
 }
 
@@ -2007,7 +2011,7 @@ void FileEditChild::newQRBut_clicked()
 {
 	QString str;
 	str = ui->QRCodeLineEdit->text();
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºä¿®æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞŞ¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
@@ -2030,7 +2034,7 @@ void FileEditChild::newQRBut_clicked()
 					intQRbitmap += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
-						//		bmpObj.boDotBmp[col][row-proportion] = true; //ç”±äºåæ ‡ç³»çš„åŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØĞëµßµ¹
 						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][m_PrinterMes.OBJ_Vec[i].intLineSize-row-1] = true;
 					}
 					else
@@ -2049,9 +2053,9 @@ void FileEditChild::newQRBut_clicked()
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	CreateQrcode(58,str);
-	this->ui->newQRBut->setText(QStringLiteral("ä¿®æ”¹"));
+	this->ui->newQRBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	this->update();
 }
 
@@ -2075,7 +2079,7 @@ zint_symbol FileEditChild::resetQRCode()
 	my_symbol->scale =0.5;
 
 	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = v+1;//option_1ä¸ºå®¹é”™ç­‰çº§ï¼Œoption_2ä¸ºç‰ˆæœ¬å¤§å°å…¬å¼ä¸º:(V - 1) * 4 + 21ï¼›
+	my_symbol->option_2 = v+1;//option_1ÎªÈİ´íµÈ¼¶£¬option_2Îª°æ±¾´óĞ¡¹«Ê½Îª:(V - 1) * 4 + 21£»
 	if (ui->reverseCheckBox->isChecked())
 	{
 		strcpy_s(my_symbol->fgcolour, "ffffff");
@@ -2116,13 +2120,13 @@ void FileEditChild::newDMBut_clicked()
 	DMsize.insert("12x36",28);
 	DMsize.insert("16x36",29);
 	DMsize.insert("16x48",30);
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºä¿®æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞŞ¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		//m_PrinterMes.OBJ_Vec.clear();
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//åœ¨æ­¤å¤„æ ¹æ®æ§ä»¶é€‰é¡¹é‡æ–°è®¾ç½®OBJ_Vec[i]çš„ç›¸åº”å‚æ•°å³å¯,åˆ‡è®°æ­¤å¤„ä¸æ˜¯pushback
+			//ÔÚ´Ë´¦¸ù¾İ¿Ø¼şÑ¡ÏîÖØĞÂÉèÖÃOBJ_Vec[i]µÄÏàÓ¦²ÎÊı¼´¿É,ÇĞ¼Ç´Ë´¦²»ÊÇpushback
 			m_PrinterMes.OBJ_Vec[i].intLineSize=resetDMCode().bitmap_height;
 			m_PrinterMes.OBJ_Vec[i].intRowSize=resetDMCode().bitmap_width;
 			m_PrinterMes.OBJ_Vec[i].strDMContent = str.toStdString();
@@ -2141,7 +2145,7 @@ void FileEditChild::newDMBut_clicked()
 					j += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
-						//		bmpObj.boDotBmp[col][row-proportion] = true; //ç”±äºåæ ‡ç³»çš„åŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØĞëµßµ¹
 						m_PrinterMes.OBJ_Vec[i].boDotBmp[col][resetDMCode().bitmap_height-row-1] = true;
 					}
 					else
@@ -2155,9 +2159,9 @@ void FileEditChild::newDMBut_clicked()
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	CreateDMcode(DMsize[this->ui->sideLenDMComBox->currentText()],str);
-	this->ui->newDMBut->setText(QStringLiteral("ä¿®æ”¹"));
+	this->ui->newDMBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	this->update();
 }
 
@@ -2221,22 +2225,22 @@ void FileEditChild::newBmpBut_clicked()
 {
 	//PreviewBmp(bmpFileRelativePath,320,20); return;
 
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºä¿®æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞŞ¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//åœ¨æ­¤å¤„æ ¹æ®æ§ä»¶é€‰é¡¹é‡æ–°è®¾ç½®OBJ_Vec[i]çš„ç›¸åº”å‚æ•°å³å¯,åˆ‡è®°æ­¤å¤„ä¸æ˜¯pushback
+			//ÔÚ´Ë´¦¸ù¾İ¿Ø¼şÑ¡ÏîÖØĞÂÉèÖÃOBJ_Vec[i]µÄÏàÓ¦²ÎÊı¼´¿É,ÇĞ¼Ç´Ë´¦²»ÊÇpushback
 			this->update();
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	char *pic;
 	QByteArray ba = bmpFileRelativePath.toLatin1();
 	pic=ba.data();
 	ReadBmp(pic);
-	this->ui->newBmpBut->setText(QStringLiteral("ä¿®æ”¹"));
+	this->ui->newBmpBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	this->update();
 }
 
@@ -2486,12 +2490,12 @@ void FileEditChild::newTimeBut_clicked()
 {
 	int xPos=0;
 	int yPos=0;
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºä¿®æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞŞ¸Äµ±Ñ¡ÖĞµÄobj
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//åœ¨æ­¤å¤„æ ¹æ®æ§ä»¶é€‰é¡¹é‡æ–°è®¾ç½®OBJ_Vec[i]çš„ç›¸åº”å‚æ•°å³å¯,åˆ‡è®°æ­¤å¤„ä¸æ˜¯pushback
+			//ÔÚ´Ë´¦¸ù¾İ¿Ø¼şÑ¡ÏîÖØĞÂÉèÖÃOBJ_Vec[i]µÄÏàÓ¦²ÎÊı¼´¿É,ÇĞ¼Ç´Ë´¦²»ÊÇpushback
 			for(int j=0;j<m_PrinterMes.OBJ_Vec.size();j++)
 			{
 				if (m_PrinterMes.OBJ_Vec.at(j).booFocus)
@@ -2519,24 +2523,24 @@ void FileEditChild::newTimeBut_clicked()
 
 			CString  fontText;
 			int nIndex = ui->fontSizeTimeComBox->currentIndex();
-			//int nIndex = m_dateFontCombo.GetCurSel();  //å½“å‰é€‰ä¸­çš„é¡¹
+			//int nIndex = m_dateFontCombo.GetCurSel();  //µ±Ç°Ñ¡ÖĞµÄÏî
 			switch(nIndex)
 			{
 			case 0:
 				m_PrinterMes.OBJ_Vec[i].intLineSize = 5;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////ÕâÊÇ¸ö¿Ó£¬×¢Òâ°¢À­²®ÓïÒª¸ÄÕâ
 				break;
 			case 1:
 				m_PrinterMes.OBJ_Vec[i].intLineSize = 7;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*6;//////////ÕâÊÇ¸ö¿Ó£¬×¢Òâ°¢À­²®ÓïÒª¸ÄÕâ
 				break;
 			case 2:
 				m_PrinterMes.OBJ_Vec[i].intLineSize = 12;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////ÕâÊÇ¸ö¿Ó£¬×¢Òâ°¢À­²®ÓïÒª¸ÄÕâ
 				break;
 			case 3:
 				m_PrinterMes.OBJ_Vec[i].intLineSize = 16;
-				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+				m_PrinterMes.OBJ_Vec[i].intRowSize = strText.length()*13;//////////ÕâÊÇ¸ö¿Ó£¬×¢Òâ°¢À­²®ÓïÒª¸ÄÕâ
 				break;
 			}
 			fontText = ui->fontSizeTimeComBox->currentText();
@@ -2556,7 +2560,7 @@ void FileEditChild::newTimeBut_clicked()
 			return;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 
 	for(int i=0;i<m_PrinterMes.OBJ_Vec.size();i++)
 	{
@@ -2572,7 +2576,7 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj.intRowStart=xPos;
 	tempObj.strType1="text";
 	tempObj.strType2="time";
-	//ä»¥ä¸‹å…ˆå†™æ­»
+	//ÒÔÏÂÏÈĞ´ËÀ
 	tempObj.intSW=1;
 	tempObj.intSS=0;
 	tempObj.booNEG=false;
@@ -2593,24 +2597,24 @@ void FileEditChild::newTimeBut_clicked()
 
 	CString  fontText;
 	int nIndex = ui->fontSizeTimeComBox->currentIndex();
-	//int nIndex = m_dateFontCombo.GetCurSel();  //å½“å‰é€‰ä¸­çš„é¡¹
+	//int nIndex = m_dateFontCombo.GetCurSel();  //µ±Ç°Ñ¡ÖĞµÄÏî
 	switch(nIndex)
 	{
 	case 0:
 		tempObj.intLineSize=5;
-		tempObj.intRowSize=strText.length()*6;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+		tempObj.intRowSize=strText.length()*6; 
 		break;
 	case 1:
 		tempObj.intLineSize=7;
-		tempObj.intRowSize=strText.length()*6;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+		tempObj.intRowSize=strText.length()*6; 
 		break;
 	case 2:
 		tempObj.intLineSize=12;
-		tempObj.intRowSize=strText.length()*13;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+		tempObj.intRowSize=strText.length()*13; 
 		break;
 	case 3:
 		tempObj.intLineSize=16;
-		tempObj.intRowSize=strText.length()*13;//////////è¿™æ˜¯ä¸ªå‘ï¼Œæ³¨æ„é˜¿æ‹‰ä¼¯è¯­è¦æ”¹è¿™
+		tempObj.intRowSize=strText.length()*13; 
 		break;
 	}
 	fontText=ui->fontSizeTimeComBox->currentText();
@@ -2628,7 +2632,7 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj.booFocus = true;
 	m_PrinterMes.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
-	this->ui->newTimeBut->setText(QStringLiteral("ä¿®æ”¹"));
+	this->ui->newTimeBut->setText(QStringLiteral("ĞŞ¸Ä"));
 	this->update();
 }
 
@@ -2717,21 +2721,21 @@ void FileEditChild::newSerialNumber_click()
 		SerialNumber_number=SerialNumber_number+step;
 	}
 
-	//åˆ¤æ–­æ ¼å¼
+	//ÅĞ¶Ï¸ñÊ½
 	if (ui->formatSerialComBox->currentIndex()==0)
 	{
 	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
-	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//é‡å¤çš„åŸºæœ¬å•ä½
+	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//ÖØ¸´µÄ»ù±¾µ¥Î»
 	}
 	if (ui->formatSerialComBox->currentIndex()==1)
 	{
 		SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));
-		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//é‡å¤çš„åŸºæœ¬å•ä½
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//ÖØ¸´µÄ»ù±¾µ¥Î»
 	}
 	if (ui->formatSerialComBox->currentIndex()==2)
 	{
 		SerialNumber_string=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));
-		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//é‡å¤çš„åŸºæœ¬å•ä½
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//ÖØ¸´µÄ»ù±¾µ¥Î»
 	}
 
 
@@ -2746,7 +2750,7 @@ void FileEditChild::newSerialNumber_click()
 	}
 
 	ui->serialLineEdit->setText(SerialNumber_string);
-	//å¦‚æœå½“å‰æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ›´æ”¹å½“é€‰ä¸­çš„obj
+	//Èç¹ûµ±Ç°ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎª¸ü¸Äµ±Ñ¡ÖĞµÄobj
 	int m=1;
 	for (int i=0; i<m_PrinterMes.OBJ_Vec.size(); i++)
 	{
@@ -2759,7 +2763,7 @@ void FileEditChild::newSerialNumber_click()
 			break;
 		}
 	}
-	//å¦‚æœå½“å‰æ²¡æœ‰objè¢«é€‰ä¸­ï¼Œåˆ™ä¸ºæ–°å»º
+	//Èç¹ûµ±Ç°Ã»ÓĞobj±»Ñ¡ÖĞ£¬ÔòÎªĞÂ½¨
 	if (m)
 	{
 		if (serialcount!=1)
@@ -2769,17 +2773,17 @@ void FileEditChild::newSerialNumber_click()
 		}
 		if (ui->counterSerialComBox->currentIndex()==2)
 		{
-			serialcount=0;//å…³é—­è®¡æ•°å™¨
+			serialcount=0;//¹Ø±Õ¼ÆÊıÆ÷
 		}
 		QString txtQString = ui->serialLineEdit->text();
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeSerialComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
-		this->ui->newSerialBut->setText(QStringLiteral("ä¿®æ”¹"));
+		this->ui->newSerialBut->setText(QStringLiteral("ĞŞ¸Ä"));
 		this->update();
 
-		//æ–°å»ºå›¾åƒæ—¶æ”¹åŠ¨è®¡æ•°å™¨
+		//ĞÂ½¨Í¼ÏñÊ±¸Ä¶¯¼ÆÊıÆ÷
 		int i=ui->counterSerialComBox->currentIndex();
 		if (Serialfirst!=1)
 		{
@@ -2912,7 +2916,7 @@ void FileEditChild::whitespaceRedButt_clicked()
 
 QString FileEditChild::getNum(QString str)
 {
-	//è·å–æ•°å­—
+	//»ñÈ¡Êı×Ö
 	QString str1 = str;
 	QString res;
 	QChar ch;
@@ -2975,11 +2979,11 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 	QMap<int,QString>textbyte;	
 	for (int i = inputtext.length();i > 0;i--)
 	{
-		QString cstr =inputtext.mid(inputtext.length() - i,1);//å­—ç¬¦ä¸²åˆ†å‰²
+		QString cstr =inputtext.mid(inputtext.length() - i,1);//×Ö·û´®·Ö¸î
 		QString tempstr = ConvertWCHARToHex(cstr,1);
 		//textbyte[inputtext.GetLength() - i] = tempstr;
 		textbyte[i-1] = tempstr;
-	}//è½¬ä¸ºåå…­è¿›åˆ¶å­—ç¬¦ä¸²
+	}//×ªÎªÊ®Áù½øÖÆ×Ö·û´®
 	QString outputtext = "";
 	QVector<QString>textarray;
 	QVector<QString>textunicodearray;
@@ -3008,13 +3012,13 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 
 	for ( int n = 0;n < textstring1.size();n++ )
 	{
-		if ( textstring1[n] == "" )//ä¸åœ¨å˜å½¢åˆ—è¡¨çš„æ–‡å­—
+		if ( textstring1[n] == "" )//²»ÔÚ±äĞÎÁĞ±íµÄÎÄ×Ö
 		{
 			QString valueStr = textbyte[n];
 			if ( valueStr.mid(1, 1) == "6" || valueStr.mid(1, 2) == "FE"
-				|| valueStr.mid(1, 3) == "FB")//ä¸åœ¨å˜å½¢åˆ—è¡¨çš„é˜¿æ‹‰ä¼¯æ–‡å­—
+				|| valueStr.mid(1, 3) == "FB")//²»ÔÚ±äĞÎÁĞ±íµÄ°¢À­²®ÎÄ×Ö
 			{
-				if ( n + 3 == textbyte.size()+2 )//åœ¨æœ€åä¸€åˆ—
+				if ( n + 3 == textbyte.size()+2 )//ÔÚ×îºóÒ»ÁĞ
 				{
 					arleft.push_back("0x"+ textbyte[n]);
 					for ( int f = 0;f < arleft.size();f++)
@@ -3023,9 +3027,9 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 					}
 					arleft.clear();
 				}
-				else//ä¸åœ¨æœ€åä¸€åˆ—
+				else//²»ÔÚ×îºóÒ»ÁĞ
 				{
-					if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//ç©ºæ ¼
+					if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//¿Õ¸ñ
 					{
 						arleft.push_back("0x" + textbyte[n]);
 						for ( int f= 0;f < arleft.size();f++)
@@ -3036,13 +3040,13 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 					}
 					else
 					{
-						textarray.push_back("0x" + textbyte[n]);//å…¶ä»–æ–‡å­—
+						textarray.push_back("0x" + textbyte[n]);//ÆäËûÎÄ×Ö
 					}
 				}
 			}
-			else//ä¸åœ¨å˜å½¢åˆ—è¡¨çš„å…¶ä»–æ–‡å­—
+			else//²»ÔÚ±äĞÎÁĞ±íµÄÆäËûÎÄ×Ö
 			{
-				if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//ç©ºæ ¼
+				if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//¿Õ¸ñ
 				{
 					arleft.push_back("0x" + textbyte[n]);
 					for ( int f= 0;f < arleft.size();f++)
@@ -3053,11 +3057,11 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 				} 
 				else
 				{
-					textarray.push_back("0x" + textbyte[n]);//å…¶ä»–æ–‡å­—
+					textarray.push_back("0x" + textbyte[n]);//ÆäËûÎÄ×Ö
 				}
 			}
 		} 
-		else//åœ¨å˜å½¢åˆ—è¡¨
+		else//ÔÚ±äĞÎÁĞ±í
 		{
 			textunicodearray = Arabicsplit(textstring1[n]);
 			if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )
@@ -3110,7 +3114,7 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 	QVector<QString>tempVec;
 	for (int k = textarray.size(); k > 0;k-- )
 	{
-		tempVec.push_back(textarray.at(k-1));//å€’ç½®
+		tempVec.push_back(textarray.at(k-1));//µ¹ÖÃ
 	}
 	for ( int m = 0; m < tempVec.size();m++)
 	{
@@ -3223,7 +3227,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	//HexStr = "0xFEB9";
 	HexStr = " " + HexStr;
 	wchar_t* buf = new wchar_t[2];
-	memset(buf, 0, sizeof(wchar_t)*(2));//memsetåˆå§‹åŒ–æ•°ç»„
+	memset(buf, 0, sizeof(wchar_t)*(2));//memset³õÊ¼»¯Êı×é
 	
 	TCHAR seps[] = _T(" ");
 
@@ -3245,7 +3249,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	return outstr;
 }
 
-QString FileEditChild::ArabicLan(QString inputstring)//Arabicç»„åˆè§„åˆ™
+QString FileEditChild::ArabicLan(QString inputstring)//Arabic×éºÏ¹æÔò
 {
 	QString outputstring = "";
 	if (QString::compare(inputstring,"0621") == 0|| QString::compare(inputstring,"FE80") == 0 
@@ -3462,7 +3466,7 @@ bool FileEditChild::newShiftBut()
 	{
 		if (m_PrinterMes.OBJ_Vec[i].booFocus)
 		{
-			//ç­æ¬¡1
+			//°à´Î1
 			QString curText1 = ui->startTimeShowSft1LineEdit->text();
 			QString leftText1 = curText1.left(2);
 			leftInt1 = atoi(leftText1.toStdString().c_str());
@@ -3471,7 +3475,7 @@ bool FileEditChild::newShiftBut()
 			showText1 = ui->textIDShowSft1LineEdit->text();
 			int showTextLen1 = showText1.length();
 
-			//ç­æ¬¡2
+			//°à´Î2
 			QString curText2 = ui->startTimeShowSft2LineEdit->text();
 			QString leftText2 = curText2.left(2);
 			leftInt2 = atoi(leftText2.toStdString().c_str());
@@ -3480,7 +3484,7 @@ bool FileEditChild::newShiftBut()
 			showText2 = ui->textIDShowSft2LineEdit->text();
 			int showTextLen2 = showText2.length();
 
-			//ç­æ¬¡3
+			//°à´Î3
 			QString curText3 = ui->startTimeShowSft3LineEdit->text();
 			QString leftText3 = curText3.left(2);
 			leftInt3 = atoi(leftText3.toStdString().c_str());
@@ -3489,7 +3493,7 @@ bool FileEditChild::newShiftBut()
 			showText3 = ui->textIDShowSft3LineEdit->text();
 			int showTextLen3 = showText3.length();
 
-			//ç­æ¬¡4
+			//°à´Î4
 			QString curText4 = ui->startTimeShowSft4LineEdit->text();
 			QString leftText4 = curText4.left(2);
 			leftInt4 = atoi(leftText4.toStdString().c_str());
@@ -3498,7 +3502,7 @@ bool FileEditChild::newShiftBut()
 			showText4 = ui->textIDShowSft4LineEdit->text();
 			int showTextLen4 = showText4.length();
 
-			//ç­æ¬¡æ•°ç›®
+			//°à´ÎÊıÄ¿
 			QString m_num = ui->shiftNumShowLineEdit->text();
 			int numInt = atoi(m_num.toStdString().c_str());
 			switch(numInt)
@@ -3550,38 +3554,38 @@ bool FileEditChild::newShiftBut()
 				break;
 			}
 
-			//æ–‡æœ¬é•¿åº¦
+			//ÎÄ±¾³¤¶È
 			QString textLen = ui->textLenShowLineEdit->text();
 			int textLenInt = atoi(textLen.toStdString().c_str());
 			//ui.textlineEdit1->setMaxLength(textLenInt);
 			if (showTextLen1 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-				QString warningtext1 = QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+				QString warningtext1 = QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§");
 				informationMessage(warningtext1.toStdString());
 				ui->textIDShowSft1LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen2 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-				QString warningtext2 = QString::fromLocal8Bit("ç­æ¬¡2è¶…å‡ºè¾“å…¥èŒƒå›´");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+				QString warningtext2 = QString::fromLocal8Bit("°à´Î2³¬³öÊäÈë·¶Î§");
 				informationMessage(warningtext2.toStdString());
 				ui->textIDShowSft2LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen3 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-				QString warningtext3 = QString::fromLocal8Bit("ç­æ¬¡3è¶…å‡ºè¾“å…¥èŒƒå›´");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+				QString warningtext3 = QString::fromLocal8Bit("°à´Î3³¬³öÊäÈë·¶Î§");
 				informationMessage(warningtext3.toStdString());
 				ui->textIDShowSft3LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen4 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-				QString warningtext4 = QString::fromLocal8Bit("ç­æ¬¡4è¶…å‡ºè¾“å…¥èŒƒå›´");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+				QString warningtext4 = QString::fromLocal8Bit("°à´Î4³¬³öÊäÈë·¶Î§");
 				informationMessage(warningtext4.toStdString());
 				ui->textIDShowSft4LineEdit->setText(""); 
 				return false;
@@ -3649,7 +3653,7 @@ bool FileEditChild::newShiftBut()
 			//return;
 		}
 	}
-	//ç­æ¬¡1
+	//°à´Î1
 	QString curText1 = ui->startTimeShowSft1LineEdit->text();
 	QString leftText1 = curText1.left(2);
 	leftInt1 = atoi(leftText1.toStdString().c_str());
@@ -3658,7 +3662,7 @@ bool FileEditChild::newShiftBut()
 	showText1 = ui->textIDShowSft1LineEdit->text();
 	int showTextLen1 = showText1.length();
 
-	//ç­æ¬¡2
+	//°à´Î2
 	QString curText2 = ui->startTimeShowSft2LineEdit->text();
 	QString leftText2 = curText2.left(2);
 	leftInt2 = atoi(leftText2.toStdString().c_str());
@@ -3667,7 +3671,7 @@ bool FileEditChild::newShiftBut()
 	showText2 = ui->textIDShowSft2LineEdit->text();
 	int showTextLen2 = showText2.length();
 
-	//ç­æ¬¡3
+	//°à´Î3
 	QString curText3 = ui->startTimeShowSft3LineEdit->text();
 	QString leftText3 = curText3.left(2);
 	leftInt3 = atoi(leftText3.toStdString().c_str());
@@ -3676,7 +3680,7 @@ bool FileEditChild::newShiftBut()
 	showText3 = ui->textIDShowSft3LineEdit->text();
 	int showTextLen3 = showText3.length();
 
-	//ç­æ¬¡4
+	//°à´Î4
 	QString curText4 = ui->startTimeShowSft4LineEdit->text();
 	QString leftText4 = curText4.left(2);
 	leftInt4 = atoi(leftText4.toStdString().c_str());
@@ -3685,7 +3689,7 @@ bool FileEditChild::newShiftBut()
 	showText4 = ui->textIDShowSft4LineEdit->text();
 	int showTextLen4 = showText4.length();
 
-	//ç­æ¬¡æ•°ç›®
+	//°à´ÎÊıÄ¿
 	QString m_num = ui->shiftNumShowLineEdit->text();
 	int numInt = atoi(m_num.toStdString().c_str());
 	switch(numInt)
@@ -3737,38 +3741,38 @@ bool FileEditChild::newShiftBut()
 		break;
 	}
 
-	//æ–‡æœ¬é•¿åº¦
+	//ÎÄ±¾³¤¶È
 	QString textLen = ui->textLenShowLineEdit->text();
 	int textLenInt = atoi(textLen.toStdString().c_str());
 	//ui.textlineEdit1->setMaxLength(textLenInt);
 	if (showTextLen1 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-		QString warningtext1 = QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+		QString warningtext1 = QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§");
 		informationMessage(warningtext1.toStdString());
 		ui->textIDShowSft1LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen2 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-		QString warningtext2 = QString::fromLocal8Bit("ç­æ¬¡2è¶…å‡ºè¾“å…¥èŒƒå›´");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+		QString warningtext2 = QString::fromLocal8Bit("°à´Î2³¬³öÊäÈë·¶Î§");
 		informationMessage(warningtext2.toStdString());
 		ui->textIDShowSft2LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen3 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-		QString warningtext3 = QString::fromLocal8Bit("ç­æ¬¡3è¶…å‡ºè¾“å…¥èŒƒå›´");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+		QString warningtext3 = QString::fromLocal8Bit("°à´Î3³¬³öÊäÈë·¶Î§");
 		informationMessage(warningtext3.toStdString());
 		ui->textIDShowSft3LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen4 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("é”™è¯¯"),QString::fromLocal8Bit("ç­æ¬¡1è¶…å‡ºè¾“å…¥èŒƒå›´"));
-		QString warningtext4 = QString::fromLocal8Bit("ç­æ¬¡4è¶…å‡ºè¾“å…¥èŒƒå›´");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("´íÎó"),QString::fromLocal8Bit("°à´Î1³¬³öÊäÈë·¶Î§"));
+		QString warningtext4 = QString::fromLocal8Bit("°à´Î4³¬³öÊäÈë·¶Î§");
 		informationMessage(warningtext4.toStdString());
 		ui->textIDShowSft4LineEdit->setText(""); 
 		return false;
