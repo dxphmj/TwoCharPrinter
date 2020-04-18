@@ -136,7 +136,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	ui->typeTab->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
-							  QTabBar::tab{font:'����' 16pt;color: white;height:50px; width:92px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab{font:'楷体' 16pt;color: white;height:50px; width:92px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
@@ -190,7 +190,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->degreeDMShowLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	
-	//�������itemѡ���λ��5x5���أ�
+	//画布宽度item选项（单位：5x5像素）
 	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
 	ui->pixelComBox->addItem(QStringLiteral("12px"));//2
@@ -200,7 +200,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
 	ui->pixelComBox->setCurrentIndex(6);
 
-	//�ƶ��ٶ�itemѡ���λ��5x5���ص㣩
+	//移动速度item选项（单位：5x5像素点）
 	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
 	ui->moveSpeedComBox->addItem(QStringLiteral("2"));//1
 	ui->moveSpeedComBox->addItem(QStringLiteral("5"));//2
@@ -273,10 +273,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontSizeTimeComBox->addItem("12x12");
 	ui->fontSizeTimeComBox->addItem("16x12");
 	ui->fontSizeTimeComBox->setCurrentIndex(0);
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("���μ���"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("�������"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("�������"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("�������"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("仿宋简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("楷体简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("黑体简体"));
+	ui->fontTypeTimeComBox->addItem(QStringLiteral("宋体简体"));
 	ui->fontTypeTimeComBox->setCurrentIndex(0);
 	ui->SkewComBox->addItem("OFF");
 	ui->SkewComBox->addItem("ON");
@@ -304,12 +304,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->FormatlistWidget->addItem("%B - Full month name");
 	ui->FormatlistWidget->addItem("%p - am / pm");
 
-	ui->delBut->setText(QStringLiteral("���"));
+	ui->delBut->setText(QStringLiteral("清空"));
 
 	ui->textpreviewScrollBar->setRange(0,100);
 	ui->editPreviewText->setGeometry(10, 10, 3121, 241);
 
-	//���кŵĳ�ʼ��
+	//序列号的初始化
 	ui->initialValSerialLineEdit->setText("1");
 	ui->termValSerialLineEdit->setText("100");
 	ui->startValSerialLineEdit->setText("1");
@@ -321,15 +321,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("16x12"));
 	ui->fontTypeSerialComBox->setCurrentIndex(0);
-	ui->counterSerialComBox->addItem(QStringLiteral("������1"));
-	ui->counterSerialComBox->addItem(QStringLiteral("������2"));
-	ui->counterSerialComBox->addItem(QStringLiteral("������3"));
-	ui->counterSerialComBox->addItem(QStringLiteral("������4"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器3"));
+	ui->counterSerialComBox->addItem(QStringLiteral("计数器4"));
 	ui->counterSerialComBox->setEnabled(0);
 	ui->counterSerialComBox->setCurrentIndex(0);
-	ui->formatSerialComBox->addItem(QStringLiteral("��ಹ0"));
-	ui->formatSerialComBox->addItem(QStringLiteral("���հ�"));
-	ui->formatSerialComBox->addItem(QStringLiteral("�Ҳ�հ�"));
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧补0"));
+	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
+	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
 	ui->formatSerialComBox->setCurrentIndex(0);
 	serialcount=1;
 	ui->serialLineEdit->setText("000000001");
@@ -354,7 +354,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//fcb->setGeometry(100,470,300,41);
 	//	ypos += 40 ;
 	/*}*/
-	/*label = new QLabel("�ô˱�ǩ�鿴����Ч��",this);
+	/*label = new QLabel("用此标签查看字体效果",this);
 	label->setGeometry(10,230,200,30);
 	connect(fc[0],SIGNAL(currentFontChanged(QFont)),this,SLOT(changedFont(QFont)));*/
  
@@ -371,10 +371,10 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
 	
-	/*ui->fontTypeTextComBox->addItem(QStringLiteral("���μ���"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("�������"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("�������"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("�������"));
+	/*ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
+	ui->fontTypeTextComBox->addItem(QStringLiteral("宋体简体"));
 	ui->fontTypeTextComBox->setCurrentIndex(0);*/
 
 	ui->fontSizeTextComBox->setVisible(true);
@@ -474,13 +474,13 @@ void FileEditChild::textIDShowSft4LineEdit_clicked()
 	ClickChooseLanguage();
 }
 
-void FileEditChild::OnEnChangeEditInput_clicked()//����������
-{
+void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
+{	
 	QString inputtext;
 	int nIndex = ui->typeTab->currentIndex();
-	switch(nIndex)//��ȡ���༭���ı�
+	switch(nIndex)//获取主编辑框文本
 	{
-		case 0:	//wordLineEdit�ı���
+		case 0:	//wordLineEdit文本框
 			{
 				inputtext = ui->wordLineEdit->text();
 				break;
@@ -505,17 +505,17 @@ void FileEditChild::OnEnChangeEditInput_clicked()//����������
 				}
 				break;
 			}
-		case 5:	//wordLineEdit�ı���
+		case 5:	//wordLineEdit文本框
 			{
 				inputtext = ui->barCodeLineEdit->text();
 				break;
 			}
-		case 6:	//wordLineEdit�ı���
+		case 6:	//wordLineEdit文本框
 			{
 				inputtext = ui->QRCodeLineEdit->text();
 				break;
 			}
-		case 7:	//wordLineEdit�ı���
+		case 7:	//wordLineEdit文本框
 			{
 				inputtext = ui->DMCodeLineEdit->text();
 				break;
@@ -523,15 +523,15 @@ void FileEditChild::OnEnChangeEditInput_clicked()//����������
 	}
 	/*m_edit_input.GetWindowText(inputtext);*/
 	if (keyboardWidget->m_LanType == 5 ||keyboardWidget->m_LanType == 23 ||keyboardWidget->m_LanType == 24 
-		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)//�жϵ�ǰ�Ƿ��ǰ������ı�
+		||keyboardWidget->m_LanType == 25 ||keyboardWidget->m_LanType == 26 ||keyboardWidget->m_LantypeReverse== 8)//判断当前是否是阿拉伯文本
 	{
 		QString outputtext = disposeinputtext(inputtext);
 		if ( outputtext != inputtext )
 		{
 		//m_edit_input.SetWindowText(outputtext);
-			switch(nIndex)//��ȡ���༭���ı�
+			switch(nIndex)//获取主编辑框文本
 			{
-			case 0:	//wordLineEdit�ı���
+			case 0:	
 				{
 					ui->wordLineEdit->setText(outputtext);
 					break;
@@ -556,17 +556,17 @@ void FileEditChild::OnEnChangeEditInput_clicked()//����������
 					}
 					break;
 				}
-			case 5:	//wordLineEdit�ı���
+			case 5:	
 				{
 					ui->barCodeLineEdit->setText(outputtext);
 					break;
 				}
-			case 6:	//wordLineEdit�ı���
+			case 6:	
 				{
 					ui->QRCodeLineEdit->setText(outputtext);
 					break;
 				}
-			case 7:	//wordLineEdit�ı���
+			case 7:	
 				{
 					ui->DMCodeLineEdit->setText(outputtext);
 					break;
@@ -594,13 +594,13 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	int i,j;
 	for (i=0; i<=3121; i+=5)
 	{
-		//����
+		//画列
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
 	}
 	for (j=240; j>=240-PixelMap[CurPixelItem]; j-=5)
 	{
-		//����
+		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
@@ -663,7 +663,7 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 		delBut_clicked();
 	}
 	QString get = QString(QLatin1String(strFileName)).toUtf8();
-	//ɾ���ļ�
+	//删除文件
 	QFile::remove(get);
 }
 
@@ -680,7 +680,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	int v;
 
 	//error_number = 0;
-	//QString angle1=ui->degreeQRShowLab->text();//��ʱע��
+	//QString angle1=ui->degreeQRShowLab->text();//暂时注掉
 	//int angle2=angle1.toInt();
 	//rotate_angle = angle2;
 	rotate_angle = 0;
@@ -691,7 +691,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	my_symbol->scale =0.5;
 
 	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = v+1;//option_1Ϊ�ݴ�ȼ���option_2Ϊ�汾��С��ʽΪ:(V - 1) * 4 + 21��
+	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
 	strcpy_s(my_symbol->fgcolour, "ffffff");
@@ -729,7 +729,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj->intRowSize=my_symbol->bitmap_width;
 	bmpObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
 
-	//������д��
+	//以下先写死
 	bmpObj->intSW=1;
 	bmpObj->intSS=1;
 	bmpObj->booNEG=false;
@@ -748,7 +748,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
 				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
@@ -829,7 +829,7 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	bmpObj->intDMrow = ui->sideLenDMComBox->currentIndex();
 	bmpObj->strDMContent = strContent.toStdString();
 	bmpObj->strText = strContent.toStdString();
-	//������д��
+	//以下先写死
 	bmpObj->intSW=1;
 	bmpObj->intSS=1;
 	bmpObj->booNEG=false;
@@ -848,7 +848,7 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
 				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
@@ -1086,10 +1086,10 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newTextBut->setText(QStringLiteral("?????"));
+					this->ui->newTextBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newTextBut->setText(QStringLiteral("�޸�"));
+					this->ui->newTextBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newTextBut->setText(QStringLiteral("Modify"));
@@ -1153,16 +1153,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newTimeBut->setText(QStringLiteral("?????"));
+					this->ui->newTimeBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newTimeBut->setText(QStringLiteral("�޸�"));
+					this->ui->newTimeBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newTimeBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newTimeBut->setText(QStringLiteral("�޸�"));
+				
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "serial")
 			{
@@ -1171,16 +1171,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newSerialBut->setText(QStringLiteral("?????"));
+					this->ui->newSerialBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newSerialBut->setText(QStringLiteral("�޸�"));
+					this->ui->newSerialBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newSerialBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newSerialBut->setText(QStringLiteral("�޸�"));
+				
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "logo")
 			{
@@ -1189,16 +1189,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newBmpBut->setText(QStringLiteral("?????"));
+					this->ui->newBmpBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newBmpBut->setText(QStringLiteral("�޸�"));
+					this->ui->newBmpBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newBmpBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newBmpBut->setText(QStringLiteral("�޸�"));
+				
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "2Dcode")
 			{
@@ -1211,16 +1211,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newBarCodeBut->setText(QStringLiteral("?????"));
+					this->ui->newBarCodeBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newBarCodeBut->setText(QStringLiteral("�޸�"));
+					this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newBarCodeBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newBarCodeBut->setText(QStringLiteral("�޸�"));
+				
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "qrcode")
 			{
@@ -1231,16 +1231,16 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newQRBut->setText(QStringLiteral("?????"));
+					this->ui->newQRBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newQRBut->setText(QStringLiteral("�޸�"));
+					this->ui->newQRBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newQRBut->setText(QStringLiteral("Modify"));
 					break;
 				}
-				//this->ui->newQRBut->setText(QStringLiteral("�޸�"));
+				
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "datamatrix")
 			{
@@ -1251,25 +1251,25 @@ void FileEditChild::GetObjSettingsFromScreen()
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
-					this->ui->newDMBut->setText(QStringLiteral("?????"));
+					this->ui->newDMBut->setText(QStringLiteral("تعديل"));
 					break;
 				case 1:
-					this->ui->newDMBut->setText(QStringLiteral("�޸�"));
+					this->ui->newDMBut->setText(QStringLiteral("修改"));
 					break;
 				case 5:
 					this->ui->newDMBut->setText(QStringLiteral("Modify"));
 					break;
 				}
 			
-				//this->ui->newDMBut->setText(QStringLiteral("�޸�"));
+				//this->ui->newDMBut->setText(QStringLiteral("修改"));
 			}
 			switch (psysSetting->m_SelLanguage)
 			{
 			case 0:
-				this->ui->delBut->setText(QStringLiteral("???"));
+				this->ui->delBut->setText(QStringLiteral("حذف"));
 				break;
 			case 1:
-				this->ui->delBut->setText(QStringLiteral("ɾ��"));
+				this->ui->delBut->setText(QStringLiteral("删除"));
 				break;
 			case 5:
 				this->ui->delBut->setText(QStringLiteral("Del"));
@@ -1280,105 +1280,105 @@ void FileEditChild::GetObjSettingsFromScreen()
 			return;
 		}
 	}
-	//�����Ҳ���������
+	//设置右侧框基础参数
 	switch (psysSetting->m_SelLanguage)
 	{
 	case 0:
-		this->ui->delBut->setText(QStringLiteral("?????"));
+		this->ui->delBut->setText(QStringLiteral("تعديل"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//�����ı�typeTab
+		//设置文本typeTab
 		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("???????"));
+		this->ui->newTextBut->setText(QStringLiteral("الجديدة"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//����ʱ��typeTab
+		//设置时间typeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("???????"));
+		this->ui->newTimeBut->setText(QStringLiteral("الجديدة"));
 
-		//�������к�typeTab
+		//设置序列号typeTab
 		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("???????"));
+		this->ui->newSerialBut->setText(QStringLiteral("الجديدة"));
 
-		//����ͼƬtypeTab
-		this->ui->newBmpBut->setText(QStringLiteral("???????"));
+		//设置图片typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("الجديدة"));
 
-		//����������typeTab
+		//设置条形码typeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
 		this->ui->whitespaceLab->setText("9");
 		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("???????"));
+		this->ui->newBarCodeBut->setText(QStringLiteral("الجديدة"));
 
-		//����QR��typeTab
+		//设置QR码typeTab
 		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("???????"));
+		this->ui->newQRBut->setText(QStringLiteral("الجديدة"));
 
-		//����DM��typeTab
+		//设置DM码typeTab
 		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("???????"));
+		this->ui->newDMBut->setText(QStringLiteral("الجديدة"));
 		break;
 	case 1:
-		this->ui->delBut->setText(QStringLiteral("���"));
+		this->ui->delBut->setText(QStringLiteral("清空"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//�����ı�typeTab
+		//设置文本typeTab
 		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("�½�"));
+		this->ui->newTextBut->setText(QStringLiteral("新建"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//����ʱ��typeTab
+		//设置时间typeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("�½�"));
+		this->ui->newTimeBut->setText(QStringLiteral("新建"));
 
-		//�������к�typeTab
+		//设置序列号typeTab
 		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("�½�"));
+		this->ui->newSerialBut->setText(QStringLiteral("新建"));
 
-		//����ͼƬtypeTab
-		this->ui->newBmpBut->setText(QStringLiteral("�½�"));
+		//设置图片typeTab
+		this->ui->newBmpBut->setText(QStringLiteral("新建"));
 
-		//����������typeTab
+		//设置条形码typeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
 		this->ui->whitespaceLab->setText("9");
 		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("�½�"));
+		this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
 
-		//����QR��typeTab
+		//设置QR码typeTab
 		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("�½�"));
+		this->ui->newQRBut->setText(QStringLiteral("新建"));
 
-		//����DM��typeTab
+		//设置DM码typeTab
 		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("�½�"));
+		this->ui->newDMBut->setText(QStringLiteral("新建"));
 		break;
 	case 5:
 		this->ui->delBut->setText(QStringLiteral("Empty"));
 		this->ui->internalShowTextLab->setText("0");
 
-		//�����ı�typeTab
+		//设置文本typeTab
 		this->ui->wordLineEdit->setText("");
 		this->ui->newTextBut->setText(QStringLiteral("New"));
 		this->ui->fontTypeTextComBox->setCurrentIndex(0);
 
-		//����ʱ��typeTab
+		//设置时间typeTab
 		this->ui->PreviewEdit->setText("");
 		this->ui->DateTimeEdit->setText("");
 		this->ui->newTimeBut->setText(QStringLiteral("New"));
 
-		//�������к�typeTab
+		//设置序列号typeTab
 		this->ui->serialLineEdit->setText("");
 		this->ui->newSerialBut->setText(QStringLiteral("New"));
 
-		//����ͼƬtypeTab
+		//设置图片typeTab
 		this->ui->newBmpBut->setText(QStringLiteral("New"));
 
-		//����������typeTab
+		//设置条形码typeTab
 		this->ui->barCodeLineEdit->setText("");
 		this->ui->typeBarCodeComBox->setCurrentIndex(1);
 		this->ui->heightBarCodeShowQRLab->setText("21");
@@ -1386,11 +1386,11 @@ void FileEditChild::GetObjSettingsFromScreen()
 		this->ui->showNumCheckBox ->setChecked(1);
 		this->ui->newBarCodeBut->setText(QStringLiteral("New"));
 
-		//����QR��typeTab
+		//设置QR码typeTab
 		this->ui->QRCodeLineEdit->setText("");
 		this->ui->newQRBut->setText(QStringLiteral("New"));
 
-		//����DM��typeTab
+		//设置DM码typeTab
 		this->ui->DMCodeLineEdit->setText("");
 		this->ui->newDMBut->setText(QStringLiteral("New"));
 		break;
@@ -1403,15 +1403,15 @@ void FileEditChild::saveasBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 	string tmpFileName;
-	//�жϵ�ǰ�༭���ļ��Ƿ�Ϊ�����ļ�
-	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //��Դ�ڱ���
+	//判断当前编辑的文件是否为本地文件
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		QFileInfo fi(qfileName);
 		qfileName = fi.baseName();
 		tmpFileName = qfileName.toStdString();
 	}
-	else //�½��ļ�
+	else //新建文件
 	{
 		tmpFileName = "NewLabel_";
 		m_MessagePrint.strMatrix = "1L7M";
@@ -1438,8 +1438,8 @@ void FileEditChild::saveBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
-	//�ж��ļ����½��ģ�������Դ�ڱ���
-	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //��Դ�ڱ���
+	//判断文件是新建的，还是来源于本地
+	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		string tmpStr = qfileName.toStdString();
@@ -1447,9 +1447,9 @@ void FileEditChild::saveBut_clicked()
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
 		m_MessagePrint.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
-		//�˴�Ӧ������"����ɹ���"�Ի��򣬳���һ��
+		//此处应当弹出"保存成功！"对话框，持续一秒
 	}
-	else //�½��ļ�����"���Ϊ"��ͬ
+	else //新建文件，与"另存为"相同
 	{
 		saveasBut_clicked();
 	}
@@ -1587,8 +1587,8 @@ void  FileEditChild::PreviewBmp(QString fileName,int pW,int pH)
 		pW = 471;
 		pH = 471*pS;  
 	}
-	result = image.scaled(pW,pH,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//����ͼƬ���Թ̶���С��ʾ
-	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//��Label�ؼ�����ʾͼƬ
+	result = image.scaled(pW,pH,Qt::IgnoreAspectRatio, Qt::SmoothTransformation);//放缩图片，以固定大小显示
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(result));//在Label控件上显示图片
 	QFileInfo bmpInfo(fileName);
 	bmpFileRelativePath = "User/logo/" + bmpInfo.baseName() + ".bmp";
 	 
@@ -1611,8 +1611,8 @@ void FileEditChild::PreviewBmpChange()
 	ui->bmpPreviewLab->clear();
 	QImage image1;
 	image1.load(fileName);
-	ChangeBmpWH(image1,1);//nS��ʱ��Ϊ1
-	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(image1));//��Label�ؼ�����ʾͼƬ
+	ChangeBmpWH(image1,1);//nS暂时设为1
+	ui->bmpPreviewLab->setPixmap(QPixmap::fromImage(image1));//在Label控件上显示图片
 }
 
 void FileEditChild::delBut_clicked()
@@ -1622,7 +1622,7 @@ void FileEditChild::delBut_clicked()
 	{
 		if((*ite)->booFocus)
 		{
-			if (m_MessagePrint.OBJ_Vec.back()->counter>=0)//���Ϊ���кţ��������-1
+			if (m_MessagePrint.OBJ_Vec.back()->counter>=0)//如果为序列号，则计数器-1
 			{
 				int i;
 				i=ui->counterSerialComBox->currentIndex();
@@ -1642,15 +1642,15 @@ void FileEditChild::delBut_clicked()
 			switch (psysSetting->m_SelLanguage)
 			{
 			case 1:
-				this->ui->newTextBut->setText(QStringLiteral("�޸�"));
-				this->ui->delBut->setText(QStringLiteral("���"));
+				this->ui->newTextBut->setText(QStringLiteral("修改"));
+				this->ui->delBut->setText(QStringLiteral("清空"));
 				break;
 			case 5:
 				this->ui->newTextBut->setText(QStringLiteral("New"));
 				this->ui->delBut->setText(QStringLiteral("Empty"));
 				break;
 			}*/
-	    	this->ui->delBut->setText(QStringLiteral("���"));
+	    	this->ui->delBut->setText(QStringLiteral("清空"));
 			GetObjSettingsFromScreen();
 			this->update();
 			return;
@@ -1661,7 +1661,7 @@ void FileEditChild::delBut_clicked()
 
 	m_MessagePrint.OBJ_Vec.clear();
 
-	ui->counterSerialComBox->setCurrentIndex(0);//����������
+	ui->counterSerialComBox->setCurrentIndex(0);//计数器重置
 	serialcount=1;
 	QString c=ui->startValSerialLineEdit->text();
 	int new_start=c.toInt();
@@ -1789,7 +1789,7 @@ string qstr2str(const QString qstr)
 
 void FileEditChild::newTextBut_clicked()
 {
-	//�����ǰ��obj��ѡ�У���Ϊ���ĵ�ѡ�е�obj
+	//如果当前有obj被选中，则为更改当选中的obj
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 	{
 		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
@@ -1818,7 +1818,7 @@ void FileEditChild::newTextBut_clicked()
 			return;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	//wstring txtString = stringToWstring(ui->wordLineEdit->text().toStdString());
 	string txtString = qstr2str(ui->wordLineEdit->text());
 	string textFont = ui->fontTypeTextComBox->currentText().toStdString();
@@ -1833,20 +1833,20 @@ void FileEditChild::newTextBut_clicked()
 	switch (psysSetting->m_SelLanguage)
 	{
 	case 0:
-		this->ui->newTextBut->setText(QStringLiteral("?????"));
-		this->ui->delBut->setText(QStringLiteral("???"));
+		this->ui->newTextBut->setText(QStringLiteral("تعديل"));
+		this->ui->delBut->setText(QStringLiteral("حذف"));
 		break;
 
 	case 1:
-		this->ui->newTextBut->setText(QStringLiteral("�޸�"));
-		this->ui->delBut->setText(QStringLiteral("ɾ��"));
+		this->ui->newTextBut->setText(QStringLiteral("修改"));
+		this->ui->delBut->setText(QStringLiteral("删除"));
 		break;
 	case 5:
 		this->ui->newTextBut->setText(QStringLiteral("Modify"));
 		this->ui->delBut->setText(QStringLiteral("Del"));
 		break;
 	}
-	//this->ui->newTextBut->setText(QStringLiteral("�޸�"));
+	//this->ui->newTextBut->setText(QStringLiteral("修改"));
 	
 	this->update();
 }
@@ -1895,7 +1895,7 @@ void FileEditChild::GenerateBarCodeBmp()
 		batch_mode = 0;
 		mirror_mode = 0;
 		QString str1 = getNum(ui->whitespaceLab->text());
-		my_symbol->whitespace_width = str1.toInt();//�ı����������߿հ�������,�հ������Ȼ�Ӱ��������Ŀ�ȣ�ֻ������������������Ŀհ�
+		my_symbol->whitespace_width = str1.toInt();//改变条形码两边空白区域宽度,空白区域宽度会影响条形码的宽度，只会增加条码左右两侧的空白
 		if (ui->typerimComBox->currentIndex()==0)
 		{
 			my_symbol->output_options= 1;
@@ -1908,11 +1908,11 @@ void FileEditChild::GenerateBarCodeBmp()
 		{
 			my_symbol->output_options=4;
 		}
-		//���ޱ߿�֮��Ŀ���;1:�ޱ߿�2�����������߽��ߣ�4�������߿�
+		//有无边框之类的控制;1:无边框，2：上下两条边界线，4：四条边框
 		QString str2 = getNum(ui->rimwideLab->text());
-		my_symbol->border_width = str2.toInt();//�ı�߿���           
-	
-		int show_hrt;            //����Ϊ1 ��ʾ�ı�������ͼƬ���� ����Ϊ0 ����ʾ
+		my_symbol->border_width = str2.toInt();//改变边框宽度           
+
+		int show_hrt;            //设置为1 显示文本在条码图片下面 设置为0 则不显示
 		if (ui->showNumCheckBox->isChecked())
 		{
 			my_symbol->show_hrt=1;
@@ -1990,13 +1990,13 @@ void FileEditChild::newBarCodeBut_clicked()
 				delBut_clicked();
 			}
 			QString get = QString(QLatin1String(strFileName)).toUtf8();
-			//ɾ���ļ�
+			//删除文件
 			QFile::remove(get);
 			this->update();
 			return;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	QString str = ui->barCodeLineEdit->text();
 	Create2Dcode(BarCodeType[this->ui->typeBarCodeComBox->currentText()],str);
 	this->ui->newBarCodeBut->setText(QStringLiteral("�޸�"));
@@ -2031,7 +2031,7 @@ void FileEditChild::newQRBut_clicked()
 					intQRbitmap += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
-						//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
 						m_MessagePrint.OBJ_Vec[i]->boDotBmp[col][m_MessagePrint.OBJ_Vec[i]->intLineSize-row-1] = true;
 					}
 					else
@@ -2050,9 +2050,9 @@ void FileEditChild::newQRBut_clicked()
 			return;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	CreateQrcode(58,str);
-	this->ui->newQRBut->setText(QStringLiteral("�޸�"));
+	this->ui->newQRBut->setText(QStringLiteral("修改"));
 	this->update();
 }
 
@@ -2076,7 +2076,7 @@ zint_symbol FileEditChild::resetQRCode()
 	my_symbol->scale =0.5;
 
 	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = v+1;//option_1Ϊ�ݴ�ȼ���option_2Ϊ�汾��С��ʽΪ:(V - 1) * 4 + 21��
+	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
 		strcpy_s(my_symbol->fgcolour, "ffffff");
@@ -2142,7 +2142,7 @@ void FileEditChild::newDMBut_clicked()
 					j += 3;
 					if (r == 0 && g == 0 && b == 0)
 					{
-						//		bmpObj.boDotBmp[col][row-proportion] = true; //��������ϵ��ԭ�����±���ߵ�
+						//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
 						m_MessagePrint.OBJ_Vec[i]->boDotBmp[col][resetDMCode().bitmap_height-row-1] = true;
 					}
 					else
@@ -2156,9 +2156,9 @@ void FileEditChild::newDMBut_clicked()
 			return;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	CreateDMcode(DMsize[this->ui->sideLenDMComBox->currentText()],str);
-	this->ui->newDMBut->setText(QStringLiteral("�޸�"));
+	this->ui->newDMBut->setText(QStringLiteral("修改"));
 	this->update();
 }
 
@@ -2222,22 +2222,22 @@ void FileEditChild::newBmpBut_clicked()
 {
 	//PreviewBmp(bmpFileRelativePath,320,20); return;
 
-	//�����ǰ��obj��ѡ�У���Ϊ�޸ĵ�ѡ�е�obj
+	//如果当前有obj被选中，则为修改当选中的obj
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 	{
 		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
 		{
-			//�ڴ˴����ݿؼ�ѡ����������OBJ_Vec[i]����Ӧ��������,�мǴ˴�����pushback
+			//在此处根据控件选项重新设置OBJ_Vec[i]的相应参数即可,切记此处不是pushback
 			this->update();
 			return;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	char *pic;
 	QByteArray ba = bmpFileRelativePath.toLatin1();
 	pic=ba.data();
 	ReadBmp(pic);
-	this->ui->newBmpBut->setText(QStringLiteral("�޸�"));
+	this->ui->newBmpBut->setText(QStringLiteral("修改"));
 	this->update();
 }
 
@@ -2525,19 +2525,19 @@ void FileEditChild::newTimeBut_clicked()
 			{
 			case 0:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 5;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 1:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 7;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 2:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 12;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			case 3:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 16;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////���Ǹ��ӣ�ע�Ⱒ������Ҫ����
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
 				break;
 			}
 			fontText = ui->fontSizeTimeComBox->currentText();
@@ -2629,7 +2629,7 @@ void FileEditChild::newTimeBut_clicked()
 	tempObj->booFocus = true;
 	m_MessagePrint.OBJ_Vec.push_back(tempObj);
 	//this->ShowWindow(SW_HIDE);
-	this->ui->newTimeBut->setText(QStringLiteral("�޸�"));
+	this->ui->newTimeBut->setText(QStringLiteral("修改"));
 	this->update();
 }
 
@@ -2718,21 +2718,21 @@ void FileEditChild::newSerialNumber_click()
 		SerialNumber_number=SerialNumber_number+step;
 	}
 
-	//�жϸ�ʽ
+	//判断格式
 	if (ui->formatSerialComBox->currentIndex()==0)
 	{
 	SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));
-	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//�ظ��Ļ�����λ
+	SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar('0'));//重复的基本单位
 	}
 	if (ui->formatSerialComBox->currentIndex()==1)
 	{
 		SerialNumber_string=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));
-		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//�ظ��Ļ�����λ
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,digit,10,QChar(' '));//重复的基本单位
 	}
 	if (ui->formatSerialComBox->currentIndex()==2)
 	{
 		SerialNumber_string=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));
-		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//�ظ��Ļ�����λ
+		SerialNumber_basic=QString("%1").arg(SerialNumber_number,-digit,10,QChar(' '));//重复的基本单位
 	}
 
 
@@ -2747,7 +2747,7 @@ void FileEditChild::newSerialNumber_click()
 	}
 
 	ui->serialLineEdit->setText(SerialNumber_string);
-	//�����ǰ��obj��ѡ�У���Ϊ���ĵ�ѡ�е�obj
+	//如果当前有obj被选中，则为更改当选中的obj
 	int m=1;
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 	{
@@ -2760,7 +2760,7 @@ void FileEditChild::newSerialNumber_click()
 			break;
 		}
 	}
-	//�����ǰû��obj��ѡ�У���Ϊ�½�
+	//如果当前没有obj被选中，则为新建
 	if (m)
 	{
 		if (serialcount!=1)
@@ -2770,17 +2770,17 @@ void FileEditChild::newSerialNumber_click()
 		}
 		if (ui->counterSerialComBox->currentIndex()==2)
 		{
-			serialcount=0;//�رռ�����
+			serialcount=0;//关闭计数器
 		}
 		QString txtQString = ui->serialLineEdit->text();
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeSerialComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
-		this->ui->newSerialBut->setText(QStringLiteral("�޸�"));
+		this->ui->newSerialBut->setText(QStringLiteral("修改"));
 		this->update();
 
-		//�½�ͼ��ʱ�Ķ�������
+		//新建图像时改动计数器
 		int i=ui->counterSerialComBox->currentIndex();
 		if (Serialfirst!=1)
 		{
@@ -2913,7 +2913,7 @@ void FileEditChild::whitespaceRedButt_clicked()
 
 QString FileEditChild::getNum(QString str)
 {
-	//��ȡ����
+	//获取数字
 	QString str1 = str;
 	QString res;
 	QChar ch;
@@ -2976,11 +2976,11 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 	QMap<int,QString>textbyte;	
 	for (int i = inputtext.length();i > 0;i--)
 	{
-		QString cstr =inputtext.mid(inputtext.length() - i,1);//�ַ����ָ�
+		QString cstr =inputtext.mid(inputtext.length() - i,1);//字符串分割
 		QString tempstr = ConvertWCHARToHex(cstr,1);
 		//textbyte[inputtext.GetLength() - i] = tempstr;
 		textbyte[i-1] = tempstr;
-	}//תΪʮ�������ַ���
+	}//转为十六进制字符串
 	QString outputtext = "";
 	QVector<QString>textarray;
 	QVector<QString>textunicodearray;
@@ -3009,13 +3009,13 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 
 	for ( int n = 0;n < textstring1.size();n++ )
 	{
-		if ( textstring1[n] == "" )//���ڱ����б������
+		if ( textstring1[n] == "" )//不在变形列表的文字
 		{
 			QString valueStr = textbyte[n];
 			if ( valueStr.mid(1, 1) == "6" || valueStr.mid(1, 2) == "FE"
-				|| valueStr.mid(1, 3) == "FB")//���ڱ����б�İ���������
+				|| valueStr.mid(1, 3) == "FB")//不在变形列表的阿拉伯文字
 			{
-				if ( n + 3 == textbyte.size()+2 )//�����һ��
+				if ( n + 3 == textbyte.size()+2 )//在最后一列
 				{
 					arleft.push_back("0x"+ textbyte[n]);
 					for ( int f = 0;f < arleft.size();f++)
@@ -3024,9 +3024,9 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 					}
 					arleft.clear();
 				}
-				else//�������һ��
+				else//不在最后一列
 				{
-					if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//�ո�
+					if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//空格
 					{
 						arleft.push_back("0x" + textbyte[n]);
 						for ( int f= 0;f < arleft.size();f++)
@@ -3037,13 +3037,13 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 					}
 					else
 					{
-						textarray.push_back("0x" + textbyte[n]);//��������
+						textarray.push_back("0x" + textbyte[n]);//其他文字
 					}
 				}
 			}
-			else//���ڱ����б����������
+			else//不在变形列表的其他文字
 			{
-				if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//�ո�
+				if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )//空格
 				{
 					arleft.push_back("0x" + textbyte[n]);
 					for ( int f= 0;f < arleft.size();f++)
@@ -3054,11 +3054,11 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 				} 
 				else
 				{
-					textarray.push_back("0x" + textbyte[n]);//��������
+					textarray.push_back("0x" + textbyte[n]);//其他文字
 				}
 			}
 		} 
-		else//�ڱ����б�
+		else//在变形列表
 		{
 			textunicodearray = Arabicsplit(textstring1[n]);
 			if ( textbytearrayBoolean[n] == true && textbytearrayBoolean[n + 2] == true )
@@ -3111,7 +3111,7 @@ QString FileEditChild::disposeinputtext(QString inputtext)
 	QVector<QString>tempVec;
 	for (int k = textarray.size(); k > 0;k-- )
 	{
-		tempVec.push_back(textarray.at(k-1));//����
+		tempVec.push_back(textarray.at(k-1));//倒置
 	}
 	for ( int m = 0; m < tempVec.size();m++)
 	{
@@ -3224,7 +3224,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	//HexStr = "0xFEB9";
 	HexStr = " " + HexStr;
 	wchar_t* buf = new wchar_t[2];
-	memset(buf, 0, sizeof(wchar_t)*(2));//memset��ʼ������
+	memset(buf, 0, sizeof(wchar_t)*(2));//memset初始化数组
 	
 	TCHAR seps[] = _T(" ");
 
@@ -3246,7 +3246,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	return outstr;
 }
 
-QString FileEditChild::ArabicLan(QString inputstring)//Arabic��Ϲ���
+QString FileEditChild::ArabicLan(QString inputstring)//Arabic组合规则
 {
 	QString outputstring = "";
 	if (QString::compare(inputstring,"0621") == 0|| QString::compare(inputstring,"FE80") == 0 
@@ -3463,7 +3463,7 @@ bool FileEditChild::newShiftBut()
 	{
 		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
 		{
-			//���1
+			//班次1
 			QString curText1 = ui->startTimeShowSft1LineEdit->text();
 			QString leftText1 = curText1.left(2);
 			leftInt1 = atoi(leftText1.toStdString().c_str());
@@ -3472,7 +3472,7 @@ bool FileEditChild::newShiftBut()
 			showText1 = ui->textIDShowSft1LineEdit->text();
 			int showTextLen1 = showText1.length();
 
-			//���2
+			//班次2
 			QString curText2 = ui->startTimeShowSft2LineEdit->text();
 			QString leftText2 = curText2.left(2);
 			leftInt2 = atoi(leftText2.toStdString().c_str());
@@ -3481,7 +3481,7 @@ bool FileEditChild::newShiftBut()
 			showText2 = ui->textIDShowSft2LineEdit->text();
 			int showTextLen2 = showText2.length();
 
-			//���3
+			//班次3
 			QString curText3 = ui->startTimeShowSft3LineEdit->text();
 			QString leftText3 = curText3.left(2);
 			leftInt3 = atoi(leftText3.toStdString().c_str());
@@ -3490,7 +3490,7 @@ bool FileEditChild::newShiftBut()
 			showText3 = ui->textIDShowSft3LineEdit->text();
 			int showTextLen3 = showText3.length();
 
-			//���4
+			//班次4
 			QString curText4 = ui->startTimeShowSft4LineEdit->text();
 			QString leftText4 = curText4.left(2);
 			leftInt4 = atoi(leftText4.toStdString().c_str());
@@ -3499,7 +3499,7 @@ bool FileEditChild::newShiftBut()
 			showText4 = ui->textIDShowSft4LineEdit->text();
 			int showTextLen4 = showText4.length();
 
-			//�����Ŀ
+			//班次数目
 			QString m_num = ui->shiftNumShowLineEdit->text();
 			int numInt = atoi(m_num.toStdString().c_str());
 			switch(numInt)
@@ -3551,38 +3551,38 @@ bool FileEditChild::newShiftBut()
 				break;
 			}
 
-			//�ı�����
+			//文本长度
 			QString textLen = ui->textLenShowLineEdit->text();
 			int textLenInt = atoi(textLen.toStdString().c_str());
 			//ui.textlineEdit1->setMaxLength(textLenInt);
 			if (showTextLen1 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-				QString warningtext1 = QString::fromLocal8Bit("���1�������뷶Χ");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext1 = QString::fromLocal8Bit("班次1超出输入范围");
 				informationMessage(warningtext1.toStdString());
 				ui->textIDShowSft1LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen2 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-				QString warningtext2 = QString::fromLocal8Bit("���2�������뷶Χ");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext2 = QString::fromLocal8Bit("班次2超出输入范围");
 				informationMessage(warningtext2.toStdString());
 				ui->textIDShowSft2LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen3 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-				QString warningtext3 = QString::fromLocal8Bit("���3�������뷶Χ");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext3 = QString::fromLocal8Bit("班次3超出输入范围");
 				informationMessage(warningtext3.toStdString());
 				ui->textIDShowSft3LineEdit->setText(""); 
 				return false;
 			}
 			if (showTextLen4 > textLenInt)
 			{
-				//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-				QString warningtext4 = QString::fromLocal8Bit("���4�������뷶Χ");
+				//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+				QString warningtext4 = QString::fromLocal8Bit("班次4超出输入范围");
 				informationMessage(warningtext4.toStdString());
 				ui->textIDShowSft4LineEdit->setText(""); 
 				return false;
@@ -3650,7 +3650,7 @@ bool FileEditChild::newShiftBut()
 			//return;
 		}
 	}
-	//���1
+	//班次1
 	QString curText1 = ui->startTimeShowSft1LineEdit->text();
 	QString leftText1 = curText1.left(2);
 	leftInt1 = atoi(leftText1.toStdString().c_str());
@@ -3659,7 +3659,7 @@ bool FileEditChild::newShiftBut()
 	showText1 = ui->textIDShowSft1LineEdit->text();
 	int showTextLen1 = showText1.length();
 
-	//���2
+	//班次2
 	QString curText2 = ui->startTimeShowSft2LineEdit->text();
 	QString leftText2 = curText2.left(2);
 	leftInt2 = atoi(leftText2.toStdString().c_str());
@@ -3668,7 +3668,7 @@ bool FileEditChild::newShiftBut()
 	showText2 = ui->textIDShowSft2LineEdit->text();
 	int showTextLen2 = showText2.length();
 
-	//���3
+	//班次3
 	QString curText3 = ui->startTimeShowSft3LineEdit->text();
 	QString leftText3 = curText3.left(2);
 	leftInt3 = atoi(leftText3.toStdString().c_str());
@@ -3677,7 +3677,7 @@ bool FileEditChild::newShiftBut()
 	showText3 = ui->textIDShowSft3LineEdit->text();
 	int showTextLen3 = showText3.length();
 
-	//���4
+	//班次4
 	QString curText4 = ui->startTimeShowSft4LineEdit->text();
 	QString leftText4 = curText4.left(2);
 	leftInt4 = atoi(leftText4.toStdString().c_str());
@@ -3686,7 +3686,7 @@ bool FileEditChild::newShiftBut()
 	showText4 = ui->textIDShowSft4LineEdit->text();
 	int showTextLen4 = showText4.length();
 
-	//�����Ŀ
+	//班次数目
 	QString m_num = ui->shiftNumShowLineEdit->text();
 	int numInt = atoi(m_num.toStdString().c_str());
 	switch(numInt)
@@ -3738,38 +3738,38 @@ bool FileEditChild::newShiftBut()
 		break;
 	}
 
-	//�ı�����
+	//文本长度
 	QString textLen = ui->textLenShowLineEdit->text();
 	int textLenInt = atoi(textLen.toStdString().c_str());
 	//ui.textlineEdit1->setMaxLength(textLenInt);
 	if (showTextLen1 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-		QString warningtext1 = QString::fromLocal8Bit("���1�������뷶Χ");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext1 = QString::fromLocal8Bit("班次1超出输入范围");
 		informationMessage(warningtext1.toStdString());
 		ui->textIDShowSft1LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen2 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-		QString warningtext2 = QString::fromLocal8Bit("���2�������뷶Χ");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext2 = QString::fromLocal8Bit("班次2超出输入范围");
 		informationMessage(warningtext2.toStdString());
 		ui->textIDShowSft2LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen3 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-		QString warningtext3 = QString::fromLocal8Bit("���3�������뷶Χ");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext3 = QString::fromLocal8Bit("班次3超出输入范围");
 		informationMessage(warningtext3.toStdString());
 		ui->textIDShowSft3LineEdit->setText(""); 
 		return false;
 	}
 	if (showTextLen4 > textLenInt)
 	{
-		//QMessageBox::warning(this,QString::fromLocal8Bit("����"),QString::fromLocal8Bit("���1�������뷶Χ"));
-		QString warningtext4 = QString::fromLocal8Bit("���4�������뷶Χ");
+		//QMessageBox::warning(this,QString::fromLocal8Bit("错误"),QString::fromLocal8Bit("班次1超出输入范围"));
+		QString warningtext4 = QString::fromLocal8Bit("班次4超出输入范围");
 		informationMessage(warningtext4.toStdString());
 		ui->textIDShowSft4LineEdit->setText(""); 
 		return false;
