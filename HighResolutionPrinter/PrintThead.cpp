@@ -88,6 +88,11 @@ void PrintThead::run()
 			//	strTempCmd=(LPTSTR)VEC2ARRAY(theApp.myclassMessage.bytPrintDataAllOrder,theApp.myclassMessage.bytPrintDataAllOrder.size());
 			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
 			 	theApp->m_bPrintNow = false;
+				//while(nCol > 0)
+				{
+					//获得系统时间 //如果时间间隔到则打印一列
+
+				}
 			} 
 			 
 			//theApp.boPrintNowLock.Unlock();
@@ -105,7 +110,7 @@ void PrintThead::run()
 		//	}
 		//}
 
- 		sleep(1);  
+ 		msleep(1);  
 	}
 }
  

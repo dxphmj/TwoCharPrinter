@@ -51,7 +51,7 @@ public:
 	QMutex boPrintNowLock;
 
 	void RefreshWindow();
-
+	void getSerialTimeDotBuf();
 public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;

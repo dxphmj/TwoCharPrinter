@@ -20,6 +20,10 @@ ModuleMain::~ModuleMain(void)
 {
 }
 
+bool ModuleMain::MesDisIsB(int MesDis,int isNumber)
+{
+	return MesDis & (1 << isNumber);
+}
 //字符转数字
 int ModuleMain::charToDigit(char c)
 {
@@ -440,19 +444,7 @@ void ModuleMain::ReportPower()
 	//csMsg.Format(_T("串口%d打开失败!"),tempDcb.nComPort);
 	AfxMessageBox(csMsg);
 }*/
-/*
-bool ModuleMain::MesDisIsB(int MesDis,int isNumber)
-{
-	int tempB=MesDis&(1 << isNumber);
-	if (tempB>0)
-	{
-		return true;
-	} 
-	else
-	{
-		return false;
-	}
-}*/
+ 
 /*
 void StatusClass::byStatusFromSlaveState()
 {

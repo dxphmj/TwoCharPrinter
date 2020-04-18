@@ -21,7 +21,7 @@ void PrintShowThread::run()
 	//如动态打印则动态显示，下面的逻辑还需优化
 
 	int pixSize = 4; 
-
+	
 	while(theApp->mythreadDynamicBoo)
 	{
 		while(theApp->boDrawMainPic)
@@ -32,8 +32,9 @@ void PrintShowThread::run()
 				theApp->ForPreQue.pop();
 			}
 
-			//theApp->m_MessagePrint.DrawAllDynamic(pDC);		 
-			//Sleep(10);
+			//theApp->m_MessagePrint->DrawAllDynamic(theApp->m_painter);	
+			theApp->update();
+			msleep(10);
 		}
 	}
 }

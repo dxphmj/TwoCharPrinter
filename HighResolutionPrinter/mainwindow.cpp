@@ -9,7 +9,8 @@
 #include "PrintThead.h"
 #include "PrintCreatThread.h"
 #include "PrintShowThread.h"
-
+#include "TimeOBJ.h"
+#include "SerialOBJ.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -68,7 +69,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->timeShowLab->setStyleSheet("qproperty-alignment: 'AlignVCenter | AlignRight';color:rgb(255,255,255);font-size:40px;");
 	 
 	m_pPrintThread = new PrintThead(this);//启动打印线程
-	m_pPrintThread->start();	
+	m_pPrintThread->start();
 }
 
 MainWindow::~MainWindow()
@@ -81,14 +82,13 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->previewLab && event->type() == QEvent::Paint)
 	{
 	  	QPainter painter(ui->previewLab);
-	 	m_MessagePrint->DrawDot(&painter);
+	 	m_MessagePrint->DrawAllDynamic(&painter);
 	}
 	return QWidget::eventFilter(watched,event);
 }
 
 void MainWindow::RefreshWindow()
 {
-	//m_MessagePrint->ReadBmp(this->FilemanageForm->FormFileManageChild->GetCurXmlFile());
 	QWidget *pQWidget(this);
 	pQWidget->update();
 }
@@ -178,6 +178,7 @@ void MainWindow::CreatePrintData()
 
 	//CCodePrinterDlg *pParent = (CCodePrinterDlg *)GetParent();
 	//pParent->m_PictureMain.Invalidate();
+	m_MessagePrint->Matrix = 9;
 
 	if(m_MessagePrint->IntMes)
 		delete[] m_MessagePrint->IntMes;
@@ -347,3 +348,32 @@ void MainWindow::getMessageDot()
 	}
 	m_MessagePrint->getdot(); 
 } 
+
+//生成动态变化的打印数据到m_MessageEdit.bytPrintDataAll
+void MainWindow::getSerialTimeDotBuf()
+{
+	boPrintNowLock.lock();
+ 		for(int i = 0; i < m_MessagePrint->OBJ_Vec.size(); i++)
+		{
+			 
+			if (m_MessagePrint->OBJ_Vec[i]->strType2 == "serial")
+			{					 
+				CSerialOBJ* pSerialObj = (CSerialOBJ*)(m_MessagePrint->OBJ_Vec[i]);
+				pSerialObj->CreateSerialDynamic(m_MessagePrint->bytPrintDataAll,m_MessagePrint->boReverse, m_MessagePrint->boInverse,
+																m_MessagePrint->Matrix,m_MessagePrint->Pixel,m_MessagePrint->bytdigital5x5LineMap,
+																m_MessagePrint->bytdigital7x5LineMap,m_MessagePrint->bytdigital12x12LineMap,
+																m_MessagePrint->bytdigital16x12LineMap,m_MessagePrint->IntMes,m_MessagePrint->intRowMax);
+			}
+			else if (m_MessagePrint->OBJ_Vec[i]->strType2 == "time")
+			{					 
+				CTimeOBJ* pSerialObj = (CTimeOBJ*)(m_MessagePrint->OBJ_Vec[i]);
+
+				pSerialObj->CreateTimeDynamic(m_MessagePrint->bytPrintDataAll,m_MessagePrint->boReverse,m_MessagePrint->boInverse,
+																m_MessagePrint->Matrix,m_MessagePrint->Pixel,m_MessagePrint->bytdigital5x5LineMap,
+																m_MessagePrint->bytdigital7x5LineMap,m_MessagePrint->bytdigital12x12LineMap,
+																m_MessagePrint->bytdigital16x12LineMap,m_MessagePrint->IntMes,m_MessagePrint->intRowMax);
+			}
+		}	 
+	boPrintNowLock.unlock();
+	return;	 	
+}

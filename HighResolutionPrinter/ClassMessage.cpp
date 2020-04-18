@@ -20,7 +20,7 @@ ClassMessage::ClassMessage(void)
 	labName = "Default.lab";
 	intRowMax = 0;
 	Pixel = 0;
-	//getdigitaldot();
+	getdigitaldot();
 }
 
 ClassMessage::~ClassMessage(void)
@@ -1226,3 +1226,115 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 	return bytTempVec;
 }
 
+void ClassMessage::getdigitaldot()
+{
+	string tempsetTEXT = "0123456789abcdefghijklmnopqrstuvwsyzABCDEFGHIJKLMNOPQRSTUVWSYZ";
+	for (int i=0;i<tempsetTEXT.length();i++)//5x5
+	{
+		wchar_t strTempText=tempsetTEXT[i];
+		int bytTextUni=(int)strTempText;
+		int lonTextUniSetOff=bytTextUni*7+64;
+		char objbytTex5x5LineTemp[7];
+		bool objRead = OBJ_Control::readBin("5x5.fnt",lonTextUniSetOff,objbytTex5x5LineTemp,7);
+		vector<BYTE> tempVec(objbytTex5x5LineTemp,objbytTex5x5LineTemp+6);
+		string tempKey = tempsetTEXT.substr(i,1);
+		bytdigital5x5LineMap.insert(make_pair(tempKey,tempVec));
+	}
+	for (int i=0;i<tempsetTEXT.length();i++)//7x5
+	{
+		wchar_t strTempText=tempsetTEXT[i];
+		int bytTextUni=(int)strTempText;
+		int lonTextUniSetOff=bytTextUni*8+64;
+		char objbytTex7x5LineTemp[8];
+		bool objRead = OBJ_Control::readBin("7x5.fnt",lonTextUniSetOff,objbytTex7x5LineTemp,8);
+		vector<BYTE> tempVec(objbytTex7x5LineTemp,objbytTex7x5LineTemp+6);
+		string tempKey=tempsetTEXT.substr(i,1);
+		bytdigital7x5LineMap.insert(make_pair(tempKey,tempVec));
+	}
+	for (int i=0;i<tempsetTEXT.length();i++)//12*12
+	{
+		wchar_t strTempText=tempsetTEXT[i];
+		int bytTextUni=(int)strTempText;
+		int lonTextUniSetOff=bytTextUni*25+64;
+		char objbytTex12x12LineTemp[25];
+		bool objRead = OBJ_Control::readBin("12x12.fnt",lonTextUniSetOff,objbytTex12x12LineTemp,25);
+		vector<BYTE> tempVec(objbytTex12x12LineTemp,objbytTex12x12LineTemp+24);
+		string tempKey = tempsetTEXT.substr(i,1);
+		bytdigital12x12LineMap.insert(make_pair(tempKey,tempVec));
+	}
+	for (int i=0;i<tempsetTEXT.length();i++)//16*12
+	{
+		wchar_t strTempText=tempsetTEXT[i];
+		int bytTextUni=(int)strTempText;
+		int lonTextUniSetOff=bytTextUni*29+64;
+		char objbytTex16x12LineTemp[25];
+		bool objRead = OBJ_Control::readBin("16x12.fnt",lonTextUniSetOff,objbytTex16x12LineTemp,29);
+		vector<BYTE> tempVec(objbytTex16x12LineTemp,objbytTex16x12LineTemp+24);
+		string tempKey=tempsetTEXT.substr(i,1);
+		bytdigital5x5LineMap.insert(make_pair(tempKey,tempVec));
+	}
+}
+
+void ClassMessage::DrawAllDynamic(CDC* pDC)
+{
+ 	if(intMesDis.size() == 0) return;
+	//vector<BYTE> intMesDis1 = intMesDis;//intMesDis他为实时更改的，直接用它会造成混乱吧
+
+	CBrush cbrushB(QColor(0,0,0));//黑笔
+	cbrushB.setStyle(Qt::SolidPattern);
+	CBrush cbrushW(QColor(255,255,255));//白笔
+	cbrushW.setStyle(Qt::NoBrush);
+	int pixSize = 4;
+	ModuleMain myModuleMain;  
+	
+	if (Matrix != 14)
+	{ 
+		for (int k = 0; k < intRowMax; k++)
+			for (int i = 0; i <= Pixel; i++)
+			{
+				bool bDraw = false;
+				if (Pixel < 8)
+					bDraw = myModuleMain.MesDisIsB(intMesDis[11+k],i);
+				else if(Pixel > 7 && Pixel < 16)
+					bDraw = myModuleMain.MesDisIsB(intMesDis[11+2*k]+(intMesDis[11+2*k+1]*pow(2.0,8)),i);
+				else if(Pixel > 15 && Pixel < 24)
+					bDraw = myModuleMain.MesDisIsB(intMesDis[11+3*k]+(intMesDis[11+3*k+1]*pow(2.0,8))+ (intMesDis[11+3*k+2]*pow(2.0,16)),i);
+				else if(Pixel > 23)
+					bDraw = myModuleMain.MesDisIsB(intMesDis[11+4*k]+(intMesDis[11+4*k+1]*pow(2.0,8))+(intMesDis[11+4*k+2]*pow(2.0,16))+(intMesDis[11+4*k+3]*pow(2.0,24)),i);
+
+				CRect rect(k*pixSize+1,(31-i)*pixSize+1,pixSize,pixSize);
+				if(bDraw)
+				{
+					pDC->setBrush(cbrushB);						 
+					pDC->Ellipse(rect);					 
+				}
+				 else{
+					pDC->setBrush(cbrushW);	
+					pDC->Ellipse(rect);					 			 
+				}
+				//Sleep(1);
+			}		 
+	} 
+	else
+	{
+		for (int k = 0; k < intRowMax; k++)
+		{
+			BYTE tempByte1 = intMesDis[k*2+11];
+			BYTE tempByte2 = intMesDis[k*2+11+1];
+
+			for(int i = 0; i < 7; i = i+2)
+			{	
+				bool bDraw = false;
+				if (myModuleMain.MesDisIsB(tempByte1,i))
+					;//pDC->Rectangle(k*pixSize+1,(31-i/2)*pixSize+1,(k+1)*pixSize,(32-i/2)*pixSize);
+				//Sleep(1);
+				if (i < 6)
+				{
+					if (myModuleMain.MesDisIsB(tempByte2,i))
+						;//pDC->Rectangle(k*pixSize+1,(31-4-i/2)*pixSize+1,(k+1)*pixSize,(32-4-i/2)*pixSize);
+					//Sleep(1);
+				}				
+			}
+		} 
+	}	
+ }

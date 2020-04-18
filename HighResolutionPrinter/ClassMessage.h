@@ -88,7 +88,24 @@ public://·½·¨
 	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
 	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
 	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
-	bool readBin(string FontName,int offset,char *arr, int DataLen);
+	static bool readBin(string FontName,int offset,char *arr, int DataLen);
+
+	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
+							string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
+							map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
+									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
+	BYTE byteUpsidedown(BYTE a,BYTE bBit);
+	static UINT32 Bits32Upsidedown1(UINT32 n,BYTE bBit);
+	UINT32 Bits32Upsidedown2(UINT32 v,BYTE bBit);
+	UINT32 int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h);
+
+	void searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
+				int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+				int tempNEGinteger, int tempBWDxinteger,UINT32 *IntMes);
+	void searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
+							int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+							int tempNEGinteger, int byte1int , int byte2int,UINT32 *IntMes); 
+
 
 	static string to_String(int n);
 	long long BIN_to_DEC(string Bin);
@@ -211,7 +228,7 @@ public://XML
 	void getLabFromXml();
 
 	void ClearOBJ_Vec();
-	
+	void DrawAllDynamic(CDC* pDC);
 };
 
 #endif

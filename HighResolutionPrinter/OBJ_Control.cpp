@@ -561,8 +561,8 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 	CBrush* pBrush; //旧笔刷
 	CBrush cbrushB(QColor(0,0,0));//黑笔
 	cbrushB.setStyle(Qt::SolidPattern);
-	CBrush cbrushW(QColor(255,255,255));//白笔
-	cbrushW.setStyle(Qt::NoBrush);
+	//CBrush cbrushW(QColor(255,255,255));//白笔
+	//cbrushW.setStyle(Qt::NoBrush);
  	CPen cPenInvisible(Qt::NoPen);
 
 	int theDog;
@@ -746,3 +746,294 @@ void OBJ_Control::DrawDot(CDC* pDC)
 	DrawFrame(pDC);
 }
 	
+vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData2,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
+	string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
+	map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
+									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
+{
+	vector<BYTE>  bytTempData = bytTempData2;
+	if (tempfont == "5x5")
+		searchworddata(tempBWDy, tempBWDx, tempNEG, tempsetTEXT, tempRowSize, tempLineSize, tempLineStart, tempRowStart, tempSS, tempSW, 5, bytdigital5x5LineMap, 31, 3,IntMes);
+	else if (tempfont == "7x5")
+		 searchworddata(tempBWDy, tempBWDx, tempNEG, tempsetTEXT, tempRowSize, tempLineSize, tempLineStart, tempRowStart, tempSS, tempSW, 5,  bytdigital7x5LineMap, 127, 1,IntMes);
+	else if (tempfont == "12x12")
+		searchworddata12(tempBWDy, tempBWDx, tempNEG, tempsetTEXT, tempRowSize, tempLineSize, tempLineStart, tempRowStart, tempSS, tempSW, 23, bytdigital12x12LineMap, 4095, 16, 4,IntMes);
+	else if (tempfont == "16x12")
+		searchworddata12(tempBWDy, tempBWDx, tempNEG, tempsetTEXT, tempRowSize, tempLineSize, tempLineStart, tempRowStart, tempSS, tempSW, 23, bytdigital16x12LineMap, 65535, 256, 0,IntMes);
+	
+	if (boReverse)
+	{
+		if (boInverse)
+		{
+			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
+			{
+ 				//一列占nColByteNum个字节，以下是从每列的int表示中取出字节表示用来打印通信
+				int nColByteNum = pixelMesdis/8+1;
+				int tmptInt = tempintDotRowEnd;
+				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
+				{
+					//只有最后一个字节（不满8位）需要在整字节颠倒后再移位						 
+					UINT32 uInt = 0;
+					BYTE nShiftBitNum;
+					uInt = Bits32Upsidedown1(IntMes[tmptInt],32-pixelMesdis+2);					 
+					for(int n = 0; n < nColByteNum; n++)
+						bytTempData[11+(intRowMax-tmptInt)*nColByteNum+n] = (uInt>>(8*n))&0xFF;	
+					tmptInt--;
+				}
+			}
+			else if(matrixMesdis == 14)
+			{
+				BYTE tempByte1, tempByte2;
+				int tmptInt;
+				tmptInt=tempintDotRowEnd;
+				for (int i=tempintDotRowStart;i<tempintDotRowEnd;i++)
+				{
+					tempByte1 = IntMes[tmptInt]&((int)pow(2.0,8)-1);
+					tempByte2 = (IntMes[tmptInt]&((int)pow(2.0,16)-1))>>8;
+					bytTempData[(intRowMax - tmptInt) * 2 + 11]= (((tempByte2 & (1 << 6)) >> 6)) + (((tempByte1 & (1 << 6)) >> 6) * (2)) + (((tempByte2 & (1 << 5)) >> 5) * (pow(2.0,2))) + (((tempByte1 & (1 << 5)) >> 5) * (pow(2.0,3))) + (((tempByte2 & (1 << 4)) >> 4) * (pow(2.0,4))) + (((tempByte1 & (1 << 4)) >> 4) * (pow(2.0,5))) + (((tempByte2 & (1 << 3)) >> 3) * (pow(2.0,6))) + (((tempByte1 & (1 << 3)) >> 3) * (pow(2.0,7)));
+					bytTempData[(intRowMax - tmptInt) * 2 + 11+1]=(((tempByte2 & (1 << 2)) >> 2) *1) + (((tempByte1 & (1 << 2)) >> 2) * (2)) + (((tempByte2 & (1 << 1)) >> 1) * (pow(2.0,2))) + (((tempByte1 & (1 << 1)) >> 1) * (pow(2.0,3))) + (((tempByte2 & (1 << 0)) >> 0) * (pow(2.0,4))) + (((tempByte1 & (1 << 0)) >> 0) * (pow(2.0,5)));
+					tmptInt = tmptInt - 1;
+				}
+			}
+		} 
+		else
+		{
+
+			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
+			{
+				//一列占nColByteNum个字节，以下是从每列的int表示中取出字节表示用来打印通信
+				int nColByteNum = pixelMesdis/8+1;
+				int tmptInt = tempintDotRowEnd;
+				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
+				{
+					for(int n = 0; n < nColByteNum; n++) 
+						bytTempData[11+(intRowMax-tmptInt)*nColByteNum+n] = (IntMes[tmptInt]>>(8*n))&0xFF;
+					tmptInt--;
+				}
+			}
+			else if(matrixMesdis == 14)
+			{
+				BYTE tempByte1, tempByte2;
+				int tmptInt;
+				tmptInt = tempintDotRowEnd;
+				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
+				{
+					tempByte1 = IntMes[tmptInt]&((int)pow(2.0,8)-1);
+					tempByte2 = (IntMes[tmptInt]&((int)pow(2.0,16)-1))>>8;
+					bytTempData[(intRowMax - tmptInt) * 2 + 11]= (tempByte1 & 1) + ((tempByte2 & 1) * (2)) + (((tempByte1 & (1 << 1)) >> 1) * (pow(2.0,2))) + (((tempByte2 & (1 << 1)) >> 1) * (pow(2.0,3))) + (((tempByte1 & (1 << 2)) >> 2) * (pow(2.0,4))) + (((tempByte2 & (1 << 2)) >> 2) * (pow(2.0,5))) + (((tempByte1 & (1 << 3)) >> 3) * (pow(2.0,6))) + (((tempByte2 & (1 << 3)) >> 3) * (pow(2.0,7)));
+					bytTempData[(intRowMax - tmptInt) * 2 + 11+1]=(((tempByte1 & (1 << 4)) >> 4) * 1) + (((tempByte2 & (1 << 4)) >> 4) * (2)) + (((tempByte1 & (1 << 5)) >> 5) * (pow(2.0,2))) + (((tempByte2 & (1 << 5)) >> 5) * (pow(2.0,3))) + (((tempByte1 & (1 << 6)) >> 6) * (pow(2.0,4))) + (((tempByte2 & (1 << 6)) >> 6) * (pow(2.0,5)));
+					tmptInt = tmptInt - 1;
+				}
+			}
+		}
+	} 
+	else
+	{
+		if (boInverse)
+		{
+			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
+			{
+ 				//一列占nColByteNum个字节，以下是从每列的int表示中取出字节表示用来打印通信
+				int nColByteNum = pixelMesdis/8+1;
+				for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+				{
+					//只有最后一个字节（不满8位）需要在整字节颠倒后再移位						 
+					UINT32 uInt = 0;
+					BYTE nShiftBitNum;
+					uInt = Bits32Upsidedown1(IntMes[i],32-pixelMesdis+2);					 
+					for(int n = 0; n < nColByteNum; n++)
+						bytTempData[11+i*nColByteNum+n] = (uInt>>(8*n))&0xFF;	
+				}
+			}
+			else if(matrixMesdis == 14)
+			{
+				BYTE tempByte1, tempByte2;
+				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
+				{
+					tempByte1 = IntMes[i] &((int)pow(2.0,8)-1);
+					tempByte2 = IntMes[i] >> 8;
+					bytTempData[i*2+11] = (((tempByte2 & (1 << 6)) >> 6)) + (((tempByte1 & (1 << 6)) >> 6) * (2)) + (((tempByte2 & (1 << 5)) >> 5) * (pow(2.0,2))) + (((tempByte1 & (1 << 5)) >> 5) * (pow(2.0,3))) + (((tempByte2 & (1 << 4)) >> 4) * (pow(2.0,4))) + (((tempByte1 & (1 << 4)) >> 4) * (pow(2.0,5))) + (((tempByte2 & (1 << 3)) >> 3) * (pow(2.0,6))) + (((tempByte1 & (1 << 3)) >> 3) * (pow(2.0,7)));
+					bytTempData[i*2+1+11] = (((tempByte2 & (1 << 2)) >> 2) *1) + (((tempByte1 & (1 << 2)) >> 2) * (2)) + (((tempByte2 & (1 << 1)) >> 1) * (pow(2.0,2))) + (((tempByte1 & (1 << 1)) >> 1) * (pow(2.0,3))) + (((tempByte2 & (1 << 0)) >> 0) * (pow(2.0,4))) + (((tempByte1 & (1 << 0)) >> 0) * (pow(2.0,5)));
+				}		 
+			}
+		} 
+		else
+		{
+			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
+			{
+				//一列占nColByteNum个字节，以下是从每列的int表示中取出字节表示用来打印通信
+				int nColByteNum = pixelMesdis/8+1;
+				for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+				{
+					for(int n = 0; n < nColByteNum; n++) 
+						bytTempData[11+i*nColByteNum+n] = (IntMes[i]>>(8*n))&0xFF;
+				}
+			}
+			else if(matrixMesdis == 14)
+			{
+				BYTE tempByte1, tempByte2;
+				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
+				{
+					tempByte1 = IntMes[i]&((int)pow(2.0,8)-1);
+					tempByte2 = (IntMes[i]&((int)pow(2.0,16)-1))>>8;
+					bytTempData[i*2+11]= (tempByte1 & 1) + ((tempByte2 & 1) * (2)) + (((tempByte1 & (1 << 1)) >> 1) * (pow(2.0,2))) + (((tempByte2 & (1 << 1)) >> 1) * (pow(2.0,3))) + (((tempByte1 & (1 << 2)) >> 2) * (pow(2.0,4))) + (((tempByte2 & (1 << 2)) >> 2) * (pow(2.0,5))) + (((tempByte1 & (1 << 3)) >> 3) * (pow(2.0,6))) + (((tempByte2 & (1 << 3)) >> 3) * (pow(2.0,7)));
+					bytTempData[i*2+1+11]=(((tempByte1 & (1 << 4)) >> 4) * 1) + (((tempByte2 & (1 << 4)) >> 4) * (2)) + (((tempByte1 & (1 << 5)) >> 5) * (pow(2.0,2))) + (((tempByte2 & (1 << 5)) >> 5) * (pow(2.0,3))) + (((tempByte1 & (1 << 6)) >> 6) * (pow(2.0,4))) + (((tempByte2 & (1 << 6)) >> 6) * (pow(2.0,5)));
+				}
+			}		 
+		}
+	}
+
+	return bytTempData;
+}
+
+void OBJ_Control::searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempNEGinteger, int tempBWDxinteger,UINT32 *IntMes)
+{
+	string  strtempText;
+	for(int m = 0;m < tempsetTEXT.size(); m++)
+	{
+		if (tempBWDy)
+			strtempText = tempsetTEXT[tempsetTEXT.size()-m-1];
+		else
+			strtempText = tempsetTEXT[m];
+
+		vector<BYTE> bytetext = bytdigitalfont[strtempText];
+
+		for (int ss = 0; ss < tempSS; ss++)
+			bytetext.push_back(0);
+
+		for (int WWide = 0; WWide < (line+tempSS+1); WWide++)
+		{
+			if (tempBWDy){
+				if (tempNEG)
+					bytetext[WWide] = bytetext.at(line+tempSS-WWide)^tempNEGinteger;
+
+				if (tempBWDx)
+					bytetext[WWide] = byteUpsidedown(bytetext.at(line+tempSS-WWide),tempBWDxinteger);
+
+				for (int SW1 = 0;SW1 < tempSW; SW1++)
+					IntMes[tempRowStart+((line+1)*tempSW+tempSS)*m+WWide+SW1] = int32shift(IntMes[tempRowStart+((line+1)*tempSW+tempSS)*m+WWide+SW1],tempLineStart,bytetext[line+tempSS-WWide],tempLineSize);
+			}
+			else{
+				if (tempNEG)
+					bytetext[WWide] = bytetext.at(WWide)^tempNEGinteger;
+
+				if (tempBWDx)
+					bytetext[WWide] = byteUpsidedown(bytetext.at(WWide),tempBWDxinteger);
+
+				for (int SW1 = 0; SW1 < tempSW; SW1++)
+					IntMes[tempRowStart+((line+1)*tempSW+tempSS)* m+WWide+SW1] = int32shift(IntMes[tempRowStart+((line+1)*tempSW+tempSS)*m+WWide+SW1],tempLineStart,bytetext[WWide],tempLineSize);
+			}
+		}
+	}	
+	return;
+}
+
+void OBJ_Control::searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempNEGinteger, int byte1int , int byte2int,UINT32 *IntMes)
+{
+	string  strtempText;
+	for(int m = 0;m < tempsetTEXT.size(); m++)
+	{
+		if (tempBWDy)
+			strtempText = tempsetTEXT[tempsetTEXT.size()-m-1];
+		else
+			strtempText = tempsetTEXT[m];
+		vector<BYTE> bytetext = bytdigitalfont[strtempText];
+		for (int ss = 0; ss < tempSS*2; ss++)
+			bytetext.push_back(0);
+
+		UINT32 *bytetext2 = new UINT32[bytetext.size()/2];
+		for (int j = 0;j < bytetext.size()/2; j++)
+		{
+			if (tempBWDy){
+				if (tempNEG)
+					bytetext2[j] = (bytetext[bytetext.size() - 1 - (j * 2)] + bytetext[bytetext.size() - 1 - (j * 2 + 1)] * 256) ^ tempNEGinteger;
+				else
+					bytetext2[j] = (bytetext[bytetext.size() - 1 - (j * 2)] + bytetext[bytetext.size() - 1 - (j * 2 + 1)] * 256);
+ 
+				if (tempBWDx)
+					bytetext2[j] = (byteUpsidedown(bytetext[bytetext.size() - 1 - (j * 2)], 0) * byte1int) + (byteUpsidedown(bytetext[bytetext.size() - 1 - (j * 2 + 1)], byte2int)); //>> byte2int);
+ 				
+				for (int SW1 = 1; SW1 <= tempSW; SW1++)
+					IntMes[tempRowStart + ((bytetext.size()/2) * tempSW + tempSS) * m + j + SW1 - 1] = int32shift(IntMes[tempRowStart + ((bytetext.size()/2) * tempSW + tempSS) * m  + j + SW1 - 1], tempLineStart, bytetext2[j], tempLineSize);
+			}
+			else{
+				if (tempNEG)
+					bytetext2[j] = (bytetext[(j * 2)] + bytetext[ (j * 2 + 1)] * 256) ^ tempNEGinteger;
+				else
+					bytetext2[j] = (bytetext[(j * 2)] + bytetext[(j * 2 + 1)] * 256);
+ 
+				if (tempBWDx)
+					bytetext2[j] = (byteUpsidedown(bytetext[(j * 2)], 0) * byte1int) + (byteUpsidedown(bytetext[(j * 2 + 1)], byte2int));
+ 
+				for (int SW1 = 1; SW1 <= tempSW; SW1++)
+					IntMes[tempRowStart + ((bytetext.size()/2) * tempSW + tempSS) * m + j + SW1 - 1] = int32shift(IntMes[tempRowStart + ((bytetext.size()/2) * tempSW + tempSS) * m  + j + SW1 - 1], tempLineStart, bytetext2[j], tempLineSize);
+			}
+		}
+	}	
+	return;
+}
+ 
+//文字byte上下颠倒 
+BYTE OBJ_Control::byteUpsidedown(BYTE a,BYTE bBit)
+{
+	a = (a << 4) | (a >> 4);
+	a = ((a << 2) & 0xCC) | ((a >> 2) & 0x33);
+	a = ((a << 1) & 0xAA) | ((a >> 1) & 0x55);
+	a = a >> bBit;
+	return a;
+}
+
+UINT32 OBJ_Control::int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h)
+{
+	UINT32 a1 ;
+	a1 = a;
+	a = a >> (y + h);
+	a = a << (y + h);
+
+	b = b << y;
+	if (y==0)
+	{
+		a1=0;
+	} 
+	else
+	{
+		a1 = a1 << (32 - y);
+		a1 = a1 >> (32 - y);
+	}
+	a = a | b | a1;
+
+	return a;
+}
+
+//32bits上下颠倒 
+UINT32 OBJ_Control::Bits32Upsidedown1(UINT32 n,BYTE bBit)
+{
+	n = (n&0x55555555)<<1|(n&0xAAAAAAAA)>>1;
+	n = (n&0x33333333)<<2|(n&0xCCCCCCCC)>>2;
+	n = (n&0x0F0F0F0F)<<4|(n&0xF0F0F0F0)>>4;
+	n = (n&0x00FF00FF)<<8|(n&0xFF00FF00)>>8;
+	n = (n&0x0000FFFF)<<16|(n&0xFFFF0000)>>16;
+
+	n = n >> bBit;
+	return n;
+}
+
+UINT32 OBJ_Control::Bits32Upsidedown2(UINT32 v,BYTE bBit)
+{
+	v = ((v >> 1) & 0x55555555) | ((v & 0x55555555) << 1); 
+	// 交换每四位中的前两位和后两位 
+	v = ((v >> 2) & 0x33333333) | ((v & 0x33333333) << 2); 
+	// 交换每八位中的前四位和后四位 
+	v = ((v >> 4) & 0x0F0F0F0F) | ((v & 0x0F0F0F0F) << 4); 
+	// 交换相邻的两个字节 
+	v = ((v >> 8) & 0x00FF00FF) | ((v & 0x00FF00FF) << 8); 
+	// 交换前后两个双字节 
+	v = ( v >> 16             ) | ( v               << 16);
+
+	v = v >> bBit;
+	return v;
+}
