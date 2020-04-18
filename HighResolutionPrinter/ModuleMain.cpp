@@ -10,6 +10,8 @@
 #include <sstream>//使用该库函数的ostringstream，将int变成string
 #include <TCHAR.H>
 #include "time.h" 
+#include "ClassMessage.h"
+
 ModuleMain::ModuleMain(void)
 {
 }
@@ -352,6 +354,43 @@ void ModuleMain::InitCommMsg()
 		AfxMessageBox(csMsg);
 	}
 }*/
+
+//根据序列号格式生成喷印文本
+string ModuleMain::SerialFormatToText(int Value, int Digits, int Format)
+{
+	string OutPutSerialText="";
+	string strTemp="";
+	switch(Format)
+	{
+	case 0:
+		for (int a=0;a<Digits;a++)
+		{
+			strTemp=strTemp+"0";
+		}
+		strTemp=strTemp+OBJ_Control::to_String(Value);
+		OutPutSerialText=strTemp.substr(strTemp.length()-Digits,Digits);
+		break;
+	case 1:
+		for (int a=0;a<Digits;a++)
+		{
+			strTemp=strTemp+" ";
+		}
+		strTemp=strTemp+OBJ_Control::to_String(Value);
+		OutPutSerialText=strTemp.substr(strTemp.length()-Digits,Digits);
+		break;
+	case 2:
+		strTemp=OBJ_Control::to_String(Value);
+		int n=Digits-strTemp.length();
+		for(int a=0;a<n;a++)
+		{
+			strTemp=strTemp+" ";
+		}
+		OutPutSerialText=strTemp;
+		break;
+	}
+	return OutPutSerialText;
+}
+
 
 
 /*

@@ -25,7 +25,7 @@ class FileEditChild : public QWidget
 public:
 	FileEditChild(QWidget *parent = 0);
 	~FileEditChild();
-	ClassMessage m_PrinterMes;
+	ClassMessage m_MessagePrint;
 	
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;

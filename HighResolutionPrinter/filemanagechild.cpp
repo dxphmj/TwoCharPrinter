@@ -79,7 +79,8 @@ void FileManageChild::loadSeleFileBut_clicked()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget()); 
 	pFilemanageForm->hide();
-	pMainWindow->m_PrinterMes->ReadObjectsFromXml(this->GetCurXmlFile());
+	pMainWindow->m_MessagePrint->ReadObjectsFromXml(this->GetCurXmlFile());
+	pMainWindow->DownloadPrintData();
 	pMainWindow->RefreshWindow();
 }
 
@@ -140,8 +141,8 @@ void FileManageChild::PreviewSaveFile()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
-	m_pPrinterMes->OBJ_Vec.clear();
-	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_PrinterMes.OBJ_Vec.end());
+	m_pPrinterMes->ClearOBJ_Vec();
+	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.end());
 	//取消选中状态
 	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
 	{
@@ -272,7 +273,7 @@ void FileManageChild::OKFileNameBut_clicked()
 			sprintf(charFilePath,"%s",qFilePath.toStdString().c_str());
 			QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 			FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
-			pFilemanageForm->FormFileEditChild->m_PrinterMes.SaveObjectsToXml(charFilePath);
+			pFilemanageForm->FormFileEditChild->m_MessagePrint.SaveObjectsToXml(charFilePath);
 			this->ShowLocalFilePath();
 			keyboardWidget->setVisible(false);
 			this->boolSaveAsBtn_Clicked = false;

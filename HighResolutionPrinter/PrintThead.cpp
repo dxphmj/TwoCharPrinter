@@ -17,8 +17,7 @@
 #include "ClassMessage.h"
 
 
-PrintThead::PrintThead(QObject *parent)
-	: QThread(parent)
+PrintThead::PrintThead(QObject *parent)	: QThread(parent)
 {
  	m_isStop = false;
 
@@ -44,8 +43,6 @@ PrintThead::PrintThead(QObject *parent)
     		printf("open %s success\r\n",leds);	
 
 	#endif
-
-
 
 }
 
@@ -86,10 +83,10 @@ void PrintThead::run()
 		else if (theApp->m_bPrintNow)
 		{
 			//theApp.boPrintNowLock.Lock();
-			if (theApp->m_PrinterMes->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
+			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
 			{
 			//	strTempCmd=(LPTSTR)VEC2ARRAY(theApp.myclassMessage.bytPrintDataAllOrder,theApp.myclassMessage.bytPrintDataAllOrder.size());
-			    strTempCmdLen = theApp->m_PrinterMes->bytPrintDataAllOrder.size();
+			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
 			 	theApp->m_bPrintNow = false;
 			} 
 			 

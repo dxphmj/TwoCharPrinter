@@ -9,11 +9,18 @@
 #include "QFileInfo"
 #include <Windows.h>
 #include "BmpObj.h"
+#include "ModuleMain.h"
 
 #include "wordStock\\GetHZinfo.h"
  
 ClassMessage::ClassMessage(void)
 {
+	IntMes = NULL;
+	labPath = "Storage Card\\User\\Label";
+	labName = "Default.lab";
+	intRowMax = 0;
+	Pixel = 0;
+	//getdigitaldot();
 }
 
 ClassMessage::~ClassMessage(void)
@@ -457,8 +464,20 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 	doc.SaveFile(strFileName);
 } 
 
+void ClassMessage::ClearOBJ_Vec()
+{
+	for(int i = 0; i < OBJ_Vec.size(); i++)
+	{
+		delete OBJ_Vec[i];
+	}
+	OBJ_Vec.clear();
+}
+
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
+	//clear OBJ_Vec
+	ClearOBJ_Vec();
+
 	memset(CounterEditMes,false,sizeof(bool)*4);
 	TiXmlDocument doc(strFileName);
 	bool loadOkay = doc.LoadFile();
@@ -936,271 +955,43 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 
 }
 
-void ClassMessage::getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT ,
-	int tempRowSize, int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW )
+void ClassMessage::getdot()
 {
-	/*
-	char objbytTex5x5Line[7];
-	char objbytTex7x5Line[8];
-	char objbytTex12x12Line[25];
-	char objbytTex16x12Line[29];
+	boDotMes.clear();
+	vector<vector<bool>> ivec(32 ,vector<bool>(intRowMax<10?10:intRowMax,false));//为何不能小于10
+	boDotMes = ivec;//为获得obj的点阵信息申请空间
 
-	//memset(boDotMes,false,sizeof(boDotMes));
-	map<string,int> gfntMap;
-	gfntMap.clear();
-	gfntMap.insert(make_pair("5x5",0));
-	gfntMap.insert(make_pair("7x5",1));
-	gfntMap.insert(make_pair("12x12",2));
-	gfntMap.insert(make_pair("16x12",3));
-	int theDog;
-	int bytTextUni,lonTextUniSetOff;
-	string binLineTemp;
-	char Dot;///////////////////////////////////////////////////小心，这可能是个坑。。
-	int bx,by;
-	ClassMessage objClassMessage;
-	//map<string,int>::iterator iterTemp=fntMap.begin();
-	//iterTemp=fntMap.find(strFont);
-	//int caseN=iterTemp->second;
-	switch(gfntMap[tempfont])
-	{
-		case 0://5x5.fnt
-			theDog=0;//标记位
-			if (tempBWDy)
-			{
-			} 
-			else
-			{
-				for (int i=0;i<tempsetTEXT.length();i++)
-				{
-					wchar_t strTempText=tempsetTEXT[i];
-					bytTextUni=(int)strTempText;
-					lonTextUniSetOff=bytTextUni*7+64;
-					bool objRead=objClassMessage.readBin("Font\\5x5.fnt",lonTextUniSetOff,objbytTex5x5Line,7);
-					if (!objRead)
-					{
-						for (int r=0;r<7;r++)
-						{
-							if (r==6)
-							{
-								objbytTex5x5Line[r]=6;
-							} 
-							else
-							{
-								objbytTex5x5Line[r]=0;
-							}
+	ModuleMain myModuleMain;
 
-						}
-					}
-					switch(objbytTex5x5Line[6])
-					{
-					case 6:
-						for (int k=0;k<6;k++)
-						{
-							binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex5x5Line[k]);
-							binLineTemp=binLineTemp.substr(binLineTemp.length()-5,5);
-							for (int p =0;p<5;p++)
-							{
-								Dot=binLineTemp[p];
-								bx=theDog+tempRowStart+k*tempSW;
-
-								if (tempBWDx)
-								{
-									by=tempLineStart+p;
-								} 
-								else
-								{
-									by=5-p+tempLineStart-1;
-								}
-								switch(Dot)
-								{
-								case '0':
-									if(tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-										}
-									}
-									break;
-								case '1':
-									if(!tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-										}
-									}
-									break;
-								default:
-									if(!tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-										}
-									}
-								}	
-							}
-						}//画列结束；
-
-						if(intSS>0&&tempNEG)
-						{
-							for (int m=0;m<tempSS;m++)
-							{
-								for(int p=0;p<5;p++)
-								{
-									bx=theDog+tempRowStart+6*tempSW+m;
-									if (tempBWDx)
-									{
-										by=5-p+tempLineStart-1;
-									} 
-									else
-									{
-										by=tempLineStart+p;
-									}
-										boDotMes[by][bx]=true;
-								}
-							}
-						}
-						theDog=theDog+6*tempSW+tempSS;
-						break;
-					case 5:
-						break;
-					case 4:
-						break;
-					case 3:
-						break;
-						//default:
-
-					}
-				}
-			}
-			break;
-		case 1:
-			theDog=0;//标记位
-			if (tempBWDy)
-			{
-			} 
-			else
-			{
-				for (int i=0;i<tempsetTEXT.length();i++)
-				{
-					wchar_t strTempText=tempsetTEXT[i];
-					bytTextUni=(int)strTempText;
-					lonTextUniSetOff=bytTextUni*8+64;
-
-					bool objRead=objClassMessage.readBin("Font\\7x5.fnt",lonTextUniSetOff,objbytTex7x5Line,8);
-					if (!objRead)
-					{
-						for (int r=0;r<8;r++)
-						{
-							if (r==7)
-							{
-								objbytTex7x5Line[r]=6;
-							} 
-							else
-							{
-								objbytTex7x5Line[r]=0;
-							}
-
-						}
-					}
-					switch(objbytTex7x5Line[7])
-					{
-					case 7:
-						break;
-					case 6:
-						for (int k=0;k<6;k++)
-						{
-							binLineTemp="0000000"+objClassMessage.DEC_to_BIN(objbytTex7x5Line[k]);
-							binLineTemp=binLineTemp.substr(binLineTemp.length()-7,7);
-							for (int p =0;p<7;p++)
-							{
-								Dot=binLineTemp[p];
-								bx=(theDog+tempRowStart)+k*tempSW;
-									
-								if (tempBWDx)
-								{
-									
-									by=(tempLineStart+p);
-								} 
-								else
-								{
-										
-									by=(7-p+tempLineStart-1);
-
-								}
-								switch(Dot)
-								{
-								case '0':
-									if(tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-										}
-									}
-									break;
-								case '1':
-									if(!tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-										}
-									}
-									break;
-								default:
-									if(!tempNEG)
-									{
-										for (int s=0;s<tempSW;s++)
-										{
-											boDotMes[by][bx+s]=true;
-
-										}
-									}
-								}	
-							}
-						}//画列结束；
-
-						if(intSS>0&&tempNEG)
-						{
-							for (int m=0;m<tempSS;m++)
-							{
-								for(int p=0;p<7;p++)
-								{
-									bx=(theDog+tempRowStart)+6*tempSW+m;
-									
-									if (tempBWDx)
-									{
-											
-										by=7-p+tempLineStart-1;
-									} 
-									else
-									{
-											
-										by=tempLineStart+p;
-									}
-									boDotMes[by][bx]=true;
-								}
-							}
-						}
-						theDog=theDog+6*tempSW+tempSS;
-						break;
-					case 5:
-						break;
-					case 4:
-						break;
-					case 3:
-						break;
-						//default:
-
-					}
-				}
-			}
-			break;
+    for(int i = 0; i < OBJ_Vec.size(); i++)
+	{		 		
+		if (OBJ_Vec[i]->strType2=="text")
+		{
+			OBJ_Vec[i]->DrawTextAll(NULL,boDotMes);
+		}
+		else if (OBJ_Vec[i]->strType2=="logo")
+		{
+			OBJ_Vec[i]->DrawLogoQRcodeDM(NULL,boDotMes);
+			 
+		}
+		else if (OBJ_Vec[i]->strType2=="qrcode")//二维码
+		{
+			OBJ_Vec[i]->DrawLogoQRcodeDM(NULL,boDotMes);
+		}
+		else if (OBJ_Vec[i]->strType2=="time")
+		{
+			CTimeOBJ* pTimeObj = (CTimeOBJ*)(OBJ_Vec[i]);
+			OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(myModuleMain.string2CString(pTimeObj->strTime),
+				                    pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
+			OBJ_Vec[i]->DrawTextAll(NULL,boDotMes);
+		}
+		else if (OBJ_Vec[i]->strType2 == "serial")
+		{						 
+			CSerialOBJ* pSerialObj = (CSerialOBJ*)(OBJ_Vec[i]);
+			OBJ_Vec[i]->strText = myModuleMain.SerialFormatToText(pSerialObj->intSerialStartValue, pSerialObj->intSerialDigits,pSerialObj->bytSerialFormat);
+			OBJ_Vec[i]->DrawTextAll(NULL,boDotMes);
+		}		 
 	}
-	*/
 }
 
 vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEnd)
@@ -1434,3 +1225,4 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 	}
 	return bytTempVec;
 }
+

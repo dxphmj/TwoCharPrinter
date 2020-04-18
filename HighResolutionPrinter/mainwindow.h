@@ -39,13 +39,16 @@ public:
     ~MainWindow();
 
 public:
- 	ClassMessage* m_PrinterMes; //打印监控用
+ 	ClassMessage* m_MessagePrint; //打印监控用
     queue<vector<BYTE>> queCtr;//命令队列 
 	queue<vector<BYTE>> ForPreQue;//欲打印队列
 	CParamSetting m_ParamSetting;
-
+	bool mythreadDynamicBoo;//动态线程开关
+	bool boDrawMainPic;//主界面动态绘制开关
 	bool m_bPrintNow;
 	bool m_bDynamicPrint;
+
+	QMutex boPrintNowLock;
 
 	void RefreshWindow();
 
@@ -54,7 +57,9 @@ public:
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;
 
-	
+	void DownloadPrintData();
+	void CreatePrintData();
+	void getMessageDot();
 
 private slots:
 	void fileManageBut_clicked();
@@ -65,7 +70,6 @@ private slots:
 	bool eventFilter(QObject *watched, QEvent *event);
 
 	void GetDateTime();
-
 public:
 	QTimer  *myTimer;
 	PrintThead *m_pPrintThread;

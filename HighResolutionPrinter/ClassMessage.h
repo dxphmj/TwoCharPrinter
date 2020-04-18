@@ -16,9 +16,12 @@ class CBmpObj;
 class CBarcodeOBJ;
 class CQRcodeOBJ;
 class CDMcodeOBJ;
-
+ 
 using namespace std;
 typedef unsigned char BYTE;
+
+typedef unsigned int  UINT32, *PUINT32;
+
 #define max 100
 
 #define CDC QPainter
@@ -87,7 +90,7 @@ public://方法
 	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
 	bool readBin(string FontName,int offset,char *arr, int DataLen);
 
-	string to_String(int n);
+	static string to_String(int n);
 	long long BIN_to_DEC(string Bin);
 	string DEC_to_BIN(long long Dec);
 
@@ -111,18 +114,19 @@ public:
 	string Inverse;
 	bool boReverse;//翻转，颠倒，由喷印设置中更改
 	bool boInverse;
-    bool boDotMes[32][255];
+   // bool boDotMes[32][255];
 	int intRowMax; 
 	int bytRowByteMul;//一列由几个byte表示
 	bool boDynamic;//是否动态打印
 	bool boPrintNow;//是否即时打印
 	//vector<BYTE> bytTempDataVec;
 
+	int scrMaxRow;//滚动条用
     /////////////////////////////////////////////
 	bool CounterEditMes[4];
 	///xiansiyong
 
-	vector<BYTE> intMesDis;
+	//vector<BYTE> intMesDis;
 	int bytSerialConCoundis;
 	int intDotMesRowdis;
 	int matrixMesdis ;
@@ -176,8 +180,10 @@ public:
 	map<string,vector<BYTE>> bytdigital12x12LineMap;
 	map<string,vector<BYTE>> bytdigital16x12LineMap;
 
-	//UINT32 *IntMes;//动态数组
-	///////////////////////////////////////
+ 	///////////////////////////////////////
+	vector<vector<bool> > boDotMes;//从obj中获得[32][intRowMax]点阵信息，根据点阵的bool值每列组合成一个整数IntMes[intRowMax] 
+	UINT32 *IntMes;//大小intRowMax个整数，每个整数四个字节，表示1列点阵打印信息，主要用来在动态生成打印信息时统一表达整个打印区域
+	vector<BYTE> intMesDis;//主界面显示时表达已打印的信息（字节流，根据Pixel的值每列1-4个字节，排列顺序时先每列从下往上，再从左向右
 	vector<BYTE> bytPrintDataAllOrder;//主动发送BUF
 	vector<BYTE> bytPrintDataAll;//空时自动发送BUF
 	////////////////////////////////////
@@ -189,8 +195,7 @@ public:
 	long long BIN_to_DEC(string Bin);
 	string DEC_to_BIN(long long Dec);
  	void DrawDot(CDC* pDC);//
-	void getdot(string tempfont, bool tempBWDy, bool tempBWDx , bool tempNEG, string tempsetTEXT , int tempRowSize, 
-				int tempLineSize, int tempLineStart , int tempRowStart , int tempSS , int tempSW );
+	void getdot();
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
  	char* GenerateFileName(string tmpFileName);
 	char* Generate2DcodeName(string strFileName);
@@ -203,7 +208,10 @@ public://XML
 	string labPath;
 	string labName;
 	void createLABXML();
-	void getLabFromXml();	
+	void getLabFromXml();
+
+	void ClearOBJ_Vec();
+	
 };
 
 #endif
