@@ -473,6 +473,43 @@ void ClassMessage::ClearOBJ_Vec()
 	OBJ_Vec.clear();
 }
 
+void ClassMessage::GetMatrix()
+{
+	if (strMatrix == "1L5M")
+	{
+		Matrix = 5;
+	} 
+	else if(strMatrix == "1L7M")
+	{
+		Matrix = 7;
+	}
+	else if(strMatrix == "1L9M")
+	{
+		Matrix = 9;
+	}
+	else if(strMatrix == "1L12M")
+	{
+		Matrix = 12;
+	}
+	else if(strMatrix == "1L19M")
+	{
+		Matrix = 19;
+	}
+	else if(strMatrix == "1L25M")
+	{
+		Matrix = 25;
+	}
+	else if(strMatrix == "2L7M")
+	{
+		Matrix = 14;
+	}
+	else
+	{
+		Matrix = 9;
+	}
+}
+
+
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
 	//clear OBJ_Vec
@@ -521,6 +558,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					strText = nodeText->ValueTStr().c_str();
 					//sprintf_s(obj.m_texts,"%s",strText); 
 					strMatrix.assign(strText);
+					GetMatrix();
 				}
 				else if(strcmp(strItem,"Pixel") == 0)
 				{

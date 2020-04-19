@@ -81,6 +81,7 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->previewLab && event->type() == QEvent::Paint)
 	{
+		boDrawMainPic = true;
 	  	QPainter painter(ui->previewLab);
 	 	m_MessagePrint->DrawAllDynamic(&painter);
 	}
@@ -118,11 +119,6 @@ void MainWindow::closeBut_clicked()
 void MainWindow::PrintBut_clicked()
 {
 	m_bPrintNow = !m_bPrintNow;
-
-	m_pPrintCreateThread = new PrintCreatThread(this);//启动打印内容生成线程
-	m_pPrintCreateThread->start();
-	m_pPrintShowThread = new PrintShowThread(this);//启动主界面打印显示线程
-	m_pPrintShowThread->start();
 }
 
 void MainWindow::GetDateTime()
@@ -178,7 +174,6 @@ void MainWindow::CreatePrintData()
 
 	//CCodePrinterDlg *pParent = (CCodePrinterDlg *)GetParent();
 	//pParent->m_PictureMain.Invalidate();
-	m_MessagePrint->Matrix = 9;
 
 	if(m_MessagePrint->IntMes)
 		delete[] m_MessagePrint->IntMes;

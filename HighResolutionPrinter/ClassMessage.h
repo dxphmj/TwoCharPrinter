@@ -201,8 +201,8 @@ public:
 	vector<vector<bool> > boDotMes;//从obj中获得[32][intRowMax]点阵信息，根据点阵的bool值每列组合成一个整数IntMes[intRowMax] 
 	UINT32 *IntMes;//大小intRowMax个整数，每个整数四个字节，表示1列点阵打印信息，主要用来在动态生成打印信息时统一表达整个打印区域
 	vector<BYTE> intMesDis;//主界面显示时表达已打印的信息（字节流，根据Pixel的值每列1-4个字节，排列顺序时先每列从下往上，再从左向右
-	vector<BYTE> bytPrintDataAllOrder;//主动发送BUF
-	vector<BYTE> bytPrintDataAll;//空时自动发送BUF
+	vector<BYTE> bytPrintDataAllOrder;//主动发送BUF 第一次打印内容
+	vector<BYTE> bytPrintDataAll;//空时自动发送BUF 如不是动态打印而发送的内容
 	////////////////////////////////////
 
 public:
@@ -229,6 +229,7 @@ public://XML
 
 	void ClearOBJ_Vec();
 	void DrawAllDynamic(CDC* pDC);
+	void GetMatrix();
 };
 
 #endif

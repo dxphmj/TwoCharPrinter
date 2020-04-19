@@ -193,12 +193,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//画布宽度item选项（单位：5x5像素）
 	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
-	ui->pixelComBox->addItem(QStringLiteral("12px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("16px"));//3
-	ui->pixelComBox->addItem(QStringLiteral("24px"));//4
-	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
+	ui->pixelComBox->addItem(QStringLiteral("9px"));//2
+	ui->pixelComBox->addItem(QStringLiteral("12px"));//3
+	ui->pixelComBox->addItem(QStringLiteral("19px"));//4
+	ui->pixelComBox->addItem(QStringLiteral("25px"));//5
 	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
-	ui->pixelComBox->setCurrentIndex(6);
+	ui->pixelComBox->setCurrentIndex(4);
 
 	//移动速度item选项（单位：5x5像素点）
 	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
@@ -578,16 +578,17 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
+	//绘图统一放到eventFilter 中进行绘制，这里只是改变相关变量值
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 	QMap <QString,int> PixelMap;
 	PixelMap.insert("5px",25);
 	PixelMap.insert("7px",35);
+	PixelMap.insert("9px",45);
 	PixelMap.insert("12px",60);
-	PixelMap.insert("16px",80);
-	PixelMap.insert("24px",120);
-	PixelMap.insert("32px",160);
+	PixelMap.insert("19px",95);
+	PixelMap.insert("25px",125);
 	PixelMap.insert("48px",240);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
@@ -608,7 +609,12 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	qFramePainter->drawLine(0,240,0,240-PixelMap[CurPixelItem]);
 	qFramePainter->drawLine(0,240,3120,240);
 	qFramePainter->drawLine(0,240-PixelMap[CurPixelItem],3120,240-PixelMap[CurPixelItem]);
-	qFramePainter->drawLine(3120,240,3120,240-PixelMap[CurPixelItem]);	
+	qFramePainter->drawLine(3120,240,3120,240-PixelMap[CurPixelItem]);
+
+	//获得Matrix 及 Piexl的值
+	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
+	m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
+	m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -1394,8 +1400,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 		this->ui->DMCodeLineEdit->setText("");
 		this->ui->newDMBut->setText(QStringLiteral("New"));
 		break;
-	}
-	
+	}	
 }
 
 void FileEditChild::saveasBut_clicked()
@@ -1414,8 +1419,8 @@ void FileEditChild::saveasBut_clicked()
 	else //新建文件
 	{
 		tmpFileName = "NewLabel_";
-		m_MessagePrint.strMatrix = "1L7M";
-		m_MessagePrint.Pixel = 7;
+		//m_MessagePrint.strMatrix = "1L7M";
+		//m_MessagePrint.Pixel = 7;
 		m_MessagePrint.Reverse = "GLOBAL";
 		m_MessagePrint.Inverse = "GLOBAL";
 	}
@@ -2525,19 +2530,19 @@ void FileEditChild::newTimeBut_clicked()
 			{
 			case 0:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 5;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;
 				break;
 			case 1:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 7;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;//////////这是个坑，注意阿拉伯语要改这
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*6;
 				break;
 			case 2:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 12;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;
 				break;
 			case 3:
 				m_MessagePrint.OBJ_Vec[i]->intLineSize = 16;
-				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;//////////这是个坑，注意阿拉伯语要改这
+				m_MessagePrint.OBJ_Vec[i]->intRowSize = strText.length()*13;
 				break;
 			}
 			fontText = ui->fontSizeTimeComBox->currentText();

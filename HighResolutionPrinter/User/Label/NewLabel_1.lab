@@ -1,24 +1,31 @@
 <MES>
     <PRO>
-        <Matrix>1L7M</Matrix>
-        <Pixel>8</Pixel>
+        <Matrix>1L19M</Matrix>
+        <Pixel>20</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>2Dcode</TYPE2>
+        <TYPE2>serial</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>21</LineSize>
-        <RowSize>242</RowSize>
+        <LineSize>5</LineSize>
+        <RowSize>54</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>User/logo/output.bmp</setTEXT>
-        <BarcodeType>8</BarcodeType>
-        <BarcodeContent>456789</BarcodeContent>
+        <setFONT>5x5</setFONT>
+        <setTEXT>000000001</setTEXT>
+        <FirstLimit>1</FirstLimit>
+        <SecondLimit>999999999</SecondLimit>
+        <StartValue>1</StartValue>
+        <Step>1</Step>
+        <Repeat>1</Repeat>
+        <Digits>9</Digits>
+        <Format>0</Format>
+        <Counter>0</Counter>
     </OBJ>
 </MES>

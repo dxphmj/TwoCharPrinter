@@ -65,14 +65,23 @@ void PrintThead::run()
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
 	while (1) 
-	{       
+	{
+		//如果有正在打印（传给IO的数据）则执行传输打印，等这次打印结束后再处理新一轮的打印及控制）
+
+
+
+
 		if(m_isStop) 
-			return; 
+			continue; 
+
+		if(!theApp->m_bPrintNow) 
+			continue; 
+
 		//获得光电开关的状态
 		#ifdef RUN_BY_DEVICE
 			close(m_SynchronizerHande);
 	    #endif
-		//如果使用光电开关，并且触发了则打印，触发的条件判断是：当前状态与前一个状态不一样
+		//如果使用光电开关，并且触发了则打印，触发的条件判断是：当前状态与前一个状态不一样（上升沿或下降沿）
         if (theApp->queCtr.size()>0) //将tempQueVec数据发送给相关控制IO
 		{
 			vector<BYTE> tempQueVec = theApp->queCtr.front();
@@ -80,35 +89,60 @@ void PrintThead::run()
 			strTempCmdLen = tempQueVec.size();
 			//strTempCmd=(LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
 		}
-		else if (theApp->m_bPrintNow)
+		else if (theApp->m_MessagePrint->boPrintNow) //打印第一条数据
 		{
-			//theApp.boPrintNowLock.Lock();
-			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
+ 			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
 			{
 			//	strTempCmd=(LPTSTR)VEC2ARRAY(theApp.myclassMessage.bytPrintDataAllOrder,theApp.myclassMessage.bytPrintDataAllOrder.size());
 			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
-			 	theApp->m_bPrintNow = false;
-				//while(nCol > 0)
+				theApp->m_MessagePrint->boPrintNow = false;
+			}			 
+		}
+		else if(!theApp->m_MessagePrint->boPrintNow) //打印第二条及后续的数据
+		{
+			if (theApp->m_MessagePrint->boDynamic) //如果有动态数据，则打印动态数据
+			{
+				if (theApp->ForPreQue.size()>0)
 				{
-					//获得系统时间 //如果时间间隔到则打印一列
-
+					vector<BYTE> tempQueVec = theApp->ForPreQue.front();
+					theApp->ForPreQue.pop();
+					strTempCmdLen = tempQueVec.size();
+					//strTempCmd = (LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
+					if (strTempCmdLen > 11)
+					{
+						//动态显示相关										
+						theApp->m_MessagePrint->intMesDis = tempQueVec;										 
+					} 
+					else //发送默认的指令数据
+					{
+						//strTempCmd=(LPTSTR)readArr;
+						//strTempCmdLen=8;
+					}
+				} 
+				else //发送默认的指令数据
+				{
+					//strTempCmd=(LPTSTR)readArr;
+					//strTempCmdLen=8;
 				}
 			} 
-			 
-			//theApp.boPrintNowLock.Unlock();
+			else //如果没有动态数据则打印静态数据
+			{
+				if (theApp->m_MessagePrint->bytPrintDataAll.size()>11)
+				{
+					//strTempCmd = (LPTSTR)VEC2ARRAY(theApp.m_MessageEdit.bytPrintDataAll,theApp.m_MessagePrint.bytPrintDataAll.size());
+					strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
+					if (strTempCmdLen < 12) //发送默认的指令数据
+					{
+						//strTempCmd=(LPTSTR)readArr;
+						//strTempCmdLen=8;
+					}
+				}
+			}
 		}
-		//else if (!theApp->m_bPrintNow) //
-		//{					 
-		//	if (theApp->m_bDynamicPrint)
-		//	{
-		//		if (theApp->ForPreQue.size()>0)
-		//		{
-		//			vector<BYTE> tempQueVec = theApp->ForPreQue.front();
-		//			theApp->ForPreQue.pop();
-		//			strTempCmdLen = tempQueVec.size();
-		//		}
-		//	}
-		//}
+
+		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）
+		//为简化控制，每次采用的打印速度不变
+		//速度放到主线程MainWindow定时器中进行采集，这里只是采用
 
  		msleep(1);  
 	}

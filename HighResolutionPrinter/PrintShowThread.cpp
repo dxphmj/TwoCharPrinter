@@ -26,11 +26,11 @@ void PrintShowThread::run()
 	{
 		while(theApp->boDrawMainPic)
 		{
-			if(theApp->ForPreQue.size() >= 2)///////以后删掉
-			{
-				theApp->m_MessagePrint->intMesDis = theApp->ForPreQue.front();;
-				theApp->ForPreQue.pop();
-			}
+			//if(theApp->ForPreQue.size() >= 2)///////以后删掉
+			//{
+			//	theApp->m_MessagePrint->intMesDis = theApp->ForPreQue.front();;
+			//	theApp->ForPreQue.pop();
+			//}
 
 			//theApp->m_MessagePrint->DrawAllDynamic(theApp->m_painter);	
 			theApp->update();
