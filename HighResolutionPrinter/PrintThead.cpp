@@ -64,13 +64,11 @@ void PrintThead::run()
 	int strTempCmdLen = 0;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
+	//打开驱动
+
+
 	while (1) 
 	{
-		//如果有正在打印（传给IO的数据）则执行传输打印，等这次打印结束后再处理新一轮的打印及控制）
-
-
-
-
 		if(m_isStop) 
 			continue; 
 
@@ -135,14 +133,26 @@ void PrintThead::run()
 					{
 						//strTempCmd=(LPTSTR)readArr;
 						//strTempCmdLen=8;
+						
 					}
+					theApp->m_MessagePrint->intMesDis = theApp->m_MessagePrint->bytPrintDataAll;
+					theApp->update();
 				}
 			}
 		}
+		
 
 		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）
 		//为简化控制，每次采用的打印速度不变
 		//速度放到主线程MainWindow定时器中进行采集，这里只是采用
+			 
+	    //将strTempCmd 写入驱动
+		//下面的工作在喷头驱动中实现
+
+		//1 开光电开关的终端 读取光电开关下降沿 ，用完后重置
+		
+		//2 按速度开定时中断，在中断中打印每一列
+		 
 
  		msleep(1);  
 	}
