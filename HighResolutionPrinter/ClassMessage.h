@@ -135,7 +135,7 @@ public:
 	int intRowMax; 
 	int bytRowByteMul;//一列由几个byte表示
 	bool boDynamic;//是否动态打印
-	bool boPrintNow;//是否即时打印
+	bool boPrintNow;//是否即时打印（打印第一条数据or打印后续数据）
 	//vector<BYTE> bytTempDataVec;
 
 	int scrMaxRow;//滚动条用
@@ -230,6 +230,7 @@ public://XML
 	void ClearOBJ_Vec();
 	void DrawAllDynamic(CDC* pDC);
 	void GetMatrix();
+	int GetPixel();
 };
 
 #endif

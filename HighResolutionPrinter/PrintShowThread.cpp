@@ -22,9 +22,9 @@ void PrintShowThread::run()
 
 	int pixSize = 4; 
 	
-	while(theApp->mythreadDynamicBoo)
+	while(theApp->mythreadDynamicBoo)//动态线程开关
 	{
-		while(theApp->boDrawMainPic)
+		while(theApp->boDrawMainPic)//主界面动态绘制开关
 		{
 			//if(theApp->ForPreQue.size() >= 2)///////以后删掉
 			//{

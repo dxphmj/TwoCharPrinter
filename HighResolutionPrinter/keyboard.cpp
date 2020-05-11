@@ -104,6 +104,7 @@ void keyboard::SetLineEdit(lineedit_click* pInputEdit)
 	m_pInputEdit = pInputEdit;
 	SetKBPosition();
 	setVisible(true);
+	m_booWitchWidget = true;
 }
 
 void keyboard::SetLineEditFM(lineedit_click* pInputEdit)
@@ -111,6 +112,7 @@ void keyboard::SetLineEditFM(lineedit_click* pInputEdit)
 	m_pInputEdit = pInputEdit;
 	SetPosition();
 	setVisible(true);
+	m_booWitchWidget = false;
 }
 
 void keyboard::SetKBPosition()
@@ -217,8 +219,12 @@ void keyboard::changeLineEdit(lineedit_click* pInputEdit)
 void keyboard::changeCurrentlineedit()
 {
 	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(this->parentWidget());
-	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(this->parentWidget());
-	pFileEditChild->ChangeTabLineEdit();
+	if (m_booWitchWidget)
+	{
+		FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(this->parentWidget());
+		pFileEditChild->ChangeTabLineEdit();
+	}
+	
 }
 
 void keyboard::languagespell()   //获取中文编辑框内的拼音 将对应的汉字置入备选框中
@@ -5418,7 +5424,6 @@ void keyboard::Z_KBBut_clicked()
 
 void keyboard::num1_KBBut_clicked()
 {
-	
 	changeCurrentlineedit();
 	m_pInputEdit->cursorPosition();
 	m_pInputEdit->insert(ui->one_KBBut->text());

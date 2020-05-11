@@ -39,7 +39,7 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	if (this->booFocus)
 	{
 		cPen.setStyle(Qt::SolidLine);
-		cPen.setWidth(3);
+		cPen.setWidth(1);
 		cPen.setColor(Qt::green);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);
@@ -47,7 +47,7 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	else
 	{
 		cPen.setStyle(Qt::SolidLine);
-		cPen.setWidth(3);
+		cPen.setWidth(1);
 		cPen.setColor(Qt::blue);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);
@@ -222,6 +222,7 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes)
 	//cbrushB.DeleteObject();
 }
 
+//需要检查绘制文本时生成的boDotMes[]是否正确，因为当前loadLocalFile后在MainWindow显示的打印数据中静态文本显示不正确
 void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes)
 {
 	char objbytTex5x5Line[29];
@@ -307,7 +308,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 			else
 				binLineTemp = "0000000" + DEC_to_BIN((byte)objbytTex5x5Line[k]);
 
-			binLineTemp=binLineTemp.substr(binLineTemp.length()-nFontRow,nFontRow);
+			binLineTemp = binLineTemp.substr(binLineTemp.length()-nFontRow,nFontRow);
 			for (int p =0;p<nFontRow;p++)
 			{
 				Dot=binLineTemp[p];

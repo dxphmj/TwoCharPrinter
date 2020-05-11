@@ -146,7 +146,7 @@ void PrintThead::run()
 		//为简化控制，每次采用的打印速度不变
 		//速度放到主线程MainWindow定时器中进行采集，这里只是采用
 			 
-	    //将strTempCmd 写入驱动
+	    //将strTempCmd 写入驱动 目前已知：unsigned char可以传字节 0x11 == 00010001  bool a[8]
 		//下面的工作在喷头驱动中实现
 
 		//1 开光电开关的终端 读取光电开关下降沿 ，用完后重置

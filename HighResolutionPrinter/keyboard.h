@@ -92,6 +92,7 @@ public:
 public:
 	bool m_Upper;
 	bool m_symbol;
+	bool m_booWitchWidget;//判断是谁调用keyboard：是fileeditchild还是filemanagechild，前者为true（张玮珺）
 	lineedit_click* m_pInputEdit;
 	language  *languageWidget;
 	int m_CharacterPosition;//字符位置
