@@ -3,10 +3,16 @@
 
 #include <QWidget>
 #include <QLineEdit>
+#include <QSpinBox>
 #include <QFontComboBox>
 #include "ClassMessage.h"
 #include "OBJ_Type.h"
 #include "backend\zint.h"
+//#include <QLabel>
+//#include <QPushButton>
+#include <QTextCharFormat>
+#include <QTextEdit>
+
 
 class keyboard;
 class numkeyboard;
@@ -101,9 +107,16 @@ public:
 	QString fileName;
 
 	QFontComboBox* FontComboBoxChoose;//字体选择框
-	//QLabel* label ;
+	//QPushButton* button;
+	//QLabel* label;
+	QTextEdit* text;//还未定义所需要改变的字体，所以点击字体会报错
+	QSpinBox* spinBox;
+	//QComboBox *sizeComboBox; 
+//QLabel* label ;
 //public slots:
 	//void changedFont(const QFont& f);
+
+	
 
 public:
 	Ui::FileEditChild* ui;
@@ -121,6 +134,13 @@ public slots:
 	//void ChangeBmpWH(QImage& pImage,double nS);//更改图片的长度和宽度
 	void PreviewBmpChange();
 	void OnEnChangeEditInput_clicked();//arabic连笔
+
+	//按钮
+	//void textButton();
+	//void changedIndex(int idx);
+	void changedFont(const QString &arg1);
+	void spinBoxSlot(int FontSize);
+	//void ShowSizeSpinBox(QString spinValue);
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
@@ -199,6 +219,9 @@ public:
 	void setText2DMCodeLineEdit();
 
 	void PreviewBmp(QString fileNameAAA,int nW,int nH);
+
+
+	void mergeFormat(QTextCharFormat format);
 
 	//QTimer *m_time;
 	int m_hour;

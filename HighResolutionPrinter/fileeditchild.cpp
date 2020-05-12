@@ -18,6 +18,10 @@
 #include "paramsettingform.h"
 #include "automessagebox.h"
 #include <tchar.h>
+#include <QDebug>
+#include <QFontDatabase>
+#include <QDir>
+
 
 
 FileEditChild::FileEditChild(QWidget *parent)
@@ -335,28 +339,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->serialLineEdit->setText("000000001");
 	SerialNumber_length=0;
 	Serialfirst=1; 
-
-
-	/*for(int i=0 ; i<1;i++)
-	{*/
-	//fcb = new QFontComboBox(this->ui->fontSizeTextComBox);
-	/*}
-    */
-	//fcb->setFontFilters(QFontComboBox::AllFonts);
-	///*fc[1]->setFontFilters(QFontComboBox::ScalableFonts);
-	//fc[2]->setFontFilters(QFontComboBox::NonScalableFonts);
-	//fc[3]->setFontFilters(QFontComboBox::MonospacedFonts);
-	//fc[4]->setFontFilters(QFontComboBox::ProportionalFonts);*/
-
-	/*int ypos = 30 ;*/
-	/*for(int i=0;i<1;i++)
-	{*/
-	//fcb->setGeometry(100,470,300,41);
-	//	ypos += 40 ;
-	/*}*/
-	/*label = new QLabel("用此标签查看字体效果",this);
-	label->setGeometry(10,230,200,30);
-	connect(fc[0],SIGNAL(currentFontChanged(QFont)),this,SLOT(changedFont(QFont)));*/
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -370,7 +352,43 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose = new QFontComboBox(this->ui->fontTypeTextComBox);
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
-	
+
+
+	//text = new QTextEdit(this);
+
+	//sizeComboBox = new QComboBox(this->ui->fontSizeTextComBox);
+	//QFontDatabase db;
+	////standardSize(): return a list of standard font size(返回可用标准字号的列表).
+	//foreach (int size, db.standardSizes ())
+	//sizeComboBox->addItem (QString::number (size)); //将它们插入到字号下拉框中
+
+	//connect (sizeComboBox, SIGNAL(activated(QString)), this, SLOT(ShowSizeSpinBox(QString)));
+	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
+	spinBox->setValue(font().pointSize());
+	spinBox->setGeometry(0,0,181,41);
+	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
+
+
+	connect(FontComboBoxChoose,SIGNAL(currentIndexChanged(QString)),this,SLOT(changedFont(const QString &)));
+
+	/*QDir MultiLanguage;
+	QString MultiLanguageDir = MultiLanguage.currentPath();*/
+
+	//QFontDatabase database;
+	//int fontID = QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
+	//qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontID);
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/msyh.ttc"); //Wei Ruan Ya Hei
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simsun.ttc"); //Song Ti
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/SIMYOU.TTF"); //You Yuan
+
+
+	//qDebug()<<"\r\n Availble chinese font. \r\n"; //下面为支持简体中文字体库
+	//foreach (const QString &family, database.families(QFontDatabase::SimplifiedChinese))
+	//{
+	//	qDebug()<<family;
+	//}
+
 	/*ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
@@ -574,6 +592,61 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 		     }
 	      }
 	}
+}
+
+
+
+//void FileEditChild::changedIndex(int idx)
+//{
+//	qDebug("Font index : %d",idx);
+//}
+//
+void FileEditChild::changedFont(const QString &arg1)
+{
+	QTextCharFormat fmt;
+	fmt.setFontFamily(arg1);
+	//ui->wordTextEdit->mergeCurrentCharFormat(fmt);
+	mergeFormat(fmt);
+	/*label->setText(QStringLiteral("选择字体:")+f.family());
+	label->setFont(f.family());*/
+}
+
+
+//void FileEditChild::ShowSizeSpinBox(QString spinValue)
+//{
+//	QTextCharFormat fmt;
+//	//设置字号
+//	fmt.setFontPointSize (spinValue.toFloat ());
+//	//直接调用QTextEdit的
+//	text->mergeCurrentCharFormat (fmt);
+//}
+
+void FileEditChild::spinBoxSlot(int FontSize)
+{
+	QTextCharFormat fmt;
+	fmt.setFontPointSize(FontSize);
+	//text->mergeCurrentCharFormat(fmt);
+	//mergeFormat(fmt);
+}
+
+//void FileEditChild::textButton()
+//{
+//	label->setText(QStringLiteral("选择字体:") + FontComboBoxChoose->currentText());
+//	QFont font;
+//	font.setPixelSize(35);
+//	font.setFamily(FontComboBoxChoose->currentText());
+//	label->setFont(font);
+//}
+void FileEditChild::mergeFormat(QTextCharFormat format)
+{
+	QTextCursor cursor = text->textCursor ();   //获得编辑框中的光标 未定义所需要改的文字，所以会报错
+	//若光标没有高亮区，则光标所在处的词为选区(由前后有空格，“，”，“、”，“."等标点分隔
+	if (!cursor.hasSelection ())
+		cursor.select (QTextCursor::WordUnderCursor);
+	//将format所表示的格式应用到光标所在处的字符上
+	cursor.mergeCharFormat (format);
+	//调用QTextEdit的mergeCurrentCharFormat()将格式应用到选区的所有字符上
+	//text->mergeCurrentCharFormat (format);
 }
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
