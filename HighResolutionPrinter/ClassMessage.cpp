@@ -475,21 +475,17 @@ void ClassMessage::ClearOBJ_Vec()
 
 void ClassMessage::GetMatrix()
 {
-	if (strMatrix == "1L5M")
-	{
-		Matrix = 5;
-	} 
-	else if(strMatrix == "1L7M")
-	{
-		Matrix = 7;
-	}
-	else if(strMatrix == "1L9M")
+	if (strMatrix == "1L9M")
 	{
 		Matrix = 9;
-	}
+	} 
 	else if(strMatrix == "1L12M")
 	{
 		Matrix = 12;
+	}
+	else if(strMatrix == "1L14M")
+	{
+		Matrix = 14;
 	}
 	else if(strMatrix == "1L19M")
 	{
@@ -499,16 +495,33 @@ void ClassMessage::GetMatrix()
 	{
 		Matrix = 25;
 	}
-	else if(strMatrix == "2L7M")
+	else if(strMatrix == "1L32M")
 	{
-		Matrix = 14;
+		Matrix = 32;
 	}
+	/*else if(strMatrix == "2L7M")
+	{
+	Matrix = 14;
+	}*/
 	else
 	{
-		Matrix = 9;
+		Matrix = 19;
 	}
 }
 
+int ClassMessage::GetPixel()
+{
+	int i;
+	int intTempPixel = 0;
+	for( i=0; i<OBJ_Vec.size(); ++i )
+	{
+		if (intTempPixel < (OBJ_Vec[i]->intLineStart + OBJ_Vec[i]->intLineSize))
+		{
+			intTempPixel = OBJ_Vec[i]->intLineStart + OBJ_Vec[i]->intLineSize;
+		}
+	}
+	return intTempPixel;
+}
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
@@ -1168,12 +1181,14 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 							bytTempVec.push_back(0);
 							for (int j=8;j<16;j++)
 							{
-								bytTempVec[3*i+1]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-8);
+								//bytTempVec[3*i+1]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-8);
+								bytTempVec[3*i+1] = bytTempVec[3*i+1] + getByteFromDot(boDotMes[j][i],j-8);
 							}
 							bytTempVec.push_back(0);
 							for (int j=16;j<Pixel;j++)
 							{
-								bytTempVec[3*i+2]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-16);
+								//bytTempVec[3*i+2]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-16);
+								bytTempVec[3*i+2] = bytTempVec[3*i+2] + getByteFromDot(boDotMes[j][i],j-16);
 							}
 						}
 					}
@@ -1346,7 +1361,8 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 					pDC->setBrush(cbrushB);						 
 					pDC->Ellipse(rect);					 
 				}
-				 else{
+				else
+				{
 					pDC->setBrush(cbrushW);	
 					pDC->Ellipse(rect);					 			 
 				}

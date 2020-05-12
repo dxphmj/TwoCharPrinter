@@ -208,6 +208,7 @@ private slots:
 protected:
 	//void paintEvent(QPaintEvent *event);
 	void paintDot();
+	void paintFrame();
 	bool eventFilter(QObject *watched, QEvent *event);
 
 public:

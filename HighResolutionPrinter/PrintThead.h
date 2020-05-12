@@ -3,7 +3,7 @@
 
 #include <QThread>
 
-class PrintThead : public QThread
+class PrintThead : public QThread //ÅçÄ«´òÓ¡Ïß³Ì
 {
 	Q_OBJECT
 

@@ -78,7 +78,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(heightBmpShowBmpLineEdit_clicked()));
 	connect(ui->widthShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(widthShowBmpLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
-	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
+	connect(ui->pixelComBox,SIGNAL(currentIndexChanged(int)),this,SLOT(ChangePixel()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
 	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
@@ -195,14 +195,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	
 	//画布宽度item选项（单位：5x5像素）
-	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
-	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
-	ui->pixelComBox->addItem(QStringLiteral("9px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("12px"));//3
-	ui->pixelComBox->addItem(QStringLiteral("19px"));//4
-	ui->pixelComBox->addItem(QStringLiteral("25px"));//5
-	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
-	ui->pixelComBox->setCurrentIndex(4);
+	ui->pixelComBox->addItem(QStringLiteral("9px"));//0
+	ui->pixelComBox->addItem(QStringLiteral("12px"));//1
+	ui->pixelComBox->addItem(QStringLiteral("14px"));//2
+	ui->pixelComBox->addItem(QStringLiteral("19px"));//3
+	ui->pixelComBox->addItem(QStringLiteral("25px"));//4
+	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
+	//ui->pixelComBox->addItem(QStringLiteral("48px"));//6
+	ui->pixelComBox->setCurrentIndex(3);
 
 	//移动速度item选项（单位：5x5像素点）
 	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
@@ -418,8 +418,7 @@ void FileEditChild::ScrollBarChanged(int value)
 
 void FileEditChild::ChangePixel()
 {
-	QPainter qFramePainter(this->ui->editPreviewText);
-	DrawBackFrame(&qFramePainter);
+	this->update();
 }
 
 void FileEditChild::shiftNumShowLineEdit_clicked()
@@ -653,41 +652,41 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	//绘图统一放到eventFilter 中进行绘制，这里只是改变相关变量值
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
-	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 	QMap <QString,int> PixelMap;
-	PixelMap.insert("5px",25);
-	PixelMap.insert("7px",35);
 	PixelMap.insert("9px",45);
 	PixelMap.insert("12px",60);
+	PixelMap.insert("14px",70);
 	PixelMap.insert("19px",95);
 	PixelMap.insert("25px",125);
-	PixelMap.insert("48px",240);
+	PixelMap.insert("32px",160);
+	//PixelMap.insert("48px",240);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
 	int i,j;
-	for (i=0; i<=3121; i+=5)
+	for (i=1; i<=3121; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
+		qFramePainter->drawLine(i,241-PixelMap[CurPixelItem],i,241);
 	}
-	for (j=240; j>=240-PixelMap[CurPixelItem]; j-=5)
+	for (j=241; j>=241-PixelMap[CurPixelItem]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,240,0,240-PixelMap[CurPixelItem]);
-	qFramePainter->drawLine(0,240,3120,240);
-	qFramePainter->drawLine(0,240-PixelMap[CurPixelItem],3120,240-PixelMap[CurPixelItem]);
-	qFramePainter->drawLine(3120,240,3120,240-PixelMap[CurPixelItem]);
+	qFramePainter->drawLine(1,241,1,241-PixelMap[CurPixelItem]);//left
+	qFramePainter->drawLine(0,239,3121,239);//down
+	qFramePainter->drawLine(0,241-PixelMap[CurPixelItem],3121,241-PixelMap[CurPixelItem]);//up
+	qFramePainter->drawLine(3120,241,3120,241-PixelMap[CurPixelItem]);//right
 
-	//获得Matrix 及 Piexl的值
+	//获得Matrix 及 Pixel的值
 	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
 	m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
-	m_MessagePrint.Pixel = m_MessagePrint.Matrix;
+	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -1020,13 +1019,18 @@ void FileEditChild::paintDot()
 	m_MessagePrint.DrawDot(&painter);
 }
 
+void FileEditChild::paintFrame()
+{
+	QPainter qFramePainter(this->ui->editPreviewText);
+	DrawBackFrame(&qFramePainter);
+}
+
 bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintDot();
-		QPainter qFramePainter(this->ui->editPreviewText);
-		DrawBackFrame(&qFramePainter);
+		paintFrame();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -1481,6 +1485,7 @@ void FileEditChild::saveasBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 	string tmpFileName;
+
 	//判断当前编辑的文件是否为本地文件
 	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
@@ -1492,11 +1497,21 @@ void FileEditChild::saveasBut_clicked()
 	else //新建文件
 	{
 		tmpFileName = "NewLabel_";
-		//m_MessagePrint.strMatrix = "1L7M";
-		//m_MessagePrint.Pixel = 7;
-		m_MessagePrint.Reverse = "GLOBAL";
-		m_MessagePrint.Inverse = "GLOBAL";
 	}
+
+	QMap <QString,string> MatrixMap;
+	MatrixMap.insert("9px","1L9M");
+	MatrixMap.insert("12px","1L12M");
+	MatrixMap.insert("14px","1L14M");
+	MatrixMap.insert("19px","1L19M");
+	MatrixMap.insert("25px","1L25M");
+	MatrixMap.insert("32px","1L32M");
+	QString qStrMatrix = ui->pixelComBox->currentText();
+	m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
+	m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
+	m_MessagePrint.Reverse = "GLOBAL";
+	m_MessagePrint.Inverse = "GLOBAL";
+	
 	pFilemanageForm->FormFileManageChild->boolSaveAsBtn_Clicked = true;
 	char* tmpChar = m_MessagePrint.GenerateFileName((tmpFileName));
 	char FilePath[256];
@@ -1516,6 +1531,7 @@ void FileEditChild::saveBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	
 	//判断文件是新建的，还是来源于本地
 	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
@@ -1523,9 +1539,25 @@ void FileEditChild::saveBut_clicked()
 		string tmpStr = qfileName.toStdString();
 		char tmpFilePath[256];
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
+		
+		QMap <QString,string> MatrixMap;
+		MatrixMap.insert("9px","1L9M");
+		MatrixMap.insert("12px","1L12M");
+		MatrixMap.insert("14px","1L14M");
+		MatrixMap.insert("19px","1L19M");
+		MatrixMap.insert("25px","1L25M");
+		MatrixMap.insert("32px","1L32M");
+		QString qStrMatrix = ui->pixelComBox->currentText();
+		m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
+		m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
+		m_MessagePrint.Reverse = "GLOBAL";
+		m_MessagePrint.Inverse = "GLOBAL";
+		
 		m_MessagePrint.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
+		
 		//此处应当弹出"保存成功！"对话框，持续一秒
+
 	}
 	else //新建文件，与"另存为"相同
 	{

@@ -1,0 +1,23 @@
+<MES>
+    <PRO>
+        <Matrix>1L19M</Matrix>
+        <Pixel>11</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>text</TYPE2>
+        <LineStart>6</LineStart>
+        <RowStart>6</RowStart>
+        <LineSize>5</LineSize>
+        <RowSize>24</RowSize>
+        <SW>1</SW>
+        <SS>0</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setFONT>5x5</setFONT>
+        <setTEXT>AAAA</setTEXT>
+    </OBJ>
+</MES>
