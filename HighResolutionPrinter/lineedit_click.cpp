@@ -11,13 +11,13 @@ lineedit_click::~lineedit_click()
 
 }
 
-//ÖØĞ´mousePressEventÊÂ¼ş,¼ì²âÊÂ¼şÀàĞÍÊÇ²»ÊÇµã»÷ÁËÊó±ê×ó¼ü
+//é‡å†™mousePressEventäº‹ä»¶,æ£€æµ‹äº‹ä»¶ç±»å‹æ˜¯ä¸æ˜¯ç‚¹å‡»äº†é¼ æ ‡å·¦é”®
 void lineedit_click::mousePressEvent(QMouseEvent *event) {
-	//Èç¹ûµ¥»÷ÁË¾Í´¥·¢clickedĞÅºÅ
+	//å¦‚æœå•å‡»äº†å°±è§¦å‘clickedä¿¡å·
 	if (event->button() == Qt::LeftButton) {
-		//´¥·¢clickedĞÅºÅ
+		//è§¦å‘clickedä¿¡å·
 		emit clicked();
 	}
-	//½«¸ÃÊÂ¼ş´«¸ø¸¸Àà´¦Àí
+	//å°†è¯¥äº‹ä»¶ä¼ ç»™çˆ¶ç±»å¤„ç†
 	QLineEdit::mousePressEvent(event);
 }

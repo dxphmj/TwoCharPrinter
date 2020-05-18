@@ -9,10 +9,10 @@ public:
 	~CBarcodeOBJ(void);
 
 public://Parameters
-	int intBarcodeType;//±£´æÌõĞÎÂëµÄÀàĞÍ
-	int intBarType;//±£´æÌõÂëÀàĞÍ
-	string strCodeContent;//±£´æÌõĞÎÂëµÄÄÚÈİ
-	int intBarWhite;//±£´æÌõĞÎÂë¿Õ°×¿í¶È
+	int intBarcodeType;//ä¿å­˜æ¡å½¢ç çš„ç±»å‹
+	int intBarType;//ä¿å­˜æ¡ç ç±»å‹
+	string strCodeContent;//ä¿å­˜æ¡å½¢ç çš„å†…å®¹
+	int intBarWhite;//ä¿å­˜æ¡å½¢ç ç©ºç™½å®½åº¦
 
 public://Functions
 	void Create2Dcode();

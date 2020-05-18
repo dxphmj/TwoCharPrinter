@@ -65,7 +65,7 @@ void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boRevers
 			int tempValue = CountNum+intSerialStep;
 			if (tempValue > intSerialSecondLimit)
 			{
-				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit - 1; //'超第二象限的计算公式
+				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit - 1; //'瓒呯浜岃薄闄愮殑璁＄畻鍏紡
 			} 
 			else
 			{
@@ -77,7 +77,7 @@ void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boRevers
 			int tempValue = CountNum-intSerialStep;
 			if (tempValue < intSerialSecondLimit)
 			{
-				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit + 1; //'超第二象限的计算公式
+				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit + 1; //'瓒呯浜岃薄闄愮殑璁＄畻鍏紡
 			} 
 			else
 			{

@@ -3,13 +3,15 @@
 #include "sstream"
 #include <fstream>
 #include <stdio.h>
-#include "xml\tinyxml.h"
+#include "xml/tinyxml.h"
 #include <QPainter>
 #include <io.h>
 #include "QFileInfo"
 #include <Windows.h>
-#include "backend\zint.h"
-#include "wordStock\\GetHZinfo.h"
+#include "backend/zint.h"
+#include "wordStock/GetHZinfo.h"
+#include <QDir>
+#include <QString>
 
 OBJ_Control::OBJ_Control(void)
 {
@@ -54,13 +56,13 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	}
 	pDC->setPen(cPen);
 		
-	//ÏÂ
+	//ä¸‹
 	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-intLineStart*5-1);
-	//ÉÏ
+	//ä¸Š
 	pDC->drawLine(intRowStart*5,241-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
-	//×ó
+	//å·¦
 	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,intRowStart*5,241-(intLineSize+intLineStart)*5-1);
-	//ÓÒ
+	//å³
 	pDC->drawLine((intRowStart+intRowSize)*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
 }
 
@@ -84,12 +86,25 @@ wstring stringToWstring(const string& str)
 bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
 {
 	ifstream file;
-	string path="Font\\";   
+#ifdef vsPath
+    string path="Font\\";
+#elif defined qtPath
+    QDir dir;
+    QString curDir = dir.currentPath();
+    QString fontPath = curDir + "/HighResolutionPrinter/Font/";
+    string path = fontPath.toStdString();
+#else
+    string path="/home/Font/";//ARMè·¯å¾„
+#endif
 	path += FontName;
 	file.open(path.c_str(),ios::binary);
 	file.seekg(offset,ios::beg);
-	bool bFlag = file.read(arr,DataLen);
-	return bFlag;
+    //bool bFlag = file.read(arr,DataLen);
+    //return bFlag;
+
+    //å¾…ä¿®æ”¹
+    file.read(arr,DataLen);
+    return true;
 }
 
 string OBJ_Control::to_String(int n)
@@ -98,7 +113,7 @@ string OBJ_Control::to_String(int n)
 	char s[max];
 	char ss[max];
 	int i=0,j=0;
-	if (n < 0)// ´¦Àí¸ºÊı
+	if (n < 0)// å¤„ç†è´Ÿæ•°
 	{
 		m = 0 - m;
 		j = 1;
@@ -157,7 +172,7 @@ long long OBJ_Control::BIN_to_DEC(string Bin)
 
 void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes)
 {
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
 
 	int bmpWidth,bmpHeight;
@@ -218,16 +233,16 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes)
 		}		 		
 	}
 	//if(pDC)
-	//	pDC->SelectObject(pBrush); //»Ö¸´±ÊË¢
+	//	pDC->SelectObject(pBrush); //æ¢å¤ç¬”åˆ·
 	//cbrushB.DeleteObject();
 }
 
-//ĞèÒª¼ì²é»æÖÆÎÄ±¾Ê±Éú³ÉµÄboDotMes[]ÊÇ·ñÕıÈ·£¬ÒòÎªµ±Ç°loadLocalFileºóÔÚMainWindowÏÔÊ¾µÄ´òÓ¡Êı¾İÖĞ¾²Ì¬ÎÄ±¾ÏÔÊ¾²»ÕıÈ·
+//éœ€è¦æ£€æŸ¥ç»˜åˆ¶æ–‡æœ¬æ—¶ç”Ÿæˆçš„boDotMes[]æ˜¯å¦æ­£ç¡®ï¼Œå› ä¸ºå½“å‰loadLocalFileååœ¨MainWindowæ˜¾ç¤ºçš„æ‰“å°æ•°æ®ä¸­é™æ€æ–‡æœ¬æ˜¾ç¤ºä¸æ­£ç¡®
 void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes)
 {
 	char objbytTex5x5Line[29];
 	 
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
 	if(pDC)	 
 		pDC->setBrush(cbrushB);		 
@@ -237,7 +252,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 	string binLineTemp;
 	char Dot;
 	int x1,y1,x2,y2;
-	theDog=0;//±ê¼ÇÎ»	
+	theDog=0;//æ ‡è®°ä½	
 
 	wstring strWText=stringToWstring(strText);
 	for (int i=0;i<strWText.length();i++)
@@ -373,7 +388,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 					}
 				}	
 			}
-		}//»­ÁĞ½áÊø£»
+		}//ç”»åˆ—ç»“æŸï¼›
 
 		theDog = theDog+objbytTex5x5Line[nBytesOneWord-1]*intSW+intSS;
 	}
@@ -388,7 +403,7 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 {
  	char objbytTex12x12Line[25];
 
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
 
 	int theDog;
@@ -544,14 +559,14 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 					}
 				}	
 			}
-		}//»­ÁĞ½áÊø£»
+		}//ç”»åˆ—ç»“æŸï¼›
 
 		theDog = theDog+objbytTex12x12Line[24]*intSW+intSS;	 
 	}
 
 	intRowSize = theDog;	
 	//if(pDC)
-	//	pDC->SelectObject(pBrush); //»Ö¸´±ÊË¢
+	//	pDC->SelectObject(pBrush); //æ¢å¤ç¬”åˆ·
 	//cbrushB.DeleteObject();
 }
 
@@ -559,10 +574,10 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 { 
 	char objbytTex16x12Line[29];
 
-	CBrush* pBrush; //¾É±ÊË¢
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush* pBrush; //æ—§ç¬”åˆ·
+	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
-	//CBrush cbrushW(QColor(255,255,255));//°×±Ê
+	//CBrush cbrushW(QColor(255,255,255));//ç™½ç¬”
 	//cbrushW.setStyle(Qt::NoBrush);
  	CPen cPenInvisible(Qt::NoPen);
 
@@ -713,14 +728,14 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 					}
 				}	
 			}
-		}//»­ÁĞ½áÊø£»
+		}//ç”»åˆ—ç»“æŸï¼›
 
 		theDog = theDog+objbytTex16x12Line[28]*intSW+intSS;
 	}
 	 
 	intRowSize = theDog;	
  //	if(pDC)
-	//	pDC->SelectObject(pBrush); //»Ö¸´±ÊË¢
+	//	pDC->SelectObject(pBrush); //æ¢å¤ç¬”åˆ·
 	//cbrushB.DeleteObject();
 }
 
@@ -738,7 +753,7 @@ void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes)
 
 void OBJ_Control::DrawDot(CDC* pDC)
 {
-	vector<vector<bool>> TempboDotMes; //ÁÙÊ±ÓÃ£¬Ã»ÓĞÈÎºÎÒâÒå
+	vector<vector<bool>> TempboDotMes; //ä¸´æ—¶ç”¨ï¼Œæ²¡æœ‰ä»»ä½•æ„ä¹‰
 	if (strType2 == "logo" || strType2 == "qrcode" ||strType2 == "2Dcode" || strType2 == "datamatrix")
 		DrawLogoQRcodeDM(pDC,TempboDotMes);
 	else
@@ -768,12 +783,12 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 		{
 			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
 			{
- 				//Ò»ÁĞÕ¼nColByteNum¸ö×Ö½Ú£¬ÒÔÏÂÊÇ´ÓÃ¿ÁĞµÄint±íÊ¾ÖĞÈ¡³ö×Ö½Ú±íÊ¾ÓÃÀ´´òÓ¡Í¨ĞÅ
+ 				//ä¸€åˆ—å nColByteNumä¸ªå­—èŠ‚ï¼Œä»¥ä¸‹æ˜¯ä»æ¯åˆ—çš„intè¡¨ç¤ºä¸­å–å‡ºå­—èŠ‚è¡¨ç¤ºç”¨æ¥æ‰“å°é€šä¿¡
 				int nColByteNum = pixelMesdis/8+1;
 				int tmptInt = tempintDotRowEnd;
 				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
 				{
-					//Ö»ÓĞ×îºóÒ»¸ö×Ö½Ú£¨²»Âú8Î»£©ĞèÒªÔÚÕû×Ö½Úµßµ¹ºóÔÙÒÆÎ»						 
+					//åªæœ‰æœ€åä¸€ä¸ªå­—èŠ‚ï¼ˆä¸æ»¡8ä½ï¼‰éœ€è¦åœ¨æ•´å­—èŠ‚é¢ å€’åå†ç§»ä½						 
 					UINT32 uInt = 0;
 					BYTE nShiftBitNum;
 					uInt = Bits32Upsidedown1(IntMes[tmptInt],32-pixelMesdis+2);					 
@@ -802,7 +817,7 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 
 			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
 			{
-				//Ò»ÁĞÕ¼nColByteNum¸ö×Ö½Ú£¬ÒÔÏÂÊÇ´ÓÃ¿ÁĞµÄint±íÊ¾ÖĞÈ¡³ö×Ö½Ú±íÊ¾ÓÃÀ´´òÓ¡Í¨ĞÅ
+				//ä¸€åˆ—å nColByteNumä¸ªå­—èŠ‚ï¼Œä»¥ä¸‹æ˜¯ä»æ¯åˆ—çš„intè¡¨ç¤ºä¸­å–å‡ºå­—èŠ‚è¡¨ç¤ºç”¨æ¥æ‰“å°é€šä¿¡
 				int nColByteNum = pixelMesdis/8+1;
 				int tmptInt = tempintDotRowEnd;
 				for (int i = tempintDotRowStart; i < tempintDotRowEnd; i++)
@@ -834,11 +849,11 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 		{
 			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
 			{
- 				//Ò»ÁĞÕ¼nColByteNum¸ö×Ö½Ú£¬ÒÔÏÂÊÇ´ÓÃ¿ÁĞµÄint±íÊ¾ÖĞÈ¡³ö×Ö½Ú±íÊ¾ÓÃÀ´´òÓ¡Í¨ĞÅ
+ 				//ä¸€åˆ—å nColByteNumä¸ªå­—èŠ‚ï¼Œä»¥ä¸‹æ˜¯ä»æ¯åˆ—çš„intè¡¨ç¤ºä¸­å–å‡ºå­—èŠ‚è¡¨ç¤ºç”¨æ¥æ‰“å°é€šä¿¡
 				int nColByteNum = pixelMesdis/8+1;
 				for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
 				{
-					//Ö»ÓĞ×îºóÒ»¸ö×Ö½Ú£¨²»Âú8Î»£©ĞèÒªÔÚÕû×Ö½Úµßµ¹ºóÔÙÒÆÎ»						 
+					//åªæœ‰æœ€åä¸€ä¸ªå­—èŠ‚ï¼ˆä¸æ»¡8ä½ï¼‰éœ€è¦åœ¨æ•´å­—èŠ‚é¢ å€’åå†ç§»ä½						 
 					UINT32 uInt = 0;
 					BYTE nShiftBitNum;
 					uInt = Bits32Upsidedown1(IntMes[i],32-pixelMesdis+2);					 
@@ -862,7 +877,7 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 		{
 			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
 			{
-				//Ò»ÁĞÕ¼nColByteNum¸ö×Ö½Ú£¬ÒÔÏÂÊÇ´ÓÃ¿ÁĞµÄint±íÊ¾ÖĞÈ¡³ö×Ö½Ú±íÊ¾ÓÃÀ´´òÓ¡Í¨ĞÅ
+				//ä¸€åˆ—å nColByteNumä¸ªå­—èŠ‚ï¼Œä»¥ä¸‹æ˜¯ä»æ¯åˆ—çš„intè¡¨ç¤ºä¸­å–å‡ºå­—èŠ‚è¡¨ç¤ºç”¨æ¥æ‰“å°é€šä¿¡
 				int nColByteNum = pixelMesdis/8+1;
 				for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
 				{
@@ -978,7 +993,7 @@ void OBJ_Control::searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG ,
 	return;
 }
  
-//ÎÄ×ÖbyteÉÏÏÂµßµ¹ 
+//æ–‡å­—byteä¸Šä¸‹é¢ å€’ 
 BYTE OBJ_Control::byteUpsidedown(BYTE a,BYTE bBit)
 {
 	a = (a << 4) | (a >> 4);
@@ -1010,7 +1025,7 @@ UINT32 OBJ_Control::int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h)
 	return a;
 }
 
-//32bitsÉÏÏÂµßµ¹ 
+//32bitsä¸Šä¸‹é¢ å€’ 
 UINT32 OBJ_Control::Bits32Upsidedown1(UINT32 n,BYTE bBit)
 {
 	n = (n&0x55555555)<<1|(n&0xAAAAAAAA)>>1;
@@ -1026,13 +1041,13 @@ UINT32 OBJ_Control::Bits32Upsidedown1(UINT32 n,BYTE bBit)
 UINT32 OBJ_Control::Bits32Upsidedown2(UINT32 v,BYTE bBit)
 {
 	v = ((v >> 1) & 0x55555555) | ((v & 0x55555555) << 1); 
-	// ½»»»Ã¿ËÄÎ»ÖĞµÄÇ°Á½Î»ºÍºóÁ½Î» 
+	// äº¤æ¢æ¯å››ä½ä¸­çš„å‰ä¸¤ä½å’Œåä¸¤ä½ 
 	v = ((v >> 2) & 0x33333333) | ((v & 0x33333333) << 2); 
-	// ½»»»Ã¿°ËÎ»ÖĞµÄÇ°ËÄÎ»ºÍºóËÄÎ» 
+	// äº¤æ¢æ¯å…«ä½ä¸­çš„å‰å››ä½å’Œåå››ä½ 
 	v = ((v >> 4) & 0x0F0F0F0F) | ((v & 0x0F0F0F0F) << 4); 
-	// ½»»»ÏàÁÚµÄÁ½¸ö×Ö½Ú 
+	// äº¤æ¢ç›¸é‚»çš„ä¸¤ä¸ªå­—èŠ‚ 
 	v = ((v >> 8) & 0x00FF00FF) | ((v & 0x00FF00FF) << 8); 
-	// ½»»»Ç°ºóÁ½¸öË«×Ö½Ú 
+	// äº¤æ¢å‰åä¸¤ä¸ªåŒå­—èŠ‚ 
 	v = ( v >> 16             ) | ( v               << 16);
 
 	v = v >> bBit;

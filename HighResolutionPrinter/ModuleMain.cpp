@@ -7,7 +7,7 @@
 #include<cstdio>
 //#include <iostream>
 #include <math.h>
-#include <sstream>//Ê¹ÓÃ¸Ã¿âº¯ÊıµÄostringstream£¬½«int±ä³Éstring
+#include <sstream>//ä½¿ç”¨è¯¥åº“å‡½æ•°çš„ostringstreamï¼Œå°†intå˜æˆstring
 #include <TCHAR.H>
 #include "time.h" 
 #include "ClassMessage.h"
@@ -24,7 +24,7 @@ bool ModuleMain::MesDisIsB(int MesDis,int isNumber)
 {
 	return MesDis & (1 << isNumber);
 }
-//×Ö·û×ªÊı×Ö
+//å­—ç¬¦è½¬æ•°å­—
 int ModuleMain::charToDigit(char c)
 {
 	if(c=='A'||c=='a')
@@ -66,7 +66,7 @@ int ModuleMain::jinzhi8to10(string pre) {
 
 int ModuleMain::jinzhi2to10(string pre)
 {
-	// ÔÚ´Ë´¦¿ÉÒÔÌí¼ÓÑéÖ¤ÊÇ·ñÎª¶ş½øÖÆÊı×ÖµÄÂß¼­
+	// åœ¨æ­¤å¤„å¯ä»¥æ·»åŠ éªŒè¯æ˜¯å¦ä¸ºäºŒè¿›åˆ¶æ•°å­—çš„é€»è¾‘
 	int length=pre.size();
 	int result=0;
 	for(int i=0; i<length; i++)
@@ -83,7 +83,7 @@ string ModuleMain::jinzhi10to2(int pre) {
 		pre/=2;
 	}
 	string res=oss.str();
-	oss.str("");//Çå¿ÕÔ­Êı¾İÁ÷
+	oss.str("");//æ¸…ç©ºåŸæ•°æ®æµ
 	for(int i=0;i<res.length();i++){
 		oss<<res[res.length()-i-1];
 	}
@@ -96,7 +96,7 @@ string ModuleMain::jinzhi10to8(int pre) {
 		pre/=8;
 	}
 	string res=oss.str();
-	oss.str("");//Çå¿ÕÔ­Êı¾İÁ÷
+	oss.str("");//æ¸…ç©ºåŸæ•°æ®æµ
 	for(int i=0;i<res.length();i++){
 		oss<<res[res.length()-i-1];
 	}
@@ -109,7 +109,7 @@ string ModuleMain::jinzhi10to16(int pre) {
 	//	pre/=16;
 	//}
 	//string res=oss.str();
-	//oss.str("");//Çå¿ÕÔ­Êı¾İÁ÷
+	//oss.str("");//æ¸…ç©ºåŸæ•°æ®æµ
 	//for(int i=0;i<res.length();i++){
 	//	oss<<res[res.length()-i-1];
 	//}
@@ -164,14 +164,14 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //string ModuleMain::ReadXml(string xmlFileName,string nameStr,string faultText,string path)
 //{
 //	path=path+"\\"+xmlFileName;
-//	TiXmlDocument mydoc(path.c_str());//xmlÎÄµµ¶ÔÏó
-//	bool loadOk=mydoc.LoadFile();//¼ÓÔØÎÄµµ
+//	TiXmlDocument mydoc(path.c_str());//xmlæ–‡æ¡£å¯¹è±¡
+//	bool loadOk=mydoc.LoadFile();//åŠ è½½æ–‡æ¡£
 //	if(!loadOk)
 //	{
 //		return faultText;
 //	}
 //
-//	TiXmlElement *RootElement=mydoc.RootElement();	//¸ùÔªËØ
+//	TiXmlElement *RootElement=mydoc.RootElement();	//æ ¹å…ƒç´ 
 //	for(TiXmlElement *StuElement = RootElement->FirstChildElement();StuElement != NULL;StuElement = StuElement->NextSiblingElement())
 //	{
 //		string strValue = StuElement->Value();
@@ -180,7 +180,7 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //			return StuElement->GetText();
 //		}
 //
-//		//×ÓÔªËØ
+//		//å­å…ƒç´ 
 //		TiXmlElement *childElm=StuElement->FirstChildElement();
 //		while (childElm != NULL)
 //		{
@@ -198,14 +198,14 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //bool ModuleMain::writeXml(string xmlFileName,string valueStr,string textStr,string path)
 //{
 //	path=path+"\\"+xmlFileName;
-//	TiXmlDocument mydoc(path.c_str());//xmlÎÄµµ¶ÔÏó
-//	bool loadOk=mydoc.LoadFile();//¼ÓÔØÎÄµµ
+//	TiXmlDocument mydoc(path.c_str());//xmlæ–‡æ¡£å¯¹è±¡
+//	bool loadOk=mydoc.LoadFile();//åŠ è½½æ–‡æ¡£
 //	if(!loadOk)
 //	{
 //		return false;
 //	}
 //
-//	TiXmlElement *RootElement=mydoc.RootElement();	//¸ùÔªËØ
+//	TiXmlElement *RootElement=mydoc.RootElement();	//æ ¹å…ƒç´ 
 //	for(TiXmlElement *StuElement = RootElement->FirstChildElement();StuElement != NULL;StuElement = StuElement->NextSiblingElement())
 //	{
 //		string strValue = StuElement->Value();
@@ -217,7 +217,7 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //			return true;
 //		}
 //
-//		//×ÓÔªËØ
+//		//å­å…ƒç´ 
 //		TiXmlElement *childElm=StuElement->FirstChildElement();
 //		while (childElm != NULL)
 //		{
@@ -238,14 +238,14 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //bool ModuleMain::changeXml(string xmlFileName,string valueStr,string textStr,string path)
 //{
 //	path=path+"\\"+xmlFileName;
-//	TiXmlDocument mydoc(path.c_str());//xmlÎÄµµ¶ÔÏó
-//	bool loadOk=mydoc.LoadFile();//¼ÓÔØÎÄµµ
+//	TiXmlDocument mydoc(path.c_str());//xmlæ–‡æ¡£å¯¹è±¡
+//	bool loadOk=mydoc.LoadFile();//åŠ è½½æ–‡æ¡£
 //	if(!loadOk)
 //	{
 //		return false;
 //	}
 //
-//	TiXmlElement *RootElement=mydoc.RootElement();	//¸ùÔªËØ
+//	TiXmlElement *RootElement=mydoc.RootElement();	//æ ¹å…ƒç´ 
 //	for(TiXmlElement *StuElement = RootElement->FirstChildElement();StuElement != NULL;StuElement = StuElement->NextSiblingElement())
 //	{
 //		string strValue = StuElement->Value();
@@ -260,7 +260,7 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //			}
 //		}
 //
-//		//×ÓÔªËØ
+//		//å­å…ƒç´ 
 //		TiXmlElement *childElm=StuElement->FirstChildElement();
 //		while (childElm != NULL)
 //		{
@@ -286,12 +286,12 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 void ModuleMain::string2tchar(std::string &src, char* buf)
 {
 #ifdef UNICODE  
-	//int sprintf_s(buf, MAX_PATH, "%S", src.c_str());//%S¿í×Ö·û  
-	sprintf_s(buf, MAX_PATH, "%S", src.c_str());//%S¿í×Ö·û  
-	//_stprintf_s(buf, MAX_PATH, "%S", src.c_str());//%S¿í×Ö·û  
+	//int sprintf_s(buf, MAX_PATH, "%S", src.c_str());//%Så®½å­—ç¬¦  
+	sprintf_s(buf, MAX_PATH, "%S", src.c_str());//%Så®½å­—ç¬¦  
+	//_stprintf_s(buf, MAX_PATH, "%S", src.c_str());//%Så®½å­—ç¬¦  
 #else  
-	sprintf_s(buf, MAX_PATH, "%s", src.c_str());//%sµ¥×Ö·û
-	//_stprintf_s(buf, MAX_PATH, "%s", src.c_str());//%sµ¥×Ö·û
+	sprintf_s(buf, MAX_PATH, "%s", src.c_str());//%så•å­—ç¬¦
+	//_stprintf_s(buf, MAX_PATH, "%s", src.c_str());//%så•å­—ç¬¦
 #endif
 }
 
@@ -299,13 +299,13 @@ string ModuleMain::TCHAR2STRING(TCHAR *STR)
 
 {
 
-	//int iLen = WideCharToMultiByte(CP_ACP, 0,STR, -1, NULL, 0, NULL, NULL);   //Ê×ÏÈ¼ÆËãTCHAR ³¤¶È¡£
+	//int iLen = WideCharToMultiByte(CP_ACP, 0,STR, -1, NULL, 0, NULL, NULL);   //é¦–å…ˆè®¡ç®—TCHAR é•¿åº¦ã€‚
 
-	//char* chRtn =new char[iLen*sizeof(char)];  //¶¨ÒåÒ»¸ö TCHAR ³¤¶È´óĞ¡µÄ CHAR ÀàĞÍ¡£
+	//char* chRtn =new char[iLen*sizeof(char)];  //å®šä¹‰ä¸€ä¸ª TCHAR é•¿åº¦å¤§å°çš„ CHAR ç±»å‹ã€‚
 
-	//WideCharToMultiByte(CP_ACP, 0, STR, -1, chRtn, iLen, NULL, NULL);  //½«TCHAR ÀàĞÍµÄÊı¾İ×ª»»Îª CHAR ÀàĞÍ¡£
+	//WideCharToMultiByte(CP_ACP, 0, STR, -1, chRtn, iLen, NULL, NULL);  //å°†TCHAR ç±»å‹çš„æ•°æ®è½¬æ¢ä¸º CHAR ç±»å‹ã€‚
 
-	//std::string str(chRtn); //×îºó½«CHAR ÀàĞÍÊı¾İ ×ª»»Îª STRING ÀàĞÍÊı¾İ¡£
+	//std::string str(chRtn); //æœ€åå°†CHAR ç±»å‹æ•°æ® è½¬æ¢ä¸º STRING ç±»å‹æ•°æ®ã€‚
 
 	//return str;
 
@@ -324,7 +324,7 @@ const char* ModuleMain::CString2ConstChar(CString str)
 	wchar_t szBuf[1024];
 	wcscpy_s(reinterpret_cast<wchar_t*>(szBuf),	sizeof(szBuf) / sizeof(wchar_t),reinterpret_cast<const wchar_t*>(str.utf16()));
 	char szStr[256] = {};  
-	wcstombs(szStr, szBuf, sizeof(szBuf));//½«¿í×Ö·û×ª»»³É¶à×Ö·û  
+	wcstombs(szStr, szBuf, sizeof(szBuf));//å°†å®½å­—ç¬¦è½¬æ¢æˆå¤šå­—ç¬¦  
 	const char* pBuf = szStr; 
 	return pBuf;
 }
@@ -353,13 +353,13 @@ void ModuleMain::InitCommMsg()
 	theApp.myCIOVsd.SetComIndx(tempDcb.nComPort);
 	if (!theApp.myCIOVsd.OpenComm(tempDcb))
 	{
-		CString csMsg ;//= _T("´®¿Ú4´ò¿ªÊ§°Ü!");
-		csMsg.Format(_T("´®¿Ú%d´ò¿ªÊ§°Ü!"),tempDcb.nComPort);
+		CString csMsg ;//= _T("ä¸²å£4æ‰“å¼€å¤±è´¥!");
+		csMsg.Format(_T("ä¸²å£%dæ‰“å¼€å¤±è´¥!"),tempDcb.nComPort);
 		AfxMessageBox(csMsg);
 	}
 }*/
 
-//¸ù¾İĞòÁĞºÅ¸ñÊ½Éú³ÉÅçÓ¡ÎÄ±¾
+//æ ¹æ®åºåˆ—å·æ ¼å¼ç”Ÿæˆå–·å°æ–‡æœ¬
 string ModuleMain::SerialFormatToText(int Value, int Digits, int Format)
 {
 	string OutPutSerialText="";
@@ -535,7 +535,7 @@ string ModuleMain::TimeFormatToText(CString InPutTimeFormat,int tempstrETimeOffS
 			NowTime2=NowTime1.addMonths(addMonth);
 			NowTime3=NowTime2.addDays(addDay);
 			NowTime4=NowTime3.addSecs(addHour*3600);
-			lt=NowTime4.addSecs(addMinute*60).toTime_t();//ÒòÎªÃ»ÓĞÖ±½Ó¶ÔhourºÍminute½øĞĞÆ«ÒÆµÄº¯Êı£¬Ö»ÄÜÍ¨¹ıÆ«ÒÆÃëÊıÀ´Íê³É¶ÔhourºÍminuteµÄÆ«ÒÆ
+			lt=NowTime4.addSecs(addMinute*60).toTime_t();//å› ä¸ºæ²¡æœ‰ç›´æ¥å¯¹hourå’Œminuteè¿›è¡Œåç§»çš„å‡½æ•°ï¼Œåªèƒ½é€šè¿‡åç§»ç§’æ•°æ¥å®Œæˆå¯¹hourå’Œminuteçš„åç§»
 			ptr=localtime(&lt);
 			/*NowTime.addYears(addYear);
 			NowTime.addMonths(addMonth);
@@ -567,46 +567,46 @@ std::string ModuleMain::ASCToUTF8(const std::string& str)
 }
 
 
-//×Ö·û×ª»»¿â
+//å­—ç¬¦è½¬æ¢åº“
 wstring ModuleMain::AsciiToUnicode(const string& str) {  
-	// Ô¤Ëã-»º³åÇøÖĞ¿í×Ö½ÚµÄ³¤¶È    
+	// é¢„ç®—-ç¼“å†²åŒºä¸­å®½å­—èŠ‚çš„é•¿åº¦    
 	int unicodeLen = MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, nullptr, 0);  
-	// ¸øÖ¸Ïò»º³åÇøµÄÖ¸Õë±äÁ¿·ÖÅäÄÚ´æ    
+	// ç»™æŒ‡å‘ç¼“å†²åŒºçš„æŒ‡é’ˆå˜é‡åˆ†é…å†…å­˜    
 	wchar_t *pUnicode = (wchar_t*)malloc(sizeof(wchar_t)*unicodeLen);  
-	// ¿ªÊ¼Ïò»º³åÇø×ª»»×Ö½Ú    
+	// å¼€å§‹å‘ç¼“å†²åŒºè½¬æ¢å­—èŠ‚    
 	MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, pUnicode, unicodeLen);  
 	wstring ret_str = pUnicode;  
 	free(pUnicode);  
 	return ret_str;  
 }  
 string ModuleMain::UnicodeToAscii(const wstring& wstr) {  
-	// Ô¤Ëã-»º³åÇøÖĞ¶à×Ö½ÚµÄ³¤¶È    
+	// é¢„ç®—-ç¼“å†²åŒºä¸­å¤šå­—èŠ‚çš„é•¿åº¦    
 	int ansiiLen = WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);  
-	// ¸øÖ¸Ïò»º³åÇøµÄÖ¸Õë±äÁ¿·ÖÅäÄÚ´æ    
+	// ç»™æŒ‡å‘ç¼“å†²åŒºçš„æŒ‡é’ˆå˜é‡åˆ†é…å†…å­˜    
 	char *pAssii = (char*)malloc(sizeof(char)*ansiiLen);  
-	// ¿ªÊ¼Ïò»º³åÇø×ª»»×Ö½Ú    
+	// å¼€å§‹å‘ç¼“å†²åŒºè½¬æ¢å­—èŠ‚    
 	WideCharToMultiByte(CP_ACP, 0, wstr.c_str(), -1, pAssii, ansiiLen, nullptr, nullptr);  
 	string ret_str = pAssii;  
 	free(pAssii);  
 	return ret_str;  
 }  
 wstring ModuleMain::Utf8ToUnicode(const string& str) {  
-	// Ô¤Ëã-»º³åÇøÖĞ¿í×Ö½ÚµÄ³¤¶È    
+	// é¢„ç®—-ç¼“å†²åŒºä¸­å®½å­—èŠ‚çš„é•¿åº¦    
 	int unicodeLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);  
-	// ¸øÖ¸Ïò»º³åÇøµÄÖ¸Õë±äÁ¿·ÖÅäÄÚ´æ    
+	// ç»™æŒ‡å‘ç¼“å†²åŒºçš„æŒ‡é’ˆå˜é‡åˆ†é…å†…å­˜    
 	wchar_t *pUnicode = (wchar_t*)malloc(sizeof(wchar_t)*unicodeLen);  
-	// ¿ªÊ¼Ïò»º³åÇø×ª»»×Ö½Ú    
+	// å¼€å§‹å‘ç¼“å†²åŒºè½¬æ¢å­—èŠ‚    
 	MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, pUnicode, unicodeLen);  
 	wstring ret_str = pUnicode;  
 	free(pUnicode);  
 	return ret_str;  
 }  
 string ModuleMain::UnicodeToUtf8(const wstring& wstr) {  
-	// Ô¤Ëã-»º³åÇøÖĞ¶à×Ö½ÚµÄ³¤¶È    
+	// é¢„ç®—-ç¼“å†²åŒºä¸­å¤šå­—èŠ‚çš„é•¿åº¦    
 	int ansiiLen = WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, nullptr, 0, nullptr, nullptr);  
-	// ¸øÖ¸Ïò»º³åÇøµÄÖ¸Õë±äÁ¿·ÖÅäÄÚ´æ    
+	// ç»™æŒ‡å‘ç¼“å†²åŒºçš„æŒ‡é’ˆå˜é‡åˆ†é…å†…å­˜    
 	char *pAssii = (char*)malloc(sizeof(char)*ansiiLen);  
-	// ¿ªÊ¼Ïò»º³åÇø×ª»»×Ö½Ú    
+	// å¼€å§‹å‘ç¼“å†²åŒºè½¬æ¢å­—èŠ‚    
 	WideCharToMultiByte(CP_UTF8, 0, wstr.c_str(), -1, pAssii, ansiiLen, nullptr, nullptr);  
 	string ret_str = pAssii;  
 	free(pAssii);  
@@ -619,7 +619,7 @@ string ModuleMain::Utf8ToAscii(const string& str) {
 	return UnicodeToAscii(Utf8ToUnicode(str));  
 }  
  
-// string Óë Int »¥×ª  
+// string ä¸ Int äº’è½¬  
 int ModuleMain::StringToInt(const string& str) {  
 	return atoi(str.c_str());  
 }  

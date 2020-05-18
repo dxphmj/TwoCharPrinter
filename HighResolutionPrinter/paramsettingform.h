@@ -1,4 +1,4 @@
-﻿#ifndef PARAMSETTINGFORM_H
+#ifndef PARAMSETTINGFORM_H
 #define PARAMSETTINGFORM_H
 
 #include <QWidget>

@@ -9,10 +9,10 @@ public:
 	~CTimeOBJ(void);
 
 public: 
-	string strTime;//×Ö¶ÎµÄtimeÊôĞÔ£¬¼´Ê±¼ä¸ñÊ½
-	int booETimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆ¿ª¹Ø£¨falseÎª¹Ø±Õ£¬trueÎª¿ªÆô£©
-	int intTimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆÖµ
-	int strTimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆÀàĞÍ
+	string strTime;//å­—æ®µçš„timeå±æ€§ï¼Œå³æ—¶é—´æ ¼å¼
+	int booETimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»å¼€å…³ï¼ˆfalseä¸ºå…³é—­ï¼Œtrueä¸ºå¼€å¯ï¼‰
+	int intTimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»å€¼
+	int strTimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»ç±»å‹
 	
 
 public://Functions

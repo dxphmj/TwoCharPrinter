@@ -28,7 +28,7 @@ public:
 	ClassMessage *m_ClassMes;
 	 
 public:
-	FileManageChild *FormFileManageChild;//创建窗口页面指针
+	FileManageChild *FormFileManageChild;//鍒涘缓绐楀彛椤甸潰鎸囬拡
 	FileEditChild  *FormFileEditChild;
 	varibleWidget  *fontVarWidget;
 	variableBarCode  *BarCodeWidget;

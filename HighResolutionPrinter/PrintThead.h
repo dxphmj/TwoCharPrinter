@@ -3,7 +3,7 @@
 
 #include <QThread>
 
-class PrintThead : public QThread //ÅçÄ«´òÓ¡Ïß³Ì
+class PrintThead : public QThread //å–·å¢¨æ‰“å°çº¿ç¨‹
 {
 	Q_OBJECT
 
@@ -18,14 +18,14 @@ protected:
 
 private:
     volatile bool m_isStop; 
-	bool m_bUsingPhotoESwitch;//ÓÃ¹âµç¿ª¹Ø
-	bool m_bTriggerByHigh;//¸ßµçÆ½´¥·¢
-	bool m_bPhotoESwitchState;//¹âµç¿ª¹Ø×´Ì¬
-	bool m_bPhotoESwitchStatePre;//¹âµç¿ª¹ØÇ°Ò»¸ö×´Ì¬
-	bool m_bTrigger; //ÊÇ·ñ´¥·¢´òÓ¡ÁË
+	bool m_bUsingPhotoESwitch;//ç”¨å…‰ç”µå¼€å…³
+	bool m_bTriggerByHigh;//é«˜ç”µå¹³è§¦å‘
+	bool m_bPhotoESwitchState;//å…‰ç”µå¼€å…³çŠ¶æ€
+	bool m_bPhotoESwitchStatePre;//å…‰ç”µå¼€å…³å‰ä¸€ä¸ªçŠ¶æ€
+	bool m_bTrigger; //æ˜¯å¦è§¦å‘æ‰“å°äº†
 	int m_SwitchHande;
 	int m_SynchronizerHande;
-	int m_bUsingSynchronizer;//ÊÇ·ñÊ¹ÓÃÍ¬²½Æ÷
+	int m_bUsingSynchronizer;//æ˜¯å¦ä½¿ç”¨åŒæ­¥å™¨
  
 private:
 	

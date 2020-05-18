@@ -694,7 +694,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	GenerateBarCodeBmp();
 	QString str = getNum(ui->heightBarCodeShowQRLab->text());
 	int heightvalue1 = str.toInt();
-	char* strFileName = "User/logo/output.bmp";
+    //char* strFileName = "User/logo/output.bmp";
+    char arrFileName[] =  "User/logo/output.bmp";
+    char* strFileName = arrFileName;
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
@@ -2066,7 +2068,9 @@ void FileEditChild::newBarCodeBut_clicked()
 			CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&m_MessagePrint.OBJ_Vec[i]);
 			GenerateBarCodeBmp();
 			int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
-			char* strFileName = "User/logo/output.bmp";
+            //char* strFileName = "User/logo/output.bmp";
+            char arrFileName[] =  "User/logo/output.bmp";
+            char* strFileName = arrFileName;
 			QPixmap pLoad;
 			pLoad.load(strFileName);
 			int nW = pLoad.width();

@@ -29,9 +29,9 @@ PrintThead::PrintThead(QObject *parent)	: QThread(parent)
 	m_bUsingSynchronizer = true;
 
 	#ifdef RUN_BY_DEVICE
-		//Èç¹ûÊ¹ÓÃ¹âµç¿ª¹ØÔò´ò¿ªÏàÓ¦µÄÉè±¸
-		//Èç¹ûÊ¹ÓÃÍ¬²½Æ÷Ôò´ò¿ªÏàÓ¦µÄÉè±¸
-	    //Ó²¼şÉè±¸¼¯ÖĞ×ö³ÉÒ»¸öÇı¶¯³ÌĞò£¬°üÀ¨Ñ¹Á¦¿ØÖÆÆ÷£¬¹âµç¿ª¹Ø£¬Í¬²½Æ÷¼°ÅçÍ·Çı¶¯IOµÈ
+		//å¦‚æœä½¿ç”¨å…‰ç”µå¼€å…³åˆ™æ‰“å¼€ç›¸åº”çš„è®¾å¤‡
+		//å¦‚æœä½¿ç”¨åŒæ­¥å™¨åˆ™æ‰“å¼€ç›¸åº”çš„è®¾å¤‡
+	    //ç¡¬ä»¶è®¾å¤‡é›†ä¸­åšæˆä¸€ä¸ªé©±åŠ¨ç¨‹åºï¼ŒåŒ…æ‹¬å‹åŠ›æ§åˆ¶å™¨ï¼Œå…‰ç”µå¼€å…³ï¼ŒåŒæ­¥å™¨åŠå–·å¤´é©±åŠ¨IOç­‰
 
 		char gpio[MAX],cmd[MAX];
 		char *leds = "/dev/leds";
@@ -64,7 +64,7 @@ void PrintThead::run()
 	int strTempCmdLen = 0;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
-	//´ò¿ªÇı¶¯
+	//æ‰“å¼€é©±åŠ¨
 
 
 	while (1) 
@@ -75,30 +75,30 @@ void PrintThead::run()
 		if(!theApp->m_bPrintNow) 
 			continue; 
 
-		//»ñµÃ¹âµç¿ª¹ØµÄ×´Ì¬
+		//è·å¾—å…‰ç”µå¼€å…³çš„çŠ¶æ€
 		#ifdef RUN_BY_DEVICE
 			close(m_SynchronizerHande);
 	    #endif
-		//Èç¹ûÊ¹ÓÃ¹âµç¿ª¹Ø£¬²¢ÇÒ´¥·¢ÁËÔò´òÓ¡£¬´¥·¢µÄÌõ¼şÅĞ¶ÏÊÇ£ºµ±Ç°×´Ì¬ÓëÇ°Ò»¸ö×´Ì¬²»Ò»Ñù£¨ÉÏÉıÑØ»òÏÂ½µÑØ£©
-        if (theApp->queCtr.size()>0) //½«tempQueVecÊı¾İ·¢ËÍ¸øÏà¹Ø¿ØÖÆIO
+		//å¦‚æœä½¿ç”¨å…‰ç”µå¼€å…³ï¼Œå¹¶ä¸”è§¦å‘äº†åˆ™æ‰“å°ï¼Œè§¦å‘çš„æ¡ä»¶åˆ¤æ–­æ˜¯ï¼šå½“å‰çŠ¶æ€ä¸å‰ä¸€ä¸ªçŠ¶æ€ä¸ä¸€æ ·ï¼ˆä¸Šå‡æ²¿æˆ–ä¸‹é™æ²¿ï¼‰
+        if (theApp->queCtr.size()>0) //å°†tempQueVecæ•°æ®å‘é€ç»™ç›¸å…³æ§åˆ¶IO
 		{
 			vector<BYTE> tempQueVec = theApp->queCtr.front();
 			theApp->queCtr.pop();
 			strTempCmdLen = tempQueVec.size();
 			//strTempCmd=(LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
 		}
-		else if (theApp->m_MessagePrint->boPrintNow) //´òÓ¡µÚÒ»ÌõÊı¾İ
+		else if (theApp->m_MessagePrint->boPrintNow) //æ‰“å°ç¬¬ä¸€æ¡æ•°æ®
 		{
- 			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //½«bytPrintDataAllOrderÊı¾İ·¢ËÍ¸øÅçÍ·Çı¶¯IO
+ 			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //å°†bytPrintDataAllOrderæ•°æ®å‘é€ç»™å–·å¤´é©±åŠ¨IO
 			{
 			//	strTempCmd=(LPTSTR)VEC2ARRAY(theApp.myclassMessage.bytPrintDataAllOrder,theApp.myclassMessage.bytPrintDataAllOrder.size());
 			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
 				theApp->m_MessagePrint->boPrintNow = false;
 			}			 
 		}
-		else if(!theApp->m_MessagePrint->boPrintNow) //´òÓ¡µÚ¶şÌõ¼°ºóĞøµÄÊı¾İ
+		else if(!theApp->m_MessagePrint->boPrintNow) //æ‰“å°ç¬¬äºŒæ¡åŠåç»­çš„æ•°æ®
 		{
-			if (theApp->m_MessagePrint->boDynamic) //Èç¹ûÓĞ¶¯Ì¬Êı¾İ£¬Ôò´òÓ¡¶¯Ì¬Êı¾İ
+			if (theApp->m_MessagePrint->boDynamic) //å¦‚æœæœ‰åŠ¨æ€æ•°æ®ï¼Œåˆ™æ‰“å°åŠ¨æ€æ•°æ®
 			{
 				if (theApp->ForPreQue.size()>0)
 				{
@@ -108,28 +108,28 @@ void PrintThead::run()
 					//strTempCmd = (LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
 					if (strTempCmdLen > 11)
 					{
-						//¶¯Ì¬ÏÔÊ¾Ïà¹Ø										
+						//åŠ¨æ€æ˜¾ç¤ºç›¸å…³										
 						theApp->m_MessagePrint->intMesDis = tempQueVec;										 
 					} 
-					else //·¢ËÍÄ¬ÈÏµÄÖ¸ÁîÊı¾İ
+					else //å‘é€é»˜è®¤çš„æŒ‡ä»¤æ•°æ®
 					{
 						//strTempCmd=(LPTSTR)readArr;
 						//strTempCmdLen=8;
 					}
 				} 
-				else //·¢ËÍÄ¬ÈÏµÄÖ¸ÁîÊı¾İ
+				else //å‘é€é»˜è®¤çš„æŒ‡ä»¤æ•°æ®
 				{
 					//strTempCmd=(LPTSTR)readArr;
 					//strTempCmdLen=8;
 				}
 			} 
-			else //Èç¹ûÃ»ÓĞ¶¯Ì¬Êı¾İÔò´òÓ¡¾²Ì¬Êı¾İ
+			else //å¦‚æœæ²¡æœ‰åŠ¨æ€æ•°æ®åˆ™æ‰“å°é™æ€æ•°æ®
 			{
 				if (theApp->m_MessagePrint->bytPrintDataAll.size()>11)
 				{
 					//strTempCmd = (LPTSTR)VEC2ARRAY(theApp.m_MessageEdit.bytPrintDataAll,theApp.m_MessagePrint.bytPrintDataAll.size());
 					strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
-					if (strTempCmdLen < 12) //·¢ËÍÄ¬ÈÏµÄÖ¸ÁîÊı¾İ
+					if (strTempCmdLen < 12) //å‘é€é»˜è®¤çš„æŒ‡ä»¤æ•°æ®
 					{
 						//strTempCmd=(LPTSTR)readArr;
 						//strTempCmdLen=8;
@@ -142,16 +142,16 @@ void PrintThead::run()
 		}
 		
 
-		//°´ÕÕ²É¼¯µÄËÙ¶È½øĞĞ´òÓ¡£¬½«Ã¿ÁĞÊı¾İ°´Ë³ĞòÍ¨¹ıÇı¶¯·¢¸øIO£¨»ò´®¿ÚÊä³ö£©
-		//Îª¼ò»¯¿ØÖÆ£¬Ã¿´Î²ÉÓÃµÄ´òÓ¡ËÙ¶È²»±ä
-		//ËÙ¶È·Åµ½Ö÷Ïß³ÌMainWindow¶¨Ê±Æ÷ÖĞ½øĞĞ²É¼¯£¬ÕâÀïÖ»ÊÇ²ÉÓÃ
+		//æŒ‰ç…§é‡‡é›†çš„é€Ÿåº¦è¿›è¡Œæ‰“å°ï¼Œå°†æ¯åˆ—æ•°æ®æŒ‰é¡ºåºé€šè¿‡é©±åŠ¨å‘ç»™IOï¼ˆæˆ–ä¸²å£è¾“å‡ºï¼‰
+		//ä¸ºç®€åŒ–æ§åˆ¶ï¼Œæ¯æ¬¡é‡‡ç”¨çš„æ‰“å°é€Ÿåº¦ä¸å˜
+		//é€Ÿåº¦æ”¾åˆ°ä¸»çº¿ç¨‹MainWindowå®šæ—¶å™¨ä¸­è¿›è¡Œé‡‡é›†ï¼Œè¿™é‡Œåªæ˜¯é‡‡ç”¨
 			 
-	    //½«strTempCmd Ğ´ÈëÇı¶¯ Ä¿Ç°ÒÑÖª£ºunsigned char¿ÉÒÔ´«×Ö½Ú 0x11 == 00010001  bool a[8]
-		//ÏÂÃæµÄ¹¤×÷ÔÚÅçÍ·Çı¶¯ÖĞÊµÏÖ
+	    //å°†strTempCmd å†™å…¥é©±åŠ¨ ç›®å‰å·²çŸ¥ï¼šunsigned charå¯ä»¥ä¼ å­—èŠ‚ 0x11 == 00010001  bool a[8]
+		//ä¸‹é¢çš„å·¥ä½œåœ¨å–·å¤´é©±åŠ¨ä¸­å®ç°
 
-		//1 ¿ª¹âµç¿ª¹ØµÄÖÕ¶Ë ¶ÁÈ¡¹âµç¿ª¹ØÏÂ½µÑØ £¬ÓÃÍêºóÖØÖÃ
+		//1 å¼€å…‰ç”µå¼€å…³çš„ç»ˆç«¯ è¯»å–å…‰ç”µå¼€å…³ä¸‹é™æ²¿ ï¼Œç”¨å®Œåé‡ç½®
 		
-		//2 °´ËÙ¶È¿ª¶¨Ê±ÖĞ¶Ï£¬ÔÚÖĞ¶ÏÖĞ´òÓ¡Ã¿Ò»ÁĞ
+		//2 æŒ‰é€Ÿåº¦å¼€å®šæ—¶ä¸­æ–­ï¼Œåœ¨ä¸­æ–­ä¸­æ‰“å°æ¯ä¸€åˆ—
 		 
 
  		msleep(1);  

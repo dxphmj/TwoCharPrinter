@@ -9,9 +9,9 @@ public:
 	~CDMcodeOBJ(void);
 
 public://Parameters
-	int intDMsize;//±£´æDMÂë´óĞ¡
-	int intDMrow;//±£´æDMÂë´óĞ¡µ±Ç°ĞĞ
-	string strDMContent;//±£´æDMÂëµÄÄÚÈİ
+	int intDMsize;//ä¿å­˜DMç å¤§å°
+	int intDMrow;//ä¿å­˜DMç å¤§å°å½“å‰è¡Œ
+	string strDMContent;//ä¿å­˜DMç çš„å†…å®¹
 
 public://Functions
 	void CreateDMcode();

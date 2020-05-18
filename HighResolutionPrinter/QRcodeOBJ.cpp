@@ -59,11 +59,11 @@ void CQRcodeOBJ::CreateQrcode()
 	generated = 0;
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
-	my_symbol->symbology = 58; //ÁÙÊ±ÓÃÒ»ÏÂ±äÁ¿intQRVersion
+	my_symbol->symbology = 58; //ä¸´æ—¶ç”¨ä¸€ä¸‹å˜é‡intQRVersion
 	my_symbol->scale = 0.5;
 
 	//	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = intQRVersion;//option_1ÎªÈİ´íµÈ¼¶£¬option_2Îª°æ±¾´óĞ¡¹«Ê½Îª:(V - 1) * 4 + 21£»
+	my_symbol->option_2 = intQRVersion;//option_1ä¸ºå®¹é”™ç­‰çº§ï¼Œoption_2ä¸ºç‰ˆæœ¬å¤§å°å…¬å¼ä¸º:(V - 1) * 4 + 21ï¼›
 
 	//batch_mode = 0;
 	//mirror_mode = 0;
@@ -88,7 +88,7 @@ void CQRcodeOBJ::CreateQrcode()
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØĞëµßµ¹
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//ç”±äºåæ ‡ç³»çš„åŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
 			}
 			else
 			{
