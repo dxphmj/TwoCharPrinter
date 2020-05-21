@@ -7,7 +7,7 @@
 #include <QFontComboBox>
 #include "ClassMessage.h"
 #include "OBJ_Type.h"
-#include "backend\zint.h"
+#include "backend/zint.h"
 //#include <QLabel>
 //#include <QPushButton>
 #include <QTextCharFormat>

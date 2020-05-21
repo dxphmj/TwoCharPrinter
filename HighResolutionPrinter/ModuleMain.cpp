@@ -8,7 +8,7 @@
 //#include <iostream>
 #include <math.h>
 #include <sstream>//使用该库函数的ostringstream，将int变成string
-#include <TCHAR.H>
+//#include <TCHAR.H>
 #include "time.h" 
 #include "ClassMessage.h"
 
@@ -125,7 +125,7 @@ string ModuleMain::jinzhi10to16(int pre) {
 		str += ('A' + left - 10);
 	return str;
 }
-
+/*
 LPCWSTR ModuleMain::stringToLPCWSTR(string orig)
 {
 	//size_t origsize = orig.length() + 1;
@@ -147,8 +147,8 @@ LPCWSTR ModuleMain::stringToLPCWSTR(string orig)
     USES_CONVERSION;  
 	return A2W(orig.c_str());
   
-}
-
+}*/
+/*
 string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 {
 	std::string str;
@@ -160,7 +160,7 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 	delete m_char;
 	return str;
 }
-
+*/
 //string ModuleMain::ReadXml(string xmlFileName,string nameStr,string faultText,string path)
 //{
 //	path=path+"\\"+xmlFileName;
@@ -282,7 +282,7 @@ string ModuleMain::WcharToChar(const wchar_t* wp, size_t m_encode)
 //	return false;
 //	
 //}
-
+/*
 void ModuleMain::string2tchar(std::string &src, char* buf)
 {
 #ifdef UNICODE  
@@ -294,8 +294,8 @@ void ModuleMain::string2tchar(std::string &src, char* buf)
 	//_stprintf_s(buf, MAX_PATH, "%s", src.c_str());//%s单字符
 #endif
 }
-
-string ModuleMain::TCHAR2STRING(TCHAR *STR)
+*/
+/*string ModuleMain::TCHAR2STRING(TCHAR *STR)
 
 {
 
@@ -313,7 +313,7 @@ string ModuleMain::TCHAR2STRING(TCHAR *STR)
 
 
 }
-
+*/
 
 const char* ModuleMain::CString2ConstChar(CString str)
 {
@@ -322,9 +322,9 @@ const char* ModuleMain::CString2ConstChar(CString str)
 	//string          st(stra.GetBuffer(0));
 	//const char*  cs = st.c_str();
 	wchar_t szBuf[1024];
-	wcscpy_s(reinterpret_cast<wchar_t*>(szBuf),	sizeof(szBuf) / sizeof(wchar_t),reinterpret_cast<const wchar_t*>(str.utf16()));
+    //wcscpy_s(reinterpret_cast<wchar_t*>(szBuf),	sizeof(szBuf) / sizeof(wchar_t),reinterpret_cast<const wchar_t*>(str.utf16()));
 	char szStr[256] = {};  
-	wcstombs(szStr, szBuf, sizeof(szBuf));//将宽字符转换成多字符  
+    //wcstombs(szStr, szBuf, sizeof(szBuf));//将宽字符转换成多字符
 	const char* pBuf = szStr; 
 	return pBuf;
 }
@@ -551,6 +551,7 @@ string ModuleMain::TimeFormatToText(CString InPutTimeFormat,int tempstrETimeOffS
 	}
 	return CString2string(outCStr);
 }
+/*
 std::string ModuleMain::ASCToUTF8(const std::string& str) 
 {
 	int unicodeLen = ::MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, NULL, 0);   
@@ -565,9 +566,10 @@ std::string ModuleMain::ASCToUTF8(const std::string& str)
 	std::string strText = pElementText;    delete pElementText;    
 	return strText;
 }
-
+*/
 
 //字符转换库
+/*
 wstring ModuleMain::AsciiToUnicode(const string& str) {  
 	// 预算-缓冲区中宽字节的长度    
 	int unicodeLen = MultiByteToWideChar(CP_ACP, 0, str.c_str(), -1, nullptr, 0);  
@@ -618,7 +620,27 @@ string ModuleMain::AsciiToUtf8(const string& str) {
 string ModuleMain::Utf8ToAscii(const string& str) {  
 	return UnicodeToAscii(Utf8ToUnicode(str));  
 }  
- 
+// ASCII与Unicode互转  
+//CStringW    ModuleMain::AsciiToUnicode_CSTR(const CStringA& str) {  
+//	return AsciiToUnicode(LPCSTR(str)).c_str();  
+//}  
+//CStringA    ModuleMain::UnicodeToAscii_CSTR(const CStringW& wstr) {  
+//	return UnicodeToAscii(LPCWSTR(wstr)).c_str();  
+//}  
+//// UTF8与Unicode互转  
+//CStringW    ModuleMain::Utf8ToUnicode_CSTR(const CStringA& str) {  
+//	return Utf8ToUnicode(LPCSTR(str)).c_str();  
+//}  
+//CStringA    ModuleMain::UnicodeToUtf8_CSTR(const CStringW& wstr) {  
+//	return UnicodeToUtf8(LPCWSTR(wstr)).c_str();  
+//}  
+//// ASCII与UTF8互转  
+//CStringA    ModuleMain::AsciiToUtf8_CSTR(const CStringA& str) {  
+//	return UnicodeToUtf8_CSTR(AsciiToUnicode_CSTR(str));  
+//}  
+//CStringA    ModuleMain::Utf8ToAscii_CSTR(const CStringA& str) {  
+//	return UnicodeToAscii_CSTR(Utf8ToUnicode_CSTR(str));  
+//}  
 // string 与 Int 互转  
 int ModuleMain::StringToInt(const string& str) {  
 	return atoi(str.c_str());  
@@ -641,3 +663,4 @@ string ModuleMain::IntToString(double i) {
 	sprintf_s(ch, sizeof(ch), "%f", i);  
 	return ch;  
 }  
+*/

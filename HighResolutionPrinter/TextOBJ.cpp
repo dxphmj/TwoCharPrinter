@@ -1,5 +1,5 @@
 #include "TextOBJ.h"
-#include "wordStock\\GetHZinfo.h"
+#include "wordStock/GetHZinfo.h"
 
 CTextOBJ::CTextOBJ(void)
 {
@@ -45,7 +45,7 @@ void CTextOBJ::GetVectorWordDots()
 	//循环解码strText中字符的轨迹,根据strFont大小获得相应点阵信息 
 	for(int i = 0; i < strText.length(); i++)
 	{
-		vector<vector<bool>> dots;//记录一个字符的点阵信息，其中高度是strFont，宽带按实际情况返回。
+		vector<vector<bool> > dots;//记录一个字符的点阵信息，其中高度是strFont，宽带按实际情况返回。
 		int nWidth;
 		char* oneWord = new char[2];
 		sprintf(oneWord,"%s",strText.c_str()[i]);
@@ -57,7 +57,7 @@ void CTextOBJ::GetVectorWordDots()
 	fclose(pFile);
 }
 
-void CTextOBJ::ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth)
+void CTextOBJ::ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth)
 { 
 	hzPoint topleft(20,20); 
 	CGetHZinfo hzInfo(pFile,(unsigned char*)strText,topleft);

@@ -1,5 +1,5 @@
 #include "QRcodeOBJ.h"
-#include "backend\zint.h"
+#include "backend/zint.h"
 
 CQRcodeOBJ::CQRcodeOBJ(void)
 {	

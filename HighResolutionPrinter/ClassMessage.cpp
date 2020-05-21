@@ -3,7 +3,7 @@
 #include "sstream"
 #include <fstream>
 #include <stdio.h>
-#include "xml\tinyxml.h"
+#include "xml/tinyxml.h"
 #include <QPainter>
 #include <io.h>
 #include "QFileInfo"
@@ -11,7 +11,8 @@
 #include "BmpObj.h"
 #include "ModuleMain.h"
 
-#include "wordStock\\GetHZinfo.h"
+#include "wordStock/GetHZinfo.h"
+#include <math.h>
  
 ClassMessage::ClassMessage(void)
 {
@@ -42,8 +43,8 @@ BYTE ClassMessage::getByteFromDot(bool boDot,int moveNum)
 string ClassMessage::to_String(int n)
 {
 	int m = n;
-	char s[max];
-	char ss[max];
+	char s[max_];
+	char ss[max_];
 	int i=0,j=0;
 	if (n < 0)// 处理负数
 	{
@@ -1009,7 +1010,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 void ClassMessage::getdot()
 {
 	boDotMes.clear();
-	vector<vector<bool>> ivec(32 ,vector<bool>(intRowMax<10?10:intRowMax,false));//为何不能小于10
+	vector<vector<bool> > ivec(32 ,vector<bool>(intRowMax<10?10:intRowMax,false));//为何不能小于10
 	boDotMes = ivec;//为获得obj的点阵信息申请空间
 
 	ModuleMain myModuleMain;
@@ -1032,8 +1033,10 @@ void ClassMessage::getdot()
 		else if (OBJ_Vec[i]->strType2=="time")
 		{
 			CTimeOBJ* pTimeObj = (CTimeOBJ*)(OBJ_Vec[i]);
-			OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(myModuleMain.string2CString(pTimeObj->strTime),
-				                    pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
+			//OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(myModuleMain.string2CString(pTimeObj->strTime),
+			//	                    pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
+			OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(QString::fromStdString(pTimeObj->strTime),
+				pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
 			OBJ_Vec[i]->DrawTextAll(NULL,boDotMes);
 		}
 		else if (OBJ_Vec[i]->strType2 == "serial")

@@ -1,13 +1,13 @@
 #pragma once
 #include <stdio.h>
-#include "xml\tinyxml.h"
+#include "xml/tinyxml.h"
 #include <iostream>
 #include <string>
 #include <vector>
-#include <atlconv.h>
-#include "windows.h" 
+//#include <atlconv.h>
+//#include "windows.h"
 
-#include <qdatetime>
+#include <QDateTime>
 
 using namespace std;
 
@@ -15,9 +15,10 @@ using namespace std;
 #define CTime QTime
 #define CStringA QString
 #define CStringW QString
+typedef unsigned char BYTE;
 
-UINT TTLcomLoop(LPVOID pParam);
-UINT method1(LPVOID pParam);
+int TTLcomLoop(void* pParam);
+int method1(void* pParam);
 BYTE* VEC2ARRAY(vector<BYTE> tempVec,int n);
 CString GETnBIT_from_bytReadData(int I , int m , int n );
 CString GETnBIT_from_bytStatus(int I , int m , int n );
@@ -53,7 +54,7 @@ public:
 		InkLifeTimeLas = 6000;
 		boInkLifeTime = false;
 		boServiceTime = false;
-		staPhaseLas = 0;
+        //staPhaseLas = 0;
 		staSysReaLas = false;
 	}
 	~TimClass(){}
@@ -70,7 +71,7 @@ public:
 		CTime InkDateTimLas, SerDateTimLas, dateTimLasWri ;
 		bool boInkLifeTime;
 		bool boServiceTime;
-		byte staPhaseLas;
+        BYTE staPhaseLas;
 		bool staSysReaLas ;
 };
 //控制变量类
@@ -186,8 +187,8 @@ public:
 	void getstatu();
 	void byStatusFromSlaveState();
 
-	void us_button_onoff(HWND hwnd);//墨水普通句柄
-	void ad_button_onoff(HWND hwnd);//墨水高级句柄
+    //void us_button_onoff(HWND hwnd);//墨水普通句柄
+    //void ad_button_onoff(HWND hwnd);//墨水高级句柄
 
 	void download_inksystem_control00();
 	void download_inksystem_control01();
@@ -256,17 +257,23 @@ class ModuleMain//通用算法库
 public:
 	ModuleMain(void);
 	~ModuleMain(void);
-	CString string2CString(string str){//return Utf8ToUnicode(str).c_str();
-		int unicodeLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, nullptr, 0);  
+    /*
+    CString string2CString(string str){//return Utf8ToUnicode(str).c_str();
+        //int unicodeLen = MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, NULL, 0);
+        int unicodeLen;
+        wchar_t m_wch[50]={0};
+        mbstowcs(m_wch,str.c_str(),unicodeLen);
 		// 给指向缓冲区的指针变量分配内存    
-		wchar_t *pUnicode = (wchar_t*)malloc(sizeof(wchar_t)*unicodeLen);  
+        wchar_t *pUnicode = (wchar_t*)malloc(sizeof(wchar_t)*unicodeLen);
 		// 开始向缓冲区转换字节    
-		MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, pUnicode, unicodeLen);  
-		wstring ret_str = pUnicode;  
-		free(pUnicode);  
-		return QString::fromStdWString(ret_str); 
-	}
-	std::string ASCToUTF8(const std::string& str) ;
+        //MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, pUnicode, unicodeLen);
+        mbstowcs(pUnicode,str.c_str(),unicodeLen); //2.dai zhuan huan
+        wstring ret_str = pUnicode;
+        free(pUnicode);
+        return QString::fromStdWString(ret_str);
+    }
+    */
+    std::string ASCToUTF8(const std::string& str) ;
 	string CString2string(CString cstr)
 	{
 		
@@ -300,15 +307,15 @@ public:
 		//string city=CT2CA(cstr);
 		//return city;
 	}
-	LPCWSTR stringToLPCWSTR(std::string orig);
-    string WcharToChar(const wchar_t* wp, size_t m_encode = CP_ACP);
+    //LPCWSTR stringToLPCWSTR(std::string orig);
+    //string WcharToChar(const wchar_t* wp, size_t m_encode = CP_ACP);
 	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//查
     //bool writeXml(string xmlFileName,string valueStr,string textStr,string path);//增
 	bool changeXml(string xmlFileName,string valueStr,string textStr,string path);//改
 	void string2tchar(std::string &src, char* buf);
-	string TCHAR2STRING(TCHAR *STR);
+    //string TCHAR2STRING(TCHAR *STR);
    const char* CString2ConstChar(CString str);
-   void DisableAllBtn(HWND hwnd,bool booOpen);
+   //void DisableAllBtn(HWND hwnd,bool booOpen);
    void ReportPower();
    //string CString2string(CString csStrData);
    //字符转数字

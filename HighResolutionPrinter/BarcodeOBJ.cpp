@@ -1,6 +1,6 @@
 #include "BarcodeOBJ.h"
 #include "QFileInfo"
-#include "backend\zint.h"
+#include "backend/zint.h"
 
 CBarcodeOBJ::CBarcodeOBJ(void)
 {

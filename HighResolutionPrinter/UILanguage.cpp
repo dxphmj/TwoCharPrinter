@@ -1,6 +1,6 @@
 ﻿#include "UILanguage.h"
 #include <QTextCodec>
-#include "xml\tinyxml.h"
+#include "xml/tinyxml.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "filemanageform.h"

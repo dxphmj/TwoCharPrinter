@@ -1,7 +1,7 @@
  
 #define		____MODIGLYF_IS_EXPORTED____
 #include		<math.h>
-#include		"dom.h"
+#include		"Dom.h"
 #define			LEFT_Y_SIGN			( 1)		// 1 or -1
 #define			UP_X_SIGN			(-1)		// 1 or -1.
 #define			MAX_MEMSIZE			((long)64*1016)

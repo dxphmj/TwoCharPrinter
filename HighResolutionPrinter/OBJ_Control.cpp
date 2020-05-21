@@ -12,6 +12,9 @@
 #include "wordStock/GetHZinfo.h"
 #include <QDir>
 #include <QString>
+#include <math.h>
+
+//#define byte unsigned char
 
 OBJ_Control::OBJ_Control(void)
 {
@@ -110,8 +113,8 @@ bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
 string OBJ_Control::to_String(int n)
 {
 	int m = n;
-	char s[max];
-	char ss[max];
+	char s[max_];
+	char ss[max_];
 	int i=0,j=0;
 	if (n < 0)// 处理负数
 	{
@@ -170,7 +173,7 @@ long long OBJ_Control::BIN_to_DEC(string Bin)
 	return  BinToDec;
 }
 
-void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes)
+void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 {
 	CBrush cbrushB(QColor(0,0,0));//黑笔
 	cbrushB.setStyle(Qt::SolidPattern);
@@ -238,7 +241,7 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes)
 }
 
 //需要检查绘制文本时生成的boDotMes[]是否正确，因为当前loadLocalFile后在MainWindow显示的打印数据中静态文本显示不正确
-void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes)
+void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool> >& boDotMes)
 {
 	char objbytTex5x5Line[29];
 	 
@@ -399,7 +402,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 	cbrushB.DeleteObject();	*/ 	 
 }
 
-void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
+void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 {
  	char objbytTex12x12Line[25];
 
@@ -570,7 +573,7 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 	//cbrushB.DeleteObject();
 }
 
-void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
+void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 { 
 	char objbytTex16x12Line[29];
 
@@ -739,7 +742,7 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes)
 	//cbrushB.DeleteObject();
 }
 
-void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes)
+void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes)
 {	
 	if(strFont == "5x5")
 		Draw5x5_7x5Text(pDC,5,5,7,boDotMes);
@@ -753,7 +756,7 @@ void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes)
 
 void OBJ_Control::DrawDot(CDC* pDC)
 {
-	vector<vector<bool>> TempboDotMes; //临时用，没有任何意义
+	vector<vector<bool> > TempboDotMes; //临时用，没有任何意义
 	if (strType2 == "logo" || strType2 == "qrcode" ||strType2 == "2Dcode" || strType2 == "datamatrix")
 		DrawLogoQRcodeDM(pDC,TempboDotMes);
 	else
@@ -764,8 +767,8 @@ void OBJ_Control::DrawDot(CDC* pDC)
 	
 vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData2,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 	string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
-	map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
+	map<string,vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+									map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
 {
 	vector<BYTE>  bytTempData = bytTempData2;
 	if (tempfont == "5x5")
@@ -903,7 +906,7 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 }
 
 void OBJ_Control::searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int tempBWDxinteger,UINT32 *IntMes)
 {
 	string  strtempText;
@@ -947,7 +950,7 @@ void OBJ_Control::searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , s
 }
 
 void OBJ_Control::searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int byte1int , int byte2int,UINT32 *IntMes)
 {
 	string  strtempText;

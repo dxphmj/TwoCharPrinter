@@ -22,7 +22,7 @@ typedef unsigned char BYTE;
 
 typedef unsigned int  UINT32, *PUINT32;
 
-#define max 100
+#define max_ 100
 
 #define CDC QPainter
 #define CPen QPen
@@ -67,10 +67,10 @@ public:
 	
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
-    //vector<vector<bool>> logobmp;//不明
+    //vector<vector<bool> > logobmp;//不明
 
-    //vector<vector<bool>> LogoDotToMes;//改变后的Logo图片点阵用于下发数据用
-    //vector<vector<bool>> LogoDot;//logo点阵
+    //vector<vector<bool> > LogoDotToMes;//改变后的Logo图片点阵用于下发数据用
+    //vector<vector<bool> > LogoDot;//logo点阵
 
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
@@ -79,31 +79,31 @@ public://方法
 	
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
-	//vector<vector<bool>> m_dots;//其中dots的行和列的大小就是字符串的外包围盒
+	//vector<vector<bool> > m_dots;//其中dots的行和列的大小就是字符串的外包围盒
 	//void GetVectorWordDots();
-	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
+	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
-	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
-	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool> >& boDotMes);
+	void Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
 	static bool readBin(string FontName,int offset,char *arr, int DataLen);
 
 	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 							string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
-							map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
+							map<string,vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+									map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
 	BYTE byteUpsidedown(BYTE a,BYTE bBit);
 	static UINT32 Bits32Upsidedown1(UINT32 n,BYTE bBit);
 	UINT32 Bits32Upsidedown2(UINT32 v,BYTE bBit);
 	UINT32 int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h);
 
 	void searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-				int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+				int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 				int tempNEGinteger, int tempBWDxinteger,UINT32 *IntMes);
 	void searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-							int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+							int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 							int tempNEGinteger, int byte1int , int byte2int,UINT32 *IntMes); 
 
 
@@ -181,10 +181,10 @@ public:
 	void getdigitaldot();
 	/*
 	UINT32* searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int tempBWDxinteger);
 	UINT32* searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int byte1int , int byte2int);
 	*/
 
@@ -192,10 +192,10 @@ public:
 	//UINT32 int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h);
 	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE> bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 		string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW);
-	map<string,vector<BYTE>> bytdigital5x5LineMap;
-	map<string,vector<BYTE>> bytdigital7x5LineMap;
-	map<string,vector<BYTE>> bytdigital12x12LineMap;
-	map<string,vector<BYTE>> bytdigital16x12LineMap;
+	map<string,vector<BYTE> > bytdigital5x5LineMap;
+	map<string,vector<BYTE> > bytdigital7x5LineMap;
+	map<string,vector<BYTE> > bytdigital12x12LineMap;
+	map<string,vector<BYTE> > bytdigital16x12LineMap;
 
  	///////////////////////////////////////
 	vector<vector<bool> > boDotMes;//从obj中获得[32][intRowMax]点阵信息，根据点阵的bool值每列组合成一个整数IntMes[intRowMax] 

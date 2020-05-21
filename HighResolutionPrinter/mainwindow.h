@@ -43,8 +43,8 @@ public:
 
 public:
  	ClassMessage* m_MessagePrint; //打印监控用
-    queue<vector<BYTE>> queCtr;//命令队列 
-	queue<vector<BYTE>> ForPreQue;//欲打印队列
+    queue<vector<BYTE> > queCtr;//命令队列 
+	queue<vector<BYTE> > ForPreQue;//欲打印队列
 	CParamSetting m_ParamSetting;
 	bool mythreadDynamicBoo;//动态线程开关
 	bool boDrawMainPic;//主界面动态绘制开关
