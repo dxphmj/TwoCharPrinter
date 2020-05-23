@@ -1127,7 +1127,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "time")
 			{
-				CTimeOBJ *pTimeObj = (CTimeOBJ *)(&m_MessagePrint.OBJ_Vec[i]);
+				CTimeOBJ *pTimeObj = (CTimeOBJ *)(m_MessagePrint.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(1);
 				this->ui->DateTimeEdit->setText(QString::fromStdString(pTimeObj->strTime));
 				this->ui->SkewSkewValueEdit->setText(QString::number(pTimeObj->intTimeOffSet));

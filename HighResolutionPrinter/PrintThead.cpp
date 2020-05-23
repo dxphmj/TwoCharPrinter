@@ -75,11 +75,14 @@ void PrintThead::run()
 		if(!theApp->m_bPrintNow) 
 			continue; 
 
+		//读喷头工作的状态
+		//忙 - continue
+
+
 		//获得光电开关的状态
 		#ifdef RUN_BY_DEVICE
 			close(m_SynchronizerHande);
 	    #endif
-		//如果使用光电开关，并且触发了则打印，触发的条件判断是：当前状态与前一个状态不一样（上升沿或下降沿）
         if (theApp->queCtr.size()>0) //将tempQueVec数据发送给相关控制IO
 		{
 			vector<BYTE> tempQueVec = theApp->queCtr.front();
@@ -146,9 +149,11 @@ void PrintThead::run()
 		//为简化控制，每次采用的打印速度不变
 		//速度放到主线程MainWindow定时器中进行采集，这里只是采用
 			 
-	    //将strTempCmd 写入驱动
+	    //将strTempCmd 写入驱动，char， byte，strTempCmdLen, 可能包含 打印速度 V
 		//下面的工作在喷头驱动中实现
-
+		//write(fd,strTempCmd,strTempCmdLen);
+		
+		//如果使用光电开关，并且触发了则打印，触发的条件判断是：当前状态与前一个状态不一样（上升沿或下降沿）
 		//1 开光电开关的终端 读取光电开关下降沿 ，用完后重置
 		
 		//2 按速度开定时中断，在中断中打印每一列
@@ -157,4 +162,16 @@ void PrintThead::run()
  		msleep(1);  
 	}
 }
+
+/*
+  write() 
+  {
+	   1） 通过 write() 接受数据
+	   2）计算出打印速度定时时间
+	   3） 开光电开关中断，监测下降沿
+   }
+
+   在光电开关的中断处理函数中 开定时中断；
+   在定时中断处理函数中根据当前打印列写端口。
+*/
  
