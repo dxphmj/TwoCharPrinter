@@ -9,8 +9,9 @@
 #include "PrintThead.h"
 #include "PrintCreatThread.h"
 #include "PrintShowThread.h"
-#include "TimeOBJ.h"
-#include "SerialOBJ.h"
+#include "OBJ_Type.h"
+#include <math.h>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -127,7 +128,7 @@ void MainWindow::GetDateTime()
 	 ui->timeShowLab->setText((QDate::currentDate().toString(tr("yyyy-MM-dd   ")))+tr("%1").arg(timeNow.toString())+tr("  "));
 }
 
-//下发打印
+//下发打印数据
 void MainWindow::DownloadPrintData()
 {		
     //关闭动态打印线程（若有）
@@ -165,7 +166,7 @@ void MainWindow::CreatePrintData()
 
 	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll;
 	 
-	ForPreQue = queue<vector<BYTE>>();
+	ForPreQue = queue<vector<BYTE> >();
 	 
 	//信息重新发送，序列号按信息里面的开始值喷，如只改变喷印参数则按计数器的值继续喷
  	
@@ -180,8 +181,8 @@ void MainWindow::CreatePrintData()
 	m_MessagePrint->IntMes = new UINT32[m_MessagePrint->intRowMax];
 	memset(m_MessagePrint->IntMes,0,sizeof(UINT32)*m_MessagePrint->intRowMax);
 
-	for (int j = 0; j < 32; j++)
-		for (int i = 0; i < m_MessagePrint->intRowMax; i++)
+	for (int j = 0; j < 32; j++)//行
+		for (int i = 0; i < m_MessagePrint->intRowMax; i++)//列
 			m_MessagePrint->IntMes[i] += ((m_MessagePrint->boDotMes[j][i])?1:0)*pow(2.0,j);
 
 	vector<BYTE> bytPrintData = m_MessagePrint->DotToByte(0,m_MessagePrint->intRowMax);
@@ -226,8 +227,8 @@ void MainWindow::CreatePrintData()
 
 		m_MessagePrint->bytPrintDataAll.insert(m_MessagePrint->bytPrintDataAll.end(),bytPrintData.begin(),bytPrintData.end());
 		m_MessagePrint->bytPrintDataAllOrder.insert(m_MessagePrint->bytPrintDataAllOrder.end(),bytPrintData.begin(),bytPrintData.end());
-	m_MessagePrint->intMesDis = m_MessagePrint->bytPrintDataAll;
-	m_MessagePrint->boPrintNow = true;		
+		m_MessagePrint->intMesDis = m_MessagePrint->bytPrintDataAll;
+		m_MessagePrint->boPrintNow = true;		
 	boPrintNowLock.unlock();
 
 	if (m_MessagePrint->boDynamic)//是否动态打印

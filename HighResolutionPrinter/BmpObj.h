@@ -1,5 +1,5 @@
 #pragma once
-#include "classmessage.h"
+#include "ClassMessage.h"
 
 class CBmpObj :	public OBJ_Control
 {

@@ -21,7 +21,7 @@ timeCustom::~timeCustom()
 
 void timeCustom::OKDateBut_clicked()
 {
-	//将时间日期label中的内容生成点阵
+	//灏嗘椂闂存棩鏈焞abel涓殑鍐呭鐢熸垚鐐归樀
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	pFilemanageForm->FileEditChildWidgetCall();

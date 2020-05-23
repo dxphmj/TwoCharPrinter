@@ -37,7 +37,7 @@ FilemanageForm::FilemanageForm(QWidget *parent) :
 							   padding-left:7px;padding-top:7px;}\
 							   "); 
 	
- 	FormFileManageChild = new FileManageChild(this);//ÊµÀı»¯´°¿ÚÒ³Ãæ
+ 	FormFileManageChild = new FileManageChild(this);//å®ä¾‹åŒ–çª—å£é¡µé¢
  	FormFileEditChild = new FileEditChild(this);
 	fontVarWidget = new varibleWidget(this);
 	BarCodeWidget = new variableBarCode(this);

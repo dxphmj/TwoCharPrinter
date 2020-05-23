@@ -1,5 +1,5 @@
 #pragma once
-#include "classmessage.h"
+#include "ClassMessage.h"
 #include <vector>
 
 class CTextOBJ : public OBJ_Control
@@ -9,15 +9,15 @@ public:
 	CTextOBJ(OBJ_Control obj,CTextOBJ TextObj);
 	~CTextOBJ(void);
 
-public://²ÎÊı
-	bool m_bVecotrWord;//ÊÇ·ñÊ¸Á¿×Ö¿â
-	string m_WordStockFileName; //×Ö¿âÎÄ¼şÃû
-	vector<vector<bool>> m_dots;//ÆäÖĞdotsµÄĞĞºÍÁĞµÄ´óĞ¡¾ÍÊÇ×Ö·û´®µÄÍâ°üÎ§ºĞ
+public://å‚æ•°
+	bool m_bVecotrWord;//æ˜¯å¦çŸ¢é‡å­—åº“
+	string m_WordStockFileName; //å­—åº“æ–‡ä»¶å
+	vector<vector<bool> > m_dots;//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›’
  
-public://·½·¨
+public://æ–¹æ³•
 	 
 	void GetVectorWordDots();
-	void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//ÆäÖĞdotsµÄĞĞºÍÁĞµÄ´óĞ¡¾ÍÊÇ×Ö·û´®µÄÍâ°üÎ§ºĞ
+	void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›’
 	
 	//void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 };

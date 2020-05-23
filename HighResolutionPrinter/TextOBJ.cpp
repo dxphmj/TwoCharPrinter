@@ -1,5 +1,5 @@
 #include "TextOBJ.h"
-#include "wordStock\\GetHZinfo.h"
+#include "wordStock/GetHZinfo.h"
 
 CTextOBJ::CTextOBJ(void)
 {
@@ -40,24 +40,24 @@ void CTextOBJ::GetVectorWordDots()
 	FILE *pFile = fopen(m_WordStockFileName.c_str(),"rb");
 
 	char* oneWord = new char[2];
-	//sprintf(strText,"%s","¿Ú");
+	//sprintf(strText,"%s","å£");
 
-	//Ñ­»·½âÂëstrTextÖĞ×Ö·ûµÄ¹ì¼£,¸ù¾İstrFont´óĞ¡»ñµÃÏàÓ¦µãÕóĞÅÏ¢ 
+	//å¾ªç¯è§£ç strTextä¸­å­—ç¬¦çš„è½¨è¿¹,æ ¹æ®strFontå¤§å°è·å¾—ç›¸åº”ç‚¹é˜µä¿¡æ¯ 
 	for(int i = 0; i < strText.length(); i++)
 	{
-		vector<vector<bool>> dots;//¼ÇÂ¼Ò»¸ö×Ö·ûµÄµãÕóĞÅÏ¢£¬ÆäÖĞ¸ß¶ÈÊÇstrFont£¬¿í´ø°´Êµ¼ÊÇé¿ö·µ»Ø¡£
+		vector<vector<bool> > dots;//è®°å½•ä¸€ä¸ªå­—ç¬¦çš„ç‚¹é˜µä¿¡æ¯ï¼Œå…¶ä¸­é«˜åº¦æ˜¯strFontï¼Œå®½å¸¦æŒ‰å®é™…æƒ…å†µè¿”å›ã€‚
 		int nWidth;
 		char* oneWord = new char[2];
 		sprintf(oneWord,"%s",strText.c_str()[i]);
 		ReadOneVectorWord(pFile,oneWord,dots,nWidth);
 		delete oneWord;
-		//½«dotsºÏ²¢µ½m_dotsÖĞ
+		//å°†dotsåˆå¹¶åˆ°m_dotsä¸­
 	}
 
 	fclose(pFile);
 }
 
-void CTextOBJ::ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth)
+void CTextOBJ::ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth)
 { 
 	hzPoint topleft(20,20); 
 	CGetHZinfo hzInfo(pFile,(unsigned char*)strText,topleft);

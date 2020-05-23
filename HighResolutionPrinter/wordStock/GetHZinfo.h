@@ -26,7 +26,7 @@ struct hzPoint
 	short x;
 	short y;
 
-	hzPoint::hzPoint(short initX,short initY)
+	hzPoint(short initX,short initY)
 	{
 		x = initX;
 		y = initY;
@@ -48,7 +48,7 @@ typedef struct tagRECT2
 
 #endif
 
-class DllExport CGetHZinfo
+class CGetHZinfo
 {
 public:
 	CGetHZinfo(void);

@@ -1,5 +1,5 @@
 #pragma once
-#include "classmessage.h"
+#include "ClassMessage.h"
 
 class CQRcodeOBJ : public OBJ_Control
 {
@@ -9,9 +9,9 @@ public:
 	~CQRcodeOBJ(void);
 
 public://Parameters
-	string strqrcodeVersion;//¶şÎ¬ÂëµÄ°æ±¾ÀàĞÍ
-	string strqrcodeECCLevel;//¶şÎ¬ÂëµÄÈİ´íÂÊµÈ¼¶
-	int intqrcodeQuietZone;//¶şÎ¬Âë¿Õ°×
+	string strqrcodeVersion;//äºŒç»´ç çš„ç‰ˆæœ¬ç±»å‹
+	string strqrcodeECCLevel;//äºŒç»´ç çš„å®¹é”™ç‡ç­‰çº§
+	int intqrcodeQuietZone;//äºŒç»´ç ç©ºç™½
 
 	bool boQRBig;
 	int intQRVersion;

@@ -1,5 +1,5 @@
 #pragma once
-#include "classmessage.h"
+#include "ClassMessage.h"
 
 class CTimeOBJ : public OBJ_Control
 {
@@ -9,16 +9,16 @@ public:
 	~CTimeOBJ(void);
 
 public: 
-	string strTime;//×Ö¶ÎµÄtimeÊôĞÔ£¬¼´Ê±¼ä¸ñÊ½
-	int booETimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆ¿ª¹Ø£¨falseÎª¹Ø±Õ£¬trueÎª¿ªÆô£©
-	int intTimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆÖµ
-	int strTimeOffSet;//×Ö¶ÎµÄÊ±¼äÆ«ÒÆÀàĞÍ
+	string strTime;//å­—æ®µçš„timeå±æ€§ï¼Œå³æ—¶é—´æ ¼å¼
+	int booETimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»å¼€å…³ï¼ˆfalseä¸ºå…³é—­ï¼Œtrueä¸ºå¼€å¯ï¼‰
+	int intTimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»å€¼
+	int strTimeOffSet;//å­—æ®µçš„æ—¶é—´åç§»ç±»å‹
 	
 
 public://Functions
 	void CreateTimeDynamic(vector<BYTE>& bytPrintDataAll,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
-							map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-							map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
+							map<string,vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+							map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
 
 };
 

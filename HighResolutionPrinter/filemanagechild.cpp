@@ -11,6 +11,7 @@
 #include "mainwindow.h"
 #include "filemanageform.h"
 #include "fileeditchild.h"
+#include "ui_fileeditchild.h"
 #include "keyboard.h"
 #include "ClassMessage.h"
 #include "automessagebox.h"
@@ -90,6 +91,17 @@ void FileManageChild::editSeleFileBut_clicked()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
 	pFilemanageForm->FileEditChildWidgetCall();
 	pFilemanageForm->FormFileEditChild->LoadLocalFile();
+
+	QMap <QString,int> MatrixMap;
+	MatrixMap.insert("1L9M",0);
+	MatrixMap.insert("1L12M",1);
+	MatrixMap.insert("1L14M",2);
+	MatrixMap.insert("1L19M",3);
+	MatrixMap.insert("1L25M",4);
+	MatrixMap.insert("1L32M",5);
+	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
+
+	pFilemanageForm->FormFileEditChild->ui->pixelComBox->setCurrentIndex(MatrixMap[qStrMatrix]);
 }
 
 void FileManageChild::delSeleFileBut_clicked()
@@ -121,7 +133,7 @@ void FileManageChild::copyFile2localBut_clicked()
 	}
 	else
 	{
-		//µ¯³öÎÄ¼şÃûÖØ¸´
+		//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 		informationMessage();
 	}
 	this->ShowLocalFilePath();
@@ -135,6 +147,7 @@ void FileManageChild::PreviewLocalFile()
 	QFileInfo fi(qfileName);
 	qfileName = fi.baseName();
 	this->ui->fileNmaeLineEdit->setText(qfileName);
+	this->update();
 }
 
 void FileManageChild::PreviewSaveFile()
@@ -143,7 +156,7 @@ void FileManageChild::PreviewSaveFile()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
 	m_pPrinterMes->ClearOBJ_Vec();
 	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.end());
-	//È¡ÏûÑ¡ÖĞ×´Ì¬
+	//å–æ¶ˆé€‰ä¸­çŠ¶æ€
 	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
 	{
 		if (m_pPrinterMes->OBJ_Vec[i]->booFocus)
@@ -170,8 +183,8 @@ char* FileManageChild::GetCurXmlFile()
 	}
 	else
 	{
-		//µ¯³ö¶Ô»°¿ò¡°ÇëÑ¡ÔñÒ»¸öÎÄ¼ş¡±
-		return "";
+		//å¼¹å‡ºå¯¹è¯æ¡†â€œè¯·é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶â€
+        return NULL;
 	}
 }
 
@@ -180,8 +193,7 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->filePrivewtextEdit && event->type() == QEvent::Paint)
 	{
 		paintDot();
-		QPainter qFramePainter(this->ui->filePrivewtextEdit);
-		DrawBackFrame(&qFramePainter);
+		paintFrame();
 	}
 	return QWidget::eventFilter(watched,event);
 }
@@ -190,32 +202,47 @@ void FileManageChild::paintDot()
 {
 	QPainter painter(ui->filePrivewtextEdit);
 	m_pPrinterMes->DrawDot(&painter);
-	QWidget *m_QWidget(this);
-	m_QWidget->update();
+}
+
+void FileManageChild::paintFrame()
+{
+	QPainter qFramePainter(this->ui->filePrivewtextEdit);
+	DrawBackFrame(&qFramePainter);
 }
 
 void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
-	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	
+	QMap <QString,int> MatrixMap;
+	MatrixMap.insert("1L9M",45);
+	MatrixMap.insert("1L12M",60);
+	MatrixMap.insert("1L14M",70);
+	MatrixMap.insert("1L19M",95);
+	MatrixMap.insert("1L25M",125);
+	MatrixMap.insert("1L32M",160);
+	
+	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
 	int i,j;
-	for (i=0; i<=3121; i+=5)
+	for (i=1; i<=3121; i+=5)
 	{
-		//»­ÁĞ
+		//ç”»åˆ—
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,0,i,241);
+		qFramePainter->drawLine(i,241-MatrixMap[qStrMatrix],i,241);
 	}
-	for (j=0; j<=241; j+=5)
+	for (j=241; j>=241-MatrixMap[qStrMatrix]; j-=5)
 	{
-		//»­ĞĞ
+		//ç”»è¡Œ
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,0,0,240);
-	qFramePainter->drawLine(0,0,3120,0);
-	qFramePainter->drawLine(0,240,3120,240);
-	qFramePainter->drawLine(3120,0,3120,240);
+	qFramePainter->drawLine(1,241,1,241-MatrixMap[qStrMatrix]);//left
+	qFramePainter->drawLine(0,239,3121,239);//down
+	qFramePainter->drawLine(0,241-MatrixMap[qStrMatrix],3121,241-MatrixMap[qStrMatrix]);//up
+	qFramePainter->drawLine(3120,241,3120,241-MatrixMap[qStrMatrix]);//right
+	
 }
 
 void FileManageChild::slotShow(QDir dir)  
@@ -280,7 +307,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		}
 		else
 		{
-			//µ¯³öÎÄ¼şÃûÖØ¸´
+			//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 			informationMessage();
 		}
 	}
@@ -299,7 +326,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		}
 		else
 		{
-			//µ¯³öÎÄ¼şÃûÖØ¸´
+			//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 			informationMessage();
 		}
 	}

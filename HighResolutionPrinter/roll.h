@@ -20,9 +20,9 @@ protected:
 	void chooseLan();
 	
 public:
-	int m_charWidth; //×Ö·û´®¿í¶È
+	int m_charWidth; //å­—ç¬¦ä¸²å®½åº¦
 	int m_curIndex;
-    QString m_showText; //ĞèÒªÏÔÊ¾µÄ×Ö·û´®
+    QString m_showText; //éœ€è¦æ˜¾ç¤ºçš„å­—ç¬¦ä¸²
 	int curlanguage;
 
 public:

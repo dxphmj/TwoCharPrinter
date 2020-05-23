@@ -12,7 +12,7 @@ PrintCreatThread::~PrintCreatThread()
 {
 
 } 
-void PrintCreatThread::run() //ÌáÇ°Éú²úÁ½¸öÓû´òÓ¡µÄÄÚÈÝ·ÅÈëForPreQue¶ÓÁÐÖÐ
+void PrintCreatThread::run() //æå‰ç”Ÿäº§ä¸¤ä¸ªæ¬²æ‰“å°çš„å†…å®¹æ”¾å…¥ForPreQueé˜Ÿåˆ—ä¸­
 {    
 	int strTempCmdLen = 0;
 	MainWindow* theApp = (MainWindow*)(this->parent());
@@ -24,7 +24,7 @@ void PrintCreatThread::run() //ÌáÇ°Éú²úÁ½¸öÓû´òÓ¡µÄÄÚÈÝ·ÅÈëForPreQue¶ÓÁÐÖÐ
 			msleep(100);
 			continue;
 		}
-		theApp->getSerialTimeDotBuf();//ÐÞ¸ÄbytPrintDataAllÖÐÏàÓ¦µÄ×Ö½ÚÊý¾Ý
+		theApp->getSerialTimeDotBuf();//ä¿®æ”¹bytPrintDataAllä¸­ç›¸åº”çš„å­—èŠ‚æ•°æ®
 
 		theApp->boPrintNowLock.lock();
 			theApp->ForPreQue.push(theApp->m_MessagePrint->bytPrintDataAll);				

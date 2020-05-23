@@ -92,10 +92,11 @@ public:
 public:
 	bool m_Upper;
 	bool m_symbol;
+	bool m_booWitchWidget;//åˆ¤æ–­æ˜¯è°è°ƒç”¨keyboardï¼šæ˜¯fileeditchildè¿˜æ˜¯filemanagechildï¼Œå‰è€…ä¸ºtrueï¼ˆå¼ ç®çºï¼‰
 	lineedit_click* m_pInputEdit;
 	language  *languageWidget;
-	int m_CharacterPosition;//×Ö·ûÎ»ÖÃ
-	QMap< QString,QString >ChineseLanMap;//¶¨Òåmap¶ÔÏó
+	int m_CharacterPosition;//å­—ç¬¦ä½ç½®
+	QMap< QString,QString >ChineseLanMap;//å®šä¹‰mapå¯¹è±¡
 	QMap< QString,QString >JapaneseLanMap;
 	QMap< QString,QString >KoreanLanMap;
 	QString key;
@@ -111,9 +112,9 @@ public:
 	                         DutchSymbol = 5,GermanSymbol = 6,FarsiSymbol = 7,ArabicSymbol = 8,Arabic2Symbol = 9,
 	                         Arabic3Symbol = 10,Arabic4Symbol = 11,Arabic5Symbol = 12};
 	
-	int m_LanType;//µ±Ç°ÓïÑÔÖÖÀà
-	int m_LanTurn;//Ó¢ÓïÓëÆäËûÓïÑÔ×ª»»
-	int m_LantypeReverse;//·ûºÅÖÖÀà
+	int m_LanType;//å½“å‰è¯­è¨€ç§ç±»
+	int m_LanTurn;//è‹±è¯­ä¸å…¶ä»–è¯­è¨€è½¬æ¢
+	int m_LantypeReverse;//ç¬¦å·ç§ç±»
 	Ui::keyboard* ui;
 
 private:
@@ -132,11 +133,11 @@ public:
 	void CreateKoreanMapLan();
 	void FontSelect();
 	//void OnEnChangeEditInput();//arabic
-	QVector<QString>splitOut;//×Ö·û´®·Ö¸î
+	QVector<QString>splitOut;//å­—ç¬¦ä¸²åˆ†å‰²
 
 public slots:
 	void caps1_kBBut_clicked();
-	void languagespell();//²»ÊÇclicked
+	void languagespell();//ä¸æ˜¯clicked
 	void wordComLineEdit_clicked();
 
 private slots:

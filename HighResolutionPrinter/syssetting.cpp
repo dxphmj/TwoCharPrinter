@@ -1,4 +1,4 @@
-﻿#include "syssetting.h"
+#include "syssetting.h"
 #include "UILanguage.h"
 #include "mainwindow.h"
 #include "roll.h"

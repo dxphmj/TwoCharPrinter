@@ -3,7 +3,7 @@
 #include "fileeditchild.h"
 #include <QTableWidget>
 #include <QMouseEvent>
-#include "backend\zint.h"
+#include "backend/zint.h"
 #include <QFileDialog>
 #include "filemanageform.h"
 #include "filemanagechild.h"
@@ -17,7 +17,11 @@
 #include "ui_mainwindow.h"
 #include "paramsettingform.h"
 #include "automessagebox.h"
-#include <tchar.h>
+//#include <tchar.h>
+#include <QDebug>
+#include <QFontDatabase>
+#include <QDir>
+
 
 
 FileEditChild::FileEditChild(QWidget *parent)
@@ -74,7 +78,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->heightBmpShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(heightBmpShowBmpLineEdit_clicked()));
 	connect(ui->widthShowBmpLineEdit,SIGNAL(clicked()),this,SLOT(widthShowBmpLineEdit_clicked()));
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
-	connect(ui->pixelComBox,SIGNAL(currentIndexChanged()),this,SLOT(ChangePixel()));
+	connect(ui->pixelComBox,SIGNAL(currentIndexChanged(int)),this,SLOT(ChangePixel()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(KeyboardConceal_clicked()));
 	connect(ui->startValSerialLineEdit,SIGNAL(editingFinished()),this,SLOT(SerialNumberstartchange()));
@@ -191,14 +195,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//ui->zoomShowDMLab->setStyleSheet("background-color: rgb(67,51, 139);color: rgb(255, 255, 255);"); 
 	
 	//画布宽度item选项（单位：5x5像素）
-	ui->pixelComBox->addItem(QStringLiteral("5px"));//0
-	ui->pixelComBox->addItem(QStringLiteral("7px"));//1
-	ui->pixelComBox->addItem(QStringLiteral("9px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("12px"));//3
-	ui->pixelComBox->addItem(QStringLiteral("19px"));//4
-	ui->pixelComBox->addItem(QStringLiteral("25px"));//5
-	ui->pixelComBox->addItem(QStringLiteral("48px"));//6
-	ui->pixelComBox->setCurrentIndex(4);
+	ui->pixelComBox->addItem(QStringLiteral("9px"));//0
+	ui->pixelComBox->addItem(QStringLiteral("12px"));//1
+	ui->pixelComBox->addItem(QStringLiteral("14px"));//2
+	ui->pixelComBox->addItem(QStringLiteral("19px"));//3
+	ui->pixelComBox->addItem(QStringLiteral("25px"));//4
+	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
+	//ui->pixelComBox->addItem(QStringLiteral("48px"));//6
+	ui->pixelComBox->setCurrentIndex(3);
 
 	//移动速度item选项（单位：5x5像素点）
 	ui->moveSpeedComBox->addItem(QStringLiteral("1"));//0
@@ -335,28 +339,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->serialLineEdit->setText("000000001");
 	SerialNumber_length=0;
 	Serialfirst=1; 
-
-
-	/*for(int i=0 ; i<1;i++)
-	{*/
-	//fcb = new QFontComboBox(this->ui->fontSizeTextComBox);
-	/*}
-    */
-	//fcb->setFontFilters(QFontComboBox::AllFonts);
-	///*fc[1]->setFontFilters(QFontComboBox::ScalableFonts);
-	//fc[2]->setFontFilters(QFontComboBox::NonScalableFonts);
-	//fc[3]->setFontFilters(QFontComboBox::MonospacedFonts);
-	//fc[4]->setFontFilters(QFontComboBox::ProportionalFonts);*/
-
-	/*int ypos = 30 ;*/
-	/*for(int i=0;i<1;i++)
-	{*/
-	//fcb->setGeometry(100,470,300,41);
-	//	ypos += 40 ;
-	/*}*/
-	/*label = new QLabel("用此标签查看字体效果",this);
-	label->setGeometry(10,230,200,30);
-	connect(fc[0],SIGNAL(currentFontChanged(QFont)),this,SLOT(changedFont(QFont)));*/
  
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
@@ -370,7 +352,43 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose = new QFontComboBox(this->ui->fontTypeTextComBox);
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
-	
+
+
+	//text = new QTextEdit(this);
+
+	//sizeComboBox = new QComboBox(this->ui->fontSizeTextComBox);
+	//QFontDatabase db;
+	////standardSize(): return a list of standard font size(返回可用标准字号的列表).
+	//foreach (int size, db.standardSizes ())
+	//sizeComboBox->addItem (QString::number (size)); //将它们插入到字号下拉框中
+
+	//connect (sizeComboBox, SIGNAL(activated(QString)), this, SLOT(ShowSizeSpinBox(QString)));
+	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
+	spinBox->setValue(font().pointSize());
+	spinBox->setGeometry(0,0,181,41);
+	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
+
+
+	connect(FontComboBoxChoose,SIGNAL(currentIndexChanged(QString)),this,SLOT(changedFont(const QString &)));
+
+	/*QDir MultiLanguage;
+	QString MultiLanguageDir = MultiLanguage.currentPath();*/
+
+	//QFontDatabase database;
+	//int fontID = QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
+	//qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontID);
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/msyh.ttc"); //Wei Ruan Ya Hei
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simsun.ttc"); //Song Ti
+	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/SIMYOU.TTF"); //You Yuan
+
+
+	//qDebug()<<"\r\n Availble chinese font. \r\n"; //下面为支持简体中文字体库
+	//foreach (const QString &family, database.families(QFontDatabase::SimplifiedChinese))
+	//{
+	//	qDebug()<<family;
+	//}
+
 	/*ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
@@ -400,8 +418,7 @@ void FileEditChild::ScrollBarChanged(int value)
 
 void FileEditChild::ChangePixel()
 {
-	QPainter qFramePainter(this->ui->editPreviewText);
-	DrawBackFrame(&qFramePainter);
+	this->update();
 }
 
 void FileEditChild::shiftNumShowLineEdit_clicked()
@@ -576,45 +593,100 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 	}
 }
 
+
+
+//void FileEditChild::changedIndex(int idx)
+//{
+//	qDebug("Font index : %d",idx);
+//}
+//
+void FileEditChild::changedFont(const QString &arg1)
+{
+	QTextCharFormat fmt;
+	fmt.setFontFamily(arg1);
+	//ui->wordTextEdit->mergeCurrentCharFormat(fmt);
+	mergeFormat(fmt);
+	/*label->setText(QStringLiteral("选择字体:")+f.family());
+	label->setFont(f.family());*/
+}
+
+
+//void FileEditChild::ShowSizeSpinBox(QString spinValue)
+//{
+//	QTextCharFormat fmt;
+//	//设置字号
+//	fmt.setFontPointSize (spinValue.toFloat ());
+//	//直接调用QTextEdit的
+//	text->mergeCurrentCharFormat (fmt);
+//}
+
+void FileEditChild::spinBoxSlot(int FontSize)
+{
+	QTextCharFormat fmt;
+	fmt.setFontPointSize(FontSize);
+	//text->mergeCurrentCharFormat(fmt);
+	//mergeFormat(fmt);
+}
+
+//void FileEditChild::textButton()
+//{
+//	label->setText(QStringLiteral("选择字体:") + FontComboBoxChoose->currentText());
+//	QFont font;
+//	font.setPixelSize(35);
+//	font.setFamily(FontComboBoxChoose->currentText());
+//	label->setFont(font);
+//}
+void FileEditChild::mergeFormat(QTextCharFormat format)
+{
+	QTextCursor cursor = text->textCursor ();   //获得编辑框中的光标 未定义所需要改的文字，所以会报错
+	//若光标没有高亮区，则光标所在处的词为选区(由前后有空格，“，”，“、”，“."等标点分隔
+	if (!cursor.hasSelection ())
+		cursor.select (QTextCursor::WordUnderCursor);
+	//将format所表示的格式应用到光标所在处的字符上
+	cursor.mergeCharFormat (format);
+	//调用QTextEdit的mergeCurrentCharFormat()将格式应用到选区的所有字符上
+	//text->mergeCurrentCharFormat (format);
+}
+
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	//绘图统一放到eventFilter 中进行绘制，这里只是改变相关变量值
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
-	QPen qRedPen(Qt::red,4,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 	QMap <QString,int> PixelMap;
-	PixelMap.insert("5px",25);
-	PixelMap.insert("7px",35);
 	PixelMap.insert("9px",45);
 	PixelMap.insert("12px",60);
+	PixelMap.insert("14px",70);
 	PixelMap.insert("19px",95);
 	PixelMap.insert("25px",125);
-	PixelMap.insert("48px",240);
+	PixelMap.insert("32px",160);
+	//PixelMap.insert("48px",240);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
 	int i,j;
-	for (i=0; i<=3121; i+=5)
+	for (i=1; i<=3121; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,240-PixelMap[CurPixelItem],i,241);
+		qFramePainter->drawLine(i,241-PixelMap[CurPixelItem],i,241);
 	}
-	for (j=240; j>=240-PixelMap[CurPixelItem]; j-=5)
+	for (j=241; j>=241-PixelMap[CurPixelItem]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,240,0,240-PixelMap[CurPixelItem]);
-	qFramePainter->drawLine(0,240,3120,240);
-	qFramePainter->drawLine(0,240-PixelMap[CurPixelItem],3120,240-PixelMap[CurPixelItem]);
-	qFramePainter->drawLine(3120,240,3120,240-PixelMap[CurPixelItem]);
+	qFramePainter->drawLine(1,241,1,241-PixelMap[CurPixelItem]);//left
+	qFramePainter->drawLine(0,239,3121,239);//down
+	qFramePainter->drawLine(0,241-PixelMap[CurPixelItem],3121,241-PixelMap[CurPixelItem]);//up
+	qFramePainter->drawLine(3120,241,3120,241-PixelMap[CurPixelItem]);//right
 
-	//获得Matrix 及 Piexl的值
+	//获得Matrix 及 Pixel的值
 	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
 	m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
-	m_MessagePrint.Pixel = m_MessagePrint.Matrix;
+	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -622,7 +694,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	GenerateBarCodeBmp();
 	QString str = getNum(ui->heightBarCodeShowQRLab->text());
 	int heightvalue1 = str.toInt();
-	char* strFileName = "User/logo/output.bmp";
+    //char* strFileName = "User/logo/output.bmp";
+    char arrFileName[] =  "User/logo/output.bmp";
+    char* strFileName = arrFileName;
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
@@ -700,8 +774,8 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
-	strcpy_s(my_symbol->fgcolour, "ffffff");
-	strcpy_s(my_symbol->bgcolour, "000000");
+    strncpy(my_symbol->fgcolour, "ffffff",10);
+    strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -797,8 +871,8 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	my_symbol->option_2 = nType;
 	if (ui->reverseDMCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -947,13 +1021,18 @@ void FileEditChild::paintDot()
 	m_MessagePrint.DrawDot(&painter);
 }
 
+void FileEditChild::paintFrame()
+{
+	QPainter qFramePainter(this->ui->editPreviewText);
+	DrawBackFrame(&qFramePainter);
+}
+
 bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintDot();
-		QPainter qFramePainter(this->ui->editPreviewText);
-		DrawBackFrame(&qFramePainter);
+		paintFrame();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -1408,6 +1487,7 @@ void FileEditChild::saveasBut_clicked()
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
 	string tmpFileName;
+
 	//判断当前编辑的文件是否为本地文件
 	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
@@ -1419,11 +1499,21 @@ void FileEditChild::saveasBut_clicked()
 	else //新建文件
 	{
 		tmpFileName = "NewLabel_";
-		//m_MessagePrint.strMatrix = "1L7M";
-		//m_MessagePrint.Pixel = 7;
-		m_MessagePrint.Reverse = "GLOBAL";
-		m_MessagePrint.Inverse = "GLOBAL";
 	}
+
+	QMap <QString,string> MatrixMap;
+	MatrixMap.insert("9px","1L9M");
+	MatrixMap.insert("12px","1L12M");
+	MatrixMap.insert("14px","1L14M");
+	MatrixMap.insert("19px","1L19M");
+	MatrixMap.insert("25px","1L25M");
+	MatrixMap.insert("32px","1L32M");
+	QString qStrMatrix = ui->pixelComBox->currentText();
+	m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
+	m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
+	m_MessagePrint.Reverse = "GLOBAL";
+	m_MessagePrint.Inverse = "GLOBAL";
+	
 	pFilemanageForm->FormFileManageChild->boolSaveAsBtn_Clicked = true;
 	char* tmpChar = m_MessagePrint.GenerateFileName((tmpFileName));
 	char FilePath[256];
@@ -1443,6 +1533,7 @@ void FileEditChild::saveBut_clicked()
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
+	
 	//判断文件是新建的，还是来源于本地
 	if (pFilemanageForm->FormFileManageChild->boolFileSelected == true) //来源于本地
 	{
@@ -1450,9 +1541,25 @@ void FileEditChild::saveBut_clicked()
 		string tmpStr = qfileName.toStdString();
 		char tmpFilePath[256];
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
+		
+		QMap <QString,string> MatrixMap;
+		MatrixMap.insert("9px","1L9M");
+		MatrixMap.insert("12px","1L12M");
+		MatrixMap.insert("14px","1L14M");
+		MatrixMap.insert("19px","1L19M");
+		MatrixMap.insert("25px","1L25M");
+		MatrixMap.insert("32px","1L32M");
+		QString qStrMatrix = ui->pixelComBox->currentText();
+		m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
+		m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
+		m_MessagePrint.Reverse = "GLOBAL";
+		m_MessagePrint.Inverse = "GLOBAL";
+		
 		m_MessagePrint.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
+		
 		//此处应当弹出"保存成功！"对话框，持续一秒
+
 	}
 	else //新建文件，与"另存为"相同
 	{
@@ -1924,7 +2031,7 @@ void FileEditChild::GenerateBarCodeBmp()
 		} 
 	
 		else  {my_symbol->show_hrt=0;}
-		strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
+        strncpy(my_symbol->outfile, "User/logo/output.bmp",128);
 		error_number = ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
 		generated=1;
 		
@@ -1961,7 +2068,9 @@ void FileEditChild::newBarCodeBut_clicked()
 			CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&m_MessagePrint.OBJ_Vec[i]);
 			GenerateBarCodeBmp();
 			int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
-			char* strFileName = "User/logo/output.bmp";
+            //char* strFileName = "User/logo/output.bmp";
+            char arrFileName[] =  "User/logo/output.bmp";
+            char* strFileName = arrFileName;
 			QPixmap pLoad;
 			pLoad.load(strFileName);
 			int nW = pLoad.width();
@@ -2084,8 +2193,8 @@ zint_symbol FileEditChild::resetQRCode()
 	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -2205,8 +2314,8 @@ zint_symbol FileEditChild::resetDMCode()
 	my_symbol->option_2 = DMsize[this->ui->sideLenDMComBox->currentText()];
 	if (ui->reverseDMCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -2451,7 +2560,8 @@ void FileEditChild::addTimeBut_clicked()
 	QString skewvalue1;
 	skewvalue1=ui->SkewSkewValueEdit->text();
 	int skewvalue2=skewvalue1.toInt();
-	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
 
 }
@@ -2483,8 +2593,8 @@ void FileEditChild::ChangeTime()
 	QString skewvalue1;
 	skewvalue1=ui->SkewSkewValueEdit->text();
 	int skewvalue2=skewvalue1.toInt();
-	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
-	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
 }
 
@@ -3230,7 +3340,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	HexStr = " " + HexStr;
 	wchar_t* buf = new wchar_t[2];
 	memset(buf, 0, sizeof(wchar_t)*(2));//memset初始化数组
-	
+/*
 	TCHAR seps[] = _T(" ");
 
 	int bufSize = MultiByteToWideChar(CP_ACP,0,HexStr.toStdString().c_str(),-1,NULL,0);  	    
@@ -3247,8 +3357,10 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 
 	delete[] buf;
 	delete[] pwstr;
-	buf = NULL;
-	return outstr;
+    buf = NULL;
+    return outstr;
+*/
+    return NULL;
 }
 
 QString FileEditChild::ArabicLan(QString inputstring)//Arabic组合规则

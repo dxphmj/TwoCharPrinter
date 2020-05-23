@@ -1,5 +1,5 @@
 #include "DMcodeOBJ.h"
-#include "backend\zint.h"
+#include "backend/zint.h"
 
 CDMcodeOBJ::CDMcodeOBJ(void)
 {
@@ -87,7 +87,7 @@ void CDMcodeOBJ::CreateDMcode()
 	//intDMsize = nType;
 	//bmpObj.strDMContent = strContent.toStdString();
 	//bmpObj.strText = strContent.toStdString();
-	//ÒÔÏÂÏÈÐ´ËÀ
+	//ä»¥ä¸‹å…ˆå†™æ­»
 	/*bmpObj.intSW=1;
 	bmpObj.intSS=1;
 	bmpObj.booNEG=false;
@@ -106,7 +106,7 @@ void CDMcodeOBJ::CreateDMcode()
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				//		bmpObj.boDotBmp[col][row-proportion] = true; //ÓÉÓÚ×ø±êÏµµÄÔ­Òò£¬ÉÏÏÂ±ØÐëµßµ¹
+				//		bmpObj.boDotBmp[col][row-proportion] = true; //ç”±äºŽåæ ‡ç³»çš„åŽŸå› ï¼Œä¸Šä¸‹å¿…é¡»é¢ å€’
 				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else

@@ -1,4 +1,4 @@
-﻿#include "ParamSetting.h"
+#include "ParamSetting.h"
 #include <QDir>
 #include <QFile>
 #include <QDebug>

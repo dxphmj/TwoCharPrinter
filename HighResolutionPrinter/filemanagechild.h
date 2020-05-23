@@ -34,6 +34,7 @@ public:
 
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
+	void paintFrame();
 	void PreviewSaveFile();
 	QString rootStr;
 	char* GetCurXmlFile();

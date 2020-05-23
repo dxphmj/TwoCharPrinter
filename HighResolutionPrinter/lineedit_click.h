@@ -14,11 +14,11 @@ public:
 	~lineedit_click();
 
 protected:
-	//ÖØĞ´mousePressEventÊÂ¼ş
+	//é‡å†™mousePressEventäº‹ä»¶
 	virtual void mousePressEvent(QMouseEvent *event);
 
 signals:
-	//×Ô¶¨Òåclicked()ĞÅºÅ,ÔÚmousePressEventÊÂ¼ş·¢ÉúÊ±´¥·¢
+	//è‡ªå®šä¹‰clicked()ä¿¡å·,åœ¨mousePressEventäº‹ä»¶å‘ç”Ÿæ—¶è§¦å‘
 	void clicked();
 
 public slots:

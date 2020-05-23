@@ -51,8 +51,8 @@ CSerialOBJ::~CSerialOBJ(void)
 }
 
 void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
-									map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
+									map<string,vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+									map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
 {	 
 
 	if (CountNumRep < intSerialRepeat)
@@ -65,7 +65,7 @@ void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boRevers
 			int tempValue = CountNum+intSerialStep;
 			if (tempValue > intSerialSecondLimit)
 			{
-				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit - 1; //'超第二象限的计算公式
+				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit - 1; //'瓒呯浜岃薄闄愮殑璁＄畻鍏紡
 			} 
 			else
 			{
@@ -77,7 +77,7 @@ void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boRevers
 			int tempValue = CountNum-intSerialStep;
 			if (tempValue < intSerialSecondLimit)
 			{
-				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit + 1; //'超第二象限的计算公式
+				CountNum = tempValue - intSerialSecondLimit + intSerialFirstLimit + 1; //'瓒呯浜岃薄闄愮殑璁＄畻鍏紡
 			} 
 			else
 			{

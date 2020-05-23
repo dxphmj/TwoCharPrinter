@@ -30,15 +30,15 @@ void PrintShowThread::run()
 	int strTempCmdLen = 0;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
-	//Èç¶¯Ì¬´òÓ¡Ôò¶¯Ì¬ÏÔÊ¾£¬ÏÂÃæµÄÂß¼­»¹ÐèÓÅ»¯
+	//å¦‚åŠ¨æ€æ‰“å°åˆ™åŠ¨æ€æ˜¾ç¤ºï¼Œä¸‹é¢çš„é€»è¾‘è¿˜éœ€ä¼˜åŒ–
 
 	int pixSize = 4; 
 	
-	while(theApp->mythreadDynamicBoo)
+	while(theApp->mythreadDynamicBoo)//åŠ¨æ€çº¿ç¨‹å¼€å…³
 	{
-		while(theApp->boDrawMainPic)
+		while(theApp->boDrawMainPic)//ä¸»ç•Œé¢åŠ¨æ€ç»˜åˆ¶å¼€å…³
 		{
-			//if(theApp->ForPreQue.size() >= 2)///////ÒÔºóÉ¾µô
+			//if(theApp->ForPreQue.size() >= 2)///////ä»¥åŽåˆ æŽ‰
 			//{
 			//	theApp->m_MessagePrint->intMesDis = theApp->ForPreQue.front();;
 			//	theApp->ForPreQue.pop();

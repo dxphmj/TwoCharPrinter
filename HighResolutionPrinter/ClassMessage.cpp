@@ -3,7 +3,7 @@
 #include "sstream"
 #include <fstream>
 #include <stdio.h>
-#include "xml\tinyxml.h"
+#include "xml/tinyxml.h"
 #include <QPainter>
 #include <io.h>
 #include "QFileInfo"
@@ -11,7 +11,8 @@
 #include "BmpObj.h"
 #include "ModuleMain.h"
 
-#include "wordStock\\GetHZinfo.h"
+#include "wordStock/GetHZinfo.h"
+#include <math.h>
  
 ClassMessage::ClassMessage(void)
 {
@@ -42,10 +43,10 @@ BYTE ClassMessage::getByteFromDot(bool boDot,int moveNum)
 string ClassMessage::to_String(int n)
 {
 	int m = n;
-	char s[max];
-	char ss[max];
+	char s[max_];
+	char ss[max_];
 	int i=0,j=0;
-	if (n < 0)// ´¦Àí¸ºÊı
+	if (n < 0)// å¤„ç†è´Ÿæ•°
 	{
 		m = 0 - m;
 		j = 1;
@@ -108,13 +109,13 @@ void ClassMessage::DrawDot(CDC* pDC)
 		OBJ_Vec[i]->DrawDot(pDC);
 }
 
-//¿ØÖÆµ±Ç°OBJ_Vec[i]ÖĞÄÄÒ»¸öobj±»Ñ¡ÖĞ
+//æ§åˆ¶å½“å‰OBJ_Vec[i]ä¸­å“ªä¸€ä¸ªobjè¢«é€‰ä¸­
 void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 {
-	//¼ÆËãÊó±êÏà¶ÔÓÚFileManageChild´°¿ÚµÄ×ø±êÎ»ÖÃ
+	//è®¡ç®—é¼ æ ‡ç›¸å¯¹äºFileManageChildçª—å£çš„åæ ‡ä½ç½®
 	int x_pos = p_Relative.x();
 	int y_pos = p_Relative.y();
-	//ÅĞ¶Ï¸ÃÎ»ÖÃÊÇ·ñÔÚ¿Ø¼şeditPreviewText·¶Î§ÄÚ
+	//åˆ¤æ–­è¯¥ä½ç½®æ˜¯å¦åœ¨æ§ä»¶editPreviewTextèŒƒå›´å†…
 	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
 	{
 		int nLin = ( 241 - y_pos ) / 5;
@@ -148,7 +149,7 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 	}
 }
 
-//ÅĞ¶ÏÓÃ»§ÊäÈëµÄÎÄ¼şÃûstrFileNameÊÇ·ñºÍ±¾µØÒÑÓĞµÄxmlÎÄ¼şÃûÖØ¸´
+//åˆ¤æ–­ç”¨æˆ·è¾“å…¥çš„æ–‡ä»¶åstrFileNameæ˜¯å¦å’Œæœ¬åœ°å·²æœ‰çš„xmlæ–‡ä»¶åé‡å¤
 char* ClassMessage::GenerateFileName(string tmpFileName)
 {
 	int tmpFileNum = 1;
@@ -172,7 +173,7 @@ char* ClassMessage::GenerateFileName(string tmpFileName)
 	return CurFilePath;
 }
 
-//Éú³É×Ô¶¯±£´æµÄÌõĞÎÂëµÄÎÄ¼şÃû
+//ç”Ÿæˆè‡ªåŠ¨ä¿å­˜çš„æ¡å½¢ç çš„æ–‡ä»¶å
 char* ClassMessage::Generate2DcodeName(string strFileName)
 {
 	int tmpFileNum = 1;
@@ -246,7 +247,7 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		TiXmlText textRowsize(to_String(OBJ_Vec[i]->intRowSize).c_str());
 		TiXmlText textSW(to_String(OBJ_Vec[i]->intSW).c_str());
 		TiXmlText textSS(to_String(OBJ_Vec[i]->intSS).c_str());
-		TiXmlText textNEG(to_String(OBJ_Vec[i]->booNEG).c_str());///Õâ¼¸¸öboolÊÇ¸ö¿Ó
+		TiXmlText textNEG(to_String(OBJ_Vec[i]->booNEG).c_str());///è¿™å‡ ä¸ªboolæ˜¯ä¸ªå‘
 		TiXmlText textBWDx(to_String(OBJ_Vec[i]->booBWDx).c_str());
 		TiXmlText textBWDy(to_String(OBJ_Vec[i]->booBWDy).c_str());
 
@@ -475,21 +476,17 @@ void ClassMessage::ClearOBJ_Vec()
 
 void ClassMessage::GetMatrix()
 {
-	if (strMatrix == "1L5M")
-	{
-		Matrix = 5;
-	} 
-	else if(strMatrix == "1L7M")
-	{
-		Matrix = 7;
-	}
-	else if(strMatrix == "1L9M")
+	if (strMatrix == "1L9M")
 	{
 		Matrix = 9;
-	}
+	} 
 	else if(strMatrix == "1L12M")
 	{
 		Matrix = 12;
+	}
+	else if(strMatrix == "1L14M")
+	{
+		Matrix = 14;
 	}
 	else if(strMatrix == "1L19M")
 	{
@@ -499,16 +496,33 @@ void ClassMessage::GetMatrix()
 	{
 		Matrix = 25;
 	}
-	else if(strMatrix == "2L7M")
+	else if(strMatrix == "1L32M")
 	{
-		Matrix = 14;
+		Matrix = 32;
 	}
+	/*else if(strMatrix == "2L7M")
+	{
+	Matrix = 14;
+	}*/
 	else
 	{
-		Matrix = 9;
+		Matrix = 19;
 	}
 }
 
+int ClassMessage::GetPixel()
+{
+	int i;
+	int intTempPixel = 0;
+	for( i=0; i<OBJ_Vec.size(); ++i )
+	{
+		if (intTempPixel < (OBJ_Vec[i]->intLineStart + OBJ_Vec[i]->intLineSize))
+		{
+			intTempPixel = OBJ_Vec[i]->intLineStart + OBJ_Vec[i]->intLineSize;
+		}
+	}
+	return intTempPixel;
+}
 
 void ClassMessage::ReadObjectsFromXml(char* strFileName)
 {
@@ -545,14 +559,14 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 		count++;
 		if(strcmp(str,"PRO") == 0)
 		{
-			//¶ÁÈëĞÅÏ¢
+			//è¯»å…¥ä¿¡æ¯
 			TiXmlNode* nodeTmp = 0;
 			for( nodeTmp = node->IterateChildren(0);nodeTmp;nodeTmp = node->IterateChildren( nodeTmp ) )
 			{
 				const char* strItem = nodeTmp->ValueTStr().c_str();
 				if(strcmp(strItem,"Matrix") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -562,7 +576,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"Pixel") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -571,7 +585,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"Reverse") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -580,7 +594,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"Inverse") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -591,7 +605,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 		}
 		else if(strcmp(str,"OBJ") == 0)
 		{
-			//¶ÁÈëÊôĞÔĞÅÏ¢
+			//è¯»å…¥å±æ€§ä¿¡æ¯
 			OBJ_Control obj;
 			CTextOBJ TextObj;
 			CSerialOBJ SerialObj;
@@ -608,7 +622,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				const char* strItem = nodeTmp->ValueTStr().c_str();
 				if(strcmp(strItem,"TYPE1") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -616,7 +630,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"TYPE2") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -624,7 +638,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"LineStart") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -632,7 +646,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"RowStart") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -640,7 +654,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"LineSize") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -648,7 +662,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"RowSize") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -656,7 +670,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"SW") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -664,7 +678,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"SS") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -672,7 +686,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"NEG") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -680,7 +694,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"BWDx") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -688,7 +702,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"BWDy") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -696,7 +710,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				}
 				else if(strcmp(strItem,"setFONT") == 0)
 				{
-					//¶ÁÈëĞÅÏ¢
+					//è¯»å…¥ä¿¡æ¯
 					const char* strText; 
 					TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					strText = nodeText->ValueTStr().c_str();
@@ -708,7 +722,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -719,7 +733,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{					 
 					if(strcmp(strItem,"FirstLimit") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -727,7 +741,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"SecondLimit") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -735,7 +749,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"StartValue") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -743,7 +757,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"Step") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -751,7 +765,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"Repeat") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -759,7 +773,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"Digits") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -767,7 +781,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"Format") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -775,7 +789,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"Counter") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -784,7 +798,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -795,7 +809,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{
 					if(strcmp(strItem,"setTIME") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -803,7 +817,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					else if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -814,7 +828,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -826,7 +840,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{ 
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -834,7 +848,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					if (strcmp(strItem,"BarcodeType") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -842,7 +856,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					if (strcmp(strItem,"BarType") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -850,7 +864,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					//if(strcmp(strItem, "BarWhite" ) == 0)
 					//{
-					//	//¶ÁÈëĞÅÏ¢
+					//	//è¯»å…¥ä¿¡æ¯
 					//	const char* strText; 
 					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					//	strText = nodeText->ValueTStr().c_str();
@@ -859,7 +873,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//}
 					if(strcmp(strItem,"BarcodeContent") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -871,7 +885,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{					
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -879,7 +893,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}	
 					if(strcmp(strItem,"qrcodeVersion") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -888,7 +902,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//}
 					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
 					//{
-					//	//¶ÁÈëĞÅÏ¢
+					//	//è¯»å…¥ä¿¡æ¯
 					//	const char* strText; 
 					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					//	strText = nodeText->ValueTStr().c_str();
@@ -896,13 +910,13 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					//}
 					//if(strcmp(strItem,"qrcodeQuietZone") == 0)
 					//{
-					//	//¶ÁÈëĞÅÏ¢
+					//	//è¯»å…¥ä¿¡æ¯
 					//	const char* strText; 
 					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 					//	strText = nodeText->ValueTStr().c_str();
 					//	obj.intqrcodeQuietZone = atoi(strText);
 
-						//¶ÁÈëÍêËùÓĞµÄĞÅÏ¢ºóÒªÖØĞÂÉú³É¶şÎ»ÂëµÄµãÕóĞÅÏ¢,ÒòÎªlabÖĞ²»°üº¬ÕâĞ©ĞÅÏ¢£¬logo¼°ÆäËûÀàËÆ
+						//è¯»å…¥å®Œæ‰€æœ‰çš„ä¿¡æ¯åè¦é‡æ–°ç”ŸæˆäºŒä½ç çš„ç‚¹é˜µä¿¡æ¯,å› ä¸ºlabä¸­ä¸åŒ…å«è¿™äº›ä¿¡æ¯ï¼ŒlogoåŠå…¶ä»–ç±»ä¼¼
 						QRcodeObj.CreateQrcode();
 					}
 				}
@@ -910,7 +924,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				{ 
 					if(strcmp(strItem,"setTEXT") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -918,7 +932,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}	
 					if(strcmp(strItem,"DMsize") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -927,7 +941,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					if(strcmp(strItem,"DMrow") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
@@ -936,13 +950,13 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 					}
 					if(strcmp(strItem,"DMContent") == 0)
 					{
-						//¶ÁÈëĞÅÏ¢
+						//è¯»å…¥ä¿¡æ¯
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						DMcodeObj.strDMContent.assign(strText);
 					
-						//¶ÁÈëÍêËùÓĞµÄĞÅÏ¢ºóÒªÖØĞÂÉú³É¶şÎ»ÂëµÄµãÕóĞÅÏ¢,ÒòÎªlabÖĞ²»°üº¬ÕâĞ©ĞÅÏ¢£¬logo¼°ÆäËûÀàËÆ
+						//è¯»å…¥å®Œæ‰€æœ‰çš„ä¿¡æ¯åè¦é‡æ–°ç”ŸæˆäºŒä½ç çš„ç‚¹é˜µä¿¡æ¯,å› ä¸ºlabä¸­ä¸åŒ…å«è¿™äº›ä¿¡æ¯ï¼ŒlogoåŠå…¶ä»–ç±»ä¼¼
 						DMcodeObj.CreateDMcode();
 					}
 				}
@@ -996,8 +1010,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 void ClassMessage::getdot()
 {
 	boDotMes.clear();
-	vector<vector<bool>> ivec(32 ,vector<bool>(intRowMax<10?10:intRowMax,false));//ÎªºÎ²»ÄÜĞ¡ÓÚ10
-	boDotMes = ivec;//Îª»ñµÃobjµÄµãÕóĞÅÏ¢ÉêÇë¿Õ¼ä
+	vector<vector<bool> > ivec(32 ,vector<bool>(intRowMax<10?10:intRowMax,false));//ä¸ºä½•ä¸èƒ½å°äº10
+	boDotMes = ivec;//ä¸ºè·å¾—objçš„ç‚¹é˜µä¿¡æ¯ç”³è¯·ç©ºé—´
 
 	ModuleMain myModuleMain;
 
@@ -1012,15 +1026,17 @@ void ClassMessage::getdot()
 			OBJ_Vec[i]->DrawLogoQRcodeDM(NULL,boDotMes);
 			 
 		}
-		else if (OBJ_Vec[i]->strType2=="qrcode")//¶şÎ¬Âë
+		else if (OBJ_Vec[i]->strType2=="qrcode")//äºŒç»´ç 
 		{
 			OBJ_Vec[i]->DrawLogoQRcodeDM(NULL,boDotMes);
 		}
 		else if (OBJ_Vec[i]->strType2=="time")
 		{
 			CTimeOBJ* pTimeObj = (CTimeOBJ*)(OBJ_Vec[i]);
-			OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(myModuleMain.string2CString(pTimeObj->strTime),
-				                    pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
+			//OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(myModuleMain.string2CString(pTimeObj->strTime),
+			//	                    pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
+			OBJ_Vec[i]->strText = myModuleMain.TimeFormatToText(QString::fromStdString(pTimeObj->strTime),
+				pTimeObj->booETimeOffSet,pTimeObj->intTimeOffSet,pTimeObj->strTimeOffSet);
 			OBJ_Vec[i]->DrawTextAll(NULL,boDotMes);
 		}
 		else if (OBJ_Vec[i]->strType2 == "serial")
@@ -1168,12 +1184,14 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 							bytTempVec.push_back(0);
 							for (int j=8;j<16;j++)
 							{
-								bytTempVec[3*i+1]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-8);
+								//bytTempVec[3*i+1]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-8);
+								bytTempVec[3*i+1] = bytTempVec[3*i+1] + getByteFromDot(boDotMes[j][i],j-8);
 							}
 							bytTempVec.push_back(0);
 							for (int j=16;j<Pixel;j++)
 							{
-								bytTempVec[3*i+2]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-16);
+								//bytTempVec[3*i+2]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-16);
+								bytTempVec[3*i+2] = bytTempVec[3*i+2] + getByteFromDot(boDotMes[j][i],j-16);
 							}
 						}
 					}
@@ -1316,11 +1334,11 @@ void ClassMessage::getdigitaldot()
 void ClassMessage::DrawAllDynamic(CDC* pDC)
 {
  	if(intMesDis.size() == 0) return;
-	//vector<BYTE> intMesDis1 = intMesDis;//intMesDisËûÎªÊµÊ±¸ü¸ÄµÄ£¬Ö±½ÓÓÃËü»áÔì³É»ìÂÒ°É
+	//vector<BYTE> intMesDis1 = intMesDis;//intMesDisä»–ä¸ºå®æ—¶æ›´æ”¹çš„ï¼Œç›´æ¥ç”¨å®ƒä¼šé€ æˆæ··ä¹±å§
 
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
-	CBrush cbrushW(QColor(255,255,255));//°×±Ê
+	CBrush cbrushW(QColor(255,255,255));//ç™½ç¬”
 	cbrushW.setStyle(Qt::NoBrush);
 	int pixSize = 4;
 	ModuleMain myModuleMain;  
@@ -1346,7 +1364,8 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 					pDC->setBrush(cbrushB);						 
 					pDC->Ellipse(rect);					 
 				}
-				 else{
+				else
+				{
 					pDC->setBrush(cbrushW);	
 					pDC->Ellipse(rect);					 			 
 				}

@@ -1,8 +1,8 @@
 #include "GetHZinfo.h"
 #include "Dom.h"
 #include <memory.h>
-#include <windows.h>
-#include <windowsx.h>
+//#include <windows.h>
+//#include <windowsx.h>
 //
 //typedef struct tagRECT
 //{
@@ -30,7 +30,7 @@ CGetHZinfo::~CGetHZinfo(void)
 
 CGetHZinfo::CGetHZinfo(FILE* fp,unsigned char* hzChar,hzPoint& topleft)
 {
-	unsigned char qmv;
+/*	unsigned char qmv;
 	unsigned char wmv;
 
  	//qmv = 4; //HZKSLE字体中 行1-5列20都是 数字 4
@@ -55,7 +55,7 @@ CGetHZinfo::CGetHZinfo(FILE* fp,unsigned char* hzChar,hzPoint& topleft)
 	//WORD* hzdata = new WORD(64*1016);//(WORD*)::GlobalLock(temphz);
 	//BYTE* buf = new BYTE(2000*sizeof(WORD));
     //临时分配 
-	HGLOBAL 	h_data;         //包括:hzdata,pointsall,pointsv
+    HGLOBAL 	h_data;         //包括:hzdata,pointsall,pointsv
 	HGLOBAL 	h_hzdata;       //handle:汉字的原始字形数据,x,y,flag,字形坐标系
 	WORD*   	hzdata;         //ptr
 	HANDLE temphz,tempbuf;
@@ -81,7 +81,7 @@ CGetHZinfo::CGetHZinfo(FILE* fp,unsigned char* hzChar,hzPoint& topleft)
 		offset = ((unsigned long)(qmv-1)*94+wmv-1)*6;
 	}
 
-//	offset = ((unsigned long)(qmv-32))*6;
+   //offset = ((unsigned long)(qmv-32))*6;
 
 	fseek(fp,offset,SEEK_SET);         
 	fread(&slindex,sizeof(index),1,fp); //文件中低字节在前，高字节在后
@@ -98,15 +98,17 @@ CGetHZinfo::CGetHZinfo(FILE* fp,unsigned char* hzChar,hzPoint& topleft)
 	FindRect(hzdata,numofpoint);              //计算外接矩形，并调整字形数据填充m_position,constrect
 	//hzdata此时有效
 	Convert(hzdata,numofpoint);//转换数据为cpoints数组形式，填充数组pointsall,pointsv
-	 
+*/
 	/*delete  buf;
 	delete  hzdata;  */
+/*
 	::LocalUnlock(tempbuf);
 	::LocalFree(tempbuf);
 	::GlobalUnlock(temphz);
 	::GlobalFree(temphz);
 	hzdata=NULL;                //恢复hzdata,此时只有h_data有效
-	fp=NULL;                
+    fp=NULL;
+*/
 }
 
 hzPoint CGetHZinfo::FindRect(WORD* hzdata,int numofpoint)

@@ -28,7 +28,7 @@ language::language(QWidget *parent)
 	connect(ui->LanHindi,SIGNAL(clicked()),this,SLOT(LanHindi_KBBut_clicked()));
 	connect(ui->LanArabic,SIGNAL(clicked()),this,SLOT(LanArabic_KBBut_clicked()));
 
-	//connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//½«ĞÅºÅ´«¸ø¸¸´°¿Ú
+	//connect(ui->LanChinese,SIGNAL(clicked()),this,SLOT(sendslot()));//å°†ä¿¡å·ä¼ ç»™çˆ¶çª—å£
 
 }
 
@@ -39,13 +39,13 @@ language::~language()
 
 void language::OKLanBut_clicked()
 {
-	//ÔİÊ±ÓÃwordLineEdit_clickedµ÷³öKB
+	//æš‚æ—¶ç”¨wordLineEdit_clickedè°ƒå‡ºKB
 	setVisible(false);   
 }
 
 void language::lanEnglish_KBBut_clicked()
 {
-	//ÓÃÓÚEnglishÇĞ»»»ØÔ­¼üÅÌ
+	//ç”¨äºEnglishåˆ‡æ¢å›åŸé”®ç›˜
 	keyboard *pKeyboard = qobject_cast<keyboard*>(this->parentWidget());  
 	pKeyboard->m_Upper = true;
 	pKeyboard->m_LanType = 7;
@@ -66,7 +66,7 @@ void language::LanChinese_KBBut_clicked()
 	//QTabWidget *qtabwidget = qobject_cast<QTabWidget*>(pKeyboard->parentWidget());
 	FileEditChild *pFileEditChild =qobject_cast<FileEditChild*>(pKeyboard->parentWidget());
     pFileEditChild->ChangeTabLineEdit();
-	pKeyboard->setText2KBLineedit();//×ßÖĞÎÄ±à¼­¿ò
+	pKeyboard->setText2KBLineedit();//èµ°ä¸­æ–‡ç¼–è¾‘æ¡†
 
 	setVisible(false);  
 }
@@ -179,6 +179,6 @@ void language::LanArabic_KBBut_clicked()
 
 //void language::sendslot()
 //{
-//	emit languageEvent();//ÖĞ¼äÁ¿£¬½«×Ó´°¿ÚµÄ²Ûº¯Êı×ª»¯Îª¸¸´°¿ÚµÄĞÅºÅ
+//	emit languageEvent();//ä¸­é—´é‡ï¼Œå°†å­çª—å£çš„æ§½å‡½æ•°è½¬åŒ–ä¸ºçˆ¶çª—å£çš„ä¿¡å·
 //}
 
