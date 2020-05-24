@@ -42,7 +42,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->barCodeLineEdit,SIGNAL(clicked()),this,SLOT(barCodeLineEdit_clicked()));
 	connect(ui->QRCodeLineEdit,SIGNAL(clicked()),this,SLOT(QRCodeLineEdit_clicked()));
 	connect(ui->DMCodeLineEdit,SIGNAL(clicked()),this,SLOT(DMCodeLineEdit_clicked()));
+
+
 	connect(ui->newTextBut,SIGNAL(clicked()),this,SLOT(newTextBut_clicked()));
+	//connect(ui->newTextBut,SIGNAL(clicked()),this,SLOT(newVecTxtBut_clicked()));
+
+
 	connect(ui->newBmpBut,SIGNAL(clicked()),this,SLOT(newBmpBut_clicked()));
 	connect(ui->newBarCodeBut,SIGNAL(clicked()),this,SLOT(newBarCodeBut_clicked()));
 	connect(ui->newQRBut,SIGNAL(clicked()),this,SLOT(newQRBut_clicked()));
@@ -353,7 +358,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
 
-
 	//text = new QTextEdit(this);
 
 	//sizeComboBox = new QComboBox(this->ui->fontSizeTextComBox);
@@ -363,12 +367,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//sizeComboBox->addItem (QString::number (size)); //将它们插入到字号下拉框中
 
 	//connect (sizeComboBox, SIGNAL(activated(QString)), this, SLOT(ShowSizeSpinBox(QString)));
+	
 	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
 	spinBox->setValue(font().pointSize());
 	spinBox->setGeometry(0,0,181,41);
+
 	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
-
-
 	connect(FontComboBoxChoose,SIGNAL(currentIndexChanged(QString)),this,SLOT(changedFont(const QString &)));
 
 	/*QDir MultiLanguage;
@@ -593,23 +597,15 @@ void FileEditChild::OnEnChangeEditInput_clicked()//阿拉伯连笔
 	}
 }
 
-
-
 //void FileEditChild::changedIndex(int idx)
 //{
 //	qDebug("Font index : %d",idx);
 //}
-//
+
 void FileEditChild::changedFont(const QString &arg1)
 {
-	QTextCharFormat fmt;
-	fmt.setFontFamily(arg1);
-	//ui->wordTextEdit->mergeCurrentCharFormat(fmt);
-	mergeFormat(fmt);
-	/*label->setText(QStringLiteral("选择字体:")+f.family());
-	label->setFont(f.family());*/
+	m_curVecFont.setFamily(arg1);
 }
-
 
 //void FileEditChild::ShowSizeSpinBox(QString spinValue)
 //{
@@ -622,10 +618,8 @@ void FileEditChild::changedFont(const QString &arg1)
 
 void FileEditChild::spinBoxSlot(int FontSize)
 {
-	QTextCharFormat fmt;
-	fmt.setFontPointSize(FontSize);
-	//text->mergeCurrentCharFormat(fmt);
-	//mergeFormat(fmt);
+	m_curVecFont.setPointSize(FontSize);
+	
 }
 
 //void FileEditChild::textButton()
@@ -638,6 +632,7 @@ void FileEditChild::spinBoxSlot(int FontSize)
 //}
 void FileEditChild::mergeFormat(QTextCharFormat format)
 {
+	/*
 	QTextCursor cursor = text->textCursor ();   //获得编辑框中的光标 未定义所需要改的文字，所以会报错
 	//若光标没有高亮区，则光标所在处的词为选区(由前后有空格，“，”，“、”，“."等标点分隔
 	if (!cursor.hasSelection ())
@@ -646,6 +641,7 @@ void FileEditChild::mergeFormat(QTextCharFormat format)
 	cursor.mergeCharFormat (format);
 	//调用QTextEdit的mergeCurrentCharFormat()将格式应用到选区的所有字符上
 	//text->mergeCurrentCharFormat (format);
+	*/
 }
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
@@ -1961,6 +1957,68 @@ void FileEditChild::newTextBut_clicked()
 	this->update();
 }
 
+void FileEditChild::newVecTxtBut_clicked()
+{
+	QString txtString = ui->wordLineEdit->text();
+	QString txtFont = FontComboBoxChoose->currentText();
+	int intFontSize = spinBox->value();
+	//int intTmpSS = ui->internalShowTextLab->text().toInt();
+	PushBackVecTextOBJ(txtFont,txtString,intFontSize);
+}
+
+void FileEditChild::PushBackVecTextOBJ(QString txtFont, QString txtContent, int intFontSize)
+{
+	QFont curFont;
+	curFont.setFamily(txtFont);
+	curFont.setPointSize(intFontSize);
+	QFontMetrics fm(curFont);
+	int metrics_width = fm.width(txtContent);
+	int metrics_height = fm.height();
+	QPixmap pix(metrics_width, metrics_height);
+	QRect rect1(0, 0, metrics_width, metrics_height);
+	pix.fill(Qt::white);
+	QPainter painter(&pix);
+	painter.setFont(curFont);
+	painter.setPen(Qt::black);
+	painter.drawText(rect1,txtContent);
+	QImage pImage;
+	pImage = pix.toImage();
+
+	//测试：2020-05-16 张玮珺
+	bool s = pix.isNull();
+		
+	CVecTextOBJ* vTextObj = new CVecTextOBJ;
+	vTextObj->strType1 = "text";
+	vTextObj->strType2 = "vtext";
+	vTextObj->wStrFont = txtFont.toStdWString();
+	vTextObj->wStrText = txtContent.toStdWString();
+	vTextObj->intLineSize = metrics_height;
+	vTextObj->intRowSize = metrics_width;
+	vTextObj->intLineStart = 0;
+	vTextObj->intRowStart = 0;
+	vTextObj->intSW = 1;
+	vTextObj->intSS = 0;
+	vTextObj->booNEG = false;
+	vTextObj->booBWDx = false;
+	vTextObj->booBWDy = false;
+	
+	for(int y = 0; y< pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x< pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			if(average < 100)
+				vTextObj->booDotVecText[vTextObj->intRowStart+x][vTextObj->intLineStart+y] = true;
+			else
+				vTextObj->booDotVecText[vTextObj->intRowStart+x][vTextObj->intLineStart+y] = false;
+		}  
+	}  
+
+	vTextObj->booFocus = true;
+	m_MessagePrint.OBJ_Vec.push_back(vTextObj); 
+}
+
 void FileEditChild::GenerateBarCodeBmp()
 {
 		QMap <QString , int> BarCodeType;
@@ -2789,7 +2847,7 @@ void FileEditChild::widthShowBmpLineEdit_clicked()
 	numkeyboardWidget->SetLineEdit(ui->widthShowBmpLineEdit);
 	boolHWchange=false;
 }
-
+ 
 void FileEditChild::newSerialNumber_click()
 {
 	QString a=ui->initialValSerialLineEdit->text();

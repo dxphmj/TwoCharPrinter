@@ -51,6 +51,7 @@ public:
 	void LoadLocalFile();
 	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //根据字体，计算得到每个字符的显示长度
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
+	void PushBackVecTextOBJ(QString txtFont, QString txtContent, int intFontSize);
 	void PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 
 	QString getChinese(QString &str);
@@ -115,8 +116,11 @@ public:
 //QLabel* label ;
 //public slots:
 	//void changedFont(const QFont& f);
-
 	
+	//测试：2020-05-16 张玮珺
+	QFont m_curVecFont;//当前矢量字体
+	//QPixmap pix;//字体位图
+	void paintPixMap();
 
 public:
 	Ui::FileEditChild* ui;
@@ -141,6 +145,7 @@ public slots:
 	void changedFont(const QString &arg1);
 	void spinBoxSlot(int FontSize);
 	//void ShowSizeSpinBox(QString spinValue);
+
 private slots:
 	void variableTextBut_clicked();
 	void variableBarCodeBut_clicked();
@@ -151,6 +156,8 @@ private slots:
 	void delBut_clicked();
 
 	void newTextBut_clicked();
+	void newVecTxtBut_clicked();//新建矢量字
+
 	void newBarCodeBut_clicked();
 	void newQRBut_clicked();
 	void newDMBut_clicked();

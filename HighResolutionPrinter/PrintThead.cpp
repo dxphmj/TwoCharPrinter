@@ -89,10 +89,27 @@ void PrintThead::run()
 		}
 		else if (theApp->m_MessagePrint->boPrintNow) //打印第一条数据
 		{
+			ModuleMain m_ModuleMain;
  			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
 			{
-			//	strTempCmd=(LPTSTR)VEC2ARRAY(theApp.myclassMessage.bytPrintDataAllOrder,theApp.myclassMessage.bytPrintDataAllOrder.size());
+			    //strTempCmd = (LPTSTR) m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAllOrder,theApp->m_MessagePrint->bytPrintDataAllOrder.size());
 			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
+				//strTempCmd = new unsigned short[strTempCmdLen];
+				strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAllOrder,theApp->m_MessagePrint->bytPrintDataAllOrder.size());
+
+				/*unsigned char s0 = strTempCmd[0];
+				unsigned char s1 = strTempCmd[1];
+				unsigned char s2 = strTempCmd[2];
+				unsigned char s3 = strTempCmd[3];
+				unsigned char s4 = strTempCmd[4];
+				unsigned char s5 = strTempCmd[5];
+				unsigned char s6 = strTempCmd[6];
+				unsigned char s7 = strTempCmd[7];
+				unsigned char s8 = strTempCmd[8];
+				unsigned char s9 = strTempCmd[9];
+				unsigned char s10 = strTempCmd[10];
+				unsigned char s11 = strTempCmd[11];*/
+
 				theApp->m_MessagePrint->boPrintNow = false;
 			}			 
 		}

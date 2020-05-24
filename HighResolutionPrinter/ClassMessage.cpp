@@ -10,7 +10,6 @@
 #include <Windows.h>
 #include "BmpObj.h"
 #include "ModuleMain.h"
-
 #include "wordStock\\GetHZinfo.h"
  
 ClassMessage::ClassMessage(void)

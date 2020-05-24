@@ -641,3 +641,23 @@ string ModuleMain::IntToString(double i) {
 	sprintf_s(ch, sizeof(ch), "%f", i);  
 	return ch;  
 }  
+
+unsigned char* ModuleMain::VEC2ARRAY(vector<BYTE> tempVec,const int n)
+{
+	unsigned char* byteTempArray = NULL;
+	byteTempArray = (unsigned char*)malloc(n);
+	string tempStr;
+	if (n!=0)
+	{
+		stringstream ss;
+		copy(tempVec.begin(),tempVec.end(),ostream_iterator<BYTE>(ss,""));
+		tempStr = ss.str();
+		for (int i=0; i<tempStr.length(); i++)
+		{
+			byteTempArray[i] = tempStr[i];
+		}
+		/*byteTempArray = (unsigned char*)tempStr.c_str();*/
+	}
+	/*return byteTempArray;*/
+	return byteTempArray;
+}

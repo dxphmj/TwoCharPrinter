@@ -75,6 +75,8 @@ public://参数，待定
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
 
+	bool booDotVecText[3021][241];//矢量字体点阵
+
 public://方法
 	
 	void DrawFrame(CDC* pDC);
@@ -84,6 +86,7 @@ public://方法
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围盒
 
 	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes);
 	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes);
 	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
 	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);

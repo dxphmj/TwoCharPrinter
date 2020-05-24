@@ -2,6 +2,7 @@
 #define PRINTTHEAD_H
 
 #include <QThread>
+#include "ModuleMain.h"
 
 class PrintThead : public QThread //喷墨打印线程
 {
@@ -26,7 +27,8 @@ private:
 	int m_SwitchHande;
 	int m_SynchronizerHande;
 	int m_bUsingSynchronizer;//是否使用同步器
- 
+	unsigned char* strTempCmd;
+
 private:
 	
 };
