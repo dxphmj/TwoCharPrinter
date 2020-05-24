@@ -28,7 +28,6 @@ private:
 	int m_SynchronizerHande;
 	int m_bUsingSynchronizer;//是否使用同步器
 	unsigned char* strTempCmd;
-	int m_bUsingSynchronizer;//鏄惁浣跨敤鍚屾鍣?
 
 private:
 	
