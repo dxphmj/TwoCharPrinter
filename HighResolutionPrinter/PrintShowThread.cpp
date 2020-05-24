@@ -10,7 +10,19 @@ PrintShowThread::PrintShowThread(QObject *parent)
 
 PrintShowThread::~PrintShowThread()
 {
+	//char c[20];
+	//BYTE d;
 
+	////10ÁÐ£¬20¸ö×Ö½Ú  
+
+	//int nPrintCurCol;
+	//for(int i = 0; i < 16; i++)  //0001 0001 ,0x01 = 0000 0001
+	//{
+	//	if(i < 8)
+	//		bool bBit = (c[nPrintCurCol*2] >> i & 0x01);
+	//	else
+	//		bool bBit = (c[nPrintCurCol*2+1] >> (i-8) & 0x01);
+	//}
 }
 
 void PrintShowThread::run()

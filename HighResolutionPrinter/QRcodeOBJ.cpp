@@ -67,6 +67,7 @@ void CQRcodeOBJ::CreateQrcode()
 
 	//batch_mode = 0;
 	//mirror_mode = 0;
+	//动态生成 strText = 静态 + 时间 + 序列号
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strText.c_str(),strText.size(),rotate_angle);
 
 	generated = 1;

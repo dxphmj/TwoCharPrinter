@@ -5,3 +5,4 @@
 #include "BarcodeOBJ.h"
 #include "QRcodeOBJ.h"
 #include "DMcodeOBJ.h"
+#include "VecTextOBJ.h"

@@ -1,4 +1,3 @@
-
 #include "ClassMessage.h"
 #include "sstream"
 #include <fstream>
@@ -663,17 +662,17 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 			string binLineTemp1,binLineTemp0;
 			if (booBWDy)
 			{
-				binLineTemp1= "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2]);
-				binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-8,8);
-				binLineTemp0= "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2-1]);
+				binLineTemp1 = "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2]);
+				binLineTemp1 = binLineTemp1.substr(binLineTemp1.length()-8,8);
+				binLineTemp0 = "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[(objbytTex16x12Line[28]*2)-1-k*2-1]);
 			}
 			else{
-				binLineTemp1= "00000000"+ DEC_to_BIN((byte)objbytTex16x12Line[k*2+1]);
-				binLineTemp1=binLineTemp1.substr(binLineTemp1.length()-8,8);
-				binLineTemp0= "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[k*2]);
+				binLineTemp1 = "00000000"+ DEC_to_BIN((byte)objbytTex16x12Line[k*2+1]);
+				binLineTemp1 = binLineTemp1.substr(binLineTemp1.length()-8,8);
+				binLineTemp0 = "00000000" + DEC_to_BIN((byte)objbytTex16x12Line[k*2]);
 			}
-			binLineTemp0=binLineTemp0.substr(binLineTemp0.length()-8,8);
-			binLineTemp=binLineTemp1+binLineTemp0;
+			binLineTemp0 = binLineTemp0.substr(binLineTemp0.length()-8,8);
+			binLineTemp = binLineTemp1+binLineTemp0;
 			for (int p =0;p<16;p++)
 			{
 				Dot=binLineTemp[p];
@@ -761,13 +760,46 @@ void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes)
 		Draw16x12Text(pDC,boDotMes);		
 }
 
+void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes)
+{
+	CBrush cbrushB(QColor(0,0,0));//�ڱ�
+	cbrushB.setStyle(Qt::SolidPattern);
+
+	if(pDC)	 
+		pDC->setBrush(cbrushB);		 
+
+	//theDog=0;
+
+	for (int nRow=intRowStart; nRow<=intRowStart+intRowSize; nRow++)
+	{
+		for (int nLine=intLineStart; nLine<=intLineStart+intLineSize; nLine++)
+		{
+			if (booDotVecText[nRow][nLine])
+			{
+				if(!booNEG)
+				{
+					CRect rect(nRow,nLine,1,1);
+					if(pDC)
+						pDC->Ellipse(rect);
+					/*else
+						boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;*/
+				}
+			}
+		}
+	}
+
+}
+
 void OBJ_Control::DrawDot(CDC* pDC)
 {
 	vector<vector<bool> > TempboDotMes; //临时用，没有任何意义
 	if (strType2 == "logo" || strType2 == "qrcode" ||strType2 == "2Dcode" || strType2 == "datamatrix")
 		DrawLogoQRcodeDM(pDC,TempboDotMes);
 	else
+	{
+		//DrawVecText(pDC,TempboDotMes);
 		DrawTextAll(pDC,TempboDotMes);
+	}
 
 	DrawFrame(pDC);
 }

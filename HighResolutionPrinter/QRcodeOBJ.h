@@ -18,6 +18,15 @@ public://Parameters
 	int intQRErrLevel;
 	int intQREncodingMode;
 
+
+	//时间，静态文本，序列号 以成员变量的形式
+	//CTextOBJ m_StaticTextOBJ;
+	//CSerialOBJ m_SerialOBJ;
+	//CTimeOBJ   m_TimeOBJ;
+
+	vector<OBJ_Control*> OBJ_Vec;
+
+
 public://Functions
 	void CreateQrcode();
 

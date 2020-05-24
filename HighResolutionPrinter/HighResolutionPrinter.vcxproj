@@ -122,6 +122,7 @@
       <RandomizedBaseAddress>true</RandomizedBaseAddress>
       <SubSystem>Windows</SubSystem>
       <SuppressStartupBanner>true</SuppressStartupBanner>
+      <StackReserveSize>16000000</StackReserveSize>
     </Link>
     <Midl>
       <DefaultCharType>Unsigned</DefaultCharType>
@@ -376,6 +377,7 @@
     <ClCompile Include="variabledm.cpp" />
     <ClCompile Include="variableqr.cpp" />
     <ClCompile Include="variblewidget.cpp" />
+    <ClCompile Include="VecTextOBJ.cpp" />
     <ClCompile Include="wordStock\Dom.cpp" />
     <ClCompile Include="wordStock\GetHZinfo.cpp" />
     <ClCompile Include="xml\tinystr.cpp" />
@@ -588,6 +590,7 @@
     <ClInclude Include="SerialOBJ.h" />
     <ClInclude Include="TextOBJ.h" />
     <ClInclude Include="TimeOBJ.h" />
+    <ClInclude Include="VecTextOBJ.h" />
     <ClInclude Include="wordStock\Dom.h" />
     <ClInclude Include="wordStock\GetHZinfo.h" />
     <ClInclude Include="xml\tinystr.h" />
