@@ -9,10 +9,14 @@
 #include <vector>
 #include <map>
 #include <queue>
+#include <QMutex>
 
 #include "ParamSetting.h"
 
 #define BIG_CHAR
+
+#define vsPath     //vs上的点阵字库、多语言字库路径
+//#define qtPath   //ubuntu上的点阵字库、多语言字库路径
 
 using namespace std;
 typedef unsigned char BYTE;
@@ -40,8 +44,8 @@ public:
 
 public:
  	ClassMessage* m_MessagePrint; //打印监控用
-    queue<vector<BYTE>> queCtr;//命令队列 
-	queue<vector<BYTE>> ForPreQue;//欲打印队列
+    queue<vector<BYTE> > queCtr;//命令队列 
+	queue<vector<BYTE> > ForPreQue;//欲打印队列
 	CParamSetting m_ParamSetting;
 	bool mythreadDynamicBoo;//动态线程开关
 	bool boDrawMainPic;//主界面动态绘制开关

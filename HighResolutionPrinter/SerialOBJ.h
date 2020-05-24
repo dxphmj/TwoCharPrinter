@@ -1,5 +1,5 @@
 #pragma once
-#include "classmessage.h"
+#include "ClassMessage.h"
 
 class CSerialOBJ : public OBJ_Control
 {
@@ -9,23 +9,23 @@ public:
 	~CSerialOBJ(void);
 
 public: 
-	int intSerialFirstLimit;//×Ö¶ÎµÄFirstLimitÊôĞÔ£¬¼´ĞòÁĞºÅµÚÒ»ÏóÏŞ
-	int intSerialSecondLimit;//×Ö¶ÎµÄSecondLimitÊôĞÔ£¬¼´ĞòÁĞºÅµÚ¶şÏóÏŞ
-	int intSerialStartValue;//×Ö¶ÎµÄStartValueÊôĞÔ£¬¼´ĞòÁĞºÅÆğÊ¼Öµ
-	int intSerialStep;//×Ö¶ÎµÄStepSizeÊôĞÔ£¬¼´ĞòÁĞºÅ²½³¤Öµ
-	int intSerialRepeat;//×Ö¶ÎµÄRepeatCountÊôĞÔ£¬¼´ĞòÁĞºÅÖØ¸´Öµ
-	BYTE intSerialDigits;//×Ö¶ÎµÄDigitalÊôĞÔ£¬¼´ĞòÁĞºÅÎ»ÊıÖµ
-	int intSerialCounter;//µÚ¼¸¸öĞòÁĞºÅ
-	BYTE bytSerialFormat;//×Ö¶ÎµÄSerialFormatÊôĞÔ£¬¼´ĞòÁĞºÅ¸ñÊ½
+	int intSerialFirstLimit;//å­—æ®µçš„FirstLimitå±æ€§ï¼Œå³åºåˆ—å·ç¬¬ä¸€è±¡é™
+	int intSerialSecondLimit;//å­—æ®µçš„SecondLimitå±æ€§ï¼Œå³åºåˆ—å·ç¬¬äºŒè±¡é™
+	int intSerialStartValue;//å­—æ®µçš„StartValueå±æ€§ï¼Œå³åºåˆ—å·èµ·å§‹å€¼
+	int intSerialStep;//å­—æ®µçš„StepSizeå±æ€§ï¼Œå³åºåˆ—å·æ­¥é•¿å€¼
+	int intSerialRepeat;//å­—æ®µçš„RepeatCountå±æ€§ï¼Œå³åºåˆ—å·é‡å¤å€¼
+	BYTE intSerialDigits;//å­—æ®µçš„Digitalå±æ€§ï¼Œå³åºåˆ—å·ä½æ•°å€¼
+	int intSerialCounter;//ç¬¬å‡ ä¸ªåºåˆ—å·
+	BYTE bytSerialFormat;//å­—æ®µçš„SerialFormatå±æ€§ï¼Œå³åºåˆ—å·æ ¼å¼
 
-	int CountNum; //ĞòÁĞºÅµ±Ç°ÖµµÄ´óĞ¡
-	int CountNumRep; //ĞòÁĞºÅµ±Ç°ÖØ¸´µÄ´óĞ¡
+	int CountNum; //åºåˆ—å·å½“å‰å€¼çš„å¤§å°
+	int CountNumRep; //åºåˆ—å·å½“å‰é‡å¤çš„å¤§å°
 
 
 public://Functions
 	void CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,map<string,
-							vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-							map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
+							vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+							map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
 
 };
 

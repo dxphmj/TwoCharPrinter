@@ -29,7 +29,7 @@ roll::~roll()
 
 void roll::paintEvent(QPaintEvent *event)
 {
-	__super::paintEvent(event);
+	//__super::paintEvent(event);
 	QPainter painter(this);
 	if (curlanguage == 0)
 	{

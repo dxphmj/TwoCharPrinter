@@ -1,4 +1,4 @@
-#include "printsetting.h"
+ï»¿#include "printsetting.h"
 
 printSetting::printSetting(QWidget *parent)
 	: QWidget(parent)
@@ -30,7 +30,7 @@ printSetting::printSetting(QWidget *parent)
 
 	ui.printSetTabWid->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
-							  QTabBar::tab{font:'¿¬Ìå' 16pt;color: white;height:50px; width:252px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+							  QTabBar::tab{font:'æ¥·ä½“' 16pt;color: white;height:50px; width:252px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
@@ -76,18 +76,18 @@ printSetting::printSetting(QWidget *parent)
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 
-	ui.trigComBox->addItem(QStringLiteral("ÍâÖÃµçÑÛ"),0);
-	ui.trigComBox->addItem(QStringLiteral("×Ô¶¯"),1);
-	ui.trigComBox->addItem(QStringLiteral("¹âµç"),2);
-	ui.trigComBox->addItem(QStringLiteral("±àÂëÆ÷"),3);
-	ui.trigComBox->addItem(QStringLiteral("¹âµç±àÂë"),4);
-	ui.trigComBox->addItem(QStringLiteral("¹â×Ô¶¯"),5);
+	ui.trigComBox->addItem(QStringLiteral("å¤–ç½®ç”µçœ¼"),0);
+	ui.trigComBox->addItem(QStringLiteral("è‡ªåŠ¨"),1);
+	ui.trigComBox->addItem(QStringLiteral("å…‰ç”µ"),2);
+	ui.trigComBox->addItem(QStringLiteral("ç¼–ç å™¨"),3);
+	ui.trigComBox->addItem(QStringLiteral("å…‰ç”µç¼–ç "),4);
+	ui.trigComBox->addItem(QStringLiteral("å…‰è‡ªåŠ¨"),5);
 
-	ui.inkjetComBox->addItem(QStringLiteral("×óÅç",0));
-	ui.inkjetComBox->addItem(QStringLiteral("ÓÒÅç"),1);
+	ui.inkjetComBox->addItem(QStringLiteral("å·¦å–·",0));
+	ui.inkjetComBox->addItem(QStringLiteral("å³å–·"),1);
 
-	ui.printDirComBox->addItem(QStringLiteral("ÕıÏò"),0);
-	ui.printDirComBox->addItem(QStringLiteral("ÄæÏò"),1);
+	ui.printDirComBox->addItem(QStringLiteral("æ­£å‘"),0);
+	ui.printDirComBox->addItem(QStringLiteral("é€†å‘"),1);
 
 	DPIradioBG = new QButtonGroup;
 	DPIradioBG->addButton(ui.DPI150RadioBut,1);
@@ -109,7 +109,7 @@ printSetting::~printSetting()
 
 QString printSetting::getNum(QString str)
 {
-	//»ñÈ¡Êı×Ö
+	//è·å–æ•°å­—
 	QString str1 = str;
 	QString res;
 	QChar ch;

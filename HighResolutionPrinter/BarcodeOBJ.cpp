@@ -1,6 +1,6 @@
 #include "BarcodeOBJ.h"
 #include "QFileInfo"
-#include "backend\zint.h"
+#include "backend/zint.h"
 
 CBarcodeOBJ::CBarcodeOBJ(void)
 {
@@ -73,7 +73,7 @@ void CBarcodeOBJ::Create2Dcode()
 	batch_mode = 0;
 	mirror_mode = 0;
 	
-	my_symbol->whitespace_width = 9;//¸Ä±äÌõÐÎÂëÁ½±ß¿Õ°×ÇøÓò¿í¶È,¿Õ°×ÇøÓò¿í¶È»áÓ°ÏìÌõÐÎÂëµÄ¿í¶È£¬Ö»»áÔö¼ÓÌõÂë×óÓÒÁ½²àµÄ¿Õ°×
+	my_symbol->whitespace_width = 9;//æ”¹å˜æ¡å½¢ç ä¸¤è¾¹ç©ºç™½åŒºåŸŸå®½åº¦,ç©ºç™½åŒºåŸŸå®½åº¦ä¼šå½±å“æ¡å½¢ç çš„å®½åº¦ï¼Œåªä¼šå¢žåŠ æ¡ç å·¦å³ä¸¤ä¾§çš„ç©ºç™½
 	//if (ui->typerimComBox->currentIndex()==0)
 	//{
 	//	my_symbol->output_options= 1;
@@ -86,12 +86,12 @@ void CBarcodeOBJ::Create2Dcode()
 	//{
 	//	my_symbol->output_options=4;
 	//}
-	//ÓÐÎÞ±ß¿òÖ®ÀàµÄ¿ØÖÆ;1:ÎÞ±ß¿ò£¬2£ºÉÏÏÂÁ½Ìõ±ß½çÏß£¬4£ºËÄÌõ±ß¿ò
+	//æœ‰æ— è¾¹æ¡†ä¹‹ç±»çš„æŽ§åˆ¶;1:æ— è¾¹æ¡†ï¼Œ2ï¼šä¸Šä¸‹ä¸¤æ¡è¾¹ç•Œçº¿ï¼Œ4ï¼šå››æ¡è¾¹æ¡†
 	//QString rimwide=ui->rimwideLab->text();
 	//int rimwide1=rimwide.toInt();
-	//my_symbol->border_width=rimwide1;//¸Ä±ä±ß¿ò¿í¶È           
+	//my_symbol->border_width=rimwide1;//æ”¹å˜è¾¹æ¡†å®½åº¦           
 
-	//int show_hrt;            //ÉèÖÃÎª1 ÏÔÊ¾ÎÄ±¾ÔÚÌõÂëÍ¼Æ¬ÏÂÃæ ÉèÖÃÎª0 Ôò²»ÏÔÊ¾
+	//int show_hrt;            //è®¾ç½®ä¸º1 æ˜¾ç¤ºæ–‡æœ¬åœ¨æ¡ç å›¾ç‰‡ä¸‹é¢ è®¾ç½®ä¸º0 åˆ™ä¸æ˜¾ç¤º
 	//if (ui->showNumCheckBox->isChecked())
 	//{
 	//	my_symbol->show_hrt=1;
@@ -112,7 +112,9 @@ void CBarcodeOBJ::Create2Dcode()
 
 	ZBarcode_Delete(my_symbol);
 		
-	char* strFileName = "User/logo/output.bmp";
+    //char* strFileName = "User/logo/output.bmp";
+    char arrFileName[] =  "User/logo/output.bmp";
+    char* strFileName = arrFileName;
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
@@ -149,6 +151,6 @@ void CBarcodeOBJ::Create2Dcode()
 	}  
 	booFocus = true;
 	QString get = QString(QLatin1String(strFileName)).toUtf8();
-	//É¾³ýÎÄ¼þ
+	//åˆ é™¤æ–‡ä»¶
 	QFile::remove(get);
 }

@@ -1,4 +1,4 @@
-﻿#include "paramsettingform.h"
+#include "paramsettingform.h"
 #include "ui_paramsettingform.h"
 #include "mainwindow.h"
 #include "ParamSetting.h"

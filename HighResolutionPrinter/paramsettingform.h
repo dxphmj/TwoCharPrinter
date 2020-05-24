@@ -1,11 +1,11 @@
-﻿#ifndef PARAMSETTINGFORM_H
+#ifndef PARAMSETTINGFORM_H
 #define PARAMSETTINGFORM_H
 
 #include <QWidget>
 #include "printsetting.h"
-#include "sysSetting.h"
-#include "countSetting.h"
-#include "aboutMac.h"
+#include "syssetting.h"
+#include "countsetting.h"
+#include "aboutmac.h"
 
 namespace Ui {
 class ParamSettingForm;

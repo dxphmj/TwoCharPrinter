@@ -7,7 +7,7 @@
 #include <QFontComboBox>
 #include "ClassMessage.h"
 #include "OBJ_Type.h"
-#include "backend\zint.h"
+#include "backend/zint.h"
 //#include <QLabel>
 //#include <QPushButton>
 #include <QTextCharFormat>
@@ -49,7 +49,7 @@ public:
 	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
 	void LoadLocalFile();
-	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //¸ù¾İ×ÖÌå£¬¼ÆËãµÃµ½Ã¿¸ö×Ö·ûµÄÏÔÊ¾³¤¶È
+	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //æ ¹æ®å­—ä½“ï¼Œè®¡ç®—å¾—åˆ°æ¯ä¸ªå­—ç¬¦çš„æ˜¾ç¤ºé•¿åº¦
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	void PushBackVecTextOBJ(QString txtFont, QString txtContent, int intFontSize);
 	void PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
@@ -64,13 +64,13 @@ public:
 	zint_symbol resetDMCode();
 	void GenerateBarCodeBmp();
 	
-	QString getNum(QString str);//»ñÈ¡label¿Ø¼şÊı×Ö
+	QString getNum(QString str);//è·å–labelæ§ä»¶æ•°å­—
 
-	void ChangeBmpWH(QImage& pImage,double nS);//¸ü¸ÄÍ¼Æ¬µÄ³¤¶ÈºÍ¿í¶È
+	void ChangeBmpWH(QImage& pImage,double nS);//æ›´æ”¹å›¾ç‰‡çš„é•¿åº¦å’Œå®½åº¦
 	
-	void informationMessage(string errortext);//zint´íÎóµ¯´°
+	void informationMessage(string errortext);//zinté”™è¯¯å¼¹çª—
 
-	QString bmpFileRelativePath;//¶ÁÈ¡bmpÍ¼Æ¬µÄÏà¶ÔÂ·¾¶
+	QString bmpFileRelativePath;//è¯»å–bmpå›¾ç‰‡çš„ç›¸å¯¹è·¯å¾„
 	int degreenum;
 	int degreenumQr;
 	int degreenumDM;
@@ -89,28 +89,28 @@ public:
 	int Barheight;
 	int nW;
 	int nH;
-	QPoint pointMousePressed;//¼ÇÂ¼Êó±êµã
-	bool boolMousePressed;//ÅĞ¶ÏÊó±êÊÇ·ñ±»°´ÏÂ
-	bool boolHWchange;//ÅĞ¶Ï¸Ä±äµÄÊÇ¸ß¶È»¹ÊÇ¿í¶È
+	QPoint pointMousePressed;//è®°å½•é¼ æ ‡ç‚¹
+	bool boolMousePressed;//åˆ¤æ–­é¼ æ ‡æ˜¯å¦è¢«æŒ‰ä¸‹
+	bool boolHWchange;//åˆ¤æ–­æ”¹å˜çš„æ˜¯é«˜åº¦è¿˜æ˜¯å®½åº¦
 
-	//ArabicÏµÁĞ
-	QString disposeinputtext( QString inputtext );//°¢À­²®Á¬Ìå
-	QString ConvertWCHARToHex(QString Data, long nDataLength);//QString×ª16½øÖÆ
+	//Arabicç³»åˆ—
+	QString disposeinputtext( QString inputtext );//é˜¿æ‹‰ä¼¯è¿ä½“
+	QString ConvertWCHARToHex(QString Data, long nDataLength);//QStringè½¬16è¿›åˆ¶
 	void W2C(wchar_t w_cn , char c_cn[]);
-	QString HexStrToCString(QString HexStr);//16½øÖÆ×ªQString
+	QString HexStrToCString(QString HexStr);//16è¿›åˆ¶è½¬QString
 	QString ArabicLan(QString inputstring);
 	QVector<QString> Arabicsplit(QString str);
 	void ClickChooseLanguage();
 
-	//°à´ÎÏµÁĞ
-	int m_ShiftLineEditType;//µ±Ç°°à´ÎµÄ±à¼­¿òÑ¡Ôñ
+	//ç­æ¬¡ç³»åˆ—
+	int m_ShiftLineEditType;//å½“å‰ç­æ¬¡çš„ç¼–è¾‘æ¡†é€‰æ‹©
 
 	QString fileName;
 
-	QFontComboBox* FontComboBoxChoose;//×ÖÌåÑ¡Ôñ¿ò
+	QFontComboBox* FontComboBoxChoose;//å­—ä½“é€‰æ‹©æ¡†
 	//QPushButton* button;
 	//QLabel* label;
-	QTextEdit* text;//»¹Î´¶¨ÒåËùĞèÒª¸Ä±äµÄ×ÖÌå£¬ËùÒÔµã»÷×ÖÌå»á±¨´í
+	QTextEdit* text;//è¿˜æœªå®šä¹‰æ‰€éœ€è¦æ”¹å˜çš„å­—ä½“ï¼Œæ‰€ä»¥ç‚¹å‡»å­—ä½“ä¼šæŠ¥é”™
 	QSpinBox* spinBox;
 	//QComboBox *sizeComboBox; 
 //QLabel* label ;
@@ -135,11 +135,11 @@ public slots:
 	/*void ChineseTabLineEdit();*/
 	void KeyboardConceal_clicked();
 
-	//void ChangeBmpWH(QImage& pImage,double nS);//¸ü¸ÄÍ¼Æ¬µÄ³¤¶ÈºÍ¿í¶È
+	//void ChangeBmpWH(QImage& pImage,double nS);//æ›´æ”¹å›¾ç‰‡çš„é•¿åº¦å’Œå®½åº¦
 	void PreviewBmpChange();
-	void OnEnChangeEditInput_clicked();//arabicÁ¬±Ê
+	void OnEnChangeEditInput_clicked();//arabicè¿ç¬”
 
-	//°´Å¥
+	//æŒ‰é’®
 	//void textButton();
 	//void changedIndex(int idx);
 	void changedFont(const QString &arg1);

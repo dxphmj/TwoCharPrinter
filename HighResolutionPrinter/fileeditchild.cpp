@@ -3,7 +3,7 @@
 #include "fileeditchild.h"
 #include <QTableWidget>
 #include <QMouseEvent>
-#include "backend\zint.h"
+#include "backend/zint.h"
 #include <QFileDialog>
 #include "filemanageform.h"
 #include "filemanagechild.h"
@@ -17,7 +17,7 @@
 #include "ui_mainwindow.h"
 #include "paramsettingform.h"
 #include "automessagebox.h"
-#include <tchar.h>
+//#include <tchar.h>
 #include <QDebug>
 #include <QFontDatabase>
 #include <QDir>
@@ -690,7 +690,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 	GenerateBarCodeBmp();
 	QString str = getNum(ui->heightBarCodeShowQRLab->text());
 	int heightvalue1 = str.toInt();
-	char* strFileName = "User/logo/output.bmp";
+    //char* strFileName = "User/logo/output.bmp";
+    char arrFileName[] =  "User/logo/output.bmp";
+    char* strFileName = arrFileName;
 	QPixmap pLoad;
 	pLoad.load(strFileName);
 	int nW = pLoad.width();
@@ -768,8 +770,8 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
-	strcpy_s(my_symbol->fgcolour, "ffffff");
-	strcpy_s(my_symbol->bgcolour, "000000");
+    strncpy(my_symbol->fgcolour, "ffffff",10);
+    strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -865,8 +867,8 @@ void FileEditChild::CreateDMcode(int nType,QString strContent)
 	my_symbol->option_2 = nType;
 	if (ui->reverseDMCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -1200,7 +1202,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "time")
 			{
-				CTimeOBJ *pTimeObj = (CTimeOBJ *)(&m_MessagePrint.OBJ_Vec[i]);
+				CTimeOBJ *pTimeObj = (CTimeOBJ *)(m_MessagePrint.OBJ_Vec[i]);
 				this->ui->typeTab->setCurrentIndex(1);
 				this->ui->DateTimeEdit->setText(QString::fromStdString(pTimeObj->strTime));
 				this->ui->SkewSkewValueEdit->setText(QString::number(pTimeObj->intTimeOffSet));
@@ -2087,7 +2089,7 @@ void FileEditChild::GenerateBarCodeBmp()
 		} 
 	
 		else  {my_symbol->show_hrt=0;}
-		strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
+        strncpy(my_symbol->outfile, "User/logo/output.bmp",128);
 		error_number = ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
 		generated=1;
 		
@@ -2124,7 +2126,9 @@ void FileEditChild::newBarCodeBut_clicked()
 			CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(&m_MessagePrint.OBJ_Vec[i]);
 			GenerateBarCodeBmp();
 			int heightvalue1 = ui->heightBarCodeShowQRLab->text().toInt();
-			char* strFileName = "User/logo/output.bmp";
+            //char* strFileName = "User/logo/output.bmp";
+            char arrFileName[] =  "User/logo/output.bmp";
+            char* strFileName = arrFileName;
 			QPixmap pLoad;
 			pLoad.load(strFileName);
 			int nW = pLoad.width();
@@ -2247,8 +2251,8 @@ zint_symbol FileEditChild::resetQRCode()
 	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
 	if (ui->reverseCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -2368,8 +2372,8 @@ zint_symbol FileEditChild::resetDMCode()
 	my_symbol->option_2 = DMsize[this->ui->sideLenDMComBox->currentText()];
 	if (ui->reverseDMCheckBox->isChecked())
 	{
-		strcpy_s(my_symbol->fgcolour, "ffffff");
-		strcpy_s(my_symbol->bgcolour, "000000");
+        strncpy(my_symbol->fgcolour, "ffffff",10);
+        strncpy(my_symbol->bgcolour, "000000",10);
 	}
 	batch_mode = 0;
 	mirror_mode = 0;
@@ -2614,7 +2618,8 @@ void FileEditChild::addTimeBut_clicked()
 	QString skewvalue1;
 	skewvalue1=ui->SkewSkewValueEdit->text();
 	int skewvalue2=skewvalue1.toInt();
-	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
 
 }
@@ -2646,8 +2651,8 @@ void FileEditChild::ChangeTime()
 	QString skewvalue1;
 	skewvalue1=ui->SkewSkewValueEdit->text();
 	int skewvalue2=skewvalue1.toInt();
-	QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
-	//QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	//QString nowTimeStr=m_TimeShow.string2CString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
+	QString nowTimeStr=QString::fromStdString(m_TimeShow.TimeFormatToText(timeFormatStr,ui->SkewComBox->currentIndex(),skewvalue2,ui->SkewUUnitlistWidget->currentRow()));
 	ui->PreviewEdit->setText(nowTimeStr);
 }
 
@@ -3393,7 +3398,7 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 	HexStr = " " + HexStr;
 	wchar_t* buf = new wchar_t[2];
 	memset(buf, 0, sizeof(wchar_t)*(2));//memset初始化数组
-	
+/*
 	TCHAR seps[] = _T(" ");
 
 	int bufSize = MultiByteToWideChar(CP_ACP,0,HexStr.toStdString().c_str(),-1,NULL,0);  	    
@@ -3410,8 +3415,10 @@ QString FileEditChild::HexStrToCString(QString HexStr)
 
 	delete[] buf;
 	delete[] pwstr;
-	buf = NULL;
-	return outstr;
+    buf = NULL;
+    return outstr;
+*/
+    return NULL;
 }
 
 QString FileEditChild::ArabicLan(QString inputstring)//Arabic组合规则

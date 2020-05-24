@@ -10,6 +10,7 @@
 #include "PrintCreatThread.h"
 #include "PrintShowThread.h"
 #include "OBJ_Type.h"
+#include <math.h>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -165,7 +166,7 @@ void MainWindow::CreatePrintData()
 
 	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll;
 	 
-	ForPreQue = queue<vector<BYTE>>();
+	ForPreQue = queue<vector<BYTE> >();
 	 
 	//信息重新发送，序列号按信息里面的开始值喷，如只改变喷印参数则按计数器的值继续喷
  	

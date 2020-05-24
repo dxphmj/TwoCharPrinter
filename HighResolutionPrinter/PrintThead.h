@@ -4,7 +4,7 @@
 #include <QThread>
 #include "ModuleMain.h"
 
-class PrintThead : public QThread //��ī��ӡ�߳�
+class PrintThead : public QThread //喷墨打印线程
 {
 	Q_OBJECT
 
@@ -19,15 +19,16 @@ protected:
 
 private:
     volatile bool m_isStop; 
-	bool m_bUsingPhotoESwitch;//�ù�翪��
-	bool m_bTriggerByHigh;//�ߵ�ƽ����
-	bool m_bPhotoESwitchState;//��翪��״̬
-	bool m_bPhotoESwitchStatePre;//��翪��ǰһ��״̬
-	bool m_bTrigger; //�Ƿ񴥷���ӡ��
+	bool m_bUsingPhotoESwitch;//用光电开�?
+	bool m_bTriggerByHigh;//高电平触�?
+	bool m_bPhotoESwitchState;//光电开关状�?
+	bool m_bPhotoESwitchStatePre;//光电开关前一个状�?
+	bool m_bTrigger; //是否触发打印�?
 	int m_SwitchHande;
 	int m_SynchronizerHande;
 	int m_bUsingSynchronizer;//�Ƿ�ʹ��ͬ����
 	unsigned char* strTempCmd;
+	int m_bUsingSynchronizer;//是否使用同步�?
 
 private:
 	

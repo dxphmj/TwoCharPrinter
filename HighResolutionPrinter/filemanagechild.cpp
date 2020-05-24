@@ -133,7 +133,7 @@ void FileManageChild::copyFile2localBut_clicked()
 	}
 	else
 	{
-		//µ¯³öÎÄ¼şÃûÖØ¸´
+		//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 		informationMessage();
 	}
 	this->ShowLocalFilePath();
@@ -156,7 +156,7 @@ void FileManageChild::PreviewSaveFile()
 	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
 	m_pPrinterMes->ClearOBJ_Vec();
 	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.end());
-	//È¡ÏûÑ¡ÖĞ×´Ì¬
+	//å–æ¶ˆé€‰ä¸­çŠ¶æ€
 	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
 	{
 		if (m_pPrinterMes->OBJ_Vec[i]->booFocus)
@@ -183,8 +183,8 @@ char* FileManageChild::GetCurXmlFile()
 	}
 	else
 	{
-		//µ¯³ö¶Ô»°¿ò¡°ÇëÑ¡ÔñÒ»¸öÎÄ¼ş¡±
-		return "";
+		//å¼¹å‡ºå¯¹è¯æ¡†â€œè¯·é€‰æ‹©ä¸€ä¸ªæ–‡ä»¶â€
+        return NULL;
 	}
 }
 
@@ -227,13 +227,13 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	int i,j;
 	for (i=1; i<=3121; i+=5)
 	{
-		//»­ÁĞ
+		//ç”»åˆ—
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(i,241-MatrixMap[qStrMatrix],i,241);
 	}
 	for (j=241; j>=241-MatrixMap[qStrMatrix]; j-=5)
 	{
-		//»­ĞĞ
+		//ç”»è¡Œ
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
@@ -307,7 +307,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		}
 		else
 		{
-			//µ¯³öÎÄ¼şÃûÖØ¸´
+			//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 			informationMessage();
 		}
 	}
@@ -326,7 +326,7 @@ void FileManageChild::OKFileNameBut_clicked()
 		}
 		else
 		{
-			//µ¯³öÎÄ¼şÃûÖØ¸´
+			//å¼¹å‡ºæ–‡ä»¶åé‡å¤
 			informationMessage();
 		}
 	}

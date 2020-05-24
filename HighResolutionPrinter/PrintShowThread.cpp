@@ -10,7 +10,19 @@ PrintShowThread::PrintShowThread(QObject *parent)
 
 PrintShowThread::~PrintShowThread()
 {
+	//char c[20];
+	//BYTE d;
 
+	////10ÁÐ£¬20¸ö×Ö½Ú  
+
+	//int nPrintCurCol;
+	//for(int i = 0; i < 16; i++)  //0001 0001 ,0x01 = 0000 0001
+	//{
+	//	if(i < 8)
+	//		bool bBit = (c[nPrintCurCol*2] >> i & 0x01);
+	//	else
+	//		bool bBit = (c[nPrintCurCol*2+1] >> (i-8) & 0x01);
+	//}
 }
 
 void PrintShowThread::run()
@@ -18,15 +30,15 @@ void PrintShowThread::run()
 	int strTempCmdLen = 0;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
-	//Èç¶¯Ì¬´òÓ¡Ôò¶¯Ì¬ÏÔÊ¾£¬ÏÂÃæµÄÂß¼­»¹ÐèÓÅ»¯
+	//å¦‚åŠ¨æ€æ‰“å°åˆ™åŠ¨æ€æ˜¾ç¤ºï¼Œä¸‹é¢çš„é€»è¾‘è¿˜éœ€ä¼˜åŒ–
 
 	int pixSize = 4; 
 	
-	while(theApp->mythreadDynamicBoo)//¶¯Ì¬Ïß³Ì¿ª¹Ø
+	while(theApp->mythreadDynamicBoo)//åŠ¨æ€çº¿ç¨‹å¼€å…³
 	{
-		while(theApp->boDrawMainPic)//Ö÷½çÃæ¶¯Ì¬»æÖÆ¿ª¹Ø
+		while(theApp->boDrawMainPic)//ä¸»ç•Œé¢åŠ¨æ€ç»˜åˆ¶å¼€å…³
 		{
-			//if(theApp->ForPreQue.size() >= 2)///////ÒÔºóÉ¾µô
+			//if(theApp->ForPreQue.size() >= 2)///////ä»¥åŽåˆ æŽ‰
 			//{
 			//	theApp->m_MessagePrint->intMesDis = theApp->ForPreQue.front();;
 			//	theApp->ForPreQue.pop();

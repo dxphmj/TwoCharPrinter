@@ -22,7 +22,7 @@ typedef unsigned char BYTE;
 
 typedef unsigned int  UINT32, *PUINT32;
 
-#define max 100
+#define max_ 100
 
 #define CDC QPainter
 #define CPen QPen
@@ -39,51 +39,51 @@ public:
 	~OBJ_Control(void);
 
 public: 
-	string strDuan;//��Ϣ�εı�ʶλ
-	string strType1;//�ֶ�����
-	string strType2;//�ֶ�ʵ������
+	string strDuan;//信息段的标识�?
+	string strType1;//字段类型
+	string strType2;//字段实际类型
 
-	int intX;//�ֶ�ԭ��X���꣨Ĭ��Ϊ0��
-	int intY;//�ֶ�ԭ��Y���꣨Ĭ��Ϊ0��
-	int intSW;//�ֶεļӴ����ԣ�Ĭ��Ϊ0��
-	int intSS;//�ֶε��־ࣨĬ��Ϊ0��
+	int intX;//字段原点X坐标（默认为0�?
+	int intY;//字段原点Y坐标（默认为0�?
+	int intSW;//字段的加粗属性（默认�?�?
+	int intSS;//字段的字距（默认�?�?
 
-	bool booNEG;//�ֶεķ�ɫ��faulseΪ������trueΪ����
-	bool booBWDx;//�ֶ���X�᾵��faulseΪ�رգ�trueΪ������
-	bool booBWDy;//�ֶ���Y�᾵��faulseΪ�رգ�trueΪ������
+	bool booNEG;//字段的反色（faulse为不反，true为反�?
+	bool booBWDx;//字段沿X轴镜像（faulse为关闭，true为开启）
+	bool booBWDy;//字段沿Y轴镜像（faulse为关闭，true为开启）
 
-	string strFont;//�ֶε����壨�е������У��е�����û�У�
-	string strText;//�ֶε�text���ԣ�������
+	string strFont;//字段的字体（有的类型有，有的类型没有�?
+	string strText;//字段的text属性，即内�?
 
-	int intLineSize;//�ֶε�����
-	int intRowSize;//�ֶε�����
-	int intLineStart;//�ֶεĿ�ʼ��
-	int intRowStart;//�ֶεĿ�ʼ��
+	int intLineSize;//字段的行�?
+	int intRowSize;//字段的列�?
+	int intLineStart;//字段的开始行
+	int intRowStart;//字段的开始列
 
-	bool booFocus;//�����Ƿ���ʾ,True:��ʾ����,False:��ʾ�̿�
-	bool booBeenDragged;//�����Ƿ��϶�
+	bool booFocus;//焦点是否显示,True:显示蓝框,False:显示绿框
+	bool booBeenDragged;//对象是否被拖�?
 	
-	int counter;//���кŵļ�����
+	int counter;//序列号的计数�?
 	
-public://����������
-	string img;//��ΪlogoͼƬ��vb��ΪImage����
-    //vector<vector<bool>> logobmp;//����
+public://参数，待�?
+	string img;//此为logo图片，vb中为Image类型
+    //vector<vector<bool> > logobmp;//不明
 
-    //vector<vector<bool>> LogoDotToMes;//�ı���LogoͼƬ���������·�������
-    //vector<vector<bool>> LogoDot;//logo����
+    //vector<vector<bool> > LogoDotToMes;//改变后的Logo图片点阵用于下发数据�?
+    //vector<vector<bool> > LogoDot;//logo点阵
 
-	bool boDotBmp[500][100];//����bmp�ã�255��λͼ�Ŀ��ȣ�32��λͼ�ĸ߶�
-	int xMaxBmp,yMaxBmp;//������¼���μ���ͼƬ�Ĵ�С
+	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度�?2是位图的高度
+	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大�?
 
 	bool booDotVecText[3021][241];//ʸ���������
 
 public://����
-	
+
 	void DrawFrame(CDC* pDC);
     void DrawDot(CDC* pDC);
-	//vector<vector<bool>> m_dots;//����dots���к��еĴ�С�����ַ��������Χ��
+	//vector<vector<bool> > m_dots;//其中dots的行和列的大小就是字符串的外包围�?
 	//void GetVectorWordDots();
-	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool>>& dots,int& nWidth);//����dots���к��еĴ�С�����ַ��������Χ��
+	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围�?
 
 	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
 	void DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes);
@@ -91,22 +91,23 @@ public://����
 	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
 	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
 	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+
 	static bool readBin(string FontName,int offset,char *arr, int DataLen);
 
 	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 							string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,
-							map<string,vector<BYTE>> bytdigital5x5LineMap,map<string,vector<BYTE>> bytdigital7x5LineMap,
-									map<string,vector<BYTE>> bytdigital12x12LineMap,map<string,vector<BYTE>> bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
+							map<string,vector<BYTE> > bytdigital5x5LineMap,map<string,vector<BYTE> > bytdigital7x5LineMap,
+									map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax);
 	BYTE byteUpsidedown(BYTE a,BYTE bBit);
 	static UINT32 Bits32Upsidedown1(UINT32 n,BYTE bBit);
 	UINT32 Bits32Upsidedown2(UINT32 v,BYTE bBit);
 	UINT32 int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h);
 
 	void searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-				int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+				int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 				int tempNEGinteger, int tempBWDxinteger,UINT32 *IntMes);
 	void searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-							int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+							int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 							int tempNEGinteger, int byte1int , int byte2int,UINT32 *IntMes); 
 
 
@@ -117,7 +118,7 @@ public://����
 private:
 	 
 	map<string,int> fntMap;
-    int m_nPicWidth; //���ƿؼ��Ŀ��� 
+    int m_nPicWidth; //绘制控件的宽�?
 };
 
 class ClassMessage
@@ -130,18 +131,18 @@ public:
 	int Matrix;
 	string strMatrix;
 	int Pixel;
-	string Reverse;//�Ƿ�Ⱥ�����
+	string Reverse;//是否群体控制
 	string Inverse;
-	bool boReverse;//��ת���ߵ�������ӡ�����и���
+	bool boReverse;//翻转，颠倒，由喷印设置中更改
 	bool boInverse;
    // bool boDotMes[32][255];
 	int intRowMax; 
-	int bytRowByteMul;//һ���ɼ���byte��ʾ
-	bool boDynamic;//�Ƿ�̬��ӡ
-	bool boPrintNow;//�Ƿ�ʱ��ӡ����ӡ��һ������or��ӡ�������ݣ�
+	int bytRowByteMul;//一列由几个byte表示
+	bool boDynamic;//是否动态打�?
+	bool boPrintNow;//是否即时打印（打印第一条数据or打印后续数据�?
 	//vector<BYTE> bytTempDataVec;
 
-	int scrMaxRow;//��������
+	int scrMaxRow;//滚动条用
     /////////////////////////////////////////////
 	bool CounterEditMes[4];
 	///xiansiyong
@@ -155,7 +156,7 @@ public:
 	int intTimeRowSizedis[4], intTimeRowStartdis[4], bintTimelineStartdis[4], intQSerialRowSizedis[4], intQSerialRowStartdis[4];
 
 	int CountNumForPre[4];
-	///ʱ��
+	///时间
 	int bytTimeConCoun ;
 	int bytTimeConCoundis;
 	string strTimeFormat[1][4] ;
@@ -163,31 +164,31 @@ public:
 	int strETimeOffSet[4], strTimeOffSetUint[4];
 	string strETimetext[4];
 	////
-	bool SerialCountNew;//�Ƿ�Ϊ�½�
-	bool SerialCountSet[3];//�������к�
-	int bytSerialConCoun;//���кż���
-	int bytQserialCounter[4];//���кż�����
-	int intQSerialRepeat[4];//�ظ�ֵ
-	int intQSerialFirstLimit[4];//��һ����
-	int intQSerialSecondLimit[4];//�ڶ�����
-	int intQSerialStartValue[4];//��ʼֵ
-	int intQSerialStep[4];//����
-	int bytQSerialFormat[4];//��ʽ
-	int bytQSerialDigits[4];//λ��
+	bool SerialCountNew;//是否为新�?
+	bool SerialCountSet[3];//重置序列�?
+	int bytSerialConCoun;//序列号计�?
+	int bytQserialCounter[4];//序列号计数器
+	int intQSerialRepeat[4];//重复�?
+	int intQSerialFirstLimit[4];//第一象限
+	int intQSerialSecondLimit[4];//第二象限
+	int intQSerialStartValue[4];//开始�?
+	int intQSerialStep[4];//步长
+	int bytQSerialFormat[4];//格式
+	int bytQSerialDigits[4];//位数
 	int CountNum0, CountNum1, CountNum2, CountNum3, CountNumRep0, CountNumRep1, CountNumRep2, CountNumRep3 ;
 	string strQSerialFont[4];
 	bool boTimeBWDy[4], boTimeBWDx[4], boTimeNEG[4], boQSerialBWDy[4], boQSerialBWDx[4], boQSerialNEG[4] ;
 	int bytTimeSS[4], bytTimeSW[4], bytTimeLineSize[4], bytTimeLineStart[4], bytQSerialSS[4], bytQSerialSW[4], bytQSerialLineSize[4], bytQSerialLineStart[4] ;
 	int intTimeRowSize[4], intTimeRowStart[4], intTimeOffSetdis[4], intQSerialRowSize[4], intQSerialRowStart[4] ;
-	bool boCountEn[4];//�Ƿ����������static���к�
+	bool boCountEn[4];//是否更新主界面static序列�?
 
 	void getdigitaldot();
 	/*
 	UINT32* searchworddata(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int tempBWDxinteger);
 	UINT32* searchworddata12(bool tempBWDy, bool tempBWDx , bool tempNEG , string tempsetTEXT , int tempRowSize ,
-	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE>> bytdigitalfont,
+	int tempLineSize , int tempLineStart , int tempRowStart, int tempSS, int tempSW, int line , map<string,vector<BYTE> > bytdigitalfont,
 	int tempNEGinteger, int byte1int , int byte2int);
 	*/
 
@@ -195,21 +196,21 @@ public:
 	//UINT32 int32shift(UINT32 a, BYTE y,UINT32 b, BYTE h);
 	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE> bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 		string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW);
-	map<string,vector<BYTE>> bytdigital5x5LineMap;
-	map<string,vector<BYTE>> bytdigital7x5LineMap;
-	map<string,vector<BYTE>> bytdigital12x12LineMap;
-	map<string,vector<BYTE>> bytdigital16x12LineMap;
+	map<string,vector<BYTE> > bytdigital5x5LineMap;
+	map<string,vector<BYTE> > bytdigital7x5LineMap;
+	map<string,vector<BYTE> > bytdigital12x12LineMap;
+	map<string,vector<BYTE> > bytdigital16x12LineMap;
 
  	///////////////////////////////////////
-	vector<vector<bool> > boDotMes;//��obj�л��[32][intRowMax]������Ϣ�����ݵ����boolֵÿ����ϳ�һ������IntMes[intRowMax] 
-	UINT32 *IntMes;//��СintRowMax��������ÿ�������ĸ��ֽڣ���ʾ1�е����ӡ��Ϣ����Ҫ�����ڶ�̬���ɴ�ӡ��Ϣʱͳһ����������ӡ����
-	vector<BYTE> intMesDis;//��������ʾʱ�����Ѵ�ӡ����Ϣ���ֽ���������Pixel��ֵÿ��1-4���ֽڣ�����˳��ʱ��ÿ�д������ϣ��ٴ�������
-	vector<BYTE> bytPrintDataAllOrder;//��������BUF ��һ�δ�ӡ����
-	vector<BYTE> bytPrintDataAll;//��ʱ�Զ�����BUF �粻�Ƕ�̬��ӡ�����͵�����
+	vector<vector<bool> > boDotMes;//从obj中获得[32][intRowMax]点阵信息，根据点阵的bool值每列组合成一个整数IntMes[intRowMax] 
+	UINT32 *IntMes;//大小intRowMax个整数，每个整数四个字节，表�?列点阵打印信息，主要用来在动态生成打印信息时统一表达整个打印区域
+	vector<BYTE> intMesDis;//主界面显示时表达已打印的信息（字节流，根据Pixel的值每�?-4个字节，排列顺序时先每列从下往上，再从左向�?
+	vector<BYTE> bytPrintDataAllOrder;//主动发送BUF 第一次打印内�?
+	vector<BYTE> bytPrintDataAll;//空时自动发送BUF 如不是动态打印而发送的内容
 	////////////////////////////////////
 
 public:
-	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//��
+	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//�?
 	BYTE getByteFromDot(bool boDot,int moveNum); 
 	string to_String(int n);
 	long long BIN_to_DEC(string Bin);
