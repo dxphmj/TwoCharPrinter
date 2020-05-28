@@ -1060,7 +1060,7 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 		} 
 		else
 		{
-			switch(Matrix)
+			switch(Matrix) 
 			{
 				case 9:
 					if (Pixel<8)
