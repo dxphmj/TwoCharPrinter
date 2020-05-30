@@ -135,9 +135,17 @@ bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
     //bool bFlag = file.read(arr,DataLen);
     //return bFlag;
 
-    //待修�?
-    file.read(arr,DataLen);
-    return true;
+	file.read(arr,DataLen);
+	int readNum = file.gcount();//实际读取的字节数
+	if(readNum > 0)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+
 }
 
 string OBJ_Control::to_String(int n)
