@@ -685,3 +685,16 @@ unsigned char* ModuleMain::VEC2ARRAY(vector<BYTE> tempVec,const int n)
 	return byteTempArray;
 }
 
+string ModuleMain::WstringToString(const wstring str)
+{
+	// wstring转string
+	unsigned len = str.size() * 4;
+
+	setlocale(LC_CTYPE, "");
+	char *p = new char[len];
+	wcstombs(p,str.c_str(),len);
+	std::string str1(p);
+	delete[] p;
+
+	return str1;
+}

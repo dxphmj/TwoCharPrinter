@@ -1,23 +1,24 @@
 <MES>
     <PRO>
-        <Matrix>1L9M</Matrix>
-        <Pixel>6</Pixel>
+        <Matrix>241M</Matrix>
+        <Pixel>242</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
+        <TYPE2>vtext</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>5</LineSize>
-        <RowSize>24</RowSize>
-        <SW>1</SW>
+        <LineSize>60</LineSize>
+        <RowSize>120</RowSize>
+        <SW>0</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>5x5</setFONT>
-        <setTEXT>AAAA</setTEXT>
+        <setFONT>ËÎÌå</setFONT>
+        <setTEXT>°¡¹þ</setTEXT>
+        <FontSize>30</FontSize>
     </OBJ>
 </MES>

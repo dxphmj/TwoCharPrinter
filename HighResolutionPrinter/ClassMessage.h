@@ -74,12 +74,13 @@ public://参数，待�?
 
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度�?2是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大�?
-
-	bool booDotVecText[3021][241];//ʸ���������
+	
+	vector< vector<bool> > booDotVecText;//ʸ���������
 
 public://����
 
 	void DrawFrame(CDC* pDC);
+	void DrawVecFrame(CDC * pDC);
     void DrawDot(CDC* pDC);
 	//vector<vector<bool> > m_dots;//其中dots的行和列的大小就是字符串的外包围�?
 	//void GetVectorWordDots();
@@ -218,14 +219,15 @@ public:
  	void DrawDot(CDC* pDC);//
 	void getdot();
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
- 	char* GenerateFileName(string tmpFileName);
+ 	string GenerateFileName(string tmpFileName);
 	char* Generate2DcodeName(string strFileName);
 	//bool JudgeIfOBJ_Selected(QPoint p_Relative);
 	void CtrlCurObjChoice(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);
-	void SaveObjectsToXml(char* strFileName);
+	void SaveObjectsToXml(string strFileName);
+
 	string labPath;
 	string labName;
 	void createLABXML();

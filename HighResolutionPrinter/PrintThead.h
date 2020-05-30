@@ -29,7 +29,10 @@ private:
 	int m_bUsingSynchronizer;//是否使用同步器
 	unsigned char* strTempCmd;
 
-private:
+private://驱动相关句柄
+	int fd2; 
+	int read_result;
+	int write_result;
 	
 };
 

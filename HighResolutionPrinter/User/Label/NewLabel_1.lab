@@ -1,7 +1,7 @@
 <MES>
     <PRO>
-        <Matrix>1L9M</Matrix>
-        <Pixel>6</Pixel>
+        <Matrix>1L14M</Matrix>
+        <Pixel>13</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
@@ -10,14 +10,14 @@
         <TYPE2>text</TYPE2>
         <LineStart>0</LineStart>
         <RowStart>0</RowStart>
-        <LineSize>5</LineSize>
-        <RowSize>24</RowSize>
+        <LineSize>12</LineSize>
+        <RowSize>48</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>5x5</setFONT>
+        <setFONT>12x12</setFONT>
         <setTEXT>AAAA</setTEXT>
     </OBJ>
 </MES>

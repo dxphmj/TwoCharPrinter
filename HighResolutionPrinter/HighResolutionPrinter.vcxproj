@@ -590,6 +590,7 @@
     <ClInclude Include="SerialOBJ.h" />
     <ClInclude Include="TextOBJ.h" />
     <ClInclude Include="TimeOBJ.h" />
+    <ClInclude Include="unistd.h" />
     <ClInclude Include="VecTextOBJ.h" />
     <ClInclude Include="wordStock\Dom.h" />
     <ClInclude Include="wordStock\GetHZinfo.h" />

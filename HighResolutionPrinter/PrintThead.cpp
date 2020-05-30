@@ -2,7 +2,7 @@
 
 //#define RUN_BY_DEVICE 
 
-#ifdef RUN_BY_DEVICE
+//#ifdef RUN_BY_DEVICE
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -12,7 +12,7 @@
 
 #include <unistd.h>
 
-#endif
+//#endif
 #include "mainwindow.h"
 #include "ClassMessage.h"
 
@@ -78,6 +78,7 @@ void PrintThead::run()
 		//读喷头工作的状态
 		//忙 - continue
 
+		//变量，若合格（有空间），执行打印程序；否则，循环
 
 		//获得光电开关的状态
 		#ifdef RUN_BY_DEVICE
@@ -100,7 +101,8 @@ void PrintThead::run()
 				//strTempCmd = new unsigned short[strTempCmdLen];
 				strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAllOrder,theApp->m_MessagePrint->bytPrintDataAllOrder.size());
 
-				/*unsigned char s0 = strTempCmd[0];
+				/*
+				unsigned char s0 = strTempCmd[0];
 				unsigned char s1 = strTempCmd[1];
 				unsigned char s2 = strTempCmd[2];
 				unsigned char s3 = strTempCmd[3];
@@ -111,7 +113,8 @@ void PrintThead::run()
 				unsigned char s8 = strTempCmd[8];
 				unsigned char s9 = strTempCmd[9];
 				unsigned char s10 = strTempCmd[10];
-				unsigned char s11 = strTempCmd[11];*/
+				unsigned char s11 = strTempCmd[11];
+				*/
 
 				theApp->m_MessagePrint->boPrintNow = false;
 			}			 
@@ -159,8 +162,52 @@ void PrintThead::run()
 					theApp->update();
 				}
 			}
+
+
 		}
 		
+    char iTest[1];
+    char *Nozzle_node = "/dev/Nozzle_ctl";
+
+    /*O_RDWR读写打开,O_NDELAY非阻塞方式*/
+    if((fd2 = open(Nozzle_node,O_RDWR))<0)
+    {
+        printf("Nozzle open %s failed",Nozzle_node);
+    }
+    else
+    {
+        read_result = read(fd2,iTest,1);
+        if(read_result == 0)
+        {
+            while (1)
+			{
+				write_result = write(fd2,strTempCmd,8);
+				if (write_result)
+				{
+					free(strTempCmd);
+					break;
+				}
+				/*if(write_result == -1)
+				{
+					printf("Write is failed!\n");
+				}
+					else
+				{
+					printf("Write is success!\n");
+				}*/
+				msleep(1);
+			}
+			
+        }
+        else
+        {
+            printf("The system is busy now!\n");
+        }
+       
+        //read_result = read(fd2,buffer,1);
+    }
+    ::close(fd2);
+
 
 		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）
 		//为简化控制，每次采用的打印速度不变

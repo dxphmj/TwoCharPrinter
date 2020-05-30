@@ -12,6 +12,8 @@
 //#include <QPushButton>
 #include <QTextCharFormat>
 #include <QTextEdit>
+#include <QLabel>
+#include <stdlib.h>
 
 
 class keyboard;
@@ -35,6 +37,7 @@ public:
 	
 	FileManageChild *m_FileMangeChild;
 	ModuleMain m_TimeShow;
+	ModuleMain* pModuleMain;
 	/*enum LineeditChangeEnum{ WordLineedit = 0,barLineEdit = 1,QRLineEdit = 2,DMLineEdit = 3};
 	int m_LineeditChange;
 	void lineeditChange();*/
@@ -49,7 +52,7 @@ public:
 	void CreateDMcode(int nType,QString strContent);
 	void ReadBmp(char* strFileName);
 	void LoadLocalFile();
-	int  GetCharLenFromFont(string txtFont, bool LineOrRow); //根据字体，计算得到每个字符的显示长度
+	int  GetCharLenFromFont(string txtFont, bool LineOrRow); 
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	void PushBackVecTextOBJ(QString txtFont, QString txtContent, int intFontSize);
 	void PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
@@ -70,7 +73,7 @@ public:
 	
 	void informationMessage(string errortext);//zint错误弹窗
 
-	QString bmpFileRelativePath;//读取bmp图片的相对路径
+	QString bmpFileRelativePath;//读取bmp图片的相对路�?
 	int degreenum;
 	int degreenumQr;
 	int degreenumDM;
@@ -89,13 +92,13 @@ public:
 	int Barheight;
 	int nW;
 	int nH;
-	QPoint pointMousePressed;//记录鼠标点
-	bool boolMousePressed;//判断鼠标是否被按下
+	QPoint pointMousePressed;//记录鼠标�?
+	bool boolMousePressed;//判断鼠标是否被按�?
 	bool boolHWchange;//判断改变的是高度还是宽度
 
 	//Arabic系列
-	QString disposeinputtext( QString inputtext );//阿拉伯连体
-	QString ConvertWCHARToHex(QString Data, long nDataLength);//QString转16进制
+	QString disposeinputtext( QString inputtext );//阿拉伯连�?
+	QString ConvertWCHARToHex(QString Data, long nDataLength);//QString�?6进制
 	void W2C(wchar_t w_cn , char c_cn[]);
 	QString HexStrToCString(QString HexStr);//16进制转QString
 	QString ArabicLan(QString inputstring);
@@ -107,7 +110,7 @@ public:
 
 	QString fileName;
 
-	QFontComboBox* FontComboBoxChoose;//字体选择框
+	QFontComboBox* FontComboBoxChoose;//字体选择�?
 	//QPushButton* button;
 	//QLabel* label;
 	QTextEdit* text;//还未定义所需要改变的字体，所以点击字体会报错
@@ -139,7 +142,6 @@ public slots:
 	void PreviewBmpChange();
 	void OnEnChangeEditInput_clicked();//arabic连笔
 
-	//按钮
 	//void textButton();
 	//void changedIndex(int idx);
 	void changedFont(const QString &arg1);
@@ -190,7 +192,10 @@ private slots:
 	void digitSerialLineEdit_clicked();
 	void heightBmpShowBmpLineEdit_clicked();
 	void widthShowBmpLineEdit_clicked();
+
 	void ScrollBarChanged(int);
+	void tempScrollBarChanged(int);
+
 	void rimwideAddBut_clicked();
 	void rimwideRedButt_clicked();
 	void whitespaceAddBut_clicked();
@@ -214,6 +219,8 @@ private slots:
 
 protected:
 	//void paintEvent(QPaintEvent *event);
+	QLabel* viewAreaLabel;
+	QScrollBar* tempScrollBar;
 	void paintDot();
 	void paintFrame();
 	bool eventFilter(QObject *watched, QEvent *event);
