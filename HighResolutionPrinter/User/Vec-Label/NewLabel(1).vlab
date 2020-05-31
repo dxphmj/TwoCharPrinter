@@ -8,17 +8,17 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>vtext</TYPE2>
-        <LineStart>103</LineStart>
-        <RowStart>192</RowStart>
-        <LineSize>60</LineSize>
-        <RowSize>120</RowSize>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>30</LineSize>
+        <RowSize>90</RowSize>
         <SW>0</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
         <setFONT>ËÎÌå</setFONT>
-        <setTEXT>°¡¹þ</setTEXT>
-        <FontSize>30</FontSize>
+        <setTEXT>°¡°¡°¡</setTEXT>
+        <FontSize>15</FontSize>
     </OBJ>
 </MES>

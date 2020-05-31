@@ -127,8 +127,8 @@ public:
 
 public:
 	Ui::FileEditChild* ui;
-	
 	QString str1;
+
 public slots:
 	void wordLineEdit_clicked();
 	void barCodeLineEdit_clicked();
@@ -250,6 +250,10 @@ public:
 	QString showText2;
 	QString showText3;
 	QString showText4;
+
+public://参数
+	double horizon_pos;//滚动条当前位置水平坐标
+	double vertical_pos;//滚动条当前位置垂直坐标
 
 };
 

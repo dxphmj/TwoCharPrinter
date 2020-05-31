@@ -99,23 +99,6 @@ void OBJ_Control::DrawVecFrame(CDC * pDC)
 	pDC->drawLine(intRowStart+intRowSize,intLineStart,intRowStart+intRowSize,intLineSize+intLineStart);
 }
 
-wstring stringToWstring(const string& str)
-{
-	setlocale(LC_ALL, "chs"); 
-
-	const char* _Source = str.c_str();
-	size_t _Dsize = str.size() + 1;
-	wchar_t *_Dest = new wchar_t[_Dsize];
-	wmemset(_Dest, 0, _Dsize);
-	mbstowcs(_Dest,_Source,_Dsize);
-	wstring result = _Dest;
-	delete []_Dest;
-
-	setlocale(LC_ALL, "C");
-
-	return result;
-}
-
 bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
 {
 	ifstream file;
@@ -295,7 +278,9 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 	int x1,y1,x2,y2;
 	theDog=0;//标记�?
 
-	wstring strWText=stringToWstring(strText);
+	ModuleMain* pModuleMain = new ModuleMain;
+	wstring strWText = pModuleMain->stringToWstring(strText);
+
 	for (int i=0;i<strWText.length();i++)
 	{
 		wchar_t strTempText;
@@ -454,9 +439,11 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 	int x1,y1,x2,y2;
 	theDog=0;
 	if(pDC)	 
-		pDC->setBrush(cbrushB);		 
-	 
-	wstring strWText=stringToWstring(strText);
+		pDC->setBrush(cbrushB);
+
+	ModuleMain* pModuleMain = new ModuleMain;
+	wstring strWText = pModuleMain->stringToWstring(strText);
+	
 	for (int i=0;i<strWText.length();i++)
 	{
 		wchar_t strTempText;
@@ -632,8 +619,10 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 		pDC->setBrush(cbrushB);		 
 
 	theDog=0;
-	 		 
-	wstring strWText=stringToWstring(strText);
+	
+	ModuleMain* pModuleMain = new ModuleMain;
+	wstring strWText = pModuleMain->stringToWstring(strText);
+
 	for (int i=0;i<strWText.length();i++)
 	{
 		wchar_t strTempText;

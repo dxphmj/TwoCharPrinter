@@ -8,6 +8,7 @@
 #include <map>
 #include <queue>
 #include <QPainter>
+#include "ModuleMain.h"
 
 class CTextOBJ;
 class CTimeOBJ;
@@ -72,11 +73,9 @@ public://参数，待定
     //vector<vector<bool> > LogoDotToMes;//改变后的Logo图片点阵用于下发数据用
     //vector<vector<bool> > LogoDot;//logo点阵
 	
-	vector< vector<bool> > booDotVecText;//矢量字体点阵
+	vector< vector<bool> > booDotVecText; //矢量字体点阵
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
-
-	//bool booDotVecText[3021][241];//矢量字体点阵
 
 public://方法
 

@@ -93,7 +93,11 @@ FileEditChild::FileEditChild(QWidget *parent)
 	tempScrollBar->setRange(0,100);
 	tempScrollBar->setVisible(true);
 	connect(tempScrollBar,SIGNAL(valueChanged(int)),this,SLOT(tempScrollBarChanged(int)));
+	//设置滚动条初始值为0
+	horizon_pos = 0.0;
+	vertical_pos = 0.0;
 #endif
+
 	ui->textpreviewScrollBar->setRange(0,100);
 	viewAreaLabel = new QLabel(this);
 	viewAreaLabel->setGeometry(10,10,1041,241);
@@ -441,16 +445,23 @@ FileEditChild::~FileEditChild()
 {
 }
 
-void FileEditChild::ScrollBarChanged(int value)
+void FileEditChild::ScrollBarChanged(int value)//水平滚动条
 {
+#ifdef BIG_CHAR
 	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
 	ui->editPreviewText->move(-2080*p,0);
+#else
+	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
+	ui->editPreviewText->move(-2080*p,vertical_pos);
+	horizon_pos = -2080*p;
+#endif
 }
 
-void FileEditChild::tempScrollBarChanged(int value)
+void FileEditChild::tempScrollBarChanged(int value)//垂直滚动条
 {
 	double p = static_cast<double>(value)/static_cast<double>(tempScrollBar->maximum());
-	ui->editPreviewText->move(0,-480*p);
+	ui->editPreviewText->move(horizon_pos,-480*p);
+	vertical_pos = -480*p;
 }
 
 void FileEditChild::ChangePixel()
@@ -697,6 +708,7 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 
 #else
+	/*
 	QMap <QString,int> PixelMap;
 	PixelMap.insert("48px",5);
 	PixelMap.insert("60px",4);
@@ -707,29 +719,30 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	//PixelMap.insert("1200px",0.2);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
+	*/
 	int i,j;
-	for (i = 1; i <= 3121; i += PixelMap[CurPixelItem])
+	for (i = 1; i <= 3121; i += 5)//先写死成5
 	{
-		//画列
+	//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,241-PixelMap[CurPixelItem],i,241);
+		qFramePainter->drawLine(i,0,i,721);
 	}
-	for (j=241; j>=241-PixelMap[CurPixelItem]; j-=5)
+	for (j = 1; j <= 721; j += 5)//先写死成721,5
 	{
-		//画行
+	//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,241,1,241-PixelMap[CurPixelItem]);//left
-	qFramePainter->drawLine(0,239,3121,239);//down
-	qFramePainter->drawLine(0,241-PixelMap[CurPixelItem],3121,241-PixelMap[CurPixelItem]);//up
-	qFramePainter->drawLine(3120,241,3120,241-PixelMap[CurPixelItem]);//right
+	qFramePainter->drawLine(1,720,1,1);//left
+	qFramePainter->drawLine(3120,720,3120,1);//right
+	qFramePainter->drawLine(1,1,3120,1);//up
+	qFramePainter->drawLine(1,719,3120,719);//down
 
 	//获得Matrix 及 Pixel的值
-	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
-	m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
+	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
+	//m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
 
 #endif
 }
@@ -2110,11 +2123,11 @@ void FileEditChild::PushBackVecTextOBJ(QString txtFont, QString txtContent, int 
 	vTextObj->strType2 = "vtext";
 
 	//此处将wchar_t*转换为char*赋值给strfont和strtext，以便pushback
-	vTextObj->wStrFont = txtFont.toStdWString();
-	vTextObj->wStrText = txtContent.toStdWString();
+	wstring wStrFont = txtFont.toStdWString();
+	wstring wStrText = txtContent.toStdWString();
 	
-	vTextObj->strFont = pModuleMain->WstringToString(vTextObj->wStrFont);
-	vTextObj->strText = pModuleMain->WstringToString(vTextObj->wStrText);
+	vTextObj->strFont = pModuleMain->WstringToString(wStrFont);
+	vTextObj->strText = pModuleMain->WstringToString(wStrText);
 
 	vTextObj->intFontSize = intFontSize;
 	vTextObj->intLineSize = metrics_height;
@@ -2126,10 +2139,11 @@ void FileEditChild::PushBackVecTextOBJ(QString txtFont, QString txtContent, int 
 	vTextObj->booNEG = false;
 	vTextObj->booBWDx = false;
 	vTextObj->booBWDy = false;
-	
+
 	vTextObj->booDotVecText.clear();
 	vector< vector<bool> > vbuffer(metrics_width, vector<bool>(metrics_height, false));
 	vTextObj->booDotVecText = vbuffer;
+	
 	for(int y = 0; y< pImage.height(); y++)
 	{  
 		QRgb* line = (QRgb *)pImage.scanLine(y);  
