@@ -2,9 +2,11 @@
 #define PRINTTHEAD_H
 
 #include <QThread>
+ 
 #include <QtSerialPort/qserialport.h>
 #include <QtSerialPort/qserialportinfo.h>
-
+ 
+#include "ModuleMain.h"
 
 
 struct structRowCol2
@@ -21,6 +23,8 @@ struct structRowCol2
 		m_nCOl = nCol;
 	}
 };
+
+ 
 
 class PrintThead : public QThread //å–·å¢¨æ‰“å°çº¿ç¨‹
 {
@@ -44,16 +48,20 @@ protected:
 private:
 	QSerialPort* serial;
     volatile bool m_isStop; 
-	bool m_bUsingPhotoESwitch;//ç”¨å…‰ç”µå¼€å…³
-	bool m_bTriggerByHigh;//é«˜ç”µå¹³è§¦å‘
-	bool m_bPhotoESwitchState;//å…‰ç”µå¼€å…³çŠ¶æ€
-	bool m_bPhotoESwitchStatePre;//å…‰ç”µå¼€å…³å‰ä¸€ä¸ªçŠ¶æ€
-	bool m_bTrigger; //æ˜¯å¦è§¦å‘æ‰“å°äº†
+	bool m_bUsingPhotoESwitch;//ÓÃ¹âµç¿ª¹Ø
+	bool m_bTriggerByHigh;//¸ßµçÆ½´¥·¢
+	bool m_bPhotoESwitchState;//¹âµç¿ª¹Ø×´Ì¬
+	bool m_bPhotoESwitchStatePre;//¹âµç¿ª¹ØÇ°Ò»¸ö×´Ì¬
+	bool m_bTrigger; //ÊÇ·ñ´¥·¢´òÓ¡ÁË
 	int m_SwitchHande;
 	int m_SynchronizerHande;
-	int m_bUsingSynchronizer;//æ˜¯å¦ä½¿ç”¨åŒæ­¥å™¨
- 
-private:
+	int m_bUsingSynchronizer;//ÊÇ·ñÊ¹ÓÃÍ¬²½Æ÷
+	unsigned char* strTempCmd;
+
+private://Çı¶¯Ïà¹Ø¾ä±ú
+	int fd2; 
+	int read_result;
+	int write_result;
 	
 };
 

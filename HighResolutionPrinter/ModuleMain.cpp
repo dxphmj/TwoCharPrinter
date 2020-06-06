@@ -664,3 +664,54 @@ string ModuleMain::IntToString(double i) {
 	return ch;  
 }  
 */
+
+unsigned char* ModuleMain::VEC2ARRAY(vector<BYTE> tempVec,const int n)
+{
+	unsigned char* byteTempArray = NULL;
+	byteTempArray = (unsigned char*)malloc(n);
+	string tempStr;
+	if (n!=0)
+	{
+		stringstream ss;
+		copy(tempVec.begin(),tempVec.end(),ostream_iterator<BYTE>(ss,""));
+		tempStr = ss.str();
+		for (int i=0; i<tempStr.length(); i++)
+		{
+			byteTempArray[i] = tempStr[i];
+		}
+		/*byteTempArray = (unsigned char*)tempStr.c_str();*/
+	}
+	/*return byteTempArray;*/
+	return byteTempArray;
+}
+
+string ModuleMain::WstringToString(const wstring str)
+{
+	// wstring转string
+	unsigned len = str.size() * 4;
+
+	setlocale(LC_CTYPE, "");
+	char *p = new char[len];
+	wcstombs(p,str.c_str(),len);
+	std::string str1(p);
+	delete[] p;
+
+	return str1;
+}
+
+wstring ModuleMain::stringToWstring(const string& str)
+{
+	setlocale(LC_ALL, "chs"); 
+
+	const char* _Source = str.c_str();
+	size_t _Dsize = str.size() + 1;
+	wchar_t *_Dest = new wchar_t[_Dsize];
+	wmemset(_Dest, 0, _Dsize);
+	mbstowcs(_Dest,_Source,_Dsize);
+	wstring result = _Dest;
+	delete []_Dest;
+
+	setlocale(LC_ALL, "C");
+
+	return result;
+}

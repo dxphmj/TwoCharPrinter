@@ -8,6 +8,7 @@
 #include <map>
 #include <queue>
 #include <QPainter>
+#include "ModuleMain.h"
 
 class CTextOBJ;
 class CTimeOBJ;
@@ -39,55 +40,59 @@ public:
 	~OBJ_Control(void);
 
 public: 
-	string strDuan;//ä¿¡æ¯æ®µçš„æ ‡è¯†ä½
-	string strType1;//å­—æ®µç±»å‹
-	string strType2;//å­—æ®µå®é™…ç±»å‹
+	string strDuan;//ĞÅÏ¢¶ÎµÄ±êÊ¶Î»
+	string strType1;//×Ö¶ÎÀàĞÍ
+	string strType2;//×Ö¶ÎÊµ¼ÊÀàĞÍ
 
-	int intX;//å­—æ®µåŸç‚¹Xåæ ‡ï¼ˆé»˜è®¤ä¸º0ï¼‰
-	int intY;//å­—æ®µåŸç‚¹Yåæ ‡ï¼ˆé»˜è®¤ä¸º0ï¼‰
-	int intSW;//å­—æ®µçš„åŠ ç²—å±æ€§ï¼ˆé»˜è®¤ä¸º0ï¼‰
-	int intSS;//å­—æ®µçš„å­—è·ï¼ˆé»˜è®¤ä¸º0ï¼‰
+	int intX;//×Ö¶ÎÔ­µãX×ø±ê£¨Ä¬ÈÏÎª0£©
+	int intY;//×Ö¶ÎÔ­µãY×ø±ê£¨Ä¬ÈÏÎª0£©
+	int intSW;//×Ö¶ÎµÄ¼Ó´ÖÊôĞÔ£¨Ä¬ÈÏÎª0£©
+	int intSS;//×Ö¶ÎµÄ×Ö¾à£¨Ä¬ÈÏÎª0£©
 
-	bool booNEG;//å­—æ®µçš„åè‰²ï¼ˆfaulseä¸ºä¸åï¼Œtrueä¸ºåï¼‰
-	bool booBWDx;//å­—æ®µæ²¿Xè½´é•œåƒï¼ˆfaulseä¸ºå…³é—­ï¼Œtrueä¸ºå¼€å¯ï¼‰
-	bool booBWDy;//å­—æ®µæ²¿Yè½´é•œåƒï¼ˆfaulseä¸ºå…³é—­ï¼Œtrueä¸ºå¼€å¯ï¼‰
+	bool booNEG;//×Ö¶ÎµÄ·´É«£¨faulseÎª²»·´£¬trueÎª·´£©
+	bool booBWDx;//×Ö¶ÎÑØXÖá¾µÏñ£¨faulseÎª¹Ø±Õ£¬trueÎª¿ªÆô£©
+	bool booBWDy;//×Ö¶ÎÑØYÖá¾µÏñ£¨faulseÎª¹Ø±Õ£¬trueÎª¿ªÆô£©
 
-	string strFont;//å­—æ®µçš„å­—ä½“ï¼ˆæœ‰çš„ç±»å‹æœ‰ï¼Œæœ‰çš„ç±»å‹æ²¡æœ‰ï¼‰
-	string strText;//å­—æ®µçš„textå±æ€§ï¼Œå³å†…å®¹
+	string strFont;//×Ö¶ÎµÄ×ÖÌå£¨ÓĞµÄÀàĞÍÓĞ£¬ÓĞµÄÀàĞÍÃ»ÓĞ£©
+	string strText;//×Ö¶ÎµÄtextÊôĞÔ£¬¼´ÄÚÈİ
 
-	int intLineSize;//å­—æ®µçš„è¡Œæ•°
-	int intRowSize;//å­—æ®µçš„åˆ—æ•°
-	int intLineStart;//å­—æ®µçš„å¼€å§‹è¡Œ
-	int intRowStart;//å­—æ®µçš„å¼€å§‹åˆ—
+	int intLineSize;//×Ö¶ÎµÄĞĞÊı
+	int intRowSize;//×Ö¶ÎµÄÁĞÊı
+	int intLineStart;//×Ö¶ÎµÄ¿ªÊ¼ĞĞ
+	int intRowStart;//×Ö¶ÎµÄ¿ªÊ¼ÁĞ
 
-	bool booFocus;//ç„¦ç‚¹æ˜¯å¦æ˜¾ç¤º,True:æ˜¾ç¤ºè“æ¡†,False:æ˜¾ç¤ºç»¿æ¡†
-	bool booBeenDragged;//å¯¹è±¡æ˜¯å¦è¢«æ‹–åŠ¨
+	bool booFocus;//½¹µãÊÇ·ñÏÔÊ¾,True:ÏÔÊ¾À¶¿ò,False:ÏÔÊ¾ÂÌ¿ò
+	bool booBeenDragged;//¶ÔÏóÊÇ·ñ±»ÍÏ¶¯
 	
-	int counter;//åºåˆ—å·çš„è®¡æ•°å™¨
+	int counter;//ĞòÁĞºÅµÄ¼ÆÊıÆ÷
 	
-public://å‚æ•°ï¼Œå¾…å®š
-	string img;//æ­¤ä¸ºlogoå›¾ç‰‡ï¼Œvbä¸­ä¸ºImageç±»å‹
-    //vector<vector<bool> > logobmp;//ä¸æ˜
+public://²ÎÊı£¬´ı¶¨
+	string img;//´ËÎªlogoÍ¼Æ¬£¬vbÖĞÎªImageÀàĞÍ
+    //vector<vector<bool> > logobmp;//²»Ã÷
 
-    //vector<vector<bool> > LogoDotToMes;//æ”¹å˜åçš„Logoå›¾ç‰‡ç‚¹é˜µç”¨äºä¸‹å‘æ•°æ®ç”¨
-    //vector<vector<bool> > LogoDot;//logoç‚¹é˜µ
-
-	bool boDotBmp[500][100];//åŠ è½½bmpç”¨ï¼Œ255æ˜¯ä½å›¾çš„å®½åº¦ï¼Œ32æ˜¯ä½å›¾çš„é«˜åº¦
-	int xMaxBmp,yMaxBmp;//ç”¨æ¥è®°å½•æœ¬æ¬¡åŠ è½½å›¾ç‰‡çš„å¤§å°
-
-public://æ–¹æ³•
+    //vector<vector<bool> > LogoDotToMes;//¸Ä±äºóµÄLogoÍ¼Æ¬µãÕóÓÃÓÚÏÂ·¢Êı¾İÓÃ
+    //vector<vector<bool> > LogoDot;//logoµãÕó
 	
+	vector< vector<bool> > booDotVecText; //Ê¸Á¿×ÖÌåµãÕó
+	bool boDotBmp[500][100];//¼ÓÔØbmpÓÃ£¬255ÊÇÎ»Í¼µÄ¿í¶È£¬32ÊÇÎ»Í¼µÄ¸ß¶È
+	int xMaxBmp,yMaxBmp;//ÓÃÀ´¼ÇÂ¼±¾´Î¼ÓÔØÍ¼Æ¬µÄ´óĞ¡
+
+public://·½·¨
+
 	void DrawFrame(CDC* pDC);
+	void DrawVecFrame(CDC * pDC);
     void DrawDot(CDC* pDC);
-	//vector<vector<bool> > m_dots;//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›’
+	//vector<vector<bool> > m_dots;//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›?
 	//void GetVectorWordDots();
-	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›’
+	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//å…¶ä¸­dotsçš„è¡Œå’Œåˆ—çš„å¤§å°å°±æ˜¯å­—ç¬¦ä¸²çš„å¤–åŒ…å›´ç›?
 
-	void DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes);
-	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes);
-	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool> >& boDotMes);
-	void Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
-	void Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
+	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+
 	static bool readBin(string FontName,int offset,char *arr, int DataLen);
 
 	vector<BYTE> DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
@@ -114,7 +119,7 @@ public://æ–¹æ³•
 private:
 	 
 	map<string,int> fntMap;
-    int m_nPicWidth; //ç»˜åˆ¶æ§ä»¶çš„å®½åº¦ 
+    int m_nPicWidth; //»æÖÆ¿Ø¼şµÄ¿í¶È 
 };
 
 class ClassMessage
@@ -127,18 +132,18 @@ public:
 	int Matrix;
 	string strMatrix;
 	int Pixel;
-	string Reverse;//æ˜¯å¦ç¾¤ä½“æ§åˆ¶
+	string Reverse;//ÊÇ·ñÈºÌå¿ØÖÆ
 	string Inverse;
-	bool boReverse;//ç¿»è½¬ï¼Œé¢ å€’ï¼Œç”±å–·å°è®¾ç½®ä¸­æ›´æ”¹
+	bool boReverse;//·­×ª£¬µßµ¹£¬ÓÉÅçÓ¡ÉèÖÃÖĞ¸ü¸Ä
 	bool boInverse;
    // bool boDotMes[32][255];
 	int intRowMax; 
-	int bytRowByteMul;//ä¸€åˆ—ç”±å‡ ä¸ªbyteè¡¨ç¤º
-	bool boDynamic;//æ˜¯å¦åŠ¨æ€æ‰“å°
-	bool boPrintNow;//æ˜¯å¦å³æ—¶æ‰“å°ï¼ˆæ‰“å°ç¬¬ä¸€æ¡æ•°æ®oræ‰“å°åç»­æ•°æ®ï¼‰
+	int bytRowByteMul;//Ò»ÁĞÓÉ¼¸¸öbyte±íÊ¾
+	bool boDynamic;//ÊÇ·ñ¶¯Ì¬´òÓ¡
+	bool boPrintNow;//ÊÇ·ñ¼´Ê±´òÓ¡£¨´òÓ¡µÚÒ»ÌõÊı¾İor´òÓ¡ºóĞøÊı¾İ£©
 	//vector<BYTE> bytTempDataVec;
 
-	int scrMaxRow;//æ»šåŠ¨æ¡ç”¨
+	int scrMaxRow;//¹ö¶¯ÌõÓÃ
     /////////////////////////////////////////////
 	bool CounterEditMes[4];
 	///xiansiyong
@@ -160,23 +165,23 @@ public:
 	int strETimeOffSet[4], strTimeOffSetUint[4];
 	string strETimetext[4];
 	////
-	bool SerialCountNew;//æ˜¯å¦ä¸ºæ–°å»º
-	bool SerialCountSet[3];//é‡ç½®åºåˆ—å·
-	int bytSerialConCoun;//åºåˆ—å·è®¡æ•°
-	int bytQserialCounter[4];//åºåˆ—å·è®¡æ•°å™¨
-	int intQSerialRepeat[4];//é‡å¤å€¼
-	int intQSerialFirstLimit[4];//ç¬¬ä¸€è±¡é™
-	int intQSerialSecondLimit[4];//ç¬¬äºŒè±¡é™
-	int intQSerialStartValue[4];//å¼€å§‹å€¼
-	int intQSerialStep[4];//æ­¥é•¿
-	int bytQSerialFormat[4];//æ ¼å¼
-	int bytQSerialDigits[4];//ä½æ•°
+	bool SerialCountNew;//ÊÇ·ñÎªĞÂ½¨
+	bool SerialCountSet[3];//ÖØÖÃĞòÁĞºÅ
+	int bytSerialConCoun;//ĞòÁĞºÅ¼ÆÊı
+	int bytQserialCounter[4];//ĞòÁĞºÅ¼ÆÊıÆ÷
+	int intQSerialRepeat[4];//ÖØ¸´Öµ
+	int intQSerialFirstLimit[4];//µÚÒ»ÏóÏŞ
+	int intQSerialSecondLimit[4];//µÚ¶şÏóÏŞ
+	int intQSerialStartValue[4];//¿ªÊ¼Öµ
+	int intQSerialStep[4];//²½³¤
+	int bytQSerialFormat[4];//¸ñÊ½
+	int bytQSerialDigits[4];//Î»Êı
 	int CountNum0, CountNum1, CountNum2, CountNum3, CountNumRep0, CountNumRep1, CountNumRep2, CountNumRep3 ;
 	string strQSerialFont[4];
 	bool boTimeBWDy[4], boTimeBWDx[4], boTimeNEG[4], boQSerialBWDy[4], boQSerialBWDx[4], boQSerialNEG[4] ;
 	int bytTimeSS[4], bytTimeSW[4], bytTimeLineSize[4], bytTimeLineStart[4], bytQSerialSS[4], bytQSerialSW[4], bytQSerialLineSize[4], bytQSerialLineStart[4] ;
 	int intTimeRowSize[4], intTimeRowStart[4], intTimeOffSetdis[4], intQSerialRowSize[4], intQSerialRowStart[4] ;
-	bool boCountEn[4];//æ˜¯å¦æ›´æ–°ä¸»ç•Œé¢staticåºåˆ—å·
+	bool boCountEn[4];//ÊÇ·ñ¸üĞÂÖ÷½çÃæstaticĞòÁĞºÅ
 
 	void getdigitaldot();
 	/*
@@ -198,15 +203,15 @@ public:
 	map<string,vector<BYTE> > bytdigital16x12LineMap;
 
  	///////////////////////////////////////
-	vector<vector<bool> > boDotMes;//ä»objä¸­è·å¾—[32][intRowMax]ç‚¹é˜µä¿¡æ¯ï¼Œæ ¹æ®ç‚¹é˜µçš„boolå€¼æ¯åˆ—ç»„åˆæˆä¸€ä¸ªæ•´æ•°IntMes[intRowMax] 
-	UINT32 *IntMes;//å¤§å°intRowMaxä¸ªæ•´æ•°ï¼Œæ¯ä¸ªæ•´æ•°å››ä¸ªå­—èŠ‚ï¼Œè¡¨ç¤º1åˆ—ç‚¹é˜µæ‰“å°ä¿¡æ¯ï¼Œä¸»è¦ç”¨æ¥åœ¨åŠ¨æ€ç”Ÿæˆæ‰“å°ä¿¡æ¯æ—¶ç»Ÿä¸€è¡¨è¾¾æ•´ä¸ªæ‰“å°åŒºåŸŸ
-	vector<BYTE> intMesDis;//ä¸»ç•Œé¢æ˜¾ç¤ºæ—¶è¡¨è¾¾å·²æ‰“å°çš„ä¿¡æ¯ï¼ˆå­—èŠ‚æµï¼Œæ ¹æ®Pixelçš„å€¼æ¯åˆ—1-4ä¸ªå­—èŠ‚ï¼Œæ’åˆ—é¡ºåºæ—¶å…ˆæ¯åˆ—ä»ä¸‹å¾€ä¸Šï¼Œå†ä»å·¦å‘å³
-	vector<BYTE> bytPrintDataAllOrder;//ä¸»åŠ¨å‘é€BUF ç¬¬ä¸€æ¬¡æ‰“å°å†…å®¹
-	vector<BYTE> bytPrintDataAll;//ç©ºæ—¶è‡ªåŠ¨å‘é€BUF å¦‚ä¸æ˜¯åŠ¨æ€æ‰“å°è€Œå‘é€çš„å†…å®¹
+	vector<vector<bool> > boDotMes;//´ÓobjÖĞ»ñµÃ[32][intRowMax]µãÕóĞÅÏ¢£¬¸ù¾İµãÕóµÄboolÖµÃ¿ÁĞ×éºÏ³ÉÒ»¸öÕûÊıIntMes[intRowMax]
+	UINT32 *IntMes;//´óĞ¡intRowMax¸öÕûÊı£¬Ã¿¸öÕûÊıËÄ¸ö×Ö½Ú£¬±íÊ¾1ÁĞµãÕó´òÓ¡ĞÅÏ¢£¬Ö÷ÒªÓÃÀ´ÔÚ¶¯Ì¬Éú³É´òÓ¡ĞÅÏ¢Ê±Í³Ò»±í´ïÕû¸ö´òÓ¡ÇøÓò
+	vector<BYTE> intMesDis;//Ö÷½çÃæÏÔÊ¾Ê±±í´ïÒÑ´òÓ¡µÄĞÅÏ¢£¨×Ö½ÚÁ÷£¬¸ù¾İPixelµÄÖµÃ¿ÁĞ1-4¸ö×Ö½Ú£¬ÅÅÁĞË³ĞòÊ±ÏÈÃ¿ÁĞ´ÓÏÂÍùÉÏ£¬ÔÙ´Ó×óÏòÓÒ
+	vector<BYTE> bytPrintDataAllOrder;//Ö÷¶¯·¢ËÍBUF µÚÒ»´Î´òÓ¡ÄÚÈİ
+	vector<BYTE> bytPrintDataAll;//¿ÕÊ±×Ô¶¯·¢ËÍBUF Èç²»ÊÇ¶¯Ì¬´òÓ¡¶ø·¢ËÍµÄÄÚÈİ
 	////////////////////////////////////
 
 public:
-	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//æŸ¥
+	string ReadXml(string xmlFileName,string nameStr,string faultValue,string path);//²é
 	BYTE getByteFromDot(bool boDot,int moveNum); 
 	string to_String(int n);
 	long long BIN_to_DEC(string Bin);
@@ -214,14 +219,15 @@ public:
  	void DrawDot(CDC* pDC);//
 	void getdot();
 	vector<BYTE> DotToByte(int tempintDotRowStart, int tempintDotRowEnd);
- 	char* GenerateFileName(string tmpFileName);
+ 	string GenerateFileName(string tmpFileName);
 	char* Generate2DcodeName(string strFileName);
 	//bool JudgeIfOBJ_Selected(QPoint p_Relative);
 	void CtrlCurObjChoice(QPoint p_Relative);
 
 public://XML
 	void ReadObjectsFromXml(char* strFileName);
-	void SaveObjectsToXml(char* strFileName);
+	void SaveObjectsToXml(string strFileName);
+
 	string labPath;
 	string labName;
 	void createLABXML();

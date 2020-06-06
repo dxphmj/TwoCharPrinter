@@ -626,7 +626,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0x1);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0x11);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(matrix_name);
-		m_MessagePrint->bytPrintDataAllOrder.push_back(pixelAll);
+		m_MessagePrint->bytPrintDataAllOrder.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_h);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0xff);

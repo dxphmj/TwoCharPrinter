@@ -150,13 +150,29 @@ void FileManageChild::PreviewLocalFile()
 	this->update();
 }
 
-void FileManageChild::PreviewSaveFile()
+void FileManageChild::PreviewSaveFile(QString tempStr)
 {
 	QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());
+	FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget());  
 	m_pPrinterMes->ClearOBJ_Vec();
-	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.end());
+
+	QFileInfo file(tempStr);
+	tempStr = file.baseName();
+
+#ifdef BIG_CHAR
+	QString tempStr1 = tempStr + ".lab";
+	QList<QListWidgetItem*> tmpList = pFilemanageForm->FormFileManageChild->ui->filelistWidget->findItems(tempStr1,Qt::MatchExactly);
+#else
+	QString tempStr1 = tempStr + ".vlab";
+	QList<QListWidgetItem*> tmpList = pFilemanageForm->FormFileManageChild->ui->filelistWidget->findItems(tempStr1,Qt::MatchExactly);
+#endif
+	
+	//默认可以且只能找到一个目标，存放在tmpList[0]中
+	QListWidgetItem *tmpItem = tmpList.at(0);
+	ui->filelistWidget->setCurrentItem(tmpItem);
+
 	//取消选中状态
+	m_pPrinterMes->OBJ_Vec.assign(pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.begin(),pFilemanageForm->FormFileEditChild->m_MessagePrint.OBJ_Vec.end());
 	for (int i=0; i<m_pPrinterMes->OBJ_Vec.size(); i++)
 	{
 		if (m_pPrinterMes->OBJ_Vec[i]->booFocus)
@@ -164,10 +180,8 @@ void FileManageChild::PreviewSaveFile()
 			m_pPrinterMes->OBJ_Vec[i]->booFocus = false;
 		}
 	}
-	QString qfileName = this->ui->filelistWidget->currentItem()->text();
-	QFileInfo fi(qfileName);
-	qfileName = fi.baseName();
-	this->ui->fileNmaeLineEdit->setText(qfileName);
+
+	ui->fileNmaeLineEdit->setText(tempStr);
 }
 
 char* FileManageChild::GetCurXmlFile()
@@ -214,7 +228,8 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
-	
+
+#ifdef BIG_CHAR
 	QMap <QString,int> MatrixMap;
 	MatrixMap.insert("1L9M",45);
 	MatrixMap.insert("1L12M",60);
@@ -242,7 +257,43 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	qFramePainter->drawLine(0,239,3121,239);//down
 	qFramePainter->drawLine(0,241-MatrixMap[qStrMatrix],3121,241-MatrixMap[qStrMatrix]);//up
 	qFramePainter->drawLine(3120,241,3120,241-MatrixMap[qStrMatrix]);//right
-	
+#else
+	/*
+	QMap <QString,int> PixelMap;
+	PixelMap.insert("48px",5);
+	PixelMap.insert("60px",4);
+	PixelMap.insert("80px",3);
+	PixelMap.insert("120px",2);
+	PixelMap.insert("240px",1);
+	//PixelMap.insert("480px",0.5);
+	//PixelMap.insert("1200px",0.2);
+
+	QString CurPixelItem = this->ui->pixelComBox->currentText();
+	*/
+	int i,j;
+	for (i = 1; i <= 3121; i += 5)//先写死成5
+	{
+	//画列
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(i,0,i,721);
+	}
+	for (j = 1; j <= 721; j += 5)//先写死成721,5
+	{
+	//画行
+		qFramePainter->setPen(qGrayPen);
+		qFramePainter->drawLine(0,j,3121,j);
+	}
+
+	qFramePainter->setPen(qRedPen);
+	qFramePainter->drawLine(1,720,1,1);//left
+	qFramePainter->drawLine(3120,720,3120,1);//right
+	qFramePainter->drawLine(1,1,3120,1);//up
+	qFramePainter->drawLine(1,719,3120,719);//down
+
+	//获得Matrix 及 Pixel的值
+	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
+	//m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
+#endif
 }
 
 void FileManageChild::slotShow(QDir dir)  
@@ -274,7 +325,11 @@ void FileManageChild::UdiskFileBut_clicked()
 
 void FileManageChild::ShowLocalFilePath()
 {
+#ifdef BING_CHAR
 	rootStr = "User/Label"; 
+#else
+	rootStr = "User/Vec-Label"; 
+#endif
 	QDir rootDir(rootStr); 
 	slotShow(rootDir); 
 	SetButtonEnableOff();
@@ -289,46 +344,25 @@ void FileManageChild::fileNmaeLineEdit_click()
 
 void FileManageChild::OKFileNameBut_clicked()
 {
-	if (this->boolSaveAsBtn_Clicked == true)
+	QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
+	QString tmpPath1 = "User/Label/" + qFileName1;
+	QString qFileName2 = this->ui->fileNmaeLineEdit->text();
+#ifdef BIG_CHAR
+	QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
+#else
+	QString tmpPath2 = "User/Vec-Label/" + qFileName2 + ".vlab";
+#endif
+	QFileInfo fi(tmpPath2);
+	if (!fi.exists())
 	{
-		QString qFileName = this->ui->fileNmaeLineEdit->text();
-		QString qFilePath = "User/Label/" + qFileName + ".lab";
-		char charFilePath[256];
-		QFileInfo fi(qFilePath);
-		if (!fi.exists())
-		{
-			sprintf(charFilePath,"%s",qFilePath.toStdString().c_str());
-			QStackedWidget *pQStackedWidget = qobject_cast<QStackedWidget*>(this->parentWidget());  
-			FilemanageForm *pFilemanageForm = qobject_cast<FilemanageForm*>(pQStackedWidget->parentWidget()); 
-			pFilemanageForm->FormFileEditChild->m_MessagePrint.SaveObjectsToXml(charFilePath);
-			this->ShowLocalFilePath();
-			keyboardWidget->setVisible(false);
-			this->boolSaveAsBtn_Clicked = false;
-		}
-		else
-		{
-			//弹出文件名重复
-			informationMessage();
-		}
+		QFile::rename(tmpPath1,tmpPath2);
+		this->ShowLocalFilePath();
+		keyboardWidget->setVisible(false);
 	}
 	else
 	{
-		QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
-		QString tmpPath1 = "User/Label/" + qFileName1;
-		QString qFileName2 = this->ui->fileNmaeLineEdit->text();
-		QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
-		QFileInfo fi(tmpPath2);
-		if (fi.exists()==0)
-		{
-			QFile::rename(tmpPath1,tmpPath2);
-			this->ShowLocalFilePath();
-			keyboardWidget->setVisible(false);
-		}
-		else
-		{
-			//弹出文件名重复
-			informationMessage();
-		}
+		//弹出文件名重复
+		informationMessage();
 	}
 }
 

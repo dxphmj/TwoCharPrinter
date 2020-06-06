@@ -10,7 +10,6 @@
 #include <Windows.h>
 #include "BmpObj.h"
 #include "ModuleMain.h"
-
 #include "wordStock/GetHZinfo.h"
 #include <math.h>
  
@@ -115,11 +114,18 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 	//计算鼠标相对于FileManageChild窗口的坐标位置
 	int x_pos = p_Relative.x();
 	int y_pos = p_Relative.y();
+
+#ifdef BIG_CHAR
+	int nLin = ( 241 - y_pos ) / 5;
+	int nRow = x_pos / 5;
+#else
+	int nLin = y_pos;
+	int nRow = x_pos;
+#endif
+
 	//判断该位置是否在控件editPreviewText范围内
 	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
 	{
-		int nLin = ( 241 - y_pos ) / 5;
-		int nRow = x_pos / 5;
 		vector<OBJ_Control*>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
 		{		
@@ -150,26 +156,29 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
-char* ClassMessage::GenerateFileName(string tmpFileName)
+string ClassMessage::GenerateFileName(string tmpFileName)
 {
 	int tmpFileNum = 1;
-	bool fileRepeat = true;
 	char CurFilePath[256];
-	sprintf(CurFilePath,"User/Label/%s%d.lab",tmpFileName.c_str(),tmpFileNum);
-	while (fileRepeat == true)
+
+#ifdef BIG_CHAR
+	sprintf(CurFilePath,"User/Label/%s(%d).lab",tmpFileName.c_str(),tmpFileNum);
+#else
+	sprintf(CurFilePath,"User/Vec-Label/%s(%d).vlab",tmpFileName.c_str(),tmpFileNum);
+#endif
+
+	QFileInfo fi(CurFilePath);
+	while (fi.exists())
 	{
-		QFileInfo fi(CurFilePath);
-		if (fi.exists())
-		{
-			tmpFileNum++;
-			sprintf(CurFilePath,"User/Label/%s%d.lab",tmpFileName.c_str(),tmpFileNum);
-		}
-		else
-		{
-			fileRepeat = false;
-			break;
-		}
+		tmpFileNum++;
+#ifdef BIG_CHAR
+		sprintf(CurFilePath,"User/Label/%s(%d).lab",tmpFileName.c_str(),tmpFileNum);
+#else
+		sprintf(CurFilePath,"User/Vec-Label/%s(%d).vlab",tmpFileName.c_str(),tmpFileNum);
+#endif
+		fi.setFile(CurFilePath);
 	}
+
 	return CurFilePath;
 }
 
@@ -197,7 +206,7 @@ char* ClassMessage::Generate2DcodeName(string strFileName)
 	return CurFilePath;
 }
 
-void ClassMessage::SaveObjectsToXml(char* strFileName)
+void ClassMessage::SaveObjectsToXml(string strFileName)
 {
 	TiXmlDocument doc;
 
@@ -279,17 +288,37 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 
 		if (OBJ_Vec[i]->strType2=="text")
 		{
-			TiXmlElement itemsetFONT("setFONT");
+			TiXmlElement itemSetFONT( "setFONT" );
 			TiXmlElement itemSetTEXT( "setTEXT" );
 
 			TiXmlText textSetFont(OBJ_Vec[i]->strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 
-			itemsetFONT.InsertEndChild(textSetFont);
+			itemSetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 
-			itemObj.InsertEndChild( itemsetFONT );
+			itemObj.InsertEndChild( itemSetFONT );
 			itemObj.InsertEndChild( itemSetTEXT );
+		}
+		else if (OBJ_Vec[i]->strType2=="vtext")
+		{
+			CVecTextOBJ *pVecTextObj = (CVecTextOBJ*)(OBJ_Vec[i]);
+
+			TiXmlElement itemSetFONT( "setFONT" );
+			TiXmlElement itemSetTEXT( "setTEXT" );
+			TiXmlElement itemFontSize( "FontSize" );
+
+			TiXmlText textSetFont(pVecTextObj->strFont.c_str());
+			TiXmlText textSetTEXT(pVecTextObj->strText.c_str());
+			TiXmlText textFontSize(to_String(pVecTextObj->intFontSize).c_str());
+
+			itemSetFONT.InsertEndChild(textSetFont);
+			itemSetTEXT.InsertEndChild(textSetTEXT);
+			itemFontSize.InsertEndChild(textFontSize);
+
+			itemObj.InsertEndChild( itemSetFONT );
+			itemObj.InsertEndChild( itemSetTEXT );
+			itemObj.InsertEndChild( itemFontSize );
 		}
 		else if (OBJ_Vec[i]->strType2=="serial")
 		{
@@ -462,7 +491,8 @@ void ClassMessage::SaveObjectsToXml(char* strFileName)
 		itemMes.InsertEndChild( itemObj );
 	}	 
 	doc.InsertEndChild(itemMes);
-	doc.SaveFile(strFileName);
+	doc.SaveFile(strFileName.c_str());
+	//doc.SaveFile(saveFileName);
 } 
 
 void ClassMessage::ClearOBJ_Vec()
@@ -614,6 +644,7 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 			CBarcodeOBJ barcodeObj;
 			CQRcodeOBJ QRcodeObj;
 			CDMcodeOBJ  DMcodeObj; 
+			CVecTextOBJ VecTextObj;
 
 			obj.booFocus = false;
 			TiXmlNode* nodeTmp = 0;
@@ -727,6 +758,26 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
+					}
+				}
+				else if (obj.strType1=="text"&&obj.strType2=="vtext")
+				{
+					if(strcmp(strItem,"setTEXT") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.strText.assign(strText);
+					}
+					else if (strcmp(strItem,"FontSize") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						VecTextObj.intFontSize = atoi(strText);
+						VecTextObj.GenerateVecBmp(obj.strFont,obj.strText,VecTextObj.intFontSize);
 					}
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="serial")
@@ -968,6 +1019,11 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 				CTextOBJ* pTextObj = new CTextOBJ(obj,TextObj);
 				OBJ_Vec.push_back(pTextObj);
 			}
+			else if(obj.strType2 == "vtext")
+			{
+				CVecTextOBJ* pVecTextObj = new CVecTextOBJ(obj,VecTextObj);
+				OBJ_Vec.push_back(pVecTextObj);
+			}
 			else if(obj.strType2 == "serial")
 			{
 				CSerialOBJ* pSerialObj = new CSerialOBJ(obj,SerialObj);
@@ -1061,7 +1117,7 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 		} 
 		else
 		{
-			switch(Matrix)
+			switch(Matrix) 
 			{
 				case 9:
 					if (Pixel<8)

@@ -1,0 +1,24 @@
+<MES>
+    <PRO>
+        <Matrix>241M</Matrix>
+        <Pixel>242</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>vtext</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>40</LineSize>
+        <RowSize>80</RowSize>
+        <SW>0</SW>
+        <SS>0</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setFONT>ËÎÌå</setFONT>
+        <setTEXT>¹þÂ¦</setTEXT>
+        <FontSize>20</FontSize>
+    </OBJ>
+</MES>

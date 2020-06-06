@@ -15,8 +15,9 @@
 #include <QtSerialPort/qserialport.h>
 #include <QtSerialPort/qserialportinfo.h>
 
-#define BIG_CHAR
-#define vsPath     //vs上的点阵字库、多语言字库路径
+//#define BIG_CHAR
+
+#define vsPath  //vs上的点阵字库、多语言字库路径
 //#define qtPath   //ubuntu上的点阵字库、多语言字库路径
 
 using namespace std;

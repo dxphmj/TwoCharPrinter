@@ -2,10 +2,11 @@
 #define FILEMANAGECHILD_H
 
 #include <QWidget>
-#include <QDir>  
+#include <QDir>
+#include <QList>
+#include <QListWidget> 
 #include <QListWidgetItem>  
 #include <QFileInfoList>  
-#include <QListWidget>  
 #include <QLineEdit>  
 #include <QVBoxLayout>  
 #include <QIcon>  
@@ -35,7 +36,7 @@ public:
 	void showFileInfoList(QFileInfoList list);
 	void paintDot();
 	void paintFrame();
-	void PreviewSaveFile();
+	void PreviewSaveFile(QString tempStr);
 	QString rootStr;
 	char* GetCurXmlFile();
 	QFileInfoList list;

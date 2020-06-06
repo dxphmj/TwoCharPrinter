@@ -513,6 +513,9 @@
     <ClCompile Include="OBJ_Control.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="VecTextOBJ.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ClassMessage.h">
@@ -768,6 +771,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="OBJ_Type.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="VecTextOBJ.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="unistd.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
