@@ -63,7 +63,7 @@ void CQRcodeOBJ::CreateQrcode()
 	my_symbol->scale = 0.5;
 
 	//	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21�?
 
 	//batch_mode = 0;
 	//mirror_mode = 0;
@@ -89,7 +89,7 @@ void CQRcodeOBJ::CreateQrcode()
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//由于坐标系的原因，上下必须颠倒
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//由于坐标系的原因，上下必须颠�?
 			}
 			else
 			{

@@ -12,6 +12,8 @@
 #include <QMutex>
 
 #include "ParamSetting.h"
+#include <QtSerialPort/qserialport.h>
+#include <QtSerialPort/qserialportinfo.h>
 
 #define BIG_CHAR
 #define vsPath     //vs上的点阵字库、多语言字库路径
@@ -32,6 +34,21 @@ class roll;
 namespace Ui {
 	class MainWindow;
 }
+
+struct structRowCol
+{
+	int m_nRow, m_nCOl;
+	structRowCol()
+	{
+		m_nRow = 1;
+		m_nCOl = 1;
+	}
+	structRowCol(int nRow, int nCol)
+	{
+		m_nRow = nRow;
+		m_nCOl = nCol;
+	}
+};
 
 class MainWindow : public QMainWindow
 {
@@ -64,7 +81,15 @@ public:
 	void CreatePrintData();
 	void getMessageDot();
 
+	QSerialPort serial;
+	void initPrinter();
+	structRowCol m_StructRowCol[301];
+
+public:
+	void printerCode(char* writeArr);
+
 private slots:
+    void serialPort_readyRead();
 	void fileManageBut_clicked();
 	void paraManageBut_clicked();
 	void closeBut_clicked();
