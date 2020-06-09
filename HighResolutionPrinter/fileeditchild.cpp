@@ -23,7 +23,6 @@
 #include <QDir>
 
 
-
 FileEditChild::FileEditChild(QWidget *parent)
 	: QWidget(parent),
 	ui(new Ui::FileEditChild)
@@ -85,25 +84,32 @@ FileEditChild::FileEditChild(QWidget *parent)
 //画布与滚动条设置
 #ifdef BIG_CHAR
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
-	tempScrollBar->setVisible(false);
+	ui->textpreviewScrollBar->setRange(0,100);
+
 #else
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
+	ui->editPreviewText->setGeometry(0,0,3121,241);
+	horizon_pos = 0.0;
+	vertical_pos = 0.0;
+
+	/*以下为双滚动条的扩展功能，画布大小为3121×721，目前不用
 	tempScrollBar = new QScrollBar(this->parentWidget());
 	tempScrollBar->setGeometry(1241,30,25,241);
 	tempScrollBar->setRange(0,100);
 	tempScrollBar->setVisible(true);
 	connect(tempScrollBar,SIGNAL(valueChanged(int)),this,SLOT(tempScrollBarChanged(int)));
-	//设置滚动条初始值为0
-	horizon_pos = 0.0;
-	vertical_pos = 0.0;
-#endif
-
 	ui->textpreviewScrollBar->setRange(0,100);
 	viewAreaLabel = new QLabel(this);
 	viewAreaLabel->setGeometry(10,10,1041,241);
 	viewAreaLabel->setStyleSheet("background-color(255,255,255,0%);");
 	ui->editPreviewText->setGeometry(0, 0, 3121, 721);
 	ui->editPreviewText->setParent(viewAreaLabel);
+
+	//设置滚动条初始值为0
+	horizon_pos = 0.0;
+	vertical_pos = 0.0;*/
+
+#endif
 
 	connect(ui->pixelComBox,SIGNAL(currentIndexChanged(int)),this,SLOT(ChangePixel()));
 	connect(ui->typeTab,SIGNAL(currentChanged(int)),this,SLOT(ChangeTabLineEdit()));
@@ -138,7 +144,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(ui->startTimeShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(startTimeShowSft4LineEdit_clicked()));
 	connect(ui->textIDShowSft4LineEdit,SIGNAL(clicked()),this,SLOT(textIDShowSft4LineEdit_clicked()));
 	
-
 	//m_time = new QTimer;
 	//m_time->start(0);
 	//connect(m_time,SIGNAL(timeout()),this,SLOT(getCurTime()));
@@ -229,18 +234,15 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->pixelComBox->addItem(QStringLiteral("19px"));//3
 	ui->pixelComBox->addItem(QStringLiteral("25px"));//4
 	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
-	//ui->pixelComBox->addItem(QStringLiteral("48px"));//6
 	ui->pixelComBox->setCurrentIndex(3);
+
 #else
-	//画布宽度item选项（显示框大小为宽1041x241，默认以1x1为1像素，即240px）
-	ui->pixelComBox->addItem(QStringLiteral("48px"));//0
-	ui->pixelComBox->addItem(QStringLiteral("60px"));//1
-	ui->pixelComBox->addItem(QStringLiteral("80px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("120px"));//3
-	ui->pixelComBox->addItem(QStringLiteral("240px"));//4
-	//ui->pixelComBox->addItem(QStringLiteral("480px"));//5
-	//ui->pixelComBox->addItem(QStringLiteral("1200px"));//6
-	ui->pixelComBox->setCurrentIndex(4);
+	//画布宽度item选项（显示框大小为1041×241，高度为241，需求像素为150px，即画布以1.6×1.6的矩形为一像素点）
+	ui->pixelComBox->addItem(QStringLiteral("150px"));
+	ui->pixelComBox->setCurrentIndex(0);
+	ui->pixelComBox->setEnabled(false);
+	ui->pixelComBox->setStyleSheet("color(150,150,150,50%);");
+
 #endif
 
 	//移动速度item选项（单位：5x5像素点）
@@ -260,12 +262,34 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->typeBarCodeComBox->addItem(QStringLiteral("PDF417"));
 	ui->typeBarCodeComBox->setCurrentIndex(1);
 
+#ifdef BIG_CHAR
 	ui->sideLenQRComBox->addItem(QStringLiteral("21 px"));
 	ui->sideLenQRComBox->addItem(QStringLiteral("25 px"));
 	ui->sideLenQRComBox->addItem(QStringLiteral("29 px"));
 	ui->sideLenQRComBox->addItem(QStringLiteral("33 px"));
 	//ui->sideLenQRComBox->addItem(QStringLiteral("37 px"));
 	ui->sideLenQRComBox->setCurrentIndex(1);
+#else
+	ui->sideLenQRComBox->addItem(QStringLiteral("21 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("25 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("29 px"));
+	ui->sideLenQRComBox->addItem(QStringLiteral("33 px"));
+	ui->sideLenQRComBox->setCurrentIndex(1);
+
+	qrSpinBox = new QSpinBox(this->ui->QRCodeTab);
+	qrSpinBox->setGeometry(180,100,181,41);
+	qrSpinBox->setStyleSheet("color: rgb(255, 255, 255); font: 14pt '宋体'; background-color: rgb(0, 0, 230);");
+	qrSpinBox->setValue(5);
+	connect(qrSpinBox,SIGNAL(valueChanged(int)),this,SLOT(qrSpinBoxSlot(int)));
+
+	qrLabel = new QLabel(this->ui->QRCodeTab);
+	qrLabel->setGeometry(40,100,140,41);
+	qrLabel->setStyleSheet("QLabel{color: rgb(255, 255, 255); background-color: rgb(67,51,139);}");
+	QFont kaiti("楷体",16);//此处楷体设置始终不成功
+	qrLabel->setFont(kaiti);
+	qrLabel->setText(QStringLiteral("放大倍数"));
+	
+#endif
 	
 	ui->sideLenDMComBox->addItem(QStringLiteral("Automatic"));
 	ui->sideLenDMComBox->addItem(QStringLiteral("18x18"));
@@ -375,7 +399,8 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->serialLineEdit->setText("000000001");
 	SerialNumber_length=0;
 	Serialfirst=1; 
- 
+
+//字体下拉框、字号框设置
 #ifdef BIG_CHAR
 	ui->fontSizeTextComBox->setVisible(false);
 	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
@@ -400,7 +425,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	//connect (sizeComboBox, SIGNAL(activated(QString)), this, SLOT(ShowSizeSpinBox(QString)));
 	
 	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
-	spinBox->setValue(font().pointSize());
+	spinBox->setValue(30);
 	spinBox->setGeometry(0,0,181,41);
 
 	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
@@ -652,6 +677,14 @@ void FileEditChild::spinBoxSlot(int FontSize)
 	
 }
 
+void FileEditChild::qrSpinBoxSlot(int spinValue)
+{
+	if (spinValue == 0)
+		qrSpinBox->setValue(1);
+	else if (spinValue == 6)
+		qrSpinBox->setValue(5);
+}
+
 void FileEditChild::mergeFormat(QTextCharFormat format)
 {
 	/*
@@ -669,7 +702,7 @@ void FileEditChild::mergeFormat(QTextCharFormat format)
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
 	//绘图统一放到eventFilter 中进行绘制，这里只是改变相关变量值
-	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 #ifdef BIG_CHAR
@@ -708,37 +741,25 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 
 #else
-	/*
-	QMap <QString,int> PixelMap;
-	PixelMap.insert("48px",5);
-	PixelMap.insert("60px",4);
-	PixelMap.insert("80px",3);
-	PixelMap.insert("120px",2);
-	PixelMap.insert("240px",1);
-	//PixelMap.insert("480px",0.5);
-	//PixelMap.insert("1200px",0.2);
-
-	QString CurPixelItem = this->ui->pixelComBox->currentText();
-	*/
 	int i,j;
-	for (i = 1; i <= 3121; i += 5)//先写死成5
+	for (i = 1; i <= 3121; i += 50)//先写死
 	{
-	//画列
+		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,0,i,721);
+		qFramePainter->drawLine(i,90,i,241);
 	}
-	for (j = 1; j <= 721; j += 5)//先写死成721,5
+	for (j = 90; j <= 240; j += 50)//先写死
 	{
-	//画行
+		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,720,1,1);//left
-	qFramePainter->drawLine(3120,720,3120,1);//right
-	qFramePainter->drawLine(1,1,3120,1);//up
-	qFramePainter->drawLine(1,719,3120,719);//down
+	qFramePainter->drawLine(0,241,0,89);//left
+	qFramePainter->drawLine(3121,241,3121,89);//right
+	qFramePainter->drawLine(0,89,3121,89);//up
+	qFramePainter->drawLine(0,241,3121,241);//down
 
 	//获得Matrix 及 Pixel的值
 	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
@@ -863,16 +884,25 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj->intRowStart=xPos;
 	bmpObj->strType1="text";
 	bmpObj->strType2="qrcode";
-	bmpObj->intLineSize=my_symbol->bitmap_height;
-	bmpObj->intRowSize=my_symbol->bitmap_width;
+	bmpObj->intLineSize = my_symbol->bitmap_height;
+	bmpObj->intRowSize = my_symbol->bitmap_width;
 	bmpObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
-
+#ifdef BIG_CHAR
+	bmpObj->SideLength = 5;
+#else
+	//从控件上获取SideLength
+	bmpObj->SideLength = qrSpinBox->value();
+	bmpObj->intSideHight = bmpObj->intLineSize * bmpObj->SideLength;
+	bmpObj->intSideWidth = bmpObj->intRowSize * bmpObj->SideLength;
+#endif
+	
 	//以下先写死
 	bmpObj->intSW=1;
 	bmpObj->intSS=1;
 	bmpObj->booNEG=false;
 	bmpObj->booBWDx=false;
 	bmpObj->booBWDy=false;
+
 	i = 0;
 	int r, g, b;
 
@@ -1089,8 +1119,8 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
-		paintDot();
 		paintFrame();
+		paintDot();		
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -1121,11 +1151,7 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 #ifdef BIG_CHAR
 	int nLin = (241-pointMousePressed.y())/5;
 	int nRow = pointMousePressed.x()/5;
-#else
-	int nLin = pointMousePressed.y();
-	int nRow = pointMousePressed.x();
-#endif
-	
+
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 	{
 		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
@@ -1134,7 +1160,7 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 			int y1 = m_MessagePrint.OBJ_Vec[i]->intLineStart;
 			int deltX = m_MessagePrint.OBJ_Vec[i]->intRowSize;
 			int deltY = m_MessagePrint.OBJ_Vec[i]->intLineSize;
-			
+
 			if (nLin>=y1 && nLin<=(y1+deltY) && nRow>=x1 && nRow<=(x1+deltX))
 			{
 				m_MessagePrint.OBJ_Vec[i]->booBeenDragged = false;
@@ -1144,6 +1170,32 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 		}
 	}
 	this->boolMousePressed = false;
+
+#else
+	int nLin = 241 - pointMousePressed.y();
+	int nRow = pointMousePressed.x();
+
+	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
+	{
+		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
+		{
+			int x1 = m_MessagePrint.OBJ_Vec[i]->intRowStart;
+			int y1 = m_MessagePrint.OBJ_Vec[i]->intLineStart;
+			int deltX = m_MessagePrint.OBJ_Vec[i]->intSideWidth;
+			int deltY = m_MessagePrint.OBJ_Vec[i]->intSideHight;
+
+			if (nLin>=y1 && nLin<=(y1+deltY) && nRow>=x1 && nRow<=(x1+deltX))
+			{
+				m_MessagePrint.OBJ_Vec[i]->booBeenDragged = false;
+				this->boolMousePressed = true;
+				return;
+			}
+		}
+	}
+	this->boolMousePressed = false;
+
+#endif
+	
 }
 
 void FileEditChild::MouseBeenReleased(QMouseEvent *event)
@@ -1207,9 +1259,9 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 			}
 		}
 #else
-		nLin = pointMousePressed.y();
+		nLin = 241 - pointMousePressed.y();
 		nRow = pointMousePressed.x();
-		nNewLin = pNewMousePoint.y();
+		nNewLin = 241 - pNewMousePoint.y();
 		nNewRow = pNewMousePoint.x();
 		
 		for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
@@ -1222,17 +1274,17 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 				{
 					m_MessagePrint.OBJ_Vec[i]->intRowStart = 0;
 				}
-				else if ( (nNewRow - DeltaX) > (3121 - m_MessagePrint.OBJ_Vec[i]->intRowSize) )
+				else if ( (nNewRow - DeltaX) > (3121 - m_MessagePrint.OBJ_Vec[i]->intSideWidth) )
 				{
-					m_MessagePrint.OBJ_Vec[i]->intRowStart = 3121 - m_MessagePrint.OBJ_Vec[i]->intRowSize;
+					m_MessagePrint.OBJ_Vec[i]->intRowStart = 3121 - m_MessagePrint.OBJ_Vec[i]->intSideWidth;
 				}
 				else if ( (nNewLin - DeltaY) < 0 )
 				{
 					m_MessagePrint.OBJ_Vec[i]->intLineStart = 0;
 				}
-				else if ( (nNewLin - DeltaY) > (721 - m_MessagePrint.OBJ_Vec[i]->intLineSize) )
+				else if ( (nNewLin - DeltaY) > (241 - m_MessagePrint.OBJ_Vec[i]->intSideHight) )
 				{
-					m_MessagePrint.OBJ_Vec[i]->intLineStart = 721 - m_MessagePrint.OBJ_Vec[i]->intLineSize;
+					m_MessagePrint.OBJ_Vec[i]->intLineStart = 241 - m_MessagePrint.OBJ_Vec[i]->intSideHight;
 				}
 				else
 				{
@@ -1261,14 +1313,15 @@ void FileEditChild::GetObjSettingsFromScreen()
 	MainWindow *pMainWindow = qobject_cast<MainWindow*>(pFilemanageForm->parentWidget());
 	sysSetting *psysSetting = qobject_cast<sysSetting*>(pMainWindow->m_paramsetting->m_sysSetting);
 
+	ModuleMain* pModuleMain = new ModuleMain;
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 	{
 		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
 		{
-			CTextOBJ* pTextObj = (CTextOBJ*)(&m_MessagePrint.OBJ_Vec[i]); ;
-
+			CTextOBJ* pTextObj = (CTextOBJ*)(&m_MessagePrint.OBJ_Vec[i]); 
 			QString tmpStr = str2qstr(m_MessagePrint.OBJ_Vec[i]->strText);
 			this->ui->internalShowTextLab->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intSS));
+			
 			if (m_MessagePrint.OBJ_Vec[i]->strType2 == "text")
 			{
 				this->ui->typeTab->setCurrentIndex(0);
@@ -1309,6 +1362,35 @@ void FileEditChild::GetObjSettingsFromScreen()
 					break;
 				}
 				
+			}
+			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "vtext")
+			{
+				CVecTextOBJ* pVecTextObj = (CVecTextOBJ*)(m_MessagePrint.OBJ_Vec[i]);
+				this->ui->typeTab->setCurrentIndex(0);
+				//设置文本内容显示在wordLineEdit上
+				wstring wtemStrText = pModuleMain->stringToWstring(m_MessagePrint.OBJ_Vec[i]->strText);
+				QString qtemStrText = QString::fromStdWString(wtemStrText);
+				this->ui->wordLineEdit->setText(qtemStrText);
+				//设置文本字体显示在FontComboBoxChoose上
+				wstring wtemStrFont = pModuleMain->stringToWstring(m_MessagePrint.OBJ_Vec[i]->strFont);
+				QString qtemStrFont = QString::fromStdWString(wtemStrFont);
+				QFont curFont(qtemStrFont);
+				FontComboBoxChoose->setCurrentFont(curFont);
+				//设置文本字号显示在spinBox上
+				spinBox->setValue(pVecTextObj->intFontSize);
+
+				switch (psysSetting->m_SelLanguage)
+				{
+				case 0:
+					this->ui->newTextBut->setText(QStringLiteral("تعديل"));
+					break;
+				case 1:
+					this->ui->newTextBut->setText(QStringLiteral("修改"));
+					break;
+				case 5:
+					this->ui->newTextBut->setText(QStringLiteral("Modify"));
+					break;
+				}
 			}
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "time")
 			{
@@ -1394,7 +1476,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "2Dcode")
 			{
 				CBarcodeOBJ *pBarcodeObj = (CBarcodeOBJ *)(m_MessagePrint.OBJ_Vec[i]);
-				this->ui->typeTab->setCurrentIndex(4);
+				this->ui->typeTab->setCurrentIndex(5);
 				this->ui->barCodeLineEdit->setText(QString::fromStdString(pBarcodeObj->strCodeContent));
 				this->ui->typeBarCodeComBox->setCurrentIndex(pBarcodeObj->intBarType);
 				this->ui->heightBarCodeShowQRLab->setText(QString::number(pBarcodeObj->intLineSize));
@@ -1416,9 +1498,13 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "qrcode")
 			{
 				CQRcodeOBJ *pQRcodeObj = (CQRcodeOBJ *)(m_MessagePrint.OBJ_Vec[i]);
-				this->ui->typeTab->setCurrentIndex(5);
+				this->ui->typeTab->setCurrentIndex(6);
 				this->ui->QRCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenQRComBox->setCurrentIndex(pQRcodeObj->intQRVersion-1);
+#ifdef BIG_CHAR
+#else
+				qrSpinBox->setValue(m_MessagePrint.OBJ_Vec[i]->SideLength);
+#endif
 				switch (psysSetting->m_SelLanguage)
 				{
 				case 0:
@@ -1436,7 +1522,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 			else if (m_MessagePrint.OBJ_Vec[i]->strType2 == "datamatrix")
 			{
 				CDMcodeOBJ *pDMcodeObj = (CDMcodeOBJ *)(m_MessagePrint.OBJ_Vec[i]);
-				this->ui->typeTab->setCurrentIndex(6);
+				this->ui->typeTab->setCurrentIndex(7);
 				this->ui->DMCodeLineEdit->setText(tmpStr);
 				this->ui->sideLenDMComBox->setCurrentIndex(pDMcodeObj->intDMrow);
 				switch (psysSetting->m_SelLanguage)
@@ -1467,125 +1553,72 @@ void FileEditChild::GetObjSettingsFromScreen()
 				break;
 			}
 			
-			
 			return;
 		}
 	}
+
 	//设置右侧框基础参数
 	switch (psysSetting->m_SelLanguage)
 	{
 	case 0:
-		this->ui->delBut->setText(QStringLiteral("تعديل"));
-		this->ui->internalShowTextLab->setText("0");
-
-		//设置文本typeTab
-		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("الجديدة"));
-		this->ui->fontTypeTextComBox->setCurrentIndex(0);
-
-		//设置时间typeTab
-		this->ui->PreviewEdit->setText("");
-		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("الجديدة"));
-
-		//设置序列号typeTab
-		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("الجديدة"));
-
-		//设置图片typeTab
-		this->ui->newBmpBut->setText(QStringLiteral("الجديدة"));
-
-		//设置条形码typeTab
-		this->ui->barCodeLineEdit->setText("");
-		this->ui->typeBarCodeComBox->setCurrentIndex(1);
-		this->ui->heightBarCodeShowQRLab->setText("21");
-		this->ui->whitespaceLab->setText("9");
-		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("الجديدة"));
-
-		//设置QR码typeTab
-		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("الجديدة"));
-
-		//设置DM码typeTab
-		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("الجديدة"));
+		setButtonText(QStringLiteral("تعديل"), QStringLiteral("الجديدة"));
 		break;
 	case 1:
-		this->ui->delBut->setText(QStringLiteral("清空"));
-		this->ui->internalShowTextLab->setText("0");
-
-		//设置文本typeTab
-		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("新建"));
-		this->ui->fontTypeTextComBox->setCurrentIndex(0);
-
-		//设置时间typeTab
-		this->ui->PreviewEdit->setText("");
-		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("新建"));
-
-		//设置序列号typeTab
-		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("新建"));
-
-		//设置图片typeTab
-		this->ui->newBmpBut->setText(QStringLiteral("新建"));
-
-		//设置条形码typeTab
-		this->ui->barCodeLineEdit->setText("");
-		this->ui->typeBarCodeComBox->setCurrentIndex(1);
-		this->ui->heightBarCodeShowQRLab->setText("21");
-		this->ui->whitespaceLab->setText("9");
-		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("新建"));
-
-		//设置QR码typeTab
-		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("新建"));
-
-		//设置DM码typeTab
-		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("新建"));
+		setButtonText(QStringLiteral("清空"), QStringLiteral("新建"));
 		break;
 	case 5:
-		this->ui->delBut->setText(QStringLiteral("Empty"));
-		this->ui->internalShowTextLab->setText("0");
-
-		//设置文本typeTab
-		this->ui->wordLineEdit->setText("");
-		this->ui->newTextBut->setText(QStringLiteral("New"));
-		this->ui->fontTypeTextComBox->setCurrentIndex(0);
-
-		//设置时间typeTab
-		this->ui->PreviewEdit->setText("");
-		this->ui->DateTimeEdit->setText("");
-		this->ui->newTimeBut->setText(QStringLiteral("New"));
-
-		//设置序列号typeTab
-		this->ui->serialLineEdit->setText("");
-		this->ui->newSerialBut->setText(QStringLiteral("New"));
-
-		//设置图片typeTab
-		this->ui->newBmpBut->setText(QStringLiteral("New"));
-
-		//设置条形码typeTab
-		this->ui->barCodeLineEdit->setText("");
-		this->ui->typeBarCodeComBox->setCurrentIndex(1);
-		this->ui->heightBarCodeShowQRLab->setText("21");
-		this->ui->whitespaceLab->setText("9");
-		this->ui->showNumCheckBox ->setChecked(1);
-		this->ui->newBarCodeBut->setText(QStringLiteral("New"));
-
-		//设置QR码typeTab
-		this->ui->QRCodeLineEdit->setText("");
-		this->ui->newQRBut->setText(QStringLiteral("New"));
-
-		//设置DM码typeTab
-		this->ui->DMCodeLineEdit->setText("");
-		this->ui->newDMBut->setText(QStringLiteral("New"));
+		setButtonText(QStringLiteral("Empty"), QStringLiteral("New"));
 		break;
 	}	
+}
+
+void FileEditChild::setButtonText(QString strEmpty, QString strNew)
+{
+	this->ui->delBut->setText(strEmpty);
+	this->ui->internalShowTextLab->setText("0");
+
+	//设置文本typeTab
+	this->ui->wordLineEdit->setText("");
+	this->ui->newTextBut->setText(strNew);
+#ifdef BIG_CHAR
+	this->ui->fontTypeTextComBox->setCurrentIndex(0);
+#else
+	QFont songti("宋体");
+	FontComboBoxChoose->setCurrentFont(songti);
+	spinBox->setValue(30);
+#endif
+
+	//设置时间typeTab
+	this->ui->PreviewEdit->setText("");
+	this->ui->DateTimeEdit->setText("");
+	this->ui->newTimeBut->setText(strNew);
+
+	//设置序列号typeTab
+	this->ui->serialLineEdit->setText("");
+	this->ui->newSerialBut->setText(strNew);
+
+	//设置图片typeTab
+	this->ui->newBmpBut->setText(strNew);
+
+	//设置条形码typeTab
+	this->ui->barCodeLineEdit->setText("");
+	this->ui->typeBarCodeComBox->setCurrentIndex(1);
+	this->ui->heightBarCodeShowQRLab->setText("21");
+	this->ui->whitespaceLab->setText("9");
+	this->ui->showNumCheckBox ->setChecked(1);
+	this->ui->newBarCodeBut->setText(strNew);
+
+	//设置QR码typeTab
+	this->ui->QRCodeLineEdit->setText("");
+	this->ui->newQRBut->setText(strNew);
+#ifdef BIG_CHAR
+#else
+	qrSpinBox->setValue(5);
+#endif
+
+	//设置DM码typeTab
+	this->ui->DMCodeLineEdit->setText("");
+	this->ui->newDMBut->setText(strNew);
 }
 
 void FileEditChild::saveasBut_clicked()
@@ -1677,7 +1710,14 @@ void FileEditChild::saveBut_clicked()
 		m_MessagePrint.SaveObjectsToXml(tmpFilePath);
 		pFilemanageForm->FormFileManageChild->PreviewLocalFile();
 		
-		//此处应当弹出"保存成功！"对话框，持续一秒
+		//此处弹出"保存成功！"，持续5秒
+		/*QLabel* saveSuccessLabel = new QLabel(this->parentWidget());
+		saveSuccessLabel->setGeometry(10,760,100,20);
+		QString tempQString = "保存成功!" ;
+		saveSuccessLabel->setText(tempQString);
+		saveSuccessLabel->setVisible(true);
+		Sleep(500);
+		saveSuccessLabel->setVisible(false);*/
 
 	}
 	else //新建文件，与"另存为"相同
@@ -2084,6 +2124,41 @@ void FileEditChild::newTextBut_clicked()
 
 void FileEditChild::newVecTxtBut_clicked()
 {
+	//修改
+	ModuleMain* pModuleMain = new ModuleMain;
+	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
+	{
+		if (m_MessagePrint.OBJ_Vec[i]->booFocus)
+		{
+			CVecTextOBJ* pVecTextObj = (CVecTextOBJ*)(m_MessagePrint.OBJ_Vec[i]);
+			//修改内容
+			QString qtemStr = this->ui->wordLineEdit->text();
+			wstring wtemStr = qtemStr.toStdWString();
+			string tmpStr = pModuleMain->WstringToString(wtemStr);
+			m_MessagePrint.OBJ_Vec[i]->strText = tmpStr;
+			//修改字体
+			QString qtemFont = FontComboBoxChoose->currentText();
+			wstring wtemFont = qtemFont.toStdWString();
+			string tmpFont = pModuleMain->WstringToString(wtemFont);
+			m_MessagePrint.OBJ_Vec[i]->strFont = tmpFont;
+			//修改字号
+			pVecTextObj->intFontSize = spinBox->value();
+			//修改intRowSize和intLineSize
+			QFont curFont;
+			curFont.setFamily(qtemFont);
+			curFont.setPixelSize(pVecTextObj->intFontSize);
+			QFontMetrics fm(curFont);
+			m_MessagePrint.OBJ_Vec[i]->intRowSize = fm.width(qtemStr);
+			m_MessagePrint.OBJ_Vec[i]->intLineSize = fm.height();
+			//生成点阵
+			pVecTextObj->GenerateVecBmp(m_MessagePrint.OBJ_Vec[i]->strFont,m_MessagePrint.OBJ_Vec[i]->strText,pVecTextObj->intFontSize);
+			
+			this->update();
+			return;
+		}
+	}
+
+	//新建
 	QString txtString = ui->wordLineEdit->text();
 	QString txtFont = FontComboBoxChoose->currentText();
 	int intFontSize = spinBox->value();
@@ -2096,7 +2171,7 @@ void FileEditChild::PushBackVecTextOBJ(QString txtFont, QString txtContent, int 
 {
 	QFont curFont;
 	curFont.setFamily(txtFont);
-	curFont.setPointSize(intFontSize);
+	curFont.setPixelSize(intFontSize);
 	QFontMetrics fm(curFont);
 	int metrics_width = fm.width(txtContent);
 	int metrics_height = fm.height();
@@ -2140,6 +2215,9 @@ void FileEditChild::PushBackVecTextOBJ(QString txtFont, QString txtContent, int 
 	vTextObj->booBWDx = false;
 	vTextObj->booBWDy = false;
 
+	vTextObj->SideLength = 1;
+	vTextObj->intSideHight = vTextObj->intLineSize;
+	vTextObj->intSideWidth = vTextObj->intRowSize;
 	vTextObj->booDotVecText.clear();
 	vector< vector<bool> > vbuffer(metrics_width, vector<bool>(metrics_height, false));
 	vTextObj->booDotVecText = vbuffer;
@@ -2330,6 +2408,10 @@ void FileEditChild::newQRBut_clicked()
 			m_MessagePrint.OBJ_Vec[i]->intLineSize = resetQRCode().bitmap_height;
 			m_MessagePrint.OBJ_Vec[i]->intRowSize = resetQRCode().bitmap_width;
 			pQRcodeObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
+
+			m_MessagePrint.OBJ_Vec[i]->SideLength = qrSpinBox->value();
+			m_MessagePrint.OBJ_Vec[i]->intSideHight = m_MessagePrint.OBJ_Vec[i]->SideLength * m_MessagePrint.OBJ_Vec[i]->intLineSize;
+			m_MessagePrint.OBJ_Vec[i]->intSideWidth = m_MessagePrint.OBJ_Vec[i]->SideLength * m_MessagePrint.OBJ_Vec[i]->intRowSize;
 
 			int r, g, b;
 			int intQRbitmap = 0;

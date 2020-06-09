@@ -107,7 +107,13 @@ void FileManageChild::editSeleFileBut_clicked()
 void FileManageChild::delSeleFileBut_clicked()
 {
 	QString qFileName = this->ui->filelistWidget->currentItem()->text();
+
+#ifdef BIG_CHAR
 	QString qFilePath = "User/label/" + qFileName;
+#else
+	QString qFilePath = "User/Vec-label/" + qFileName;
+#endif
+
 	QFile qSelFile(qFilePath);
 	qSelFile.remove();
 	if (!qSelFile.remove())
@@ -206,8 +212,8 @@ bool FileManageChild::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->filePrivewtextEdit && event->type() == QEvent::Paint)
 	{
-		paintDot();
 		paintFrame();
+		paintDot();
 	}
 	return QWidget::eventFilter(watched,event);
 }
@@ -226,7 +232,7 @@ void FileManageChild::paintFrame()
 
 void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 {
-	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 #ifdef BIG_CHAR
@@ -257,42 +263,32 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	qFramePainter->drawLine(0,239,3121,239);//down
 	qFramePainter->drawLine(0,241-MatrixMap[qStrMatrix],3121,241-MatrixMap[qStrMatrix]);//up
 	qFramePainter->drawLine(3120,241,3120,241-MatrixMap[qStrMatrix]);//right
-#else
-	/*
-	QMap <QString,int> PixelMap;
-	PixelMap.insert("48px",5);
-	PixelMap.insert("60px",4);
-	PixelMap.insert("80px",3);
-	PixelMap.insert("120px",2);
-	PixelMap.insert("240px",1);
-	//PixelMap.insert("480px",0.5);
-	//PixelMap.insert("1200px",0.2);
 
-	QString CurPixelItem = this->ui->pixelComBox->currentText();
-	*/
+#else
 	int i,j;
-	for (i = 1; i <= 3121; i += 5)//先写死成5
+	for (i = 1; i <= 3121; i += 50)//先写死
 	{
-	//画列
+		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,0,i,721);
+		qFramePainter->drawLine(i,90,i,241);
 	}
-	for (j = 1; j <= 721; j += 5)//先写死成721,5
+	for (j = 90; j <= 240; j += 50)//先写死
 	{
-	//画行
+		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,3121,j);
 	}
 
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,720,1,1);//left
-	qFramePainter->drawLine(3120,720,3120,1);//right
-	qFramePainter->drawLine(1,1,3120,1);//up
-	qFramePainter->drawLine(1,719,3120,719);//down
+	qFramePainter->drawLine(0,241,0,89);//left
+	qFramePainter->drawLine(3121,241,3121,89);//right
+	qFramePainter->drawLine(0,89,3121,89);//up
+	qFramePainter->drawLine(0,241,3121,241);//down
 
 	//获得Matrix 及 Pixel的值
 	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
 	//m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
+
 #endif
 }
 
@@ -325,7 +321,7 @@ void FileManageChild::UdiskFileBut_clicked()
 
 void FileManageChild::ShowLocalFilePath()
 {
-#ifdef BING_CHAR
+#ifdef BIG_CHAR
 	rootStr = "User/Label"; 
 #else
 	rootStr = "User/Vec-Label"; 
@@ -345,13 +341,16 @@ void FileManageChild::fileNmaeLineEdit_click()
 void FileManageChild::OKFileNameBut_clicked()
 {
 	QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
-	QString tmpPath1 = "User/Label/" + qFileName1;
 	QString qFileName2 = this->ui->fileNmaeLineEdit->text();
+
 #ifdef BIG_CHAR
+	QString tmpPath1 = "User/Label/" + qFileName1;
 	QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
 #else
+	QString tmpPath1 = "User/Vec-Label/" + qFileName1;
 	QString tmpPath2 = "User/Vec-Label/" + qFileName2 + ".vlab";
 #endif
+
 	QFileInfo fi(tmpPath2);
 	if (!fi.exists())
 	{

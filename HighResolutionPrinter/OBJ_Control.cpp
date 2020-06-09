@@ -33,6 +33,13 @@ OBJ_Control::OBJ_Control(void)
 	this->intLineStart=0;
     this->intRowStart=0;
 	m_nPicWidth = 241;
+
+#ifdef BIG_CHAR
+	SideLength = 5;
+#else
+	SideLength = 1;
+#endif
+
 }
 
 OBJ_Control::~OBJ_Control(void){}
@@ -71,11 +78,11 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 void OBJ_Control::DrawVecFrame(CDC * pDC)
 {
 	QPen cPen;//QPainter painter();
-	if (this->booFocus)
+	if (booFocus)
 	{
 		cPen.setStyle(Qt::SolidLine);
 		cPen.setWidth(1);
-		cPen.setColor(Qt::green);
+		cPen.setColor(Qt::darkGreen);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);
 	}
@@ -83,20 +90,20 @@ void OBJ_Control::DrawVecFrame(CDC * pDC)
 	{
 		cPen.setStyle(Qt::SolidLine);
 		cPen.setWidth(1);
-		cPen.setColor(Qt::blue);
+		cPen.setColor(Qt::transparent);
 		cPen.setCapStyle(Qt::SquareCap);
 		cPen.setJoinStyle(Qt::BevelJoin);
 	}
-	pDC->setPen(cPen);
 
+	pDC->setPen(cPen);
 	//up
-	pDC->drawLine(intRowStart,intLineStart,intRowStart+intRowSize,intLineStart);
+	pDC->drawLine(intRowStart, 241-intLineStart, intRowStart+intRowSize*SideLength, 241-intLineStart);
 	//down
-	pDC->drawLine(intRowStart,intLineSize+intLineStart,intRowStart+intRowSize,intLineSize+intLineStart);
+	pDC->drawLine(intRowStart, 241-intLineStart-intLineSize*SideLength, intRowStart+intRowSize*SideLength, 241-intLineStart-intLineSize*SideLength);
 	//left
-	pDC->drawLine(intRowStart,intLineStart,intRowStart,intLineSize+intLineStart);
+	pDC->drawLine(intRowStart, 241-intLineStart, intRowStart, 241-intLineStart-intLineSize*SideLength);
 	//right
-	pDC->drawLine(intRowStart+intRowSize,intLineStart,intRowStart+intRowSize,intLineSize+intLineStart);
+	pDC->drawLine(intRowStart+intRowSize*SideLength, 241-intLineStart, intRowStart+intRowSize*SideLength, 241-intLineStart-intLineSize*SideLength);
 }
 
 bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
@@ -196,15 +203,26 @@ long long OBJ_Control::BIN_to_DEC(string Bin)
 
 void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 {
-	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
+	CBrush cbrushB(QColor(0,0,0));//ºÚË¢
 	cbrushB.setStyle(Qt::SolidPattern);
+	CBrush cbrushG(Qt::darkGreen);//ÂÌË¢
+	cbrushB.setStyle(Qt::SolidPattern);
+	CPen cpenTrans(Qt::transparent);//Í¸Ã÷±Ê
 
 	int bmpWidth,bmpHeight;
 	bmpWidth = intRowSize;	 
 	bmpHeight = intLineSize;
-	CRect rect;
-	if(pDC)	 
-		pDC->setBrush(cbrushB);		
+	QRectF rect;
+
+	if(pDC)
+	{
+		if (booFocus)
+			pDC->setBrush(cbrushG);
+		else
+			pDC->setBrush(cbrushB);
+		
+		pDC->setPen(cpenTrans);
+	}		
 
 	for(int i = 0;i < bmpWidth; i++)
 	{
@@ -214,20 +232,21 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 				 
 			for(int sw = 0; sw < intSW; sw++)
 			{
+#ifdef BIG_CHAR
 				if (booNEG)
 				{
 					if (booBWDx)
 					{
 						if(booBWDy)
-							rect = CRect((intRowStart+bmpWidth-i-1)*5+1,m_nPicWidth-(intLineStart+bmpHeight-j)*5-1+1,5,5);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+bmpHeight-j)*5-1+1,5,5);
+							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					}
 					else{
 						if(booBWDy)
-							rect = CRect((intRowStart+bmpWidth-i-1)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1+1,5,5);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1+1,5,5);
+							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 					}
 				}
 				else
@@ -235,29 +254,64 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					if (booBWDx)
 					{
 						if(booBWDy)
-							rect = CRect((intRowStart+bmpWidth-i-1)*5+1,m_nPicWidth-(intLineStart+bmpHeight-j)*5+1-1,5,5);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
 						else
-							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+bmpHeight-j)*5-1+1,5,5);
+							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					}
 					else
 					{
 						if(booBWDy)
-							rect = CRect((intRowStart+bmpWidth-i-1)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1+1,5,5);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1+1,5,5);
+							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 					}
 				}
+#else
+				if (booNEG)
+				{
+					/*if (booBWDx)
+					{
+					if(booBWDy)
+					rect = QRectF(intRowStart+(bmpWidth-i-1)*SideLength+1,m_nPicWidth-intLineStart-(bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+					else
+					rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+					}
+					else{
+					if(booBWDy)
+					rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+					else
+					rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+					}*/
+				}
+				else
+				{
+					if (booBWDx)
+					{
+						/*if(booBWDy)
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
+						else
+							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);*/
+					}
+					else
+					{
+						if(booBWDy)
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+						else
+							rect = QRectF(intRowStart+i*SideLength+1,m_nPicWidth-intLineStart-(j+1)*SideLength,SideLength,SideLength);
+					}
+				}
+#endif
 				if(pDC)
 					pDC->Ellipse(rect);
 				else
 				{
-					boDotMes[(m_nPicWidth-1-rect.bottom())/5][(rect.left()-1)/5] = true;
+					boDotMes[(m_nPicWidth-1-rect.bottom())/SideLength][(rect.left()-1)/SideLength] = true;
 				}
 			}
 		}		 		
 	}
 	//if(pDC)
-	//	pDC->SelectObject(pBrush); //æ¢å¤ç¬”åˆ·
+	//	pDC->SelectObject(pBrush); 
 	//cbrushB.DeleteObject();
 }
 
@@ -266,10 +320,15 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 {
 	char objbytTex5x5Line[29];
 	 
-	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
+	CBrush cbrushB(QColor(0,0,0));//ºÚË¢
 	cbrushB.setStyle(Qt::SolidPattern);
-	if(pDC)	 
-		pDC->setBrush(cbrushB);		 
+	CPen cpenB(Qt::black);//ºÚ±Ê
+
+	if(pDC)
+	{
+		pDC->setBrush(cbrushB);
+		pDC->setPen(cpenB);
+	}		 
 
 	int theDog;
 	int bytTextUni,lonTextUniSetOff;
@@ -431,6 +490,13 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 
 	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
+	CPen cpenB(Qt::black);//ºÚ±Ê
+
+	if(pDC)
+	{
+		pDC->setBrush(cbrushB);
+		pDC->setPen(cpenB);
+	}	
 
 	int theDog;
 	int bytTextUni,lonTextUniSetOff;
@@ -438,8 +504,6 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 	char Dot;
 	int x1,y1,x2,y2;
 	theDog=0;
-	if(pDC)	 
-		pDC->setBrush(cbrushB);
 
 	ModuleMain* pModuleMain = new ModuleMain;
 	wstring strWText = pModuleMain->stringToWstring(strText);
@@ -605,19 +669,19 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 	CBrush* pBrush; //æ—§ç¬”åˆ?
 	CBrush cbrushB(QColor(0,0,0));//é»‘ç¬”
 	cbrushB.setStyle(Qt::SolidPattern);
-	//CBrush cbrushW(QColor(255,255,255));//ç™½ç¬”
-	//cbrushW.setStyle(Qt::NoBrush);
- 	CPen cPenInvisible(Qt::NoPen);
+	CPen cpenB(Qt::black);//ºÚ±Ê
+
+	if(pDC)
+	{
+		pDC->setBrush(cbrushB);
+		pDC->setPen(cpenB);
+	}	
 
 	int theDog;
 	int bytTextUni,lonTextUniSetOff;
 	string binLineTemp;
 	char Dot;
-	int x1,y1,x2,y2;
-
-	if(pDC)	 
-		pDC->setBrush(cbrushB);		 
-
+	int x1,y1,x2,y2; 
 	theDog=0;
 	
 	ModuleMain* pModuleMain = new ModuleMain;
@@ -783,12 +847,24 @@ void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes)
 
 void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes)
 {
-	CBrush cbrushB(QColor(0,0,0));//ºÚ±Ê
+	CBrush cbrushB(QColor(0,0,0));//ºÚË¢
 	cbrushB.setStyle(Qt::SolidPattern);
+	CBrush cbrushG(Qt::darkGreen);//ÂÌË¢
+	cbrushG.setStyle(Qt::SolidPattern);
+    CPen cPenTrans(Qt::transparent);//Í¸Ã÷±Ê
 
-	if(pDC)	 
-		pDC->setBrush(cbrushB);		 
-
+	if(pDC)
+	{
+		if (booFocus)
+		{
+			pDC->setBrush(cbrushG);
+		}
+		else
+		{
+			pDC->setBrush(cbrushB);
+		}
+		pDC->setPen(cPenTrans);
+	}
 	//theDog=0;
 
 	for (int nRow=0; nRow<intRowSize; nRow++)
@@ -799,7 +875,7 @@ void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes)
 			{
 				if(!booNEG)
 				{
-					QRectF rect(nRow+intRowStart,nLine+intLineStart,1,1);
+					QRectF rect(nRow+intRowStart,nLine+241-intLineSize-intLineStart,1,1);
 					if(pDC)
 						pDC->Ellipse(rect);
 					/*else
@@ -816,22 +892,20 @@ void OBJ_Control::DrawDot(CDC* pDC)
 	vector<vector<bool> > TempboDotMes; 
 
 #ifdef BIG_CHAR
+	DrawFrame(pDC);
 
 	if (strType2 == "logo" || strType2 == "qrcode" ||strType2 == "2Dcode" || strType2 == "datamatrix")
 		DrawLogoQRcodeDM(pDC,TempboDotMes);
 	else
 		DrawTextAll(pDC,TempboDotMes);
-	
-	DrawFrame(pDC);
 
 #else
+	DrawVecFrame(pDC);
 
 	if (strType2 == "logo" || strType2 == "qrcode" ||strType2 == "2Dcode" || strType2 == "datamatrix")
 		DrawLogoQRcodeDM(pDC,TempboDotMes);
 	else
 		DrawVecText(pDC,TempboDotMes);
-	
-	DrawVecFrame(pDC);
 
 #endif
 }

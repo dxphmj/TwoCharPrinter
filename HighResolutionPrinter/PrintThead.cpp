@@ -206,7 +206,7 @@ void PrintThead::run()
        
         //read_result = read(fd2,buffer,1);
     }
-    ::close(fd2);
+    //::close(fd2);
 
 
 		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）

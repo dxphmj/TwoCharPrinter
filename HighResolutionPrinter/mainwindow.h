@@ -64,7 +64,7 @@ public:
 	void DownloadPrintData();
 	void CreatePrintData();
 	void getMessageDot();
-
+	
 private slots:
 	void fileManageBut_clicked();
 	void paraManageBut_clicked();

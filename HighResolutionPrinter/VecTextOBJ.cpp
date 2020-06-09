@@ -28,6 +28,9 @@ CVecTextOBJ::CVecTextOBJ(OBJ_Control obj,CVecTextOBJ VecTextObj)
 	booFocus = obj.booFocus;
 
 	intFontSize = VecTextObj.intFontSize;
+	SideLength = 1;
+	intSideHight = intLineSize;
+	intSideWidth = intRowSize;
 
 	booDotVecText.clear();
 	booDotVecText = VecTextObj.booDotVecText; 
@@ -46,7 +49,7 @@ void CVecTextOBJ::GenerateVecBmp(string strFont, string strText, int intFontSize
 	wstring wStrFont = pModuleMain->stringToWstring(strFont);
 	QString qStrFont = QString::fromStdWString(wStrFont);
 	curFont.setFamily(qStrFont);
-	curFont.setPointSize(intFontSize);
+	curFont.setPixelSize(intFontSize);
 	
 	QFontMetrics fm(curFont);
 	wstring wStrText = pModuleMain->stringToWstring(strText);

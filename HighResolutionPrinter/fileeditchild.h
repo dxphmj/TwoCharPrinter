@@ -47,6 +47,7 @@ public:
 	void MouseBeenReleased(QMouseEvent *event);
 	void MouseMoved(QMouseEvent *event);
 	void GetObjSettingsFromScreen();
+	void setButtonText(QString strEmpty, QString strNew);
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
@@ -115,6 +116,8 @@ public:
 	//QLabel* label;
 	QTextEdit* text;//还未定义所需要改变的字体，所以点击字体会报错
 	QSpinBox* spinBox;
+	QLabel* qrLabel;
+	QSpinBox* qrSpinBox;
 	//QComboBox *sizeComboBox; 
 //QLabel* label ;
 //public slots:
@@ -146,6 +149,7 @@ public slots:
 	//void changedIndex(int idx);
 	void changedFont(const QString &arg1);
 	void spinBoxSlot(int FontSize);
+	void qrSpinBoxSlot(int spinValue);
 	//void ShowSizeSpinBox(QString spinValue);
 
 private slots:
