@@ -46,7 +46,8 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
 
 	//高级设置参数
-	xmlWriter.writeTextElement("DPIradioBGcheckedId",QVariant(DPIradioBGcheckedId).toString());
+	xmlWriter.writeTextElement("XDPIradioBGcheckedId",QVariant(XDPIradioBGcheckedId).toString());
+	xmlWriter.writeTextElement("YDPIradioBGcheckedId",QVariant(YDPIradioBGcheckedId).toString());
 	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
@@ -159,11 +160,16 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 				m_VoiceCheck = QVariant(ItemValue).toBool();
 				pPrintSetting->ui.voiceCheckBox->setChecked(m_VoiceCheck);
 			}
-			else if(xmlReader.name().toString() == "DPIradioBGcheckedId")
+			else if(xmlReader.name().toString() == "XDPIradioBGcheckedId")
 			{
-				DPIradioBGcheckedId = QVariant(ItemValue).toInt();
-				pPrintSetting->DPIradioBG->button(DPIradioBGcheckedId)->setChecked(1);
-			}			
+				XDPIradioBGcheckedId = QVariant(ItemValue).toInt();
+				pPrintSetting->XDPIradioBG->button(XDPIradioBGcheckedId)->setChecked(1);
+			}
+			else if(xmlReader.name().toString() == "YDPIradioBGcheckedId")
+			{
+				YDPIradioBGcheckedId = QVariant(ItemValue).toInt();
+				pPrintSetting->YDPIradioBG->button(YDPIradioBGcheckedId)->setChecked(1);
+			}
 			else if(xmlReader.name().toString() == "m_RepetePrintCheck")
 			{
 				m_RepetePrintCheck = QVariant(ItemValue).toBool();
