@@ -46,7 +46,7 @@ void PrintShowThread::run()
 
 			//theApp->m_MessagePrint->DrawAllDynamic(theApp->m_painter);	
 			theApp->update();
-			msleep(10);
+			msleep(800);
 		}
 	}
 }

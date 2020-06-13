@@ -1828,9 +1828,9 @@ void FileEditChild::ReadBmp(char* strFileName)
 			else
 			{ int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
 			  if(average < 200)
-				bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = true;
+				bmpObj->boDotBmp[x][bmpObj->intLineSize-y-1] = true;
 			 else
-				 bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = false;
+				bmpObj->boDotBmp[x][bmpObj->intLineSize-y-1] = false;
 		     }
 		}  
 

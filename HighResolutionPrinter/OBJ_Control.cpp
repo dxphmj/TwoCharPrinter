@@ -228,7 +228,7 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 	{
 		for(int j = 0; j < bmpHeight; j++)
 		{
-			if(!boDotBmp[j][i]) continue;			 
+			if(!boDotBmp[i][j]) continue;		 
 				 
 			for(int sw = 0; sw < intSW; sw++)
 			{
@@ -263,7 +263,7 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 						if(booBWDy)
 							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1,5,5);
 					}
 				}
 #else
@@ -1025,12 +1025,22 @@ vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEn
 		{
 			if(matrixMesdis == 9 | matrixMesdis == 12 | matrixMesdis == 19 | matrixMesdis == 25) 
 			{
-				//一列占nColByteNum个字节，以下是从每列的int表示中取出字节表示用来打印通信
-				int nColByteNum = pixelMesdis/8+1;
-				for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+				if(pixelMesdis == 12 | pixelMesdis ==16)
 				{
-					for(int n = 0; n < nColByteNum; n++) 
-						bytTempData[11+i*nColByteNum+n] = (IntMes[i]>>(8*n))&0xFF;
+					int nColByteNum = 2;
+					for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+					{
+						for(int n = 0; n < nColByteNum; n++)
+							bytTempData[11+i*nColByteNum+n] = (IntMes[i]>>(8*n)) & 0xFF;
+					}
+				}
+				else
+				{
+					for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+					{
+						bytTempData[11+2*i] = IntMes[i] & 0xFF;
+						bytTempData[11+2*i+1] = 0;
+					}
 				}
 			}
 			else if(matrixMesdis == 14)

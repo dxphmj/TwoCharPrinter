@@ -21,9 +21,10 @@ void PrintCreatThread::run() //提前生产两个欲打印的内容放入ForPreQ
 	{
 		if(theApp->ForPreQue.size() >= 2)
 		{
-			msleep(100);
+			msleep(1);
 			continue;
 		}
+		msleep(1000);
 		theApp->getSerialTimeDotBuf();//修改bytPrintDataAll中相应的字节数据
 
 		theApp->boPrintNowLock.lock();

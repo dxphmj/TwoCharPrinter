@@ -640,11 +640,12 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->intMesDis = m_MessagePrint->bytPrintDataAll;
 		m_MessagePrint->boPrintNow = true;		
 	boPrintNowLock.unlock();
-
+/*
 	if (m_MessagePrint->boDynamic)//是否动态打印
 	{
   		ForPreQue.push(m_MessagePrint->bytPrintDataAll);  
-  	} 	 
+  	}
+*/
 }
 
 void MainWindow::getMessageDot()
