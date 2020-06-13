@@ -85,7 +85,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 //画布与滚动条设置
 #ifdef BIG_CHAR
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
-	tempScrollBar->setVisible(false);
+	//tempScrollBar->setVisible(false);
 #else
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	tempScrollBar = new QScrollBar(this->parentWidget());

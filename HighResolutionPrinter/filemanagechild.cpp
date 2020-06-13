@@ -288,7 +288,7 @@ void FileManageChild::UdiskFileBut_clicked()
 
 void FileManageChild::ShowLocalFilePath()
 {
-#ifdef BING_CHAR
+#ifdef BIG_CHAR
 	rootStr = "User/Label"; 
 #else
 	rootStr = "User/Vec-Label"; 

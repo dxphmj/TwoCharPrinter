@@ -8,6 +8,7 @@
 #include <map>
 #include <queue>
 #include <QPainter>
+#include "mainwindow.h"
 
 class CTextOBJ;
 class CTimeOBJ;
