@@ -55,11 +55,11 @@ public:
     QCheckBox *voiceCheckBox;
     QLabel *printStyleBGLabel;
     QWidget *settingTab;
-    QLabel *DPILab;
-    QRadioButton *DPI150RadioBut;
-    QRadioButton *DPI200RadioBut;
-    QRadioButton *DPI300RadioBut;
-    QRadioButton *DPI600RadioBut;
+    QLabel *XDPILab;
+    QRadioButton *XDPI100RadioBut;
+    QRadioButton *XDPI150RadioBut;
+    QRadioButton *XDPI200RadioBut;
+    QRadioButton *XDPI300RadioBut;
     QCheckBox *repetePrintCheckBox;
     QLabel *repeteNumShowLab;
     QPushButton *repeteNumAddBut;
@@ -70,6 +70,10 @@ public:
     QPushButton *repeteDelayAddBut;
     QLabel *repeteDelayLab;
     QLabel *settingBGLabel;
+    QLabel *YDPILab;
+    QRadioButton *YDPI300RadioBut;
+    QRadioButton *YDPI600RadioBut;
+    QRadioButton *XDPI600RadioBut;
     QWidget *nozzleSetTab;
     QLabel *inkTypeLab;
     QCheckBox *adaptParaCheckBox;
@@ -116,7 +120,7 @@ public:
     {
         if (printSetting->objectName().isEmpty())
             printSetting->setObjectName(QStringLiteral("printSetting"));
-        printSetting->resize(1061, 651);
+        printSetting->resize(1133, 651);
         printSetting->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSetTabWid = new QTabWidget(printSetting);
         printSetTabWid->setObjectName(QStringLiteral("printSetTabWid"));
@@ -349,40 +353,40 @@ public:
         voiceCheckBox->raise();
         settingTab = new QWidget();
         settingTab->setObjectName(QStringLiteral("settingTab"));
-        DPILab = new QLabel(settingTab);
-        DPILab->setObjectName(QStringLiteral("DPILab"));
-        DPILab->setGeometry(QRect(460, 80, 101, 41));
-        DPILab->setMinimumSize(QSize(101, 41));
+        XDPILab = new QLabel(settingTab);
+        XDPILab->setObjectName(QStringLiteral("XDPILab"));
+        XDPILab->setGeometry(QRect(80, 80, 101, 41));
+        XDPILab->setMinimumSize(QSize(101, 41));
         QFont font4;
         font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
         font4.setPointSize(16);
-        DPILab->setFont(font4);
-        DPILab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        XDPILab->setFont(font4);
+        XDPILab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
-        DPILab->setAlignment(Qt::AlignCenter);
-        DPI150RadioBut = new QRadioButton(settingTab);
-        DPI150RadioBut->setObjectName(QStringLiteral("DPI150RadioBut"));
-        DPI150RadioBut->setGeometry(QRect(230, 160, 91, 41));
-        DPI150RadioBut->setFont(font4);
-        DPI150RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        XDPILab->setAlignment(Qt::AlignCenter);
+        XDPI100RadioBut = new QRadioButton(settingTab);
+        XDPI100RadioBut->setObjectName(QStringLiteral("XDPI100RadioBut"));
+        XDPI100RadioBut->setGeometry(QRect(220, 80, 91, 41));
+        XDPI100RadioBut->setFont(font4);
+        XDPI100RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
-        DPI200RadioBut = new QRadioButton(settingTab);
-        DPI200RadioBut->setObjectName(QStringLiteral("DPI200RadioBut"));
-        DPI200RadioBut->setGeometry(QRect(370, 160, 91, 41));
-        DPI200RadioBut->setFont(font4);
-        DPI200RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        XDPI150RadioBut = new QRadioButton(settingTab);
+        XDPI150RadioBut->setObjectName(QStringLiteral("XDPI150RadioBut"));
+        XDPI150RadioBut->setGeometry(QRect(360, 80, 91, 41));
+        XDPI150RadioBut->setFont(font4);
+        XDPI150RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
-        DPI300RadioBut = new QRadioButton(settingTab);
-        DPI300RadioBut->setObjectName(QStringLiteral("DPI300RadioBut"));
-        DPI300RadioBut->setGeometry(QRect(510, 160, 91, 41));
-        DPI300RadioBut->setFont(font4);
-        DPI300RadioBut->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
+        XDPI200RadioBut = new QRadioButton(settingTab);
+        XDPI200RadioBut->setObjectName(QStringLiteral("XDPI200RadioBut"));
+        XDPI200RadioBut->setGeometry(QRect(500, 80, 91, 41));
+        XDPI200RadioBut->setFont(font4);
+        XDPI200RadioBut->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
-        DPI600RadioBut = new QRadioButton(settingTab);
-        DPI600RadioBut->setObjectName(QStringLiteral("DPI600RadioBut"));
-        DPI600RadioBut->setGeometry(QRect(650, 160, 91, 41));
-        DPI600RadioBut->setFont(font4);
-        DPI600RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+        XDPI300RadioBut = new QRadioButton(settingTab);
+        XDPI300RadioBut->setObjectName(QStringLiteral("XDPI300RadioBut"));
+        XDPI300RadioBut->setGeometry(QRect(640, 80, 91, 41));
+        XDPI300RadioBut->setFont(font4);
+        XDPI300RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         repetePrintCheckBox = new QCheckBox(settingTab);
         repetePrintCheckBox->setObjectName(QStringLiteral("repetePrintCheckBox"));
@@ -456,13 +460,39 @@ public:
         settingBGLabel->setObjectName(QStringLiteral("settingBGLabel"));
         settingBGLabel->setGeometry(QRect(0, 0, 1016, 571));
         settingBGLabel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
+        YDPILab = new QLabel(settingTab);
+        YDPILab->setObjectName(QStringLiteral("YDPILab"));
+        YDPILab->setGeometry(QRect(80, 150, 101, 41));
+        YDPILab->setMinimumSize(QSize(101, 41));
+        YDPILab->setFont(font4);
+        YDPILab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        YDPILab->setAlignment(Qt::AlignCenter);
+        YDPI300RadioBut = new QRadioButton(settingTab);
+        YDPI300RadioBut->setObjectName(QStringLiteral("YDPI300RadioBut"));
+        YDPI300RadioBut->setGeometry(QRect(220, 150, 91, 41));
+        YDPI300RadioBut->setFont(font4);
+        YDPI300RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        YDPI600RadioBut = new QRadioButton(settingTab);
+        YDPI600RadioBut->setObjectName(QStringLiteral("YDPI600RadioBut"));
+        YDPI600RadioBut->setGeometry(QRect(360, 150, 91, 41));
+        YDPI600RadioBut->setFont(font4);
+        YDPI600RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        XDPI600RadioBut = new QRadioButton(settingTab);
+        XDPI600RadioBut->setObjectName(QStringLiteral("XDPI600RadioBut"));
+        XDPI600RadioBut->setGeometry(QRect(780, 80, 91, 41));
+        XDPI600RadioBut->setFont(font4);
+        XDPI600RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
         printSetTabWid->addTab(settingTab, QString());
         settingBGLabel->raise();
-        DPILab->raise();
-        DPI150RadioBut->raise();
-        DPI200RadioBut->raise();
-        DPI300RadioBut->raise();
-        DPI600RadioBut->raise();
+        XDPILab->raise();
+        XDPI100RadioBut->raise();
+        XDPI150RadioBut->raise();
+        XDPI200RadioBut->raise();
+        XDPI300RadioBut->raise();
         repetePrintCheckBox->raise();
         repeteNumShowLab->raise();
         repeteNumAddBut->raise();
@@ -472,6 +502,10 @@ public:
         repeteDelayShowLab->raise();
         repeteDelayAddBut->raise();
         repeteDelayLab->raise();
+        YDPILab->raise();
+        YDPI300RadioBut->raise();
+        YDPI600RadioBut->raise();
+        XDPI600RadioBut->raise();
         nozzleSetTab = new QWidget();
         nozzleSetTab->setObjectName(QStringLiteral("nozzleSetTab"));
         inkTypeLab = new QLabel(nozzleSetTab);
@@ -796,7 +830,7 @@ public:
 
         retranslateUi(printSetting);
 
-        printSetTabWid->setCurrentIndex(3);
+        printSetTabWid->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(printSetting);
@@ -828,11 +862,11 @@ public:
         voiceCheckBox->setText(QApplication::translate("printSetting", "\345\243\260\351\237\263", 0));
         printStyleBGLabel->setText(QString());
         printSetTabWid->setTabText(printSetTabWid->indexOf(printStyleTab), QApplication::translate("printSetting", "\346\211\223\345\215\260\351\243\216\346\240\274", 0));
-        DPILab->setText(QApplication::translate("printSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">DPI</span></p></body></html>", 0));
-        DPI150RadioBut->setText(QApplication::translate("printSetting", "150", 0));
-        DPI200RadioBut->setText(QApplication::translate("printSetting", "200", 0));
-        DPI300RadioBut->setText(QApplication::translate("printSetting", "300", 0));
-        DPI600RadioBut->setText(QApplication::translate("printSetting", "600", 0));
+        XDPILab->setText(QApplication::translate("printSetting", "<html><head/><body><p align=\"center\">X\346\226\271\345\220\221DPI</p></body></html>", 0));
+        XDPI100RadioBut->setText(QApplication::translate("printSetting", "100", 0));
+        XDPI150RadioBut->setText(QApplication::translate("printSetting", "150", 0));
+        XDPI200RadioBut->setText(QApplication::translate("printSetting", "200", 0));
+        XDPI300RadioBut->setText(QApplication::translate("printSetting", "300", 0));
         repetePrintCheckBox->setText(QApplication::translate("printSetting", "\351\207\215\345\244\215\346\211\223\345\215\260", 0));
         repeteNumShowLab->setText(QApplication::translate("printSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">1</span></p></body></html>", 0));
         repeteNumAddBut->setText(QApplication::translate("printSetting", "\357\274\213", 0));
@@ -843,6 +877,10 @@ public:
         repeteDelayAddBut->setText(QApplication::translate("printSetting", "\357\274\213", 0));
         repeteDelayLab->setText(QApplication::translate("printSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\207\215\345\244\215\345\273\266\346\227\266</span><span style=\" font-family:'\345\256\213\344\275\223'; font-size:14pt; color:#ffffff;\">ms</span></p></body></html>", 0));
         settingBGLabel->setText(QString());
+        YDPILab->setText(QApplication::translate("printSetting", "<html><head/><body><p align=\"center\"><span style=\" font-size:16pt; color:#ffffff;\">Y\346\226\271\345\220\221DPI</span></p></body></html>", 0));
+        YDPI300RadioBut->setText(QApplication::translate("printSetting", "300", 0));
+        YDPI600RadioBut->setText(QApplication::translate("printSetting", "600", 0));
+        XDPI600RadioBut->setText(QApplication::translate("printSetting", "600", 0));
         printSetTabWid->setTabText(printSetTabWid->indexOf(settingTab), QApplication::translate("printSetting", "\351\253\230\347\272\247\350\256\276\347\275\256", 0));
         inkTypeLab->setText(QApplication::translate("printSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">\345\242\250\346\260\264\347\261\273\345\236\213</span></p></body></html>", 0));
         adaptParaCheckBox->setText(QApplication::translate("printSetting", "\350\207\252\351\200\202\345\272\224\345\217\202\346\225\260", 0));

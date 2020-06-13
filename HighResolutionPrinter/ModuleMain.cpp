@@ -698,3 +698,20 @@ string ModuleMain::WstringToString(const wstring str)
 
 	return str1;
 }
+
+wstring ModuleMain::stringToWstring(const string& str)
+{
+	setlocale(LC_ALL, "chs"); 
+
+	const char* _Source = str.c_str();
+	size_t _Dsize = str.size() + 1;
+	wchar_t *_Dest = new wchar_t[_Dsize];
+	wmemset(_Dest, 0, _Dsize);
+	mbstowcs(_Dest,_Source,_Dsize);
+	wstring result = _Dest;
+	delete []_Dest;
+
+	setlocale(LC_ALL, "C");
+
+	return result;
+}

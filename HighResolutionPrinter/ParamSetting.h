@@ -24,7 +24,8 @@ public:
 	bool m_SynWheelCheck;//启用同步轮
 	bool m_VoiceCheck;//声音
 
-	int DPIradioBGcheckedId;//DPI按钮
+	int XDPIradioBGcheckedId;//XDPI按钮
+	int YDPIradioBGcheckedId;//YDPI按钮
 	bool m_RepetePrintCheck;//重复打印
 	QString m_RepeatTimes;//重复次数
 	QString m_RepeatDelay;//重复延时

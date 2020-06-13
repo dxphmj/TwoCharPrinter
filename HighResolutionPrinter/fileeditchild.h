@@ -47,6 +47,7 @@ public:
 	void MouseBeenReleased(QMouseEvent *event);
 	void MouseMoved(QMouseEvent *event);
 	void GetObjSettingsFromScreen();
+	void setButtonText(QString strEmpty, QString strNew);
 	void Create2Dcode(int nType,QString strContent);
 	void CreateQrcode(int nType,QString strContent);
 	void CreateDMcode(int nType,QString strContent);
@@ -115,6 +116,8 @@ public:
 	//QLabel* label;
 	QTextEdit* text;//杩樻湭瀹氫箟鎵�闇�瑕佹敼鍙樼殑瀛椾綋锛屾墍浠ョ偣鍑诲瓧浣撲細鎶ラ敊
 	QSpinBox* spinBox;
+	QLabel* qrLabel;
+	QSpinBox* qrSpinBox;
 	//QComboBox *sizeComboBox; 
 //QLabel* label ;
 //public slots:
@@ -127,8 +130,8 @@ public:
 
 public:
 	Ui::FileEditChild* ui;
-	
 	QString str1;
+
 public slots:
 	void wordLineEdit_clicked();
 	void barCodeLineEdit_clicked();
@@ -146,6 +149,7 @@ public slots:
 	//void changedIndex(int idx);
 	void changedFont(const QString &arg1);
 	void spinBoxSlot(int FontSize);
+	void qrSpinBoxSlot(int spinValue);
 	//void ShowSizeSpinBox(QString spinValue);
 
 private slots:
@@ -250,6 +254,10 @@ public:
 	QString showText2;
 	QString showText3;
 	QString showText4;
+
+public://参数
+	double horizon_pos;//滚动条当前位置水平坐标
+	double vertical_pos;//滚动条当前位置垂直坐标
 
 };
 

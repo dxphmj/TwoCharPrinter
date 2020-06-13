@@ -11,8 +11,8 @@ public:
 	~CVecTextOBJ(void);
 
 public://参数
-	wstring wStrFont;//字段的字体（有的类型有，有的类型没有）
-	wstring wStrText;//字段的text属性，即内容
+	//wstring wStrFont;//字段的字体（有的类型有，有的类型没有）
+	//wstring wStrText;//字段的text属性，即内容
 	int intFontSize;//字号
 
 public://方法

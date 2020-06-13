@@ -33,6 +33,10 @@ CQRcodeOBJ::CQRcodeOBJ(OBJ_Control obj,CQRcodeOBJ QRcodeObj)
 	intQRVersion = QRcodeObj.intQRVersion;
 	intQRErrLevel = QRcodeObj.intQRErrLevel;
 	intQREncodingMode = QRcodeObj.intQREncodingMode;
+
+	SideLength = QRcodeObj.SideLength;
+	intSideHight = SideLength * intLineSize;
+	intSideWidth = SideLength * intRowSize;
 	
 	memcpy(boDotBmp,QRcodeObj.boDotBmp,sizeof(bool)*500*100);
 }
@@ -63,7 +67,7 @@ void CQRcodeOBJ::CreateQrcode()
 	my_symbol->scale = 0.5;
 
 	//	v=ui->sideLenQRComBox->currentIndex();
-	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
+	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21�?
 
 	//batch_mode = 0;
 	//mirror_mode = 0;
@@ -71,10 +75,12 @@ void CQRcodeOBJ::CreateQrcode()
 	error_number = ZBarcode_Encode_and_Buffer(my_symbol, (unsigned char*) strText.c_str(),strText.size(),rotate_angle);
 
 	generated = 1;
-	strType1="text";
-	strType2="qrcode";		
-	intLineSize=my_symbol->bitmap_height;
-	intRowSize=my_symbol->bitmap_width;
+	strType1 = "text";
+	strType2 = "qrcode";		
+	intLineSize = my_symbol->bitmap_height;
+	intRowSize = my_symbol->bitmap_width;
+	intSideHight = intLineSize * SideLength;
+	intSideWidth = intRowSize * SideLength;
 
 	i = 0;
 	int r, g, b;
@@ -89,7 +95,7 @@ void CQRcodeOBJ::CreateQrcode()
 			i += 3;
 			if (r == 0 && g == 0 && b == 0)
 			{
-				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;//由于坐标系的原因，上下必须颠倒
+				boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
 			}
 			else
 			{

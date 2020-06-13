@@ -135,7 +135,8 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 
 
 	//高级设置参数
-	theApp->m_ParamSetting.DPIradioBGcheckedId = m_printSetting->DPIradioBG->checkedId();
+	theApp->m_ParamSetting.XDPIradioBGcheckedId = m_printSetting->XDPIradioBG->checkedId();
+	theApp->m_ParamSetting.YDPIradioBGcheckedId = m_printSetting->YDPIradioBG->checkedId();
 	theApp->m_ParamSetting.m_RepetePrintCheck = m_printSetting->ui.repetePrintCheckBox->isChecked();
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
 	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());

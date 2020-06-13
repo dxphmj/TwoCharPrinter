@@ -9,8 +9,10 @@
 #include <queue>
 #include <QPainter>
 #include "mainwindow.h"
+#include "ModuleMain.h"
 
 class CTextOBJ;
+class CVecTextOBJ;
 class CTimeOBJ;
 class CSerialOBJ;
 class CBmpObj;
@@ -65,19 +67,20 @@ public:
 	bool booBeenDragged;//对象是否被拖动
 	
 	int counter;//序列号的计数器
-	
+
+public://高解析环境下的特殊参数
+	int SideLength;//画布中一个点由 SideLength × SideLength 个像素点表示，大字符环境下为5，高解析环境下一般为1
+	int intSideWidth;//最终生成的图形的宽度
+	int intSideHight;//最终生成的图形的高度，二者用于高解析环境下判断obj是否被选中
+	vector< vector<bool> > booDotVecText; //矢量字体点阵
+
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型
     //vector<vector<bool> > logobmp;//不明
-
     //vector<vector<bool> > LogoDotToMes;//改变后的Logo图片点阵用于下发数据用
     //vector<vector<bool> > LogoDot;//logo点阵
-	
-	vector< vector<bool> > booDotVecText;//矢量字体点阵
 	bool boDotBmp[500][100];//加载bmp用，255是位图的宽度，32是位图的高度
 	int xMaxBmp,yMaxBmp;//用来记录本次加载图片的大小
-
-	//bool booDotVecText[3021][241];//矢量字体点阵
 
 public://方法
 
@@ -119,7 +122,7 @@ public://方法
 	string DEC_to_BIN(long long Dec);
 
 private:
-	 
+	
 	map<string,int> fntMap;
     int m_nPicWidth; //绘制控件的宽度 
 };

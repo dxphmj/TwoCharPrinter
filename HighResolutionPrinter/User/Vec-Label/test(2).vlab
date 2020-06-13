@@ -8,17 +8,17 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>qrcode</TYPE2>
-        <LineStart>36</LineStart>
-        <RowStart>190</RowStart>
-        <LineSize>25</LineSize>
-        <RowSize>25</RowSize>
+        <LineStart>59</LineStart>
+        <RowStart>65</RowStart>
+        <LineSize>33</LineSize>
+        <RowSize>33</RowSize>
         <SW>1</SW>
         <SS>1</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setTEXT>AAA</setTEXT>
-        <qrcodeVersion>2</qrcodeVersion>
-        <qrcodeSideLen>3</qrcodeSideLen>
+        <setTEXT>ABCDEFG</setTEXT>
+        <qrcodeVersion>4</qrcodeVersion>
+        <qrcodeSideLen>1</qrcodeSideLen>
     </OBJ>
 </MES>

@@ -105,7 +105,9 @@ long long ClassMessage::BIN_to_DEC(string Bin)
 void ClassMessage::DrawDot(CDC* pDC)
 {
 	for (int i = 0; i < OBJ_Vec.size(); i++)
+	{
 		OBJ_Vec[i]->DrawDot(pDC);
+	}
 }
 
 //控制当前OBJ_Vec[i]中哪一个obj被选中
@@ -118,10 +120,6 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 #ifdef BIG_CHAR
 	int nLin = ( 241 - y_pos ) / 5;
 	int nRow = x_pos / 5;
-#else
-	int nLin = y_pos;
-	int nRow = x_pos;
-#endif
 
 	//判断该位置是否在控件editPreviewText范围内
 	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
@@ -153,6 +151,42 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 			++itr;
 		}
 	}
+
+#else
+	int nLin = 241 - y_pos;
+	int nRow = x_pos;
+	//判断该位置是否在控件editPreviewText范围内
+	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
+	{
+		vector<OBJ_Control*>::iterator itr = this->OBJ_Vec.begin();
+		while (itr != this->OBJ_Vec.end())
+		{		
+			if (nLin>=(*itr)->intLineStart && nLin<=((*itr)->intLineStart+(*itr)->intSideHight)
+				&& nRow>=(*itr)->intRowStart && nRow<=((*itr)->intRowStart+(*itr)->intSideWidth))
+			{
+				if ((*itr)->booFocus == true && (*itr)->booBeenDragged == false)
+				{
+					(*itr)->booFocus = false;
+				}
+				else if ((*itr)->booFocus == false)
+				{
+					(*itr)->booFocus = true;
+				}
+				(*itr)->booBeenDragged = false;
+			}
+			else
+			{
+				if ((*itr)->booFocus == true && (*itr)->booBeenDragged == false)
+				{
+					(*itr)->booFocus = false;
+				}
+				(*itr)->booBeenDragged = false;
+			}
+			++itr;
+		}
+	}
+
+#endif
 }
 
 //判断用户输入的文件名strFileName是否和本地已有的xml文件名重复
@@ -446,21 +480,25 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			
 			TiXmlElement itemSetTEXT( "setTEXT" );
 			TiXmlElement itemVersion( "qrcodeVersion" );
+			TiXmlElement itemSideLen( "qrcodeSideLen" );
 			//TiXmlElement itemECCLevel( "qrcodeECCLevel" );
 			//TiXmlElement itemQuietZone( "qrcodeQuietZone" );
 
 			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
 			TiXmlText textVersion(to_String(pQRcodeObj->intQRVersion).c_str());
+			TiXmlText textSidelen(to_String(pQRcodeObj->SideLength).c_str());
 			//TiXmlText textECCLevel(to_String(OBJ_Vec[i].intQRErrLevel).c_str());
 			//TiXmlText textQuietZone(to_String(OBJ_Vec[i].intqrcodeQuietZone).c_str());
 
 			itemSetTEXT.InsertEndChild(textSetTEXT);
 			itemVersion.InsertEndChild(textVersion);
+			itemSideLen.InsertEndChild(textSidelen);
 			//itemECCLevel.InsertEndChild(textECCLevel);
 			//itemQuietZone.InsertEndChild(textQuietZone);
 
 			itemObj.InsertEndChild( itemSetTEXT );
 			itemObj.InsertEndChild( itemVersion );
+			itemObj.InsertEndChild( itemSideLen );
 			//itemObj.InsertEndChild( itemECCLevel );
 			//itemObj.InsertEndChild( itemQuietZone );
 		}
@@ -949,24 +987,15 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						QRcodeObj.strqrcodeVersion.assign(strText);
-						QRcodeObj.intQRVersion = atoi(strText);
-					//}
-					//if(strcmp(strItem,"qrcodeECCLevel") == 0)
-					//{
-					//	//读入信息
-					//	const char* strText; 
-					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-					//	strText = nodeText->ValueTStr().c_str();
-					//	obj.strqrcodeECCLevel.assign(strText);
-					//}
-					//if(strcmp(strItem,"qrcodeQuietZone") == 0)
-					//{
-					//	//读入信息
-					//	const char* strText; 
-					//	TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
-					//	strText = nodeText->ValueTStr().c_str();
-					//	obj.intqrcodeQuietZone = atoi(strText);
-
+						QRcodeObj.intQRVersion = atoi(strText);	
+					}
+					if(strcmp(strItem,"qrcodeSideLen") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						QRcodeObj.SideLength = atoi(strText);
 						//读入完所有的信息后要重新生成二位码的点阵信息,因为lab中不包含这些信息，logo及其他类似
 						QRcodeObj.CreateQrcode();
 					}

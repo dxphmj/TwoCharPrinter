@@ -8,9 +8,10 @@
         <m_TriggerMode>0</m_TriggerMode>
         <m_InkjetMode>0</m_InkjetMode>
         <m_PrintingDirection>0</m_PrintingDirection>
-        <m_SynWheelCheck>1</m_SynWheelCheck>
-        <m_VoiceCheck>1</m_VoiceCheck>
-        <DPIradioBGcheckedId>1</DPIradioBGcheckedId>
+        <m_SynWheelCheck>0</m_SynWheelCheck>
+        <m_VoiceCheck>0</m_VoiceCheck>
+        <XDPIradioBGcheckedId>3</XDPIradioBGcheckedId>
+        <YDPIradioBGcheckedId>1</YDPIradioBGcheckedId>
         <m_RepetePrintCheck>0</m_RepetePrintCheck>
         <m_RepeatTimes>1</m_RepeatTimes>
         <m_RepeatDelay>100</m_RepeatDelay>
