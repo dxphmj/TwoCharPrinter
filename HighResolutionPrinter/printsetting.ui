@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1061</width>
+    <width>1133</width>
     <height>651</height>
    </rect>
   </property>
@@ -810,10 +810,10 @@ background-color: rgb(0, 0, 230);</string>
     <attribute name="title">
      <string>高级设置</string>
     </attribute>
-    <widget class="QLabel" name="DPILab">
+    <widget class="QLabel" name="XDPILab">
      <property name="geometry">
       <rect>
-       <x>460</x>
+       <x>80</x>
        <y>80</y>
        <width>101</width>
        <height>41</height>
@@ -836,17 +836,40 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;DPI&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;X方向DPI&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
      </property>
     </widget>
-    <widget class="QRadioButton" name="DPI150RadioBut">
+    <widget class="QRadioButton" name="XDPI100RadioBut">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>160</y>
+       <x>220</x>
+       <y>80</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>100</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="XDPI150RadioBut">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>80</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -865,34 +888,11 @@ background-color: rgb(67,51, 139);</string>
       <string>150</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="DPI200RadioBut">
+    <widget class="QRadioButton" name="XDPI200RadioBut">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>160</y>
-       <width>91</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="font">
-      <font>
-       <family>宋体</family>
-       <pointsize>16</pointsize>
-      </font>
-     </property>
-     <property name="styleSheet">
-      <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
-     </property>
-     <property name="text">
-      <string>200</string>
-     </property>
-    </widget>
-    <widget class="QRadioButton" name="DPI300RadioBut">
-     <property name="geometry">
-      <rect>
-       <x>510</x>
-       <y>160</y>
+       <x>500</x>
+       <y>80</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -908,14 +908,14 @@ background-color: rgb(67,51, 139);</string>
 color: rgb(255, 255, 255);</string>
      </property>
      <property name="text">
-      <string>300</string>
+      <string>200</string>
      </property>
     </widget>
-    <widget class="QRadioButton" name="DPI600RadioBut">
+    <widget class="QRadioButton" name="XDPI300RadioBut">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>160</y>
+       <x>640</x>
+       <y>80</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -931,7 +931,7 @@ color: rgb(255, 255, 255);</string>
 background-color: rgb(67,51, 139);</string>
      </property>
      <property name="text">
-      <string>600</string>
+      <string>300</string>
      </property>
     </widget>
     <widget class="QCheckBox" name="repetePrintCheckBox">
@@ -1231,12 +1231,113 @@ background-color: rgb(67,51, 139);</string>
       <string/>
      </property>
     </widget>
+    <widget class="QLabel" name="YDPILab">
+     <property name="geometry">
+      <rect>
+       <x>80</x>
+       <y>150</y>
+       <width>101</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:16pt; color:#ffffff;&quot;&gt;Y方向DPI&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="YDPI300RadioBut">
+     <property name="geometry">
+      <rect>
+       <x>220</x>
+       <y>150</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>300</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="YDPI600RadioBut">
+     <property name="geometry">
+      <rect>
+       <x>360</x>
+       <y>150</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>600</string>
+     </property>
+    </widget>
+    <widget class="QRadioButton" name="XDPI600RadioBut">
+     <property name="geometry">
+      <rect>
+       <x>780</x>
+       <y>80</y>
+       <width>91</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>600</string>
+     </property>
+    </widget>
     <zorder>settingBGLabel</zorder>
-    <zorder>DPILab</zorder>
-    <zorder>DPI150RadioBut</zorder>
-    <zorder>DPI200RadioBut</zorder>
-    <zorder>DPI300RadioBut</zorder>
-    <zorder>DPI600RadioBut</zorder>
+    <zorder>XDPILab</zorder>
+    <zorder>XDPI100RadioBut</zorder>
+    <zorder>XDPI150RadioBut</zorder>
+    <zorder>XDPI200RadioBut</zorder>
+    <zorder>XDPI300RadioBut</zorder>
     <zorder>repetePrintCheckBox</zorder>
     <zorder>repeteNumShowLab</zorder>
     <zorder>repeteNumAddBut</zorder>
@@ -1246,6 +1347,10 @@ background-color: rgb(67,51, 139);</string>
     <zorder>repeteDelayShowLab</zorder>
     <zorder>repeteDelayAddBut</zorder>
     <zorder>repeteDelayLab</zorder>
+    <zorder>YDPILab</zorder>
+    <zorder>YDPI300RadioBut</zorder>
+    <zorder>YDPI600RadioBut</zorder>
+    <zorder>XDPI600RadioBut</zorder>
    </widget>
    <widget class="QWidget" name="nozzleSetTab">
     <attribute name="title">

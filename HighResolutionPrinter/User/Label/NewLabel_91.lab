@@ -1,38 +1,27 @@
 <MES>
     <PRO>
-        <Matrix>1L14M</Matrix>
-        <Pixel>11</Pixel>
+        <Matrix>1L19M</Matrix>
+        <Pixel>17</Pixel>
         <Reverse>GLOBAL</Reverse>
         <Inverse>GLOBAL</Inverse>
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
-        <LineStart>3</LineStart>
-        <RowStart>26</RowStart>
-        <LineSize>7</LineSize>
+        <TYPE2>time</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>16</LineSize>
         <RowSize>24</RowSize>
         <SW>1</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
-        <setFONT>7x5</setFONT>
-        <setTEXT>QAQA</setTEXT>
-    </OBJ>
-    <OBJ>
-        <TYPE1>text</TYPE1>
-        <TYPE2>text</TYPE2>
-        <LineStart>2</LineStart>
-        <RowStart>3</RowStart>
-        <LineSize>5</LineSize>
-        <RowSize>18</RowSize>
-        <SW>1</SW>
-        <SS>0</SS>
-        <NEG>0</NEG>
-        <BWDx>0</BWDx>
-        <BWDy>0</BWDy>
-        <setFONT>5x5</setFONT>
-        <setTEXT>SSS</setTEXT>
+        <setFONT>16x12</setFONT>
+        <setTEXT>32</setTEXT>
+        <setTIME>%S</setTIME>
+        <ETimeOffSet>0</ETimeOffSet>
+        <TimeOffSet>0</TimeOffSet>
+        <TimeOffSetUint>-1</TimeOffSetUint>
     </OBJ>
 </MES>

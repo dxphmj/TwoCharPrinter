@@ -1159,6 +1159,40 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 		} 
 		else
 		{
+			if(Matrix == 5 | Matrix == 9 | Matrix == 12 | Matrix == 19 | Matrix == 25)
+            {
+                bytRowByteMul = 2;
+                if(Pixel == 5 | Pixel == 7)
+                {
+                    for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+                    {
+                        bytTempVec.push_back(0);
+                        for (int j=0;j< Pixel;j++)
+                        {
+                            bytTempVec[2*i]=bytTempVec[2*i]+getByteFromDot(boDotMes[j][i],j);
+                        }
+                        bytTempVec.push_back(0);
+                        bytTempVec[2*i+1]=0;
+                    }
+                }
+                else //Pixel == 12 | 19
+                {
+                    for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
+                    {
+                        bytTempVec.push_back(0);
+                        for (int j=0;j<8;j++)
+                        {
+                            bytTempVec[2*i]=bytTempVec[2*i]+getByteFromDot(boDotMes[j][i],j);
+                        }
+                        bytTempVec.push_back(0);
+                        for (int j=8;j<Pixel;j++)
+                        {
+                            bytTempVec[2*i+1]=bytTempVec[2*i+1]+getByteFromDot(boDotMes[j][i],j-8);
+                        }
+                    }
+                }
+            }
+/*
 			switch(Matrix) 
 			{
 				case 9:
@@ -1375,6 +1409,7 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 					}
 					break;
 			}
+*/
 		}
 	}
 	return bytTempVec;
@@ -1425,7 +1460,7 @@ void ClassMessage::getdigitaldot()
 		bool objRead = OBJ_Control::readBin("16x12.fnt",lonTextUniSetOff,objbytTex16x12LineTemp,29);
 		vector<BYTE> tempVec(objbytTex16x12LineTemp,objbytTex16x12LineTemp+24);
 		string tempKey=tempsetTEXT.substr(i,1);
-		bytdigital5x5LineMap.insert(make_pair(tempKey,tempVec));
+		bytdigital16x12LineMap.insert(make_pair(tempKey,tempVec));
 	}
 }
 
@@ -1447,6 +1482,8 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 			for (int i = 0; i <= Pixel; i++)
 			{
 				bool bDraw = false;
+				bDraw = myModuleMain.MesDisIsB(intMesDis[11+2*k]+(intMesDis[11+2*k+1]*pow(2.0,8)),i);
+/*
 				if (Pixel < 8)
 					bDraw = myModuleMain.MesDisIsB(intMesDis[11+k],i);
 				else if(Pixel > 7 && Pixel < 16)
@@ -1455,7 +1492,7 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 					bDraw = myModuleMain.MesDisIsB(intMesDis[11+3*k]+(intMesDis[11+3*k+1]*pow(2.0,8))+ (intMesDis[11+3*k+2]*pow(2.0,16)),i);
 				else if(Pixel > 23)
 					bDraw = myModuleMain.MesDisIsB(intMesDis[11+4*k]+(intMesDis[11+4*k+1]*pow(2.0,8))+(intMesDis[11+4*k+2]*pow(2.0,16))+(intMesDis[11+4*k+3]*pow(2.0,24)),i);
-
+*/
 				CRect rect(k*pixSize+1,(31-i)*pixSize+1,pixSize,pixSize);
 				if(bDraw)
 				{

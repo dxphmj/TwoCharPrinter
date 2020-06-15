@@ -11,7 +11,6 @@
 #include "mainwindow.h"
 #include "ModuleMain.h"
 
-
 class CTextOBJ;
 class CVecTextOBJ;
 class CTimeOBJ;

@@ -366,15 +366,15 @@ string ModuleMain::SerialFormatToText(int Value, int Digits, int Format)
 	string strTemp="";
 	switch(Format)
 	{
-	case 0:
+    case 0: //前面置零
 		for (int a=0;a<Digits;a++)
 		{
 			strTemp=strTemp+"0";
 		}
 		strTemp=strTemp+OBJ_Control::to_String(Value);
-		OutPutSerialText=strTemp.substr(strTemp.length()-Digits,Digits);
+        OutPutSerialText=strTemp.substr(strTemp.length()-Digits,Digits);//获取第0位开始，长度为Digits的字符串
 		break;
-	case 1:
+    case 1: //前面置空
 		for (int a=0;a<Digits;a++)
 		{
 			strTemp=strTemp+" ";
@@ -382,7 +382,7 @@ string ModuleMain::SerialFormatToText(int Value, int Digits, int Format)
 		strTemp=strTemp+OBJ_Control::to_String(Value);
 		OutPutSerialText=strTemp.substr(strTemp.length()-Digits,Digits);
 		break;
-	case 2:
+    case 2: //后面置空
 		strTemp=OBJ_Control::to_String(Value);
 		int n=Digits-strTemp.length();
 		for(int a=0;a<n;a++)

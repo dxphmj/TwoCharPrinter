@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-#include <unistd.h>
+//#include <unistd.h>
 
 //#endif
 #include "mainwindow.h"
@@ -416,6 +416,7 @@ void PrintThead::closeThread()
 void PrintThead::run()
 {    
 	int strTempCmdLen = 0;
+    ModuleMain m_ModuleMain;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
 	serial = new QSerialPort();
@@ -442,8 +443,8 @@ void PrintThead::run()
 		if(m_isStop) 
 			continue; 
 
-		if(!theApp->m_bPrintNow) 
-			continue; 
+        if(!theApp->m_bPrintNow)
+            continue;
 
 		//读喷头工作的状态
 		//忙 - continue
@@ -498,8 +499,9 @@ void PrintThead::run()
 					vector<BYTE> tempQueVec = theApp->ForPreQue.front();
 					theApp->ForPreQue.pop();
 					strTempCmdLen = tempQueVec.size();
-					//strTempCmd = (LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
-					if (strTempCmdLen > 11)
+                    strTempCmd = m_ModuleMain.VEC2ARRAY(tempQueVec,strTempCmdLen);
+
+                    if (strTempCmdLen > 11)
 					{
 						//动态显示相关										
 						theApp->m_MessagePrint->intMesDis = tempQueVec;										 
@@ -512,6 +514,8 @@ void PrintThead::run()
 				} 
 				else //发送默认的指令数据
 				{
+                
+                    continue;
 					//strTempCmd=(LPTSTR)readArr;
 					//strTempCmdLen=8;
 				}
@@ -520,8 +524,9 @@ void PrintThead::run()
 			{
 				if (theApp->m_MessagePrint->bytPrintDataAll.size()>11)
 				{
-					//strTempCmd = (LPTSTR)VEC2ARRAY(theApp.m_MessageEdit.bytPrintDataAll,theApp.m_MessagePrint.bytPrintDataAll.size());
-					strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
+                    strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAll,theApp->m_MessagePrint->bytPrintDataAll.size());
+
+                    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
 					if (strTempCmdLen < 12) //发送默认的指令数据
 					{
 						//strTempCmd=(LPTSTR)readArr;
@@ -529,7 +534,7 @@ void PrintThead::run()
 						
 					}
 					theApp->m_MessagePrint->intMesDis = theApp->m_MessagePrint->bytPrintDataAll;
-					theApp->update();
+                    //theApp->update();
 				}
 			}
 
@@ -540,12 +545,13 @@ void PrintThead::run()
     char *Nozzle_node = "/dev/Nozzle_ctl";
 
     /*O_RDWR读写打开,O_NDELAY非阻塞方式*/
-    if((fd2 = open(Nozzle_node,O_RDWR))<0)
+/*  if((fd2 = open(Nozzle_node,O_RDWR))<0)
     {
         printf("Nozzle open %s failed",Nozzle_node);
     }
     else
     {
+		
         read_result = read(fd2,iTest,1);
         if(read_result == 0)
         {
@@ -557,17 +563,19 @@ void PrintThead::run()
 					free(strTempCmd);
 					break;
 				}
-				//if(write_result == -1)
-				//{
-				//	printf("Write is failed!\n");
-				//}
-				//	else
-				//{
-				//	printf("Write is success!\n");
-				//}
-				msleep(1);
-			}
-			
+
+				if(write_result == -1)
+				{
+					printf("Write is failed!\n");
+				}
+					else
+				{
+					printf("Write is success!\n");
+                }
+                msleep(100);
+            }
+
+            //printf("write_complete!");
         }
         else
         {
@@ -577,7 +585,7 @@ void PrintThead::run()
         //read_result = read(fd2,buffer,1);
     }
     //::close(fd2);
-
+*/
 
 		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）
 		//为简化控制，每次采用的打印速度不变
@@ -659,7 +667,7 @@ void PrintThead::run()
 			msleep(5);
 
 		}
- 		msleep(5); 
+ 		msleep(1000); 
 	}
 }
 

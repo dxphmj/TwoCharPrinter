@@ -19,7 +19,8 @@ public:
 
 public:
 	QString getNum(QString str);
-	QButtonGroup* DPIradioBG;
+	QButtonGroup* XDPIradioBG;
+	QButtonGroup* YDPIradioBG;
 	QButtonGroup* NozzleradioBG;
 
 private slots:

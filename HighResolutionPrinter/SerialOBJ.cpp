@@ -11,7 +11,7 @@ CSerialOBJ::CSerialOBJ(void)
 	this->intSerialDigits=9;
 	this->intSerialCounter=0;
 	this->bytSerialFormat=0;	
-	this->CountNum=0;
+	this->CountNum=1;
 }
 
 CSerialOBJ::CSerialOBJ(OBJ_Control obj,CSerialOBJ SerialObj)
@@ -55,7 +55,7 @@ void CSerialOBJ::CreateSerialDynamic(vector<BYTE>& bytPrintDataAll,bool boRevers
 									map<string,vector<BYTE> > bytdigital12x12LineMap,map<string,vector<BYTE> > bytdigital16x12LineMap,UINT32 *IntMes,int intRowMax)
 {	 
 
-	if (CountNumRep < intSerialRepeat)
+	if (CountNumRep > intSerialRepeat)
 		CountNumRep++; 
 	else
 	{

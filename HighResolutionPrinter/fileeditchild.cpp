@@ -85,7 +85,6 @@ FileEditChild::FileEditChild(QWidget *parent)
 #ifdef BIG_CHAR
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	ui->textpreviewScrollBar->setRange(0,100);
-
 #else
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	ui->editPreviewText->setGeometry(0,0,3121,241);
@@ -1832,9 +1831,9 @@ void FileEditChild::ReadBmp(char* strFileName)
 			else
 			{ int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
 			  if(average < 200)
-				bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = true;
+				bmpObj->boDotBmp[x][bmpObj->intLineSize-y-1] = true;
 			 else
-				 bmpObj->boDotBmp[bmpObj->intRowStart+x][bmpObj->intLineStart+y] = false;
+				bmpObj->boDotBmp[x][bmpObj->intLineSize-y-1] = false;
 		     }
 		}  
 

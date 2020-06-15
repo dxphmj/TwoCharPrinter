@@ -48,11 +48,11 @@ void CBmpObj::ReadBmp(char* strFileName)
 		QRgb* line = (QRgb *)pImage.scanLine(y);  
 		for(int x = 0; x< pImage.width(); x++)
 		{  
-			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;
 			if(average < 200)
-				boDotBmp[intLineSize-x-1][y] = true;
+				boDotBmp[x][intRowSize-y-1] = true;
 			else
-				boDotBmp[intLineSize-x-1][y] = false;
+				boDotBmp[x][intRowSize-y-1] = false;
 		}  
 	}  
 }

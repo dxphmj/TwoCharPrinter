@@ -58,18 +58,29 @@ printSetting::printSetting(QWidget *parent)
 										 QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
 
-	ui.DPI150RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+	ui.XDPI100RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+									  QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
+									  ");
+	ui.XDPI150RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
 									  QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 										 ");
-	ui.DPI200RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+	ui.XDPI200RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
-	ui.DPI300RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+	ui.XDPI300RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
-	ui.DPI600RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+	ui.XDPI600RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
+
+	ui.YDPI300RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+									  QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
+									  ");
+	ui.YDPI600RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
+									  QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
+									  ");
+
 	ui.nozzleSel1RadioBut->setStyleSheet("QRadioButton::indicator {width:20px;height:20px;}\
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
@@ -122,6 +133,19 @@ printSetting::printSetting(QWidget *parent)
 	ui.DPI150RadioBut->setChecked(3);
 
 #endif
+
+	XDPIradioBG = new QButtonGroup;
+	XDPIradioBG->addButton(ui.XDPI100RadioBut,1);
+	XDPIradioBG->addButton(ui.XDPI150RadioBut,2);
+	XDPIradioBG->addButton(ui.XDPI200RadioBut,3);
+	XDPIradioBG->addButton(ui.XDPI300RadioBut,4);
+	XDPIradioBG->addButton(ui.XDPI600RadioBut,5);
+	ui.XDPI100RadioBut->setChecked(1);
+
+	YDPIradioBG = new QButtonGroup;
+	YDPIradioBG->addButton(ui.YDPI300RadioBut,1);
+	YDPIradioBG->addButton(ui.YDPI600RadioBut,2);
+	ui.YDPI300RadioBut->setChecked(1);
 
 	NozzleradioBG = new QButtonGroup;
 	NozzleradioBG->addButton(ui.nozzleSel1RadioBut,1);
