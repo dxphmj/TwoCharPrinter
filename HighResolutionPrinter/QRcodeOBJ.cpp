@@ -64,7 +64,7 @@ void CQRcodeOBJ::CreateQrcode()
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = 58; //临时用一下变量intQRVersion
-	my_symbol->scale = 0.5;
+	my_symbol->scale = 2;
 
 	//	v=ui->sideLenQRComBox->currentIndex();
 	my_symbol->option_2 = intQRVersion;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21�?

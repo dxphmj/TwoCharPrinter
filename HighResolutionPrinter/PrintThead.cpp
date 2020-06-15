@@ -557,14 +557,14 @@ void PrintThead::run()
 					free(strTempCmd);
 					break;
 				}
-				/*if(write_result == -1)
-				{
-					printf("Write is failed!\n");
-				}
-					else
-				{
-					printf("Write is success!\n");
-				}*/
+				//if(write_result == -1)
+				//{
+				//	printf("Write is failed!\n");
+				//}
+				//	else
+				//{
+				//	printf("Write is success!\n");
+				//}
 				msleep(1);
 			}
 			

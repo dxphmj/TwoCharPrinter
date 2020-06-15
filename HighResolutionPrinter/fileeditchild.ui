@@ -16,9 +16,9 @@
   <widget class="QPushButton" name="saveBut">
    <property name="geometry">
     <rect>
-     <x>870</x>
+     <x>853</x>
      <y>290</y>
-     <width>80</width>
+     <width>90</width>
      <height>51</height>
     </rect>
    </property>
@@ -52,9 +52,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="saveasBut">
    <property name="geometry">
     <rect>
-     <x>970</x>
+     <x>949</x>
      <y>290</y>
-     <width>80</width>
+     <width>100</width>
      <height>51</height>
     </rect>
    </property>
@@ -75,7 +75,7 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="delBut">
    <property name="geometry">
     <rect>
-     <x>770</x>
+     <x>767</x>
      <y>290</y>
      <width>80</width>
      <height>51</height>
@@ -131,7 +131,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>4</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -1718,9 +1718,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shiftNumLab">
      <property name="geometry">
       <rect>
-       <x>50</x>
+       <x>90</x>
        <y>20</y>
-       <width>171</width>
+       <width>150</width>
        <height>41</height>
       </rect>
      </property>
@@ -1750,10 +1750,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="shiftNumShowLineEdit">
      <property name="geometry">
       <rect>
-       <x>220</x>
+       <x>240</x>
        <y>20</y>
-       <width>131</width>
-       <height>41</height>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -1769,10 +1769,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textLenShowLineEdit">
      <property name="geometry">
       <rect>
-       <x>550</x>
+       <x>610</x>
        <y>20</y>
-       <width>131</width>
-       <height>41</height>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -1788,9 +1788,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textLenLab">
      <property name="geometry">
       <rect>
-       <x>350</x>
+       <x>400</x>
        <y>20</y>
-       <width>201</width>
+       <width>210</width>
        <height>41</height>
       </rect>
      </property>
@@ -1820,8 +1820,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift1Lab">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>60</y>
+       <x>250</x>
+       <y>80</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1852,10 +1852,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft1LineEdit">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>110</y>
-       <width>131</width>
-       <height>41</height>
+       <x>330</x>
+       <y>125</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -1871,8 +1871,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft1Lab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>110</y>
+       <x>190</x>
+       <y>125</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1903,10 +1903,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft1LineEdit">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>160</y>
-       <width>131</width>
-       <height>41</height>
+       <x>330</x>
+       <y>170</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -1922,8 +1922,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft1Lab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>160</y>
+       <x>190</x>
+       <y>170</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1954,8 +1954,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft2Lab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>110</y>
+       <x>470</x>
+       <y>125</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1986,10 +1986,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft2LineEdit">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>110</y>
-       <width>131</width>
-       <height>41</height>
+       <x>610</x>
+       <y>125</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2005,10 +2005,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft2LineEdit">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>160</y>
-       <width>131</width>
-       <height>41</height>
+       <x>610</x>
+       <y>170</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2024,8 +2024,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft2Lab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>160</y>
+       <x>470</x>
+       <y>170</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2056,8 +2056,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift2Lab">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>60</y>
+       <x>530</x>
+       <y>80</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2088,8 +2088,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft3Lab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>260</y>
+       <x>190</x>
+       <y>275</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2120,10 +2120,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft3LineEdit">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>260</y>
-       <width>131</width>
-       <height>41</height>
+       <x>330</x>
+       <y>275</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2139,10 +2139,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft3LineEdit">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>310</y>
-       <width>131</width>
-       <height>41</height>
+       <x>330</x>
+       <y>320</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2158,8 +2158,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft3Lab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>310</y>
+       <x>190</x>
+       <y>320</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2190,8 +2190,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift3Lab">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>210</y>
+       <x>250</x>
+       <y>230</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2222,8 +2222,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft4Lab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>260</y>
+       <x>470</x>
+       <y>275</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2254,10 +2254,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft4LineEdit">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>260</y>
-       <width>131</width>
-       <height>41</height>
+       <x>610</x>
+       <y>275</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2273,10 +2273,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft4LineEdit">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>310</y>
-       <width>131</width>
-       <height>41</height>
+       <x>610</x>
+       <y>320</y>
+       <width>120</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2292,8 +2292,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft4Lab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>310</y>
+       <x>470</x>
+       <y>318</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2324,8 +2324,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift4Lab">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>210</y>
+       <x>530</x>
+       <y>230</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2356,10 +2356,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="newShiftBut">
      <property name="geometry">
       <rect>
-       <x>550</x>
-       <y>360</y>
-       <width>141</width>
-       <height>41</height>
+       <x>30</x>
+       <y>310</y>
+       <width>130</width>
+       <height>40</height>
       </rect>
      </property>
      <property name="font">
@@ -2374,6 +2374,110 @@ background-color: rgb(0, 0, 230);</string>
      </property>
      <property name="text">
       <string>新建</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontTypeBanciLab">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>80</y>
+       <width>130</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;字体&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontTypeBanciComBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>125</y>
+       <width>130</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="fontSizeBanciLab">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>180</y>
+       <width>130</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="minimumSize">
+      <size>
+       <width>101</width>
+       <height>41</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>楷体</family>
+       <pointsize>16</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+     </property>
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;字号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="fontSizeBanciComBox">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>225</y>
+       <width>130</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>宋体</family>
+       <pointsize>14</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
      </property>
     </widget>
    </widget>
@@ -3694,9 +3798,9 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QComboBox" name="pixelComBox">
    <property name="geometry">
     <rect>
-     <x>870</x>
+     <x>900</x>
      <y>350</y>
-     <width>171</width>
+     <width>141</width>
      <height>41</height>
     </rect>
    </property>
@@ -3714,9 +3818,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="pixelLab">
    <property name="geometry">
     <rect>
-     <x>770</x>
+     <x>765</x>
      <y>350</y>
-     <width>101</width>
+     <width>130</width>
      <height>41</height>
     </rect>
    </property>
@@ -3737,7 +3841,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;像素&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;画布高度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -3746,9 +3850,9 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QComboBox" name="moveSpeedComBox">
    <property name="geometry">
     <rect>
-     <x>870</x>
+     <x>900</x>
      <y>400</y>
-     <width>171</width>
+     <width>141</width>
      <height>41</height>
     </rect>
    </property>
@@ -3766,9 +3870,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="moveSpeedLab">
    <property name="geometry">
     <rect>
-     <x>762</x>
-     <y>400</y>
-     <width>111</width>
+     <x>765</x>
+     <y>399</y>
+     <width>130</width>
      <height>41</height>
     </rect>
    </property>

@@ -44,7 +44,7 @@ FileManageChild::FileManageChild(QWidget *parent)
 	keyboardWidget->setVisible(false);
 
 	ui->filePreHorScrollBar->setRange(0,100);
-	ui->filePrivewtextEdit->setGeometry(10, 10, 3121, 241);
+	ui->filePrivewtextEdit->setGeometry(240, 10, 3121, 241);
 	
 }
 
@@ -232,10 +232,10 @@ void FileManageChild::paintFrame()
 
 void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 {
-	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
+#ifdef BIG_CHAR
+	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
-#ifdef BIG_CHAR
 	QMap <QString,int> MatrixMap;
 	MatrixMap.insert("1L9M",45);
 	MatrixMap.insert("1L12M",60);
@@ -265,6 +265,9 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	qFramePainter->drawLine(3120,241,3120,241-MatrixMap[qStrMatrix]);//right
 
 #else
+	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+
 	int i,j;
 	for (i = 1; i <= 3121; i += 50)//先写死
 	{
@@ -294,8 +297,6 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 
 void FileManageChild::slotShow(QDir dir)  
 {  
-	QStringList stringList;  
-	stringList << "*";
 	QFileInfoList InfoList = dir.entryInfoList(QDir :: Files, QDir :: Name);  
 	showFileInfoList(InfoList);  
 }  
@@ -307,9 +308,9 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 	for (unsigned int i = 0; i < list.count(); i++)  
 	{  
 		QFileInfo tmpFileInfo = list.at(i);  
-		QIcon icon("file.png");  
 		QString fileName = tmpFileInfo.fileName();  
-		QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(icon, fileName);  
+		QListWidgetItem * tmpListWidgetItem = new QListWidgetItem(fileName);  
+		tmpListWidgetItem->setSizeHint(QSize(150,50));
 		ui->filelistWidget->addItem(tmpListWidgetItem);  
 	}  
 }  

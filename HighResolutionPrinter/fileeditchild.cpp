@@ -228,13 +228,11 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 #ifdef BIG_CHAR
 	//画布宽度item选项（单位：5x5像素）
-	ui->pixelComBox->addItem(QStringLiteral("9px"));//0
-	ui->pixelComBox->addItem(QStringLiteral("12px"));//1
-	ui->pixelComBox->addItem(QStringLiteral("14px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("19px"));//3
-	ui->pixelComBox->addItem(QStringLiteral("25px"));//4
-	ui->pixelComBox->addItem(QStringLiteral("32px"));//5
-	ui->pixelComBox->setCurrentIndex(3);
+	ui->pixelComBox->addItem(QStringLiteral("8px"));//0
+	ui->pixelComBox->addItem(QStringLiteral("16px"));//1
+	ui->pixelComBox->addItem(QStringLiteral("32px"));//2
+	ui->pixelComBox->addItem(QStringLiteral("48px"));//3
+	ui->pixelComBox->setCurrentIndex(1);
 
 #else
 	//画布宽度item选项（显示框大小为1041×241，高度为241，需求像素为150px，即画布以1.6×1.6的矩形为一像素点）
@@ -335,16 +333,30 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->SkewUUnitlistWidget->addItem("Day");
 	ui->SkewUUnitlistWidget->addItem("Hour");
 	ui->SkewUUnitlistWidget->addItem("Minute");
+
+#ifdef BIG_CHAR
+	//[时间]界面字号设置
 	ui->fontSizeTimeComBox->addItem("5x5");
 	ui->fontSizeTimeComBox->addItem("7x5");
 	ui->fontSizeTimeComBox->addItem("12x12");
 	ui->fontSizeTimeComBox->addItem("16x12");
 	ui->fontSizeTimeComBox->setCurrentIndex(0);
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("仿宋简体"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("楷体简体"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("黑体简体"));
-	ui->fontTypeTimeComBox->addItem(QStringLiteral("宋体简体"));
-	ui->fontTypeTimeComBox->setCurrentIndex(0);
+	//[时间]界面字体设置
+	ui->fontTypeTimeComBox->setEnabled(false);
+	ui->fontTypeTimeComBox->setStyleSheet("background-color: rgb(128,128,128,50);");
+	
+#else
+	//[时间]界面字号设置
+	qTimeSpinBox = new QSpinBox(this->ui->fontSizeTimeComBox);
+	qTimeSpinBox->setValue(30);
+	qTimeSpinBox->setGeometry(0,0,171,41);
+	//[时间]界面字体设置
+	qTimeFontComboBox = new QFontComboBox(this->ui->fontTypeTimeComBox);
+	qTimeFontComboBox->setFontFilters(QFontComboBox::AllFonts);
+	qTimeFontComboBox->setGeometry(0,0,171,41);
+
+#endif
+	
 	ui->SkewComBox->addItem("OFF");
 	ui->SkewComBox->addItem("ON");
 	ui->SkewComBox->setCurrentIndex(0);
@@ -380,49 +392,66 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->stepLenSerialLineEdit->setText("1");
 	ui->reptCountSerialLineEdit->setText("1");
 	ui->digitSerialLineEdit->setText("9");
+
+#ifdef BIG_CHAR
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("5x5"));
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("7x5"));
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeSerialComBox->addItem(QStringLiteral("16x12"));
 	ui->fontTypeSerialComBox->setCurrentIndex(0);
+	ui->fontSizeSerialComBox->setEnabled(false);
+	ui->fontSizeSerialComBox->setStyleSheet("background-color: rgb(128,128,128,50);");
+
+#else
+	qSerialFontComboBox = new QFontComboBox(this->ui->fontTypeSerialComBox);
+	qSerialFontComboBox->setFontFilters(QFontComboBox::AllFonts);
+	qSerialFontComboBox->setGeometry(0,0,131,41);
+	qSerialSpinBox = new QSpinBox(this->ui->fontSizeSerialComBox);
+	qSerialSpinBox->setGeometry(0,0,131,41);
+	qSerialSpinBox->setValue(30);
+	
+#endif
+	
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器1"));
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器2"));
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器3"));
 	ui->counterSerialComBox->addItem(QStringLiteral("计数器4"));
-	ui->counterSerialComBox->setEnabled(0);
+	ui->counterSerialComBox->setEnabled(false);
+	ui->counterSerialComBox->setStyleSheet("background-color: rgb(128,128,128); color: rgb(255, 255, 255);");
 	ui->counterSerialComBox->setCurrentIndex(0);
 	ui->formatSerialComBox->addItem(QStringLiteral("左侧补0"));
 	ui->formatSerialComBox->addItem(QStringLiteral("左侧空白"));
 	ui->formatSerialComBox->addItem(QStringLiteral("右侧空白"));
 	ui->formatSerialComBox->setCurrentIndex(0);
 	serialcount=1;
-	ui->serialLineEdit->setText("000000001");
+	//ui->serialLineEdit->setText("000000001");
 	SerialNumber_length=0;
 	Serialfirst=1; 
 
-//字体下拉框、字号框设置
+
 #ifdef BIG_CHAR
-	ui->fontSizeTextComBox->setVisible(false);
+	//[文本]界面的字体、字号设置
+	ui->fontSizeTextComBox->setStyleSheet("background-color: rgb(128,128,128,50);");
+	ui->fontSizeTextComBox->setEnabled(false);
 	ui->fontTypeTextComBox->addItem(QStringLiteral("5x5"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("7x5"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("12x12"));
 	ui->fontTypeTextComBox->addItem(QStringLiteral("16x12"));
 	ui->fontTypeTextComBox->setCurrentIndex(0); 
+	//[班次]界面的字体、字号设置
+	ui->fontTypeBanciComBox->addItem(QStringLiteral("5x5"));
+	ui->fontTypeBanciComBox->addItem(QStringLiteral("7x5"));
+	ui->fontTypeBanciComBox->addItem(QStringLiteral("12x12"));
+	ui->fontTypeBanciComBox->addItem(QStringLiteral("16x12"));
+	ui->fontTypeBanciComBox->setCurrentIndex(0);
+	ui->fontSizeBanciComBox->setStyleSheet("background-color: rgb(128,128,128,50);");
+	ui->fontSizeBanciComBox->setEnabled(false);
 
 #else
+	//[文本]界面的字体、字号设置
 	FontComboBoxChoose = new QFontComboBox(this->ui->fontTypeTextComBox);
 	FontComboBoxChoose->setFontFilters(QFontComboBox::AllFonts);
 	FontComboBoxChoose->setGeometry(0,0,181,41);
-
-	//text = new QTextEdit(this);
-
-	//sizeComboBox = new QComboBox(this->ui->fontSizeTextComBox);
-	//QFontDatabase db;
-	////standardSize(): return a list of standard font size(返回可用标准字号的列表).
-	//foreach (int size, db.standardSizes ())
-	//sizeComboBox->addItem (QString::number (size)); //将它们插入到字号下拉框中
-
-	//connect (sizeComboBox, SIGNAL(activated(QString)), this, SLOT(ShowSizeSpinBox(QString)));
 	
 	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
 	spinBox->setValue(30);
@@ -431,36 +460,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
 	connect(FontComboBoxChoose,SIGNAL(currentIndexChanged(QString)),this,SLOT(changedFont(const QString &)));
 
-	/*QDir MultiLanguage;
-	QString MultiLanguageDir = MultiLanguage.currentPath();*/
+	//[班次]界面的字体、字号设置
+	qBanciFontComboBox = new QFontComboBox(this->ui->fontTypeBanciComBox);
+	qBanciFontComboBox->setFontFilters(QFontComboBox::AllFonts);
+	qBanciFontComboBox->setGeometry(0,0,130,41);
 
-	//QFontDatabase database;
-	//int fontID = QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
-	//qDebug()<<"family"<<QFontDatabase::applicationFontFamilies(fontID);
-	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/msyh.ttc"); //Wei Ruan Ya Hei
-	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simkai.ttf"); //Kai Ti
-	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/simsun.ttc"); //Song Ti
-	//QFontDatabase::addApplicationFont(MultiLanguageDir + "/addfonts/SIMYOU.TTF"); //You Yuan
-
-
-	//qDebug()<<"\r\n Availble chinese font. \r\n"; //下面为支持简体中文字体库
-	//foreach (const QString &family, database.families(QFontDatabase::SimplifiedChinese))
-	//{
-	//	qDebug()<<family;
-	//}
-
-	/*ui->fontTypeTextComBox->addItem(QStringLiteral("仿宋简体"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("楷体简体"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("黑体简体"));
-	ui->fontTypeTextComBox->addItem(QStringLiteral("宋体简体"));
-	ui->fontTypeTextComBox->setCurrentIndex(0);*/
-
-	ui->fontSizeTextComBox->setVisible(true);
-	ui->fontSizeTextComBox->addItem(QStringLiteral("5"));
-	ui->fontSizeTextComBox->addItem(QStringLiteral("7"));
-	ui->fontSizeTextComBox->addItem(QStringLiteral("9"));
-	ui->fontSizeTextComBox->addItem(QStringLiteral("11"));
-	ui->fontSizeTextComBox->setCurrentIndex(0);
+	qBanciSpinBox = new QSpinBox(this->ui->fontSizeBanciComBox);
+	qBanciSpinBox->setGeometry(0,0,130,41);
+	qBanciSpinBox->setValue(30);
 
 #endif
 
@@ -701,19 +708,15 @@ void FileEditChild::mergeFormat(QTextCharFormat format)
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
-	//绘图统一放到eventFilter 中进行绘制，这里只是改变相关变量值
-	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
+#ifdef BIG_CHAR
+	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
-#ifdef BIG_CHAR
 	QMap <QString,int> PixelMap;
-	PixelMap.insert("9px",45);
-	PixelMap.insert("12px",60);
-	PixelMap.insert("14px",70);
-	PixelMap.insert("19px",95);
-	PixelMap.insert("25px",125);
+	PixelMap.insert("8px",40);
+	PixelMap.insert("16px",80);
 	PixelMap.insert("32px",160);
-	//PixelMap.insert("48px",240);
+	PixelMap.insert("48px",240);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
 	int i,j;
@@ -741,6 +744,9 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 
 #else
+	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
+	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+
 	int i,j;
 	for (i = 1; i <= 3121; i += 50)//先写死
 	{
@@ -809,9 +815,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 			if(average < 200)
-				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = true;
+				bmpObj->boDotBmp[bmpObj->intLineStart+bmpObj->intLineSize -y-1][bmpObj->intRowStart +x] = true;
 			else
-				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = false;
+				bmpObj->boDotBmp[bmpObj->intLineStart+bmpObj->intLineSize -y-1][bmpObj->intRowStart +x] = false;
 		}  
 
 	}  
@@ -847,7 +853,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	my_symbol = ZBarcode_Create();
 	my_symbol->input_mode = UNICODE_MODE;
 	my_symbol->symbology = nType; 
-	my_symbol->scale =0.5;
+	my_symbol->scale = 0.5;
 
 	v=ui->sideLenQRComBox->currentIndex();
 	my_symbol->option_2 = v+1;//option_1为容错等级，option_2为版本大小公式为:(V - 1) * 4 + 21；
@@ -887,6 +893,7 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 	bmpObj->intLineSize = my_symbol->bitmap_height;
 	bmpObj->intRowSize = my_symbol->bitmap_width;
 	bmpObj->intQRVersion = ui->sideLenQRComBox->currentIndex()+1;
+
 #ifdef BIG_CHAR
 	bmpObj->SideLength = 5;
 #else
@@ -1120,7 +1127,7 @@ bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintFrame();
-		paintDot();		
+		paintDot();	
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -1642,12 +1649,10 @@ void FileEditChild::saveasBut_clicked()
 
 #ifdef BIG_CHAR
 	QMap <QString,string> MatrixMap;
-	MatrixMap.insert("9px","1L9M");
-	MatrixMap.insert("12px","1L12M");
-	MatrixMap.insert("14px","1L14M");
-	MatrixMap.insert("19px","1L19M");
-	MatrixMap.insert("25px","1L25M");
+	MatrixMap.insert("8px","1L8M");
+	MatrixMap.insert("16px","1L16M");
 	MatrixMap.insert("32px","1L32M");
+	MatrixMap.insert("48px","1L48M");
 	QString qStrMatrix = ui->pixelComBox->currentText();
 	m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
 	m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
@@ -1688,12 +1693,10 @@ void FileEditChild::saveBut_clicked()
 #ifdef BIG_CHAR
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
 		QMap <QString,string> MatrixMap;
-		MatrixMap.insert("9px","1L9M");
-		MatrixMap.insert("12px","1L12M");
-		MatrixMap.insert("14px","1L14M");
-		MatrixMap.insert("19px","1L19M");
-		MatrixMap.insert("25px","1L25M");
+		MatrixMap.insert("8px","1L8M");
+		MatrixMap.insert("26px","1L16M");
 		MatrixMap.insert("32px","1L32M");
+		MatrixMap.insert("48px","1L48M");
 		QString qStrMatrix = ui->pixelComBox->currentText();
 		m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
 		m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
@@ -2389,7 +2392,7 @@ void FileEditChild::newBarCodeBut_clicked()
 	//如果当前没有obj被选中，则为新建
 	QString str = ui->barCodeLineEdit->text();
 	Create2Dcode(BarCodeType[this->ui->typeBarCodeComBox->currentText()],str);
-	this->ui->newBarCodeBut->setText(QStringLiteral("�޸�"));
+	this->ui->newBarCodeBut->setText(QStringLiteral("修改"));
 	this->update();
 }
 
@@ -2905,13 +2908,13 @@ void FileEditChild::newTimeBut_clicked()
 			CString strText;
 			//pEdit-> GetWindowText(strText);
 			strText=ui->PreviewEdit->text();
-			m_MessagePrint.OBJ_Vec[i]->strText=strText.toStdString();
+			m_MessagePrint.OBJ_Vec[i]->strText = strText.toStdString();
 			//tempObj.strText=theApp.myModuleMain.UnicodeToUtf8_CSTR(strText);
 
 			CString formatText;
 			formatText=ui->DateTimeEdit->text();
 			//GetDlgItem(IDC_DATE_DATE_TIME_EDIT)->GetWindowText(formatText);
-			pTimeObj->strTime=m_TimeShow.CString2string(formatText);
+			pTimeObj->strTime = m_TimeShow.CString2string(formatText);
 
 			CString  fontText;
 			int nIndex = ui->fontSizeTimeComBox->currentIndex();

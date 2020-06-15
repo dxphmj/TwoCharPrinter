@@ -564,9 +564,22 @@ void ClassMessage::GetMatrix()
 	{
 		Matrix = 25;
 	}
+	//以下为更改后的画布高度配置
+	else if(strMatrix == "1L8M")
+	{
+		Matrix = 8;
+	}
+	else if(strMatrix == "1L16M")
+	{
+		Matrix = 16;
+	}
 	else if(strMatrix == "1L32M")
 	{
 		Matrix = 32;
+	}
+	else if(strMatrix == "1L48M")
+	{
+		Matrix = 48;
 	}
 	/*else if(strMatrix == "2L7M")
 	{

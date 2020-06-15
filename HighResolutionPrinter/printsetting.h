@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_printsetting.h"
+#include "mainwindow.h"
 #include <QButtonGroup>
 
 class printSetting : public QWidget

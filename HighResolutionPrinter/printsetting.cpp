@@ -34,6 +34,7 @@ printSetting::printSetting(QWidget *parent)
 							  QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
 							  QTabBar::tab:!selected{border-bottom: 3px solid white;}\
 							  ");
+	ui.printSetTabWid->setCurrentIndex(0);
 	ui.synWheelCheckBox->setStyleSheet("QCheckBox::indicator {width: 27px; height: 27px;}\
 									  QCheckBox{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									  ");
@@ -89,12 +90,38 @@ printSetting::printSetting(QWidget *parent)
 	ui.printDirComBox->addItem(QStringLiteral("正向"),0);
 	ui.printDirComBox->addItem(QStringLiteral("逆向"),1);
 
+#ifdef BIG_CHAR
+	//[打印风格]界面：“打印灰度”改为“墨点大小”；隐藏“喷墨方式”
+	ui.printGrayLab->setText(QStringLiteral("墨点大小"));
+	ui.inkjetLab->setVisible(false);
+	ui.inkjetComBox->setVisible(false);
+	//[高级设置]界面：隐藏“DPI”
+	ui.DPILab->setVisible(false);
+	ui.DPI150RadioBut->setVisible(false);
+	ui.DPI200RadioBut->setVisible(false);
+	ui.DPI300RadioBut->setVisible(false);
+	ui.DPI600RadioBut->setVisible(false);
+	//[喷头设置]界面：隐藏“墨水类型”
+	ui.inkTypeLab->setVisible(false);
+	ui.adaptParaCheckBox->setVisible(false);
+	ui.inkVoltLab->setVisible(false);
+	ui.voltRedBut->setVisible(false);
+	ui.voltShowLab->setVisible(false);
+	ui.voltAddBut->setVisible(false);
+	ui.PWLab->setVisible(false);
+	ui.PWRedBut->setVisible(false);
+	ui.PWShowLab->setVisible(false);
+	ui.PWAddBut->setVisible(false);
+
+#else
 	DPIradioBG = new QButtonGroup;
 	DPIradioBG->addButton(ui.DPI150RadioBut,1);
 	DPIradioBG->addButton(ui.DPI200RadioBut,2);
 	DPIradioBG->addButton(ui.DPI300RadioBut,3);
 	DPIradioBG->addButton(ui.DPI600RadioBut,4);
-	ui.DPI150RadioBut->setChecked(1);
+	ui.DPI150RadioBut->setChecked(3);
+
+#endif
 
 	NozzleradioBG = new QButtonGroup;
 	NozzleradioBG->addButton(ui.nozzleSel1RadioBut,1);

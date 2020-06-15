@@ -64,7 +64,7 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QLabel" name="sysTimeSetLab">
    <property name="geometry">
     <rect>
-     <x>320</x>
+     <x>300</x>
      <y>40</y>
      <width>141</width>
      <height>41</height>
@@ -96,8 +96,8 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QPushButton" name="addHourBut">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>345</y>
+     <x>170</x>
+     <y>330</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -119,8 +119,8 @@ border-radius:10px;</string>
   <widget class="QLabel" name="hourShowLab">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>415</y>
+     <x>170</x>
+     <y>400</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -151,8 +151,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="reduceHourBut">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>472</y>
+     <x>170</x>
+     <y>460</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -175,7 +175,7 @@ border-radius:10px;</string>
    <property name="geometry">
     <rect>
      <x>339</x>
-     <y>345</y>
+     <y>330</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -198,7 +198,7 @@ border-radius:10px;</string>
    <property name="geometry">
     <rect>
      <x>339</x>
-     <y>415</y>
+     <y>400</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -230,7 +230,7 @@ color: rgb(255, 255, 255);</string>
    <property name="geometry">
     <rect>
      <x>339</x>
-     <y>472</y>
+     <y>460</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -252,8 +252,8 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="addSecondBut">
    <property name="geometry">
     <rect>
-     <x>546</x>
-     <y>345</y>
+     <x>510</x>
+     <y>330</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -275,8 +275,8 @@ border-radius:10px;</string>
   <widget class="QLabel" name="secondShowLab">
    <property name="geometry">
     <rect>
-     <x>546</x>
-     <y>415</y>
+     <x>510</x>
+     <y>400</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -307,8 +307,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="reduceSecondBut">
    <property name="geometry">
     <rect>
-     <x>546</x>
-     <y>472</y>
+     <x>510</x>
+     <y>460</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -330,7 +330,7 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="addYearBut">
    <property name="geometry">
     <rect>
-     <x>132</x>
+     <x>170</x>
      <y>103</y>
      <width>61</width>
      <height>61</height>
@@ -353,8 +353,8 @@ border-radius:5px;</string>
   <widget class="QLabel" name="yearShowLab">
    <property name="geometry">
     <rect>
-     <x>132</x>
-     <y>173</y>
+     <x>170</x>
+     <y>171</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -385,7 +385,7 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="reduceYearBut">
    <property name="geometry">
     <rect>
-     <x>132</x>
+     <x>170</x>
      <y>230</y>
      <width>63</width>
      <height>63</height>
@@ -432,7 +432,7 @@ border-radius:10px;</string>
    <property name="geometry">
     <rect>
      <x>339</x>
-     <y>173</y>
+     <y>171</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -486,7 +486,7 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="addDayBut">
    <property name="geometry">
     <rect>
-     <x>546</x>
+     <x>510</x>
      <y>103</y>
      <width>63</width>
      <height>63</height>
@@ -509,8 +509,8 @@ border-radius:10px;</string>
   <widget class="QLabel" name="dayShowLab">
    <property name="geometry">
     <rect>
-     <x>546</x>
-     <y>173</y>
+     <x>510</x>
+     <y>171</y>
      <width>63</width>
      <height>51</height>
     </rect>
@@ -541,7 +541,7 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="reduceDayBut">
    <property name="geometry">
     <rect>
-     <x>546</x>
+     <x>510</x>
      <y>230</y>
      <width>63</width>
      <height>63</height>
@@ -628,6 +628,230 @@ background-color: rgb(67,51, 139);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QLabel" name="sysDateTextLab">
+   <property name="geometry">
+    <rect>
+     <x>57</x>
+     <y>178</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>91</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;日期&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysYearTextLab">
+   <property name="geometry">
+    <rect>
+     <x>237</x>
+     <y>178</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>71</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;年&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysMonthTextLab">
+   <property name="geometry">
+    <rect>
+     <x>406</x>
+     <y>178</y>
+     <width>70</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>70</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;月&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysDayTextLab">
+   <property name="geometry">
+    <rect>
+     <x>576</x>
+     <y>178</y>
+     <width>70</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>70</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;日&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysTimeTextLab">
+   <property name="geometry">
+    <rect>
+     <x>60</x>
+     <y>405</y>
+     <width>91</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>91</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;时间&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysTimeSignal1">
+   <property name="geometry">
+    <rect>
+     <x>250</x>
+     <y>400</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>71</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
+  <widget class="QLabel" name="sysTimeSignal2">
+   <property name="geometry">
+    <rect>
+     <x>420</x>
+     <y>400</y>
+     <width>71</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>71</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;:&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>sysSettingBGLab</zorder>
   <zorder>addHourBut</zorder>
   <zorder>hourShowLab</zorder>
@@ -652,6 +876,13 @@ background-color: rgb(67,51, 139);</string>
   <zorder>lightHorSlider</zorder>
   <zorder>sysTimeSetLab</zorder>
   <zorder>sysLanguageListWid</zorder>
+  <zorder>sysDateTextLab</zorder>
+  <zorder>sysYearTextLab</zorder>
+  <zorder>sysMonthTextLab</zorder>
+  <zorder>sysDayTextLab</zorder>
+  <zorder>sysTimeTextLab</zorder>
+  <zorder>sysTimeSignal1</zorder>
+  <zorder>sysTimeSignal2</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources>

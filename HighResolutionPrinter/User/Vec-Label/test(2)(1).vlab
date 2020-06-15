@@ -8,8 +8,8 @@
     <OBJ>
         <TYPE1>text</TYPE1>
         <TYPE2>qrcode</TYPE2>
-        <LineStart>0</LineStart>
-        <RowStart>0</RowStart>
+        <LineStart>42</LineStart>
+        <RowStart>170</RowStart>
         <LineSize>21</LineSize>
         <RowSize>21</RowSize>
         <SW>1</SW>
@@ -19,6 +19,6 @@
         <BWDy>0</BWDy>
         <setTEXT>ABCDEFG</setTEXT>
         <qrcodeVersion>1</qrcodeVersion>
-        <qrcodeSideLen>1</qrcodeSideLen>
+        <qrcodeSideLen>3</qrcodeSideLen>
     </OBJ>
 </MES>

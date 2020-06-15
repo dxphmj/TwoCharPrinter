@@ -590,7 +590,6 @@
     <ClInclude Include="SerialOBJ.h" />
     <ClInclude Include="TextOBJ.h" />
     <ClInclude Include="TimeOBJ.h" />
-    <ClInclude Include="unistd.h" />
     <ClInclude Include="VecTextOBJ.h" />
     <ClInclude Include="wordStock\Dom.h" />
     <ClInclude Include="wordStock\GetHZinfo.h" />
@@ -1080,7 +1079,7 @@ endlocal
   <ImportGroup Label="ExtensionTargets" />
   <ProjectExtensions>
     <VisualStudio>
-      <UserProperties Qt5Version_x0020_Win32="msvc2010" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
+      <UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" />
 		<UserProperties Qt5Version_x0020_Win32="Qt5.5.0" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" /></VisualStudio>
   </ProjectExtensions>
 </Project>

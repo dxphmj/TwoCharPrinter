@@ -61,6 +61,13 @@ MainWindow::MainWindow(QWidget *parent) :
 			                      "QProgressBar::chunk{""margin:2px;""}");
 	ui->print2Prog->setStyleSheet("QProgressBar{""text-align:center;color: rgb(255, 255, 255);""}"
 		                          "QProgressBar::chunk{""margin:2px;""}");
+#ifdef BIG_CHAR
+	//大字符环境下隐藏墨盒
+	ui->print1Prog->setVisible(false);
+	ui->print2Prog->setVisible(false);
+	ui->No1Lab->setVisible(false);
+	ui->No2Lab->setVisible(false);
+#endif
 
 	mythreadDynamicBoo = false;
 

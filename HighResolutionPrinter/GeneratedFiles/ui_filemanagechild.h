@@ -45,15 +45,15 @@ public:
         FileManageChild->resize(1061, 761);
         filelistWidget = new QListWidget(FileManageChild);
         filelistWidget->setObjectName(QStringLiteral("filelistWidget"));
-        filelistWidget->setGeometry(QRect(10, 280, 221, 471));
+        filelistWidget->setGeometry(QRect(10, 10, 221, 741));
         filelistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePrivewtextEdit = new QTextEdit(FileManageChild);
         filePrivewtextEdit->setObjectName(QStringLiteral("filePrivewtextEdit"));
-        filePrivewtextEdit->setGeometry(QRect(10, 10, 1021, 241));
+        filePrivewtextEdit->setGeometry(QRect(240, 10, 791, 241));
         filePrivewtextEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePreHorScrollBar = new QScrollBar(FileManageChild);
         filePreHorScrollBar->setObjectName(QStringLiteral("filePreHorScrollBar"));
-        filePreHorScrollBar->setGeometry(QRect(10, 251, 1021, 25));
+        filePreHorScrollBar->setGeometry(QRect(240, 251, 791, 25));
         filePreHorScrollBar->setOrientation(Qt::Horizontal);
         copyFile2localBut = new QPushButton(FileManageChild);
         copyFile2localBut->setObjectName(QStringLiteral("copyFile2localBut"));
