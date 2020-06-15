@@ -107,11 +107,15 @@ printSetting::printSetting(QWidget *parent)
 	ui.inkjetLab->setVisible(false);
 	ui.inkjetComBox->setVisible(false);
 	//[高级设置]界面：隐藏“DPI”
-	ui.DPILab->setVisible(false);
-	ui.DPI150RadioBut->setVisible(false);
-	ui.DPI200RadioBut->setVisible(false);
-	ui.DPI300RadioBut->setVisible(false);
-	ui.DPI600RadioBut->setVisible(false);
+	ui.XDPILab->setVisible(false);
+	ui.YDPILab->setVisible(false);
+	ui.XDPI100RadioBut->setVisible(false);
+	ui.XDPI150RadioBut->setVisible(false);
+	ui.XDPI200RadioBut->setVisible(false);
+	ui.XDPI300RadioBut->setVisible(false);
+	ui.XDPI600RadioBut->setVisible(false);
+	ui.YDPI300RadioBut->setVisible(false);
+	ui.YDPI600RadioBut->setVisible(false);
 	//[喷头设置]界面：隐藏“墨水类型”
 	ui.inkTypeLab->setVisible(false);
 	ui.adaptParaCheckBox->setVisible(false);
@@ -125,15 +129,6 @@ printSetting::printSetting(QWidget *parent)
 	ui.PWAddBut->setVisible(false);
 
 #else
-	DPIradioBG = new QButtonGroup;
-	DPIradioBG->addButton(ui.DPI150RadioBut,1);
-	DPIradioBG->addButton(ui.DPI200RadioBut,2);
-	DPIradioBG->addButton(ui.DPI300RadioBut,3);
-	DPIradioBG->addButton(ui.DPI600RadioBut,4);
-	ui.DPI150RadioBut->setChecked(3);
-
-#endif
-
 	XDPIradioBG = new QButtonGroup;
 	XDPIradioBG->addButton(ui.XDPI100RadioBut,1);
 	XDPIradioBG->addButton(ui.XDPI150RadioBut,2);
@@ -146,6 +141,8 @@ printSetting::printSetting(QWidget *parent)
 	YDPIradioBG->addButton(ui.YDPI300RadioBut,1);
 	YDPIradioBG->addButton(ui.YDPI600RadioBut,2);
 	ui.YDPI300RadioBut->setChecked(1);
+
+#endif
 
 	NozzleradioBG = new QButtonGroup;
 	NozzleradioBG->addButton(ui.nozzleSel1RadioBut,1);

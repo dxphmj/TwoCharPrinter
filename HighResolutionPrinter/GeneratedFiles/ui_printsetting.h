@@ -830,8 +830,7 @@ public:
 
         retranslateUi(printSetting);
 
-
-        printSetTabWid->setCurrentIndex(2);
+        printSetTabWid->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(printSetting);

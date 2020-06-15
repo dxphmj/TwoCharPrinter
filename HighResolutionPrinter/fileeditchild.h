@@ -111,17 +111,20 @@ public:
 
 	QString fileName;
 
-	QFontComboBox* FontComboBoxChoose;//瀛椾綋閫夋嫨妗?
-	//QPushButton* button;
-	//QLabel* label;
+	QFontComboBox* FontComboBoxChoose;///高解析环境下[文本]字体下拉框
+	QFontComboBox* qTimeFontComboBox;//高解析环境下[时间]字体下拉框
+	QFontComboBox* qSerialFontComboBox;//高解析环境下[序列号]字体下拉框
+	QFontComboBox* qBanciFontComboBox;//高解析环境下[班次]字体下拉框
+
 	QTextEdit* text;//杩樻湭瀹氫箟鎵�闇�瑕佹敼鍙樼殑瀛椾綋锛屾墍浠ョ偣鍑诲瓧浣撲細鎶ラ敊
-	QSpinBox* spinBox;
+	
+	QSpinBox* spinBox;//高解析环境下[文本]字号框
+	QSpinBox* qTimeSpinBox;//高解析环境下[时间]字号框
+	QSpinBox* qSerialSpinBox;//高解析环境下[序列号]字号框
+	QSpinBox* qBanciSpinBox;//高解析环境下[班次]字号框
+	
 	QLabel* qrLabel;
 	QSpinBox* qrSpinBox;
-	//QComboBox *sizeComboBox; 
-//QLabel* label ;
-//public slots:
-	//void changedFont(const QFont& f);
 	
 	//测试：2020-05-16 张玮珺
 	QFont m_curVecFont;//当前矢量字体
