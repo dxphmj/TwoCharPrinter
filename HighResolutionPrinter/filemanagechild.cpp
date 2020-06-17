@@ -318,10 +318,17 @@ void FileManageChild::showFileInfoList(QFileInfoList list)
 void FileManageChild::UdiskFileBut_clicked()
 {
 	this->ui->filelistWidget->clear();
+	QString udiskLabelPath = "/mnt/udisk/";
+	QDir rootDir(udiskLabelPath);
+	slotShow(rootDir);
+	SetButtonEnableOff();
+	QWidget *pQWidget(this);
+	pQWidget->update();
 }
 
 void FileManageChild::ShowLocalFilePath()
 {
+	this->ui->filelistWidget->clear();
 #ifdef BIG_CHAR
 	rootStr = "User/Label"; 
 #else
