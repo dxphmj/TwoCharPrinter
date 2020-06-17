@@ -91,12 +91,12 @@ public://����
 	//void GetVectorWordDots();
 	//void ReadOneVectorWord(FILE *pFile,char* strText,vector<vector<bool> >& dots,int& nWidth);//其中dots的行和列的大小就是字符串的外包围�?
 
-	void DrawTextAll(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool>>& boDotMes);
-	void Draw12x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
-	void Draw16x12Text(CDC* pDC,vector<vector<bool>>& boDotMes);
+	void DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void DrawVecText(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesOneWord,vector<vector<bool> >& boDotMes);
+	void Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
+	void Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes);
 
 	static bool readBin(string FontName,int offset,char *arr, int DataLen);
 

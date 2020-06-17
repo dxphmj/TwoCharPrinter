@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -110,7 +111,8 @@ SOURCES += main.cpp\
     xml/tinystr.cpp \
     xml/tinyxml.cpp \
     xml/tinyxmlerror.cpp \
-    xml/tinyxmlparser.cpp
+    xml/tinyxmlparser.cpp \
+    VecTextOBJ.cpp
 
 HEADERS  += mainwindow.h \
     ClassMessage.h \
@@ -190,7 +192,8 @@ HEADERS  += mainwindow.h \
     wordStock/Dom.h \
     wordStock/GetHZinfo.h \
     xml/tinystr.h \
-    xml/tinyxml.h
+    xml/tinyxml.h \
+    VecTextOBJ.h
 
 FORMS    += mainwindow.ui \
     filemanageform.ui \

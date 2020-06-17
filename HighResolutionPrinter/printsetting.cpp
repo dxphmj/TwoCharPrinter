@@ -95,7 +95,7 @@ printSetting::printSetting(QWidget *parent)
 	ui.trigComBox->addItem(QStringLiteral("光电编码"),4);
 	ui.trigComBox->addItem(QStringLiteral("光自动"),5);
 
-	ui.inkjetComBox->addItem(QStringLiteral("左喷",0));
+	ui.inkjetComBox->addItem(QStringLiteral("左喷"),0);
 	ui.inkjetComBox->addItem(QStringLiteral("右喷"),1);
 
 	ui.printDirComBox->addItem(QStringLiteral("正向"),0);

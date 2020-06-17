@@ -2309,7 +2309,7 @@ void FileEditChild::GenerateBarCodeBmp()
 		} 
 	
 		else  {my_symbol->show_hrt=0;}
-        strncpy(my_symbol->outfile, "User/logo/output.bmp",128);
+        strncpy(my_symbol->outfile,"User/logo/output.bmp",50);
 		error_number = ZBarcode_Encode(my_symbol, (unsigned char*) this->ui->barCodeLineEdit->text().toStdString().c_str(), 0);
 		generated=1;
 		

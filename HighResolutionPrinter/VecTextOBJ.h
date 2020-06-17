@@ -1,6 +1,6 @@
 #pragma once
 
-#include "classmessage.h"
+#include "ClassMessage.h"
 #include "ModuleMain.h"
 
 class CVecTextOBJ : public OBJ_Control
@@ -10,12 +10,12 @@ public:
 	CVecTextOBJ(OBJ_Control obj,CVecTextOBJ VecTextObj);
 	~CVecTextOBJ(void);
 
-public://参数
-	//wstring wStrFont;//字段的字体（有的类型有，有的类型没有）
-	//wstring wStrText;//字段的text属性，即内容
-	int intFontSize;//字号
+public://鍙傛暟
+	//wstring wStrFont;//瀛楁鐨勫瓧浣擄紙鏈夌殑绫诲瀷鏈夛紝鏈夌殑绫诲瀷娌℃湁锛?
+	//wstring wStrText;//瀛楁鐨則ext灞炴�э紝鍗冲唴瀹?
+	int intFontSize;//瀛楀彿
 
-public://方法
+public://鏂规硶
 	void GenerateVecBmp(string strFont, string strText, int intFontSize);
 };
 

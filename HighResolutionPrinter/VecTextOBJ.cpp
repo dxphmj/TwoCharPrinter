@@ -69,7 +69,7 @@ void CVecTextOBJ::GenerateVecBmp(string strFont, string strText, int intFontSize
 	QImage pImage;
 	pImage = pix.toImage();
 
-	//²âÊÔ£º2020-05-16 ÕÅçâ¬B
+	//æµ‹è¯•ï¼š2020-05-16 å¼ ç®çº
 	bool s = pix.isNull();
 
 	booDotVecText.clear();

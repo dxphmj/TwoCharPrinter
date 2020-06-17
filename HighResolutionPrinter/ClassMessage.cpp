@@ -5,9 +5,7 @@
 #include <stdio.h>
 #include "xml/tinyxml.h"
 #include <QPainter>
-#include <io.h>
 #include "QFileInfo"
-#include <Windows.h>
 #include "BmpObj.h"
 #include "ModuleMain.h"
 #include "wordStock/GetHZinfo.h"

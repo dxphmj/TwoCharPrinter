@@ -99,7 +99,7 @@ void CBarcodeOBJ::Create2Dcode()
 
 	//else  {my_symbol->show_hrt=0;}
 
-	strcpy_s(my_symbol->outfile, "User/logo/output.bmp");
+	strncpy(my_symbol->outfile,"User/logo/output.bmp",50);
 	ZBarcode_Encode(my_symbol, (unsigned char*) strCodeContent.c_str(), 0);
 	generated=1;
 	int error_num = ZBarcode_Print(my_symbol, 0);

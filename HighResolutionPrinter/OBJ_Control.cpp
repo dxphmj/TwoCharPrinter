@@ -4,16 +4,14 @@
 #include <stdio.h>
 #include "xml/tinyxml.h"
 #include <QPainter>
-#include <io.h>
 #include "QFileInfo"
-#include <Windows.h>
 #include "backend/zint.h"
 #include "wordStock/GetHZinfo.h"
 #include <QDir>
 #include <QString>
 #include <math.h>
 
-//#define byte unsigned char
+#define byte unsigned char
 
 OBJ_Control::OBJ_Control(void)
 {
@@ -845,7 +843,7 @@ void OBJ_Control::DrawTextAll(CDC* pDC,vector<vector<bool> >& boDotMes)
 		Draw16x12Text(pDC,boDotMes);		
 }
 
-void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool>>& boDotMes)
+void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool> >& boDotMes)
 {
 	CBrush cbrushB(QColor(0,0,0));//ºÚË¢
 	cbrushB.setStyle(Qt::SolidPattern);
