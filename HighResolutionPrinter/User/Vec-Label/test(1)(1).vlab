@@ -1,0 +1,28 @@
+<MES>
+    <PRO>
+        <Matrix>241M</Matrix>
+        <Pixel>242</Pixel>
+        <Reverse>GLOBAL</Reverse>
+        <Inverse>GLOBAL</Inverse>
+    </PRO>
+    <OBJ>
+        <TYPE1>text</TYPE1>
+        <TYPE2>time</TYPE2>
+        <LineStart>45</LineStart>
+        <RowStart>217</RowStart>
+        <LineSize>73</LineSize>
+        <RowSize>234</RowSize>
+        <SW>0</SW>
+        <SS>0</SS>
+        <NEG>0</NEG>
+        <BWDx>0</BWDx>
+        <BWDy>0</BWDy>
+        <setFONT>»ªÎÄÐÐ¿¬</setFONT>
+        <setTEXT>20200621</setTEXT>
+        <setTIME>%Y%m%d</setTIME>
+        <ETimeOffSet>0</ETimeOffSet>
+        <TimeOffSet>0</TimeOffSet>
+        <TimeOffSetUint>-1</TimeOffSetUint>
+        <FontSize>70</FontSize>
+    </OBJ>
+</MES>

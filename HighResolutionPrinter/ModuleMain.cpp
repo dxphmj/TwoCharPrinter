@@ -407,10 +407,10 @@ string ModuleMain::TimeFormatToText(CString InPutTimeFormat,int tempstrETimeOffS
 	CString outCStr;
 	if (tempstrETimeOffSet==0)
 	{
-		QDateTime NowTime=QDateTime::currentDateTime();
+		QDateTime NowTime = QDateTime::currentDateTime();
 		//CTime NowTime=CTime::currentTime();
-		lt=time(NULL);
-		ptr=localtime(&lt);
+		lt = time(NULL);
+		ptr = localtime(&lt);
 		
 		strftime(buf,100,InPutTimeFormat.toStdString().c_str(),ptr);
 		outCStr=buf;
@@ -418,13 +418,13 @@ string ModuleMain::TimeFormatToText(CString InPutTimeFormat,int tempstrETimeOffS
 	} 
 	else
 	{
-		CTime tempTime=CTime::currentTime();
-		QDate tempTime1=QDate::currentDate();
+		CTime tempTime = CTime::currentTime();
+		QDate tempTime1 = QDate::currentDate();
 		//outCStr=NowTime.Format(InPutTimeFormat);
-		QDateTime NowTime=QDateTime::currentDateTime();
+		QDateTime NowTime = QDateTime::currentDateTime();
 
 		int addYear=0,addMonth=0,addDay=0,addHour=0,addMinute=0;
-		switch(tempstrTimeOffSetUint)
+		switch(tempstrTimeOffSetUint)//偏移单位
 		{
 		case 0:
 			if (tempTime1.year()+tempintTimeOffSet<3000)

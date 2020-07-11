@@ -2,6 +2,7 @@
 #define PARAMSETTINGFORM_H
 
 #include <QWidget>
+#include <QDateTime>
 #include "printsetting.h"
 #include "syssetting.h"
 #include "countsetting.h"
@@ -30,6 +31,7 @@ public:
 
 public:
 	QString getNum(QString str);
+	void readConfigFromXml();
 
 private slots:
 	void paraExitBut_clicked();
@@ -39,7 +41,7 @@ private slots:
 	void aboutMacBut_clicked();
 
 	void holdConfigurationBut_clicked(); 
-	void readConfigurationBut_clicked();
+	void resetConfig();
 
 };
 

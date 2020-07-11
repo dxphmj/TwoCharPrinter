@@ -73,6 +73,8 @@ public://高解析环境下的特殊参数
 	int intSideWidth;//最终生成的图形的宽度
 	int intSideHight;//最终生成的图形的高度，二者用于高解析环境下判断obj是否被选中
 	vector< vector<bool> > booDotVecText; //矢量字体点阵
+	int intFontSize;//矢量字体字号(pixelSize)
+	void GenerateVecBmp(string strFont, string strText, int intFontSize);
 
 public://参数，待定
 	string img;//此为logo图片，vb中为Image类型

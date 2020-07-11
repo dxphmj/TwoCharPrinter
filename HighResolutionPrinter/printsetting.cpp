@@ -1,4 +1,5 @@
 ﻿#include "printsetting.h"
+#include "numkeyboard.h"
 
 printSetting::printSetting(QWidget *parent)
 	: QWidget(parent)
@@ -25,8 +26,11 @@ printSetting::printSetting(QWidget *parent)
 	connect(ui.offsetAddBut,SIGNAL(clicked()),this,SLOT(offsetAddBut()));
 	connect(ui.flashSprayInternalRedBut,SIGNAL(clicked()),this,SLOT(flashSprayInternalRedBut()));
 	connect(ui.flashSprayInternalAddBut,SIGNAL(clicked()),this,SLOT(flashSprayInternalAddBut()));
-	connect(ui.flashSprayTimesRedBut,SIGNAL(clicked()),this,SLOT(flashSprayTimesRedBut()));
-	connect(ui.flashSprayTimesAddBut,SIGNAL(clicked()),this,SLOT(flashSprayTimesAddBut()));
+	connect(ui.synWheelCheckBox,SIGNAL(stateChanged(int)),this,SLOT(synWheelCheckBox_valueChanged(int)));
+	connect(ui.trigComBox,SIGNAL(currentIndexChanged(int)),this,SLOT(trigComBox_ValueChanged(int)));
+	connect(ui.encoderResLineEdit,SIGNAL(clicked()),this,SLOT(encoderResLineEdit_clicked()));
+	connect(ui.wheelDiameterLineEdit,SIGNAL(clicked()),this,SLOT(wheelDiameterLineEdit_clicked()));
+	connect(ui.pulseWidthLineEdit,SIGNAL(clicked()),this,SLOT(pulseWidthLineEdit_clicked()));
 
 	ui.printSetTabWid->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
@@ -88,18 +92,24 @@ printSetting::printSetting(QWidget *parent)
 									 QRadioButton{color:rgb(255, 255, 255);background-color: rgb(67,51, 139);}\
 									 ");
 
-	ui.trigComBox->addItem(QStringLiteral("外置电眼"),0);
-	ui.trigComBox->addItem(QStringLiteral("自动"),1);
-	ui.trigComBox->addItem(QStringLiteral("光电"),2);
-	ui.trigComBox->addItem(QStringLiteral("编码器"),3);
-	ui.trigComBox->addItem(QStringLiteral("光电编码"),4);
-	ui.trigComBox->addItem(QStringLiteral("光自动"),5);
+	ui.trigComBox->addItem(QStringLiteral("自动"),0);
+	ui.trigComBox->addItem(QStringLiteral("光电"),1);
+	ui.trigComBox->addItem(QStringLiteral("编码器"),2);
+	ui.trigComBox->addItem(QStringLiteral("光电编码"),3);
+	ui.trigComBox->addItem(QStringLiteral("光自动"),4);
 
-	ui.inkjetComBox->addItem(QStringLiteral("左喷"),0);
-	ui.inkjetComBox->addItem(QStringLiteral("右喷"),1);
+	ui.inkjetComBox->addItem(QStringLiteral("左列"),0);
+	ui.inkjetComBox->addItem(QStringLiteral("右列"),1);
+	ui.inkjetComBox->addItem(QStringLiteral("左右交替"),2);
+	ui.inkjetComBox->addItem(QStringLiteral("左+右列"),3);
 
 	ui.printDirComBox->addItem(QStringLiteral("正向"),0);
 	ui.printDirComBox->addItem(QStringLiteral("逆向"),1);
+
+	ui.horizonalReverseComBox->addItem(QStringLiteral("off"),0);
+	ui.horizonalReverseComBox->addItem(QStringLiteral("on"),1);
+	ui.verticalReverseComBox->addItem(QStringLiteral("off"),0);
+	ui.verticalReverseComBox->addItem(QStringLiteral("on"),1);
 
 #ifdef BIG_CHAR
 	//[打印风格]界面：“打印灰度”改为“墨点大小”；隐藏“喷墨方式”
@@ -149,6 +159,8 @@ printSetting::printSetting(QWidget *parent)
 	NozzleradioBG->addButton(ui.nozzleSel2RadioBut,2);
 	ui.nozzleSel1RadioBut->setChecked(1);
 
+	pNumKeyboard = new numkeyboard(ui.printSetTabWid);
+	pNumKeyboard->setVisible(false);
 }
 
 printSetting::~printSetting()
@@ -189,6 +201,56 @@ QString printSetting::getNum(QString str)
 	}
 
 	return res;
+}
+
+void printSetting::synWheelCheckBox_valueChanged(int val)
+{
+	if (val)
+	{
+		ui.printSpeedRedBut->setEnabled(false);
+		ui.printSpeedAddBut->setEnabled(false);
+		ui.printSpeedRedBut->setStyleSheet("background-color: rgb(128,128,128,80);");
+		ui.printSpeedAddBut->setStyleSheet("background-color: rgb(128,128,128,80);");
+		ui.printSpeedShowLab->setStyleSheet("background-color: rgb(128,128,128,80); color: rgb(128,128,128);");
+
+		ui.proLineSpeedLab->setStyleSheet("color: rgb(255,255,255);");
+		ui.proLineSpeedShowLab->setStyleSheet("background-color: rgb(72,61, 139); color: rgb(255, 255, 255);");
+	}
+	else if (!val)
+	{
+		ui.printSpeedRedBut->setEnabled(true);
+		ui.printSpeedAddBut->setEnabled(true);
+		ui.printSpeedRedBut->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 0, 230);");
+		ui.printSpeedAddBut->setStyleSheet("color: rgb(255, 255, 255); background-color: rgb(0, 0, 230);");
+		ui.printSpeedShowLab->setStyleSheet("background-color: rgb(72,61, 139); color: rgb(255, 255, 255);");
+		//产线速度不可用
+		ui.proLineSpeedLab->setStyleSheet("color: rgb(128,128,128);");
+		ui.proLineSpeedShowLab->setStyleSheet("background-color: rgb(128,128,128,80); color: rgb(128,128,128);");
+	}
+}
+
+void printSetting::trigComBox_ValueChanged(int val)
+{
+	if ( val==0 || val==1 || val==4 )//若为自动/光电/光自动
+	{
+		//编码器分辨率不可用
+		ui.encoderResLineEdit->setEnabled(false);
+		ui.encoderResLineEdit->setStyleSheet("color: rgb(128,128,128); background-color: rgb(128,128,128,80); border-color: rgb(128,128,128,80);");
+		//ui.encoderResLab->setStyleSheet("color: rgb(128,128,128);");
+		//靠轮直径不可用
+		ui.wheelDiameterLineEdit->setEnabled(false);
+		ui.wheelDiameterLineEdit->setStyleSheet("color: rgb(128,128,128); background-color: rgb(128,128,128,80); border-color: rgb(128,128,128,80);");
+		//ui.wheelDiameterLab->setStyleSheet("color: rgb(128,128,128);");
+	}
+	else
+	{
+		ui.encoderResLineEdit->setEnabled(true);
+		ui.encoderResLineEdit->setStyleSheet("background-color: rgb(255,255,255); color: rgb(0,0,0);");
+		//ui.encoderResLab->setStyleSheet("color: rgb(255,255,255);");
+		ui.wheelDiameterLineEdit->setEnabled(true);
+		ui.wheelDiameterLineEdit->setStyleSheet("background-color: rgb(255,255,255); color: rgb(0,0,0);");
+		//ui.wheelDiameterLab->setStyleSheet("color: rgb(255,255,255);");
+	}
 }
 
 void printSetting::printSpeedRedBut()
@@ -532,36 +594,23 @@ void printSetting::flashSprayInternalAddBut()
 
 }
 
-void printSetting::flashSprayTimesRedBut()
+void printSetting::encoderResLineEdit_clicked()
 {
-	QString str = ui.flashSprayTimesShowLab->text();
-	QString str2 = getNum(str);
-	int flashSprayTimesFactor = str2.toInt();
-	if (flashSprayTimesFactor>2)
-	{
-		flashSprayTimesFactor-=1;
-	} 
-	else
-	{
-		flashSprayTimesFactor=1;
-	}
-	ui.flashSprayTimesShowLab->setText(QString("%1").arg(flashSprayTimesFactor));
-
+	pNumKeyboard->SetLineEdit(ui.encoderResLineEdit);
+	QRect numKeyboardRect = pNumKeyboard->geometry();
+	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
 }
 
-void printSetting::flashSprayTimesAddBut()
+void printSetting::wheelDiameterLineEdit_clicked()
 {
-	QString str = ui.flashSprayTimesShowLab->text();
-	QString str2 = getNum(str);
-	int flashSprayTimesFactor = str2.toInt();
-	if (flashSprayTimesFactor>=1)
-	{
-		flashSprayTimesFactor+=1;
-	} 
-	else
-	{
-		flashSprayTimesFactor=1;
-	}
-	ui.flashSprayTimesShowLab->setText(QString("%1").arg(flashSprayTimesFactor));
+	pNumKeyboard->SetLineEdit(ui.wheelDiameterLineEdit);
+	QRect numKeyboardRect = pNumKeyboard->geometry();
+	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
+}
 
+void printSetting::pulseWidthLineEdit_clicked()
+{
+	pNumKeyboard->SetLineEdit(ui.pulseWidthLineEdit);
+	QRect numKeyboardRect = pNumKeyboard->geometry();
+	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
 }

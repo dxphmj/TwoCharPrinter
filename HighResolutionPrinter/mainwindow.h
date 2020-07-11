@@ -72,13 +72,16 @@ public:
 	QMutex boPrintNowLock;
 
 	void RefreshWindow();
+	void getCurParam();
 	void getSerialTimeDotBuf();
+
 public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;
 
 	void DownloadPrintData();
+	void CreateCtrlCmd();
 	void CreatePrintData();
 	void getMessageDot();
 

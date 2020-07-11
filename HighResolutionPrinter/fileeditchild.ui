@@ -48,6 +48,9 @@ background-color: rgb(0, 0, 230);</string>
    <property name="styleSheet">
     <string notr="true">background-color: rgb(255, 255, 255);</string>
    </property>
+   <property name="frameShape">
+    <enum>QFrame::NoFrame</enum>
+   </property>
   </widget>
   <widget class="QPushButton" name="saveasBut">
    <property name="geometry">
@@ -98,9 +101,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QScrollBar" name="textpreviewScrollBar">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>250</y>
-     <width>1041</width>
+     <x>0</x>
+     <y>251</y>
+     <width>1051</width>
      <height>26</height>
     </rect>
    </property>
@@ -131,7 +134,7 @@ background-color: rgb(0, 0, 230);</string>
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>4</number>
+    <number>0</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -3455,7 +3458,7 @@ background-color: rgb(67,51, 139);</string>
    <property name="geometry">
     <rect>
      <x>910</x>
-     <y>570</y>
+     <y>550</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -3478,8 +3481,8 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="moveRightBut">
    <property name="geometry">
     <rect>
-     <x>970</x>
-     <y>630</y>
+     <x>980</x>
+     <y>620</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -3502,8 +3505,8 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="moveDownBut">
    <property name="geometry">
     <rect>
-     <x>910</x>
-     <y>690</y>
+     <x>980</x>
+     <y>550</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -3526,8 +3529,8 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="moveLeftBut">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>630</y>
+     <x>910</x>
+     <y>620</y>
      <width>63</width>
      <height>63</height>
     </rect>
@@ -3578,8 +3581,8 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="degreeTextAddBut">
    <property name="geometry">
     <rect>
-     <x>1000</x>
-     <y>470</y>
+     <x>985</x>
+     <y>440</y>
      <width>41</width>
      <height>41</height>
     </rect>
@@ -3609,9 +3612,9 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="degreeTextShowLab">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>470</y>
-     <width>111</width>
+     <x>895</x>
+     <y>440</y>
+     <width>90</width>
      <height>41</height>
     </rect>
    </property>
@@ -3641,8 +3644,8 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="degreeTextRedBut">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>470</y>
+     <x>855</x>
+     <y>440</y>
      <width>41</width>
      <height>41</height>
     </rect>
@@ -3672,8 +3675,8 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="rotateTextLab">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>470</y>
+     <x>780</x>
+     <y>440</y>
      <width>71</width>
      <height>41</height>
     </rect>
@@ -3704,8 +3707,8 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QPushButton" name="internalTextAddBut">
    <property name="geometry">
     <rect>
-     <x>1000</x>
-     <y>520</y>
+     <x>985</x>
+     <y>490</y>
      <width>41</width>
      <height>41</height>
     </rect>
@@ -3735,8 +3738,8 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="internalTextRedBut">
    <property name="geometry">
     <rect>
-     <x>850</x>
-     <y>520</y>
+     <x>855</x>
+     <y>490</y>
      <width>41</width>
      <height>41</height>
     </rect>
@@ -3766,8 +3769,8 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="internalTextLab">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>520</y>
+     <x>780</x>
+     <y>490</y>
      <width>71</width>
      <height>41</height>
     </rect>
@@ -3795,65 +3798,13 @@ background-color: rgb(67,51, 139);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QComboBox" name="pixelComBox">
-   <property name="geometry">
-    <rect>
-     <x>900</x>
-     <y>350</y>
-     <width>141</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="font">
-    <font>
-     <family>宋体</family>
-     <pointsize>14</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(0, 0, 230);</string>
-   </property>
-  </widget>
-  <widget class="QLabel" name="pixelLab">
-   <property name="geometry">
-    <rect>
-     <x>765</x>
-     <y>350</y>
-     <width>130</width>
-     <height>41</height>
-    </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>101</width>
-     <height>41</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>楷体</family>
-     <pointsize>16</pointsize>
-    </font>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">color: rgb(255, 255, 255);
-background-color: rgb(67,51, 139);</string>
-   </property>
-   <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;画布高度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-   </property>
-   <property name="alignment">
-    <set>Qt::AlignCenter</set>
-   </property>
-  </widget>
   <widget class="QComboBox" name="moveSpeedComBox">
    <property name="geometry">
     <rect>
-     <x>900</x>
-     <y>400</y>
-     <width>141</width>
-     <height>41</height>
+     <x>780</x>
+     <y>610</y>
+     <width>110</width>
+     <height>40</height>
     </rect>
    </property>
    <property name="font">
@@ -3870,8 +3821,8 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="moveSpeedLab">
    <property name="geometry">
     <rect>
-     <x>765</x>
-     <y>399</y>
+     <x>770</x>
+     <y>570</y>
      <width>130</width>
      <height>41</height>
     </rect>
@@ -3893,7 +3844,7 @@ background-color: rgb(0, 0, 230);</string>
 background-color: rgb(67,51, 139);</string>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;移动倍速&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt; color:#ffffff;&quot;&gt;移动步距&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
@@ -3902,9 +3853,9 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QLabel" name="internalShowTextLab">
    <property name="geometry">
     <rect>
-     <x>890</x>
-     <y>520</y>
-     <width>111</width>
+     <x>896</x>
+     <y>490</y>
+     <width>90</width>
      <height>41</height>
     </rect>
    </property>
@@ -3931,6 +3882,245 @@ color: rgb(255, 255, 255);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
+  <widget class="QFrame" name="frame">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>350</y>
+     <width>271</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-color: rgb(67, 51, 139);</string>
+   </property>
+   <property name="frameShape">
+    <enum>QFrame::Panel</enum>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Raised</enum>
+   </property>
+   <widget class="QLabel" name="Xposlabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>10</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>X:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Yposlabel">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>40</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>Y:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Widthlabel">
+    <property name="geometry">
+     <rect>
+      <x>150</x>
+      <y>10</y>
+      <width>31</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>W:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Hightlabel">
+    <property name="geometry">
+     <rect>
+      <x>153</x>
+      <y>40</y>
+      <width>21</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string>H:</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="XposShowlabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>10</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="YposShowlabel">
+    <property name="geometry">
+     <rect>
+      <x>50</x>
+      <y>40</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="WidthShowlabel">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>10</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QLabel" name="HightShowlabel">
+    <property name="geometry">
+     <rect>
+      <x>180</x>
+      <y>40</y>
+      <width>81</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">color: rgb(255, 255, 255);
+font: 10pt &quot;Arial&quot;;
+background-color: rgb(67, 51, 139);</string>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::NoFrame</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QComboBox" name="pixelComBox">
+   <property name="geometry">
+    <rect>
+     <x>900</x>
+     <y>695</y>
+     <width>141</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>宋体</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 230);</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="pixelLab">
+   <property name="geometry">
+    <rect>
+     <x>770</x>
+     <y>695</y>
+     <width>130</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="minimumSize">
+    <size>
+     <width>101</width>
+     <height>41</height>
+    </size>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">color: rgb(255, 255, 255);
+background-color: rgb(67,51, 139);</string>
+   </property>
+   <property name="text">
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;画布高度&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+   </property>
+   <property name="alignment">
+    <set>Qt::AlignCenter</set>
+   </property>
+  </widget>
   <zorder>keyboardStackWid</zorder>
   <zorder>controlLab</zorder>
   <zorder>saveBut</zorder>
@@ -3950,11 +4140,12 @@ color: rgb(255, 255, 255);</string>
   <zorder>internalTextAddBut</zorder>
   <zorder>internalTextRedBut</zorder>
   <zorder>internalTextLab</zorder>
-  <zorder>pixelComBox</zorder>
-  <zorder>pixelLab</zorder>
   <zorder>moveSpeedComBox</zorder>
   <zorder>moveSpeedLab</zorder>
   <zorder>internalShowTextLab</zorder>
+  <zorder>frame</zorder>
+  <zorder>pixelComBox</zorder>
+  <zorder>pixelLab</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

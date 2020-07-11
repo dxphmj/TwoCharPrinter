@@ -15,6 +15,7 @@
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QCheckBox>
 #include <QtWidgets/QComboBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -187,11 +188,20 @@ public:
     QPushButton *internalTextAddBut;
     QPushButton *internalTextRedBut;
     QLabel *internalTextLab;
-    QComboBox *pixelComBox;
-    QLabel *pixelLab;
     QComboBox *moveSpeedComBox;
     QLabel *moveSpeedLab;
     QLabel *internalShowTextLab;
+    QFrame *frame;
+    QLabel *Xposlabel;
+    QLabel *Yposlabel;
+    QLabel *Widthlabel;
+    QLabel *Hightlabel;
+    QLabel *XposShowlabel;
+    QLabel *YposShowlabel;
+    QLabel *WidthShowlabel;
+    QLabel *HightShowlabel;
+    QComboBox *pixelComBox;
+    QLabel *pixelLab;
 
     void setupUi(QWidget *FileEditChild)
     {
@@ -211,6 +221,7 @@ public:
         editPreviewText->setObjectName(QStringLiteral("editPreviewText"));
         editPreviewText->setGeometry(QRect(10, 10, 1041, 241));
         editPreviewText->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        editPreviewText->setFrameShape(QFrame::NoFrame);
         saveasBut = new QPushButton(FileEditChild);
         saveasBut->setObjectName(QStringLiteral("saveasBut"));
         saveasBut->setGeometry(QRect(949, 290, 100, 51));
@@ -225,7 +236,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         textpreviewScrollBar = new QScrollBar(FileEditChild);
         textpreviewScrollBar->setObjectName(QStringLiteral("textpreviewScrollBar"));
-        textpreviewScrollBar->setGeometry(QRect(10, 250, 1041, 26));
+        textpreviewScrollBar->setGeometry(QRect(0, 251, 1051, 26));
         textpreviewScrollBar->setStyleSheet(QStringLiteral(""));
         textpreviewScrollBar->setOrientation(Qt::Horizontal);
         typeTab = new QTabWidget(FileEditChild);
@@ -1199,28 +1210,28 @@ public:
         reverseDMCheckBox->raise();
         moveUpBut = new QPushButton(FileEditChild);
         moveUpBut->setObjectName(QStringLiteral("moveUpBut"));
-        moveUpBut->setGeometry(QRect(910, 570, 63, 63));
+        moveUpBut->setGeometry(QRect(910, 550, 63, 63));
         moveUpBut->setFont(font);
         moveUpBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         moveRightBut = new QPushButton(FileEditChild);
         moveRightBut->setObjectName(QStringLiteral("moveRightBut"));
-        moveRightBut->setGeometry(QRect(970, 630, 63, 63));
+        moveRightBut->setGeometry(QRect(980, 620, 63, 63));
         moveRightBut->setFont(font);
         moveRightBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveright.bmp);\n"
 "border-radius:10px;"));
         moveDownBut = new QPushButton(FileEditChild);
         moveDownBut->setObjectName(QStringLiteral("moveDownBut"));
-        moveDownBut->setGeometry(QRect(910, 690, 63, 63));
+        moveDownBut->setGeometry(QRect(980, 550, 63, 63));
         moveDownBut->setFont(font);
         moveDownBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/movedown.bmp);\n"
 "border-radius:10px;"));
         moveLeftBut = new QPushButton(FileEditChild);
         moveLeftBut->setObjectName(QStringLiteral("moveLeftBut"));
-        moveLeftBut->setGeometry(QRect(850, 630, 63, 63));
+        moveLeftBut->setGeometry(QRect(910, 620, 63, 63));
         moveLeftBut->setFont(font);
         moveLeftBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveleft.bmp);\n"
@@ -1240,14 +1251,14 @@ public:
         keyboardStackWid->addWidget(page_4);
         degreeTextAddBut = new QPushButton(FileEditChild);
         degreeTextAddBut->setObjectName(QStringLiteral("degreeTextAddBut"));
-        degreeTextAddBut->setGeometry(QRect(1000, 470, 41, 41));
+        degreeTextAddBut->setGeometry(QRect(985, 440, 41, 41));
         degreeTextAddBut->setMinimumSize(QSize(41, 41));
         degreeTextAddBut->setFont(font4);
         degreeTextAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         degreeTextShowLab = new QLabel(FileEditChild);
         degreeTextShowLab->setObjectName(QStringLiteral("degreeTextShowLab"));
-        degreeTextShowLab->setGeometry(QRect(890, 470, 111, 41));
+        degreeTextShowLab->setGeometry(QRect(895, 440, 90, 41));
         degreeTextShowLab->setMinimumSize(QSize(0, 41));
         degreeTextShowLab->setFont(font3);
         degreeTextShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -1255,14 +1266,14 @@ public:
         degreeTextShowLab->setAlignment(Qt::AlignCenter);
         degreeTextRedBut = new QPushButton(FileEditChild);
         degreeTextRedBut->setObjectName(QStringLiteral("degreeTextRedBut"));
-        degreeTextRedBut->setGeometry(QRect(850, 470, 41, 41));
+        degreeTextRedBut->setGeometry(QRect(855, 440, 41, 41));
         degreeTextRedBut->setMinimumSize(QSize(41, 41));
         degreeTextRedBut->setFont(font4);
         degreeTextRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         rotateTextLab = new QLabel(FileEditChild);
         rotateTextLab->setObjectName(QStringLiteral("rotateTextLab"));
-        rotateTextLab->setGeometry(QRect(770, 470, 71, 41));
+        rotateTextLab->setGeometry(QRect(780, 440, 71, 41));
         rotateTextLab->setMinimumSize(QSize(41, 41));
         rotateTextLab->setFont(font3);
         rotateTextLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -1270,49 +1281,35 @@ public:
         rotateTextLab->setAlignment(Qt::AlignCenter);
         internalTextAddBut = new QPushButton(FileEditChild);
         internalTextAddBut->setObjectName(QStringLiteral("internalTextAddBut"));
-        internalTextAddBut->setGeometry(QRect(1000, 520, 41, 41));
+        internalTextAddBut->setGeometry(QRect(985, 490, 41, 41));
         internalTextAddBut->setMinimumSize(QSize(41, 41));
         internalTextAddBut->setFont(font4);
         internalTextAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         internalTextRedBut = new QPushButton(FileEditChild);
         internalTextRedBut->setObjectName(QStringLiteral("internalTextRedBut"));
-        internalTextRedBut->setGeometry(QRect(850, 520, 41, 41));
+        internalTextRedBut->setGeometry(QRect(855, 490, 41, 41));
         internalTextRedBut->setMinimumSize(QSize(41, 41));
         internalTextRedBut->setFont(font4);
         internalTextRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         internalTextLab = new QLabel(FileEditChild);
         internalTextLab->setObjectName(QStringLiteral("internalTextLab"));
-        internalTextLab->setGeometry(QRect(770, 520, 71, 41));
+        internalTextLab->setGeometry(QRect(780, 490, 71, 41));
         internalTextLab->setMinimumSize(QSize(41, 41));
         internalTextLab->setFont(font3);
         internalTextLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         internalTextLab->setAlignment(Qt::AlignCenter);
-        pixelComBox = new QComboBox(FileEditChild);
-        pixelComBox->setObjectName(QStringLiteral("pixelComBox"));
-        pixelComBox->setGeometry(QRect(900, 350, 141, 41));
-        pixelComBox->setFont(font1);
-        pixelComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 230);"));
-        pixelLab = new QLabel(FileEditChild);
-        pixelLab->setObjectName(QStringLiteral("pixelLab"));
-        pixelLab->setGeometry(QRect(765, 350, 130, 41));
-        pixelLab->setMinimumSize(QSize(101, 41));
-        pixelLab->setFont(font);
-        pixelLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(67,51, 139);"));
-        pixelLab->setAlignment(Qt::AlignCenter);
         moveSpeedComBox = new QComboBox(FileEditChild);
         moveSpeedComBox->setObjectName(QStringLiteral("moveSpeedComBox"));
-        moveSpeedComBox->setGeometry(QRect(900, 400, 141, 41));
+        moveSpeedComBox->setGeometry(QRect(780, 610, 110, 40));
         moveSpeedComBox->setFont(font1);
         moveSpeedComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         moveSpeedLab = new QLabel(FileEditChild);
         moveSpeedLab->setObjectName(QStringLiteral("moveSpeedLab"));
-        moveSpeedLab->setGeometry(QRect(765, 399, 130, 41));
+        moveSpeedLab->setGeometry(QRect(770, 570, 130, 41));
         moveSpeedLab->setMinimumSize(QSize(101, 41));
         moveSpeedLab->setFont(font);
         moveSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -1320,12 +1317,88 @@ public:
         moveSpeedLab->setAlignment(Qt::AlignCenter);
         internalShowTextLab = new QLabel(FileEditChild);
         internalShowTextLab->setObjectName(QStringLiteral("internalShowTextLab"));
-        internalShowTextLab->setGeometry(QRect(890, 520, 111, 41));
+        internalShowTextLab->setGeometry(QRect(896, 490, 90, 41));
         internalShowTextLab->setMinimumSize(QSize(0, 41));
         internalShowTextLab->setFont(font3);
         internalShowTextLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
 "color: rgb(255, 255, 255);"));
         internalShowTextLab->setAlignment(Qt::AlignCenter);
+        frame = new QFrame(FileEditChild);
+        frame->setObjectName(QStringLiteral("frame"));
+        frame->setGeometry(QRect(770, 350, 271, 80));
+        frame->setStyleSheet(QStringLiteral("background-color: rgb(67, 51, 139);"));
+        frame->setFrameShape(QFrame::Panel);
+        frame->setFrameShadow(QFrame::Raised);
+        Xposlabel = new QLabel(frame);
+        Xposlabel->setObjectName(QStringLiteral("Xposlabel"));
+        Xposlabel->setGeometry(QRect(20, 10, 21, 31));
+        Xposlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        Xposlabel->setFrameShape(QFrame::NoFrame);
+        Yposlabel = new QLabel(frame);
+        Yposlabel->setObjectName(QStringLiteral("Yposlabel"));
+        Yposlabel->setGeometry(QRect(20, 40, 21, 31));
+        Yposlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        Yposlabel->setFrameShape(QFrame::NoFrame);
+        Widthlabel = new QLabel(frame);
+        Widthlabel->setObjectName(QStringLiteral("Widthlabel"));
+        Widthlabel->setGeometry(QRect(150, 10, 31, 31));
+        Widthlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        Widthlabel->setFrameShape(QFrame::NoFrame);
+        Hightlabel = new QLabel(frame);
+        Hightlabel->setObjectName(QStringLiteral("Hightlabel"));
+        Hightlabel->setGeometry(QRect(153, 40, 21, 31));
+        Hightlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        Hightlabel->setFrameShape(QFrame::NoFrame);
+        XposShowlabel = new QLabel(frame);
+        XposShowlabel->setObjectName(QStringLiteral("XposShowlabel"));
+        XposShowlabel->setGeometry(QRect(50, 10, 81, 31));
+        XposShowlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        XposShowlabel->setFrameShape(QFrame::NoFrame);
+        YposShowlabel = new QLabel(frame);
+        YposShowlabel->setObjectName(QStringLiteral("YposShowlabel"));
+        YposShowlabel->setGeometry(QRect(50, 40, 81, 31));
+        YposShowlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        YposShowlabel->setFrameShape(QFrame::NoFrame);
+        WidthShowlabel = new QLabel(frame);
+        WidthShowlabel->setObjectName(QStringLiteral("WidthShowlabel"));
+        WidthShowlabel->setGeometry(QRect(180, 10, 81, 31));
+        WidthShowlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        WidthShowlabel->setFrameShape(QFrame::NoFrame);
+        HightShowlabel = new QLabel(frame);
+        HightShowlabel->setObjectName(QStringLiteral("HightShowlabel"));
+        HightShowlabel->setGeometry(QRect(180, 40, 81, 31));
+        HightShowlabel->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"font: 10pt \"Arial\";\n"
+"background-color: rgb(67, 51, 139);"));
+        HightShowlabel->setFrameShape(QFrame::NoFrame);
+        pixelComBox = new QComboBox(FileEditChild);
+        pixelComBox->setObjectName(QStringLiteral("pixelComBox"));
+        pixelComBox->setGeometry(QRect(900, 695, 141, 41));
+        pixelComBox->setFont(font1);
+        pixelComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
+        pixelLab = new QLabel(FileEditChild);
+        pixelLab->setObjectName(QStringLiteral("pixelLab"));
+        pixelLab->setGeometry(QRect(770, 695, 130, 41));
+        pixelLab->setMinimumSize(QSize(101, 41));
+        pixelLab->setFont(font);
+        pixelLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        pixelLab->setAlignment(Qt::AlignCenter);
         keyboardStackWid->raise();
         controlLab->raise();
         saveBut->raise();
@@ -1345,15 +1418,16 @@ public:
         internalTextAddBut->raise();
         internalTextRedBut->raise();
         internalTextLab->raise();
-        pixelComBox->raise();
-        pixelLab->raise();
         moveSpeedComBox->raise();
         moveSpeedLab->raise();
         internalShowTextLab->raise();
+        frame->raise();
+        pixelComBox->raise();
+        pixelLab->raise();
 
         retranslateUi(FileEditChild);
 
-        typeTab->setCurrentIndex(4);
+        typeTab->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(FileEditChild);
@@ -1468,9 +1542,17 @@ public:
         internalTextAddBut->setText(QApplication::translate("FileEditChild", "\357\274\213", 0));
         internalTextRedBut->setText(QApplication::translate("FileEditChild", "\357\274\215", 0));
         internalTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\351\227\264\350\267\235</span></p></body></html>", 0));
-        pixelLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p>\347\224\273\345\270\203\351\253\230\345\272\246</p></body></html>", 0));
-        moveSpeedLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">\347\247\273\345\212\250\345\200\215\351\200\237</span></p></body></html>", 0));
+        moveSpeedLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" font-size:14pt; color:#ffffff;\">\347\247\273\345\212\250\346\255\245\350\267\235</span></p></body></html>", 0));
         internalShowTextLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" color:#ffffff;\">0</span></p></body></html>", 0));
+        Xposlabel->setText(QApplication::translate("FileEditChild", "X:", 0));
+        Yposlabel->setText(QApplication::translate("FileEditChild", "Y:", 0));
+        Widthlabel->setText(QApplication::translate("FileEditChild", "W:", 0));
+        Hightlabel->setText(QApplication::translate("FileEditChild", "H:", 0));
+        XposShowlabel->setText(QString());
+        YposShowlabel->setText(QString());
+        WidthShowlabel->setText(QString());
+        HightShowlabel->setText(QString());
+        pixelLab->setText(QApplication::translate("FileEditChild", "<html><head/><body><p><span style=\" font-size:14pt;\">\347\224\273\345\270\203\351\253\230\345\272\246</span></p></body></html>", 0));
     } // retranslateUi
 
 };

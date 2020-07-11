@@ -35,6 +35,14 @@ sysSetting::sysSetting(QWidget *parent)
 	ui.sysLanguageListWid->setCurrentRow(1);
 	m_SelLanguage = 1;
 
+	ui.sysSetTabWid->setStyleSheet("QTabWidget:pane{ \
+									 boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
+									 QTabBar::tab{font:'¿¬Ìå' 16pt;color: white;height:50px; width:252px; background-color:rgb(0, 0, 230); margin-right: 2px; margin-bottom:-2px;}\
+									 QTabBar::tab:selected{border:1px solid white;border-bottom-color: none;}\
+									 QTabBar::tab:!selected{border-bottom: 3px solid white;}\
+									 ");
+	ui.sysSetTabWid->setCurrentIndex(0);
+
 	ui.addYearBut->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/moveup.bmp);border-radius:5px;font: bold;font-size:30px;color:rgb(255,255,255)}\
 								QPushButton:pressed{border-image: url(:/Images/moveup.bmp);border: 1px solid rgb(12 , 138 , 235);\
 								padding-left:7px;padding-top:7px;}\

@@ -907,6 +907,56 @@ void OBJ_Control::DrawDot(CDC* pDC)
 
 #endif
 }
+
+void OBJ_Control::GenerateVecBmp(string strFont, string strText, int intFontSize)
+{
+	ModuleMain* pModuleMain = new ModuleMain;
+
+	QFont curFont;
+	wstring wStrFont = pModuleMain->stringToWstring(strFont);
+	QString qStrFont = QString::fromStdWString(wStrFont);
+	curFont.setFamily(qStrFont);
+	curFont.setPixelSize(intFontSize);
+
+	QFontMetrics fm(curFont);
+	wstring wStrText = pModuleMain->stringToWstring(strText);
+	QString qStrText = QString::fromStdWString(wStrText);
+	int metrics_width = fm.width(qStrText);
+	int metrics_height = fm.height();
+
+	QPixmap pix(metrics_width, metrics_height);
+	pix.fill(Qt::white);
+	QRect rect1(0, 0, metrics_width, metrics_height);
+
+	QPainter painter(&pix);
+	painter.setFont(curFont);
+	painter.setPen(Qt::black);
+	painter.drawText(rect1,qStrText);
+
+	QImage pImage;
+	pImage = pix.toImage();
+
+	//≤‚ ‘£∫2020-05-16 ’≈Á‚¨B
+	bool s = pix.isNull();
+
+	booDotVecText.clear();
+	vector< vector<bool> > vbuffer(metrics_width, vector<bool>(metrics_height, false));
+	booDotVecText = vbuffer;
+
+	for(int y = 0; y< pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x< pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			if(average < 200)
+				booDotVecText[x][y] = true;
+			else
+				booDotVecText[x][y] = false;
+		}  
+	}  
+
+}
 	
 vector<BYTE> OBJ_Control::DotToByte1(int tempintDotRowStart, int tempintDotRowEnd, vector<BYTE>& bytTempData2,string tempfont, bool tempBWDy, bool tempBWDx ,bool tempNEG , 
 	string tempsetTEXT, int tempRowSize, int tempLineSize , int tempLineStart , int tempRowStart , int tempSS , int tempSW,bool boReverse, bool boInverse,int matrixMesdis,int pixelMesdis,

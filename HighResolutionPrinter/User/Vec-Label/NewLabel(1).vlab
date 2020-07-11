@@ -7,34 +7,26 @@
     </PRO>
     <OBJ>
         <TYPE1>text</TYPE1>
-        <TYPE2>qrcode</TYPE2>
-        <LineStart>13</LineStart>
-        <RowStart>183</RowStart>
-        <LineSize>25</LineSize>
-        <RowSize>25</RowSize>
-        <SW>1</SW>
-        <SS>1</SS>
-        <NEG>0</NEG>
-        <BWDx>0</BWDx>
-        <BWDy>0</BWDy>
-        <setTEXT>AAA</setTEXT>
-        <qrcodeVersion>2</qrcodeVersion>
-        <qrcodeSideLen>5</qrcodeSideLen>
-    </OBJ>
-    <OBJ>
-        <TYPE1>text</TYPE1>
-        <TYPE2>vtext</TYPE2>
-        <LineStart>45</LineStart>
-        <RowStart>40</RowStart>
-        <LineSize>46</LineSize>
-        <RowSize>116</RowSize>
+        <TYPE2>serial</TYPE2>
+        <LineStart>0</LineStart>
+        <RowStart>0</RowStart>
+        <LineSize>63</LineSize>
+        <RowSize>306</RowSize>
         <SW>0</SW>
         <SS>0</SS>
         <NEG>0</NEG>
         <BWDx>0</BWDx>
         <BWDy>0</BWDy>
         <setFONT>»ªÎÄ²ÊÔÆ</setFONT>
-        <setTEXT>²âÊÔ5</setTEXT>
-        <FontSize>45</FontSize>
+        <setTEXT>000000001</setTEXT>
+        <FirstLimit>1</FirstLimit>
+        <SecondLimit>999999999</SecondLimit>
+        <StartValue>1</StartValue>
+        <Step>1</Step>
+        <Repeat>1</Repeat>
+        <Digits>9</Digits>
+        <Format>0</Format>
+        <Counter>0</Counter>
+        <FontSize>60</FontSize>
     </OBJ>
 </MES>

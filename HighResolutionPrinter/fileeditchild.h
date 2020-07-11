@@ -43,6 +43,7 @@ public:
 	void lineeditChange();*/
 
 	void DrawBackFrame(QPainter *qFramePainter);
+	void DrawVerScale(QPainter *qScalePainter);
 	void MouseBeenPressed(QMouseEvent *event);
 	void MouseBeenReleased(QMouseEvent *event);
 	void MouseMoved(QMouseEvent *event);
@@ -56,6 +57,8 @@ public:
 	int  GetCharLenFromFont(string txtFont, bool LineOrRow); 
 	void PushBackTextOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 	void PushBackVecTextOBJ(QString txtFont, QString txtContent, int intFontSize);
+	void PushBackVecTimeOBJ(QString txtFont, QString txtContent, int intFontSize);
+	void PushBackVecSerialOBJ(QString txtFont, QString txtContent, int intFontSize);
 	void PushBackBanCiOBJ(string txtFont, bool txtBWDy, bool txtBWDx, bool txtNEG, string txtContent, int txtLineStart, int txtRowStart, int txtSS, int txtSW);
 
 	QString getChinese(QString &str);
@@ -227,9 +230,11 @@ private slots:
 protected:
 	//void paintEvent(QPaintEvent *event);
 	QLabel* viewAreaLabel;
+	QLabel* verticalScaleLabel;
 	QScrollBar* tempScrollBar;
 	void paintDot();
 	void paintFrame();
+	void paintScale();
 	bool eventFilter(QObject *watched, QEvent *event);
 
 public:

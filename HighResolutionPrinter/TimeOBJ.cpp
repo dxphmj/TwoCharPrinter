@@ -33,6 +33,17 @@ CTimeOBJ::CTimeOBJ(OBJ_Control obj,CTimeOBJ TimeObj)
 	intTimeOffSet = TimeObj.intTimeOffSet;
 	strTimeOffSet = TimeObj.strTimeOffSet;
 
+#ifdef BIG_CHAR
+#else
+	intFontSize = obj.intFontSize;
+	SideLength = 1;
+	intSideHight = intLineSize;
+	intSideWidth = intRowSize;
+
+	booDotVecText.clear();
+	booDotVecText = obj.booDotVecText;
+#endif
+	
 }
 
 CTimeOBJ::~CTimeOBJ(void)

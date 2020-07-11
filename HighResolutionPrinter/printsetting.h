@@ -6,6 +6,8 @@
 #include "mainwindow.h"
 #include <QButtonGroup>
 
+class numkeyboard;
+
 class printSetting : public QWidget
 {
 	Q_OBJECT
@@ -22,6 +24,11 @@ public:
 	QButtonGroup* XDPIradioBG;
 	QButtonGroup* YDPIradioBG;
 	QButtonGroup* NozzleradioBG;
+	numkeyboard *pNumKeyboard;
+
+public slots:
+	void synWheelCheckBox_valueChanged(int);
+	void trigComBox_ValueChanged(int);
 
 private slots:
 	void printSpeedRedBut();
@@ -44,8 +51,9 @@ private slots:
 	void offsetAddBut();
 	void flashSprayInternalRedBut();
 	void flashSprayInternalAddBut();
-	void flashSprayTimesRedBut();
-	void flashSprayTimesAddBut();
+	void encoderResLineEdit_clicked();
+	void wheelDiameterLineEdit_clicked();
+	void pulseWidthLineEdit_clicked();
 
 };
 

@@ -3,6 +3,7 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
+#include "mainwindow.h"
 #include "paramsettingform.h"
 
 
@@ -19,7 +20,13 @@ void CParamSetting::SaveParam2Xml()
 {
 	QDir configurationDir;
 	QString currentDir = configurationDir.currentPath();
-	QString configurationPath = currentDir + "/System/Configuration.xml";
+
+#ifdef BIG_CHAR
+	QString configurationPath = currentDir + "/System/Configuration-BigChar.xml";
+#else
+	QString configurationPath = currentDir + "/System/Configuration-HighRes.xml";
+#endif
+	
 	QFile file(configurationPath); //以只写方式创建一个文件
 	if (!file.open(QFile::WriteOnly | QFile::Text)) {
 		qDebug() << "Error: Cannot write file: "
@@ -40,22 +47,31 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_SynFrequency", m_SynFrequency);
 	xmlWriter.writeTextElement("m_PrintGray", m_PrintGray);
 	xmlWriter.writeTextElement("m_TriggerMode", m_TriggerMode);
+#ifdef BIG_CHAR
+#else
 	xmlWriter.writeTextElement("m_InkjetMode", m_InkjetMode);
+#endif
 	xmlWriter.writeTextElement("m_PrintingDirection", m_PrintingDirection);
 	xmlWriter.writeTextElement("m_SynWheelCheck",QString::number(m_SynWheelCheck));
 	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
 
 	//高级设置参数
+#ifdef BIG_CHAR
+#else
 	xmlWriter.writeTextElement("XDPIradioBGcheckedId",QVariant(XDPIradioBGcheckedId).toString());
 	xmlWriter.writeTextElement("YDPIradioBGcheckedId",QVariant(YDPIradioBGcheckedId).toString());
+#endif
 	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
 
 	//喷头设置参数
+#ifdef BIG_CHAR
+#else
 	xmlWriter.writeTextElement("m_AdaptParaCheck",QString::number(m_AdaptParaCheck));
 	xmlWriter.writeTextElement("m_InkVoltage", m_InkVoltage);
 	xmlWriter.writeTextElement("m_InkPulseWidth", m_InkPulseWidth);
+#endif
 	xmlWriter.writeTextElement("m_SplicingCheck",QString::number(m_SplicingCheck));
 	xmlWriter.writeTextElement("NozzleradioBGcheckedId",QVariant(NozzleradioBGcheckedId).toString());	
 	xmlWriter.writeTextElement("m_Offset", m_Offset);
@@ -154,12 +170,16 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 			{
 				m_SynWheelCheck = QVariant(ItemValue).toBool();
 				pPrintSetting->ui.synWheelCheckBox->setChecked(m_SynWheelCheck);
+				pPrintSetting->synWheelCheckBox_valueChanged(m_SynWheelCheck);
 			}
 			else if(xmlReader.name().toString() == "m_VoiceCheck")
 			{
 				m_VoiceCheck = QVariant(ItemValue).toBool();
 				pPrintSetting->ui.voiceCheckBox->setChecked(m_VoiceCheck);
 			}
+
+#ifdef BIG_CHAR
+#else
 			else if(xmlReader.name().toString() == "XDPIradioBGcheckedId")
 			{
 				XDPIradioBGcheckedId = QVariant(ItemValue).toInt();
@@ -170,6 +190,8 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 				YDPIradioBGcheckedId = QVariant(ItemValue).toInt();
 				pPrintSetting->YDPIradioBG->button(YDPIradioBGcheckedId)->setChecked(1);
 			}
+#endif
+			
 			else if(xmlReader.name().toString() == "m_RepetePrintCheck")
 			{
 				m_RepetePrintCheck = QVariant(ItemValue).toBool();
@@ -224,11 +246,6 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 			{
 				m_FlashSprayInterval = ItemValue;
 				pPrintSetting->ui.flashSprayInternalShowLab->setText(m_FlashSprayInterval);
-			}
-			else if(xmlReader.name().toString() == "m_FlashSprayFrequency")
-			{
-				m_FlashSprayFrequency = ItemValue;
-				pPrintSetting->ui.flashSprayTimesShowLab->setText(m_FlashSprayFrequency);
 			}
 			else if(xmlReader.name().toString() == "m_UsingUVLightCheck")
 			{
@@ -290,7 +307,13 @@ void CParamSetting::OpenParamFromXml(ParamSettingForm* pParamSettingForm)
 {
 	QDir configurationDir;
 	QString currentDir = configurationDir.currentPath();
-	QString configurationPath = currentDir + "/System/Configuration.xml";
+
+#ifdef BIG_CHAR
+	QString configurationPath = currentDir + "/System/Configuration-BigChar.xml";
+#else
+	QString configurationPath = currentDir + "/System/Configuration-HighRes.xml";
+#endif
+	
 	QFile file(configurationPath);
 	if(!file.open(QFile::ReadOnly | QFile::Text)) return;
 	 

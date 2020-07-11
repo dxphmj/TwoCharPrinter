@@ -93,6 +93,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	//}
 	//QObject::connect(&serial, &QSerialPort::readyRead, this, &MainWindow::serialPort_readyRead);
 	//initPrinter();
+
+	getCurParam();
 }
 
 MainWindow::~MainWindow()
@@ -575,13 +577,114 @@ void MainWindow::DownloadPrintData()
 	}
 }
 
+void MainWindow:: CreateCtrlCmd()
+{
+	BYTE ctrlType;
+	int nType;
+	vector<BYTE> tempCtrVec;
+
+#ifdef BIG_CHAR // Control command (queCtr) : 35 Bytes
+	nType = 0;
+	ctrlType = (BYTE)(nType);
+	//========= HEAD =========
+	tempCtrVec.push_back(0x1);
+	tempCtrVec.push_back(0x80);
+	tempCtrVec.push_back(0x3);
+	tempCtrVec.push_back(0x3);
+	tempCtrVec.push_back(0x0);
+	tempCtrVec.push_back(ctrlType); //大字符or高解析
+	tempCtrVec.push_back(0xff);
+	tempCtrVec.push_back(0xff);
+	//======== CONTENT ========
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintDelay.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynFrequency.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintGray.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TriggerMode.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintingDirection.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynWheelCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VoiceCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepetePrintCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatTimes.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatDelay.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SplicingCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.NozzleradioBGcheckedId));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_Offset.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayInterval.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_UsingUVLightCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TimeExpand.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_StartTime.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_YearShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_MonthShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_DayShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_HourShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_MinShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SecondShow.toInt()));
+	//========= END ==========
+	tempCtrVec.push_back(0xff);
+	tempCtrVec.push_back(0xff);
+
+#else  // Control command (queCtr) : 41 Bytes
+	nType = 1;
+	ctrlType = (BYTE)(nType);
+//========= HEAD =========
+	tempCtrVec.push_back(0x1);
+	tempCtrVec.push_back(0x80);
+	tempCtrVec.push_back(0x3);
+	tempCtrVec.push_back(0x3);
+	tempCtrVec.push_back(0x0);
+	tempCtrVec.push_back(ctrlType); //大字符or高解析
+	tempCtrVec.push_back(0xff);
+	tempCtrVec.push_back(0xff);
+//======== CONTENT ========
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintDelay.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynFrequency.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintGray.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TriggerMode.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_InkjetMode.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintingDirection.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynWheelCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VoiceCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.XDPIradioBGcheckedId));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.YDPIradioBGcheckedId));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepetePrintCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatTimes.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatDelay.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_AdaptParaCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_InkVoltage.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_InkPulseWidth.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SplicingCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.NozzleradioBGcheckedId));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_Offset.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayInterval.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_UsingUVLightCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TimeExpand.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_StartTime.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_YearShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_MonthShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_DayShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_HourShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_MinShow.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SecondShow.toInt()));
+//========= END ==========
+	tempCtrVec.push_back(0xff);
+	tempCtrVec.push_back(0xff);
+
+#endif
+
+	queCtr.push(tempCtrVec);
+}
+
 //生成下发打印数据
 void MainWindow::CreatePrintData()
 {	 	
 	//theApp.mainPicPixel = theApp.m_MessagePrint->Pixel+1;
 	//theApp.mainPicMatrx = theApp.m_MessagePrint->Matrix;
 
-	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll;
+	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll,printSpeed;
 	 
 	ForPreQue = queue<vector<BYTE> >();
 	 
@@ -609,6 +712,8 @@ void MainWindow::CreatePrintData()
 	matrix_name = pixelMes<<2;//低二位为模式 
 	pixelAll = pixelMes|0x80; //表示该数据及时生效，开始打印，将前面的清除掉。
 
+	printSpeed = (BYTE)(m_ParamSetting.m_PrintingSpeed.toInt());//同步轮速度
+
  	boPrintNowLock.lock();
 		vector<BYTE>().swap(m_MessagePrint->bytPrintDataAll);//比clear()好，能够释放内存  
 		vector<BYTE>().swap(m_MessagePrint->bytPrintDataAllOrder);  
@@ -623,6 +728,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAll.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_h);
+		m_MessagePrint->bytPrintDataAll.push_back(printSpeed);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 
@@ -636,6 +742,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAllOrder.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_h);
+		m_MessagePrint->bytPrintDataAllOrder.push_back(printSpeed);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0xff);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0xff);
 
@@ -790,4 +897,20 @@ void MainWindow::getSerialTimeDotBuf()
 		}	 
 	boPrintNowLock.unlock();
 	return;	 	
+}
+
+void MainWindow::getCurParam()
+{
+	ui->voltShowMWLab->setText(m_ParamSetting.m_InkVoltage);
+	ui->voltShowMWLab->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+	ui->PWShowMWLab->setText(m_ParamSetting.m_InkPulseWidth);
+	ui->PWShowMWLab->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+	ui->grayShowMWLab->setText(m_ParamSetting.m_PrintGray);
+	ui->grayShowMWLab->setAlignment(Qt::AlignCenter);
+	ui->speedShowMWLab->setText(m_ParamSetting.m_PrintingSpeed);
+	ui->speedShowMWLab->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+	ui->timeDelayShowMWLab->setText(m_ParamSetting.m_PrintDelay);
+	ui->timeDelayShowMWLab->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
+	ui->dirShowMWLab->setText(m_ParamSetting.m_PrintingDirection);
+	ui->dirShowMWLab->setAlignment(Qt::AlignCenter);
 }

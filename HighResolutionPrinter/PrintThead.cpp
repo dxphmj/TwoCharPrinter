@@ -465,28 +465,12 @@ void PrintThead::run()
 		else if (theApp->m_MessagePrint->boPrintNow) //打印第一条数据
 		{
 			ModuleMain m_ModuleMain;
- 			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 11) //将bytPrintDataAllOrder数据发送给喷头驱动IO
+ 			if (theApp->m_MessagePrint->bytPrintDataAllOrder.size() > 12) //将bytPrintDataAllOrder数据发送给喷头驱动IO
 			{
 			    //strTempCmd = (LPTSTR) m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAllOrder,theApp->m_MessagePrint->bytPrintDataAllOrder.size());
 			    strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAllOrder.size();
 				//strTempCmd = new unsigned short[strTempCmdLen];
 				strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAllOrder,theApp->m_MessagePrint->bytPrintDataAllOrder.size());
-
-				/*
-				unsigned char s0 = strTempCmd[0];
-				unsigned char s1 = strTempCmd[1];
-				unsigned char s2 = strTempCmd[2];
-				unsigned char s3 = strTempCmd[3];
-				unsigned char s4 = strTempCmd[4];
-				unsigned char s5 = strTempCmd[5];
-				unsigned char s6 = strTempCmd[6];
-				unsigned char s7 = strTempCmd[7];
-				unsigned char s8 = strTempCmd[8];
-				unsigned char s9 = strTempCmd[9];
-				unsigned char s10 = strTempCmd[10];
-				unsigned char s11 = strTempCmd[11];
-				*/
-
 				theApp->m_MessagePrint->boPrintNow = false;
 			}			 
 		}
@@ -501,7 +485,7 @@ void PrintThead::run()
 					strTempCmdLen = tempQueVec.size();
                     strTempCmd = m_ModuleMain.VEC2ARRAY(tempQueVec,strTempCmdLen);
 
-                    if (strTempCmdLen > 11)
+                    if (strTempCmdLen > 12)
 					{
 						//动态显示相关										
 						theApp->m_MessagePrint->intMesDis = tempQueVec;										 
@@ -522,12 +506,12 @@ void PrintThead::run()
 			} 
 			else //如果没有动态数据则打印静态数据
 			{
-				if (theApp->m_MessagePrint->bytPrintDataAll.size()>11)
+				if (theApp->m_MessagePrint->bytPrintDataAll.size()>12)
 				{
                     strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAll,theApp->m_MessagePrint->bytPrintDataAll.size());
 
                     strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
-					if (strTempCmdLen < 12) //发送默认的指令数据
+					if (strTempCmdLen < 13) //发送默认的指令数据
 					{
 						//strTempCmd=(LPTSTR)readArr;
 						//strTempCmdLen=8;
@@ -640,7 +624,7 @@ void PrintThead::run()
 			}
 			for(int m = 0; m < nBytesPcol; m++)
 			{
-				bytesData[m] = theApp->m_MessagePrint->bytPrintDataAll[11+nColIndex*nBytesPcol+m];
+				bytesData[m] = theApp->m_MessagePrint->bytPrintDataAll[12+nColIndex*nBytesPcol+m];
 			}
 		 
 

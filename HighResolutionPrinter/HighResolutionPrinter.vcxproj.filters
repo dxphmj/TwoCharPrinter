@@ -774,7 +774,7 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="VecTextOBJ.h">
-      <Filter>Source Files</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

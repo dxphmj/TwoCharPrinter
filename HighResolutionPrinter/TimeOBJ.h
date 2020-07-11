@@ -1,4 +1,5 @@
 #pragma once
+//#include "mainwindow.h"
 #include "ClassMessage.h"
 
 class CTimeOBJ : public OBJ_Control

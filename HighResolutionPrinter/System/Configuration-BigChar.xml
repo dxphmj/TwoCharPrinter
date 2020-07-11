@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration_information>
     <printsetting>
-        <m_PrintingSpeed>85</m_PrintingSpeed>
+        <m_PrintingSpeed>100</m_PrintingSpeed>
         <m_PrintDelay>20</m_PrintDelay>
-        <m_SynFrequency>1</m_SynFrequency>
-        <m_PrintGray>1</m_PrintGray>
-        <m_TriggerMode>0</m_TriggerMode>
-        <m_InkjetMode>0</m_InkjetMode>
-        <m_PrintingDirection>0</m_PrintingDirection>
-        <m_SynWheelCheck>0</m_SynWheelCheck>
-        <m_VoiceCheck>0</m_VoiceCheck>
-        <XDPIradioBGcheckedId>1</XDPIradioBGcheckedId>
-        <YDPIradioBGcheckedId>1</YDPIradioBGcheckedId>
+        <m_SynFrequency>5</m_SynFrequency>
+        <m_PrintGray>5</m_PrintGray>
+        <m_TriggerMode>1</m_TriggerMode>
+        <m_PrintingDirection>1</m_PrintingDirection>
+        <m_SynWheelCheck>1</m_SynWheelCheck>
+        <m_VoiceCheck>1</m_VoiceCheck>
         <m_RepetePrintCheck>0</m_RepetePrintCheck>
         <m_RepeatTimes>1</m_RepeatTimes>
         <m_RepeatDelay>100</m_RepeatDelay>
-        <m_AdaptParaCheck>0</m_AdaptParaCheck>
-        <m_InkVoltage>8.5</m_InkVoltage>
-        <m_InkPulseWidth>1.8</m_InkPulseWidth>
         <m_SplicingCheck>0</m_SplicingCheck>
         <NozzleradioBGcheckedId>1</NozzleradioBGcheckedId>
         <m_Offset>0</m_Offset>
@@ -30,11 +24,11 @@
     </printsetting>
     <system_setting>
         <m_YearShow>2020</m_YearShow>
-        <m_MonthShow>06</m_MonthShow>
-        <m_DayShow>19</m_DayShow>
-        <m_HourShow>14</m_HourShow>
-        <m_MinShow>42</m_MinShow>
-        <m_SecondShow>42</m_SecondShow>
+        <m_MonthShow>1</m_MonthShow>
+        <m_DayShow>8</m_DayShow>
+        <m_HourShow>13</m_HourShow>
+        <m_MinShow>27</m_MinShow>
+        <m_SecondShow>30</m_SecondShow>
         <m_SysLanguage>CHINESE_SIMPLIFIED</m_SysLanguage>
     </system_setting>
 </configuration_information>

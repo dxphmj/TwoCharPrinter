@@ -87,9 +87,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->textpreviewScrollBar->setRange(0,100);
 #else
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
-	ui->editPreviewText->setGeometry(0,0,3121,241);
-	horizon_pos = 0.0;
-	vertical_pos = 0.0;
+	ui->editPreviewText->setGeometry(0,0,3151,241);//此为基于可视窗口viewAreaLabel的坐标
 
 	/*以下为双滚动条的扩展功能，画布大小为3121×721，目前不用
 	tempScrollBar = new QScrollBar(this->parentWidget());
@@ -97,16 +95,23 @@ FileEditChild::FileEditChild(QWidget *parent)
 	tempScrollBar->setRange(0,100);
 	tempScrollBar->setVisible(true);
 	connect(tempScrollBar,SIGNAL(valueChanged(int)),this,SLOT(tempScrollBarChanged(int)));
-	ui->textpreviewScrollBar->setRange(0,100);
+	ui->textpreviewScrollBar->setRange(0,100);*/
+
 	viewAreaLabel = new QLabel(this);
-	viewAreaLabel->setGeometry(10,10,1041,241);
-	viewAreaLabel->setStyleSheet("background-color(255,255,255,0%);");
-	ui->editPreviewText->setGeometry(0, 0, 3121, 721);
+	viewAreaLabel->setGeometry(40,10,1011,241);
+	viewAreaLabel->setStyleSheet("background-color: rgb(255,255,255,0%);");
 	ui->editPreviewText->setParent(viewAreaLabel);
 
 	//设置滚动条初始值为0
 	horizon_pos = 0.0;
-	vertical_pos = 0.0;*/
+	vertical_pos = 0.0;
+
+	//设置垂直刻度框
+	verticalScaleLabel = new QLabel(this);
+	verticalScaleLabel->setGeometry(0,10,40,241);
+	verticalScaleLabel->setStyleSheet("background-color: rgb(255,255,255);");
+	verticalScaleLabel->setFrameShape(QFrame::NoFrame);
+	verticalScaleLabel->installEventFilter(this);
 
 #endif
 
@@ -239,6 +244,9 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->pixelComBox->setCurrentIndex(0);
 	ui->pixelComBox->setEnabled(false);
 	ui->pixelComBox->setStyleSheet("color(150,150,150,50%);");
+	//高解析环境下隐藏画布宽度 2020-6-26 会议决定
+	ui->pixelComBox->setVisible(false);
+	ui->pixelLab->setVisible(false);
 
 #endif
 
@@ -347,7 +355,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 #else
 	//[时间]界面字号设置
 	qTimeSpinBox = new QSpinBox(this->ui->fontSizeTimeComBox);
-	qTimeSpinBox->setValue(30);
+	qTimeSpinBox->setValue(70);
 	qTimeSpinBox->setGeometry(0,0,171,41);
 	//[时间]界面字体设置
 	qTimeFontComboBox = new QFontComboBox(this->ui->fontTypeTimeComBox);
@@ -407,7 +415,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	qSerialFontComboBox->setGeometry(0,0,131,41);
 	qSerialSpinBox = new QSpinBox(this->ui->fontSizeSerialComBox);
 	qSerialSpinBox->setGeometry(0,0,131,41);
-	qSerialSpinBox->setValue(30);
+	qSerialSpinBox->setValue(70);
 	
 #endif
 	
@@ -453,7 +461,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	FontComboBoxChoose->setGeometry(0,0,181,41);
 	
 	spinBox = new QSpinBox(this->ui->fontSizeTextComBox);
-	spinBox->setValue(30);
+	spinBox->setValue(70);
 	spinBox->setGeometry(0,0,181,41);
 
 	connect(spinBox,SIGNAL(valueChanged(int)),this,SLOT(spinBoxSlot(int)));
@@ -466,7 +474,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 	qBanciSpinBox = new QSpinBox(this->ui->fontSizeBanciComBox);
 	qBanciSpinBox->setGeometry(0,0,130,41);
-	qBanciSpinBox->setValue(30);
+	qBanciSpinBox->setValue(70);
 
 #endif
 
@@ -483,8 +491,8 @@ void FileEditChild::ScrollBarChanged(int value)//水平滚动条
 	ui->editPreviewText->move(-2080*p,0);
 #else
 	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
-	ui->editPreviewText->move(-2080*p,vertical_pos);
-	horizon_pos = -2080*p;
+	ui->editPreviewText->move(-2140*p,vertical_pos);//2140=3151(画布大小)-1011(可视范围)
+	//horizon_pos = -2140*p;
 #endif
 }
 
@@ -707,6 +715,7 @@ void FileEditChild::mergeFormat(QTextCharFormat format)
 
 void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 {
+
 #ifdef BIG_CHAR
 	QPen qGrayPen(Qt::lightGray,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
@@ -745,32 +754,86 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 #else
 	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
+	QPen qBlackPen(Qt::black,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 
-	int i,j;
-	for (i = 1; i <= 3121; i += 50)//先写死
+	//画列
+	qFramePainter->setPen(qGrayPen);
+	for (int i=0; i<=3151; i+=50)//先写死
 	{
-		//画列
-		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(i,90,i,241);
 	}
-	for (j = 90; j <= 240; j += 50)//先写死
+
+	//画行
+	for (int j=90; j<=240; j+=50)//先写死
 	{
-		//画行
-		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(0,j,3121,j);
+		qFramePainter->drawLine(0,j,3151,j);
 	}
 
+	//画边界
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,241,0,89);//left
-	qFramePainter->drawLine(3121,241,3121,89);//right
-	qFramePainter->drawLine(0,89,3121,89);//up
-	qFramePainter->drawLine(0,241,3121,241);//down
+	qFramePainter->drawLine(0,240,0,90);//left
+	qFramePainter->drawLine(3151,240,3151,90);//right
+	qFramePainter->drawLine(0,90,3150,90);//up
+	qFramePainter->drawLine(0,240,3150,240);//down
+
+	//画水平刻度
+	qFramePainter->setPen(qBlackPen);
+	for (int k=5; k<3151; k+=10)//短刻度,单位5
+	{
+		qFramePainter->drawLine(k,85,k,90);
+	}
+	for (int m=0; m<3151; m+=10)//中刻度,单位10
+	{
+		qFramePainter->drawLine(m,80,m,90);
+	}
+	for (int n=0; n<3150; n+=100)//长刻度,单位50
+	{
+		qFramePainter->drawLine(n,75,n,90);
+		qFramePainter->drawLine(n+50,75,n+50,90);
+		//每隔100画字
+		if (!n)
+		{
+			qFramePainter->drawText(n+3,70,QString::number(n));
+		}
+		if (n<1000)
+		{
+			qFramePainter->drawText(n-12,70,QString::number(n));
+		}
+		else
+		{
+			qFramePainter->drawText(n-18,70,QString::number(n));
+		}
+	}
 
 	//获得Matrix 及 Pixel的值
 	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
 	//m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
 
 #endif
+}
+
+void FileEditChild::DrawVerScale(QPainter *qScalePainter)
+{
+	QPen qBlackPen(Qt::black,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
+	qScalePainter->setPen(qBlackPen);
+	//画垂直刻度
+	for (int i=5; i<240; i+=10)
+		qScalePainter->drawLine(36,i,40,i);
+	for (int j=0; j<240; j+=10)
+		qScalePainter->drawLine(32,j,40,j);
+	//单独画一条0刻度线
+	qScalePainter->drawLine(28,239,40,239);
+	qScalePainter->drawText(18,240,QString::number(0));
+	for (int k=50; k<240; k+=50)
+	{
+		qScalePainter->drawLine(28,240-k,40,240-k);
+		int m;
+		if (k==50)
+			m = 9;
+		else
+			m = 0;
+		qScalePainter->drawText(m,240-k+6,QString::number(k));
+	}
 }
 
 void FileEditChild::Create2Dcode(int nType,QString strContent)
@@ -1121,12 +1184,22 @@ void FileEditChild::paintFrame()
 	DrawBackFrame(&qFramePainter);
 }
 
+void FileEditChild::paintScale()
+{
+	QPainter qScalePainter(verticalScaleLabel);
+	DrawVerScale(&qScalePainter);
+}
+
 bool FileEditChild::eventFilter(QObject *watched, QEvent *event)
 {
 	if(watched == ui->editPreviewText && event->type() == QEvent::Paint)
 	{
 		paintFrame();
 		paintDot();	
+	}
+	else if(watched == verticalScaleLabel && event->type() == QEvent::Paint)
+	{
+		paintScale();
 	}
 	else if (watched == ui->editPreviewText->viewport() && event->type() == QEvent::MouseButtonPress)
 	{
@@ -1559,6 +1632,18 @@ void FileEditChild::GetObjSettingsFromScreen()
 				break;
 			}
 			
+			//设置X、Y、W、H
+#ifdef BIG_CHAR
+			ui->XposShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intRowStart));
+			ui->YposShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intLineStart));
+			ui->WidthShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intRowSize));
+			ui->HightShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intLineSize));
+#else
+			ui->XposShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intRowStart));
+			ui->YposShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intLineStart));
+			ui->WidthShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intSideWidth));
+			ui->HightShowlabel->setText(QString::number(m_MessagePrint.OBJ_Vec[i]->intSideHight));
+#endif
 			return;
 		}
 	}
@@ -1576,6 +1661,7 @@ void FileEditChild::GetObjSettingsFromScreen()
 		setButtonText(QStringLiteral("Empty"), QStringLiteral("New"));
 		break;
 	}	
+
 }
 
 void FileEditChild::setButtonText(QString strEmpty, QString strNew)
@@ -2957,6 +3043,7 @@ void FileEditChild::newTimeBut_clicked()
 	
 
 	//新建TimeObj对象
+#ifdef BIG_CHAR	
 	for(int i=0; i!=m_MessagePrint.OBJ_Vec.size(); i++)
 	{
 		if (m_MessagePrint.OBJ_Vec.at(i)->booFocus)
@@ -2966,6 +3053,7 @@ void FileEditChild::newTimeBut_clicked()
 			xPos=m_MessagePrint.OBJ_Vec.at(i)->intRowSize+m_MessagePrint.OBJ_Vec.at(i)->intRowStart;
 		}
 	}
+
 	CTimeOBJ* tempObj = new CTimeOBJ;
 	tempObj->intLineStart=yPos;
 	tempObj->intRowStart=xPos;
@@ -3025,9 +3113,91 @@ void FileEditChild::newTimeBut_clicked()
 
 	tempObj->booFocus = true;
 	m_MessagePrint.OBJ_Vec.push_back(tempObj);
-	//this->ShowWindow(SW_HIDE);
+
+#else
+	QString txtFont = qTimeFontComboBox->currentText();//字体名称字符串，包含中文字符
+	QString txtContent = ui->PreviewEdit->text();//显示内容字符串，可能包含中文字符
+	int intFontSize1 = qTimeSpinBox->value();
+	PushBackVecTimeOBJ(txtFont,txtContent,intFontSize1);
+	
+#endif
+
 	this->ui->newTimeBut->setText(QStringLiteral("修改"));
 	this->update();
+}
+
+void FileEditChild::PushBackVecTimeOBJ(QString txtFont, QString txtContent, int intFontSize)
+{
+	//生成时间对象
+	CTimeOBJ* tempObj = new CTimeOBJ;
+	
+	//生成内存位图
+	QFont curFont;
+	curFont.setFamily(txtFont);
+	curFont.setPixelSize(intFontSize);
+	QFontMetrics fm(curFont);
+	int metrics_width = fm.width(txtContent);
+	int metrics_height = fm.height();
+	QPixmap pix(metrics_width, metrics_height);
+	pix.fill(Qt::white);
+	QRect rect1(0, 0, metrics_width, metrics_height);
+	QPainter painter(&pix);
+	painter.setFont(curFont);
+	painter.setPen(Qt::black);
+	painter.drawText(rect1,txtContent);
+	QImage pImage;
+	pImage = pix.toImage();
+
+	//为时间对象赋值
+	tempObj->strType1 = "text";
+	tempObj->strType2 = "time";
+	
+	wstring wStrFont = txtFont.toStdWString();
+	wstring wStrText = txtContent.toStdWString();
+	pModuleMain = new ModuleMain;
+	tempObj->strFont = pModuleMain->WstringToString(wStrFont);
+	tempObj->strText = pModuleMain->WstringToString(wStrText);
+
+	tempObj->intFontSize = intFontSize;
+	tempObj->intLineSize = metrics_height;
+	tempObj->intRowSize = metrics_width;
+	tempObj->intLineStart = 0;
+	tempObj->intRowStart = 0;
+	tempObj->intSW = 0;
+	tempObj->intSS = 0;
+	tempObj->booNEG = false;
+	tempObj->booBWDx = false;
+	tempObj->booBWDy = false;
+
+	tempObj->strTime = pModuleMain->CString2string(ui->DateTimeEdit->text());
+	tempObj->booETimeOffSet = ui->SkewComBox->currentIndex();
+	tempObj->intTimeOffSet = ui->SkewSkewValueEdit->text().toInt();
+	tempObj->strTimeOffSet = ui->SkewUUnitlistWidget->currentRow();
+
+	tempObj->SideLength = 1;
+	tempObj->intSideHight = tempObj->intLineSize;
+	tempObj->intSideWidth = tempObj->intRowSize;
+
+	tempObj->booDotVecText.clear();
+	vector< vector<bool> > vbuffer(metrics_width, vector<bool>(metrics_height, false));
+	tempObj->booDotVecText = vbuffer;
+
+	for(int y = 0; y< pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x< pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			if(average < 200)
+				tempObj->booDotVecText[x][y] = true;
+			else
+				tempObj->booDotVecText[x][y] = false;
+		}  
+	}  
+
+	tempObj->booFocus = true;
+	m_MessagePrint.OBJ_Vec.push_back(tempObj);
+
 }
 
 void FileEditChild::SkewSkewValueEdit_clicked()
@@ -3169,11 +3339,20 @@ void FileEditChild::newSerialNumber_click()
 		{
 			serialcount=0;//关闭计数器
 		}
-		QString txtQString = ui->serialLineEdit->text();
+
+#ifdef BIG_CHAR
+		QString txtQString = SerialNumber_string;
 		string txtString = txtQString.toStdString();
 		QString qTextFont = ui->fontTypeSerialComBox->currentText();
 		string textFont = qTextFont.toStdString();
 		PushBackSerialNumberOBJ(textFont,false,false,false,txtString,0,0,0,1,ui->counterSerialComBox->currentIndex());
+#else
+		QString txtFont = qSerialFontComboBox->currentText();
+		QString txtContent = SerialNumber_string;
+		int intFontSize1 = qSerialSpinBox->value();
+		PushBackVecSerialOBJ(txtFont, txtContent, intFontSize1);
+#endif
+		
 		this->ui->newSerialBut->setText(QStringLiteral("修改"));
 		this->update();
 
@@ -3195,6 +3374,78 @@ void FileEditChild::newSerialNumber_click()
 	Serialfirst=0;
 
 
+}
+
+void FileEditChild::PushBackVecSerialOBJ(QString txtFont, QString txtContent, int intFontSize)
+{
+	//生成对象
+	CSerialOBJ* SerialNumber = new CSerialOBJ;
+
+	//生成内存位图
+	QFont curFont;
+	curFont.setFamily(txtFont);
+	curFont.setPixelSize(intFontSize);
+	QFontMetrics fm(curFont);
+	int metrics_width = fm.width(txtContent);
+	int metrics_height = fm.height();
+	QPixmap pix(metrics_width, metrics_height);
+	pix.fill(Qt::white);
+	QRect rect1(0, 0, metrics_width, metrics_height);
+
+	QPainter painter(&pix);
+	painter.setFont(curFont);
+	painter.setPen(Qt::black);
+	painter.drawText(rect1,txtContent);
+	//painter.setPen(Qt::white);
+	//painter.drawRect(rect1);
+	QImage pImage;
+	pImage = pix.toImage();
+
+	//为对象参数赋值
+	SerialNumber->strType1 = "text";
+	SerialNumber->strType2 = "serial";
+	
+	wstring wStrFont = txtFont.toStdWString();
+	wstring wStrText = txtContent.toStdWString();
+	pModuleMain = new ModuleMain;
+	SerialNumber->strFont = pModuleMain->WstringToString(wStrFont);
+	SerialNumber->strText = pModuleMain->WstringToString(wStrText);
+
+	SerialNumber->intFontSize = intFontSize;
+	SerialNumber->intLineSize = metrics_height;
+	SerialNumber->intRowSize = metrics_width;
+	SerialNumber->intLineStart = 0;
+	SerialNumber->intRowStart = 0;
+	SerialNumber->intSW = 0;
+	SerialNumber->intSS = 0;
+	SerialNumber->booNEG = false;
+	SerialNumber->booBWDx = false;
+	SerialNumber->booBWDy = false;
+	
+	SerialNumber->counter = ui->counterSerialComBox->currentIndex();
+	
+	SerialNumber->SideLength = 1;
+	SerialNumber->intSideHight = SerialNumber->intLineSize;
+	SerialNumber->intSideWidth = SerialNumber->intRowSize;
+	SerialNumber->booDotVecText.clear();
+	vector< vector<bool> > vbuffer(metrics_width, vector<bool>(metrics_height, false));
+	SerialNumber->booDotVecText = vbuffer;
+
+	for(int y = 0; y< pImage.height(); y++)
+	{  
+		QRgb* line = (QRgb *)pImage.scanLine(y);  
+		for(int x = 0; x< pImage.width(); x++)
+		{  
+			int average = (qRed(line[x]) + qGreen(line[x]) + qBlue(line[x]))/3;  
+			if(average < 200)
+				SerialNumber->booDotVecText[x][y] = true;
+			else
+				SerialNumber->booDotVecText[x][y] = false;
+		}  
+	}  
+
+	SerialNumber->booFocus = true;
+	m_MessagePrint.OBJ_Vec.push_back(SerialNumber);
 }
 
 void FileEditChild::SerialNumberstartchange()

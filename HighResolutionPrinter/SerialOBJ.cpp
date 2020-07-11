@@ -44,6 +44,18 @@ CSerialOBJ::CSerialOBJ(OBJ_Control obj,CSerialOBJ SerialObj)
 	bytSerialFormat = SerialObj.bytSerialFormat;
 	CountNum = SerialObj.CountNum;
 	CountNumRep = SerialObj.CountNumRep;
+
+#ifdef BIG_CHAR
+#else
+	intFontSize = obj.intFontSize;
+	SideLength = 1;
+	intSideHight = intLineSize;
+	intSideWidth = intRowSize;
+
+	booDotVecText.clear();
+	booDotVecText = obj.booDotVecText;
+#endif
+
 }
 
 CSerialOBJ::~CSerialOBJ(void)

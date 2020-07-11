@@ -366,6 +366,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			TiXmlElement itemDigits( "Digits" );
 			TiXmlElement itemFormat( "Format" );
 			TiXmlElement itemCounter( "Counter" );
+			TiXmlElement itemFontSize( "FontSize" );
 
 			TiXmlText textSetFont(pSerialObj->strFont.c_str());
 			TiXmlText textSetTEXT(pSerialObj->strText.c_str());
@@ -377,7 +378,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			TiXmlText textDigits(to_String(pSerialObj->intSerialDigits).c_str());
 			TiXmlText textFormat(to_String(pSerialObj->bytSerialFormat).c_str());
 			TiXmlText textCounter(to_String(pSerialObj->intSerialCounter).c_str());
-
+			TiXmlText textFontSize(to_String(pSerialObj->intFontSize).c_str());
 
 			itemsetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
@@ -389,7 +390,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			itemDigits.InsertEndChild(textDigits);
 			itemFormat.InsertEndChild(textFormat);
 			itemCounter.InsertEndChild(textCounter);
-
+			itemFontSize.InsertEndChild(textFontSize);
 
 			itemObj.InsertEndChild( itemsetFONT );
 			itemObj.InsertEndChild( itemSetTEXT );
@@ -401,6 +402,8 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			itemObj.InsertEndChild( itemDigits );
 			itemObj.InsertEndChild( itemFormat );
 			itemObj.InsertEndChild( itemCounter );
+			itemObj.InsertEndChild( itemFontSize );
+
 		} 
 		else if(OBJ_Vec[i]->strType2=="time")
 		{
@@ -412,6 +415,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			TiXmlElement itemETimeOffSet( "ETimeOffSet" );
 			TiXmlElement itemTimeOffSet( "TimeOffSet" );
 			TiXmlElement itemTimeOffSetUint( "TimeOffSetUint" );
+			TiXmlElement itemFontSize( "FontSize" );
 
 			TiXmlText textSetFont(OBJ_Vec[i]->strFont.c_str());
 			TiXmlText textSetTEXT(OBJ_Vec[i]->strText.c_str());
@@ -419,6 +423,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			TiXmlText textETimeOffSet(to_String(pTimeObj->booETimeOffSet).c_str());
 			TiXmlText textTimeOffSet(to_String(pTimeObj->intTimeOffSet).c_str());
 			TiXmlText textTimeOffSetUint(to_String(pTimeObj->strTimeOffSet).c_str());
+			TiXmlText textFontSize(to_String(pTimeObj->intFontSize).c_str());
 
 			itemsetFONT.InsertEndChild(textSetFont);
 			itemSetTEXT.InsertEndChild(textSetTEXT);
@@ -426,6 +431,7 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			itemETimeOffSet.InsertEndChild(textETimeOffSet);
 			itemTimeOffSet.InsertEndChild(textTimeOffSet);
 			itemTimeOffSetUint.InsertEndChild(textTimeOffSetUint);
+			itemFontSize.InsertEndChild(textFontSize);
 
 			itemObj.InsertEndChild( itemsetFONT );
 			itemObj.InsertEndChild( itemSetTEXT );
@@ -433,6 +439,8 @@ void ClassMessage::SaveObjectsToXml(string strFileName)
 			itemObj.InsertEndChild( itemETimeOffSet );
 			itemObj.InsertEndChild( itemTimeOffSet );
 			itemObj.InsertEndChild( itemTimeOffSetUint );
+			itemObj.InsertEndChild( itemFontSize );
+
 		}
 		else if (OBJ_Vec[i]->strType2=="logo")
 		{
@@ -825,8 +833,8 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						const char* strText; 
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
-						VecTextObj.intFontSize = atoi(strText);
-						VecTextObj.GenerateVecBmp(obj.strFont,obj.strText,VecTextObj.intFontSize);
+						obj.intFontSize = atoi(strText);
+						obj.GenerateVecBmp(obj.strFont,obj.strText,obj.intFontSize);
 					}
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="serial")
@@ -903,7 +911,19 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
-					}						
+					}
+#ifdef BIG_CHAR
+#else
+					else if (strcmp(strItem,"FontSize") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intFontSize = atoi(strText);
+						obj.GenerateVecBmp(obj.strFont,obj.strText,obj.intFontSize);
+					}
+#endif
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="time")
 				{
@@ -923,6 +943,18 @@ void ClassMessage::ReadObjectsFromXml(char* strFileName)
 						strText = nodeText->ValueTStr().c_str();
 						obj.strText.assign(strText);
 					}	
+#ifdef BIG_CHAR
+#else
+					else if (strcmp(strItem,"FontSize") == 0)
+					{
+						//读入信息
+						const char* strText; 
+						TiXmlText* nodeText = nodeTmp->FirstChild()->ToText();
+						strText = nodeText->ValueTStr().c_str();
+						obj.intFontSize = atoi(strText);
+						obj.GenerateVecBmp(obj.strFont,obj.strText,obj.intFontSize);
+					}
+#endif
 				}
 				else if (obj.strType1=="text"&&obj.strType2=="logo")
 				{
