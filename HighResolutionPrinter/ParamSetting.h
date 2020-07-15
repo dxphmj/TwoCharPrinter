@@ -18,6 +18,9 @@ public:
 	QString m_PrintDelay;//打印延时
 	QString m_SynFrequency;//同步倍频
 	QString m_PrintGray;//打印灰度
+	QString m_EncoderRes;//编码器分辨率
+	QString m_WheelDiameter;//靠轮直径
+	QString m_PulseWidth;//电眼有效脉宽
 	QString m_TriggerMode;//触发方式
 	QString m_InkjetMode;//喷墨方式
 	QString m_PrintingDirection;//打印方向
@@ -27,6 +30,8 @@ public:
 	int XDPIradioBGcheckedId;//XDPI按钮
 	int YDPIradioBGcheckedId;//YDPI按钮
 	bool m_RepetePrintCheck;//重复打印
+	bool m_HorizonalReverse;//上下颠倒
+	bool m_VerticalReverse;//左右颠倒
 	QString m_RepeatTimes;//重复次数
 	QString m_RepeatDelay;//重复延时
 
@@ -36,11 +41,11 @@ public:
 	bool m_SplicingCheck;//拼接
 	int NozzleradioBGcheckedId;//喷头选择按钮
 	QString m_Offset;//偏移量
-	bool m_FlashSprayCheck;//闪喷
+	bool m_FlashSprayCheck;//闲喷
 	QString m_FlashSprayInterval;//间隔
-	QString m_FlashSprayFrequency;//次数
+	//QString m_FlashSprayFrequency;//次数
 
-	bool m_UsingUVLightCheck;//启用UV灯
+	bool m_UsingUVLightCheck;//启用报警灯
 	QString m_TimeExpand;//延长时间
 	QString m_StartTime;//开始时长
 		 

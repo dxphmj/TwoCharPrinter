@@ -207,6 +207,13 @@ void printSetting::synWheelCheckBox_valueChanged(int val)
 {
 	if (val)
 	{
+		//1.读取当前的同步轮速度，即每秒脉冲数m（测试阶段默认每秒脉冲数500）
+
+		//2.计算当前产线速度（单位m/min），并显示在proLineSpeedShowLab中
+		double tmpSpeed = calCurProSpeed(1000);
+		ui.proLineSpeedShowLab->setText(QString::number(tmpSpeed,10,2));
+		
+		//3.设置界面
 		ui.printSpeedRedBut->setEnabled(false);
 		ui.printSpeedAddBut->setEnabled(false);
 		ui.printSpeedRedBut->setStyleSheet("background-color: rgb(128,128,128,80);");
@@ -215,6 +222,7 @@ void printSetting::synWheelCheckBox_valueChanged(int val)
 
 		ui.proLineSpeedLab->setStyleSheet("color: rgb(255,255,255);");
 		ui.proLineSpeedShowLab->setStyleSheet("background-color: rgb(72,61, 139); color: rgb(255, 255, 255);");
+		
 	}
 	else if (!val)
 	{
@@ -227,6 +235,22 @@ void printSetting::synWheelCheckBox_valueChanged(int val)
 		ui.proLineSpeedLab->setStyleSheet("color: rgb(128,128,128);");
 		ui.proLineSpeedShowLab->setStyleSheet("background-color: rgb(128,128,128,80); color: rgb(128,128,128);");
 	}
+}
+
+double printSetting::calCurProSpeed(int pulsePerRound)
+{
+	//接收当前界面中的变量值
+	int tmpEncoderRes = ui.encoderResLineEdit->text().toInt();
+	int tmpWheelDiameter = ui.wheelDiameterLineEdit->text().toInt();
+
+	if (tmpEncoderRes != 0)
+	{
+		//计算当前产线速度V = πmD/n×0.06（单位m/min）,其中m为每秒脉冲数，D为靠轮直径，n为分辨率
+		double proSpeed = pulsePerRound * tmpWheelDiameter / tmpEncoderRes * 0.06 * PAI;
+		return proSpeed;
+	}
+	
+	return 0.0;
 }
 
 void printSetting::trigComBox_ValueChanged(int val)

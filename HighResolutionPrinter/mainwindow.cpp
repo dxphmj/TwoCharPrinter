@@ -583,8 +583,8 @@ void MainWindow:: CreateCtrlCmd()
 	int nType;
 	vector<BYTE> tempCtrVec;
 
-#ifdef BIG_CHAR // Control command (queCtr) : 35 Bytes
-	nType = 0;
+#ifdef BIG_CHAR // Control command (queCtr) : 39 Bytes
+	nType = 39;
 	ctrlType = (BYTE)(nType);
 	//========= HEAD =========
 	tempCtrVec.push_back(0x1);
@@ -592,17 +592,22 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back(0x3);
 	tempCtrVec.push_back(0x3);
 	tempCtrVec.push_back(0x0);
-	tempCtrVec.push_back(ctrlType); //大字符or高解析
+	tempCtrVec.push_back(ctrlType); ////大字符or高解析控制指令CONTENT长度
 	tempCtrVec.push_back(0xff);
 	tempCtrVec.push_back(0xff);
 	//======== CONTENT ========
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintDelay.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynFrequency.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintGray.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_EncoderRes.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_WheelDiameter.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PulseWidth.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TriggerMode.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintingDirection.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynWheelCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VoiceCheck));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_HorizonalReverse));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VerticalReverse));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepetePrintCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatTimes.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatDelay.toInt()));
@@ -611,7 +616,7 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_Offset.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayInterval.toInt()));
-	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
+	//tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_UsingUVLightCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TimeExpand.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_StartTime.toInt()));
@@ -625,8 +630,8 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back(0xff);
 	tempCtrVec.push_back(0xff);
 
-#else  // Control command (queCtr) : 41 Bytes
-	nType = 1;
+#else  // Control command (queCtr) : 45 Bytes
+	nType = 45;
 	ctrlType = (BYTE)(nType);
 //========= HEAD =========
 	tempCtrVec.push_back(0x1);
@@ -634,13 +639,16 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back(0x3);
 	tempCtrVec.push_back(0x3);
 	tempCtrVec.push_back(0x0);
-	tempCtrVec.push_back(ctrlType); //大字符or高解析
+	tempCtrVec.push_back(ctrlType); //大字符or高解析控制指令CONTENT长度
 	tempCtrVec.push_back(0xff);
 	tempCtrVec.push_back(0xff);
 //======== CONTENT ========
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintDelay.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynFrequency.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintGray.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_EncoderRes.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_WheelDiameter.toInt()));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PulseWidth.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TriggerMode.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_InkjetMode.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintingDirection.toInt()));
@@ -648,6 +656,8 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VoiceCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.XDPIradioBGcheckedId));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.YDPIradioBGcheckedId));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_HorizonalReverse));
+	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_VerticalReverse));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepetePrintCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatTimes.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_RepeatDelay.toInt()));
@@ -659,7 +669,7 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_Offset.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayInterval.toInt()));
-	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
+//	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_FlashSprayFrequency.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_UsingUVLightCheck));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TimeExpand.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_StartTime.toInt()));
@@ -684,7 +694,7 @@ void MainWindow::CreatePrintData()
 	//theApp.mainPicPixel = theApp.m_MessagePrint->Pixel+1;
 	//theApp.mainPicMatrx = theApp.m_MessagePrint->Matrix;
 
-	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll,printSpeed;
+	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll,printInterval;
 	 
 	ForPreQue = queue<vector<BYTE> >();
 	 
@@ -712,7 +722,12 @@ void MainWindow::CreatePrintData()
 	matrix_name = pixelMes<<2;//低二位为模式 
 	pixelAll = pixelMes|0x80; //表示该数据及时生效，开始打印，将前面的清除掉。
 
-	printSpeed = (BYTE)(m_ParamSetting.m_PrintingSpeed.toInt());//同步轮速度
+	/*计算两列之间的时间间隔
+	若用户输入了打印速度V，则时间间隔t(微秒) = 两列间距离L(mm)÷打印速度V(m/min)÷1000×60×1000×1000
+	其中，两列之间的距离L(mm) = 1英寸25.4mm ÷ X方向DPI（默认300） = 0.085mm */
+	double printSpeed = m_ParamSetting.m_PrintingSpeed.toDouble();
+	printInterval = (BYTE)(0.085/printSpeed*60*1000 + 0.5);//同步轮速度，一个字节只能表示0~255微秒
+	//2020-07-15测试：每秒2圈->速度113.1m/min->间隔225微秒，每秒10圈->速度22.6m/min->间隔45微秒
 
  	boPrintNowLock.lock();
 		vector<BYTE>().swap(m_MessagePrint->bytPrintDataAll);//比clear()好，能够释放内存  
@@ -728,7 +743,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAll.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_h);
-		m_MessagePrint->bytPrintDataAll.push_back(printSpeed);
+		m_MessagePrint->bytPrintDataAll.push_back(printInterval);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 

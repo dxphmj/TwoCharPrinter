@@ -126,16 +126,22 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	MainWindow* theApp = (MainWindow*)(this->parent());
 	
 	//基础设置参数
-	theApp->m_ParamSetting.m_PrintingSpeed = getNum(m_printSetting->ui.printSpeedShowLab->text());
+	if (theApp->m_ParamSetting.m_SynWheelCheck){
+		theApp->m_ParamSetting.m_PrintingSpeed = getNum(m_printSetting->ui.proLineSpeedShowLab->text());
+	}else{
+		theApp->m_ParamSetting.m_PrintingSpeed = getNum(m_printSetting->ui.printSpeedShowLab->text());
+	}
 	theApp->m_ParamSetting.m_PrintDelay = getNum(m_printSetting->ui.printDelayShowLab->text());
 	theApp->m_ParamSetting.m_SynFrequency = getNum(m_printSetting->ui.synFrequencyShowLab->text());
 	theApp->m_ParamSetting.m_PrintGray = getNum(m_printSetting->ui.printGrayShowLab->text());
+	theApp->m_ParamSetting.m_EncoderRes = getNum(m_printSetting->ui.encoderResLineEdit->text());
+	theApp->m_ParamSetting.m_WheelDiameter = getNum(m_printSetting->ui.wheelDiameterLineEdit->text());
+	theApp->m_ParamSetting.m_PulseWidth = getNum(m_printSetting->ui.pulseWidthLineEdit->text());
 	theApp->m_ParamSetting.m_TriggerMode = QVariant(m_printSetting->ui.trigComBox->currentIndex()).toString();
 	theApp->m_ParamSetting.m_InkjetMode = QVariant(m_printSetting->ui.inkjetComBox->currentIndex()).toString();
 	theApp->m_ParamSetting.m_PrintingDirection = QVariant(m_printSetting->ui.printDirComBox->currentIndex()).toString();
 	theApp->m_ParamSetting.m_SynWheelCheck = m_printSetting->ui.synWheelCheckBox->isChecked();
 	theApp->m_ParamSetting.m_VoiceCheck = m_printSetting->ui.voiceCheckBox->isChecked();
-
 
 	//高级设置参数
 #ifdef BIG_CHAR
@@ -143,6 +149,8 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.XDPIradioBGcheckedId = m_printSetting->XDPIradioBG->checkedId();
 	theApp->m_ParamSetting.YDPIradioBGcheckedId = m_printSetting->YDPIradioBG->checkedId();
 #endif
+	theApp->m_ParamSetting.m_HorizonalReverse = m_printSetting->ui.horizonalReverseComBox->currentIndex();
+	theApp->m_ParamSetting.m_VerticalReverse = m_printSetting->ui.verticalReverseComBox->currentIndex();
 	theApp->m_ParamSetting.m_RepetePrintCheck = m_printSetting->ui.repetePrintCheckBox->isChecked();
 	theApp->m_ParamSetting.m_RepeatTimes = getNum(m_printSetting->ui.repeteNumShowLab->text());
 	theApp->m_ParamSetting.m_RepeatDelay = getNum(m_printSetting->ui.repeteDelayShowLab->text());

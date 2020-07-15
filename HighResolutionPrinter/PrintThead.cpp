@@ -460,7 +460,7 @@ void PrintThead::run()
 			vector<BYTE> tempQueVec = theApp->queCtr.front();
 			theApp->queCtr.pop();
 			strTempCmdLen = tempQueVec.size();
-			//strTempCmd=(LPTSTR)VEC2ARRAY(tempQueVec,tempQueVec.size());
+			strTempCmd = m_ModuleMain.VEC2ARRAY(tempQueVec,strTempCmdLen);
 		}
 		else if (theApp->m_MessagePrint->boPrintNow) //打印第一条数据
 		{
@@ -498,7 +498,6 @@ void PrintThead::run()
 				} 
 				else //发送默认的指令数据
 				{
-                
                     continue;
 					//strTempCmd=(LPTSTR)readArr;
 					//strTempCmdLen=8;
@@ -508,14 +507,12 @@ void PrintThead::run()
 			{
 				if (theApp->m_MessagePrint->bytPrintDataAll.size()>12)
 				{
-                    strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAll,theApp->m_MessagePrint->bytPrintDataAll.size());
-
                     strTempCmdLen = theApp->m_MessagePrint->bytPrintDataAll.size();
+					strTempCmd = m_ModuleMain.VEC2ARRAY(theApp->m_MessagePrint->bytPrintDataAll,strTempCmdLen);
 					if (strTempCmdLen < 13) //发送默认的指令数据
 					{
 						//strTempCmd=(LPTSTR)readArr;
 						//strTempCmdLen=8;
-						
 					}
 					theApp->m_MessagePrint->intMesDis = theApp->m_MessagePrint->bytPrintDataAll;
                     //theApp->update();

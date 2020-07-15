@@ -6,6 +6,8 @@
 #include "mainwindow.h"
 #include <QButtonGroup>
 
+#define PAI 3.14159265358979323846;
+
 class numkeyboard;
 
 class printSetting : public QWidget
@@ -21,6 +23,7 @@ public:
 
 public:
 	QString getNum(QString str);
+	double calCurProSpeed(int pulsePerRound); //计算当前的产线速度，并显示在proLineSpeedShowLab上
 	QButtonGroup* XDPIradioBG;
 	QButtonGroup* YDPIradioBG;
 	QButtonGroup* NozzleradioBG;

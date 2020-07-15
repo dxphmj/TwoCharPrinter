@@ -44,9 +44,13 @@ void CParamSetting::SaveParam2Xml()
 	//打印风格参数
 	xmlWriter.writeTextElement("m_PrintingSpeed",m_PrintingSpeed); //输出一个仅包含文本内容的标签
 	xmlWriter.writeTextElement("m_PrintDelay", m_PrintDelay);
-	xmlWriter.writeTextElement("m_SynFrequency", m_SynFrequency);
+	xmlWriter.writeTextElement("m_SynFrequency",m_SynFrequency);
 	xmlWriter.writeTextElement("m_PrintGray", m_PrintGray);
-	xmlWriter.writeTextElement("m_TriggerMode", m_TriggerMode);
+	xmlWriter.writeTextElement("m_EncoderRes",m_EncoderRes);
+	xmlWriter.writeTextElement("m_WheelDiameter",m_WheelDiameter);
+	xmlWriter.writeTextElement("m_PulseWidth",m_PulseWidth);
+	xmlWriter.writeTextElement("m_TriggerMode",m_TriggerMode);
+
 #ifdef BIG_CHAR
 #else
 	xmlWriter.writeTextElement("m_InkjetMode", m_InkjetMode);
@@ -61,7 +65,8 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("XDPIradioBGcheckedId",QVariant(XDPIradioBGcheckedId).toString());
 	xmlWriter.writeTextElement("YDPIradioBGcheckedId",QVariant(YDPIradioBGcheckedId).toString());
 #endif
-	xmlWriter.writeTextElement("m_RepetePrintCheck",QString::number(m_RepetePrintCheck));
+	xmlWriter.writeTextElement("m_HorizonalReverse",QString::number(m_HorizonalReverse));
+	xmlWriter.writeTextElement("m_VerticalReverse",QString::number(m_VerticalReverse));
 	xmlWriter.writeTextElement("m_RepeatTimes", m_RepeatTimes);
 	xmlWriter.writeTextElement("m_RepeatDelay", m_RepeatDelay);
 
@@ -77,7 +82,7 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_Offset", m_Offset);
 	xmlWriter.writeTextElement("m_FlashSprayCheck",QString::number(m_FlashSprayCheck));
 	xmlWriter.writeTextElement("m_FlashSprayInterval", m_FlashSprayInterval);
-	xmlWriter.writeTextElement("m_FlashSprayFrequency", m_FlashSprayFrequency);
+	//xmlWriter.writeTextElement("m_FlashSprayFrequency", m_FlashSprayFrequency);
 
 	//UV灯设置参数
 	xmlWriter.writeTextElement("m_UsingUVLightCheck",QString::number(m_UsingUVLightCheck));
@@ -132,8 +137,12 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 		{
 			if(xmlReader.name().toString() == "m_PrintingSpeed")
 			{
-				m_PrintingSpeed = ItemValue;   
-			    pPrintSetting->ui.printSpeedShowLab->setText(m_PrintingSpeed);
+				m_PrintingSpeed = ItemValue;
+				if (m_SynWheelCheck){
+					pPrintSetting->ui.proLineSpeedShowLab->setText(m_PrintingSpeed);
+				}else{
+					pPrintSetting->ui.printSpeedShowLab->setText(m_PrintingSpeed);
+				}
 			}
 			else if(xmlReader.name().toString() == "m_PrintDelay")
 			{
@@ -149,7 +158,22 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 			{
 				m_PrintGray = ItemValue;
 				pPrintSetting->ui.printGrayShowLab->setText(m_PrintGray);
-			}			
+			}
+			else if(xmlReader.name().toString() == "m_EncoderRes")
+			{
+				m_EncoderRes = ItemValue;
+				pPrintSetting->ui.encoderResLineEdit->setText(m_EncoderRes);
+			}
+			else if(xmlReader.name().toString() == "m_WheelDiameter")
+			{
+				m_WheelDiameter = ItemValue;
+				pPrintSetting->ui.wheelDiameterLineEdit->setText(m_WheelDiameter);
+			}
+			else if(xmlReader.name().toString() == "m_PulseWidth")
+			{
+				m_PulseWidth = ItemValue;
+				pPrintSetting->ui.pulseWidthLineEdit->setText(m_PulseWidth);
+			}
 			else if(xmlReader.name().toString() == "m_TriggerMode")
 			{
 				m_TriggerMode = ItemValue;
@@ -191,7 +215,16 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 				pPrintSetting->YDPIradioBG->button(YDPIradioBGcheckedId)->setChecked(1);
 			}
 #endif
-			
+			else if(xmlReader.name().toString() == "m_HorizonalReverse")
+			{
+				m_HorizonalReverse = QVariant(ItemValue).toInt();
+				pPrintSetting->ui.horizonalReverseComBox->setCurrentIndex(m_HorizonalReverse);
+			}	
+			else if(xmlReader.name().toString() == "m_VerticalReverse")
+			{
+				m_VerticalReverse = QVariant(ItemValue).toInt();
+				pPrintSetting->ui.verticalReverseComBox->setCurrentIndex(m_VerticalReverse);
+			}	
 			else if(xmlReader.name().toString() == "m_RepetePrintCheck")
 			{
 				m_RepetePrintCheck = QVariant(ItemValue).toBool();
