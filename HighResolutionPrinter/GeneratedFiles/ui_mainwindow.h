@@ -66,7 +66,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(1280, 799);
+        MainWindow->resize(1293, 799);
         MainWindow->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
@@ -111,8 +111,11 @@ public:
         sizePolicy.setHeightForWidth(startPrintBut->sizePolicy().hasHeightForWidth());
         startPrintBut->setSizePolicy(sizePolicy);
         startPrintBut->setFont(font);
+        startPrintBut->setFocusPolicy(Qt::StrongFocus);
+        startPrintBut->setContextMenuPolicy(Qt::ActionsContextMenu);
         startPrintBut->setStyleSheet(QLatin1String("background-image: url(:/Images/startPrint.bmp);\n"
-"color: rgb(255, 255, 255);"));
+"color: rgb(255, 255, 255);\n"
+""));
         closeBut = new QPushButton(centralWidget);
         closeBut->setObjectName(QStringLiteral("closeBut"));
         closeBut->setGeometry(QRect(1120, 590, 144, 144));

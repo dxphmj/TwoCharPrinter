@@ -26,6 +26,7 @@ typedef unsigned char BYTE;
 class FilemanageForm;
 class FileEditChild;
 class ParamSettingForm;
+class NozzleClean;
 class ClassMessage;
 class PrintThead;
 class PrintShowThread;
@@ -79,6 +80,7 @@ public:
     Ui::MainWindow *ui;
 	FilemanageForm *m_fileManage;
 	ParamSettingForm *m_paramsetting;
+	NozzleClean *m_NozzleClean;
 
 	void DownloadPrintData();
 	void CreateCtrlCmd();
@@ -102,6 +104,8 @@ private slots:
 	bool eventFilter(QObject *watched, QEvent *event);
 
 	void GetDateTime();
+	void showNozzleCleanWidget();
+
 public:
 	QTimer  *myTimer;
 	PrintThead *m_pPrintThread;

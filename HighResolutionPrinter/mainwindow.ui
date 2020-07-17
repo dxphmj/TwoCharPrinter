@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
+    <width>1293</width>
     <height>799</height>
    </rect>
   </property>
@@ -138,9 +138,16 @@ color: rgb(255, 255, 255);</string>
       <pointsize>18</pointsize>
      </font>
     </property>
+    <property name="focusPolicy">
+     <enum>Qt::StrongFocus</enum>
+    </property>
+    <property name="contextMenuPolicy">
+     <enum>Qt::ActionsContextMenu</enum>
+    </property>
     <property name="styleSheet">
      <string notr="true">background-image: url(:/Images/startPrint.bmp);
-color: rgb(255, 255, 255);</string>
+color: rgb(255, 255, 255);
+</string>
     </property>
     <property name="text">
      <string>开始打印</string>

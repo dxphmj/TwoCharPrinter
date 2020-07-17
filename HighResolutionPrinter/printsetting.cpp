@@ -208,9 +208,16 @@ void printSetting::synWheelCheckBox_valueChanged(int val)
 	if (val)
 	{
 		//1.读取当前的同步轮速度，即每秒脉冲数m（测试阶段默认每秒脉冲数500）
+		/*  open(驱动)
+			int pulssPerSecond = read(int)(驱动里准备好了的变量)
+			close(驱动)
+		*/
+
+		//测试用
+		int pulssPerSecond = 1250;
 
 		//2.计算当前产线速度（单位m/min），并显示在proLineSpeedShowLab中
-		double tmpSpeed = calCurProSpeed(1000);
+		double tmpSpeed = calCurProSpeed(pulssPerSecond);
 		ui.proLineSpeedShowLab->setText(QString::number(tmpSpeed,10,2));
 		
 		//3.设置界面

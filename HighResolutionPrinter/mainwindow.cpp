@@ -5,13 +5,14 @@
 #include <QProgressBar>
 #include "filemanageform.h"
 #include "paramsettingform.h"
+#include "NozzleClean.h"
+#include "ui_nozzleclean.h"
 #include "ClassMessage.h"
 #include "PrintThead.h"
 #include "PrintCreatThread.h"
 #include "PrintShowThread.h"
 #include "OBJ_Type.h"
 #include <math.h>
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -61,12 +62,25 @@ MainWindow::MainWindow(QWidget *parent) :
 			                      "QProgressBar::chunk{""margin:2px;""}");
 	ui->print2Prog->setStyleSheet("QProgressBar{""text-align:center;color: rgb(255, 255, 255);""}"
 		                          "QProgressBar::chunk{""margin:2px;""}");
+
 #ifdef BIG_CHAR
 	//大字符环境下隐藏墨盒
 	ui->print1Prog->setVisible(false);
 	ui->print2Prog->setVisible(false);
 	ui->No1Lab->setVisible(false);
 	ui->No2Lab->setVisible(false);
+
+	//新建一个“清理喷嘴”按钮
+	QPushButton* cleanNozzleBtn = new QPushButton(ui->progCtrlLab);
+	cleanNozzleBtn->setGeometry(65,80,144,144);
+	cleanNozzleBtn->setText(QStringLiteral("清理喷嘴"));
+	//这个按钮里的字体一直调整不好，原因需要再查
+	cleanNozzleBtn->setStyleSheet(" QPushButton{font-family:'Kai Ti';font-size:18px;text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;color:rgb(255,255,255);}\
+									QPushButton:pressed{border-image: url(:/Images/sysSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
+									padding-left:7px;padding-top:7px;}\
+								  ");
+	connect(cleanNozzleBtn,SIGNAL(clicked()),this,SLOT(showNozzleCleanWidget()));
+
 #endif
 
 	mythreadDynamicBoo = false;
@@ -100,6 +114,14 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showNozzleCleanWidget()
+{
+	m_NozzleClean = new NozzleClean(this);
+	m_NozzleClean->setGeometry(10,80,1101,666);
+	m_NozzleClean->setVisible(true);
+
 }
 
 void MainWindow::initPrinter()
@@ -724,10 +746,15 @@ void MainWindow::CreatePrintData()
 
 	/*计算两列之间的时间间隔
 	若用户输入了打印速度V，则时间间隔t(微秒) = 两列间距离L(mm)÷打印速度V(m/min)÷1000×60×1000×1000
-	其中，两列之间的距离L(mm) = 1英寸25.4mm ÷ X方向DPI（默认300） = 0.085mm */
+	其中，高解析两列之间的距离L(mm) = 1英寸25.4mm ÷ X方向DPI（默认300） = 0.085mm ; 大字符机L=3mm */
 	double printSpeed = m_ParamSetting.m_PrintingSpeed.toDouble();
-	printInterval = (BYTE)(0.085/printSpeed*60*1000 + 0.5);//同步轮速度，一个字节只能表示0~255微秒
-	//2020-07-15测试：每秒2圈->速度113.1m/min->间隔225微秒，每秒10圈->速度22.6m/min->间隔45微秒
+#ifdef BIG_CHAR
+	printInterval = (BYTE)(3/printSpeed*60 + 0.5);//同步轮速度，一个字节只能表示0~255(大字符单位：毫秒)
+#else
+	printInterval = (BYTE)(0.085/printSpeed*60*1000 + 0.5);//同步轮速度，一个字节只能表示0~255(高解析单位：微秒)
+#endif	
+	//2020-07-15高解析测试：每秒2圈->速度113.1m/min->间隔225微秒，每秒10圈->速度22.6m/min->间隔45微秒
+	//2020-07-16大字符测试：每秒4圈->速度45.24m/min->间隔4毫秒，每秒1/2圈->速度5.65m/min->间隔32毫秒(大字符机线速度一般在5~50m/min之间)
 
  	boPrintNowLock.lock();
 		vector<BYTE>().swap(m_MessagePrint->bytPrintDataAll);//比clear()好，能够释放内存  

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration_information>
     <printsetting>
-        <m_PrintingSpeed>22.62</m_PrintingSpeed>
+        <m_PrintingSpeed>5.65</m_PrintingSpeed>
         <m_PrintDelay>20</m_PrintDelay>
         <m_SynFrequency>5</m_SynFrequency>
         <m_PrintGray>5</m_PrintGray>
-        <m_EncoderRes>500</m_EncoderRes>
+        <m_EncoderRes>2500</m_EncoderRes>
         <m_WheelDiameter>60</m_WheelDiameter>
         <m_PulseWidth></m_PulseWidth>
         <m_TriggerMode>2</m_TriggerMode>
