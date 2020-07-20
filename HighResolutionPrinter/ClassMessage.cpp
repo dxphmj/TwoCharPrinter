@@ -599,9 +599,8 @@ void ClassMessage::GetMatrix()
 
 int ClassMessage::GetPixel()
 {
-	int i;
 	int intTempPixel = 0;
-	for( i=0; i<OBJ_Vec.size(); ++i )
+	for( int i = 0; i < OBJ_Vec.size(); i++ )
 	{
 		if (intTempPixel < (OBJ_Vec[i]->intLineStart + OBJ_Vec[i]->intLineSize))
 		{
@@ -1189,10 +1188,11 @@ vector<BYTE> ClassMessage::DotToByte(int tempintDotRowStart, int tempintDotRowEn
 		} 
 		else
 		{
-			if(Matrix == 5 | Matrix == 9 | Matrix == 12 | Matrix == 19 | Matrix == 25)
+			if(Matrix == 8 | Matrix == 16 | Matrix == 32 | Matrix == 48 /*| Matrix == 25*/)
             {
                 bytRowByteMul = 2;
-                if(Pixel == 5 | Pixel == 7)
+                //if(Pixel == 5 | Pixel == 7)
+				if(Pixel < 8)
                 {
                     for (int i = tempintDotRowStart; i< tempintDotRowEnd; i++)
                     {
@@ -1512,7 +1512,7 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 			for (int i = 0; i <= Pixel; i++)
 			{
 				bool bDraw = false;
-				bDraw = myModuleMain.MesDisIsB(intMesDis[11+2*k]+(intMesDis[11+2*k+1]*pow(2.0,8)),i);
+				bDraw = myModuleMain.MesDisIsB(intMesDis[12+2*k]+(intMesDis[12+2*k+1]*pow(2.0,8)),i);
 /*
 				if (Pixel < 8)
 					bDraw = myModuleMain.MesDisIsB(intMesDis[11+k],i);
@@ -1541,8 +1541,8 @@ void ClassMessage::DrawAllDynamic(CDC* pDC)
 	{
 		for (int k = 0; k < intRowMax; k++)
 		{
-			BYTE tempByte1 = intMesDis[k*2+11];
-			BYTE tempByte2 = intMesDis[k*2+11+1];
+			BYTE tempByte1 = intMesDis[k*2+12];
+			BYTE tempByte2 = intMesDis[k*2+12+1];
 
 			for(int i = 0; i < 7; i = i+2)
 			{	

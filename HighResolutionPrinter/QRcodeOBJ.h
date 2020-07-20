@@ -10,8 +10,8 @@ public:
 
 public://Parameters
 	string strqrcodeVersion;//二维码的版本类型
-	string strqrcodeECCLevel;//二维码的容错率等级
-	int intqrcodeQuietZone;//二维码空白
+	string strqrcodeECCLevel;//二维码的容错率等�?
+	int intqrcodeQuietZone;//二维码空�?
 
 	bool boQRBig;
 	int intQRVersion;

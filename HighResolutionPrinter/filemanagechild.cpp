@@ -93,12 +93,11 @@ void FileManageChild::editSeleFileBut_clicked()
 	pFilemanageForm->FormFileEditChild->LoadLocalFile();
 
 	QMap <QString,int> MatrixMap;
-	MatrixMap.insert("1L9M",0);
-	MatrixMap.insert("1L12M",1);
-	MatrixMap.insert("1L14M",2);
-	MatrixMap.insert("1L19M",3);
-	MatrixMap.insert("1L25M",4);
-	MatrixMap.insert("1L32M",5);
+	MatrixMap.insert("1L8M",0);
+	MatrixMap.insert("1L16M",1);
+	MatrixMap.insert("1L32M",2);
+	MatrixMap.insert("1L48M",3);
+	
 	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
 
 	pFilemanageForm->FormFileEditChild->ui->pixelComBox->setCurrentIndex(MatrixMap[qStrMatrix]);
@@ -237,12 +236,10 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	QPen qRedPen(Qt::red,2,Qt::SolidLine,Qt::RoundCap,Qt::BevelJoin);
 
 	QMap <QString,int> MatrixMap;
-	MatrixMap.insert("1L9M",45);
-	MatrixMap.insert("1L12M",60);
-	MatrixMap.insert("1L14M",70);
-	MatrixMap.insert("1L19M",95);
-	MatrixMap.insert("1L25M",125);
+	MatrixMap.insert("1L8M",40);
+	MatrixMap.insert("1L16M",80);
 	MatrixMap.insert("1L32M",160);
+	MatrixMap.insert("1L48M",240);
 	
 	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
 	int i,j;

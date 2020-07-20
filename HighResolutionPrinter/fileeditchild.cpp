@@ -749,7 +749,6 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	//获得Matrix 及 Pixel的值
 	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;
 	m_MessagePrint.strMatrix = "1L"+ m_MessagePrint.to_String(m_MessagePrint.Matrix)+"M";
-	//m_MessagePrint.Pixel = m_MessagePrint.Matrix;
 
 #else
 	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
@@ -1779,7 +1778,7 @@ void FileEditChild::saveBut_clicked()
 		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
 		QMap <QString,string> MatrixMap;
 		MatrixMap.insert("8px","1L8M");
-		MatrixMap.insert("26px","1L16M");
+		MatrixMap.insert("16px","1L16M");
 		MatrixMap.insert("32px","1L32M");
 		MatrixMap.insert("48px","1L48M");
 		QString qStrMatrix = ui->pixelComBox->currentText();
