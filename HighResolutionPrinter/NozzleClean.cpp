@@ -1,6 +1,11 @@
 #include "NozzleClean.h"
 #include "ui_nozzleclean.h"
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include <QtWidgets/QStackedWidget>
+//驱动相关头文件
+#include <fcntl.h>
+#include <unistd.h>
 
 NozzleClean::NozzleClean(QWidget *parent): 
 	QWidget(parent),
@@ -141,84 +146,174 @@ void NozzleClean::setAllCleanEnabled(bool trig)
 	}
 }
 
+void NozzleClean::writeNozzleNum(char* strTempCmd)
+{
+	char iTest[1];
+	char *Nozzle_node = "/dev/Nozzle_ctl";
+
+	/*O_RDWR读写打开,O_NDELAY非阻塞方式*/
+	if((fd2 = open(Nozzle_node,O_RDWR))<0)
+	{
+		printf("Nozzle open %s failed",Nozzle_node);
+	}
+	else
+	{
+		read_result = read(fd2,iTest,1);
+		if(read_result == 0)
+		{
+			write_result = write(fd2,strTempCmd,8);
+			if (write_result)
+			{
+				free(strTempCmd);
+			}
+
+			if(write_result == -1)
+			{
+				printf("Write is failed!\n");
+			}
+			else
+			{
+				printf("Write is success!\n");
+			}
+
+			//printf("write_complete!");
+		}
+		else
+		{
+			printf("The system is busy now!\n");
+		}
+
+		//read_result = read(fd2,buffer,1);
+	}
+	//::close(fd2);
+}
+
 void NozzleClean::pushButton_1_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = -127;
+    writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_2_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 64;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_3_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 32;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_4_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 16;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_5_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 8;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_6_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 4;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_7_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 2;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_8_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 0;
+	tmpChar[1] = 1;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_9_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = -127;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_10_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 64;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_11_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 32;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_12_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 16;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_13_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 8;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_14_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 4;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_15_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 2;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::pushButton_16_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = 1;
+	tmpChar[1] = 0;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::openCleanPushButton_clicked()
@@ -245,10 +340,17 @@ void NozzleClean::singleCleanPushButton_clicked()
 
 void NozzleClean::allCleanPushButton_clicked()
 {
-
+	char* tmpChar = (char*)malloc(2);
+	tmpChar[0] = -127;
+	tmpChar[1] = -127;
+	writeNozzleNum(tmpChar);
 }
 
 void NozzleClean::exitButton_clicked()
 {
+	MainWindow* theApp = (MainWindow*)(this->parent());
+	theApp->ui->fileManageBut->setEnabled(true);
+	theApp->ui->paraManageBut->setEnabled(true);
+	theApp->ui->startPrintBut->setEnabled(true);
 	this->setVisible(false);
 }

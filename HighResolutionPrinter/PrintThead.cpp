@@ -8,9 +8,10 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <fcntl.h>
 
-//#include <unistd.h>
+//驱动相关头文件
+#include <fcntl.h>
+#include <unistd.h>
 
 //#endif
 #include "mainwindow.h"
@@ -526,7 +527,7 @@ void PrintThead::run()
     char *Nozzle_node = "/dev/Nozzle_ctl";
 
     /*O_RDWR读写打开,O_NDELAY非阻塞方式*/
-/*  if((fd2 = open(Nozzle_node,O_RDWR))<0)
+    if((fd2 = open(Nozzle_node,O_RDWR))<0)
     {
         printf("Nozzle open %s failed",Nozzle_node);
     }
@@ -566,7 +567,7 @@ void PrintThead::run()
         //read_result = read(fd2,buffer,1);
     }
     //::close(fd2);
-*/
+
 
 		//按照采集的速度进行打印，将每列数据按顺序通过驱动发给IO（或串口输出）
 		//为简化控制，每次采用的打印速度不变

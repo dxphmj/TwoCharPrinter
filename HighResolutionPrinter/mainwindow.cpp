@@ -121,7 +121,9 @@ void MainWindow::showNozzleCleanWidget()
 	m_NozzleClean = new NozzleClean(this);
 	m_NozzleClean->setGeometry(10,80,1101,666);
 	m_NozzleClean->setVisible(true);
-
+	ui->fileManageBut->setEnabled(false);
+	ui->paraManageBut->setEnabled(false);
+	ui->startPrintBut->setEnabled(false);
 }
 
 void MainWindow::initPrinter()

@@ -26,6 +26,7 @@ public://methods
 	void setNumBtnEnabled(bool trig);
 	void setSingleCleanEnabled(bool trig);
 	void setAllCleanEnabled(bool trig);
+	void writeNozzleNum(char* strTempCmd);
 
 public slots:
 	void pushButton_1_clicked();
@@ -48,6 +49,11 @@ public slots:
 	void singleCleanPushButton_clicked();
 	void allCleanPushButton_clicked();
 	void exitButton_clicked();
+
+private://Çý¶¯Ïà¹Ø¾ä±ú
+	int fd2; 
+	int read_result;
+	int write_result;
 
 };
 
