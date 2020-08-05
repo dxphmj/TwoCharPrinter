@@ -224,7 +224,7 @@ private slots:
 	void startTimeShowSft4LineEdit_clicked();
 	void textIDShowSft4LineEdit_clicked();
 
-	void getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftInt4);
+	void getCurTime(int ,int ,int ,int ,int ,int ,int ,int );
 	bool newShiftBut();
 
 protected:
@@ -257,7 +257,10 @@ public:
 	int leftInt2;
 	int leftInt3;
 	int leftInt4;
-	//int rightInt1;
+	int rightInt1;
+	int rightInt2;
+	int rightInt3;
+	int rightInt4;
 	QString showText1;
 	QString showText2;
 	QString showText3;
