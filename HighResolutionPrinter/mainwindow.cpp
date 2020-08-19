@@ -71,14 +71,19 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->No2Lab->setVisible(false);
 
 	//新建一个“清理喷嘴”按钮
+	QFont font;
+	font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
+	font.setPointSize(18);
+
 	QPushButton* cleanNozzleBtn = new QPushButton(ui->progCtrlLab);
-	cleanNozzleBtn->setGeometry(65,80,144,144);
-	cleanNozzleBtn->setText(QStringLiteral("清理喷嘴"));
-	//这个按钮里的字体一直调整不好，原因需要再查
-	cleanNozzleBtn->setStyleSheet(" QPushButton{font-family:'Kai Ti';font-size:18px;text-align:bottom;border-image: url(:/Images/sysSetting.bmp);border-radius:15px;color:rgb(255,255,255);}\
-									QPushButton:pressed{border-image: url(:/Images/sysSetting.bmp);border: 1px solid rgb(12 , 138 , 235);\
-									padding-left:7px;padding-top:7px;}\
+	cleanNozzleBtn->setGeometry(QRect(65,80,144,144));
+	cleanNozzleBtn->setFont(font);
+	cleanNozzleBtn->setText(QStringLiteral("清洗喷头"));
+	cleanNozzleBtn->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/nozzleClean.bmp);border-radius:15px;color:rgb(255,255,255)}\
+								  QPushButton:pressed{border-image: url(:/Images/nozzleClean.bmp);border: 1px solid rgb(12 , 138 , 235);\
+								  padding-left:7px;padding-top:7px;}\
 								  ");
+	
 	connect(cleanNozzleBtn,SIGNAL(clicked()),this,SLOT(showNozzleCleanWidget()));
 
 #endif

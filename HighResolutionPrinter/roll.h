@@ -16,7 +16,6 @@ public:
 
 protected:
 	void paintEvent(QPaintEvent *);
-	void updateIndex();
 	void chooseLan();
 	
 public:
@@ -24,6 +23,9 @@ public:
 	int m_curIndex;
     QString m_showText; //需要显示的字符串
 	int curlanguage;
+
+	public slots:
+		void updateIndex();
 
 public:
 QString getText()

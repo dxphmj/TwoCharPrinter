@@ -876,9 +876,9 @@ void FileEditChild::Create2Dcode(int nType,QString strContent)
 		{  
 			int average = (qRed(line[x]) + qGreen(line[x]) + qRed(line[x]))/3;  
 			if(average < 200)
-				bmpObj->boDotBmp[bmpObj->intLineStart+bmpObj->intLineSize -y-1][bmpObj->intRowStart +x] = true;
+				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = true;
 			else
-				bmpObj->boDotBmp[bmpObj->intLineStart+bmpObj->intLineSize -y-1][bmpObj->intRowStart +x] = false;
+				bmpObj->boDotBmp[bmpObj->intRowStart +x][bmpObj->intLineStart+bmpObj->intLineSize -y-1] = false;
 		}  
 
 	}  
@@ -986,11 +986,13 @@ void FileEditChild::CreateQrcode(int nType,QString strContent)
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = true; //由于坐标系的原因，上下必须颠倒
 				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = true;
+				//bmpObj->boDotBmp[my_symbol->bitmap_height-row-1][col] = true;
 			}
 			else
 			{
 				//		bmpObj.boDotBmp[col][row-proportion] = false;
 				bmpObj->boDotBmp[col][my_symbol->bitmap_height-row-1] = false;
+				//bmpObj->boDotBmp[my_symbol->bitmap_height-row-1][col] = false;
 			}
 		}
 	}

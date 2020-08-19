@@ -16,8 +16,8 @@ roll::roll(QWidget *parent)
 	m_charWidth = fontMetrics().width("a");//每个字符的宽度
 	m_showText = QStringLiteral("温馨提示：请不要在打印过程中拔掉墨盒，防止喷嘴堵塞。");//显示的文字
 	timer = new QTimer(this);
-	connect(timer, &QTimer::timeout, this, &roll::updateIndex);
-	//connect(timer, SIGNAL(timeout()), this, SLOT(updateIndex()));
+	//connect(timer, &QTimer::timeout, this, &roll::updateIndex);
+	connect(timer, SIGNAL(timeout()), this, SLOT(updateIndex()));
 	timer->start(100);
 	
 }
