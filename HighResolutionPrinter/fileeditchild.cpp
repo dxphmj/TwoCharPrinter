@@ -4241,7 +4241,7 @@ bool FileEditChild::newShiftBut()
 			QTime timeNow = QTime::currentTime();
 			//ui.textlineEdit4->setText(timeNow.toString());
 			m_hour = timeNow.hour();
-			//m_mint = timeNow.minute();
+			m_mint = timeNow.minute();
 			string textFont = QString::fromLocal8Bit("5x5").toStdString();
 			QString m_num1 = ui->shiftNumShowLineEdit->text();
 			int numInt1 = atoi(m_num1.toStdString().c_str());
@@ -4305,8 +4305,8 @@ bool FileEditChild::newShiftBut()
 	QString curText1 = ui->startTimeShowSft1LineEdit->text();
 	QString leftText1 = curText1.left(2);
 	leftInt1 = atoi(leftText1.toStdString().c_str());
-	//QString rightText1 = curText1.mid(2,2);
-	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	QString rightText1 = curText1.mid(2,2);
+	rightInt1 = atoi(rightText1.toStdString().c_str());
 	showText1 = ui->textIDShowSft1LineEdit->text();
 	int showTextLen1 = showText1.length();
 
@@ -4314,8 +4314,8 @@ bool FileEditChild::newShiftBut()
 	QString curText2 = ui->startTimeShowSft2LineEdit->text();
 	QString leftText2 = curText2.left(2);
 	leftInt2 = atoi(leftText2.toStdString().c_str());
-	//QString rightText1 = curText1.mid(2,2);
-	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	QString rightText2 = curText2.mid(2,2);
+	rightInt2 = atoi(rightText2.toStdString().c_str());
 	showText2 = ui->textIDShowSft2LineEdit->text();
 	int showTextLen2 = showText2.length();
 
@@ -4323,8 +4323,8 @@ bool FileEditChild::newShiftBut()
 	QString curText3 = ui->startTimeShowSft3LineEdit->text();
 	QString leftText3 = curText3.left(2);
 	leftInt3 = atoi(leftText3.toStdString().c_str());
-	//QString rightText1 = curText1.mid(2,2);
-	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	QString rightText3 = curText3.mid(2,2);
+	rightInt3 = atoi(rightText3.toStdString().c_str());
 	showText3 = ui->textIDShowSft3LineEdit->text();
 	int showTextLen3 = showText3.length();
 
@@ -4332,8 +4332,8 @@ bool FileEditChild::newShiftBut()
 	QString curText4 = ui->startTimeShowSft4LineEdit->text();
 	QString leftText4 = curText4.left(2);
 	leftInt4 = atoi(leftText4.toStdString().c_str());
-	//QString rightText1 = curText1.mid(2,2);
-	//rightInt1 = atoi(rightText1.toStdString().c_str());
+	QString rightText4 = curText4.mid(2,2);
+	rightInt4 = atoi(rightText4.toStdString().c_str());
 	showText4 = ui->textIDShowSft4LineEdit->text();
 	int showTextLen4 = showText4.length();
 
@@ -4425,16 +4425,16 @@ bool FileEditChild::newShiftBut()
 		ui->textIDShowSft4LineEdit->setText(""); 
 		return false;
 	}
-	getCurTime(leftInt1,leftInt2,leftInt3,leftInt4);
+	getCurTime(leftInt1,leftInt2,leftInt3,leftInt4,rightInt1,rightInt2,rightInt3,rightInt4);
 	return true;
 }
 
-void FileEditChild::getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftInt4)
+void FileEditChild::getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftInt4,int rightInt1,int rightInt2,int rightInt3,int rightInt4)
 {
 	QTime timeNow = QTime::currentTime();
 	//ui.textlineEdit4->setText(timeNow.toString());
 	m_hour = timeNow.hour();
-	//m_mint = timeNow.minute();
+	m_mint = timeNow.minute();
 	string textFont = QString::fromLocal8Bit("5x5").toStdString();
 	QString m_num = ui->shiftNumShowLineEdit->text();
 	int numInt = atoi(m_num.toStdString().c_str());
@@ -4444,46 +4444,153 @@ void FileEditChild::getCurTime(int leftInt1,int leftInt2,int leftInt3,int leftIn
 		PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
 		break;
 	case 1:
-		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		if (m_hour == leftInt1)
+		{
+			if (m_mint >= rightInt1)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+		}
+		if ( m_hour> leftInt1 && m_hour< leftInt2)
 		{   
 			//string txtString = qstr2str(showText1);
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
 		}
-		if ( m_hour>= leftInt2 || m_hour< leftInt1)
+		if (m_hour == leftInt2)
+		{
+			if (m_mint >= rightInt2)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt2 || m_hour< leftInt1)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
 		}
 		break;
 	case 2:
-		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		if (m_hour == leftInt1)
+		{
+			if (m_mint >= rightInt1)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt1 && m_hour< leftInt2)
 		{   
 			//string txtString = qstr2str(showText1);
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
 		}
-		if ( m_hour>= leftInt2 && m_hour< leftInt3)
+		if (m_hour == leftInt2)
+		{
+			if (m_mint >= rightInt2)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt2 && m_hour< leftInt3)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
 		}
-		if ( m_hour>= leftInt3 || m_hour< leftInt1)
+		if (m_hour == leftInt3)
+		{
+			if (m_mint >= rightInt3)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt3 || m_hour< leftInt1)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
 		}
 		break;
 	case 3:
-		if ( m_hour>= leftInt1 && m_hour< leftInt2)
+		if (m_hour == leftInt1)
+		{
+			if (m_mint >= rightInt1)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText4),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt1 && m_hour< leftInt2)
 		{   
 			//string txtString = qstr2str(showText1);
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
 		}
-		if ( m_hour>= leftInt2 && m_hour< leftInt3)
+		if (m_hour == leftInt2)
+		{
+			if (m_mint >= rightInt2)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText1),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt2 && m_hour< leftInt3)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
 		}
-		if ( m_hour>= leftInt3 && m_hour< leftInt4)
+		if (m_hour == leftInt3)
+		{
+			if (m_mint >= rightInt3)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText2),0,0,0,1);
+			}
+		}
+
+		if ( m_hour> leftInt3 && m_hour< leftInt4)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
 		}
-		if ( m_hour< leftInt1 || m_hour>= leftInt4)
+		if (m_hour == leftInt4)
+		{
+			if (m_mint >= rightInt4)
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText4),0,0,0,1);
+			}
+			else
+			{
+				PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText3),0,0,0,1);
+			}
+		}
+
+		if ( m_hour< leftInt1 || m_hour> leftInt4)
 		{
 			PushBackBanCiOBJ(textFont,false,false,false,qstr2str(showText4),0,0,0,1);
 		}
