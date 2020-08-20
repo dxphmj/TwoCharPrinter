@@ -32,19 +32,19 @@ public:
     QWidget *page;
     QWidget *page_2;
     QPushButton *paraExitBut;
-    QPushButton *savePrintSetBut;
-    QPushButton *resetBut;
     QLabel *paraManageBackLabel;
+    QPushButton *resetBut;
+    QPushButton *savePrintSetBut;
 
     void setupUi(QWidget *ParamSettingForm)
     {
         if (ParamSettingForm->objectName().isEmpty())
             ParamSettingForm->setObjectName(QStringLiteral("ParamSettingForm"));
-        ParamSettingForm->resize(1280, 800);
+        ParamSettingForm->resize(1024, 600);
         ParamSettingForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSettingBut = new QPushButton(ParamSettingForm);
         printSettingBut->setObjectName(QStringLiteral("printSettingBut"));
-        printSettingBut->setGeometry(QRect(30, 60, 144, 144));
+        printSettingBut->setGeometry(QRect(4, 70, 90, 90));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(18);
@@ -53,7 +53,7 @@ public:
 "color: rgb(255, 255, 255);"));
         sysSettingBut = new QPushButton(ParamSettingForm);
         sysSettingBut->setObjectName(QStringLiteral("sysSettingBut"));
-        sysSettingBut->setGeometry(QRect(30, 240, 144, 144));
+        sysSettingBut->setGeometry(QRect(4, 190, 90, 90));
         sysSettingBut->setFont(font);
         sysSettingBut->setStyleSheet(QLatin1String("background-image: url(:/Images/sysSetting.bmp);\n"
 "color: rgb(255, 255, 255);"));
@@ -65,13 +65,13 @@ public:
 "color: rgb(255, 255, 255);"));
         aboutMacBut = new QPushButton(ParamSettingForm);
         aboutMacBut->setObjectName(QStringLiteral("aboutMacBut"));
-        aboutMacBut->setGeometry(QRect(30, 420, 144, 144));
+        aboutMacBut->setGeometry(QRect(4, 310, 90, 90));
         aboutMacBut->setFont(font);
         aboutMacBut->setStyleSheet(QLatin1String("background-image: url(:/Images/aboutMac.bmp);\n"
 "color: rgb(255, 255, 255);"));
         paraManageStacWid = new QStackedWidget(ParamSettingForm);
         paraManageStacWid->setObjectName(QStringLiteral("paraManageStacWid"));
-        paraManageStacWid->setGeometry(QRect(200, 20, 1061, 651));
+        paraManageStacWid->setGeometry(QRect(98, 0, 926, 591));
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         paraManageStacWid->addWidget(page);
@@ -80,38 +80,38 @@ public:
         paraManageStacWid->addWidget(page_2);
         paraExitBut = new QPushButton(ParamSettingForm);
         paraExitBut->setObjectName(QStringLiteral("paraExitBut"));
-        paraExitBut->setGeometry(QRect(30, 600, 144, 144));
+        paraExitBut->setGeometry(QRect(4, 430, 90, 90));
         paraExitBut->setFont(font);
         paraExitBut->setStyleSheet(QLatin1String("background-image: url(:/Images/exit.bmp);\n"
 "color: rgb(255, 255, 255);"));
-        savePrintSetBut = new QPushButton(ParamSettingForm);
-        savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
-        savePrintSetBut->setGeometry(QRect(850, 680, 111, 51));
+        paraManageBackLabel = new QLabel(ParamSettingForm);
+        paraManageBackLabel->setObjectName(QStringLiteral("paraManageBackLabel"));
+        paraManageBackLabel->setGeometry(QRect(0, 0, 1024, 600));
+        paraManageBackLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        resetBut = new QPushButton(ParamSettingForm);
+        resetBut->setObjectName(QStringLiteral("resetBut"));
+        resetBut->setGeometry(QRect(370, 540, 111, 40));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(16);
-        savePrintSetBut->setFont(font1);
-        savePrintSetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
-"background-color: rgb(0, 0, 230);"));
-        resetBut = new QPushButton(ParamSettingForm);
-        resetBut->setObjectName(QStringLiteral("resetBut"));
-        resetBut->setGeometry(QRect(500, 680, 111, 51));
         resetBut->setFont(font1);
         resetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
-        paraManageBackLabel = new QLabel(ParamSettingForm);
-        paraManageBackLabel->setObjectName(QStringLiteral("paraManageBackLabel"));
-        paraManageBackLabel->setGeometry(QRect(0, 0, 1280, 800));
-        paraManageBackLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        savePrintSetBut = new QPushButton(ParamSettingForm);
+        savePrintSetBut->setObjectName(QStringLiteral("savePrintSetBut"));
+        savePrintSetBut->setGeometry(QRect(650, 540, 111, 40));
+        savePrintSetBut->setFont(font1);
+        savePrintSetBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(0, 0, 230);"));
         paraManageBackLabel->raise();
         printSettingBut->raise();
         sysSettingBut->raise();
         countSettingBut->raise();
         aboutMacBut->raise();
-        paraManageStacWid->raise();
         paraExitBut->raise();
-        savePrintSetBut->raise();
+        paraManageStacWid->raise();
         resetBut->raise();
+        savePrintSetBut->raise();
 
         retranslateUi(ParamSettingForm);
 
@@ -126,9 +126,9 @@ public:
         countSettingBut->setText(QApplication::translate("ParamSettingForm", "\350\256\241\346\225\260\350\256\276\347\275\256", 0));
         aboutMacBut->setText(QApplication::translate("ParamSettingForm", "\345\205\263\344\272\216\346\234\254\346\234\272", 0));
         paraExitBut->setText(QApplication::translate("ParamSettingForm", "\351\200\200\345\207\272", 0));
-        savePrintSetBut->setText(QApplication::translate("ParamSettingForm", "\344\277\235\345\255\230", 0));
-        resetBut->setText(QApplication::translate("ParamSettingForm", "\351\207\215\347\275\256", 0));
         paraManageBackLabel->setText(QString());
+        resetBut->setText(QApplication::translate("ParamSettingForm", "\351\207\215\347\275\256", 0));
+        savePrintSetBut->setText(QApplication::translate("ParamSettingForm", "\344\277\235\345\255\230", 0));
     } // retranslateUi
 
 };

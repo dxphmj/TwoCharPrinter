@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1133</width>
-    <height>651</height>
+    <width>926</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,10 +19,10 @@
   <widget class="QTabWidget" name="printSetTabWid">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>20</y>
-     <width>1021</width>
-     <height>621</height>
+     <x>0</x>
+     <y>10</y>
+     <width>926</width>
+     <height>591</height>
     </rect>
    </property>
    <property name="maximumSize">
@@ -38,11 +38,11 @@
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTabBar::tab{width:255}
+    <string notr="true">QTabBar::tab{width:150}
 QTabBar::tab{height:50}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>3</number>
    </property>
    <widget class="QWidget" name="printStyleTab">
     <attribute name="title">
@@ -51,8 +51,8 @@ QTabBar::tab{height:50}</string>
     <widget class="QPushButton" name="printSpeedRedBut">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>50</y>
+       <x>270</x>
+       <y>40</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -82,8 +82,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="trigLab">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>80</y>
+       <x>520</x>
+       <y>40</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -114,8 +114,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="printSpeedShowLab">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>50</y>
+       <x>310</x>
+       <y>40</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -146,8 +146,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="printSpeedAddBut">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>50</y>
+       <x>440</x>
+       <y>40</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -177,8 +177,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="printSpeedLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>50</y>
+       <x>50</x>
+       <y>40</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -209,8 +209,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="trigComBox">
      <property name="geometry">
       <rect>
-       <x>760</x>
-       <y>80</y>
+       <x>680</x>
+       <y>40</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -229,8 +229,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="inkjetComBox">
      <property name="geometry">
       <rect>
-       <x>760</x>
-       <y>160</y>
+       <x>680</x>
+       <y>100</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -249,8 +249,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="inkjetLab">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>160</y>
+       <x>520</x>
+       <y>100</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -281,8 +281,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="printDirComBox">
      <property name="geometry">
       <rect>
-       <x>760</x>
-       <y>240</y>
+       <x>680</x>
+       <y>160</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -301,8 +301,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="printDirLab">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>240</y>
+       <x>520</x>
+       <y>160</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -333,8 +333,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="printDelayLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>120</y>
+       <x>50</x>
+       <y>100</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -365,8 +365,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="printDelayRedBut">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>120</y>
+       <x>270</x>
+       <y>100</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -396,8 +396,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="printDelayShowLab">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>120</y>
+       <x>310</x>
+       <y>100</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -428,8 +428,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="printDelayAddBut">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>120</y>
+       <x>440</x>
+       <y>100</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -459,8 +459,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="synFrequencyLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>190</y>
+       <x>50</x>
+       <y>160</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -491,8 +491,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="synFrequencyRedBut">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>190</y>
+       <x>270</x>
+       <y>160</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -522,8 +522,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="synFrequencyShowLab">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>190</y>
+       <x>310</x>
+       <y>160</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -554,8 +554,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="synFrequencyAddBut">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>190</y>
+       <x>440</x>
+       <y>160</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -585,8 +585,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="printGrayAddBut">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>260</y>
+       <x>440</x>
+       <y>220</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -616,8 +616,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="printGrayShowLab">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>260</y>
+       <x>310</x>
+       <y>220</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -648,8 +648,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="printGrayLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>260</y>
+       <x>50</x>
+       <y>220</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -680,8 +680,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="printGrayRedBut">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>260</y>
+       <x>270</x>
+       <y>220</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -711,8 +711,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="synWheelCheckBox">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>330</y>
+       <x>520</x>
+       <y>250</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -739,8 +739,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="voiceCheckBox">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>460</y>
+       <x>520</x>
+       <y>360</y>
        <width>101</width>
        <height>31</height>
       </rect>
@@ -769,15 +769,15 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1016</width>
-       <height>571</height>
+       <width>926</width>
+       <height>560</height>
       </rect>
      </property>
      <property name="styleSheet">
       <string notr="true">background-color: rgb(67,51, 139);</string>
      </property>
      <property name="frameShape">
-      <enum>QFrame::StyledPanel</enum>
+      <enum>QFrame::NoFrame</enum>
      </property>
      <property name="text">
       <string/>
@@ -786,8 +786,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="encoderResLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>330</y>
+       <x>50</x>
+       <y>280</y>
        <width>251</width>
        <height>41</height>
       </rect>
@@ -818,8 +818,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="wheelDiameterLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>400</y>
+       <x>50</x>
+       <y>330</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -850,8 +850,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="pulseWidthLab">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>470</y>
+       <x>50</x>
+       <y>380</y>
        <width>251</width>
        <height>41</height>
       </rect>
@@ -882,8 +882,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="proLineSpeedLab">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>380</y>
+       <x>520</x>
+       <y>290</y>
        <width>221</width>
        <height>41</height>
       </rect>
@@ -914,8 +914,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="proLineSpeedShowLab">
      <property name="geometry">
       <rect>
-       <x>830</x>
-       <y>380</y>
+       <x>740</x>
+       <y>290</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -949,8 +949,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="encoderResLineEdit">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>330</y>
+       <x>310</x>
+       <y>280</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -968,8 +968,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="pulseWidthLineEdit">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>470</y>
+       <x>310</x>
+       <y>380</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -987,8 +987,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="wheelDiameterLineEdit">
      <property name="geometry">
       <rect>
-       <x>350</x>
-       <y>400</y>
+       <x>310</x>
+       <y>330</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1044,9 +1044,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="XDPILab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>80</y>
-       <width>101</width>
+       <x>100</x>
+       <y>60</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -1076,8 +1076,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="XDPI100RadioBut">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>80</y>
+       <x>260</x>
+       <y>60</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1099,8 +1099,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="XDPI150RadioBut">
      <property name="geometry">
       <rect>
-       <x>360</x>
-       <y>80</y>
+       <x>370</x>
+       <y>60</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1122,8 +1122,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="XDPI200RadioBut">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>80</y>
+       <x>470</x>
+       <y>60</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1145,8 +1145,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QRadioButton" name="XDPI300RadioBut">
      <property name="geometry">
       <rect>
-       <x>640</x>
-       <y>80</y>
+       <x>570</x>
+       <y>60</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1168,8 +1168,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QCheckBox" name="repetePrintCheckBox">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>260</y>
+       <x>400</x>
+       <y>220</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -1197,8 +1197,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="repeteNumShowLab">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>340</y>
+       <x>630</x>
+       <y>270</y>
        <width>160</width>
        <height>41</height>
       </rect>
@@ -1229,8 +1229,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="repeteNumAddBut">
      <property name="geometry">
       <rect>
-       <x>910</x>
-       <y>340</y>
+       <x>790</x>
+       <y>270</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1260,8 +1260,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="repeteLab">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>340</y>
+       <x>400</x>
+       <y>270</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -1292,8 +1292,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="repeteNumRedBut">
      <property name="geometry">
       <rect>
-       <x>710</x>
-       <y>340</y>
+       <x>590</x>
+       <y>270</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1323,8 +1323,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="repeteDelayRedBut">
      <property name="geometry">
       <rect>
-       <x>710</x>
-       <y>420</y>
+       <x>590</x>
+       <y>330</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1354,8 +1354,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="repeteDelayShowLab">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>420</y>
+       <x>630</x>
+       <y>330</y>
        <width>160</width>
        <height>41</height>
       </rect>
@@ -1386,8 +1386,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="repeteDelayAddBut">
      <property name="geometry">
       <rect>
-       <x>910</x>
-       <y>420</y>
+       <x>790</x>
+       <y>330</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1417,8 +1417,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="repeteDelayLab">
      <property name="geometry">
       <rect>
-       <x>520</x>
-       <y>420</y>
+       <x>400</x>
+       <y>330</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -1451,8 +1451,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1016</width>
-       <height>571</height>
+       <width>926</width>
+       <height>560</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1465,9 +1465,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="YDPILab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>150</y>
-       <width>101</width>
+       <x>100</x>
+       <y>110</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -1497,8 +1497,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="YDPI300RadioBut">
      <property name="geometry">
       <rect>
-       <x>220</x>
-       <y>150</y>
+       <x>260</x>
+       <y>110</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1520,8 +1520,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="YDPI600RadioBut">
      <property name="geometry">
       <rect>
-       <x>360</x>
-       <y>150</y>
+       <x>370</x>
+       <y>110</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1543,8 +1543,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="XDPI600RadioBut">
      <property name="geometry">
       <rect>
-       <x>780</x>
-       <y>80</y>
+       <x>680</x>
+       <y>60</y>
        <width>91</width>
        <height>41</height>
       </rect>
@@ -1566,8 +1566,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="horizonalReverseLab">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>290</y>
+       <x>60</x>
+       <y>270</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1598,8 +1598,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="verticalReverseLab">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>370</y>
+       <x>60</x>
+       <y>330</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1630,8 +1630,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="horizonalReverseComBox">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>290</y>
+       <x>210</x>
+       <y>270</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -1650,8 +1650,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="verticalReverseComBox">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>370</y>
+       <x>210</x>
+       <y>330</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -1678,7 +1678,6 @@ background-color: rgb(0, 0, 230);</string>
     <zorder>repeteNumAddBut</zorder>
     <zorder>repeteLab</zorder>
     <zorder>repeteNumRedBut</zorder>
-    <zorder>repeteDelayRedBut</zorder>
     <zorder>repeteDelayShowLab</zorder>
     <zorder>repeteDelayAddBut</zorder>
     <zorder>repeteDelayLab</zorder>
@@ -1690,6 +1689,7 @@ background-color: rgb(0, 0, 230);</string>
     <zorder>verticalReverseLab</zorder>
     <zorder>horizonalReverseComBox</zorder>
     <zorder>verticalReverseComBox</zorder>
+    <zorder>repeteDelayRedBut</zorder>
    </widget>
    <widget class="QWidget" name="nozzleSetTab">
     <attribute name="title">
@@ -1698,8 +1698,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="inkTypeLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>60</y>
+       <x>390</x>
+       <y>40</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -1730,9 +1730,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QCheckBox" name="adaptParaCheckBox">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>150</y>
-       <width>221</width>
+       <x>70</x>
+       <y>100</y>
+       <width>151</width>
        <height>31</height>
       </rect>
      </property>
@@ -1759,8 +1759,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="voltShowLab">
      <property name="geometry">
       <rect>
-       <x>440</x>
-       <y>140</y>
+       <x>370</x>
+       <y>90</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1791,8 +1791,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="voltAddBut">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>140</y>
+       <x>500</x>
+       <y>90</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1822,8 +1822,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="inkVoltLab">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>140</y>
+       <x>230</x>
+       <y>90</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1854,8 +1854,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="voltRedBut">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>140</y>
+       <x>330</x>
+       <y>90</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1885,8 +1885,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="PWShowLab">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>140</y>
+       <x>710</x>
+       <y>90</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1917,8 +1917,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="PWAddBut">
      <property name="geometry">
       <rect>
-       <x>920</x>
-       <y>140</y>
+       <x>840</x>
+       <y>90</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -1948,8 +1948,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="PWLab">
      <property name="geometry">
       <rect>
-       <x>650</x>
-       <y>140</y>
+       <x>570</x>
+       <y>90</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -1980,8 +1980,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="PWRedBut">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>140</y>
+       <x>670</x>
+       <y>90</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2011,8 +2011,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="nozzleSelLab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>230</y>
+       <x>370</x>
+       <y>160</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -2043,8 +2043,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="offsetRedBut">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>300</y>
+       <x>570</x>
+       <y>200</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2074,8 +2074,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="offsetShowLab">
      <property name="geometry">
       <rect>
-       <x>790</x>
-       <y>300</y>
+       <x>610</x>
+       <y>200</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2106,8 +2106,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="offsetAddBut">
      <property name="geometry">
       <rect>
-       <x>920</x>
-       <y>300</y>
+       <x>740</x>
+       <y>200</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2137,9 +2137,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="offsetLab">
      <property name="geometry">
       <rect>
-       <x>630</x>
-       <y>300</y>
-       <width>121</width>
+       <x>430</x>
+       <y>200</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -2169,9 +2169,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="nozzleSel2RadioBut">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>300</y>
-       <width>81</width>
+       <x>340</x>
+       <y>200</y>
+       <width>51</width>
        <height>41</height>
       </rect>
      </property>
@@ -2192,9 +2192,9 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QRadioButton" name="nozzleSel1RadioBut">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>300</y>
-       <width>81</width>
+       <x>270</x>
+       <y>200</y>
+       <width>51</width>
        <height>41</height>
       </rect>
      </property>
@@ -2215,8 +2215,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="flashSprayLab">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>390</y>
+       <x>370</x>
+       <y>270</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -2247,8 +2247,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QCheckBox" name="flashSprayCheckBox">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>460</y>
+       <x>270</x>
+       <y>310</y>
        <width>181</width>
        <height>40</height>
       </rect>
@@ -2276,8 +2276,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="flashSprayInternalShowLab">
      <property name="geometry">
       <rect>
-       <x>620</x>
-       <y>460</y>
+       <x>570</x>
+       <y>310</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2308,8 +2308,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="flashSprayInternalLab">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>460</y>
+       <x>430</x>
+       <y>310</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2340,8 +2340,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="flashSprayInternalRedBut">
      <property name="geometry">
       <rect>
-       <x>580</x>
-       <y>460</y>
+       <x>530</x>
+       <y>310</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2371,8 +2371,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="flashSprayInternalAddBut">
      <property name="geometry">
       <rect>
-       <x>750</x>
-       <y>460</y>
+       <x>700</x>
+       <y>310</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2402,10 +2402,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="isCombineCheckBox">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>300</y>
-       <width>181</width>
-       <height>31</height>
+       <x>170</x>
+       <y>200</y>
+       <width>91</width>
+       <height>41</height>
       </rect>
      </property>
      <property name="font">
@@ -2433,8 +2433,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1016</width>
-       <height>571</height>
+       <width>926</width>
+       <height>560</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2479,8 +2479,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>1016</width>
-       <height>571</height>
+       <width>926</width>
+       <height>560</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -2493,8 +2493,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QCheckBox" name="isUVCheckBox">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>170</y>
+       <x>160</x>
+       <y>110</y>
        <width>201</width>
        <height>31</height>
       </rect>
@@ -2522,8 +2522,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="startTimeAddBut">
      <property name="geometry">
       <rect>
-       <x>860</x>
-       <y>330</y>
+       <x>750</x>
+       <y>260</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2553,8 +2553,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="delayTimeRedBut">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>240</y>
+       <x>380</x>
+       <y>180</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2584,8 +2584,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="startTimeRedBut">
      <property name="geometry">
       <rect>
-       <x>490</x>
-       <y>330</y>
+       <x>380</x>
+       <y>260</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2615,8 +2615,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="delayTimeShowLab">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>240</y>
+       <x>420</x>
+       <y>180</y>
        <width>331</width>
        <height>41</height>
       </rect>
@@ -2647,8 +2647,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="delayTimeAddBut">
      <property name="geometry">
       <rect>
-       <x>860</x>
-       <y>240</y>
+       <x>750</x>
+       <y>180</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2678,8 +2678,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="delayTimeLab">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>240</y>
+       <x>160</x>
+       <y>180</y>
        <width>191</width>
        <height>41</height>
       </rect>
@@ -2710,8 +2710,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeShowLab">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>330</y>
+       <x>420</x>
+       <y>260</y>
        <width>331</width>
        <height>41</height>
       </rect>
@@ -2742,8 +2742,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="startTimeLab">
      <property name="geometry">
       <rect>
-       <x>300</x>
-       <y>330</y>
+       <x>160</x>
+       <y>260</y>
        <width>191</width>
        <height>41</height>
       </rect>

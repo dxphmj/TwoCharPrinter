@@ -83,8 +83,14 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 //画布与滚动条设置
 #ifdef BIG_CHAR
+	ui->editPreviewText->setGeometry(0,0,2746,161);//2746 = 916 * 3 + 1;
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	ui->textpreviewScrollBar->setRange(0,100);
+	viewAreaLabel = new QLabel(this);
+	viewAreaLabel->setGeometry(5,10,916,161);
+	viewAreaLabel->setStyleSheet("background-color: rgb(255,255,255,0%);");
+	ui->editPreviewText->setParent(viewAreaLabel);
+
 #else
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	ui->editPreviewText->setGeometry(0,0,3151,241);//此为基于可视窗口viewAreaLabel的坐标
@@ -235,7 +241,7 @@ FileEditChild::FileEditChild(QWidget *parent)
 	ui->pixelComBox->addItem(QStringLiteral("8px"));//0
 	ui->pixelComBox->addItem(QStringLiteral("16px"));//1
 	ui->pixelComBox->addItem(QStringLiteral("32px"));//2
-	ui->pixelComBox->addItem(QStringLiteral("48px"));//3
+	//ui->pixelComBox->addItem(QStringLiteral("48px"));//3
 	ui->pixelComBox->setCurrentIndex(1);
 
 #else
@@ -488,7 +494,7 @@ void FileEditChild::ScrollBarChanged(int value)//水平滚动条
 {
 #ifdef BIG_CHAR
 	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
-	ui->editPreviewText->move(-2080*p,0);
+	ui->editPreviewText->move(-1830*p,0);//1830 = 915 * 2
 #else
 	double p = static_cast<double>(value)/static_cast<double>(ui->textpreviewScrollBar->maximum());
 	ui->editPreviewText->move(-2140*p,vertical_pos);//2140=3151(画布大小)-1011(可视范围)
@@ -724,27 +730,27 @@ void FileEditChild::DrawBackFrame(QPainter *qFramePainter)
 	PixelMap.insert("8px",40);
 	PixelMap.insert("16px",80);
 	PixelMap.insert("32px",160);
-	PixelMap.insert("48px",240);
+	//PixelMap.insert("48px",240);
 
 	QString CurPixelItem = this->ui->pixelComBox->currentText();
 	int i,j;
-	for (i=1; i<=3121; i+=5)
+	for (i=1; i<=2746; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,241-PixelMap[CurPixelItem],i,241);
+		qFramePainter->drawLine(i,161-PixelMap[CurPixelItem],i,161);
 	}
-	for (j=241; j>=241-PixelMap[CurPixelItem]; j-=5)
+	for (j=161; j>=161-PixelMap[CurPixelItem]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(0,j,3121,j);
+		qFramePainter->drawLine(0,j,2746,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,241,1,241-PixelMap[CurPixelItem]);//left
-	qFramePainter->drawLine(0,239,3121,239);//down
-	qFramePainter->drawLine(0,241-PixelMap[CurPixelItem],3121,241-PixelMap[CurPixelItem]);//up
-	qFramePainter->drawLine(3120,241,3120,241-PixelMap[CurPixelItem]);//right
+	qFramePainter->drawLine(1,161,1,161-PixelMap[CurPixelItem]);//left
+	qFramePainter->drawLine(0,160,2746,160);//down
+	qFramePainter->drawLine(0,161-PixelMap[CurPixelItem],2746,161-PixelMap[CurPixelItem]);//up
+	qFramePainter->drawLine(2745,161,2745,161-PixelMap[CurPixelItem]);//right
 
 	//获得Matrix 及 Pixel的值
 	m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;

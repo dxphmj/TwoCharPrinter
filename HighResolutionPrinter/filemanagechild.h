@@ -62,6 +62,7 @@ public slots:
 	
 protected:
 	bool eventFilter(QObject *watched, QEvent *event);
+	QLabel* viewAreaLabel;
 };
 
 #endif // FILEMANAGECHILD_H

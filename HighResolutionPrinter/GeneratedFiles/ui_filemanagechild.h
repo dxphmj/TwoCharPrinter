@@ -42,22 +42,22 @@ public:
     {
         if (FileManageChild->objectName().isEmpty())
             FileManageChild->setObjectName(QStringLiteral("FileManageChild"));
-        FileManageChild->resize(1061, 761);
+        FileManageChild->resize(926, 600);
         filelistWidget = new QListWidget(FileManageChild);
         filelistWidget->setObjectName(QStringLiteral("filelistWidget"));
-        filelistWidget->setGeometry(QRect(10, 10, 221, 741));
+        filelistWidget->setGeometry(QRect(10, 10, 221, 581));
         filelistWidget->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePrivewtextEdit = new QTextEdit(FileManageChild);
         filePrivewtextEdit->setObjectName(QStringLiteral("filePrivewtextEdit"));
-        filePrivewtextEdit->setGeometry(QRect(240, 10, 791, 241));
+        filePrivewtextEdit->setGeometry(QRect(240, 10, 671, 161));
         filePrivewtextEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         filePreHorScrollBar = new QScrollBar(FileManageChild);
         filePreHorScrollBar->setObjectName(QStringLiteral("filePreHorScrollBar"));
-        filePreHorScrollBar->setGeometry(QRect(240, 251, 791, 25));
+        filePreHorScrollBar->setGeometry(QRect(240, 171, 671, 25));
         filePreHorScrollBar->setOrientation(Qt::Horizontal);
         copyFile2localBut = new QPushButton(FileManageChild);
         copyFile2localBut->setObjectName(QStringLiteral("copyFile2localBut"));
-        copyFile2localBut->setGeometry(QRect(530, 660, 371, 61));
+        copyFile2localBut->setGeometry(QRect(480, 500, 371, 61));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
@@ -66,7 +66,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         UdiskFileBut = new QPushButton(FileManageChild);
         UdiskFileBut->setObjectName(QStringLiteral("UdiskFileBut"));
-        UdiskFileBut->setGeometry(QRect(300, 580, 131, 51));
+        UdiskFileBut->setGeometry(QRect(300, 430, 131, 51));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font1.setPointSize(15);
@@ -75,37 +75,37 @@ public:
 "background-color: rgb(0, 0, 230);"));
         loadSeleFileBut = new QPushButton(FileManageChild);
         loadSeleFileBut->setObjectName(QStringLiteral("loadSeleFileBut"));
-        loadSeleFileBut->setGeometry(QRect(530, 390, 371, 61));
+        loadSeleFileBut->setGeometry(QRect(480, 260, 371, 61));
         loadSeleFileBut->setFont(font);
         loadSeleFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         localFileBut = new QPushButton(FileManageChild);
         localFileBut->setObjectName(QStringLiteral("localFileBut"));
-        localFileBut->setGeometry(QRect(300, 480, 131, 51));
+        localFileBut->setGeometry(QRect(300, 340, 131, 51));
         localFileBut->setFont(font1);
         localFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         editSeleFileBut = new QPushButton(FileManageChild);
         editSeleFileBut->setObjectName(QStringLiteral("editSeleFileBut"));
-        editSeleFileBut->setGeometry(QRect(530, 480, 371, 61));
+        editSeleFileBut->setGeometry(QRect(480, 340, 371, 61));
         editSeleFileBut->setFont(font);
         editSeleFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         delSeleFileBut = new QPushButton(FileManageChild);
         delSeleFileBut->setObjectName(QStringLiteral("delSeleFileBut"));
-        delSeleFileBut->setGeometry(QRect(530, 570, 371, 61));
+        delSeleFileBut->setGeometry(QRect(480, 420, 371, 61));
         delSeleFileBut->setFont(font);
         delSeleFileBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         OKFileNameBut = new QPushButton(FileManageChild);
         OKFileNameBut->setObjectName(QStringLiteral("OKFileNameBut"));
-        OKFileNameBut->setGeometry(QRect(940, 290, 101, 51));
+        OKFileNameBut->setGeometry(QRect(810, 200, 101, 41));
         OKFileNameBut->setFont(font1);
         OKFileNameBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         fileNmaeLineEdit = new lineedit_click(FileManageChild);
         fileNmaeLineEdit->setObjectName(QStringLiteral("fileNmaeLineEdit"));
-        fileNmaeLineEdit->setGeometry(QRect(240, 290, 691, 51));
+        fileNmaeLineEdit->setGeometry(QRect(240, 200, 561, 41));
         fileNmaeLineEdit->setFont(font);
         fileNmaeLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
 

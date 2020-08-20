@@ -44,14 +44,18 @@ FileManageChild::FileManageChild(QWidget *parent)
 	keyboardWidget->setVisible(false);
 
 	ui->filePreHorScrollBar->setRange(0,100);
-	ui->filePrivewtextEdit->setGeometry(240, 10, 3121, 241);
+	ui->filePrivewtextEdit->setGeometry(0,0,2746,161);
+	viewAreaLabel = new QLabel(this);
+	viewAreaLabel->setGeometry(240,10,671,161);
+	viewAreaLabel->setStyleSheet("background-color: rgb(255,255,255,0%);");
+	ui->filePrivewtextEdit->setParent(viewAreaLabel);
 	
 }
 
 void FileManageChild::ScrollBarChanged(int value)
 {
 	double p = static_cast<double>(value)/static_cast<double>(ui->filePreHorScrollBar->maximum());
-	ui->filePrivewtextEdit->move(-2080*p,10);
+	ui->filePrivewtextEdit->move((671-2746)*p,0);
 }
 
 void FileManageChild::SetButtonEnableOn()
@@ -239,27 +243,27 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	MatrixMap.insert("1L8M",40);
 	MatrixMap.insert("1L16M",80);
 	MatrixMap.insert("1L32M",160);
-	MatrixMap.insert("1L48M",240);
+	//MatrixMap.insert("1L48M",240);
 	
 	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
 	int i,j;
-	for (i=1; i<=3121; i+=5)
+	for (i=1; i<=2746; i+=5)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,241-MatrixMap[qStrMatrix],i,241);
+		qFramePainter->drawLine(i,161-MatrixMap[qStrMatrix],i,161);
 	}
-	for (j=241; j>=241-MatrixMap[qStrMatrix]; j-=5)
+	for (j=161; j>=161-MatrixMap[qStrMatrix]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(0,j,3121,j);
+		qFramePainter->drawLine(0,j,2746,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,241,1,241-MatrixMap[qStrMatrix]);//left
-	qFramePainter->drawLine(0,239,3121,239);//down
-	qFramePainter->drawLine(0,241-MatrixMap[qStrMatrix],3121,241-MatrixMap[qStrMatrix]);//up
-	qFramePainter->drawLine(3120,241,3120,241-MatrixMap[qStrMatrix]);//right
+	qFramePainter->drawLine(1,161,1,161-MatrixMap[qStrMatrix]);//left
+	qFramePainter->drawLine(0,160,2746,160);//down
+	qFramePainter->drawLine(0,161-MatrixMap[qStrMatrix],2746,161-MatrixMap[qStrMatrix]);//up
+	qFramePainter->drawLine(2745,161,2745,161-MatrixMap[qStrMatrix]);//right
 
 #else
 	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);

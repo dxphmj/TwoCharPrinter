@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent) :
 	font.setPointSize(18);
 
 	QPushButton* cleanNozzleBtn = new QPushButton(ui->progCtrlLab);
-	cleanNozzleBtn->setGeometry(QRect(65,80,144,144));
+	cleanNozzleBtn->setGeometry(QRect(60,80,120,120));
 	cleanNozzleBtn->setFont(font);
 	cleanNozzleBtn->setText(QStringLiteral("清洗喷头"));
 	cleanNozzleBtn->setStyleSheet("QPushButton{text-align:bottom;border-image: url(:/Images/nozzleClean.bmp);border-radius:15px;color:rgb(255,255,255)}\
@@ -124,7 +124,7 @@ MainWindow::~MainWindow()
 void MainWindow::showNozzleCleanWidget()
 {
 	m_NozzleClean = new NozzleClean(this);
-	m_NozzleClean->setGeometry(10,80,1101,666);
+	m_NozzleClean->setGeometry(5,60,1024,540);
 	m_NozzleClean->setVisible(true);
 	ui->fileManageBut->setEnabled(false);
 	ui->paraManageBut->setEnabled(false);

@@ -32,37 +32,39 @@ public:
     QWidget *page_2;
     QLabel *fileControlLab;
     QLabel *fileManageBackLabel;
+    QPushButton *nozzleCleanBut;
 
     void setupUi(QWidget *FilemanageForm)
     {
         if (FilemanageForm->objectName().isEmpty())
             FilemanageForm->setObjectName(QStringLiteral("FilemanageForm"));
-        FilemanageForm->resize(1280, 800);
+        FilemanageForm->resize(1024, 600);
         FilemanageForm->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         editFileBut = new QPushButton(FilemanageForm);
         editFileBut->setObjectName(QStringLiteral("editFileBut"));
-        editFileBut->setGeometry(QRect(10, 120, 144, 144));
+        editFileBut->setGeometry(QRect(4, 70, 90, 90));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
-        font.setPointSize(18);
+        font.setPointSize(14);
         editFileBut->setFont(font);
         editFileBut->setStyleSheet(QLatin1String("background-image: url(:/Images/editFile.bmp);\n"
 "color: rgb(255, 255, 255);"));
         manageFileBut = new QPushButton(FilemanageForm);
         manageFileBut->setObjectName(QStringLiteral("manageFileBut"));
-        manageFileBut->setGeometry(QRect(10, 340, 144, 144));
+        manageFileBut->setGeometry(QRect(4, 190, 90, 90));
         manageFileBut->setFont(font);
         manageFileBut->setStyleSheet(QLatin1String("background-image: url(:/Images/manageFile.bmp);\n"
 "color: rgb(255, 255, 255);"));
         exitBut = new QPushButton(FilemanageForm);
         exitBut->setObjectName(QStringLiteral("exitBut"));
-        exitBut->setGeometry(QRect(10, 560, 144, 144));
+        exitBut->setGeometry(QRect(4, 430, 90, 90));
         exitBut->setFont(font);
         exitBut->setStyleSheet(QLatin1String("background-image: url(:/Images/exit.bmp);\n"
 "color: rgb(255, 255, 255);"));
         stackedWidget = new QStackedWidget(FilemanageForm);
         stackedWidget->setObjectName(QStringLiteral("stackedWidget"));
-        stackedWidget->setGeometry(QRect(190, 20, 1061, 761));
+        stackedWidget->setGeometry(QRect(98, 0, 926, 600));
+        stackedWidget->setAutoFillBackground(false);
         page = new QWidget();
         page->setObjectName(QStringLiteral("page"));
         stackedWidget->addWidget(page);
@@ -71,18 +73,26 @@ public:
         stackedWidget->addWidget(page_2);
         fileControlLab = new QLabel(FilemanageForm);
         fileControlLab->setObjectName(QStringLiteral("fileControlLab"));
-        fileControlLab->setGeometry(QRect(10, 19, 181, 751));
+        fileControlLab->setGeometry(QRect(0, 0, 98, 600));
         fileControlLab->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         fileManageBackLabel = new QLabel(FilemanageForm);
         fileManageBackLabel->setObjectName(QStringLiteral("fileManageBackLabel"));
-        fileManageBackLabel->setGeometry(QRect(0, 0, 1280, 800));
+        fileManageBackLabel->setGeometry(QRect(0, 0, 1024, 600));
         fileManageBackLabel->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
+        nozzleCleanBut = new QPushButton(FilemanageForm);
+        nozzleCleanBut->setObjectName(QStringLiteral("nozzleCleanBut"));
+        nozzleCleanBut->setGeometry(QRect(4, 310, 90, 90));
+        nozzleCleanBut->setFont(font);
+        nozzleCleanBut->setAutoFillBackground(false);
+        nozzleCleanBut->setStyleSheet(QLatin1String("background-image: url(:/Images/nozzleClean.bmp);\n"
+"color: rgb(255, 255, 255);"));
         fileManageBackLabel->raise();
+        stackedWidget->raise();
         fileControlLab->raise();
         editFileBut->raise();
         manageFileBut->raise();
         exitBut->raise();
-        stackedWidget->raise();
+        nozzleCleanBut->raise();
 
         retranslateUi(FilemanageForm);
 
@@ -97,6 +107,7 @@ public:
         exitBut->setText(QApplication::translate("FilemanageForm", "\351\200\200\345\207\272", 0));
         fileControlLab->setText(QString());
         fileManageBackLabel->setText(QString());
+        nozzleCleanBut->setText(QApplication::translate("FilemanageForm", "\345\226\267\345\244\264\346\270\205\346\264\227", 0));
     } // retranslateUi
 
 };

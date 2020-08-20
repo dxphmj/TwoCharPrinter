@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1061</width>
-    <height>761</height>
+    <width>926</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,16 +16,16 @@
   <widget class="QPushButton" name="saveBut">
    <property name="geometry">
     <rect>
-     <x>853</x>
-     <y>290</y>
-     <width>90</width>
-     <height>51</height>
+     <x>760</x>
+     <y>205</y>
+     <width>66</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -39,10 +39,10 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QTextEdit" name="editPreviewText">
    <property name="geometry">
     <rect>
-     <x>10</x>
+     <x>5</x>
      <y>10</y>
-     <width>1041</width>
-     <height>241</height>
+     <width>916</width>
+     <height>161</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -55,16 +55,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="saveasBut">
    <property name="geometry">
     <rect>
-     <x>949</x>
-     <y>290</y>
-     <width>100</width>
-     <height>51</height>
+     <x>830</x>
+     <y>205</y>
+     <width>80</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -78,16 +78,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="delBut">
    <property name="geometry">
     <rect>
-     <x>767</x>
-     <y>290</y>
-     <width>80</width>
-     <height>51</height>
+     <x>690</x>
+     <y>205</y>
+     <width>66</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -101,10 +101,10 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QScrollBar" name="textpreviewScrollBar">
    <property name="geometry">
     <rect>
-     <x>0</x>
-     <y>251</y>
-     <width>1051</width>
-     <height>26</height>
+     <x>5</x>
+     <y>170</y>
+     <width>916</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -117,24 +117,30 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QTabWidget" name="typeTab">
    <property name="geometry">
     <rect>
-     <x>2</x>
-     <y>290</y>
-     <width>760</width>
-     <height>461</height>
+     <x>5</x>
+     <y>200</y>
+     <width>680</width>
+     <height>411</height>
     </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">QTabBar::tab{width:95}
-QTabBar::tab{height:50}</string>
+    <string notr="true">QTabBar::tab{width:70}
+QTabBar::tab{height:40}</string>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>7</number>
    </property>
    <widget class="QWidget" name="textTab">
     <attribute name="title">
@@ -145,8 +151,8 @@ QTabBar::tab{height:50}</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>731</width>
-       <height>51</height>
+       <width>651</width>
+       <height>36</height>
       </rect>
      </property>
      <property name="font">
@@ -162,8 +168,8 @@ QTabBar::tab{height:50}</string>
     <widget class="QLabel" name="fontTypeTextLab">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>170</y>
+       <x>20</x>
+       <y>90</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -194,8 +200,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="fontSizeTextLab">
      <property name="geometry">
       <rect>
-       <x>380</x>
-       <y>170</y>
+       <x>340</x>
+       <y>90</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -226,8 +232,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontTypeTextComBox">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>170</y>
+       <x>120</x>
+       <y>90</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -246,8 +252,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="fontSizeTextComBox">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>170</y>
+       <x>440</x>
+       <y>90</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -266,8 +272,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="variableTextBut">
      <property name="geometry">
       <rect>
-       <x>150</x>
-       <y>270</y>
+       <x>120</x>
+       <y>170</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -289,8 +295,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newTextBut">
      <property name="geometry">
       <rect>
-       <x>480</x>
-       <y>270</y>
+       <x>440</x>
+       <y>170</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -313,9 +319,9 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>0</x>
-       <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <y>10</y>
+       <width>681</width>
+       <height>351</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -325,6 +331,19 @@ background-color: rgb(0, 0, 230);</string>
       <string/>
      </property>
     </widget>
+    <widget class="QStackedWidget" name="keyboardStackWid">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>90</y>
+       <width>671</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <widget class="QWidget" name="page_3"/>
+     <widget class="QWidget" name="page_4"/>
+    </widget>
+    <zorder>keyboardStackWid</zorder>
     <zorder>fontBGlLbel</zorder>
     <zorder>wordLineEdit</zorder>
     <zorder>fontTypeTextLab</zorder>
@@ -341,10 +360,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QListWidget" name="SkewUUnitlistWidget">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>290</y>
-       <width>171</width>
-       <height>116</height>
+       <x>500</x>
+       <y>230</y>
+       <width>151</width>
+       <height>91</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -354,22 +373,16 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontTypeTimeLab_7">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>60</y>
-       <width>121</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
+       <x>10</x>
+       <y>50</y>
        <width>101</width>
-       <height>41</height>
-      </size>
+       <height>35</height>
+      </rect>
      </property>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -386,10 +399,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLineEdit" name="DateTimeEdit">
      <property name="geometry">
       <rect>
-       <x>130</x>
-       <y>60</y>
-       <width>611</width>
-       <height>41</height>
+       <x>110</x>
+       <y>50</y>
+       <width>541</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -405,10 +418,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="refreshTimeBut">
      <property name="geometry">
       <rect>
-       <x>1</x>
-       <y>360</y>
-       <width>181</width>
-       <height>41</height>
+       <x>10</x>
+       <y>290</y>
+       <width>136</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -428,10 +441,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="SkewComBox">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>200</y>
-       <width>171</width>
-       <height>41</height>
+       <x>500</x>
+       <y>160</y>
+       <width>151</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -450,22 +463,16 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontTypeTimeLab_6">
      <property name="geometry">
       <rect>
-       <x>10</x>
+       <x>20</x>
        <y>10</y>
-       <width>111</width>
-       <height>41</height>
+       <width>81</width>
+       <height>35</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
        <family>楷体</family>
-       <pointsize>16</pointsize>
+       <pointsize>14</pointsize>
       </font>
      </property>
      <property name="styleSheet">
@@ -482,8 +489,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="addTimeBut">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>280</y>
+       <x>290</x>
+       <y>210</y>
        <width>63</width>
        <height>63</height>
       </rect>
@@ -505,10 +512,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLineEdit" name="PreviewEdit">
      <property name="geometry">
       <rect>
-       <x>130</x>
+       <x>110</x>
        <y>10</y>
-       <width>611</width>
-       <height>41</height>
+       <width>541</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -527,10 +534,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newTimeBut">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>360</y>
-       <width>181</width>
-       <height>41</height>
+       <x>145</x>
+       <y>290</y>
+       <width>136</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -550,10 +557,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="fontTypeTimeComBox">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>155</y>
-       <width>171</width>
-       <height>41</height>
+       <x>500</x>
+       <y>125</y>
+       <width>151</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -572,10 +579,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QListWidget" name="FormatlistWidget">
      <property name="geometry">
       <rect>
-       <x>65</x>
-       <y>110</y>
-       <width>301</width>
-       <height>241</height>
+       <x>10</x>
+       <y>90</y>
+       <width>271</width>
+       <height>201</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -585,17 +592,11 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontTypeTimeLab_5">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>280</y>
-       <width>121</width>
-       <height>41</height>
+       <x>360</x>
+       <y>230</y>
+       <width>126</width>
+       <height>35</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -617,17 +618,11 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="fontTypeTimeLab_3">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>200</y>
-       <width>121</width>
-       <height>41</height>
+       <x>420</x>
+       <y>160</y>
+       <width>75</width>
+       <height>35</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -649,17 +644,11 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="fontTypeTimeLab">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>155</y>
-       <width>121</width>
-       <height>41</height>
+       <x>420</x>
+       <y>125</y>
+       <width>75</width>
+       <height>35</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -681,17 +670,11 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="fontTypeTimeLab_4">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>245</y>
-       <width>121</width>
-       <height>41</height>
-      </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
+       <x>390</x>
+       <y>195</y>
        <width>101</width>
-       <height>41</height>
-      </size>
+       <height>35</height>
+      </rect>
      </property>
      <property name="font">
       <font>
@@ -713,10 +696,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="SkewSkewValueEdit">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>245</y>
-       <width>171</width>
-       <height>41</height>
+       <x>500</x>
+       <y>195</y>
+       <width>151</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -734,8 +717,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>681</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -748,10 +731,10 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontSizeTimeComBox">
      <property name="geometry">
       <rect>
-       <x>570</x>
-       <y>110</y>
-       <width>171</width>
-       <height>41</height>
+       <x>500</x>
+       <y>90</y>
+       <width>151</width>
+       <height>35</height>
       </rect>
      </property>
      <property name="font">
@@ -770,17 +753,11 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontSizeTimeLab">
      <property name="geometry">
       <rect>
-       <x>450</x>
-       <y>110</y>
-       <width>121</width>
-       <height>41</height>
+       <x>420</x>
+       <y>90</y>
+       <width>75</width>
+       <height>35</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -802,8 +779,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="concelTimeBut">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>200</y>
+       <x>290</x>
+       <y>140</y>
        <width>63</width>
        <height>63</height>
       </rect>
@@ -852,8 +829,8 @@ border-radius:10px;</string>
     <widget class="QLabel" name="formatSerialLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>200</y>
+       <x>400</x>
+       <y>140</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -884,8 +861,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="fontTypeSerialLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>250</y>
+       <x>400</x>
+       <y>180</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -916,8 +893,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontTypeSerialComBox">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>250</y>
+       <x>530</x>
+       <y>180</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -936,8 +913,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="formatSerialComBox">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>200</y>
+       <x>530</x>
+       <y>140</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -956,8 +933,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="counterSerialLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>150</y>
+       <x>400</x>
+       <y>100</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -988,8 +965,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="counterSerialComBox">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>150</y>
+       <x>530</x>
+       <y>100</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1008,8 +985,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newSerialBut">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>360</y>
+       <x>470</x>
+       <y>270</y>
        <width>161</width>
        <height>41</height>
       </rect>
@@ -1033,8 +1010,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>731</width>
-       <height>51</height>
+       <width>651</width>
+       <height>36</height>
       </rect>
      </property>
      <property name="font">
@@ -1050,8 +1027,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="initialValSerialLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>110</y>
+       <x>10</x>
+       <y>60</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -1082,8 +1059,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="initialValSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>110</y>
+       <x>130</x>
+       <y>60</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1101,8 +1078,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="termValSerialLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>170</y>
+       <x>10</x>
+       <y>100</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -1133,8 +1110,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="termValSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>170</y>
+       <x>130</x>
+       <y>100</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1152,8 +1129,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startValSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>230</y>
+       <x>130</x>
+       <y>140</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1171,8 +1148,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startValSerialLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>230</y>
+       <x>10</x>
+       <y>140</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -1203,8 +1180,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="stepLenSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>290</y>
+       <x>130</x>
+       <y>180</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1222,8 +1199,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="stepLenSerialLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>290</y>
+       <x>10</x>
+       <y>180</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -1254,8 +1231,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="reptCountSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>140</x>
-       <y>350</y>
+       <x>130</x>
+       <y>220</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1273,8 +1250,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="reptCountSerialLab">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>350</y>
+       <x>0</x>
+       <y>220</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1305,8 +1282,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="digitSerialLineEdit">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>100</y>
+       <x>530</x>
+       <y>60</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1324,8 +1301,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="digitSerialLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>100</y>
+       <x>400</x>
+       <y>60</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1358,8 +1335,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>681</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1372,8 +1349,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontSizeSerialComBox">
      <property name="geometry">
       <rect>
-       <x>560</x>
-       <y>300</y>
+       <x>530</x>
+       <y>220</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1392,8 +1369,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontSizeSerialLab">
      <property name="geometry">
       <rect>
-       <x>430</x>
-       <y>300</y>
+       <x>400</x>
+       <y>220</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1452,17 +1429,11 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="heightBmpLab">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>110</y>
-       <width>101</width>
+       <x>10</x>
+       <y>40</y>
+       <width>81</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -1484,17 +1455,11 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="widthBmpLab">
      <property name="geometry">
       <rect>
-       <x>0</x>
-       <y>180</y>
-       <width>101</width>
+       <x>10</x>
+       <y>90</y>
+       <width>81</width>
        <height>41</height>
       </rect>
-     </property>
-     <property name="minimumSize">
-      <size>
-       <width>101</width>
-       <height>41</height>
-      </size>
      </property>
      <property name="font">
       <font>
@@ -1516,8 +1481,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="selBmpBut">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>340</y>
+       <x>290</x>
+       <y>280</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1539,8 +1504,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="reverseBmpCheckBox">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>310</y>
+       <x>50</x>
+       <y>190</y>
        <width>151</width>
        <height>41</height>
       </rect>
@@ -1568,8 +1533,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="newBmpBut">
      <property name="geometry">
       <rect>
-       <x>510</x>
-       <y>340</y>
+       <x>470</x>
+       <y>280</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1591,10 +1556,10 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="bmpPreviewLab">
      <property name="geometry">
       <rect>
-       <x>260</x>
-       <y>30</y>
-       <width>471</width>
-       <height>291</height>
+       <x>230</x>
+       <y>10</y>
+       <width>431</width>
+       <height>261</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1607,8 +1572,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="proportionBmpCheckBox">
      <property name="geometry">
       <rect>
-       <x>70</x>
-       <y>250</y>
+       <x>50</x>
+       <y>150</y>
        <width>161</width>
        <height>41</height>
       </rect>
@@ -1639,7 +1604,7 @@ background-color: rgb(67,51, 139);</string>
        <x>0</x>
        <y>0</y>
        <width>755</width>
-       <height>411</height>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1652,8 +1617,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="heightBmpShowBmpLineEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>110</y>
+       <x>90</x>
+       <y>40</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1671,8 +1636,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="widthShowBmpLineEdit">
      <property name="geometry">
       <rect>
-       <x>100</x>
-       <y>180</y>
+       <x>90</x>
+       <y>90</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -1707,8 +1672,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>681</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -1721,8 +1686,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shiftNumLab">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>20</y>
+       <x>70</x>
+       <y>10</y>
        <width>150</width>
        <height>41</height>
       </rect>
@@ -1753,8 +1718,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="shiftNumShowLineEdit">
      <property name="geometry">
       <rect>
-       <x>240</x>
-       <y>20</y>
+       <x>220</x>
+       <y>10</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -1772,8 +1737,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textLenShowLineEdit">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>20</y>
+       <x>550</x>
+       <y>10</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -1791,8 +1756,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textLenLab">
      <property name="geometry">
       <rect>
-       <x>400</x>
-       <y>20</y>
+       <x>340</x>
+       <y>10</y>
        <width>210</width>
        <height>41</height>
       </rect>
@@ -1823,8 +1788,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift1Lab">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>80</y>
+       <x>210</x>
+       <y>50</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1855,8 +1820,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft1LineEdit">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>125</y>
+       <x>290</x>
+       <y>90</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -1874,8 +1839,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft1Lab">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>125</y>
+       <x>150</x>
+       <y>90</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1906,8 +1871,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft1LineEdit">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>170</y>
+       <x>290</x>
+       <y>130</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -1925,8 +1890,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft1Lab">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>170</y>
+       <x>150</x>
+       <y>130</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1957,8 +1922,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft2Lab">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>125</y>
+       <x>410</x>
+       <y>90</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -1989,8 +1954,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft2LineEdit">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>125</y>
+       <x>550</x>
+       <y>90</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2008,8 +1973,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft2LineEdit">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>170</y>
+       <x>550</x>
+       <y>130</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2027,8 +1992,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft2Lab">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>170</y>
+       <x>410</x>
+       <y>130</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2059,8 +2024,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift2Lab">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>80</y>
+       <x>470</x>
+       <y>50</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2091,8 +2056,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft3Lab">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>275</y>
+       <x>150</x>
+       <y>210</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2123,8 +2088,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft3LineEdit">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>275</y>
+       <x>290</x>
+       <y>210</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2142,8 +2107,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft3LineEdit">
      <property name="geometry">
       <rect>
-       <x>330</x>
-       <y>320</y>
+       <x>290</x>
+       <y>250</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2161,8 +2126,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft3Lab">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>320</y>
+       <x>150</x>
+       <y>250</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2193,8 +2158,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift3Lab">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>230</y>
+       <x>210</x>
+       <y>170</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2225,8 +2190,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="startTimeSft4Lab">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>275</y>
+       <x>410</x>
+       <y>210</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2257,8 +2222,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="startTimeShowSft4LineEdit">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>275</y>
+       <x>550</x>
+       <y>210</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2276,8 +2241,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="lineedit_click" name="textIDShowSft4LineEdit">
      <property name="geometry">
       <rect>
-       <x>610</x>
-       <y>320</y>
+       <x>550</x>
+       <y>250</y>
        <width>120</width>
        <height>40</height>
       </rect>
@@ -2295,8 +2260,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="textIDSft4Lab">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>318</y>
+       <x>410</x>
+       <y>250</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2327,8 +2292,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="shift4Lab">
      <property name="geometry">
       <rect>
-       <x>530</x>
-       <y>230</y>
+       <x>470</x>
+       <y>170</y>
        <width>141</width>
        <height>41</height>
       </rect>
@@ -2359,8 +2324,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="newShiftBut">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>310</y>
+       <x>10</x>
+       <y>260</y>
        <width>130</width>
        <height>40</height>
       </rect>
@@ -2382,8 +2347,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontTypeBanciLab">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>80</y>
+       <x>10</x>
+       <y>60</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -2414,8 +2379,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontTypeBanciComBox">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>125</y>
+       <x>10</x>
+       <y>100</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -2434,8 +2399,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="fontSizeBanciLab">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>180</y>
+       <x>10</x>
+       <y>150</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -2466,8 +2431,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="fontSizeBanciComBox">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>225</y>
+       <x>10</x>
+       <y>190</y>
        <width>130</width>
        <height>41</height>
       </rect>
@@ -2493,8 +2458,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>731</width>
-       <height>51</height>
+       <width>651</width>
+       <height>36</height>
       </rect>
      </property>
      <property name="font">
@@ -2510,8 +2475,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="whitespaceLab">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>275</y>
+       <x>490</x>
+       <y>160</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2542,9 +2507,9 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="zoomBarCodeLab_2">
      <property name="geometry">
       <rect>
-       <x>380</x>
-       <y>275</y>
-       <width>121</width>
+       <x>320</x>
+       <y>160</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -2574,8 +2539,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="variableBarCodeBut">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>345</y>
+       <x>140</x>
+       <y>220</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -2597,8 +2562,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="typerimComBox">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>95</y>
+       <x>450</x>
+       <y>70</y>
        <width>211</width>
        <height>41</height>
       </rect>
@@ -2617,8 +2582,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="rimwideLab">
      <property name="geometry">
       <rect>
-       <x>540</x>
-       <y>185</y>
+       <x>490</x>
+       <y>120</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2649,8 +2614,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="heightBarCodeAddBut">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>185</y>
+       <x>270</x>
+       <y>120</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2680,8 +2645,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="heightBarCodeRedBut">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>185</y>
+       <x>100</x>
+       <y>120</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2711,9 +2676,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="typeBarCodeLab_2">
      <property name="geometry">
       <rect>
-       <x>380</x>
-       <y>95</y>
-       <width>111</width>
+       <x>320</x>
+       <y>70</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -2743,8 +2708,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="typeBarCodeLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>100</y>
+       <x>0</x>
+       <y>70</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2776,8 +2741,8 @@ background-color: rgb(67,51, 139);
     <widget class="QPushButton" name="whitespaceRedBut">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>275</y>
+       <x>450</x>
+       <y>160</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2807,8 +2772,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="rimwideAddBut">
      <property name="geometry">
       <rect>
-       <x>670</x>
-       <y>185</y>
+       <x>620</x>
+       <y>120</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2838,8 +2803,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="heightBarCodeShowQRLab">
      <property name="geometry">
       <rect>
-       <x>160</x>
-       <y>185</y>
+       <x>140</x>
+       <y>120</y>
        <width>131</width>
        <height>41</height>
       </rect>
@@ -2870,8 +2835,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QPushButton" name="whitespaceAddBut">
      <property name="geometry">
       <rect>
-       <x>670</x>
-       <y>275</y>
+       <x>620</x>
+       <y>160</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2901,8 +2866,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="rimwideRedBut">
      <property name="geometry">
       <rect>
-       <x>500</x>
-       <y>185</y>
+       <x>450</x>
+       <y>120</y>
        <width>41</width>
        <height>41</height>
       </rect>
@@ -2932,8 +2897,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="showNumCheckBox">
      <property name="geometry">
       <rect>
-       <x>110</x>
-       <y>285</y>
+       <x>100</x>
+       <y>170</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -2961,8 +2926,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QLabel" name="heightBarCodeLab">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>185</y>
+       <x>0</x>
+       <y>120</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -2993,8 +2958,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="newBarCodeBut">
      <property name="geometry">
       <rect>
-       <x>410</x>
-       <y>345</y>
+       <x>390</x>
+       <y>220</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3016,9 +2981,9 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="zoomBarCodeLab">
      <property name="geometry">
       <rect>
-       <x>380</x>
-       <y>185</y>
-       <width>121</width>
+       <x>320</x>
+       <y>120</y>
+       <width>131</width>
        <height>41</height>
       </rect>
      </property>
@@ -3048,8 +3013,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="typeBarCodeComBox">
      <property name="geometry">
       <rect>
-       <x>120</x>
-       <y>100</y>
+       <x>100</x>
+       <y>70</y>
        <width>211</width>
        <height>41</height>
       </rect>
@@ -3070,8 +3035,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>681</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3112,8 +3077,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>731</width>
-       <height>51</height>
+       <width>651</width>
+       <height>36</height>
       </rect>
      </property>
      <property name="font">
@@ -3131,8 +3096,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="variableQRBut">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>150</y>
+       <x>410</x>
+       <y>100</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3154,8 +3119,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QCheckBox" name="reverseCheckBox">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>260</y>
+       <x>150</x>
+       <y>170</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -3183,8 +3148,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="newQRBut">
      <property name="geometry">
       <rect>
-       <x>470</x>
-       <y>250</y>
+       <x>410</x>
+       <y>170</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3206,8 +3171,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QComboBox" name="sideLenQRComBox">
      <property name="geometry">
       <rect>
-       <x>180</x>
-       <y>155</y>
+       <x>150</x>
+       <y>100</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3226,8 +3191,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="sideLenQRLab">
      <property name="geometry">
       <rect>
-       <x>80</x>
-       <y>155</y>
+       <x>40</x>
+       <y>100</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -3260,8 +3225,8 @@ background-color: rgb(67,51, 139);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>681</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3286,8 +3251,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QPushButton" name="variableDMBut">
      <property name="geometry">
       <rect>
-       <x>420</x>
-       <y>170</y>
+       <x>380</x>
+       <y>90</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3309,8 +3274,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QLabel" name="sideLenDMLab">
      <property name="geometry">
       <rect>
-       <x>90</x>
-       <y>170</y>
+       <x>40</x>
+       <y>80</y>
        <width>101</width>
        <height>41</height>
       </rect>
@@ -3341,8 +3306,8 @@ background-color: rgb(67,51, 139);</string>
     <widget class="QComboBox" name="sideLenDMComBox">
      <property name="geometry">
       <rect>
-       <x>190</x>
-       <y>170</y>
+       <x>140</x>
+       <y>90</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3363,8 +3328,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>10</x>
        <y>20</y>
-       <width>731</width>
-       <height>51</height>
+       <width>651</width>
+       <height>36</height>
       </rect>
      </property>
      <property name="font">
@@ -3380,8 +3345,8 @@ background-color: rgb(0, 0, 230);</string>
     <widget class="QPushButton" name="newDMBut">
      <property name="geometry">
       <rect>
-       <x>420</x>
-       <y>270</y>
+       <x>380</x>
+       <y>180</y>
        <width>181</width>
        <height>41</height>
       </rect>
@@ -3405,8 +3370,8 @@ background-color: rgb(0, 0, 230);</string>
       <rect>
        <x>0</x>
        <y>0</y>
-       <width>755</width>
-       <height>411</height>
+       <width>680</width>
+       <height>361</height>
       </rect>
      </property>
      <property name="styleSheet">
@@ -3420,7 +3385,7 @@ background-color: rgb(0, 0, 230);</string>
      <property name="geometry">
       <rect>
        <x>190</x>
-       <y>270</y>
+       <y>180</y>
        <width>181</width>
        <height>31</height>
       </rect>
@@ -3457,10 +3422,10 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QPushButton" name="moveUpBut">
    <property name="geometry">
     <rect>
-     <x>910</x>
-     <y>550</y>
-     <width>63</width>
-     <height>63</height>
+     <x>780</x>
+     <y>445</y>
+     <width>50</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -3481,10 +3446,10 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="moveRightBut">
    <property name="geometry">
     <rect>
-     <x>980</x>
-     <y>620</y>
-     <width>63</width>
-     <height>63</height>
+     <x>835</x>
+     <y>500</y>
+     <width>50</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -3505,10 +3470,10 @@ border-radius:10px;</string>
   <widget class="QPushButton" name="moveDownBut">
    <property name="geometry">
     <rect>
-     <x>980</x>
-     <y>550</y>
-     <width>63</width>
-     <height>63</height>
+     <x>780</x>
+     <y>500</y>
+     <width>50</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -3525,14 +3490,20 @@ border-radius:10px;</string>
    <property name="text">
     <string/>
    </property>
+   <property name="iconSize">
+    <size>
+     <width>20</width>
+     <height>20</height>
+    </size>
+   </property>
   </widget>
   <widget class="QPushButton" name="moveLeftBut">
    <property name="geometry">
     <rect>
-     <x>910</x>
-     <y>620</y>
-     <width>63</width>
-     <height>63</height>
+     <x>725</x>
+     <y>500</y>
+     <width>50</width>
+     <height>50</height>
     </rect>
    </property>
    <property name="font">
@@ -3553,10 +3524,10 @@ border-radius:10px;</string>
   <widget class="QLabel" name="controlLab">
    <property name="geometry">
     <rect>
-     <x>760</x>
-     <y>290</y>
-     <width>291</width>
-     <height>461</height>
+     <x>685</x>
+     <y>199</y>
+     <width>241</width>
+     <height>401</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -3566,32 +3537,14 @@ border-radius:10px;</string>
     <string/>
    </property>
   </widget>
-  <widget class="QStackedWidget" name="keyboardStackWid">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>420</y>
-     <width>791</width>
-     <height>321</height>
-    </rect>
-   </property>
-   <widget class="QWidget" name="page_3"/>
-   <widget class="QWidget" name="page_4"/>
-  </widget>
   <widget class="QPushButton" name="degreeTextAddBut">
    <property name="geometry">
     <rect>
-     <x>985</x>
-     <y>440</y>
-     <width>41</width>
-     <height>41</height>
+     <x>865</x>
+     <y>330</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
@@ -3612,22 +3565,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="degreeTextShowLab">
    <property name="geometry">
     <rect>
-     <x>895</x>
-     <y>440</y>
-     <width>90</width>
-     <height>41</height>
+     <x>785</x>
+     <y>330</y>
+     <width>80</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -3644,17 +3591,11 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="degreeTextRedBut">
    <property name="geometry">
     <rect>
-     <x>855</x>
-     <y>440</y>
-     <width>41</width>
-     <height>41</height>
+     <x>755</x>
+     <y>330</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
@@ -3675,22 +3616,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="rotateTextLab">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>440</y>
-     <width>71</width>
-     <height>41</height>
+     <x>705</x>
+     <y>330</y>
+     <width>50</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -3707,17 +3642,11 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QPushButton" name="internalTextAddBut">
    <property name="geometry">
     <rect>
-     <x>985</x>
-     <y>490</y>
-     <width>41</width>
-     <height>41</height>
+     <x>865</x>
+     <y>365</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
@@ -3738,17 +3667,11 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QPushButton" name="internalTextRedBut">
    <property name="geometry">
     <rect>
-     <x>855</x>
-     <y>490</y>
-     <width>41</width>
-     <height>41</height>
+     <x>755</x>
+     <y>365</y>
+     <width>30</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
@@ -3769,22 +3692,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="internalTextLab">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>490</y>
-     <width>71</width>
-     <height>41</height>
+     <x>705</x>
+     <y>365</y>
+     <width>50</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>41</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -3801,10 +3718,10 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QComboBox" name="moveSpeedComBox">
    <property name="geometry">
     <rect>
-     <x>780</x>
-     <y>610</y>
-     <width>110</width>
-     <height>40</height>
+     <x>805</x>
+     <y>405</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -3821,22 +3738,16 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="moveSpeedLab">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>570</y>
-     <width>130</width>
-     <height>41</height>
+     <x>710</x>
+     <y>405</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>101</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -3853,22 +3764,16 @@ background-color: rgb(67,51, 139);</string>
   <widget class="QLabel" name="internalShowTextLab">
    <property name="geometry">
     <rect>
-     <x>896</x>
-     <y>490</y>
-     <width>90</width>
-     <height>41</height>
+     <x>785</x>
+     <y>365</y>
+     <width>80</width>
+     <height>30</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>0</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>14</pointsize>
+     <pointsize>11</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -3885,10 +3790,10 @@ color: rgb(255, 255, 255);</string>
   <widget class="QFrame" name="frame">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>350</y>
-     <width>271</width>
-     <height>80</height>
+     <x>690</x>
+     <y>250</y>
+     <width>221</width>
+     <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -3904,9 +3809,9 @@ color: rgb(255, 255, 255);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>10</y>
+      <y>5</y>
       <width>21</width>
-      <height>31</height>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3925,9 +3830,9 @@ background-color: rgb(67, 51, 139);</string>
     <property name="geometry">
      <rect>
       <x>20</x>
-      <y>40</y>
+      <y>35</y>
       <width>21</width>
-      <height>31</height>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3945,10 +3850,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="Widthlabel">
     <property name="geometry">
      <rect>
-      <x>150</x>
-      <y>10</y>
-      <width>31</width>
-      <height>31</height>
+      <x>115</x>
+      <y>5</y>
+      <width>21</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3966,10 +3871,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="Hightlabel">
     <property name="geometry">
      <rect>
-      <x>153</x>
-      <y>40</y>
+      <x>118</x>
+      <y>35</y>
       <width>21</width>
-      <height>31</height>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -3987,10 +3892,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="XposShowlabel">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>10</y>
-      <width>81</width>
-      <height>31</height>
+      <x>45</x>
+      <y>5</y>
+      <width>61</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -4008,10 +3913,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="YposShowlabel">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>40</y>
-      <width>81</width>
-      <height>31</height>
+      <x>45</x>
+      <y>35</y>
+      <width>61</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -4029,10 +3934,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="WidthShowlabel">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>10</y>
-      <width>81</width>
-      <height>31</height>
+      <x>145</x>
+      <y>5</y>
+      <width>61</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -4050,10 +3955,10 @@ background-color: rgb(67, 51, 139);</string>
    <widget class="QLabel" name="HightShowlabel">
     <property name="geometry">
      <rect>
-      <x>180</x>
-      <y>40</y>
-      <width>81</width>
-      <height>31</height>
+      <x>145</x>
+      <y>35</y>
+      <width>61</width>
+      <height>26</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -4072,10 +3977,10 @@ background-color: rgb(67, 51, 139);</string>
   <widget class="QComboBox" name="pixelComBox">
    <property name="geometry">
     <rect>
-     <x>900</x>
-     <y>695</y>
-     <width>141</width>
-     <height>41</height>
+     <x>805</x>
+     <y>560</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
    </property>
    <property name="font">
@@ -4092,22 +3997,17 @@ background-color: rgb(0, 0, 230);</string>
   <widget class="QLabel" name="pixelLab">
    <property name="geometry">
     <rect>
-     <x>770</x>
-     <y>695</y>
-     <width>130</width>
-     <height>41</height>
+     <x>710</x>
+     <y>560</y>
+     <width>91</width>
+     <height>31</height>
     </rect>
-   </property>
-   <property name="minimumSize">
-    <size>
-     <width>101</width>
-     <height>41</height>
-    </size>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>16</pointsize>
+     <pointsize>12</pointsize>
+     <kerning>true</kerning>
     </font>
    </property>
    <property name="styleSheet">
@@ -4121,7 +4021,6 @@ background-color: rgb(67,51, 139);</string>
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <zorder>keyboardStackWid</zorder>
   <zorder>controlLab</zorder>
   <zorder>saveBut</zorder>
   <zorder>editPreviewText</zorder>
@@ -4140,12 +4039,12 @@ background-color: rgb(67,51, 139);</string>
   <zorder>internalTextAddBut</zorder>
   <zorder>internalTextRedBut</zorder>
   <zorder>internalTextLab</zorder>
-  <zorder>moveSpeedComBox</zorder>
   <zorder>moveSpeedLab</zorder>
   <zorder>internalShowTextLab</zorder>
   <zorder>frame</zorder>
   <zorder>pixelComBox</zorder>
   <zorder>pixelLab</zorder>
+  <zorder>moveSpeedComBox</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>

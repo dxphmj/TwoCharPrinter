@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1280</width>
-    <height>800</height>
+    <width>1024</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,16 +19,16 @@
   <widget class="QPushButton" name="editFileBut">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>120</y>
-     <width>144</width>
-     <height>144</height>
+     <x>4</x>
+     <y>70</y>
+     <width>90</width>
+     <height>90</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>18</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -42,16 +42,16 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="manageFileBut">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>340</y>
-     <width>144</width>
-     <height>144</height>
+     <x>4</x>
+     <y>190</y>
+     <width>90</width>
+     <height>90</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>18</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -65,16 +65,16 @@ color: rgb(255, 255, 255);</string>
   <widget class="QPushButton" name="exitBut">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>560</y>
-     <width>144</width>
-     <height>144</height>
+     <x>4</x>
+     <y>430</y>
+     <width>90</width>
+     <height>90</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>楷体</family>
-     <pointsize>18</pointsize>
+     <pointsize>14</pointsize>
     </font>
    </property>
    <property name="styleSheet">
@@ -88,11 +88,14 @@ color: rgb(255, 255, 255);</string>
   <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>1061</width>
-     <height>761</height>
+     <x>98</x>
+     <y>0</y>
+     <width>926</width>
+     <height>600</height>
     </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
    </property>
    <widget class="QWidget" name="page"/>
    <widget class="QWidget" name="page_2"/>
@@ -100,10 +103,10 @@ color: rgb(255, 255, 255);</string>
   <widget class="QLabel" name="fileControlLab">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>19</y>
-     <width>181</width>
-     <height>751</height>
+     <x>0</x>
+     <y>0</y>
+     <width>98</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -118,8 +121,8 @@ color: rgb(255, 255, 255);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1280</width>
-     <height>800</height>
+     <width>1024</width>
+     <height>600</height>
     </rect>
    </property>
    <property name="styleSheet">
@@ -129,12 +132,39 @@ color: rgb(255, 255, 255);</string>
     <string/>
    </property>
   </widget>
+  <widget class="QPushButton" name="nozzleCleanBut">
+   <property name="geometry">
+    <rect>
+     <x>4</x>
+     <y>310</y>
+     <width>90</width>
+     <height>90</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>楷体</family>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background-image: url(:/Images/nozzleClean.bmp);
+color: rgb(255, 255, 255);</string>
+   </property>
+   <property name="text">
+    <string>喷头清洗</string>
+   </property>
+  </widget>
   <zorder>fileManageBackLabel</zorder>
+  <zorder>stackedWidget</zorder>
   <zorder>fileControlLab</zorder>
   <zorder>editFileBut</zorder>
   <zorder>manageFileBut</zorder>
   <zorder>exitBut</zorder>
-  <zorder>stackedWidget</zorder>
+  <zorder>nozzleCleanBut</zorder>
  </widget>
  <resources>
   <include location="Res.qrc"/>

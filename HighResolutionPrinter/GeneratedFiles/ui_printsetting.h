@@ -129,23 +129,23 @@ public:
     {
         if (printSetting->objectName().isEmpty())
             printSetting->setObjectName(QStringLiteral("printSetting"));
-        printSetting->resize(1133, 651);
+        printSetting->resize(926, 600);
         printSetting->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         printSetTabWid = new QTabWidget(printSetting);
         printSetTabWid->setObjectName(QStringLiteral("printSetTabWid"));
-        printSetTabWid->setGeometry(QRect(20, 20, 1021, 621));
+        printSetTabWid->setGeometry(QRect(0, 10, 926, 591));
         printSetTabWid->setMaximumSize(QSize(1021, 16777215));
         QFont font;
         font.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font.setPointSize(16);
         printSetTabWid->setFont(font);
-        printSetTabWid->setStyleSheet(QLatin1String("QTabBar::tab{width:255}\n"
+        printSetTabWid->setStyleSheet(QLatin1String("QTabBar::tab{width:150}\n"
 "QTabBar::tab{height:50}"));
         printStyleTab = new QWidget();
         printStyleTab->setObjectName(QStringLiteral("printStyleTab"));
         printSpeedRedBut = new QPushButton(printStyleTab);
         printSpeedRedBut->setObjectName(QStringLiteral("printSpeedRedBut"));
-        printSpeedRedBut->setGeometry(QRect(310, 50, 41, 41));
+        printSpeedRedBut->setGeometry(QRect(270, 40, 41, 41));
         printSpeedRedBut->setMinimumSize(QSize(41, 41));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
@@ -157,7 +157,7 @@ public:
 "background-color: rgb(0, 0, 230);"));
         trigLab = new QLabel(printStyleTab);
         trigLab->setObjectName(QStringLiteral("trigLab"));
-        trigLab->setGeometry(QRect(610, 80, 151, 41));
+        trigLab->setGeometry(QRect(520, 40, 151, 41));
         trigLab->setMinimumSize(QSize(101, 41));
         trigLab->setFont(font);
         trigLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -165,7 +165,7 @@ public:
         trigLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printSpeedShowLab = new QLabel(printStyleTab);
         printSpeedShowLab->setObjectName(QStringLiteral("printSpeedShowLab"));
-        printSpeedShowLab->setGeometry(QRect(350, 50, 131, 41));
+        printSpeedShowLab->setGeometry(QRect(310, 40, 131, 41));
         printSpeedShowLab->setMinimumSize(QSize(0, 41));
         QFont font2;
         font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
@@ -176,14 +176,14 @@ public:
         printSpeedShowLab->setAlignment(Qt::AlignCenter);
         printSpeedAddBut = new QPushButton(printStyleTab);
         printSpeedAddBut->setObjectName(QStringLiteral("printSpeedAddBut"));
-        printSpeedAddBut->setGeometry(QRect(480, 50, 41, 41));
+        printSpeedAddBut->setGeometry(QRect(440, 40, 41, 41));
         printSpeedAddBut->setMinimumSize(QSize(41, 41));
         printSpeedAddBut->setFont(font1);
         printSpeedAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printSpeedLab = new QLabel(printStyleTab);
         printSpeedLab->setObjectName(QStringLiteral("printSpeedLab"));
-        printSpeedLab->setGeometry(QRect(70, 50, 221, 41));
+        printSpeedLab->setGeometry(QRect(50, 40, 221, 41));
         printSpeedLab->setMinimumSize(QSize(101, 41));
         printSpeedLab->setFont(font);
         printSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -191,7 +191,7 @@ public:
         printSpeedLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         trigComBox = new QComboBox(printStyleTab);
         trigComBox->setObjectName(QStringLiteral("trigComBox"));
-        trigComBox->setGeometry(QRect(760, 80, 181, 41));
+        trigComBox->setGeometry(QRect(680, 40, 181, 41));
         QFont font3;
         font3.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
         font3.setPointSize(14);
@@ -200,13 +200,13 @@ public:
 "background-color: rgb(0, 0, 230);"));
         inkjetComBox = new QComboBox(printStyleTab);
         inkjetComBox->setObjectName(QStringLiteral("inkjetComBox"));
-        inkjetComBox->setGeometry(QRect(760, 160, 181, 41));
+        inkjetComBox->setGeometry(QRect(680, 100, 181, 41));
         inkjetComBox->setFont(font3);
         inkjetComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         inkjetLab = new QLabel(printStyleTab);
         inkjetLab->setObjectName(QStringLiteral("inkjetLab"));
-        inkjetLab->setGeometry(QRect(610, 160, 151, 41));
+        inkjetLab->setGeometry(QRect(520, 100, 151, 41));
         inkjetLab->setMinimumSize(QSize(101, 41));
         inkjetLab->setFont(font);
         inkjetLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -214,13 +214,13 @@ public:
         inkjetLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printDirComBox = new QComboBox(printStyleTab);
         printDirComBox->setObjectName(QStringLiteral("printDirComBox"));
-        printDirComBox->setGeometry(QRect(760, 240, 181, 41));
+        printDirComBox->setGeometry(QRect(680, 160, 181, 41));
         printDirComBox->setFont(font3);
         printDirComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printDirLab = new QLabel(printStyleTab);
         printDirLab->setObjectName(QStringLiteral("printDirLab"));
-        printDirLab->setGeometry(QRect(610, 240, 151, 41));
+        printDirLab->setGeometry(QRect(520, 160, 151, 41));
         printDirLab->setMinimumSize(QSize(101, 41));
         printDirLab->setFont(font);
         printDirLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -228,7 +228,7 @@ public:
         printDirLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printDelayLab = new QLabel(printStyleTab);
         printDelayLab->setObjectName(QStringLiteral("printDelayLab"));
-        printDelayLab->setGeometry(QRect(70, 120, 221, 41));
+        printDelayLab->setGeometry(QRect(50, 100, 221, 41));
         printDelayLab->setMinimumSize(QSize(101, 41));
         printDelayLab->setFont(font);
         printDelayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -236,14 +236,14 @@ public:
         printDelayLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printDelayRedBut = new QPushButton(printStyleTab);
         printDelayRedBut->setObjectName(QStringLiteral("printDelayRedBut"));
-        printDelayRedBut->setGeometry(QRect(310, 120, 41, 41));
+        printDelayRedBut->setGeometry(QRect(270, 100, 41, 41));
         printDelayRedBut->setMinimumSize(QSize(41, 41));
         printDelayRedBut->setFont(font1);
         printDelayRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printDelayShowLab = new QLabel(printStyleTab);
         printDelayShowLab->setObjectName(QStringLiteral("printDelayShowLab"));
-        printDelayShowLab->setGeometry(QRect(350, 120, 131, 41));
+        printDelayShowLab->setGeometry(QRect(310, 100, 131, 41));
         printDelayShowLab->setMinimumSize(QSize(0, 41));
         printDelayShowLab->setFont(font2);
         printDelayShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -251,14 +251,14 @@ public:
         printDelayShowLab->setAlignment(Qt::AlignCenter);
         printDelayAddBut = new QPushButton(printStyleTab);
         printDelayAddBut->setObjectName(QStringLiteral("printDelayAddBut"));
-        printDelayAddBut->setGeometry(QRect(480, 120, 41, 41));
+        printDelayAddBut->setGeometry(QRect(440, 100, 41, 41));
         printDelayAddBut->setMinimumSize(QSize(41, 41));
         printDelayAddBut->setFont(font1);
         printDelayAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         synFrequencyLab = new QLabel(printStyleTab);
         synFrequencyLab->setObjectName(QStringLiteral("synFrequencyLab"));
-        synFrequencyLab->setGeometry(QRect(70, 190, 221, 41));
+        synFrequencyLab->setGeometry(QRect(50, 160, 221, 41));
         synFrequencyLab->setMinimumSize(QSize(101, 41));
         synFrequencyLab->setFont(font);
         synFrequencyLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -266,14 +266,14 @@ public:
         synFrequencyLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         synFrequencyRedBut = new QPushButton(printStyleTab);
         synFrequencyRedBut->setObjectName(QStringLiteral("synFrequencyRedBut"));
-        synFrequencyRedBut->setGeometry(QRect(310, 190, 41, 41));
+        synFrequencyRedBut->setGeometry(QRect(270, 160, 41, 41));
         synFrequencyRedBut->setMinimumSize(QSize(41, 41));
         synFrequencyRedBut->setFont(font1);
         synFrequencyRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         synFrequencyShowLab = new QLabel(printStyleTab);
         synFrequencyShowLab->setObjectName(QStringLiteral("synFrequencyShowLab"));
-        synFrequencyShowLab->setGeometry(QRect(350, 190, 131, 41));
+        synFrequencyShowLab->setGeometry(QRect(310, 160, 131, 41));
         synFrequencyShowLab->setMinimumSize(QSize(0, 41));
         synFrequencyShowLab->setFont(font2);
         synFrequencyShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -281,21 +281,21 @@ public:
         synFrequencyShowLab->setAlignment(Qt::AlignCenter);
         synFrequencyAddBut = new QPushButton(printStyleTab);
         synFrequencyAddBut->setObjectName(QStringLiteral("synFrequencyAddBut"));
-        synFrequencyAddBut->setGeometry(QRect(480, 190, 41, 41));
+        synFrequencyAddBut->setGeometry(QRect(440, 160, 41, 41));
         synFrequencyAddBut->setMinimumSize(QSize(41, 41));
         synFrequencyAddBut->setFont(font1);
         synFrequencyAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printGrayAddBut = new QPushButton(printStyleTab);
         printGrayAddBut->setObjectName(QStringLiteral("printGrayAddBut"));
-        printGrayAddBut->setGeometry(QRect(480, 260, 41, 41));
+        printGrayAddBut->setGeometry(QRect(440, 220, 41, 41));
         printGrayAddBut->setMinimumSize(QSize(41, 41));
         printGrayAddBut->setFont(font1);
         printGrayAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printGrayShowLab = new QLabel(printStyleTab);
         printGrayShowLab->setObjectName(QStringLiteral("printGrayShowLab"));
-        printGrayShowLab->setGeometry(QRect(350, 260, 131, 41));
+        printGrayShowLab->setGeometry(QRect(310, 220, 131, 41));
         printGrayShowLab->setMinimumSize(QSize(0, 41));
         printGrayShowLab->setFont(font2);
         printGrayShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -303,7 +303,7 @@ public:
         printGrayShowLab->setAlignment(Qt::AlignCenter);
         printGrayLab = new QLabel(printStyleTab);
         printGrayLab->setObjectName(QStringLiteral("printGrayLab"));
-        printGrayLab->setGeometry(QRect(70, 260, 221, 41));
+        printGrayLab->setGeometry(QRect(50, 220, 221, 41));
         printGrayLab->setMinimumSize(QSize(101, 41));
         printGrayLab->setFont(font);
         printGrayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -311,33 +311,33 @@ public:
         printGrayLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printGrayRedBut = new QPushButton(printStyleTab);
         printGrayRedBut->setObjectName(QStringLiteral("printGrayRedBut"));
-        printGrayRedBut->setGeometry(QRect(310, 260, 41, 41));
+        printGrayRedBut->setGeometry(QRect(270, 220, 41, 41));
         printGrayRedBut->setMinimumSize(QSize(41, 41));
         printGrayRedBut->setFont(font1);
         printGrayRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         synWheelCheckBox = new QCheckBox(printStyleTab);
         synWheelCheckBox->setObjectName(QStringLiteral("synWheelCheckBox"));
-        synWheelCheckBox->setGeometry(QRect(610, 330, 201, 31));
+        synWheelCheckBox->setGeometry(QRect(520, 250, 201, 31));
         synWheelCheckBox->setFont(font);
         synWheelCheckBox->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         synWheelCheckBox->setChecked(false);
         synWheelCheckBox->setAutoRepeat(false);
         voiceCheckBox = new QCheckBox(printStyleTab);
         voiceCheckBox->setObjectName(QStringLiteral("voiceCheckBox"));
-        voiceCheckBox->setGeometry(QRect(610, 460, 101, 31));
+        voiceCheckBox->setGeometry(QRect(520, 360, 101, 31));
         voiceCheckBox->setFont(font);
         voiceCheckBox->setStyleSheet(QStringLiteral("color: rgb(255, 255, 255);"));
         voiceCheckBox->setChecked(false);
         voiceCheckBox->setAutoRepeat(false);
         printStyleBGLabel = new QLabel(printStyleTab);
         printStyleBGLabel->setObjectName(QStringLiteral("printStyleBGLabel"));
-        printStyleBGLabel->setGeometry(QRect(0, 0, 1016, 571));
+        printStyleBGLabel->setGeometry(QRect(0, 0, 926, 560));
         printStyleBGLabel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
-        printStyleBGLabel->setFrameShape(QFrame::StyledPanel);
+        printStyleBGLabel->setFrameShape(QFrame::NoFrame);
         encoderResLab = new QLabel(printStyleTab);
         encoderResLab->setObjectName(QStringLiteral("encoderResLab"));
-        encoderResLab->setGeometry(QRect(70, 330, 251, 41));
+        encoderResLab->setGeometry(QRect(50, 280, 251, 41));
         encoderResLab->setMinimumSize(QSize(101, 41));
         encoderResLab->setFont(font);
         encoderResLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -345,7 +345,7 @@ public:
         encoderResLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         wheelDiameterLab = new QLabel(printStyleTab);
         wheelDiameterLab->setObjectName(QStringLiteral("wheelDiameterLab"));
-        wheelDiameterLab->setGeometry(QRect(70, 400, 221, 41));
+        wheelDiameterLab->setGeometry(QRect(50, 330, 221, 41));
         wheelDiameterLab->setMinimumSize(QSize(101, 41));
         wheelDiameterLab->setFont(font);
         wheelDiameterLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -353,7 +353,7 @@ public:
         wheelDiameterLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         pulseWidthLab = new QLabel(printStyleTab);
         pulseWidthLab->setObjectName(QStringLiteral("pulseWidthLab"));
-        pulseWidthLab->setGeometry(QRect(70, 470, 251, 41));
+        pulseWidthLab->setGeometry(QRect(50, 380, 251, 41));
         pulseWidthLab->setMinimumSize(QSize(101, 41));
         pulseWidthLab->setFont(font);
         pulseWidthLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -361,7 +361,7 @@ public:
         pulseWidthLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         proLineSpeedLab = new QLabel(printStyleTab);
         proLineSpeedLab->setObjectName(QStringLiteral("proLineSpeedLab"));
-        proLineSpeedLab->setGeometry(QRect(610, 380, 221, 41));
+        proLineSpeedLab->setGeometry(QRect(520, 290, 221, 41));
         proLineSpeedLab->setMinimumSize(QSize(101, 41));
         proLineSpeedLab->setFont(font);
         proLineSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -369,7 +369,7 @@ public:
         proLineSpeedLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         proLineSpeedShowLab = new QLabel(printStyleTab);
         proLineSpeedShowLab->setObjectName(QStringLiteral("proLineSpeedShowLab"));
-        proLineSpeedShowLab->setGeometry(QRect(830, 380, 131, 41));
+        proLineSpeedShowLab->setGeometry(QRect(740, 290, 131, 41));
         proLineSpeedShowLab->setMinimumSize(QSize(0, 41));
         proLineSpeedShowLab->setFont(font2);
         proLineSpeedShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -378,17 +378,17 @@ public:
         proLineSpeedShowLab->setAlignment(Qt::AlignCenter);
         encoderResLineEdit = new lineedit_click(printStyleTab);
         encoderResLineEdit->setObjectName(QStringLiteral("encoderResLineEdit"));
-        encoderResLineEdit->setGeometry(QRect(350, 330, 131, 41));
+        encoderResLineEdit->setGeometry(QRect(310, 280, 131, 41));
         encoderResLineEdit->setFont(font);
         encoderResLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         pulseWidthLineEdit = new lineedit_click(printStyleTab);
         pulseWidthLineEdit->setObjectName(QStringLiteral("pulseWidthLineEdit"));
-        pulseWidthLineEdit->setGeometry(QRect(350, 470, 131, 41));
+        pulseWidthLineEdit->setGeometry(QRect(310, 380, 131, 41));
         pulseWidthLineEdit->setFont(font);
         pulseWidthLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         wheelDiameterLineEdit = new lineedit_click(printStyleTab);
         wheelDiameterLineEdit->setObjectName(QStringLiteral("wheelDiameterLineEdit"));
-        wheelDiameterLineEdit->setGeometry(QRect(350, 400, 131, 41));
+        wheelDiameterLineEdit->setGeometry(QRect(310, 330, 131, 41));
         wheelDiameterLineEdit->setFont(font);
         wheelDiameterLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         printSetTabWid->addTab(printStyleTab, QString());
@@ -429,7 +429,7 @@ public:
         settingTab->setObjectName(QStringLiteral("settingTab"));
         XDPILab = new QLabel(settingTab);
         XDPILab->setObjectName(QStringLiteral("XDPILab"));
-        XDPILab->setGeometry(QRect(80, 80, 101, 41));
+        XDPILab->setGeometry(QRect(100, 60, 131, 41));
         XDPILab->setMinimumSize(QSize(101, 41));
         QFont font4;
         font4.setFamily(QString::fromUtf8("\345\256\213\344\275\223"));
@@ -440,31 +440,31 @@ public:
         XDPILab->setAlignment(Qt::AlignCenter);
         XDPI100RadioBut = new QRadioButton(settingTab);
         XDPI100RadioBut->setObjectName(QStringLiteral("XDPI100RadioBut"));
-        XDPI100RadioBut->setGeometry(QRect(220, 80, 91, 41));
+        XDPI100RadioBut->setGeometry(QRect(260, 60, 91, 41));
         XDPI100RadioBut->setFont(font4);
         XDPI100RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         XDPI150RadioBut = new QRadioButton(settingTab);
         XDPI150RadioBut->setObjectName(QStringLiteral("XDPI150RadioBut"));
-        XDPI150RadioBut->setGeometry(QRect(360, 80, 91, 41));
+        XDPI150RadioBut->setGeometry(QRect(370, 60, 91, 41));
         XDPI150RadioBut->setFont(font4);
         XDPI150RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         XDPI200RadioBut = new QRadioButton(settingTab);
         XDPI200RadioBut->setObjectName(QStringLiteral("XDPI200RadioBut"));
-        XDPI200RadioBut->setGeometry(QRect(500, 80, 91, 41));
+        XDPI200RadioBut->setGeometry(QRect(470, 60, 91, 41));
         XDPI200RadioBut->setFont(font4);
         XDPI200RadioBut->setStyleSheet(QLatin1String("background-color: rgb(67,51, 139);\n"
 "color: rgb(255, 255, 255);"));
         XDPI300RadioBut = new QRadioButton(settingTab);
         XDPI300RadioBut->setObjectName(QStringLiteral("XDPI300RadioBut"));
-        XDPI300RadioBut->setGeometry(QRect(640, 80, 91, 41));
+        XDPI300RadioBut->setGeometry(QRect(570, 60, 91, 41));
         XDPI300RadioBut->setFont(font4);
         XDPI300RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         repetePrintCheckBox = new QCheckBox(settingTab);
         repetePrintCheckBox->setObjectName(QStringLiteral("repetePrintCheckBox"));
-        repetePrintCheckBox->setGeometry(QRect(520, 260, 181, 31));
+        repetePrintCheckBox->setGeometry(QRect(400, 220, 181, 31));
         repetePrintCheckBox->setFont(font);
         repetePrintCheckBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
@@ -472,7 +472,7 @@ public:
         repetePrintCheckBox->setAutoRepeat(false);
         repeteNumShowLab = new QLabel(settingTab);
         repeteNumShowLab->setObjectName(QStringLiteral("repeteNumShowLab"));
-        repeteNumShowLab->setGeometry(QRect(750, 340, 160, 41));
+        repeteNumShowLab->setGeometry(QRect(630, 270, 160, 41));
         repeteNumShowLab->setMinimumSize(QSize(0, 41));
         repeteNumShowLab->setFont(font2);
         repeteNumShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -480,14 +480,14 @@ public:
         repeteNumShowLab->setAlignment(Qt::AlignCenter);
         repeteNumAddBut = new QPushButton(settingTab);
         repeteNumAddBut->setObjectName(QStringLiteral("repeteNumAddBut"));
-        repeteNumAddBut->setGeometry(QRect(910, 340, 41, 41));
+        repeteNumAddBut->setGeometry(QRect(790, 270, 41, 41));
         repeteNumAddBut->setMinimumSize(QSize(41, 41));
         repeteNumAddBut->setFont(font1);
         repeteNumAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         repeteLab = new QLabel(settingTab);
         repeteLab->setObjectName(QStringLiteral("repeteLab"));
-        repeteLab->setGeometry(QRect(520, 340, 191, 41));
+        repeteLab->setGeometry(QRect(400, 270, 191, 41));
         repeteLab->setMinimumSize(QSize(101, 41));
         repeteLab->setFont(font);
         repeteLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -495,21 +495,21 @@ public:
         repeteLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         repeteNumRedBut = new QPushButton(settingTab);
         repeteNumRedBut->setObjectName(QStringLiteral("repeteNumRedBut"));
-        repeteNumRedBut->setGeometry(QRect(710, 340, 41, 41));
+        repeteNumRedBut->setGeometry(QRect(590, 270, 41, 41));
         repeteNumRedBut->setMinimumSize(QSize(41, 41));
         repeteNumRedBut->setFont(font1);
         repeteNumRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         repeteDelayRedBut = new QPushButton(settingTab);
         repeteDelayRedBut->setObjectName(QStringLiteral("repeteDelayRedBut"));
-        repeteDelayRedBut->setGeometry(QRect(710, 420, 41, 41));
+        repeteDelayRedBut->setGeometry(QRect(590, 330, 41, 41));
         repeteDelayRedBut->setMinimumSize(QSize(41, 41));
         repeteDelayRedBut->setFont(font1);
         repeteDelayRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         repeteDelayShowLab = new QLabel(settingTab);
         repeteDelayShowLab->setObjectName(QStringLiteral("repeteDelayShowLab"));
-        repeteDelayShowLab->setGeometry(QRect(750, 420, 160, 41));
+        repeteDelayShowLab->setGeometry(QRect(630, 330, 160, 41));
         repeteDelayShowLab->setMinimumSize(QSize(0, 41));
         repeteDelayShowLab->setFont(font2);
         repeteDelayShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -517,14 +517,14 @@ public:
         repeteDelayShowLab->setAlignment(Qt::AlignCenter);
         repeteDelayAddBut = new QPushButton(settingTab);
         repeteDelayAddBut->setObjectName(QStringLiteral("repeteDelayAddBut"));
-        repeteDelayAddBut->setGeometry(QRect(910, 420, 41, 41));
+        repeteDelayAddBut->setGeometry(QRect(790, 330, 41, 41));
         repeteDelayAddBut->setMinimumSize(QSize(41, 41));
         repeteDelayAddBut->setFont(font1);
         repeteDelayAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         repeteDelayLab = new QLabel(settingTab);
         repeteDelayLab->setObjectName(QStringLiteral("repeteDelayLab"));
-        repeteDelayLab->setGeometry(QRect(520, 420, 191, 41));
+        repeteDelayLab->setGeometry(QRect(400, 330, 191, 41));
         repeteDelayLab->setMinimumSize(QSize(101, 41));
         repeteDelayLab->setFont(font);
         repeteDelayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -532,11 +532,11 @@ public:
         repeteDelayLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         settingBGLabel = new QLabel(settingTab);
         settingBGLabel->setObjectName(QStringLiteral("settingBGLabel"));
-        settingBGLabel->setGeometry(QRect(0, 0, 1016, 571));
+        settingBGLabel->setGeometry(QRect(0, 0, 926, 560));
         settingBGLabel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         YDPILab = new QLabel(settingTab);
         YDPILab->setObjectName(QStringLiteral("YDPILab"));
-        YDPILab->setGeometry(QRect(80, 150, 101, 41));
+        YDPILab->setGeometry(QRect(100, 110, 131, 41));
         YDPILab->setMinimumSize(QSize(101, 41));
         YDPILab->setFont(font4);
         YDPILab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -544,25 +544,25 @@ public:
         YDPILab->setAlignment(Qt::AlignCenter);
         YDPI300RadioBut = new QRadioButton(settingTab);
         YDPI300RadioBut->setObjectName(QStringLiteral("YDPI300RadioBut"));
-        YDPI300RadioBut->setGeometry(QRect(220, 150, 91, 41));
+        YDPI300RadioBut->setGeometry(QRect(260, 110, 91, 41));
         YDPI300RadioBut->setFont(font4);
         YDPI300RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         YDPI600RadioBut = new QRadioButton(settingTab);
         YDPI600RadioBut->setObjectName(QStringLiteral("YDPI600RadioBut"));
-        YDPI600RadioBut->setGeometry(QRect(360, 150, 91, 41));
+        YDPI600RadioBut->setGeometry(QRect(370, 110, 91, 41));
         YDPI600RadioBut->setFont(font4);
         YDPI600RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         XDPI600RadioBut = new QRadioButton(settingTab);
         XDPI600RadioBut->setObjectName(QStringLiteral("XDPI600RadioBut"));
-        XDPI600RadioBut->setGeometry(QRect(780, 80, 91, 41));
+        XDPI600RadioBut->setGeometry(QRect(680, 60, 91, 41));
         XDPI600RadioBut->setFont(font4);
         XDPI600RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         horizonalReverseLab = new QLabel(settingTab);
         horizonalReverseLab->setObjectName(QStringLiteral("horizonalReverseLab"));
-        horizonalReverseLab->setGeometry(QRect(100, 290, 131, 41));
+        horizonalReverseLab->setGeometry(QRect(60, 270, 131, 41));
         horizonalReverseLab->setMinimumSize(QSize(101, 41));
         horizonalReverseLab->setFont(font);
         horizonalReverseLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -570,7 +570,7 @@ public:
         horizonalReverseLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         verticalReverseLab = new QLabel(settingTab);
         verticalReverseLab->setObjectName(QStringLiteral("verticalReverseLab"));
-        verticalReverseLab->setGeometry(QRect(100, 370, 131, 41));
+        verticalReverseLab->setGeometry(QRect(60, 330, 131, 41));
         verticalReverseLab->setMinimumSize(QSize(101, 41));
         verticalReverseLab->setFont(font);
         verticalReverseLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -578,13 +578,13 @@ public:
         verticalReverseLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         horizonalReverseComBox = new QComboBox(settingTab);
         horizonalReverseComBox->setObjectName(QStringLiteral("horizonalReverseComBox"));
-        horizonalReverseComBox->setGeometry(QRect(250, 290, 130, 41));
+        horizonalReverseComBox->setGeometry(QRect(210, 270, 130, 41));
         horizonalReverseComBox->setFont(font3);
         horizonalReverseComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         verticalReverseComBox = new QComboBox(settingTab);
         verticalReverseComBox->setObjectName(QStringLiteral("verticalReverseComBox"));
-        verticalReverseComBox->setGeometry(QRect(250, 370, 130, 41));
+        verticalReverseComBox->setGeometry(QRect(210, 330, 130, 41));
         verticalReverseComBox->setFont(font3);
         verticalReverseComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
@@ -600,7 +600,6 @@ public:
         repeteNumAddBut->raise();
         repeteLab->raise();
         repeteNumRedBut->raise();
-        repeteDelayRedBut->raise();
         repeteDelayShowLab->raise();
         repeteDelayAddBut->raise();
         repeteDelayLab->raise();
@@ -612,11 +611,12 @@ public:
         verticalReverseLab->raise();
         horizonalReverseComBox->raise();
         verticalReverseComBox->raise();
+        repeteDelayRedBut->raise();
         nozzleSetTab = new QWidget();
         nozzleSetTab->setObjectName(QStringLiteral("nozzleSetTab"));
         inkTypeLab = new QLabel(nozzleSetTab);
         inkTypeLab->setObjectName(QStringLiteral("inkTypeLab"));
-        inkTypeLab->setGeometry(QRect(430, 60, 151, 41));
+        inkTypeLab->setGeometry(QRect(390, 40, 151, 41));
         inkTypeLab->setMinimumSize(QSize(101, 41));
         inkTypeLab->setFont(font);
         inkTypeLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -624,7 +624,7 @@ public:
         inkTypeLab->setAlignment(Qt::AlignCenter);
         adaptParaCheckBox = new QCheckBox(nozzleSetTab);
         adaptParaCheckBox->setObjectName(QStringLiteral("adaptParaCheckBox"));
-        adaptParaCheckBox->setGeometry(QRect(80, 150, 221, 31));
+        adaptParaCheckBox->setGeometry(QRect(70, 100, 151, 31));
         adaptParaCheckBox->setFont(font);
         adaptParaCheckBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
@@ -632,7 +632,7 @@ public:
         adaptParaCheckBox->setAutoRepeat(false);
         voltShowLab = new QLabel(nozzleSetTab);
         voltShowLab->setObjectName(QStringLiteral("voltShowLab"));
-        voltShowLab->setGeometry(QRect(440, 140, 131, 41));
+        voltShowLab->setGeometry(QRect(370, 90, 131, 41));
         voltShowLab->setMinimumSize(QSize(0, 41));
         voltShowLab->setFont(font2);
         voltShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -640,14 +640,14 @@ public:
         voltShowLab->setAlignment(Qt::AlignCenter);
         voltAddBut = new QPushButton(nozzleSetTab);
         voltAddBut->setObjectName(QStringLiteral("voltAddBut"));
-        voltAddBut->setGeometry(QRect(570, 140, 41, 41));
+        voltAddBut->setGeometry(QRect(500, 90, 41, 41));
         voltAddBut->setMinimumSize(QSize(41, 41));
         voltAddBut->setFont(font1);
         voltAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         inkVoltLab = new QLabel(nozzleSetTab);
         inkVoltLab->setObjectName(QStringLiteral("inkVoltLab"));
-        inkVoltLab->setGeometry(QRect(300, 140, 101, 41));
+        inkVoltLab->setGeometry(QRect(230, 90, 101, 41));
         inkVoltLab->setMinimumSize(QSize(101, 41));
         inkVoltLab->setFont(font);
         inkVoltLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -655,14 +655,14 @@ public:
         inkVoltLab->setAlignment(Qt::AlignCenter);
         voltRedBut = new QPushButton(nozzleSetTab);
         voltRedBut->setObjectName(QStringLiteral("voltRedBut"));
-        voltRedBut->setGeometry(QRect(400, 140, 41, 41));
+        voltRedBut->setGeometry(QRect(330, 90, 41, 41));
         voltRedBut->setMinimumSize(QSize(41, 41));
         voltRedBut->setFont(font1);
         voltRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         PWShowLab = new QLabel(nozzleSetTab);
         PWShowLab->setObjectName(QStringLiteral("PWShowLab"));
-        PWShowLab->setGeometry(QRect(790, 140, 131, 41));
+        PWShowLab->setGeometry(QRect(710, 90, 131, 41));
         PWShowLab->setMinimumSize(QSize(0, 41));
         PWShowLab->setFont(font2);
         PWShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -670,14 +670,14 @@ public:
         PWShowLab->setAlignment(Qt::AlignCenter);
         PWAddBut = new QPushButton(nozzleSetTab);
         PWAddBut->setObjectName(QStringLiteral("PWAddBut"));
-        PWAddBut->setGeometry(QRect(920, 140, 41, 41));
+        PWAddBut->setGeometry(QRect(840, 90, 41, 41));
         PWAddBut->setMinimumSize(QSize(41, 41));
         PWAddBut->setFont(font1);
         PWAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         PWLab = new QLabel(nozzleSetTab);
         PWLab->setObjectName(QStringLiteral("PWLab"));
-        PWLab->setGeometry(QRect(650, 140, 101, 41));
+        PWLab->setGeometry(QRect(570, 90, 101, 41));
         PWLab->setMinimumSize(QSize(101, 41));
         PWLab->setFont(font);
         PWLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -685,14 +685,14 @@ public:
         PWLab->setAlignment(Qt::AlignCenter);
         PWRedBut = new QPushButton(nozzleSetTab);
         PWRedBut->setObjectName(QStringLiteral("PWRedBut"));
-        PWRedBut->setGeometry(QRect(750, 140, 41, 41));
+        PWRedBut->setGeometry(QRect(670, 90, 41, 41));
         PWRedBut->setMinimumSize(QSize(41, 41));
         PWRedBut->setFont(font1);
         PWRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         nozzleSelLab = new QLabel(nozzleSetTab);
         nozzleSelLab->setObjectName(QStringLiteral("nozzleSelLab"));
-        nozzleSelLab->setGeometry(QRect(410, 230, 191, 41));
+        nozzleSelLab->setGeometry(QRect(370, 160, 191, 41));
         nozzleSelLab->setMinimumSize(QSize(101, 41));
         nozzleSelLab->setFont(font);
         nozzleSelLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -700,14 +700,14 @@ public:
         nozzleSelLab->setAlignment(Qt::AlignCenter);
         offsetRedBut = new QPushButton(nozzleSetTab);
         offsetRedBut->setObjectName(QStringLiteral("offsetRedBut"));
-        offsetRedBut->setGeometry(QRect(750, 300, 41, 41));
+        offsetRedBut->setGeometry(QRect(570, 200, 41, 41));
         offsetRedBut->setMinimumSize(QSize(41, 41));
         offsetRedBut->setFont(font1);
         offsetRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         offsetShowLab = new QLabel(nozzleSetTab);
         offsetShowLab->setObjectName(QStringLiteral("offsetShowLab"));
-        offsetShowLab->setGeometry(QRect(790, 300, 131, 41));
+        offsetShowLab->setGeometry(QRect(610, 200, 131, 41));
         offsetShowLab->setMinimumSize(QSize(0, 41));
         offsetShowLab->setFont(font2);
         offsetShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -715,14 +715,14 @@ public:
         offsetShowLab->setAlignment(Qt::AlignCenter);
         offsetAddBut = new QPushButton(nozzleSetTab);
         offsetAddBut->setObjectName(QStringLiteral("offsetAddBut"));
-        offsetAddBut->setGeometry(QRect(920, 300, 41, 41));
+        offsetAddBut->setGeometry(QRect(740, 200, 41, 41));
         offsetAddBut->setMinimumSize(QSize(41, 41));
         offsetAddBut->setFont(font1);
         offsetAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         offsetLab = new QLabel(nozzleSetTab);
         offsetLab->setObjectName(QStringLiteral("offsetLab"));
-        offsetLab->setGeometry(QRect(630, 300, 121, 41));
+        offsetLab->setGeometry(QRect(430, 200, 131, 41));
         offsetLab->setMinimumSize(QSize(101, 41));
         offsetLab->setFont(font);
         offsetLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -730,19 +730,19 @@ public:
         offsetLab->setAlignment(Qt::AlignCenter);
         nozzleSel2RadioBut = new QRadioButton(nozzleSetTab);
         nozzleSel2RadioBut->setObjectName(QStringLiteral("nozzleSel2RadioBut"));
-        nozzleSel2RadioBut->setGeometry(QRect(470, 300, 81, 41));
+        nozzleSel2RadioBut->setGeometry(QRect(340, 200, 51, 41));
         nozzleSel2RadioBut->setFont(font4);
         nozzleSel2RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         nozzleSel1RadioBut = new QRadioButton(nozzleSetTab);
         nozzleSel1RadioBut->setObjectName(QStringLiteral("nozzleSel1RadioBut"));
-        nozzleSel1RadioBut->setGeometry(QRect(370, 300, 81, 41));
+        nozzleSel1RadioBut->setGeometry(QRect(270, 200, 51, 41));
         nozzleSel1RadioBut->setFont(font4);
         nozzleSel1RadioBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
         flashSprayLab = new QLabel(nozzleSetTab);
         flashSprayLab->setObjectName(QStringLiteral("flashSprayLab"));
-        flashSprayLab->setGeometry(QRect(410, 390, 191, 41));
+        flashSprayLab->setGeometry(QRect(370, 270, 191, 41));
         flashSprayLab->setMinimumSize(QSize(101, 41));
         flashSprayLab->setFont(font);
         flashSprayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -750,7 +750,7 @@ public:
         flashSprayLab->setAlignment(Qt::AlignCenter);
         flashSprayCheckBox = new QCheckBox(nozzleSetTab);
         flashSprayCheckBox->setObjectName(QStringLiteral("flashSprayCheckBox"));
-        flashSprayCheckBox->setGeometry(QRect(300, 460, 181, 40));
+        flashSprayCheckBox->setGeometry(QRect(270, 310, 181, 40));
         flashSprayCheckBox->setFont(font);
         flashSprayCheckBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
@@ -758,7 +758,7 @@ public:
         flashSprayCheckBox->setAutoRepeat(false);
         flashSprayInternalShowLab = new QLabel(nozzleSetTab);
         flashSprayInternalShowLab->setObjectName(QStringLiteral("flashSprayInternalShowLab"));
-        flashSprayInternalShowLab->setGeometry(QRect(620, 460, 131, 41));
+        flashSprayInternalShowLab->setGeometry(QRect(570, 310, 131, 41));
         flashSprayInternalShowLab->setMinimumSize(QSize(0, 41));
         flashSprayInternalShowLab->setFont(font2);
         flashSprayInternalShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -766,7 +766,7 @@ public:
         flashSprayInternalShowLab->setAlignment(Qt::AlignCenter);
         flashSprayInternalLab = new QLabel(nozzleSetTab);
         flashSprayInternalLab->setObjectName(QStringLiteral("flashSprayInternalLab"));
-        flashSprayInternalLab->setGeometry(QRect(480, 460, 101, 41));
+        flashSprayInternalLab->setGeometry(QRect(430, 310, 101, 41));
         flashSprayInternalLab->setMinimumSize(QSize(101, 41));
         flashSprayInternalLab->setFont(font);
         flashSprayInternalLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -774,21 +774,21 @@ public:
         flashSprayInternalLab->setAlignment(Qt::AlignCenter);
         flashSprayInternalRedBut = new QPushButton(nozzleSetTab);
         flashSprayInternalRedBut->setObjectName(QStringLiteral("flashSprayInternalRedBut"));
-        flashSprayInternalRedBut->setGeometry(QRect(580, 460, 41, 41));
+        flashSprayInternalRedBut->setGeometry(QRect(530, 310, 41, 41));
         flashSprayInternalRedBut->setMinimumSize(QSize(41, 41));
         flashSprayInternalRedBut->setFont(font1);
         flashSprayInternalRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         flashSprayInternalAddBut = new QPushButton(nozzleSetTab);
         flashSprayInternalAddBut->setObjectName(QStringLiteral("flashSprayInternalAddBut"));
-        flashSprayInternalAddBut->setGeometry(QRect(750, 460, 41, 41));
+        flashSprayInternalAddBut->setGeometry(QRect(700, 310, 41, 41));
         flashSprayInternalAddBut->setMinimumSize(QSize(41, 41));
         flashSprayInternalAddBut->setFont(font1);
         flashSprayInternalAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         isCombineCheckBox = new QCheckBox(nozzleSetTab);
         isCombineCheckBox->setObjectName(QStringLiteral("isCombineCheckBox"));
-        isCombineCheckBox->setGeometry(QRect(120, 300, 181, 31));
+        isCombineCheckBox->setGeometry(QRect(170, 200, 91, 41));
         isCombineCheckBox->setFont(font);
         isCombineCheckBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
@@ -796,7 +796,7 @@ public:
         isCombineCheckBox->setAutoRepeat(false);
         printSetBGLabel = new QLabel(nozzleSetTab);
         printSetBGLabel->setObjectName(QStringLiteral("printSetBGLabel"));
-        printSetBGLabel->setGeometry(QRect(0, 0, 1016, 571));
+        printSetBGLabel->setGeometry(QRect(0, 0, 926, 560));
         printSetBGLabel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         printSetTabWid->addTab(nozzleSetTab, QString());
         printSetBGLabel->raise();
@@ -828,11 +828,11 @@ public:
         UVSettingTab->setObjectName(QStringLiteral("UVSettingTab"));
         UVSetBGLabel = new QLabel(UVSettingTab);
         UVSetBGLabel->setObjectName(QStringLiteral("UVSetBGLabel"));
-        UVSetBGLabel->setGeometry(QRect(0, 0, 1016, 571));
+        UVSetBGLabel->setGeometry(QRect(0, 0, 926, 560));
         UVSetBGLabel->setStyleSheet(QStringLiteral("background-color: rgb(67,51, 139);"));
         isUVCheckBox = new QCheckBox(UVSettingTab);
         isUVCheckBox->setObjectName(QStringLiteral("isUVCheckBox"));
-        isUVCheckBox->setGeometry(QRect(300, 170, 201, 31));
+        isUVCheckBox->setGeometry(QRect(160, 110, 201, 31));
         isUVCheckBox->setFont(font);
         isUVCheckBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(67,51, 139);"));
@@ -840,28 +840,28 @@ public:
         isUVCheckBox->setAutoRepeat(false);
         startTimeAddBut = new QPushButton(UVSettingTab);
         startTimeAddBut->setObjectName(QStringLiteral("startTimeAddBut"));
-        startTimeAddBut->setGeometry(QRect(860, 330, 41, 41));
+        startTimeAddBut->setGeometry(QRect(750, 260, 41, 41));
         startTimeAddBut->setMinimumSize(QSize(41, 41));
         startTimeAddBut->setFont(font1);
         startTimeAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         delayTimeRedBut = new QPushButton(UVSettingTab);
         delayTimeRedBut->setObjectName(QStringLiteral("delayTimeRedBut"));
-        delayTimeRedBut->setGeometry(QRect(490, 240, 41, 41));
+        delayTimeRedBut->setGeometry(QRect(380, 180, 41, 41));
         delayTimeRedBut->setMinimumSize(QSize(41, 41));
         delayTimeRedBut->setFont(font1);
         delayTimeRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         startTimeRedBut = new QPushButton(UVSettingTab);
         startTimeRedBut->setObjectName(QStringLiteral("startTimeRedBut"));
-        startTimeRedBut->setGeometry(QRect(490, 330, 41, 41));
+        startTimeRedBut->setGeometry(QRect(380, 260, 41, 41));
         startTimeRedBut->setMinimumSize(QSize(41, 41));
         startTimeRedBut->setFont(font1);
         startTimeRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         delayTimeShowLab = new QLabel(UVSettingTab);
         delayTimeShowLab->setObjectName(QStringLiteral("delayTimeShowLab"));
-        delayTimeShowLab->setGeometry(QRect(530, 240, 331, 41));
+        delayTimeShowLab->setGeometry(QRect(420, 180, 331, 41));
         delayTimeShowLab->setMinimumSize(QSize(0, 41));
         delayTimeShowLab->setFont(font2);
         delayTimeShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -869,14 +869,14 @@ public:
         delayTimeShowLab->setAlignment(Qt::AlignCenter);
         delayTimeAddBut = new QPushButton(UVSettingTab);
         delayTimeAddBut->setObjectName(QStringLiteral("delayTimeAddBut"));
-        delayTimeAddBut->setGeometry(QRect(860, 240, 41, 41));
+        delayTimeAddBut->setGeometry(QRect(750, 180, 41, 41));
         delayTimeAddBut->setMinimumSize(QSize(41, 41));
         delayTimeAddBut->setFont(font1);
         delayTimeAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         delayTimeLab = new QLabel(UVSettingTab);
         delayTimeLab->setObjectName(QStringLiteral("delayTimeLab"));
-        delayTimeLab->setGeometry(QRect(300, 240, 191, 41));
+        delayTimeLab->setGeometry(QRect(160, 180, 191, 41));
         delayTimeLab->setMinimumSize(QSize(101, 41));
         delayTimeLab->setFont(font);
         delayTimeLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -884,7 +884,7 @@ public:
         delayTimeLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         startTimeShowLab = new QLabel(UVSettingTab);
         startTimeShowLab->setObjectName(QStringLiteral("startTimeShowLab"));
-        startTimeShowLab->setGeometry(QRect(530, 330, 331, 41));
+        startTimeShowLab->setGeometry(QRect(420, 260, 331, 41));
         startTimeShowLab->setMinimumSize(QSize(0, 41));
         startTimeShowLab->setFont(font2);
         startTimeShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -892,7 +892,7 @@ public:
         startTimeShowLab->setAlignment(Qt::AlignCenter);
         startTimeLab = new QLabel(UVSettingTab);
         startTimeLab->setObjectName(QStringLiteral("startTimeLab"));
-        startTimeLab->setGeometry(QRect(300, 330, 191, 41));
+        startTimeLab->setGeometry(QRect(160, 260, 191, 41));
         startTimeLab->setMinimumSize(QSize(101, 41));
         startTimeLab->setFont(font);
         startTimeLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -902,7 +902,7 @@ public:
 
         retranslateUi(printSetting);
 
-        printSetTabWid->setCurrentIndex(0);
+        printSetTabWid->setCurrentIndex(3);
 
 
         QMetaObject::connectSlotsByName(printSetting);

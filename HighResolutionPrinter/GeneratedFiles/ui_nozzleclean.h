@@ -49,11 +49,11 @@ public:
     {
         if (NozzleClean->objectName().isEmpty())
             NozzleClean->setObjectName(QStringLiteral("NozzleClean"));
-        NozzleClean->resize(1101, 666);
+        NozzleClean->resize(1024, 540);
         NozzleClean->setStyleSheet(QStringLiteral("background-color: rgb(72,61, 139);"));
         openCleanPushButton = new QPushButton(NozzleClean);
         openCleanPushButton->setObjectName(QStringLiteral("openCleanPushButton"));
-        openCleanPushButton->setGeometry(QRect(180, 420, 210, 90));
+        openCleanPushButton->setGeometry(QRect(170, 340, 210, 90));
         openCleanPushButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "background-color: rgb(0,0,230);"));
@@ -61,134 +61,134 @@ public:
         openCleanPushButton->setAutoExclusive(false);
         pushButton_1 = new QPushButton(NozzleClean);
         pushButton_1->setObjectName(QStringLiteral("pushButton_1"));
-        pushButton_1->setGeometry(QRect(90, 110, 85, 85));
+        pushButton_1->setGeometry(QRect(90, 70, 85, 85));
         pushButton_1->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_2 = new QPushButton(NozzleClean);
         pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(210, 110, 85, 85));
+        pushButton_2->setGeometry(QRect(200, 70, 85, 85));
         pushButton_2->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_3 = new QPushButton(NozzleClean);
         pushButton_3->setObjectName(QStringLiteral("pushButton_3"));
-        pushButton_3->setGeometry(QRect(330, 110, 85, 85));
+        pushButton_3->setGeometry(QRect(310, 70, 85, 85));
         pushButton_3->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_4 = new QPushButton(NozzleClean);
         pushButton_4->setObjectName(QStringLiteral("pushButton_4"));
-        pushButton_4->setGeometry(QRect(450, 110, 85, 85));
+        pushButton_4->setGeometry(QRect(420, 70, 85, 85));
         pushButton_4->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_5 = new QPushButton(NozzleClean);
         pushButton_5->setObjectName(QStringLiteral("pushButton_5"));
-        pushButton_5->setGeometry(QRect(570, 110, 85, 85));
+        pushButton_5->setGeometry(QRect(530, 70, 85, 85));
         pushButton_5->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_6 = new QPushButton(NozzleClean);
         pushButton_6->setObjectName(QStringLiteral("pushButton_6"));
-        pushButton_6->setGeometry(QRect(690, 110, 85, 85));
+        pushButton_6->setGeometry(QRect(640, 70, 85, 85));
         pushButton_6->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_7 = new QPushButton(NozzleClean);
         pushButton_7->setObjectName(QStringLiteral("pushButton_7"));
-        pushButton_7->setGeometry(QRect(810, 110, 85, 85));
+        pushButton_7->setGeometry(QRect(750, 70, 85, 85));
         pushButton_7->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_8 = new QPushButton(NozzleClean);
         pushButton_8->setObjectName(QStringLiteral("pushButton_8"));
-        pushButton_8->setGeometry(QRect(930, 110, 85, 85));
+        pushButton_8->setGeometry(QRect(860, 70, 85, 85));
         pushButton_8->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_10 = new QPushButton(NozzleClean);
         pushButton_10->setObjectName(QStringLiteral("pushButton_10"));
-        pushButton_10->setGeometry(QRect(210, 240, 85, 85));
+        pushButton_10->setGeometry(QRect(200, 210, 85, 85));
         pushButton_10->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_14 = new QPushButton(NozzleClean);
         pushButton_14->setObjectName(QStringLiteral("pushButton_14"));
-        pushButton_14->setGeometry(QRect(690, 240, 85, 85));
+        pushButton_14->setGeometry(QRect(640, 210, 85, 85));
         pushButton_14->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_15 = new QPushButton(NozzleClean);
         pushButton_15->setObjectName(QStringLiteral("pushButton_15"));
-        pushButton_15->setGeometry(QRect(810, 240, 85, 85));
+        pushButton_15->setGeometry(QRect(750, 210, 85, 85));
         pushButton_15->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_12 = new QPushButton(NozzleClean);
         pushButton_12->setObjectName(QStringLiteral("pushButton_12"));
-        pushButton_12->setGeometry(QRect(450, 240, 85, 85));
+        pushButton_12->setGeometry(QRect(420, 210, 85, 85));
         pushButton_12->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_13 = new QPushButton(NozzleClean);
         pushButton_13->setObjectName(QStringLiteral("pushButton_13"));
-        pushButton_13->setGeometry(QRect(570, 240, 85, 85));
+        pushButton_13->setGeometry(QRect(530, 210, 85, 85));
         pushButton_13->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_9 = new QPushButton(NozzleClean);
         pushButton_9->setObjectName(QStringLiteral("pushButton_9"));
-        pushButton_9->setGeometry(QRect(90, 240, 85, 85));
+        pushButton_9->setGeometry(QRect(90, 210, 85, 85));
         pushButton_9->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_11 = new QPushButton(NozzleClean);
         pushButton_11->setObjectName(QStringLiteral("pushButton_11"));
-        pushButton_11->setGeometry(QRect(330, 240, 85, 85));
+        pushButton_11->setGeometry(QRect(310, 210, 85, 85));
         pushButton_11->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         pushButton_16 = new QPushButton(NozzleClean);
         pushButton_16->setObjectName(QStringLiteral("pushButton_16"));
-        pushButton_16->setGeometry(QRect(930, 240, 85, 85));
+        pushButton_16->setGeometry(QRect(860, 210, 85, 85));
         pushButton_16->setStyleSheet(QString::fromUtf8("border-color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);\n"
 "font: 18pt \"\346\245\267\344\275\223\";\n"
 "color: rgb(255, 255, 255);"));
         singleCleanPushButton = new QPushButton(NozzleClean);
         singleCleanPushButton->setObjectName(QStringLiteral("singleCleanPushButton"));
-        singleCleanPushButton->setGeometry(QRect(460, 420, 180, 90));
+        singleCleanPushButton->setGeometry(QRect(430, 340, 180, 90));
         singleCleanPushButton->setStyleSheet(QStringLiteral(""));
         singleCleanPushButton->setCheckable(false);
         singleCleanPushButton->setAutoExclusive(false);
         allCleanPushButton = new QPushButton(NozzleClean);
         allCleanPushButton->setObjectName(QStringLiteral("allCleanPushButton"));
-        allCleanPushButton->setGeometry(QRect(710, 420, 180, 90));
+        allCleanPushButton->setGeometry(QRect(670, 340, 180, 90));
         allCleanPushButton->setStyleSheet(QStringLiteral(""));
         exitButton = new QPushButton(NozzleClean);
         exitButton->setObjectName(QStringLiteral("exitButton"));
-        exitButton->setGeometry(QRect(940, 550, 120, 80));
+        exitButton->setGeometry(QRect(880, 440, 120, 80));
         exitButton->setStyleSheet(QString::fromUtf8("color: rgb(255, 255, 255);\n"
 "font: 14pt \"\346\245\267\344\275\223\";"));
         previewLab = new QLabel(NozzleClean);
         previewLab->setObjectName(QStringLiteral("previewLab"));
-        previewLab->setGeometry(QRect(0, 0, 1101, 666));
+        previewLab->setGeometry(QRect(0, 0, 1024, 540));
         previewLab->setLayoutDirection(Qt::LeftToRight);
         previewLab->setStyleSheet(QStringLiteral("background-color: rgb(77,61, 139);"));
         previewLab->raise();
