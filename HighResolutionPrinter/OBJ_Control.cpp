@@ -30,7 +30,6 @@ OBJ_Control::OBJ_Control(void)
 	this->intRowSize=0;
 	this->intLineStart=0;
     this->intRowStart=0;
-	m_nPicWidth = 241;
 
 #ifdef BIG_CHAR
 	SideLength = 5;
@@ -64,13 +63,13 @@ void OBJ_Control::DrawFrame(CDC * pDC)
 	pDC->setPen(cPen);
 		
 	//up
-	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-intLineStart*5-1);
+	pDC->drawLine(intRowStart*5,EDIT_WINDOW_HEIGHT-intLineStart*5-1,(intRowStart+intRowSize)*5,EDIT_WINDOW_HEIGHT-intLineStart*5-1);
 	//down
-	pDC->drawLine(intRowStart*5,241-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine(intRowStart*5,EDIT_WINDOW_HEIGHT-(intLineSize+intLineStart)*5-1,(intRowStart+intRowSize)*5,EDIT_WINDOW_HEIGHT-(intLineSize+intLineStart)*5-1);
 	//left
-	pDC->drawLine(intRowStart*5,241-intLineStart*5-1,intRowStart*5,241-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine(intRowStart*5,EDIT_WINDOW_HEIGHT-intLineStart*5-1,intRowStart*5,EDIT_WINDOW_HEIGHT-(intLineSize+intLineStart)*5-1);
 	//right
-	pDC->drawLine((intRowStart+intRowSize)*5,241-intLineStart*5-1,(intRowStart+intRowSize)*5,241-(intLineSize+intLineStart)*5-1);
+	pDC->drawLine((intRowStart+intRowSize)*5,EDIT_WINDOW_HEIGHT-intLineStart*5-1,(intRowStart+intRowSize)*5,EDIT_WINDOW_HEIGHT-(intLineSize+intLineStart)*5-1);
 }
 
 void OBJ_Control::DrawVecFrame(CDC * pDC)
@@ -95,13 +94,13 @@ void OBJ_Control::DrawVecFrame(CDC * pDC)
 
 	pDC->setPen(cPen);
 	//up
-	pDC->drawLine(intRowStart, 241-intLineStart, intRowStart+intRowSize*SideLength, 241-intLineStart);
+	pDC->drawLine(intRowStart, EDIT_WINDOW_HEIGHT-intLineStart, intRowStart+intRowSize*SideLength, EDIT_WINDOW_HEIGHT-intLineStart);
 	//down
-	pDC->drawLine(intRowStart, 241-intLineStart-intLineSize*SideLength, intRowStart+intRowSize*SideLength, 241-intLineStart-intLineSize*SideLength);
+	pDC->drawLine(intRowStart, EDIT_WINDOW_HEIGHT-intLineStart-intLineSize*SideLength, intRowStart+intRowSize*SideLength, EDIT_WINDOW_HEIGHT-intLineStart-intLineSize*SideLength);
 	//left
-	pDC->drawLine(intRowStart, 241-intLineStart, intRowStart, 241-intLineStart-intLineSize*SideLength);
+	pDC->drawLine(intRowStart, EDIT_WINDOW_HEIGHT-intLineStart, intRowStart, EDIT_WINDOW_HEIGHT-intLineStart-intLineSize*SideLength);
 	//right
-	pDC->drawLine(intRowStart+intRowSize*SideLength, 241-intLineStart, intRowStart+intRowSize*SideLength, 241-intLineStart-intLineSize*SideLength);
+	pDC->drawLine(intRowStart+intRowSize*SideLength, EDIT_WINDOW_HEIGHT-intLineStart, intRowStart+intRowSize*SideLength, EDIT_WINDOW_HEIGHT-intLineStart-intLineSize*SideLength);
 }
 
 bool OBJ_Control::readBin(string FontName,int offset,char *arr, int DataLen)
@@ -236,15 +235,15 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					if (booBWDx)
 					{
 						if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					}
 					else{
 						if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 					}
 				}
 				else
@@ -252,16 +251,16 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					if (booBWDx)
 					{
 						if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
 						else
-							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					}
 					else
 					{
 						if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = CRect((intRowStart+i)*5+1,m_nPicWidth-(intLineStart+j+1)*5-1,5,5);
+							rect = CRect((intRowStart+i)*5+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*5-1,5,5);
 					}
 				}
 #else
@@ -270,15 +269,15 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					/*if (booBWDx)
 					{
 					if(booBWDy)
-					rect = QRectF(intRowStart+(bmpWidth-i-1)*SideLength+1,m_nPicWidth-intLineStart-(bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+					rect = QRectF(intRowStart+(bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-intLineStart-(bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					else
-					rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
+					rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);
 					}
 					else{
 					if(booBWDy)
-					rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+					rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 					else
-					rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+					rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 					}*/
 				}
 				else
@@ -286,16 +285,16 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					if (booBWDx)
 					{
 						/*if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength+1-1,SideLength,SideLength);
 						else
-							rect = QRectF((intRowStart+i)*SideLength+1,m_nPicWidth-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);*/
+							rect = QRectF((intRowStart+i)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+bmpHeight-j)*SideLength-1+1,SideLength,SideLength);*/
 					}
 					else
 					{
 						if(booBWDy)
-							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,m_nPicWidth-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
+							rect = QRectF((intRowStart+bmpWidth-i-1)*SideLength+1,EDIT_WINDOW_HEIGHT-(intLineStart+j+1)*SideLength-1+1,SideLength,SideLength);
 						else
-							rect = QRectF(intRowStart+i*SideLength+1,m_nPicWidth-intLineStart-(j+1)*SideLength,SideLength,SideLength);
+							rect = QRectF(intRowStart+i*SideLength+1,EDIT_WINDOW_HEIGHT-intLineStart-(j+1)*SideLength,SideLength,SideLength);
 					}
 				}
 #endif
@@ -303,7 +302,7 @@ void OBJ_Control::DrawLogoQRcodeDM(CDC* pDC,vector<vector<bool> >& boDotMes)
 					pDC->Ellipse(rect);
 				else
 				{
-					boDotMes[(m_nPicWidth-1-rect.bottom())/SideLength][(rect.left()-1)/SideLength] = true;
+					boDotMes[(EDIT_WINDOW_HEIGHT-1-rect.bottom())/SideLength][(rect.left()-1)/SideLength] = true;
 				}
 			}
 		}		 		
@@ -381,20 +380,20 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 					
 					if (booBWDx)
 					{
-						y1=m_nPicWidth-5*(nFontRow-p+intLineStart)-1;
-						y2=m_nPicWidth-5*(nFontRow-p+intLineStart-1)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(nFontRow-p+intLineStart)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(nFontRow-p+intLineStart-1)-1;
 					} 
 					else
 					{
-						y1=m_nPicWidth-5*(intLineStart+p+1)-1;
-						y2=m_nPicWidth-5*(intLineStart+p)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(intLineStart+p+1)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(intLineStart+p)-1;
 					}
 					
 					CRect rect(x1+1,y1+1,5,5);
 					if(pDC)
 						pDC->Ellipse(rect);
 					else
-						boDotMes[(m_nPicWidth-1-y2)/5][x1/5]=true;
+						boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5]=true;
 				}
 			}
 		}
@@ -420,13 +419,13 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 				}
 				if (booBWDx)
 				{
-					y1=m_nPicWidth-5*(intLineStart+p+1)-1;
-					y2=m_nPicWidth-5*(intLineStart+p)-1;
+					y1=EDIT_WINDOW_HEIGHT-5*(intLineStart+p+1)-1;
+					y2=EDIT_WINDOW_HEIGHT-5*(intLineStart+p)-1;
 				} 
 				else
 				{
-					y1=m_nPicWidth-5*(nFontRow-p+intLineStart)-1;
-					y2=m_nPicWidth-5*(nFontRow-p+intLineStart-1)-1;
+					y1=EDIT_WINDOW_HEIGHT-5*(nFontRow-p+intLineStart)-1;
+					y2=EDIT_WINDOW_HEIGHT-5*(nFontRow-p+intLineStart-1)-1;
 
 				}
 				switch(Dot)
@@ -440,7 +439,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 					break;
@@ -453,7 +452,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 					break;
@@ -466,7 +465,7 @@ void OBJ_Control::Draw5x5_7x5Text(CDC* pDC,int nFontRow,int nFontCol,int nBytesO
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 				}	
@@ -549,19 +548,19 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 					}
 					if (booBWDx)
 					{
-						y1=m_nPicWidth-5*(12-p+intLineStart)-1;
-						y2=m_nPicWidth-5*(12-p+intLineStart-1)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(12-p+intLineStart)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(12-p+intLineStart-1)-1;
 					} 
 					else
 					{
-						y1=m_nPicWidth-5*(intLineStart+p+1)-1;
-						y2=m_nPicWidth-5*(intLineStart+p)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(intLineStart+p+1)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(intLineStart+p)-1;
 					}
 					CRect rect(x1+1,y1+1,5,5);
 					if(pDC)
 						pDC->Ellipse(rect);
 					else
-						boDotMes[(m_nPicWidth-1-y2)/5][x1/5]=true;
+						boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5]=true;
 				}
 			}
 		}
@@ -598,13 +597,13 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 				}
 				if (booBWDx)
 				{
-					y1=m_nPicWidth-5*(intLineStart+p+1)-1;
-					y2=m_nPicWidth-5*(intLineStart+p)-1;
+					y1=EDIT_WINDOW_HEIGHT-5*(intLineStart+p+1)-1;
+					y2=EDIT_WINDOW_HEIGHT-5*(intLineStart+p)-1;
 				} 
 				else
 				{
-					y1=m_nPicWidth-5*(12-p+intLineStart)-1;
-					y2=m_nPicWidth-5*(12-p+intLineStart-1)-1;
+					y1=EDIT_WINDOW_HEIGHT-5*(12-p+intLineStart)-1;
+					y2=EDIT_WINDOW_HEIGHT-5*(12-p+intLineStart-1)-1;
 
 				}
 				switch(Dot)
@@ -618,7 +617,7 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;								 
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;								 
 						}
 					}
 					break;
@@ -631,7 +630,7 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;	
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;	
 						}
 					}
 					break;
@@ -644,7 +643,7 @@ void OBJ_Control::Draw12x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;	
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;	
 						}
 					}
 				}	
@@ -723,19 +722,19 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 					}
 					if (booBWDx)
 					{
-						y1=m_nPicWidth-5*(16-p+intLineStart)-1;
-						y2=m_nPicWidth-5*(16-p+intLineStart-1)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(16-p+intLineStart)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(16-p+intLineStart-1)-1;
 					} 
 					else
 					{
-						y1=m_nPicWidth-5*(intLineStart+p+1)-1;
-						y2=m_nPicWidth-5*(intLineStart+p)-1;
+						y1=EDIT_WINDOW_HEIGHT-5*(intLineStart+p+1)-1;
+						y2=EDIT_WINDOW_HEIGHT-5*(intLineStart+p)-1;
 					}
  					CRect rect(x1+1,y1+1,5,5);
 					if(pDC)
 						pDC->Ellipse(rect);
 					else
-						boDotMes[(m_nPicWidth-1-y2)/5][x1/5]=true;
+						boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5]=true;
 				}
 			}
 		}
@@ -775,8 +774,8 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 				} 
 				else
 				{
-					y1=m_nPicWidth-5*(16-p+intLineStart)-1;
-					y2=m_nPicWidth-5*(16-p+intLineStart-1)-1;
+					y1=EDIT_WINDOW_HEIGHT-5*(16-p+intLineStart)-1;
+					y2=EDIT_WINDOW_HEIGHT-5*(16-p+intLineStart-1)-1;
 				}
 				switch(Dot)
 				{
@@ -789,7 +788,7 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 					break;
@@ -802,7 +801,7 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 					break;
@@ -815,7 +814,7 @@ void OBJ_Control::Draw16x12Text(CDC* pDC,vector<vector<bool> >& boDotMes)
 							if(pDC)
 								pDC->Ellipse(rect);
 							else
-								boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;
+								boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;
 						}
 					}
 				}	
@@ -873,11 +872,11 @@ void OBJ_Control::DrawVecText(CDC* pDC,vector<vector<bool> >& boDotMes)
 			{
 				if(!booNEG)
 				{
-					QRectF rect(nRow+intRowStart,nLine+241-intLineSize-intLineStart,1,1);
+					QRectF rect(nRow+intRowStart,nLine+EDIT_WINDOW_HEIGHT-intLineSize-intLineStart,1,1);
 					if(pDC)
 						pDC->Ellipse(rect);
 					/*else
-						boDotMes[(m_nPicWidth-1-y2)/5][x1/5+s]=true;*/
+						boDotMes[(EDIT_WINDOW_HEIGHT-1-y2)/5][x1/5+s]=true;*/
 				}
 			}
 		}

@@ -115,11 +115,11 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 	int y_pos = p_Relative.y();
 
 #ifdef BIG_CHAR
-	int nLin = ( 241 - y_pos ) / 5;
+	int nLin = ( EDIT_WINDOW_HEIGHT - y_pos ) / 5;
 	int nRow = x_pos / 5;
 
-	//判断该位置是否在控件editPreviewText范围内
-	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
+	//判断该位置是否在控件editPreviewText的可视范围内
+	if ((x_pos>=0 && x_pos<=EDIT_VIEWPORT_WIDTH) && (y_pos>=0 && y_pos<=EDIT_WINDOW_HEIGHT))
 	{
 		vector<OBJ_Control*>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())
@@ -150,10 +150,10 @@ void ClassMessage::CtrlCurObjChoice(QPoint p_Relative)
 	}
 
 #else
-	int nLin = 241 - y_pos;
+	int nLin = EDIT_WINDOW_HEIGHT - y_pos;
 	int nRow = x_pos;
 	//判断该位置是否在控件editPreviewText范围内
-	if ((x_pos>=0 && x_pos<=1041) && (y_pos>=0 && y_pos<=241))
+	if ((x_pos>=0 && x_pos<=EDIT_VIEWPORT_WIDTH) && (y_pos>=0 && y_pos<=EDIT_WINDOW_HEIGHT))
 	{
 		vector<OBJ_Control*>::iterator itr = this->OBJ_Vec.begin();
 		while (itr != this->OBJ_Vec.end())

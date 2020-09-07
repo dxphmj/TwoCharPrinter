@@ -458,6 +458,8 @@ bool MainWindow::eventFilter(QObject *watched, QEvent *event)
 		boDrawMainPic = true;
 	  	QPainter painter(ui->previewLab);
 	 	m_MessagePrint->DrawAllDynamic(&painter);
+
+		//如果是高解析，直接调用OBJ_Control.cpp里的DrawVecText函数，CDC -> this.ui.previewLab
 	}
 	return QWidget::eventFilter(watched,event);
 }

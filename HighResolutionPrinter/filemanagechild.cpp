@@ -44,9 +44,10 @@ FileManageChild::FileManageChild(QWidget *parent)
 	keyboardWidget->setVisible(false);
 
 	ui->filePreHorScrollBar->setRange(0,100);
-	ui->filePrivewtextEdit->setGeometry(0,0,2746,161);
+	ui->filePrivewtextEdit->setGeometry(0,0,EDIT_WINDOW_WIDTH,EDIT_WINDOW_HEIGHT);
+	//图形编辑窗口的可视范围
 	viewAreaLabel = new QLabel(this);
-	viewAreaLabel->setGeometry(240,10,671,161);
+	viewAreaLabel->setGeometry(240,10,MANAGE_VIEWPORT_WIDTH,EDIT_WINDOW_HEIGHT);
 	viewAreaLabel->setStyleSheet("background-color: rgb(255,255,255,0%);");
 	ui->filePrivewtextEdit->setParent(viewAreaLabel);
 	
@@ -55,7 +56,7 @@ FileManageChild::FileManageChild(QWidget *parent)
 void FileManageChild::ScrollBarChanged(int value)
 {
 	double p = static_cast<double>(value)/static_cast<double>(ui->filePreHorScrollBar->maximum());
-	ui->filePrivewtextEdit->move((671-2746)*p,0);
+	ui->filePrivewtextEdit->move((MANAGE_VIEWPORT_WIDTH-EDIT_WINDOW_WIDTH)*p,0);
 }
 
 void FileManageChild::SetButtonEnableOn()
@@ -243,7 +244,6 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	MatrixMap.insert("1L8M",40);
 	MatrixMap.insert("1L16M",80);
 	MatrixMap.insert("1L32M",160);
-	//MatrixMap.insert("1L48M",240);
 	
 	QString qStrMatrix = QString::fromStdString(m_pPrinterMes->strMatrix);
 	int i,j;
@@ -251,19 +251,19 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,161-MatrixMap[qStrMatrix],i,161);
+		qFramePainter->drawLine(i,EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix],i,EDIT_WINDOW_HEIGHT);
 	}
-	for (j=161; j>=161-MatrixMap[qStrMatrix]; j-=5)
+	for (j=EDIT_WINDOW_HEIGHT; j>=EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix]; j-=5)
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
 		qFramePainter->drawLine(0,j,2746,j);
 	}
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(1,161,1,161-MatrixMap[qStrMatrix]);//left
-	qFramePainter->drawLine(0,160,2746,160);//down
-	qFramePainter->drawLine(0,161-MatrixMap[qStrMatrix],2746,161-MatrixMap[qStrMatrix]);//up
-	qFramePainter->drawLine(2745,161,2745,161-MatrixMap[qStrMatrix]);//right
+	qFramePainter->drawLine(1,EDIT_WINDOW_HEIGHT,1,EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix]);//left
+	qFramePainter->drawLine(0,EDIT_WINDOW_HEIGHT-1,2746,EDIT_WINDOW_HEIGHT-1);//down
+	qFramePainter->drawLine(0,EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix],2746,EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix]);//up
+	qFramePainter->drawLine(2745,EDIT_WINDOW_HEIGHT,2745,EDIT_WINDOW_HEIGHT-MatrixMap[qStrMatrix]);//right
 
 #else
 	QPen qGrayPen(Qt::lightGray,1,Qt::DotLine,Qt::SquareCap,Qt::MiterJoin);
@@ -274,9 +274,9 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	{
 		//画列
 		qFramePainter->setPen(qGrayPen);
-		qFramePainter->drawLine(i,90,i,241);
+		qFramePainter->drawLine(i,90,i,EDIT_WINDOW_HEIGHT);
 	}
-	for (j = 90; j <= 240; j += 50)//先写死
+	for (j = 90; j <= EDIT_WINDOW_HEIGHT-1; j += 50)//先写死
 	{
 		//画行
 		qFramePainter->setPen(qGrayPen);
@@ -284,10 +284,10 @@ void FileManageChild::DrawBackFrame(QPainter *qFramePainter)
 	}
 
 	qFramePainter->setPen(qRedPen);
-	qFramePainter->drawLine(0,241,0,89);//left
-	qFramePainter->drawLine(3121,241,3121,89);//right
+	qFramePainter->drawLine(0,EDIT_WINDOW_HEIGHT,0,89);//left
+	qFramePainter->drawLine(3121,EDIT_WINDOW_HEIGHT,3121,89);//right
 	qFramePainter->drawLine(0,89,3121,89);//up
-	qFramePainter->drawLine(0,241,3121,241);//down
+	qFramePainter->drawLine(0,EDIT_WINDOW_HEIGHT,3121,EDIT_WINDOW_HEIGHT);//down
 
 	//获得Matrix 及 Pixel的值
 	//m_MessagePrint.Matrix = PixelMap[CurPixelItem]/5;

@@ -13,6 +13,13 @@ NozzleClean::NozzleClean(QWidget *parent):
 {
 	ui->setupUi(this);
 
+	char *Nozzle_node = "/dev/Nozzle_ctl";
+
+	if ((fd2 = open(Nozzle_node,O_RDWR)) < 0)
+	{
+		printf("Nozzle open %s failed" , Nozzle_node);
+	}
+
 	connect(ui->pushButton_1,SIGNAL(clicked()),this,SLOT(pushButton_1_clicked()));
 	connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(pushButton_2_clicked()));
 	connect(ui->pushButton_3,SIGNAL(clicked()),this,SLOT(pushButton_3_clicked()));
@@ -148,51 +155,26 @@ void NozzleClean::setAllCleanEnabled(bool trig)
 
 void NozzleClean::writeNozzleNum(char* strTempCmd)
 {
-	char iTest[1];
-	char *Nozzle_node = "/dev/Nozzle_ctl";
+	write_result = write(fd2,strTempCmd,2);
 
-	/*O_RDWR读写打开,O_NDELAY非阻塞方式*/
-	if((fd2 = open(Nozzle_node,O_RDWR))<0)
+	if (write_result ==2)
 	{
-		printf("Nozzle open %s failed",Nozzle_node);
+		printf("Write is success!\n");
+		free(strTempCmd);
 	}
 	else
 	{
-		read_result = read(fd2,iTest,1);
-		if(read_result == 0)
-		{
-			write_result = write(fd2,strTempCmd,8);
-			if (write_result)
-			{
-				free(strTempCmd);
-			}
-
-			if(write_result == -1)
-			{
-				printf("Write is failed!\n");
-			}
-			else
-			{
-				printf("Write is success!\n");
-			}
-
-			//printf("write_complete!");
-		}
-		else
-		{
-			printf("The system is busy now!\n");
-		}
-
-		//read_result = read(fd2,buffer,1);
+		printf("Write is failed!\n");
 	}
-	//::close(fd2);
+
+	printf("write_complete!\n");
 }
 
 void NozzleClean::pushButton_1_clicked()
 {
 	char* tmpChar = (char*)malloc(2);
 	tmpChar[0] = 0;
-	tmpChar[1] = -127;
+	tmpChar[1] = -128;
     writeNozzleNum(tmpChar);
 }
 
@@ -255,7 +237,7 @@ void NozzleClean::pushButton_8_clicked()
 void NozzleClean::pushButton_9_clicked()
 {
 	char* tmpChar = (char*)malloc(2);
-	tmpChar[0] = -127;
+	tmpChar[0] = -128;
 	tmpChar[1] = 0;
 	writeNozzleNum(tmpChar);
 }
@@ -341,8 +323,8 @@ void NozzleClean::singleCleanPushButton_clicked()
 void NozzleClean::allCleanPushButton_clicked()
 {
 	char* tmpChar = (char*)malloc(2);
-	tmpChar[0] = -127;
-	tmpChar[1] = -127;
+	tmpChar[0] = -1;
+	tmpChar[1] = -1;
 	writeNozzleNum(tmpChar);
 }
 
@@ -353,4 +335,5 @@ void NozzleClean::exitButton_clicked()
 	theApp->ui->paraManageBut->setEnabled(true);
 	theApp->ui->startPrintBut->setEnabled(true);
 	this->setVisible(false);
+	::close(fd2);
 }

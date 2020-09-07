@@ -1219,21 +1219,21 @@ public:
         reverseDMCheckBox->raise();
         moveUpBut = new QPushButton(FileEditChild);
         moveUpBut->setObjectName(QStringLiteral("moveUpBut"));
-        moveUpBut->setGeometry(QRect(780, 445, 50, 50));
+        moveUpBut->setGeometry(QRect(780, 480, 50, 50));
         moveUpBut->setFont(font1);
         moveUpBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveup.bmp);\n"
 "border-radius:10px;"));
         moveRightBut = new QPushButton(FileEditChild);
         moveRightBut->setObjectName(QStringLiteral("moveRightBut"));
-        moveRightBut->setGeometry(QRect(835, 500, 50, 50));
+        moveRightBut->setGeometry(QRect(835, 540, 50, 50));
         moveRightBut->setFont(font1);
         moveRightBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveright.bmp);\n"
 "border-radius:10px;"));
         moveDownBut = new QPushButton(FileEditChild);
         moveDownBut->setObjectName(QStringLiteral("moveDownBut"));
-        moveDownBut->setGeometry(QRect(780, 500, 50, 50));
+        moveDownBut->setGeometry(QRect(780, 540, 50, 50));
         moveDownBut->setFont(font1);
         moveDownBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/movedown.bmp);\n"
@@ -1241,7 +1241,7 @@ public:
         moveDownBut->setIconSize(QSize(20, 20));
         moveLeftBut = new QPushButton(FileEditChild);
         moveLeftBut->setObjectName(QStringLiteral("moveLeftBut"));
-        moveLeftBut->setGeometry(QRect(725, 500, 50, 50));
+        moveLeftBut->setGeometry(QRect(725, 540, 50, 50));
         moveLeftBut->setFont(font1);
         moveLeftBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-image: url(:/Images/moveleft.bmp);\n"
@@ -1382,13 +1382,13 @@ public:
         HightShowlabel->setFrameShape(QFrame::NoFrame);
         pixelComBox = new QComboBox(FileEditChild);
         pixelComBox->setObjectName(QStringLiteral("pixelComBox"));
-        pixelComBox->setGeometry(QRect(805, 560, 91, 31));
+        pixelComBox->setGeometry(QRect(805, 440, 91, 31));
         pixelComBox->setFont(font2);
         pixelComBox->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         pixelLab = new QLabel(FileEditChild);
         pixelLab->setObjectName(QStringLiteral("pixelLab"));
-        pixelLab->setGeometry(QRect(710, 560, 91, 31));
+        pixelLab->setGeometry(QRect(710, 440, 91, 31));
         QFont font8;
         font8.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
         font8.setPointSize(12);

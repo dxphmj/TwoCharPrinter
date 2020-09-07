@@ -83,11 +83,12 @@ FileEditChild::FileEditChild(QWidget *parent)
 
 //画布与滚动条设置
 #ifdef BIG_CHAR
-	ui->editPreviewText->setGeometry(0,0,2746,161);//2746 = 916 * 3 + 1;
+	ui->editPreviewText->setGeometry(0,0,EDIT_WINDOW_WIDTH,EDIT_WINDOW_HEIGHT);// EDIT_WINDOW_WIDTH = (EDIT_VIEWPORT_WIDTH - 1) * 3 + 1;
 	connect(ui->textpreviewScrollBar,SIGNAL(valueChanged(int)),this,SLOT(ScrollBarChanged(int)));
 	ui->textpreviewScrollBar->setRange(0,100);
+	//文件编辑窗口的可视范围
 	viewAreaLabel = new QLabel(this);
-	viewAreaLabel->setGeometry(5,10,916,161);
+	viewAreaLabel->setGeometry(5,10,EDIT_VIEWPORT_WIDTH,EDIT_WINDOW_HEIGHT);
 	viewAreaLabel->setStyleSheet("background-color: rgb(255,255,255,0%);");
 	ui->editPreviewText->setParent(viewAreaLabel);
 
@@ -822,22 +823,22 @@ void FileEditChild::DrawVerScale(QPainter *qScalePainter)
 	QPen qBlackPen(Qt::black,1,Qt::SolidLine,Qt::SquareCap,Qt::MiterJoin);
 	qScalePainter->setPen(qBlackPen);
 	//画垂直刻度
-	for (int i=5; i<240; i+=10)
+	for (int i=5; i<EDIT_WINDOW_HEIGHT-1; i+=10)
 		qScalePainter->drawLine(36,i,40,i);
-	for (int j=0; j<240; j+=10)
+	for (int j=0; j<EDIT_WINDOW_HEIGHT-1; j+=10)
 		qScalePainter->drawLine(32,j,40,j);
 	//单独画一条0刻度线
-	qScalePainter->drawLine(28,239,40,239);
-	qScalePainter->drawText(18,240,QString::number(0));
-	for (int k=50; k<240; k+=50)
+	qScalePainter->drawLine(28,EDIT_WINDOW_HEIGHT-2,40,EDIT_WINDOW_HEIGHT-2);
+	qScalePainter->drawText(18,EDIT_WINDOW_HEIGHT-1,QString::number(0));
+	for (int k=50; k<EDIT_WINDOW_HEIGHT-1; k+=50)
 	{
-		qScalePainter->drawLine(28,240-k,40,240-k);
+		qScalePainter->drawLine(28,EDIT_WINDOW_HEIGHT-1-k,40,EDIT_WINDOW_HEIGHT-1-k);
 		int m;
 		if (k==50)
 			m = 9;
 		else
 			m = 0;
-		qScalePainter->drawText(m,240-k+6,QString::number(k));
+		qScalePainter->drawText(m,EDIT_WINDOW_HEIGHT-1-k+6,QString::number(k));
 	}
 }
 
@@ -1235,7 +1236,7 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 	this->pointMousePressed = event->pos();
 
 #ifdef BIG_CHAR
-	int nLin = (241-pointMousePressed.y())/5;
+	int nLin = (EDIT_WINDOW_HEIGHT-pointMousePressed.y())/5;
 	int nRow = pointMousePressed.x()/5;
 
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
@@ -1258,7 +1259,7 @@ void FileEditChild::MouseBeenPressed(QMouseEvent *event)
 	this->boolMousePressed = false;
 
 #else
-	int nLin = 241 - pointMousePressed.y();
+	int nLin = EDIT_WINDOW_HEIGHT - pointMousePressed.y();
 	int nRow = pointMousePressed.x();
 
 	for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
@@ -1301,9 +1302,9 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 
 #ifdef BIG_CHAR
 
-		nLin = ( 241 - pointMousePressed.y() ) / 5;
+		nLin = ( EDIT_WINDOW_HEIGHT - pointMousePressed.y() ) / 5;
 		nRow = pointMousePressed.x() / 5;
-		nNewLin = ( 241 - pNewMousePoint.y() ) / 5;
+		nNewLin = ( EDIT_WINDOW_HEIGHT - pNewMousePoint.y() ) / 5;
 		nNewRow = pNewMousePoint.x() / 5;
 		for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
 		{
@@ -1318,17 +1319,17 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 				{
 					m_MessagePrint.OBJ_Vec[i]->intRowStart = 0;
 				}
-				else if ( (nNewRow - DeltaX) > (624 - m_MessagePrint.OBJ_Vec[i]->intRowSize) )
+				else if ( (nNewRow - DeltaX) > (EDIT_WINDOW_WIDTH/5 - m_MessagePrint.OBJ_Vec[i]->intRowSize) )
 				{
-					m_MessagePrint.OBJ_Vec[i]->intRowStart = 624 - m_MessagePrint.OBJ_Vec[i]->intRowSize;
+					m_MessagePrint.OBJ_Vec[i]->intRowStart = EDIT_WINDOW_WIDTH/5  - m_MessagePrint.OBJ_Vec[i]->intRowSize;
 				}
 				else if ( (nNewLin - DeltaY) < 0 )
 				{
 					m_MessagePrint.OBJ_Vec[i]->intLineStart = 0;
 				}
-				else if ( (nNewLin - DeltaY) > (48 - m_MessagePrint.OBJ_Vec[i]->intLineSize) )
+				else if ( (nNewLin - DeltaY) > (EDIT_WINDOW_HEIGHT/5 - m_MessagePrint.OBJ_Vec[i]->intLineSize) )
 				{
-					m_MessagePrint.OBJ_Vec[i]->intLineStart = 48 - m_MessagePrint.OBJ_Vec[i]->intLineSize;
+					m_MessagePrint.OBJ_Vec[i]->intLineStart = EDIT_WINDOW_HEIGHT/5 - m_MessagePrint.OBJ_Vec[i]->intLineSize;
 				}
 				else
 				{
@@ -1345,9 +1346,9 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 			}
 		}
 #else
-		nLin = 241 - pointMousePressed.y();
+		nLin = EDIT_WINDOW_HEIGHT - pointMousePressed.y();
 		nRow = pointMousePressed.x();
-		nNewLin = 241 - pNewMousePoint.y();
+		nNewLin = EDIT_WINDOW_HEIGHT - pNewMousePoint.y();
 		nNewRow = pNewMousePoint.x();
 		
 		for (int i=0; i<m_MessagePrint.OBJ_Vec.size(); i++)
@@ -1368,9 +1369,9 @@ void FileEditChild::MouseMoved(QMouseEvent *event)
 				{
 					m_MessagePrint.OBJ_Vec[i]->intLineStart = 0;
 				}
-				else if ( (nNewLin - DeltaY) > (241 - m_MessagePrint.OBJ_Vec[i]->intSideHight) )
+				else if ( (nNewLin - DeltaY) > (EDIT_WINDOW_HEIGHT - m_MessagePrint.OBJ_Vec[i]->intSideHight) )
 				{
-					m_MessagePrint.OBJ_Vec[i]->intLineStart = 241 - m_MessagePrint.OBJ_Vec[i]->intSideHight;
+					m_MessagePrint.OBJ_Vec[i]->intLineStart = EDIT_WINDOW_HEIGHT - m_MessagePrint.OBJ_Vec[i]->intSideHight;
 				}
 				else
 				{
@@ -1744,7 +1745,7 @@ void FileEditChild::saveasBut_clicked()
 	MatrixMap.insert("8px","1L8M");
 	MatrixMap.insert("16px","1L16M");
 	MatrixMap.insert("32px","1L32M");
-	MatrixMap.insert("48px","1L48M");
+	//MatrixMap.insert("48px","1L48M");
 	QString qStrMatrix = ui->pixelComBox->currentText();
 	m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
 	m_MessagePrint.Pixel = m_MessagePrint.GetPixel();
@@ -1788,7 +1789,7 @@ void FileEditChild::saveBut_clicked()
 		MatrixMap.insert("8px","1L8M");
 		MatrixMap.insert("16px","1L16M");
 		MatrixMap.insert("32px","1L32M");
-		MatrixMap.insert("48px","1L48M");
+		//MatrixMap.insert("48px","1L48M");
 		QString qStrMatrix = ui->pixelComBox->currentText();
 		m_MessagePrint.strMatrix = MatrixMap[qStrMatrix];
 		m_MessagePrint.Pixel = m_MessagePrint.GetPixel();

@@ -35,6 +35,12 @@ typedef unsigned int  UINT32, *PUINT32;
 #define CString QString
 #define BITMAP QBitmap2
 
+//定义常用的参数常量，便于维护
+#define EDIT_WINDOW_HEIGHT 161 //fileeditchild和filemanagechild界面上的 图形编辑/预览窗口的 实际高度（原为241）
+#define EDIT_WINDOW_WIDTH 2476 //fileeditchild和filemanagechild界面上的 图形编辑/预览窗口的 实际宽度（原为3121）
+#define EDIT_VIEWPORT_WIDTH 916 //fileeditchild界面上的 图形编辑窗口的 可视范围宽度
+#define MANAGE_VIEWPORT_WIDTH 671 //filemanagechild界面上的 图形预览窗口的 可视范围宽度（左侧文件列表占用了一定宽度）
+
 class OBJ_Control
 {
 public:
@@ -126,7 +132,7 @@ public://方法
 private:
 	
 	map<string,int> fntMap;
-    int m_nPicWidth; //绘制控件的宽度 
+    //int EDIT_WINDOW_HEIGHT; //绘制控件的宽度 
 };
 
 class ClassMessage
