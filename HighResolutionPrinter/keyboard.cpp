@@ -1,7 +1,7 @@
 ﻿#include "keyboard.h"
 #include "ui_keyboard.h"
 #include <QAction>
-#include <QtWidgets/QStackedWidget>
+#include <QStackedWidget>
 #include "lineedit_click.h"
 #include "language.h"
 #include "fileeditchild.h"

@@ -1,6 +1,6 @@
 #include "language.h"
 #include "ui_language.h"
-#include <QtWidgets/QStackedWidget>
+#include <QStackedWidget>
 #include "keyboard.h"
 #include <QPushButton>
 #include <QHBoxLayout>

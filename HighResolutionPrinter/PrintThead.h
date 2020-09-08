@@ -2,10 +2,7 @@
 #define PRINTTHEAD_H
 
 #include <QThread>
- 
-#include <QtSerialPort/qserialport.h>
-#include <QtSerialPort/qserialportinfo.h>
- 
+
 #include "ModuleMain.h"
 
 
@@ -46,7 +43,6 @@ protected:
     virtual void run(); 
 
 private:
-	QSerialPort* serial;
     volatile bool m_isStop; 
 	bool m_bUsingPhotoESwitch;//用光电开关
 	bool m_bTriggerByHigh;//高电平触发

@@ -1,6 +1,6 @@
 #include "numkeyboard.h"
 #include <QAction>
-#include <QtWidgets/QStackedWidget>
+#include <QStackedWidget>
 #include "lineedit_click.h"
 
 numkeyboard::numkeyboard(QWidget *parent)

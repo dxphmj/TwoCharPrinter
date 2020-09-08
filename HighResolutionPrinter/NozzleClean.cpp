@@ -2,7 +2,7 @@
 #include "ui_nozzleclean.h"
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QtWidgets/QStackedWidget>
+#include <QStackedWidget>
 //驱动相关头文件
 #include <fcntl.h>
 #include <unistd.h>

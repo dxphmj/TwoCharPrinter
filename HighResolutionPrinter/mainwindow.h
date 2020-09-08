@@ -12,8 +12,6 @@
 #include <QMutex>
 
 #include "ParamSetting.h"
-#include <QtSerialPort/qserialport.h>
-#include <QtSerialPort/qserialportinfo.h>
 
 #define BIG_CHAR
 
@@ -87,7 +85,6 @@ public:
 	void CreatePrintData();
 	void getMessageDot();
 
-	QSerialPort serial;
 	void initPrinter();
 	structRowCol m_StructRowCol[301];
 

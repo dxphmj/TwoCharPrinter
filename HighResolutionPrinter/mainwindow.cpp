@@ -98,21 +98,6 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_pPrintThread = new PrintThead(this);//启动打印线程
 	m_pPrintThread->start();
 
-	serial.setPortName("COM4");   //串口名
-	//if (serial.open(QIODevice::ReadWrite))
-	//{
-	//	bool b;
-	//	qint32 baudrate = 115200;
-	//	b = serial.setBaudRate(baudrate);//波特率
-	//	b = serial.setDataBits(QSerialPort::Data8); //数据位
-	//	b = serial.setParity(QSerialPort::NoParity); //校验位
-	//	b = serial.setStopBits(QSerialPort::OneStop);//停止位
-	//	b = serial.setFlowControl(QSerialPort::NoFlowControl);
-	//	serial.setDataTerminalReady(true);
-	//}
-	//QObject::connect(&serial, &QSerialPort::readyRead, this, &MainWindow::serialPort_readyRead);
-	//initPrinter();
-
 	getCurParam();
 }
 
@@ -438,9 +423,7 @@ void MainWindow::initPrinter()
 void MainWindow::serialPort_readyRead()
 {
     //从接收缓冲区中读取数据
-    QByteArray buffer = serial.readAll();
 
-	QString recv  = QString(buffer);
 
     //从界面中读取以前收到的数据
 //    QString recv += QString(buffer);
@@ -555,10 +538,7 @@ void MainWindow::printerCode(char* writeArr)
 				else if(col > 6 && bit)
 					readArr[row*2+1] = readArr[row*2+1] | (1 << (col-7)); //给某一位赋值
 			}
-		} 
-		 
- 	 	qint64 n = serial.write(readArr,46);//数据发送
-	 
+		} 	 
 }
 
 void MainWindow::closeBut_clicked()

@@ -420,20 +420,6 @@ void PrintThead::run()
     ModuleMain m_ModuleMain;
 	MainWindow* theApp = (MainWindow*)(this->parent());
 
-	serial = new QSerialPort();
-	serial->setPortName("COM4");   //串口名
-	if (serial->open(QIODevice::ReadWrite))
-	{
-		bool b;
-		qint32 baudrate = 115200;
-		b = serial->setBaudRate(baudrate);//波特率
-		b = serial->setDataBits(QSerialPort::Data8); //数据位
-		b = serial->setParity(QSerialPort::NoParity); //校验位
-		b = serial->setStopBits(QSerialPort::OneStop);//停止位
-		b = serial->setFlowControl(QSerialPort::NoFlowControl);
-		serial->setDataTerminalReady(true);
-	}
-
 
 
 	//打开驱动
@@ -641,13 +627,7 @@ void PrintThead::run()
 						readArr[row*2+1] = readArr[row*2+1] | (1 << (col-7)); //给某一位赋值
 				}
 			}
-		 
-		
-			serial->waitForReadyRead(1);
- 	 		qint64 n = serial->write(readArr,46);//数据发送
-
 			msleep(5);
-
 		}
  		msleep(1000); 
 	}
