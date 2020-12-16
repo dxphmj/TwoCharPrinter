@@ -1782,9 +1782,22 @@ void FileEditChild::saveBut_clicked()
 		QString qfileName = pFilemanageForm->FormFileManageChild->ui->filelistWidget->currentItem()->text();
 		string tmpStr = qfileName.toStdString();
 		char tmpFilePath[256];
+		QString filePath;
+		QDir qtFilePath;
+		QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+		filePath = "User/Label/%s";
+#elif defined qtPath
+		filePath = qtFilePathDir + "/User/Label/%s";
+#else
+		filePath = "/home/User/Label/%s";
+#endif
+		string str = filePath.toStdString();
+		const char *s = str.c_str();
 
 #ifdef BIG_CHAR
-		sprintf(tmpFilePath,"User/Label/%s",tmpStr.c_str());
+		sprintf(tmpFilePath,s,tmpStr.c_str());
 		QMap <QString,string> MatrixMap;
 		MatrixMap.insert("8px","1L8M");
 		MatrixMap.insert("16px","1L16M");

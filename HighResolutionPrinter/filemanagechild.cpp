@@ -111,9 +111,20 @@ void FileManageChild::editSeleFileBut_clicked()
 void FileManageChild::delSeleFileBut_clicked()
 {
 	QString qFileName = this->ui->filelistWidget->currentItem()->text();
+	QString filePath;
+	QDir qtFilePath;
+	QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+	filePath = "User/Label/";
+#elif defined qtPath
+	filePath = qtFilePathDir + "/User/Label/";
+#else
+	filePath = "/home/User/Label/";
+#endif
 
 #ifdef BIG_CHAR
-	QString qFilePath = "User/label/" + qFileName;
+	QString qFilePath = filePath + qFileName;
 #else
 	QString qFilePath = "User/Vec-label/" + qFileName;
 #endif
@@ -130,10 +141,22 @@ void FileManageChild::delSeleFileBut_clicked()
 
 void FileManageChild::copyFile2localBut_clicked()
 {
+	QString filePath;
+	QDir qtFilePath;
+	QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+	filePath = "User/Label/";
+#elif defined qtPath
+	filePath = qtFilePathDir + "/User/Label/";
+#else
+	filePath = "/home/User/Label/";
+#endif
+
 	QString qFileName = this->ui->fileNmaeLineEdit->text();
-	QString qFilePath = "User/Label/" + qFileName + ".lab";
+	QString qFilePath = filePath + qFileName + ".lab";
 	QString qNewName = qFileName + "_copy";
-	QString qNewPath = "User/Label/" + qNewName + ".lab";
+	QString qNewPath = filePath + qNewName + ".lab";
 	QFile qFile(qFilePath);
 	QFileInfo qNewFile(qNewPath);
 	if (!qNewFile.exists())
@@ -330,8 +353,20 @@ void FileManageChild::UdiskFileBut_clicked()
 void FileManageChild::ShowLocalFilePath()
 {
 	this->ui->filelistWidget->clear();
+	QString filePath;
+	QDir qtFilePath;
+	QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+	filePath = "User/Label/";
+#elif defined qtPath
+	filePath = qtFilePathDir + "/User/Label/";
+#else
+	filePath = "/home/User/Label/";
+#endif
+
 #ifdef BIG_CHAR
-	rootStr = "User/Label"; 
+	rootStr = filePath; 
 #else
 	rootStr = "User/Vec-Label"; 
 #endif
@@ -351,10 +386,21 @@ void FileManageChild::OKFileNameBut_clicked()
 {
 	QString qFileName1 = this->ui->filelistWidget->currentItem()->text();
 	QString qFileName2 = this->ui->fileNmaeLineEdit->text();
+	QString filePath;
+	QDir qtFilePath;
+	QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+	filePath = "User/Label/";
+#elif defined qtPath
+	filePath = qtFilePathDir + "/User/Label/";
+#else
+	filePath = "/home/User/Label/";
+#endif
 
 #ifdef BIG_CHAR
-	QString tmpPath1 = "User/Label/" + qFileName1;
-	QString tmpPath2 = "User/Label/" + qFileName2 + ".lab";
+	QString tmpPath1 = filePath + qFileName1;
+	QString tmpPath2 = filePath + qFileName2 + ".lab";
 #else
 	QString tmpPath1 = "User/Vec-Label/" + qFileName1;
 	QString tmpPath2 = "User/Vec-Label/" + qFileName2 + ".vlab";

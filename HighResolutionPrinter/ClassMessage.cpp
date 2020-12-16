@@ -9,6 +9,8 @@
 #include "ModuleMain.h"
 #include "wordStock/GetHZinfo.h"
 #include <math.h>
+#include <QString>
+#include <QDir>
  
 ClassMessage::ClassMessage(void)
 {
@@ -191,9 +193,23 @@ string ClassMessage::GenerateFileName(string tmpFileName)
 {
 	int tmpFileNum = 1;
 	char CurFilePath[256];
+	QString filePath;
+	QDir qtFilePath;
+	QString qtFilePathDir = qtFilePath.currentPath();
+
+#ifdef vsPath
+	filePath = "User/Label/%s(%d).lab";
+#elif defined qtPath
+	filePath = qtFilePathDir + "/User/Label/%s(%d).lab";
+#else
+	filePath = "/home/User/Label/%s(%d).lab";
+#endif
+	string str = filePath.toStdString();
+	const char *s = str.c_str();
+
 
 #ifdef BIG_CHAR
-	sprintf(CurFilePath,"User/Label/%s(%d).lab",tmpFileName.c_str(),tmpFileNum);
+	sprintf(CurFilePath,s,tmpFileName.c_str(),tmpFileNum);
 #else
 	sprintf(CurFilePath,"User/Vec-Label/%s(%d).vlab",tmpFileName.c_str(),tmpFileNum);
 #endif
@@ -203,7 +219,7 @@ string ClassMessage::GenerateFileName(string tmpFileName)
 	{
 		tmpFileNum++;
 #ifdef BIG_CHAR
-		sprintf(CurFilePath,"User/Label/%s(%d).lab",tmpFileName.c_str(),tmpFileNum);
+		sprintf(CurFilePath,s,tmpFileName.c_str(),tmpFileNum);
 #else
 		sprintf(CurFilePath,"User/Vec-Label/%s(%d).vlab",tmpFileName.c_str(),tmpFileNum);
 #endif
