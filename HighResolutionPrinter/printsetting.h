@@ -57,6 +57,7 @@ private slots:
 	void encoderResLineEdit_clicked();
 	void wheelDiameterLineEdit_clicked();
 	void pulseWidthLineEdit_clicked();
+	void colWidthLineEdit_clicked();
 
 };
 

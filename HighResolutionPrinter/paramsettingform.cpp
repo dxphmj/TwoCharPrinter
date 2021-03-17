@@ -142,9 +142,11 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	theApp->m_ParamSetting.m_PrintingDirection = QVariant(m_printSetting->ui.printDirComBox->currentIndex()).toString();
 	theApp->m_ParamSetting.m_SynWheelCheck = m_printSetting->ui.synWheelCheckBox->isChecked();
 	theApp->m_ParamSetting.m_VoiceCheck = m_printSetting->ui.voiceCheckBox->isChecked();
+	
+#ifdef BIG_CHAR
+	theApp->m_ParamSetting.m_ColWidth = getNum(m_printSetting->ui.colWidthLineEdit->text());
 
 	//高级设置参数
-#ifdef BIG_CHAR
 #else
 	theApp->m_ParamSetting.XDPIradioBGcheckedId = m_printSetting->XDPIradioBG->checkedId();
 	theApp->m_ParamSetting.YDPIradioBGcheckedId = m_printSetting->YDPIradioBG->checkedId();
@@ -187,7 +189,7 @@ void ParamSettingForm::holdConfigurationBut_clicked()
 	}
 
 	theApp->m_ParamSetting.SaveParam2Xml();
-	//生成控制命令
+	//根据新的参数，重新生成控制命令并下发
 	theApp->CreateCtrlCmd();
 	theApp->getCurParam();
 }
@@ -207,6 +209,7 @@ void ParamSettingForm::resetConfig()
 	m_printSetting->ui.synWheelCheckBox->setChecked(0);
 	m_printSetting->ui.voiceCheckBox->setChecked(0);
 #ifdef BIG_CHAR
+	m_printSetting->ui.colWidthLineEdit->setText("3");
 #else
 	m_printSetting->XDPIradioBG->button(1)->setChecked(1);
 	m_printSetting->YDPIradioBG->button(1)->setChecked(1);

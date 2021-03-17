@@ -63,6 +63,8 @@ public:
     lineedit_click *encoderResLineEdit;
     lineedit_click *pulseWidthLineEdit;
     lineedit_click *wheelDiameterLineEdit;
+    lineedit_click *colWidthLineEdit;
+    QLabel *colWidthLab;
     QWidget *settingTab;
     QLabel *XDPILab;
     QRadioButton *XDPI100RadioBut;
@@ -145,7 +147,7 @@ public:
         printStyleTab->setObjectName(QStringLiteral("printStyleTab"));
         printSpeedRedBut = new QPushButton(printStyleTab);
         printSpeedRedBut->setObjectName(QStringLiteral("printSpeedRedBut"));
-        printSpeedRedBut->setGeometry(QRect(270, 40, 41, 41));
+        printSpeedRedBut->setGeometry(QRect(270, 30, 41, 41));
         printSpeedRedBut->setMinimumSize(QSize(41, 41));
         QFont font1;
         font1.setFamily(QString::fromUtf8("\351\273\221\344\275\223"));
@@ -165,7 +167,7 @@ public:
         trigLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printSpeedShowLab = new QLabel(printStyleTab);
         printSpeedShowLab->setObjectName(QStringLiteral("printSpeedShowLab"));
-        printSpeedShowLab->setGeometry(QRect(310, 40, 131, 41));
+        printSpeedShowLab->setGeometry(QRect(310, 30, 131, 41));
         printSpeedShowLab->setMinimumSize(QSize(0, 41));
         QFont font2;
         font2.setFamily(QString::fromUtf8("\346\245\267\344\275\223"));
@@ -176,14 +178,14 @@ public:
         printSpeedShowLab->setAlignment(Qt::AlignCenter);
         printSpeedAddBut = new QPushButton(printStyleTab);
         printSpeedAddBut->setObjectName(QStringLiteral("printSpeedAddBut"));
-        printSpeedAddBut->setGeometry(QRect(440, 40, 41, 41));
+        printSpeedAddBut->setGeometry(QRect(440, 30, 41, 41));
         printSpeedAddBut->setMinimumSize(QSize(41, 41));
         printSpeedAddBut->setFont(font1);
         printSpeedAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printSpeedLab = new QLabel(printStyleTab);
         printSpeedLab->setObjectName(QStringLiteral("printSpeedLab"));
-        printSpeedLab->setGeometry(QRect(50, 40, 221, 41));
+        printSpeedLab->setGeometry(QRect(50, 30, 221, 41));
         printSpeedLab->setMinimumSize(QSize(101, 41));
         printSpeedLab->setFont(font);
         printSpeedLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -228,7 +230,7 @@ public:
         printDirLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printDelayLab = new QLabel(printStyleTab);
         printDelayLab->setObjectName(QStringLiteral("printDelayLab"));
-        printDelayLab->setGeometry(QRect(50, 100, 221, 41));
+        printDelayLab->setGeometry(QRect(50, 90, 221, 41));
         printDelayLab->setMinimumSize(QSize(101, 41));
         printDelayLab->setFont(font);
         printDelayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -236,14 +238,14 @@ public:
         printDelayLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printDelayRedBut = new QPushButton(printStyleTab);
         printDelayRedBut->setObjectName(QStringLiteral("printDelayRedBut"));
-        printDelayRedBut->setGeometry(QRect(270, 100, 41, 41));
+        printDelayRedBut->setGeometry(QRect(270, 90, 41, 41));
         printDelayRedBut->setMinimumSize(QSize(41, 41));
         printDelayRedBut->setFont(font1);
         printDelayRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printDelayShowLab = new QLabel(printStyleTab);
         printDelayShowLab->setObjectName(QStringLiteral("printDelayShowLab"));
-        printDelayShowLab->setGeometry(QRect(310, 100, 131, 41));
+        printDelayShowLab->setGeometry(QRect(310, 90, 131, 41));
         printDelayShowLab->setMinimumSize(QSize(0, 41));
         printDelayShowLab->setFont(font2);
         printDelayShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -251,14 +253,14 @@ public:
         printDelayShowLab->setAlignment(Qt::AlignCenter);
         printDelayAddBut = new QPushButton(printStyleTab);
         printDelayAddBut->setObjectName(QStringLiteral("printDelayAddBut"));
-        printDelayAddBut->setGeometry(QRect(440, 100, 41, 41));
+        printDelayAddBut->setGeometry(QRect(440, 90, 41, 41));
         printDelayAddBut->setMinimumSize(QSize(41, 41));
         printDelayAddBut->setFont(font1);
         printDelayAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         synFrequencyLab = new QLabel(printStyleTab);
         synFrequencyLab->setObjectName(QStringLiteral("synFrequencyLab"));
-        synFrequencyLab->setGeometry(QRect(50, 160, 221, 41));
+        synFrequencyLab->setGeometry(QRect(50, 150, 221, 41));
         synFrequencyLab->setMinimumSize(QSize(101, 41));
         synFrequencyLab->setFont(font);
         synFrequencyLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -266,14 +268,14 @@ public:
         synFrequencyLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         synFrequencyRedBut = new QPushButton(printStyleTab);
         synFrequencyRedBut->setObjectName(QStringLiteral("synFrequencyRedBut"));
-        synFrequencyRedBut->setGeometry(QRect(270, 160, 41, 41));
+        synFrequencyRedBut->setGeometry(QRect(270, 150, 41, 41));
         synFrequencyRedBut->setMinimumSize(QSize(41, 41));
         synFrequencyRedBut->setFont(font1);
         synFrequencyRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         synFrequencyShowLab = new QLabel(printStyleTab);
         synFrequencyShowLab->setObjectName(QStringLiteral("synFrequencyShowLab"));
-        synFrequencyShowLab->setGeometry(QRect(310, 160, 131, 41));
+        synFrequencyShowLab->setGeometry(QRect(310, 150, 131, 41));
         synFrequencyShowLab->setMinimumSize(QSize(0, 41));
         synFrequencyShowLab->setFont(font2);
         synFrequencyShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -281,21 +283,21 @@ public:
         synFrequencyShowLab->setAlignment(Qt::AlignCenter);
         synFrequencyAddBut = new QPushButton(printStyleTab);
         synFrequencyAddBut->setObjectName(QStringLiteral("synFrequencyAddBut"));
-        synFrequencyAddBut->setGeometry(QRect(440, 160, 41, 41));
+        synFrequencyAddBut->setGeometry(QRect(440, 150, 41, 41));
         synFrequencyAddBut->setMinimumSize(QSize(41, 41));
         synFrequencyAddBut->setFont(font1);
         synFrequencyAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printGrayAddBut = new QPushButton(printStyleTab);
         printGrayAddBut->setObjectName(QStringLiteral("printGrayAddBut"));
-        printGrayAddBut->setGeometry(QRect(440, 220, 41, 41));
+        printGrayAddBut->setGeometry(QRect(440, 210, 41, 41));
         printGrayAddBut->setMinimumSize(QSize(41, 41));
         printGrayAddBut->setFont(font1);
         printGrayAddBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
 "background-color: rgb(0, 0, 230);"));
         printGrayShowLab = new QLabel(printStyleTab);
         printGrayShowLab->setObjectName(QStringLiteral("printGrayShowLab"));
-        printGrayShowLab->setGeometry(QRect(310, 220, 131, 41));
+        printGrayShowLab->setGeometry(QRect(310, 210, 131, 41));
         printGrayShowLab->setMinimumSize(QSize(0, 41));
         printGrayShowLab->setFont(font2);
         printGrayShowLab->setStyleSheet(QLatin1String("background-color: rgb(72,61, 139);\n"
@@ -303,7 +305,7 @@ public:
         printGrayShowLab->setAlignment(Qt::AlignCenter);
         printGrayLab = new QLabel(printStyleTab);
         printGrayLab->setObjectName(QStringLiteral("printGrayLab"));
-        printGrayLab->setGeometry(QRect(50, 220, 221, 41));
+        printGrayLab->setGeometry(QRect(50, 210, 221, 41));
         printGrayLab->setMinimumSize(QSize(101, 41));
         printGrayLab->setFont(font);
         printGrayLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -311,7 +313,7 @@ public:
         printGrayLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printGrayRedBut = new QPushButton(printStyleTab);
         printGrayRedBut->setObjectName(QStringLiteral("printGrayRedBut"));
-        printGrayRedBut->setGeometry(QRect(270, 220, 41, 41));
+        printGrayRedBut->setGeometry(QRect(270, 210, 41, 41));
         printGrayRedBut->setMinimumSize(QSize(41, 41));
         printGrayRedBut->setFont(font1);
         printGrayRedBut->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -337,7 +339,7 @@ public:
         printStyleBGLabel->setFrameShape(QFrame::NoFrame);
         encoderResLab = new QLabel(printStyleTab);
         encoderResLab->setObjectName(QStringLiteral("encoderResLab"));
-        encoderResLab->setGeometry(QRect(50, 280, 251, 41));
+        encoderResLab->setGeometry(QRect(50, 270, 251, 41));
         encoderResLab->setMinimumSize(QSize(101, 41));
         encoderResLab->setFont(font);
         encoderResLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -345,7 +347,7 @@ public:
         encoderResLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         wheelDiameterLab = new QLabel(printStyleTab);
         wheelDiameterLab->setObjectName(QStringLiteral("wheelDiameterLab"));
-        wheelDiameterLab->setGeometry(QRect(50, 330, 221, 41));
+        wheelDiameterLab->setGeometry(QRect(50, 320, 221, 41));
         wheelDiameterLab->setMinimumSize(QSize(101, 41));
         wheelDiameterLab->setFont(font);
         wheelDiameterLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -353,7 +355,7 @@ public:
         wheelDiameterLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         pulseWidthLab = new QLabel(printStyleTab);
         pulseWidthLab->setObjectName(QStringLiteral("pulseWidthLab"));
-        pulseWidthLab->setGeometry(QRect(50, 380, 251, 41));
+        pulseWidthLab->setGeometry(QRect(50, 370, 251, 41));
         pulseWidthLab->setMinimumSize(QSize(101, 41));
         pulseWidthLab->setFont(font);
         pulseWidthLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
@@ -378,19 +380,32 @@ public:
         proLineSpeedShowLab->setAlignment(Qt::AlignCenter);
         encoderResLineEdit = new lineedit_click(printStyleTab);
         encoderResLineEdit->setObjectName(QStringLiteral("encoderResLineEdit"));
-        encoderResLineEdit->setGeometry(QRect(310, 280, 131, 41));
+        encoderResLineEdit->setGeometry(QRect(310, 270, 131, 41));
         encoderResLineEdit->setFont(font);
         encoderResLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         pulseWidthLineEdit = new lineedit_click(printStyleTab);
         pulseWidthLineEdit->setObjectName(QStringLiteral("pulseWidthLineEdit"));
-        pulseWidthLineEdit->setGeometry(QRect(310, 380, 131, 41));
+        pulseWidthLineEdit->setGeometry(QRect(310, 370, 131, 41));
         pulseWidthLineEdit->setFont(font);
         pulseWidthLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
         wheelDiameterLineEdit = new lineedit_click(printStyleTab);
         wheelDiameterLineEdit->setObjectName(QStringLiteral("wheelDiameterLineEdit"));
-        wheelDiameterLineEdit->setGeometry(QRect(310, 330, 131, 41));
+        wheelDiameterLineEdit->setGeometry(QRect(310, 320, 131, 41));
         wheelDiameterLineEdit->setFont(font);
         wheelDiameterLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        colWidthLineEdit = new lineedit_click(printStyleTab);
+        colWidthLineEdit->setObjectName(QStringLiteral("colWidthLineEdit"));
+        colWidthLineEdit->setGeometry(QRect(310, 420, 131, 41));
+        colWidthLineEdit->setFont(font);
+        colWidthLineEdit->setStyleSheet(QStringLiteral("background-color: rgb(255, 255, 255);"));
+        colWidthLab = new QLabel(printStyleTab);
+        colWidthLab->setObjectName(QStringLiteral("colWidthLab"));
+        colWidthLab->setGeometry(QRect(50, 420, 251, 41));
+        colWidthLab->setMinimumSize(QSize(101, 41));
+        colWidthLab->setFont(font);
+        colWidthLab->setStyleSheet(QLatin1String("color: rgb(255, 255, 255);\n"
+"background-color: rgb(67,51, 139);"));
+        colWidthLab->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         printSetTabWid->addTab(printStyleTab, QString());
         printStyleBGLabel->raise();
         printSpeedRedBut->raise();
@@ -425,6 +440,8 @@ public:
         encoderResLineEdit->raise();
         pulseWidthLineEdit->raise();
         wheelDiameterLineEdit->raise();
+        colWidthLineEdit->raise();
+        colWidthLab->raise();
         settingTab = new QWidget();
         settingTab->setObjectName(QStringLiteral("settingTab"));
         XDPILab = new QLabel(settingTab);
@@ -902,7 +919,7 @@ public:
 
         retranslateUi(printSetting);
 
-        printSetTabWid->setCurrentIndex(3);
+        printSetTabWid->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(printSetting);
@@ -938,6 +955,7 @@ public:
         pulseWidthLab->setText(QApplication::translate("printSetting", "<html><head/><body><p>\347\224\265\347\234\274\346\234\211\346\225\210\350\204\211\345\256\275<span style=\" font-family:'\347\255\211\347\272\277'; font-size:14pt;\">\316\274s</span></p></body></html>", 0));
         proLineSpeedLab->setText(QApplication::translate("printSetting", "<html><head/><body><p>\344\272\247\347\272\277\351\200\237\345\272\246m/min</p></body></html>", 0));
         proLineSpeedShowLab->setText(QApplication::translate("printSetting", "<html><head/><body><p><span style=\" color:#ffffff;\">0.32</span></p></body></html>", 0));
+        colWidthLab->setText(QApplication::translate("printSetting", "<html><head/><body><p>\347\202\271\351\230\265\345\210\227\351\227\264\350\267\235mm</p></body></html>", 0));
         printSetTabWid->setTabText(printSetTabWid->indexOf(printStyleTab), QApplication::translate("printSetting", "\345\237\272\347\241\200\350\256\276\347\275\256", 0));
         XDPILab->setText(QApplication::translate("printSetting", "<html><head/><body><p align=\"center\">X\346\226\271\345\220\221DPI</p></body></html>", 0));
         XDPI100RadioBut->setText(QApplication::translate("printSetting", "100", 0));

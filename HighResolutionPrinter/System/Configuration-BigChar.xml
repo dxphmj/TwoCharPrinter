@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration_information>
     <printsetting>
-        <m_PrintingSpeed>5.65</m_PrintingSpeed>
+        <m_PrintingSpeed>85</m_PrintingSpeed>
         <m_PrintDelay>20</m_PrintDelay>
         <m_SynFrequency>1</m_SynFrequency>
         <m_PrintGray>1</m_PrintGray>
@@ -9,6 +9,7 @@
         <m_WheelDiameter>60</m_WheelDiameter>
         <m_PulseWidth></m_PulseWidth>
         <m_TriggerMode>0</m_TriggerMode>
+        <m_ColWidth>3</m_ColWidth>
         <m_PrintingDirection>0</m_PrintingDirection>
         <m_SynWheelCheck>0</m_SynWheelCheck>
         <m_VoiceCheck>0</m_VoiceCheck>
@@ -26,12 +27,12 @@
         <m_StartTime>500</m_StartTime>
     </printsetting>
     <system_setting>
-        <m_YearShow>2020</m_YearShow>
-        <m_MonthShow>08</m_MonthShow>
-        <m_DayShow>20</m_DayShow>
-        <m_HourShow>15</m_HourShow>
-        <m_MinShow>17</m_MinShow>
-        <m_SecondShow>57</m_SecondShow>
+        <m_YearShow>2021</m_YearShow>
+        <m_MonthShow>03</m_MonthShow>
+        <m_DayShow>17</m_DayShow>
+        <m_HourShow>20</m_HourShow>
+        <m_MinShow>23</m_MinShow>
+        <m_SecondShow>34</m_SecondShow>
         <m_SysLanguage>CHINESE_SIMPLIFIED</m_SysLanguage>
     </system_setting>
 </configuration_information>

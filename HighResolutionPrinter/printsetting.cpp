@@ -31,6 +31,7 @@ printSetting::printSetting(QWidget *parent)
 	connect(ui.encoderResLineEdit,SIGNAL(clicked()),this,SLOT(encoderResLineEdit_clicked()));
 	connect(ui.wheelDiameterLineEdit,SIGNAL(clicked()),this,SLOT(wheelDiameterLineEdit_clicked()));
 	connect(ui.pulseWidthLineEdit,SIGNAL(clicked()),this,SLOT(pulseWidthLineEdit_clicked()));
+	connect(ui.colWidthLineEdit,SIGNAL(clicked()),this,SLOT(colWidthLineEdit_clicked()));
 
 	ui.printSetTabWid->setStyleSheet("QTabWidget:pane{ \
 							  boder: -2px solid white;top: -2px;background-color:rgb(0, 0, 230);}\
@@ -112,10 +113,11 @@ printSetting::printSetting(QWidget *parent)
 	ui.verticalReverseComBox->addItem(QStringLiteral("on"),1);
 
 #ifdef BIG_CHAR
-	//[打印风格]界面：“打印灰度”改为“墨点大小”；隐藏“喷墨方式”
+	//[基础设置]界面：“打印灰度”改为“墨点大小”；隐藏“喷墨方式”
 	ui.printGrayLab->setText(QStringLiteral("墨点大小"));
 	ui.inkjetLab->setVisible(false);
 	ui.inkjetComBox->setVisible(false);
+
 	//[高级设置]界面：隐藏“DPI”
 	ui.XDPILab->setVisible(false);
 	ui.YDPILab->setVisible(false);
@@ -126,6 +128,7 @@ printSetting::printSetting(QWidget *parent)
 	ui.XDPI600RadioBut->setVisible(false);
 	ui.YDPI300RadioBut->setVisible(false);
 	ui.YDPI600RadioBut->setVisible(false);
+
 	//[喷头设置]界面：隐藏“墨水类型”
 	ui.inkTypeLab->setVisible(false);
 	ui.adaptParaCheckBox->setVisible(false);
@@ -152,6 +155,10 @@ printSetting::printSetting(QWidget *parent)
 	YDPIradioBG->addButton(ui.YDPI600RadioBut,2);
 	ui.YDPI300RadioBut->setChecked(1);
 
+	//隐藏“点阵列间距”输入框
+	ui.colWidthLab->setVisible(false);
+	ui.colWidthLineEdit->setVisible(false);
+	
 #endif
 
 	NozzleradioBG = new QButtonGroup;
@@ -214,10 +221,10 @@ void printSetting::synWheelCheckBox_valueChanged(int val)
 		*/
 
 		//测试用
-		int pulssPerSecond = 1250;
+		int pulsePerSecond = 1250;
 
 		//2.计算当前产线速度（单位m/min），并显示在proLineSpeedShowLab中
-		double tmpSpeed = calCurProSpeed(pulssPerSecond);
+		double tmpSpeed = calCurProSpeed(pulsePerSecond);
 		ui.proLineSpeedShowLab->setText(QString::number(tmpSpeed,10,2));
 		
 		//3.设置界面
@@ -629,19 +636,26 @@ void printSetting::encoderResLineEdit_clicked()
 {
 	pNumKeyboard->SetLineEdit(ui.encoderResLineEdit);
 	QRect numKeyboardRect = pNumKeyboard->geometry();
-	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
+	pNumKeyboard->setGeometry(450,200,numKeyboardRect.width(),numKeyboardRect.height());
 }
 
 void printSetting::wheelDiameterLineEdit_clicked()
 {
 	pNumKeyboard->SetLineEdit(ui.wheelDiameterLineEdit);
 	QRect numKeyboardRect = pNumKeyboard->geometry();
-	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
+	pNumKeyboard->setGeometry(450,200,numKeyboardRect.width(),numKeyboardRect.height());
 }
 
 void printSetting::pulseWidthLineEdit_clicked()
 {
 	pNumKeyboard->SetLineEdit(ui.pulseWidthLineEdit);
 	QRect numKeyboardRect = pNumKeyboard->geometry();
-	pNumKeyboard->setGeometry(520,300,numKeyboardRect.width(),numKeyboardRect.height());
+	pNumKeyboard->setGeometry(450,200,numKeyboardRect.width(),numKeyboardRect.height());
+}
+
+void printSetting::colWidthLineEdit_clicked()
+{
+	pNumKeyboard->SetLineEdit(ui.colWidthLineEdit);
+	QRect numKeyboardRect = pNumKeyboard->geometry();
+	pNumKeyboard->setGeometry(450,200,numKeyboardRect.width(),numKeyboardRect.height());
 }

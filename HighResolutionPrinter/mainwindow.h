@@ -90,7 +90,9 @@ public:
 
 public:
 	void printerCode(char* writeArr);
-
+	int pulseDelay(int printDelay, int wheelDiameter, int encoderRes); //计算打印开始前的延迟脉冲数
+	int pulsePerCol(int colWidth, int wheelDiameter, int encoderRes); //计算每列之间的脉冲数
+	
 private slots:
     void serialPort_readyRead();
 	void fileManageBut_clicked();

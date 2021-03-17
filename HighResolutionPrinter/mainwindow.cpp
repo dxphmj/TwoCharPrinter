@@ -594,8 +594,8 @@ void MainWindow:: CreateCtrlCmd()
 	int nType;
 	vector<BYTE> tempCtrVec;
 
-#ifdef BIG_CHAR // Control command (queCtr) : 39 Bytes
-	nType = 39;
+#ifdef BIG_CHAR // Control command (queCtr) : 40 Bytes
+	nType = 40;
 	ctrlType = (BYTE)(nType);
 	//========= HEAD =========
 	tempCtrVec.push_back(0x1);
@@ -607,11 +607,19 @@ void MainWindow:: CreateCtrlCmd()
 	tempCtrVec.push_back(0xff);
 	tempCtrVec.push_back(0xff);
 	//======== CONTENT ========
-	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintDelay.toInt()));
+	int printDelay = m_ParamSetting.m_PrintDelay.toInt();
+	int encoderRes = m_ParamSetting.m_EncoderRes.toInt();
+	int wheelDiameter = m_ParamSetting.m_WheelDiameter.toInt();
+	/*
+	紧跟在头部之后的第一个字节，存放“触发广电开关”到“打印”之间的【延迟脉冲数】
+	需要注意：一个字节只能表示0~255，因此需要测试，不够须再加字节
+	*/
+	tempCtrVec.push_back((BYTE)(pulseDelay(printDelay,wheelDiameter,encoderRes)));
+	tempCtrVec.push_back((BYTE)(printDelay));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_SynFrequency.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintGray.toInt()));
-	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_EncoderRes.toInt()));
-	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_WheelDiameter.toInt()));
+	tempCtrVec.push_back((BYTE)(encoderRes));
+	tempCtrVec.push_back((BYTE)(wheelDiameter));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PulseWidth.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_TriggerMode.toInt()));
 	tempCtrVec.push_back((BYTE)(m_ParamSetting.m_PrintingDirection.toInt()));
@@ -705,7 +713,8 @@ void MainWindow::CreatePrintData()
 	//theApp.mainPicPixel = theApp.m_MessagePrint->Pixel+1;
 	//theApp.mainPicMatrx = theApp.m_MessagePrint->Matrix;
 
-	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll,printInterval;
+	BYTE dotDataLen_l,dotDataLen_h,matrix_name,pixelMes,pixelAll;
+	BYTE param1; //下发的参数1：高解析和大字符不同，详见下
 	 
 	ForPreQue = queue<vector<BYTE> >();
 	 
@@ -733,14 +742,18 @@ void MainWindow::CreatePrintData()
 	matrix_name = pixelMes<<2;//低二位为模式 
 	pixelAll = pixelMes|0x80; //表示该数据及时生效，开始打印，将前面的清除掉。
 
-	/*计算两列之间的时间间隔
+#ifdef BIG_CHAR
+	/*计算打印点阵列间脉冲数*/
+	int colWidth = m_ParamSetting.m_ColWidth.toInt();//列间距
+	int wheelDiameter = m_ParamSetting.m_WheelDiameter.toInt(); //靠轮直径
+	int encoderRes = m_ParamSetting.m_EncoderRes.toInt(); //编码器分辨率
+	param1 = (BYTE)(pulsePerCol(colWidth,wheelDiameter,encoderRes));//大字符环境下，param1为列间脉冲数，一个字节只能表示0~255，因此需要测试，不够须再加字节
+#else
+	/*计算同步轮速度
 	若用户输入了打印速度V，则时间间隔t(微秒) = 两列间距离L(mm)÷打印速度V(m/min)÷1000×60×1000×1000
 	其中，高解析两列之间的距离L(mm) = 1英寸25.4mm ÷ X方向DPI（默认300） = 0.085mm ; 大字符机L=3mm */
 	double printSpeed = m_ParamSetting.m_PrintingSpeed.toDouble();
-#ifdef BIG_CHAR
-	printInterval = (BYTE)(3/printSpeed*60 + 0.5);//同步轮速度，一个字节只能表示0~255(大字符单位：毫秒)
-#else
-	printInterval = (BYTE)(0.085/printSpeed*60*1000 + 0.5);//同步轮速度，一个字节只能表示0~255(高解析单位：微秒)
+	param1 = (BYTE)(0.085/printSpeed*60*1000 + 0.5);//高解析环境下，param1为同步轮速度，一个字节只能表示0~255(高解析单位：微秒)
 #endif	
 	//2020-07-15高解析测试：每秒2圈->速度113.1m/min->间隔225微秒，每秒10圈->速度22.6m/min->间隔45微秒
 	//2020-07-16大字符测试：每秒4圈->速度45.24m/min->间隔4毫秒，每秒1/2圈->速度5.65m/min->间隔32毫秒(大字符机线速度一般在5~50m/min之间)
@@ -759,7 +772,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAll.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_h);
-		m_MessagePrint->bytPrintDataAll.push_back(printInterval);
+		m_MessagePrint->bytPrintDataAll.push_back(param1);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 
@@ -773,7 +786,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAllOrder.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(dotDataLen_h);
-		m_MessagePrint->bytPrintDataAllOrder.push_back(printSpeed);
+		m_MessagePrint->bytPrintDataAllOrder.push_back(param1);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0xff);
 		m_MessagePrint->bytPrintDataAllOrder.push_back(0xff);
 
@@ -919,7 +932,6 @@ void MainWindow::getSerialTimeDotBuf()
 			else if (m_MessagePrint->OBJ_Vec[i]->strType2 == "time")
 			{					 
 				CTimeOBJ* pSerialObj = (CTimeOBJ*)(m_MessagePrint->OBJ_Vec[i]);
-
 				pSerialObj->CreateTimeDynamic(m_MessagePrint->bytPrintDataAll,m_MessagePrint->boReverse,m_MessagePrint->boInverse,
 																m_MessagePrint->Matrix,m_MessagePrint->Pixel,m_MessagePrint->bytdigital5x5LineMap,
 																m_MessagePrint->bytdigital7x5LineMap,m_MessagePrint->bytdigital12x12LineMap,
@@ -944,4 +956,24 @@ void MainWindow::getCurParam()
 	ui->timeDelayShowMWLab->setAlignment(Qt::AlignRight|Qt::AlignVCenter);
 	ui->dirShowMWLab->setText(m_ParamSetting.m_PrintingDirection);
 	ui->dirShowMWLab->setAlignment(Qt::AlignCenter);
+}
+
+/*
+计算延迟脉冲数 M
+延迟圈数(r) = 延迟距离(mm) ÷ 靠轮直径(mm)
+延迟脉冲数(P) = 编码器分辨率(P/r) × 延迟圈数(r)
+*/
+int MainWindow::pulseDelay(int printDelay, int wheelDiameter, int encoderRes)
+{
+	return encoderRes * printDelay / wheelDiameter;
+}
+
+/*
+计算每列间的脉冲数 m
+列间距对应圈数(r) = 点阵列间距(mm) ÷ 靠轮直径(mm)
+列间脉冲数(p) = 编码器分辨率(p/r) × 列间距对应圈数(r)
+*/
+int MainWindow::pulsePerCol(int colWidth, int wheelDiameter, int encoderRes)
+{
+	return encoderRes * colWidth / wheelDiameter;
 }

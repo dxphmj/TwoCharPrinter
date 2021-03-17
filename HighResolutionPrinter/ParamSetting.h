@@ -15,14 +15,15 @@ public:
 
 
 	QString m_PrintingSpeed;//打印速度
-	QString m_PrintDelay;//打印延时
+	QString m_PrintDelay;//打印延迟距离
 	QString m_SynFrequency;//同步倍频
 	QString m_PrintGray;//打印灰度
 	QString m_EncoderRes;//编码器分辨率
 	QString m_WheelDiameter;//靠轮直径
 	QString m_PulseWidth;//电眼有效脉宽
+	QString m_ColWidth;//点阵列间距（大字符only，用户输入）
 	QString m_TriggerMode;//触发方式
-	QString m_InkjetMode;//喷墨方式
+	QString m_InkjetMode;//喷墨方式（高解析only，用户选择）
 	QString m_PrintingDirection;//打印方向
 	bool m_SynWheelCheck;//启用同步轮
 	bool m_VoiceCheck;//声音

@@ -41,7 +41,7 @@ void CParamSetting::SaveParam2Xml()
 
 	xmlWriter.writeStartElement("printsetting"); //一级节点
 
-	//打印风格参数
+	//基础设置参数
 	xmlWriter.writeTextElement("m_PrintingSpeed",m_PrintingSpeed); //输出一个仅包含文本内容的标签
 	xmlWriter.writeTextElement("m_PrintDelay", m_PrintDelay);
 	xmlWriter.writeTextElement("m_SynFrequency",m_SynFrequency);
@@ -52,9 +52,11 @@ void CParamSetting::SaveParam2Xml()
 	xmlWriter.writeTextElement("m_TriggerMode",m_TriggerMode);
 
 #ifdef BIG_CHAR
+	xmlWriter.writeTextElement("m_ColWidth",m_ColWidth);
 #else
 	xmlWriter.writeTextElement("m_InkjetMode", m_InkjetMode);
 #endif
+
 	xmlWriter.writeTextElement("m_PrintingDirection", m_PrintingDirection);
 	xmlWriter.writeTextElement("m_SynWheelCheck",QString::number(m_SynWheelCheck));
 	xmlWriter.writeTextElement("m_VoiceCheck",QString::number(m_VoiceCheck));
@@ -203,6 +205,11 @@ void CParamSetting::ReadOneParam(QWidget* pWidge)
 			}
 
 #ifdef BIG_CHAR
+			else if(xmlReader.name().toString() == "m_ColWidth")
+			{
+				m_ColWidth = ItemValue;
+				pPrintSetting->ui.colWidthLineEdit->setText(m_ColWidth);
+			}
 #else
 			else if(xmlReader.name().toString() == "XDPIradioBGcheckedId")
 			{
