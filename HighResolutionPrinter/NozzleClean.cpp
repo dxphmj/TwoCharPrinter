@@ -3,9 +3,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include <QStackedWidget>
+
 //驱动相关头文件
 #include <fcntl.h>
-#include <unistd.h>
+//#include <unistd.h>
+#include <io.h>
 
 NozzleClean::NozzleClean(QWidget *parent): 
 	QWidget(parent),

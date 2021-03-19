@@ -11,7 +11,8 @@
 
 //驱动相关头文件
 #include <fcntl.h>
-#include <unistd.h>
+//#include <unistd.h>
+#include <io.h>
 
 //#endif
 #include "mainwindow.h"

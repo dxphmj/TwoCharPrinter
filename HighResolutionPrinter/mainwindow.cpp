@@ -772,7 +772,7 @@ void MainWindow::CreatePrintData()
 		m_MessagePrint->bytPrintDataAll.push_back(pixelMes);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_l);
 		m_MessagePrint->bytPrintDataAll.push_back(dotDataLen_h);
-		m_MessagePrint->bytPrintDataAll.push_back(param1);
+		m_MessagePrint->bytPrintDataAll.push_back(param1);//重要参数：大字符环境下为列间脉冲数；高解析环境下为同步轮速度
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 		m_MessagePrint->bytPrintDataAll.push_back(0xff);
 
