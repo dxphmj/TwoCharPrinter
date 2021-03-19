@@ -6,8 +6,6 @@
 #include "mainwindow.h"
 #include <QButtonGroup>
 
-#define PAI 3.14159265358979323846;
-
 class numkeyboard;
 
 class printSetting : public QWidget

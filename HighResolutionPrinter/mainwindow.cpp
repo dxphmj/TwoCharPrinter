@@ -960,20 +960,24 @@ void MainWindow::getCurParam()
 
 /*
 计算延迟脉冲数 M
-延迟圈数(r) = 延迟距离(mm) ÷ 靠轮直径(mm)
+延迟圈数(r) = 延迟距离(mm) ÷（π × 靠轮直径D(mm)）
 延迟脉冲数(P) = 编码器分辨率(P/r) × 延迟圈数(r)
 */
 int MainWindow::pulseDelay(int printDelay, int wheelDiameter, int encoderRes)
 {
-	return encoderRes * printDelay / wheelDiameter;
+	double tmp = wheelDiameter * PAI;
+	int M = (int)(encoderRes * printDelay / tmp);
+	return M;
 }
 
 /*
 计算每列间的脉冲数 m
-列间距对应圈数(r) = 点阵列间距(mm) ÷ 靠轮直径(mm)
+列间距对应圈数(r) = 点阵列间距(mm) ÷（π × 靠轮直径D(mm)）
 列间脉冲数(p) = 编码器分辨率(p/r) × 列间距对应圈数(r)
 */
 int MainWindow::pulsePerCol(int colWidth, int wheelDiameter, int encoderRes)
 {
-	return encoderRes * colWidth / wheelDiameter;
+	double tmp = wheelDiameter * PAI;
+	int m = (int)(encoderRes * colWidth / tmp);
+	return m;
 }
