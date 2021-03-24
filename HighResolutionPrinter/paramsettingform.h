@@ -33,7 +33,7 @@ public:
 	QString getNum(QString str);
 	void readConfigFromXml();
 
-private slots:
+public slots:
 	void paraExitBut_clicked();
 	void printSettingBut_clicked();
 	void sysSettingBut_clicked();

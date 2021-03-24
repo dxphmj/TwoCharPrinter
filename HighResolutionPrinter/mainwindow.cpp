@@ -98,7 +98,12 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_pPrintThread = new PrintThead(this);//启动打印线程
 	m_pPrintThread->start();
 
-	getCurParam();
+	/*
+	CreateCtrlCmd()：根据对象中的参数生成控制指令，放入queCtr队列中
+	在 printthead.cpp(446) 中，如果 theApp->queCtr.size()>0 ，则会将队列中的控制指令发送给相关控制IO 
+	*/
+	CreateCtrlCmd(); 
+	getCurParam(); //在主界面上显示相应的参数
 }
 
 MainWindow::~MainWindow()
